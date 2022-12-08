@@ -8,7 +8,7 @@
             font-size:14px;
         }
         #footer-area{
-            width: 100vw;
+            width: 100%;
             height: 200px;
             margin-top:30px;
             

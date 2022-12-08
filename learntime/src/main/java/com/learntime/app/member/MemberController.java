@@ -12,4 +12,6 @@ public class MemberController {
 	public String join() {
 		return "/member/join";
 	}
+	
+	
 }
