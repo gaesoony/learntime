@@ -1,0 +1,474 @@
+/* 공통css */
+.soft-gray {
+  color: rgb(164, 164, 164);
+}
+
+.gray1 {
+  color: #535353;
+}
+
+.gray2 {
+  color: #848484;
+}
+
+.relative {
+  position: relative;
+}
+
+.middle {
+  display: flex;
+  justify-content: center;
+}
+
+.bold700 {
+  font-weight: 700;
+}
+
+.bold900 {
+  font-weight: 900;
+}
+
+.main-color {
+  color: #5ecc80;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.black {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.blue {
+  color: rgb(49, 137, 252);
+}
+
+.hidden {
+  display: none;
+}
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+* {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+/* 스터디 상세 1200 */
+
+.main-study-detail {
+  width: 1200px;
+  display: flex;
+}
+
+.study-detail-aside-left {
+  width: 200px;
+  margin-top: 120px;
+  display: flex;
+  justify-content: center;
+}
+
+.study-detail-aside-right {
+  width: 200px;
+  margin-top: 120px;
+}
+
+.study-detail {
+  width: 800px;
+  margin-top: 100px;
+}
+
+/* 스터디 상세 - 왼쪽부분 뒤로가기버튼 */
+
+.back-btn {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border: 1px solid rgb(211, 211, 211);
+  border-radius: 5px;
+  color: #535353;
+  position: sticky;
+  top: 120px;
+}
+
+/* 스터디 상세 - 제목 부분 */
+
+.study-detail-title-area {
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgb(223, 223, 223);
+}
+
+.study-detail-title-area h1 {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.user-profile img {
+  width: 25px;
+  height: 25px;
+}
+
+.user-profile {
+  margin-right: 5px;
+}
+
+.user-nick img {
+  width: 16px;
+  height: 16px;
+}
+
+.study-detail-title__date {
+  margin: 0px 9px;
+}
+
+.hit-cmt-scrap {
+  /* margin-top: 10px; */
+}
+
+.hit-cmt-scrap li {
+  margin-right: 7px;
+}
+
+.hit-cmt-scrap li i {
+  margin-right: 5px;
+}
+
+.study-detail-title-bottom {
+  font-size: 14px;
+}
+
+/* 스터디 상세 - 요약부분 */
+
+.study-detail-summary-area {
+  padding: 40px 25px;
+}
+
+.study-detail-summary-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, 20px);
+  row-gap: 24px;
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.study-detail-summary-list li div:first-child {
+  color: gray;
+  margin-right: 20px;
+}
+
+.tech-list img {
+  width: 35px;
+  height: 35px;
+  margin-right: 7px;
+}
+
+/* 스터디 상세 - 소개부분 */
+.study-detail-info-area {
+  margin-top: 70px;
+}
+
+.study-detail-info-category {
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  padding-bottom: 13px;
+  border-bottom: 1px solid rgb(223, 223, 223);
+  color: gray;
+}
+
+.clicked {
+  color: black;
+}
+
+.study-detail-info-category li {
+  margin-right: 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.study-detail-info-content {
+  padding: 50px 20px;
+  margin-bottom: 100px;
+  font-size: 16px;
+}
+
+.tag-list {
+  padding: 20px;
+}
+
+/* 참여멤버 */
+
+.study-detail-member-area h1 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  margin-top: 50px;
+  padding-bottom: 23px;
+  border-bottom: 1px solid rgb(223, 223, 223);
+}
+
+.study-member-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.study-member-list img {
+  width: 30px;
+  height: 30px;
+  margin-right: 7px;
+}
+
+.study-member-list li div:nth-child(2) {
+  font-weight: 700;
+  margin-right: 7px;
+}
+
+.study-member-list li div:nth-child(3) {
+  font-weight: 700;
+  color: gray;
+}
+
+/* 태그 */
+
+.tag-list-detail {
+  display: inline-block;
+  padding: 5px 5px;
+  border-radius: 2px;
+  font-size: 12px;
+  background-color: #eff3fa;
+  box-shadow: 0, 10px, 1px, black;
+  margin-bottom: 5px;
+}
+
+/* 가입하기 버튼 */
+
+.study-join-btn {
+  width: 130px;
+  height: 40px;
+  background-color: #00c471;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  font-size: 17px;
+  font-weight: 700;
+  margin-top: 70px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+/* 오른쪽 사이드바 - 모집중, 좋아요싫어요, 스크랩버튼 */
+
+.study-detail-aside-right-btns {
+  margin-left: 80px;
+  position: sticky;
+  top: 120px;
+}
+
+.study-detail-aside-right-btns > div {
+  width: 125px;
+  height: 40px;
+  border-radius: 5px;
+  color: rgb(143, 143, 143);
+  border: 1px solid rgba(128, 128, 128, 0.174);
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 1px 8px 0px;
+}
+
+.study-detail-aside-right-btns > div:last-child i {
+  margin-right: 5px;
+}
+
+.like-hate-btn div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.like-hate-btn div:first-child {
+  width: 35px;
+}
+
+.like-hate-btn div:nth-child(2) {
+  width: 55px;
+  border-left: 1px solid rgba(200, 200, 200, 0.368);
+  border-right: 1px solid rgba(200, 200, 200, 0.368);
+}
+
+.like-hate-btn div:last-child {
+  width: 35px;
+}
+
+/* 지도 api */
+
+#map {
+  height: 500px;
+}
+
+/* 댓글 */
+
+.cmt-div {
+  background-color: #f8f9fa;
+  height: 100vh;
+}
+
+.cmt-input {
+  margin-top: 50px;
+  width: 800px;
+  height: 320px;
+  border: 1px solid rgb(212, 212, 212);
+  background-color: white;
+  border-radius: 5px;
+  padding: 25px 20px;
+}
+
+.cmt-input-top {
+  margin-bottom: 20px;
+  font-size: 17px;
+}
+
+.cmt-input-top img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  margin-left: 20px;
+}
+
+.cmt-btn-area {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cmt-btn-area input {
+  border: none;
+
+  height: 35px;
+  width: 75px;
+  background-color: #00c471;
+  color: white;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+/* 가입신청 팝업창 */
+
+.study-popup-wrap {
+  background-color: rgba(0, 0, 0, 0.3);
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  padding: 15px;
+  z-index: 1000;
+}
+
+.study-popup {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 30px;
+}
+
+.study-popup-head {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 30px;
+}
+
+.study-popup-head div:first-child {
+  color: #5ecc80;
+  font-size: 23px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.study-popup-head div:last-child {
+  color: gray;
+  font-size: 13px;
+}
+
+.study-popup-body {
+  width: 100%;
+  background-color: #ffffff;
+}
+.study-body-content {
+  width: 100%;
+}
+.study-body-titlebox div:first-child {
+  font-weight: 900;
+  margin-bottom: 5px;
+  font-size: 17px;
+}
+
+.study-body-titlebox div:last-child {
+  margin-bottom: 5px;
+  font-size: 13px;
+  color: gray;
+}
+.study-body-contentbox input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid rgb(218, 218, 218);
+  border-radius: 3px;
+  margin-top: 3px;
+  margin-bottom: 20px;
+  outline: none;
+  padding: 3px 10px;
+  box-sizing: border-box;
+}
+
+.study-popup-foot {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.study-pop-btn {
+  width: 55px;
+  height: 30px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.study-pop-btn:first-child {
+  background-color: #5ecc80;
+
+  color: white;
+  margin-right: 5px;
+}
+
+.study-pop-btn:last-child {
+  background-color: #ffffff;
+
+  color: rgb(168, 168, 168);
+  border: 1px solid rgb(207, 207, 207);
+}
