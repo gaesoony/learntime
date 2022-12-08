@@ -1,0 +1,384 @@
+/* lay out */
+#board-banner{
+    width: 1200px;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+#main-wrap{
+    height: auto;
+    width: 1200px;
+    margin: auto;
+    margin-top : 20px;
+    margin-bottom: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+/* 카테고리 라인 */
+.cate-line {
+    display: flex; 
+    flex-basis: 100%; 
+    align-items: center; 
+    color: #5ecc80;
+    font-size: 20px; 
+    margin: 10px auto;
+    width: 1000px;
+}
+
+.cate-line::before, 
+.cate-line::after {
+    content: ""; 
+    flex-grow: 1; 
+    background: rgba(171, 171, 171, 0.35); 
+    height: 1px; 
+    font-size: 0px; 
+    line-height: 0px; 
+    margin: 0px 16px;
+}
+
+/* 컨텐츠 정보 */
+#content-info{
+    width: 1000px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+#writer-profile{
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    background-color: #5ecc80;
+}
+#writer-date{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#writer{
+    font-size: 20px;
+    margin-left: 10px;
+    margin-right: 40px;
+}
+#enroll-date{
+    font-size: 14px;
+    color: #878787;
+}
+
+#hit-comment{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #878787;
+}
+#hit-comment>span{
+    margin-right: 10px;
+}
+span.bookmark-icon{
+    font-size: 40px;
+}
+span.bookmark-icon:hover{
+    color: #5ecc80;
+    cursor: pointer;
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
+
+}
+
+div#content{
+    width: 1000px;
+    height: auto;
+    min-height: 400px;
+    margin:40px 10px;
+}
+
+#content>h2{
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+/* 좋아요 싫어요 글수정 글삭제 */
+#content-btns-box{
+    width: 1000px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#like-hate-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 225px;
+}
+
+#like,
+#hate{
+    border: 1px solid #d9d9d9;;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#like{
+    border-radius: 20px 0 0 20px;
+}
+#like>span:hover{
+    color: #a72c2c; 
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+}
+#hate{
+    border-radius: 0 20px 20px 0;
+}
+#hate>span:hover{
+    color: #2c32a7; 
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+}
+#lh-number-box{
+    width: 80px;
+    height: 40px;
+    border: 1px solid #d9d9d9;
+}
+
+.lh-icon {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+
+.lh-icon{
+    color: rgb(145, 145, 145);
+    cursor: pointer;
+}
+#lh-number-box{
+    line-height: 38px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#modify-btn,
+#delete-btn{
+    background-color: #717171;
+    color: white;
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    display: inline-block;
+    text-align: center;
+    font-size: 16px;
+    line-height: 38px;
+    margin-left: 10px;
+}
+#modify-btn:hover,
+#delete-btn:hover{
+    background-color: #3d3d3d;
+    cursor: pointer;
+}
+
+
+/* 댓글 */
+#comment-wrap{
+    width: 1000px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#comment-write-box{
+    width: 1000px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:flex-start;
+    margin-top: 50px;
+    
+}
+
+#comment-writer-box{
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+#comment-writer-profile{
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    background-color:#5ecc80;
+    margin-left: 10px;
+
+}
+#comment-writer{
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+#comment-area,
+#comment-area>textarea{
+    
+    width: 830px;
+    height: 160px;
+}
+
+#comment-write-btn{
+    width: 130px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: #5ecc80;
+    color: white;
+    text-align: center;
+    line-height: 48px;
+    margin-left: 870px;
+}
+#comment-write-btn:hover{
+    background-color: #428c59;
+    cursor: pointer;
+}
+
+#comment-list{
+    width: 1000px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comment-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-top: 1px solid #dcdcdc;
+    border-bottom: 1px solid #dcdcdc;
+
+}
+.comment-main{
+    width: 830px;
+}
+.comment-lh-box{
+    width: 160px;
+}
+.comment-writer-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+}
+.comment-writer-profile>img{
+    width: 25px;
+    height: 25px;
+}
+.comment-writer{
+    margin-left: 5px;
+    font-size: 16px;
+}
+.comment-write-time,
+.modi-dele{
+    margin-left: 20px;
+    font-size: 12px;
+    color: #878787;
+}
+.modi-dele:hover{
+    cursor: pointer;
+}
+.comment-content{
+    height: 70px;
+    margin : 10px 0;
+    padding: 0 10px;
+    font-size: 16px;
+}
+
+/* 댓글 좋아요 싫어요 */
+.like-hate-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.like,
+.hate{
+    border: 1px solid #d9d9d9;;
+    height: 34px;
+    width: 34px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.like{
+    border-radius: 20px 0 0 20px;
+}
+.like>span:hover{
+    color: #a72c2c; 
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+}
+.hate{
+    border-radius: 0 20px 20px 0;
+}
+.hate>span:hover{
+    color: #2c32a7; 
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+}
+.lh-number-box{
+    width: 60px;
+    height: 34px;
+    line-height: 32px;
+    text-align: center;
+    font-size: 16px;
+    border: 1px solid #d9d9d9;
+    font-weight: 600;
+}
+
+/* 흠여기서부터.. */
+.lh-icon {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.lh-icon{
+    color: rgb(145, 145, 145);
+    cursor: pointer;
+}
+
+/* 클래스으ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+.red{
+    color: #a72c2c;
+}
