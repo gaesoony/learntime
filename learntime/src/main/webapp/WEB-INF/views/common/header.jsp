@@ -11,7 +11,7 @@
 
 
  <style>
-         /* 모달 시작 */
+    /* 모달 시작 */
 	  .blackBG {
         background: rgba(0, 0, 0, 0.5);
         width: 100vw;
@@ -180,7 +180,7 @@
     </style>
 
     <!-- 로그인 모달 -->
-	<div class="blackBG">
+	  <div class="blackBG">
       <div class="whiteBG">
             <button type="button" id="modal-closed">
                 <span class="material-symbols-outlined">close</span>
@@ -202,9 +202,9 @@
             </form>
 
             <div id="account_find">
-                <a href="">아이디(이메일) 찾기</a>
+                <a href="/app/member/findId">아이디(이메일) 찾기</a>
                 <span>|</span>
-                <a href="">비밀번호 찾기</a>
+                <a href="/app/member/findPwd">비밀번호 찾기</a>
                 <span>|</span>
                 <a href="/app/member/join">회원가입</a>
             </div>
@@ -214,8 +214,8 @@
                 <div id="kakao"></div>
             </div>
      
+	    </div>
 	  </div>
-	 </div>
 
 
     <!-- 헤더 -->
@@ -226,7 +226,7 @@
             <div id="mentoring"><a href="#">MENTORING</a></div>
             <div id="learning"><a href="#">LEARNING</a></div>
             <div id="make-grass"><a href="#">MAKE GRASS</a></div>
-            <div id="skinshop"><a href="#">SKIN SHOP</a></div>
+            <div id="skinshop"><a href="/app/skinshop">SKIN SHOP</a></div>
             <div id="community"><a href="#">COMMUNITY</a></div>
             <div id="empty"></div>
             <div id="join"><a href="/app/member/join">JOIN</a></div>
