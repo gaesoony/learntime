@@ -1,0 +1,302 @@
+@charset "UTF-8";
+
+.the-lower-part-of-main{
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+    border: 1px solid red;
+
+}
+/* 레이아웃 */
+.the-upper{
+    width: 100%;
+    height: 600px;;
+    border: 1px solid red;
+}
+.the-middle{
+    width: 100%;
+    height: 600px;
+    border: 1px solid red;
+}
+.the-lower{
+    width: 100%;
+    height: 750px;
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+}
+.mentoring-title{
+    width: 100%;
+    height: 25%;
+    border: 1px solid red;
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+}
+.mentoring-content{
+    width: 100%;
+    height: 75%;
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+
+
+
+}
+/* 멘토링 타이틀 */
+.mentoring-title-icon{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 50px;
+}
+.mentoring-content-more{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-bottom: 50px;
+}
+
+/* 슬라이드 */
+
+.slice-as-three{
+    width: 100%;
+    height: 350px;
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    border: 1px solid red;
+    align-items: center;
+}
+.prevBtn,.nextBtn{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 1px solid red;
+    
+}
+.container{
+    width: 1040px;
+    height: 350px;
+    border: 1px solid red;
+
+
+}
+.prevBtn{
+    background-image: url("/app/resources/img/main/Group\ 28.png");
+    background-size: 80px;
+}
+.nextBtn{
+    background-image: url("/app/resources/img/main/Ellipse\ 108.png");
+    background-size: 80px;
+}
+
+.container-slide{
+    width: 1040px;
+    height: 350px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow: hidden;
+
+}
+.slide{
+    width: 230px;
+    height: 300px;
+    margin: 13px;
+    float: left;
+    border: 2px solid #5ECC80;
+    border-radius: 1rem;
+
+}
+/* 스터디 제목 부분 */
+
+.studying-title{
+    width: 100%;
+    height: 25%;
+    border: 1px solid red;
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+}
+.studying-content{
+    width: 100%;
+    height: 75%;
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+
+
+
+}
+.studying-title-icon{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 50px;
+}
+.studying-content-more{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-bottom: 50px;
+}
+
+
+/* 슬라이드 */
+
+.slice-as-three-sec{
+    width: 100%;
+    height: 350px;
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    border: 1px solid red;
+    align-items: center;
+}
+.prevBtn-sec,.nextBtn-sec{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 1px solid red;
+    
+}
+.container-sec{
+    width: 1040px;
+    height: 350px;
+    border: 1px solid red;
+
+
+}
+.prevBtn-sec{
+    background-image: url("/app/resources/img/main/Group\ 28.png");
+    background-size: 80px;
+}
+.nextBtn-sec{
+    background-image: url("/app/resources/img/main/Ellipse\ 108.png");
+    background-size: 80px;
+}
+
+.container-slide-sec{
+    width: 1040px;
+    height: 350px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow: hidden;
+
+}
+.slide-sec{
+    width: 230px;
+    height: 300px;
+    margin: 13px;
+    float: left;
+    border: 2px solid #5ECC80;
+    border-radius: 1rem;
+
+}
+/* 공지사항 왼쪽*/
+.notice{
+    width: 100%;
+    height: 500px;
+    display: flex;
+}   
+.notice-list{
+    width: 598px;
+    height: 495px;
+    border: 5px solid #5ECC80;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.faq-per-person{
+    width: 597px;
+    height: 495px;
+    border: 5px solid #5ECC80;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5ECC80;
+
+}
+
+.lists{
+    width: 548px;
+    height: 445px;
+    
+}
+.list{
+    width: 100%;
+    height: 60px;
+    border-bottom: 2px solid gray;
+}
+#boldline{
+    border-bottom: 5px solid gray;
+    display: flex;
+    
+}
+.notice-title{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: larger;
+}
+.arrow{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+#list-one, #list-two, #list-three, #list-four, #list-five{
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 5px;
+    
+}
+
+/* 공지사항 오른쪽 */
+
+.faq-div{
+    width: 497px;
+    height: 295px;
+}
+.faq-title{
+    width: 100%;
+    height: 120px;
+    color: white;
+    font-size: xx-large;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    line-height: 40px;
+    text-align: center;
+}
+.faq-content{
+    width: 100%;
+    height: 50px;
+    font-size: small;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.faq-box{
+    width: 100%;
+    height: 125px;
+    display: flex;
+    justify-content: center;
+}
+#personal-faq-box{
+    width: 165px;
+    height: 65px;
+    background-color: white;
+    color: #5ECC80;
+    font-size: larger;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
