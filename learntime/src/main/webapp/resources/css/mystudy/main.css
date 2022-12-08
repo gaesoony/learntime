@@ -1,0 +1,203 @@
+/* 공통css */
+* {
+  box-sizing: border-box;
+}
+
+.middle {
+  display: flex;
+  justify-content: center;
+}
+
+.bold700 {
+  font-weight: 700;
+}
+
+.bold900 {
+  font-weight: 900;
+}
+
+.main-color {
+  color: #5ecc80;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.black {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.blue {
+  color: rgb(49, 137, 252);
+}
+
+.relative {
+  position: relative;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+* {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+/* 삭제예정 */
+
+body {
+  height: 100vh;
+}
+
+/* 영역 나누기 (왼쪽사이드 / 메인 / 오른쪽사이드) */
+
+.mystudy-left-aside {
+  display: flex;
+  height: 820px;
+}
+
+.mystudy-img-aside {
+  width: 70px;
+  border-right: 1px solid rgb(237, 237, 237);
+  background-color: #f9f9f9;
+}
+
+.mystudy-cate-aside {
+  padding: 22px 20px 0px 20px;
+  width: 240px;
+  border-right: 1px solid rgb(237, 237, 237);
+}
+
+.mystudy-cate-aside h1 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 50px;
+}
+
+.mystudy-article {
+  width: 100%;
+  height: 820px;
+}
+
+.mystudy-right-aside {
+  padding: 25px 20px 0px 20px;
+  width: 300px;
+  height: 820px;
+  background-color: #f9f9f9;
+  border-left: 1px solid rgb(237, 237, 237);
+}
+
+/* 제일 왼쪽 내스터디 이미지 리스트 */
+
+.mystudy-img-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15px;
+}
+
+.mystudy-logo {
+  background-color: #d9d9d9;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.mystudy-logo img {
+  width: 40px;
+  height: 40px;
+}
+
+.mystudy-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mystudy-list a {
+  margin-bottom: 10px;
+}
+
+.mystudy-list a img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* 왼쪽사이드 - 카테고리 */
+
+.mystudy-cate-list a {
+  display: block;
+  font-size: 17px;
+  margin-bottom: 20px;
+}
+
+.mystudy-cate-list a i {
+  color: rgb(66, 66, 66);
+  margin-right: 10px;
+}
+
+.mystudy-manage-area {
+  position: absolute;
+  bottom: 30px;
+  font-weight: 700;
+}
+
+.mystudy-manage-area i {
+  margin-right: 5px;
+}
+
+/* 오른쪽 사이드바 - 참여멤버 */
+
+.mystudy-right-aside h1 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.study-member-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-profile {
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+}
+
+.crown {
+  width: 20px;
+  height: 20px;
+}
+
+/* 가운데 부분 */
+
+.mystudy-board-title {
+  width: 100%;
+  height: 55px;
+  border-bottom: 1px solid rgb(230, 230, 230);
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+/* 상세조회 CSS */

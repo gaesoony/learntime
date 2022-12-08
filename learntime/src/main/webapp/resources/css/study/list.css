@@ -1,0 +1,543 @@
+/* 공통css */
+.soft-gray {
+  color: rgb(164, 164, 164);
+}
+
+.gray1 {
+  color: #535353;
+}
+
+.gray2 {
+  color: #848484;
+}
+
+.relative {
+  position: relative;
+}
+
+.middle {
+  display: flex;
+  justify-content: center;
+}
+
+.bold700 {
+  font-weight: 700;
+}
+
+.bold900 {
+  font-weight: 900;
+}
+
+.main-color {
+  color: #5ecc80;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.black {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.blue {
+  color: rgb(49, 137, 252);
+}
+
+* {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+/* 스터디/프로젝트 배너 */
+.study-banner {
+  width: 100%;
+  height: 200px;
+  background-color: #333b3d;
+  color: white;
+  padding: 25px 0px;
+}
+
+.study-banner > div {
+  width: 1200px;
+}
+
+.study-banner img {
+  width: 65px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+.study-banner div:first-child,
+.study-banner div:nth-child(2) {
+  font-size: 25px;
+  line-height: 30px;
+}
+
+.study-banner div:last-child {
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+/* 스터디 메인 1200 */
+
+.study-main {
+  width: 1200px;
+  display: flex;
+}
+
+.my-study-aside,
+.popular-tag-aside {
+  width: 200px;
+}
+
+.study-article {
+  width: 800px;
+}
+
+.my-study,
+.popular-tag {
+  width: 200px;
+  padding: 20px 15px;
+  margin-top: 50px;
+  border: 1px solid rgb(217, 217, 217);
+  border-radius: 4px;
+}
+
+.my-study {
+  position: sticky;
+  top: 140px;
+  padding: 20px 15px 10px 15px;
+}
+
+.my-study h1 {
+  margin-bottom: 20px;
+}
+
+.my-study-list-detail {
+  margin-bottom: 12px;
+}
+
+.my-study-list-detail img {
+  width: 25px;
+  height: 25px;
+  border-radius: 50px;
+  margin-right: 5px;
+}
+
+.my-study-list-detail span {
+  font-size: 14px;
+}
+
+.my-study-title {
+  display: inline-block;
+  width: 170px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.popular-tag-title {
+  margin-bottom: 15px;
+}
+
+/* 인기 태그 */
+
+.popular-tag-list-detail {
+  display: inline-block;
+  padding: 5px 5px;
+  border-radius: 2px;
+  font-size: 12px;
+  background-color: #eff3fa;
+  box-shadow: 0, 10px, 1px, black;
+  margin-bottom: 5px;
+}
+
+/* 스터디 가운데부분 전체 */
+
+.study-article {
+  padding-left: 43px;
+  padding-top: 50px;
+}
+
+/* 검색창 2개 */
+
+.study-search-name,
+.study-search-tag {
+  width: 633px;
+  height: 45px;
+  border: 1px solid rgb(211, 211, 211);
+  padding: 10px 0px;
+  padding-left: 35px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  outline: none;
+}
+
+.study-search-name {
+  margin-bottom: 8px;
+}
+
+.study-search-name + input[type="submit"] {
+  width: 70px;
+  height: 43px;
+  border: none;
+  background-color: #5ecc80;
+  color: white;
+  border-radius: 3px;
+  position: absolute;
+  right: 47px;
+  cursor: pointer;
+}
+
+.study-search-tag + input[type="reset"] {
+  width: 60px;
+  height: 43px;
+  border: none;
+  background-color: white;
+  border-radius: 3px;
+  position: absolute;
+  right: 59px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+input[type="reset"] + i {
+  position: absolute;
+  right: 52px;
+  top: 14px;
+}
+
+.study-search-area div:first-child i {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+}
+
+.study-search-area div:nth-child(2) i:first-child {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+}
+
+/* 기술스택 메뉴 리스트 */
+
+.study-tech-area {
+  margin: 40px 0px;
+}
+
+.tech-category-list,
+.study-type-list {
+  font-size: 20px;
+}
+
+.tech-category-list li,
+.study-type {
+  margin-right: 15px;
+  margin-left: 10px;
+  color: rgb(158, 158, 158);
+  cursor: pointer;
+  font-size: 19px;
+}
+
+.tech-clicked,
+.type-clicked {
+  color: black !important;
+}
+
+.bar1 {
+  width: 45px;
+  height: 4px;
+  background-color: #5ecc80;
+  position: absolute;
+  bottom: -10px;
+  left: -3px;
+}
+
+.bar2 {
+  width: 100px;
+  height: 4px;
+  background-color: #5ecc80;
+  position: absolute;
+  bottom: -10px;
+  left: -3px;
+}
+
+.bar3 {
+  width: 62px;
+  height: 4px;
+  background-color: #5ecc80;
+  position: absolute;
+  bottom: -10px;
+  left: -4px;
+}
+
+.bar4 {
+  width: 62px;
+  height: 4px;
+  background-color: #5ecc80;
+  position: absolute;
+  bottom: -10px;
+  left: -3px;
+}
+
+.bar5 {
+  width: 43px;
+  height: 4px;
+  background-color: #5ecc80;
+  position: absolute;
+  bottom: -10px;
+  left: -3px;
+}
+
+.bar6 {
+  width: 81px;
+  height: 4px;
+  background-color: #5ecc80;
+  position: absolute;
+  bottom: -10px;
+  left: -3px;
+}
+
+.study-type-bar1 {
+  width: 45px;
+  height: 4px;
+  background-color: #5ecc80;
+  position: absolute;
+  bottom: -10px;
+  left: -3px;
+}
+
+.study-type-bar2 {
+  width: 62px;
+  height: 4px;
+  background-color: #5ecc80;
+  position: absolute;
+  bottom: -10px;
+  left: -4px;
+}
+
+.study-type-bar3 {
+  width: 81px;
+  height: 4px;
+  background-color: #5ecc80;
+  position: absolute;
+  bottom: -10px;
+  left: -3px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* 기술스택 리스트 */
+
+.tech-list {
+  margin-top: 30px;
+  width: 670px;
+}
+
+.tech-list li {
+  border: 1px solid rgb(206, 206, 206);
+  border-radius: 20px;
+  align-items: center;
+  padding: 3px 7px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tech-list li img {
+  width: 25px;
+  height: 25px;
+  margin-right: 7px;
+}
+
+.tech-list li span {
+  line-height: 30px;
+}
+
+/* 모집중만 보기 버튼 */
+
+#toggle-slider {
+  display: none;
+}
+
+#toggle-slider-label {
+  cursor: pointer;
+  width: 42px;
+  height: 20px;
+  text-indent: -9999em;
+  background-color: rgb(76, 76, 76);
+  border-radius: 25px;
+  position: relative;
+  transition: 0.4s ease-out;
+}
+
+#toggle-slider-label::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  background-color: white;
+  position: absolute;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  transition: 0.4s ease-out;
+}
+
+#toggle-slider:checked + #toggle-slider-label {
+  background-color: #5ecc80;
+}
+
+#toggle-slider:checked + #toggle-slider-label::after {
+  background-color: #ffffff;
+  left: 25px;
+}
+
+.on-off-btn-text {
+  word-spacing: -3px;
+  margin-right: 5px;
+}
+
+.on-off-btn-area {
+  margin-right: 53px;
+}
+
+/* 스터디/프로젝트 정렬 */
+
+.study-order-list {
+  font-size: 15px;
+  margin-left: 7px;
+  margin-top: 8px;
+}
+
+.study-order-list a {
+  margin-right: 5px;
+}
+
+.study-order-area {
+  display: flex;
+  justify-content: space-between;
+}
+
+.write-btn input {
+  margin-right: 50px;
+  background-color: #333b3d;
+  width: 70px;
+  height: 35px;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* 모집중만 보기 버튼 아래쪽 마진 */
+
+.study-area > div:first-child {
+  margin-bottom: 30px;
+}
+
+/* 스터디/프로젝트 리스트 */
+.main-study-detail-list {
+  display: flex;
+  justify-content: space-between;
+  width: 700px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 12px;
+  margin-top: 10px;
+}
+
+.main-study-detail {
+  display: block;
+  width: 230px;
+  height: 250px;
+  border: 2px solid #8ed4a4;
+  border-radius: 7px;
+  padding: 25px 20px 19px 20px;
+  box-sizing: border-box;
+  margin-right: 12px;
+}
+
+/* 시작예정일, 좋아요수 */
+
+.main-study-detail__date-like {
+  font-size: 13px;
+}
+
+.like-icon {
+  margin-right: 5px;
+}
+
+/* 제목, 해시태그, 기술스택 */
+
+.main-study-detail h1 {
+  font-size: 17px;
+  margin: 12px 0px;
+  letter-spacing: -1px;
+  line-height: 23px;
+}
+
+.study-tag {
+  margin-right: 5px;
+  font-size: 12px;
+}
+
+.study-tech-list {
+  margin-top: 18px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(174, 174, 174, 0.4);
+}
+
+.study-tech img {
+  width: 30px;
+  height: 30px;
+}
+
+.study-tech {
+  margin-right: 10px;
+}
+
+/* 프사, 닉네임, 조회수, 댓글수, 스크랩수 */
+
+.user-profile img {
+  width: 35px;
+  height: 35px;
+}
+
+.user-profile {
+  margin-left: 5px;
+  margin-right: 11px;
+}
+
+.user-nick {
+  font-size: 15px;
+  margin-bottom: 7px;
+}
+
+.view-cmt-scrap-list {
+  font-size: 13px;
+}
+
+.view-cmt-scrap-list span {
+  margin-left: 4px;
+  margin-right: 10px;
+}

@@ -1,0 +1,193 @@
+* {
+  box-sizing: border-box;
+}
+
+/* 공통css */
+.soft-gray {
+  color: rgb(164, 164, 164);
+}
+
+.gray1 {
+  color: #535353;
+}
+
+.gray2 {
+  color: #848484;
+}
+
+.relative {
+  position: relative;
+}
+
+.middle {
+  display: flex;
+  justify-content: center;
+}
+
+.bold700 {
+  font-weight: 700;
+}
+
+.bold900 {
+  font-weight: 900;
+}
+
+.main-color {
+  color: #5ecc80;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.black {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.blue {
+  color: rgb(49, 137, 252);
+}
+
+.hidden {
+  display: none;
+}
+
+/* 스터디모집 1200 */
+
+.study-recruit-main {
+  width: 850px;
+}
+
+/* 프로젝트 기본정보 */
+
+.study-info {
+  margin-top: 100px;
+}
+
+.study-info h1 {
+  font-weight: 700;
+  font-size: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgb(208, 208, 208);
+  margin-bottom: 50px;
+}
+
+/* 셀렉트 박스 */
+
+.container-list {
+  margin-left: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.container h2 {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.container {
+  margin-bottom: 15px;
+}
+
+.select-box {
+  display: flex;
+  width: 330px;
+  flex-direction: column;
+}
+
+.select-box .options-container {
+  background: #ffffff;
+  color: #505050;
+  max-height: 0;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.4s;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid gray;
+  font-weight: 700;
+  order: 1;
+}
+
+.selected {
+  background: #ffffff;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  color: #727272;
+  font-weight: 700;
+  position: relative;
+  border: 1px solid gray;
+  height: 45px;
+
+  order: 0;
+}
+
+.selected::after {
+  content: "";
+  background: url("./img/arrow_down.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  position: absolute;
+  height: 100%;
+  width: 32px;
+  right: 10px;
+  top: 5px;
+
+  transition: all 0.4s;
+}
+
+.select-box .options-container.active {
+  max-height: 240px;
+  opacity: 1;
+  overflow-y: scroll;
+}
+
+.select-box .options-container.active + .selected::after {
+  transform: rotateX(180deg);
+  top: -6px;
+}
+
+/* .select-box .options-container::-webkit-scrollbar {
+  width: 8px;
+  background: #44659c;
+  border-radius: 0 8px 8px 0;
+}
+
+.select-box .options-container::-webkit-scrollbar-thumb {
+  background: #1b4585;
+  border-radius: 0 8px 8px 0;
+} */
+
+.select-box .option,
+.selected {
+  padding: 12px 17px;
+  cursor: pointer;
+}
+
+.select-box .option:hover {
+  background: #7ffe9232;
+}
+
+.select-box label {
+  cursor: pointer;
+}
+
+.select-box .option .radio {
+  display: none;
+}
+/* 프로젝트 소개 */
