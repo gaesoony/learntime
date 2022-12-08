@@ -2,11 +2,10 @@
     pageEncoding="UTF-8"%>
 
 
-
-
 <link rel="stylesheet" href="/app/resources/css/reset.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
 <!-- 구글아이콘 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
@@ -22,7 +21,7 @@
         opacity: 0;
 
         display: flex;
-        z-index:1000;
+        z-index:10000;
       }
       .show {
         visibility: visible;
@@ -121,11 +120,7 @@
         margin: 2px;
       }
 
-
-
-
-     
- 		/* 모달 끗 */
+ 	/* 모달 끗 */
  
  
     /* 헤더 CSS 시작 */
@@ -134,6 +129,8 @@
         background-color: #FFFFFF;
         position:sticky;
         top:0px;
+        z-index:9999;
+        box-shadow:0px 3px 10px rgba(0, 0, 0, 0.1);
     }
     #header-area *{
         font-family: 'Noto Sans KR', sans-serif;
@@ -224,8 +221,8 @@
     <!-- 헤더 -->
 	 <div id="header-area">
         <div id="header">
-            <div id="logo"><a href="#"><img src="/app/resources/img/logo_green2.png" alt="런타임로고"></a></div>
-            <div id="study-project"><a href="#">STUDY / PROJECT</a></div>
+            <div id="logo"><a href="/app/main"><img src="/app/resources/img/logo_green2.png" alt="런타임로고"></a></div>
+            <div id="study-project"><a href="/app/study/list">STUDY / PROJECT</a></div>
             <div id="mentoring"><a href="#">MENTORING</a></div>
             <div id="learning"><a href="#">LEARNING</a></div>
             <div id="make-grass"><a href="#">MAKE GRASS</a></div>
