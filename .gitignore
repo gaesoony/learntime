@@ -6,3 +6,4 @@ Servers
 **/.project
 **/.classpath
 **/META-INF
+**/bin
