@@ -3,3 +3,6 @@
 *.class
 Servers
 */target/
+**/.project
+**/.classpath
+META-INF
