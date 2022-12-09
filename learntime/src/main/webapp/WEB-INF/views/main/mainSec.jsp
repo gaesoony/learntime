@@ -64,8 +64,14 @@
                             <ul class="container-slide-sec">
                                 <c:forEach var="slide-sec" begin="1" end="12" >
                                     <li class="slide-sec">
-                                        <div class="java-photo"><img src="/app/resources/img/main/java.png"></div>
-                                        <div class="java-content"></div>
+                                        <div class="java-photo"><img width="230px" height="200px" src="/app/resources/img/main/java.png"></div>
+                                        <div class="java-content">
+                                            <div class="profile-box">
+                                                <div class="profile-photo"><img width="60px" height="60px" src="/app/resources/img/main/Ellipse 2.png"></div>
+                                                <div class="java-title"><img width="130px" height="60px" src="/app/resources/img/main/Group 22.png"></div>
+                                                <div class="heart"><img width="50px" height="30px" src="/app/resources/img/main/Frame 20.png"></div>
+                                            </div>
+                                        </div>
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -143,8 +149,46 @@
  		}
  		
  	});
+ 	//두번째 슬라이드
+ 	//변수 지정
+	var slidesSec = document.querySelector('.container-slide-sec'),
+		slideSec = document.querySelectorAll('.slide-sec'),
+		currentIdx = 0,
+		slideCount = slideSec.length,
+		slideWidth = 250,
+		slideMargin = 13,
+		prevBtnSec = document.querySelector('.prevBtn-sec'),
+		nextBtnSec = document.querySelector('.nextBtn-sec');
+        
+
+ 
+ 	slidesSec.style.width = (slideWidth + slideMargin)* slideCount - slideMargin +'px';
  	
  	
+ 	function moveSlide(num){
+ 		slidesSec.style.left= -num*263+'px';
+ 		currentIdx = num;
+ 	}
+ 	
+ 	nextBtnSec.addEventListener('click',function(){
+ 		if(currentIdx < slideCount -4){
+ 			moveSlide(currentIdx + 1);
+           
+ 		}else{
+ 			moveSlide(0);
+             
+ 		}
+ 		
+ 	});
+ 	
+ 	prevBtnSec.addEventListener('click',function(){
+ 		if(currentIdx > 0){
+ 			moveSlide(currentIdx - 1);
+ 		}else{
+ 			moveSlide(slideCount - 4);
+ 		}
+ 		
+ 	});
  
 </script>
 </body>
