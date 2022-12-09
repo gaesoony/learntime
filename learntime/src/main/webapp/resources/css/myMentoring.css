@@ -1,0 +1,139 @@
+#main-wrap{
+    width: 800px;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 600px;
+    height: auto;
+}
+#category-wrap{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #cbcbcb;
+    width: 820px;
+}
+
+#mentoring-category-box{
+    margin-top: 10px;
+    /* width: 720px; */
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* radio */
+input[type="radio"]{
+    display: none;
+  }
+  
+input[type="radio"] + label{
+display: inline-block;
+height: 15px;
+margin-right: 20px;
+text-align: center;
+cursor: pointer;
+font-size: 18px;
+font-weight: 500;
+padding-bottom: 5px;
+color: #6b6b6b;
+}
+
+input[type="radio"]:checked + label{
+border-bottom: 3px solid #58c079;
+color: #000000;
+font-weight: 550;
+}
+
+#mentoring-regist-btn{
+    width: 120px;
+    height: 25px;
+    font-size: 12px;
+    border-radius: 5px;
+    border: 1px solid #58c079;
+    color: #58c079;
+    text-align: center;
+    line-height: 24px;
+    margin-top:8px;
+    box-shadow: 2px 2px 2px rgb(233, 233, 233);
+}
+
+#mentoring-regist-btn:hover{
+    background-color: #58c079;
+    color: white;
+    cursor: pointer;
+}
+
+/* 메인 */
+#mentoring-content-wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#content-title{
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1.8fr 1.8fr 2fr 1.8fr 1fr;
+    align-items: center;
+    justify-content: space-between;
+    width: 820px;
+    margin-top: 20px;
+}
+
+.content-title{
+    background-color: #ddf5e4;
+    height: 40px;
+    line-height: 38px;
+    text-align: center;
+    font-size: 12px;
+    
+}
+.content-title:not(:last-child){
+    border-right: 1px solid white;
+}
+
+.content-list{
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1.8fr 1.8fr 2fr 1.8fr 1fr;
+    align-items: center;
+    justify-content: space-between;
+    width: 820px;
+    margin-top: 5px;
+}
+
+.content{
+    height: 40px;
+    line-height: 38px;
+    text-align: center;
+    font-size: 12px;
+    padding: 0 5px 0 5px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+}
+.content:not(:last-child){
+    border-right: 1px solid #ddf5e4;
+}
+
+.m-notice{
+    margin-top: 20px;
+    font-size: 12px;
+    color: #4c4c4c;
+    line-height: 15px;
+    text-align: center;
+}
+#no-mentor>a{
+    font-size: 12px;
+    color: #58c079;
+    text-align: center;
+    text-decoration: underline;
+}
+#no-mentor>a:hover{
+    color: #186c33;
+}

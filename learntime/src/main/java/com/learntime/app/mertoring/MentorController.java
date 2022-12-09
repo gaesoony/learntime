@@ -32,5 +32,17 @@ public class MentorController {
 		
 	}
 	
+	@GetMapping("/mymentoring")
+	public String myMentoring() {
+		return "/mentoring/myMentoring";
+		
+	}
+	
+	@GetMapping("/mymentoring/applied")
+	public String myMentoringA() {
+		return "/mentoring/myMentoringA";
+		
+	}
+	
 }
 
