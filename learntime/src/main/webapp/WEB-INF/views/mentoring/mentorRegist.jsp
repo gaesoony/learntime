@@ -17,12 +17,12 @@
 
     <div id="main-wrap">
         <div id="mentoring-category-box">
-            <input type="radio" name="mentoring-category" id="mentoring-category1">
-            <label for="mentoring-category1">• 신청한 멘토링</label>
+            <input type="radio" name="mentoring-category" id="mentoring-category1" checked>
+            <label for="mentoring-category1">신청한 멘토링</label>
             <input type="radio" name="mentoring-category" id="mentoring-category2">
-            <label for="mentoring-category2">• 멘토 지원하기</label>
+            <label for="mentoring-category2">멘토 지원하기</label>
             <input type="radio" name="mentoring-category" id="mentoring-category3">
-            <label for="mentoring-category3">• 나의 멘토링 관리</label>
+            <label for="mentoring-category3">나의 멘토링 관리</label>
         </div>
 
         <form action="">
