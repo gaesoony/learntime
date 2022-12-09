@@ -13,19 +13,21 @@
     .main{
         width: 1002px;
         margin: 0 auto;
-        margin-top: 30px;
+        margin-top: 70px;
         margin-bottom: 50px;
     }
     .maintitle{
         font-size: 28px;
     }
-    h3{
+    .title-start{
         float: left;
         color: #5ECC80;
-        font-size: 30px;
+        font-size: 50px;
+        margin-right: 15px;
+        padding-bottom: 10px;
     }
-    .middletitle{
-        margin-top: 20px;
+    .title-end{
+        padding: 20px;
     }
     .profile{
         width: 30px;
@@ -48,6 +50,7 @@
         color: #5ECC80;
         vertical-align: middle;
         padding-right: 600px;
+        letter-spacing: 2px;
     }
     .thumbsup{
         font-size: 20px;
@@ -78,9 +81,18 @@
     .two{
         margin-bottom: 80px;
     }
-    .hash1{
-        background-color:  #AAAAAA;
+    .three{
+        padding-bottom: 30px;
+    }
+    .ha{
+        text-align: center;
+        width: 3vw;
+        background-color: #AAAAAA;
         color: white;
+        border-radius: 20px;
+        padding: 10px;
+        float: left;
+        margin-right: 10px;
     }
     .hash2{
         background-color:  #AAAAAA;
@@ -90,22 +102,10 @@
         background-color:  #AAAAAA;
         color: white;
     }
-    .ha1{
-        border-radius: 20px;
-        padding: 10px;
-    }
-    .ha2{
-        border-radius: 20px;
-        padding: 10px;
-    }
-    .ha3{
-        border-radius: 20px;
-        padding: 10px;
-    }
     .middle{
         height: 1300px;
         background-color: #F4FBF6;
-        padding: 70px;
+        padding-top: 70px;
     }
     .middlemain{
         width: 1002px;
@@ -179,14 +179,13 @@
         width: 2vw;
         float: left;
         margin-left: 30px;
-        margin-top: 30px;
+        margin-top: 20px;
         margin-right: 10px;
     }
     .endnick{
         font-size: 18px;
         color: black;
         padding: 30px;
-        margin-top: 10px;
     }
     .endenrollDate{
         font-size: 15px;
@@ -199,20 +198,31 @@
         font-size: 15px;
         color: #5ECC80;
         float: left;
-        margin-right: 730px;
+        margin-right: 690px;
+        letter-spacing: 2px;
     }
     .edit1{
         float: left;
-        color: #989898;
         margin-right: 5px;
+    }
+    #edit1{
+        color: #989898;
+        background-color: white;
+        text-decoration: none;
+        border: none;
+        font-size: 15px;
     }
     .edit2{
         float: left;
         color: #989898;
         margin-right: 5px;
     }
-    .edit3{
+    #edit3{
         color: #989898;
+        background-color: white;
+        text-decoration: none;
+        border: none;
+        font-size: 15px;
     }
     .endline1{
         width: 950px;
@@ -263,21 +273,22 @@
         color: #444444;
         float: left;
         font-size: 18px;
-        padding-right: 20px;
         margin-top: 7px;
     }
     .endendenrollDate{
-        font-size: 18px;
+        padding-top: 11px;
+        font-size: 15px;
         color: #989898;
-        padding-top: 8px;
+        margin-left: 20px;
+        float: left;
+        margin-right: 20px;
     }
     .endline3{
         width: 825px;
         margin: 0 auto;
-        margin-top: 20px;
+        margin-top: 10px;
         padding-top: 15px;
         border-top: 1px solid #D8D7D7;
-
     }
     .endendcontent{
         width: 825px;
@@ -305,6 +316,89 @@
         margin: 0 auto;
         font-size: 17px;
     }
+    .endheart2{
+        padding-top: 10px;
+        font-size: 15px;
+        color: #5ECC80;
+        float: left;
+        margin-right: 450px;
+        letter-spacing: 2px;
+    }
+    .edit4{
+        float: left;
+        margin-right: 5px;
+    }
+    #edit4{
+        color: #989898;
+        background-color: white;
+        text-decoration: none;
+        border: none;
+        font-size: 15px;
+        margin-top: 15px;
+    }
+    .edit5{
+        float: left;
+        color: #989898;
+        margin-right: 5px;
+        margin-top: 15px;
+    }
+    #edit6{
+        color: #989898;
+        background-color: white;
+        text-decoration: none;
+        border: none;
+        font-size: 15px;
+        margin-top: 15px;
+    }
+    .siderank{
+        border: 1px solid #9D9D9D;
+        width: 258px;
+        height: 371px;
+        float: left;
+    }
+    .sidebox{
+        width: 7vw;
+        float: left;
+        margin-top: 200px;
+        margin-left: 200px;
+        position: fixed;
+    }
+    .side{
+        width: 5vw;
+        margin: 0 auto;
+    }
+    .si{
+        background-color: #5ECC80;
+        color: white;
+        font-size: 20px;
+        border-radius: 10px;
+        text-align: center;
+        padding: 10px;
+        margin-bottom: 20px;
+        box-shadow: 3px 3px 2px 2px #b1ebc3;
+    }
+    .pluschatbox{
+        width: 82%;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .pluschat{
+        font-size: 18px;
+        color: #444444;
+    }
+    .plusline{
+        margin: 0 auto;
+        width: 4vw;
+        border-top: 2px solid #5ECC80;
+    }
+    .choice{
+        width: 3vw;
+        margin-left: 900px;
+        color: #5ECC80;
+        font-size: 40px;
+    }
 </style>
 </head>
 <body>
@@ -313,10 +407,37 @@
     <!-- 상단 초록색 바-->
     <div class="banner"></div>
 
+    <!-- 오른쪽 사이드바 -->
+    <div class="sidebox">
+        <div class="side">
+            <div class="si">
+                <div>미해결</div>
+            </div>
+            <div class="si">
+                <div><i class="fa-solid fa-thumbs-up"></i> 25</div>
+            </div>
+            <div class="si">
+                <div><i class="fa-solid fa-thumbs-down"></i> 12</div>
+            </div>
+            <div class="si">
+                <i class="fa-solid fa-comment"></i> 13
+            </div>
+            <div class="si">
+                <i class="fa-solid fa-bookmark"></i> 20
+            </div>
+        </div>
+    </div>
+
     <!-- 상세조회 메인 부분 -->
     <div class="main">
+
+        <!-- 왼쪽 사이드 랭킹 -->
+
         <div class="maintitle">
-            <div class="title"><h3>Q.</h3><h2>Json 형식 데이터 교환과 MVC 구조</h2></div>
+            <div class="title">
+                <div class="title-start">Q.</div>
+                <h2 class="title-end">Json 형식 데이터 교환과 MVC 구조</h2>
+            </div>
         </div>
         <div class="middletitle">
             <table>
@@ -344,14 +465,15 @@
                     </td>
                 </tr>
             </table>
-            <table class="three">
-                <tr class="hash1">
-                    <td class="ha1">#JAVA</td>
-                    <td class="ha2">#자바</td>
-                    <td class="ha3">#CSS</td>
-                </tr>
-            </table>
+            <div class="three">
+                <ul class="hash">
+                    <li class="ha">#JAVA</li>
+                    <li class="ha">#자바</li>
+                    <li class="ha">CSS</li>
+                </ul>
+            </div>
         </div>
+
     </div>
     <div class="middle">
         <div class="middlemain">
@@ -359,7 +481,7 @@
             <div class="replyplz">nick01님, 답변해주세요!</div>
             <div class="replyplz-1">모두에게 도움이 되는 답변의 주인공이 되어주세요:)</div>
             <div class="input"><input type="text"></div>
-            <button class="replybtn">답변 등록</button>
+            <button type="button" class="replybtn" style='cursor:pointer;'>답변 등록</button>
         </div>
 
         <div class="end">
@@ -368,13 +490,14 @@
         </div>
 
         <div class="jjinend">
+            <div class="choice"><i class="fa-solid fa-medal"></i></div>
             <div><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
             <div class="endnick">nick02</div>
             <div class="endenrollDate">2022.12.08</div>
             <div class="endheart"><i class="fa-solid fa-thumbs-up"></i>12</div>
-            <div class="edit1">답변</div>
+            <div class="edit1"><input type="button" id="edit1" style='cursor:pointer;' value="답변 수정"></div>
             <div class="edit2"> / </div>
-            <div class="edit3">수정</div>
+            <div class="edit3"><input type="button" id="edit3" style='cursor:pointer;' value="삭제"></div>
             <div class="endline1"></div>
             <div class="endreply">
                 안녕하세요. nick02입니다.<br>
@@ -393,6 +516,10 @@
             <div><img class="profile4" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
             <div class="endend">nick03</div>
             <div class="endendenrollDate">2202.12.08.</div>
+            <div class="endheart2"><i class="fa-solid fa-thumbs-up"></i>15</div>
+            <div class="edit4"><input type="button" id="edit4" style='cursor:pointer;' value="답변 수정"></div>
+            <div class="edit5"> / </div>
+            <div class="edit6"><input type="button" id="edit6" style='cursor:pointer;' value="삭제"></div>
             <div class="endline3"></div>
             <div class="endendcontent">
                 말씀하신 내용 바탕으로 정리해보았는데,<br>
@@ -404,9 +531,13 @@
 
             <div class="endline4"></div>
 
-            <a class="pluschat" href="#none"></a>
+            <div class="pluschatbox">
+                <a class="pluschat" href="#none">댓글 달기</a>
+                <div class="plusline"></div>
+            </div>
         </div>
     </div>
+
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
     <script src="https://kit.fontawesome.com/4b219bc5a3.js" crossorigin="anonymous"></script>
