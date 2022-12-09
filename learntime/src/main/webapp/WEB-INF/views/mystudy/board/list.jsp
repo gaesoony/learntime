@@ -32,7 +32,12 @@ pageEncoding="UTF-8"%>
               </select>
             </div>
             <div>
-              <input type="button" value="게시글 작성" class="write-btn" />
+              <input
+                type="button"
+                value="게시글 작성"
+                class="write-btn"
+                onclick="location.href='/app/mystudy/board/write'"
+              />
             </div>
           </section>
           <section>

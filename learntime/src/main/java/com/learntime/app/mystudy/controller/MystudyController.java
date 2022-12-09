@@ -20,4 +20,9 @@ public class MystudyController {
 		return "mystudy/board/list";
 	}
 
+	//게시판 템플릿 상세조회 화면
+	@GetMapping("board/detail")
+	public String detail() {
+		return "mystudy/board/detail";
+	}
 }
