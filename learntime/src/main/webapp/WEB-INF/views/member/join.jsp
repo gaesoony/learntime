@@ -180,7 +180,7 @@ label[for="joinAgree-check"] {
 				</div>
 				
 				
-				<div id="name">
+				<div id="phone">
 					<div class="text">전화번호</div>
 					<input type="text" name="phone" placeholder="- 제외한 번호만">
 				</div>
