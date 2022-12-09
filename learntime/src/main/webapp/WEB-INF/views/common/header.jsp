@@ -223,11 +223,11 @@
         <div id="header">
             <div id="logo"><a href="/app/main"><img src="/app/resources/img/logo_green2.png" alt="런타임로고"></a></div>
             <div id="study-project"><a href="/app/study/list">STUDY / PROJECT</a></div>
-            <div id="mentoring"><a href="#">MENTORING</a></div>
-            <div id="learning"><a href="#">LEARNING</a></div>
-            <div id="make-grass"><a href="#">MAKE GRASS</a></div>
+            <div id="mentoring"><a href="/app/mentor/list">MENTORING</a></div>
+            <div id="learning"><a href="/app/qna/list">LEARNING</a></div>
+            <div id="make-grass"><a href="/app/makegrass/list">MAKE GRASS</a></div>
             <div id="skinshop"><a href="/app/skinshop">SKIN SHOP</a></div>
-            <div id="community"><a href="#">COMMUNITY</a></div>
+            <div id="community"><a href="/app/community/board/list">COMMUNITY</a></div>
             <div id="empty"></div>
             <div id="join"><a href="/app/member/join">JOIN</a></div>
             <div id="login">	

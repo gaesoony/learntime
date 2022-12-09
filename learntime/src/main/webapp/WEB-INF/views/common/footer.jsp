@@ -11,9 +11,8 @@
             width: 100%;
             height: 200px;
             margin-top:30px;
-            
+   
         }
-
         #footer #top{
             background-color: #5ECC80;
             display: grid;

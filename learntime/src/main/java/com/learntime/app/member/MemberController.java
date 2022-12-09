@@ -46,5 +46,14 @@ public class MemberController {
 	}
 	
 	
+//	마이페이지(화면)
+	@GetMapping("/mypage")
+	public String mypage() {
+		return "/member/mypage-home";
+	}
+	
+	
+	
+	
 	
 }
