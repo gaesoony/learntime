@@ -73,9 +73,8 @@
 }
 
 .mentoring{
-    height: 180px;
     width: 180px;
-    box-shadow: 2px 2px 2px rgb(206, 206, 206);
+    box-shadow: 2px 2px 2px rgb(238, 238, 238);
     border-radius: 10px;
     border: 1px solid rgb(206, 206, 206);
     padding: 15px;
@@ -83,16 +82,32 @@
     margin-right: 8px;
 }
 .mentoring:hover{
-    background-color: #f9fff9;
+    background-color: #fdfffd;
     cursor: pointer;
+    transform: translateY(-8px);
+
+    transition: all 0.3s ease-out;
 }
 
-.mentroing-title{
+.mentoring-title{
+    height: 40px;
     font-size: 18px;
+    line-height: 23px;
     font-weight: 500;
     margin-bottom: 10px;
     padding-bottom: 10px;
 }
+
+.mentoring-title>span{
+    display: -webkit-box;
+    overflow: hidden;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+      
+}
+
 .mentoring-job,
 .mentoring-career,
 .mentoring-nacara{

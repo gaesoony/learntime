@@ -81,7 +81,40 @@
                 <!-- 반복문 시작지점.. -->
             
                 <div class="mentoring">
-                    <div class="mentroing-title">
+                    <div class="mentoring-title">
+                        <span>스프링으로 생산력 향상 시켜 드립니다 절 믿으세요</span>
+                    </div>
+                    <div class="mentoring-job">
+                        <span class="mentoring-info">직무</span>
+                        <span class="job-input">PO/PM</span>
+                    </div>
+                    <div class="mentoring-career">
+                        <span class="mentoring-info">경력</span>
+                        <span class="career-input">30년</span>
+                    </div>
+                    <div class="mentoring-nacara">
+                        <span class="mentoring-info">현직</span>
+                        <span class="nacara-input">네카라쿠배당토</span>
+                    </div>
+                    <div class="star-box">
+                        <span class="star-score">4.2</span>
+                        <span class="material-symbols-rounded star-fill">star</span>
+                        <span class="material-symbols-rounded star-fill">star</span>
+                        <span class="material-symbols-rounded star-fill">star</span>
+                        <span class="material-symbols-rounded star-fill">star</span>
+                        <span class="material-symbols-rounded star">star</span>
+                    </div>
+
+                    <div class="mentor">
+                        <div class="writer-img">
+                            <img src="/app/resources/img/profile01.png" alt="">
+                        </div>
+                        <span>코딩하는망치맨</span>
+                    </div>
+                </div>
+
+                <div class="mentoring">
+                    <div class="mentoring-title">
                         <span>스프링으로 생산력 향상 시켜 드립니다</span>
                     </div>
                     <div class="mentoring-job">
@@ -114,7 +147,7 @@
                 </div>
 
                 <div class="mentoring">
-                    <div class="mentroing-title">
+                    <div class="mentoring-title">
                         <span>스프링으로 생산력 향상 시켜 드립니다</span>
                     </div>
                     <div class="mentoring-job">
@@ -147,7 +180,7 @@
                 </div>
 
                 <div class="mentoring">
-                    <div class="mentroing-title">
+                    <div class="mentoring-title">
                         <span>스프링으로 생산력 향상 시켜 드립니다</span>
                     </div>
                     <div class="mentoring-job">
@@ -180,7 +213,7 @@
                 </div>
 
                 <div class="mentoring">
-                    <div class="mentroing-title">
+                    <div class="mentoring-title">
                         <span>스프링으로 생산력 향상 시켜 드립니다</span>
                     </div>
                     <div class="mentoring-job">
@@ -213,40 +246,7 @@
                 </div>
 
                 <div class="mentoring">
-                    <div class="mentroing-title">
-                        <span>스프링으로 생산력 향상 시켜 드립니다</span>
-                    </div>
-                    <div class="mentoring-job">
-                        <span class="mentoring-info">직무</span>
-                        <span class="job-input">PO/PM</span>
-                    </div>
-                    <div class="mentoring-career">
-                        <span class="mentoring-info">경력</span>
-                        <span class="career-input">30년</span>
-                    </div>
-                    <div class="mentoring-nacara">
-                        <span class="mentoring-info">현직</span>
-                        <span class="nacara-input">네카라쿠배당토</span>
-                    </div>
-                    <div class="star-box">
-                        <span class="star-score">4.2</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star">star</span>
-                    </div>
-
-                    <div class="mentor">
-                        <div class="writer-img">
-                            <img src="/app/resources/img/profile01.png" alt="">
-                        </div>
-                        <span>코딩하는망치맨</span>
-                    </div>
-                </div>
-
-                <div class="mentoring">
-                    <div class="mentroing-title">
+                    <div class="mentoring-title">
                         <span>스프링으로 생산력 향상 시켜 드립니다</span>
                     </div>
                     <div class="mentoring-job">

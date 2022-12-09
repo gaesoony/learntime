@@ -29,15 +29,30 @@
         <div id="mentoring-content-wrap">
             <div id="content-title-box">
                 <input class="sm-category" type="radio" name="mentoring-sm-category" id="mentoring-sm-category1" checked>
-                <label for="mentoring-sm-category1">전체</label>
+                <label for="mentoring-sm-category1">
+                    <span class="material-symbols-rounded dot-icon">fiber_manual_record</span>
+                    <span> 전체</span>
+                </label>
                 <input class="sm-category" type="radio" name="mentoring-sm-category" id="mentoring-sm-category2">
-                <label for="mentoring-sm-category2">승인대기</label>
+                <label for="mentoring-sm-category2">
+                    <span class="material-symbols-rounded dot-icon">fiber_manual_record</span>
+                    <span> 승인대기</span>
+                </label>
                 <input class="sm-category" type="radio" name="mentoring-sm-category" id="mentoring-sm-category3">
-                <label for="mentoring-sm-category3">예약확정</label>
+                <label for="mentoring-sm-category3">
+                    <span class="material-symbols-rounded dot-icon">fiber_manual_record</span>
+                    <span> 예약확정</span>
+                </label>
                 <input class="sm-category" type="radio" name="mentoring-sm-category" id="mentoring-sm-category4">
-                <label for="mentoring-sm-category4">이용완료</label>
+                <label for="mentoring-sm-category4">
+                    <span class="material-symbols-rounded dot-icon">fiber_manual_record</span>
+                    <span> 이용완료</span>
+                </label>
                 <input class="sm-category" type="radio" name="mentoring-sm-category" id="mentoring-sm-category5">
-                <label for="mentoring-sm-category5">취소/환불</label>
+                <label for="mentoring-sm-category5">
+                    <span class="material-symbols-rounded dot-icon">fiber_manual_record</span>
+                    <span> 취소/환불</span>
+                </label>
             </div>
 
             <div class="content-box">
@@ -50,7 +65,7 @@
                 <div class="mentor-info">
                     <div class="mentor-nick">
                         <a href="">
-                            <img src="" alt="">
+                            <img src="/app/resources/img/profile01.png" alt="">
                             <span>코딩하는망치맨</span>
                         </a>
                     </div>
@@ -66,19 +81,19 @@
                     <span>No 221129192042</span>
                 </div>
                 <div class="mentoring-title">
-                    <span>스프링으로 생산력 향상 시켜드립니다.</span>
+                    <span>스프링으로 생산력 향상 시켜드립니다아아아아아아아아아아아</span>
                 </div>
                 <div class="mentor-info">
                     <div class="mentor-nick">
                         <a href="">
-                            <img src="" alt="">
+                            <img src="/app/resources/img/profile01.png" alt="">
                             <span>코딩하는망치맨</span>
                         </a>
                     </div>
                     <div class="apply-date">신청 날짜 : 2022/11/29 19:20:42</div>
                 </div>
                 <div class="mentoring-status">
-                    <div class="status-txt">예약 확정</div>
+                    <div class="status-txt">승인대기중</div>
                     <div class="status-btn red-btn">취소하기</div>
                 </div>
             </div>
@@ -92,7 +107,7 @@
                 <div class="mentor-info">
                     <div class="mentor-nick">
                         <a href="">
-                            <img src="" alt="">
+                            <img src="/app/resources/img/profile01.png" alt="">
                             <span>코딩하는망치맨</span>
                         </a>
                     </div>
