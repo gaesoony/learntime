@@ -268,6 +268,19 @@ pageEncoding="UTF-8"%>
       src="https://kit.fontawesome.com/939838bb27.js"
       crossorigin="anonymous"
     ></script>
-    <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+    <script>
+      window.addEventListener("resize", function () {
+        console.log(window.innerHeight);
+        const leftAside = document.querySelector(".mystudy-left-aside");
+        const rightAside = document.querySelector(".mystudy-right-aside");
+        leftAside.style.height = window.innerHeight - 75 + "px";
+        rightAside.style.height = window.innerHeight - 75 + "px";
+      });
+      console.log(window.innerHeight);
+      const leftAside = document.querySelector(".mystudy-left-aside");
+      const rightAside = document.querySelector(".mystudy-right-aside");
+      leftAside.style.height = window.innerHeight - 75 + "px";
+      rightAside.style.height = window.innerHeight - 75 + "px";
+    </script>
   </body>
 </html>
