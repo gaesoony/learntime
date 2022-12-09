@@ -176,7 +176,7 @@ pageEncoding="UTF-8"%>
               </ul>
             </div>
             <div class="study-location-content hidden">
-              <div id="map" style="width: 100%; height: 500px"></div>
+              <div id="map" style="width: 100%; height: 700px"></div>
 
               <script
                 type="text/javascript"
@@ -268,6 +268,30 @@ pageEncoding="UTF-8"%>
       src="https://kit.fontawesome.com/939838bb27.js"
       crossorigin="anonymous"
     ></script>
+    <script>
+      const studyTab1 = document.querySelector(".study-tab:first-child");
+      const studyTab2 = document.querySelector(".study-tab:last-child");
+
+      const studyInfoContent = document.querySelector(".study-info-content");
+      const studyLocationContent = document.querySelector(
+        ".study-location-content"
+      );
+      studyTab1.addEventListener("click", function () {
+        this.classList.add("clicked");
+        studyInfoContent.classList.remove("hidden");
+
+        studyTab2.classList.remove("clicked");
+        studyLocationContent.classList.add("hidden");
+      });
+
+      studyTab2.addEventListener("click", function () {
+        this.classList.add("clicked");
+        studyLocationContent.classList.remove("hidden");
+
+        studyTab1.classList.remove("clicked");
+        studyInfoContent.classList.add("hidden");
+      });
+    </script>
     <script>
       window.addEventListener("resize", function () {
         console.log(window.innerHeight);

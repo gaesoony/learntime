@@ -79,7 +79,7 @@ body {
 
 .mystudy-cate-aside {
   padding: 22px 20px 0px 20px;
-  width: 240px;
+  width: 250px;
   border-right: 1px solid rgb(237, 237, 237);
 }
 
@@ -91,14 +91,14 @@ body {
 
 .mystudy-article {
   position: absolute;
-  left: 310px;
-  right: 300px;
+  left: 320px;
+  right: 250px;
   top: 75px;
 }
 
 .mystudy-right-aside {
   padding: 25px 20px 0px 20px;
-  width: 300px;
+  width: 250px;
   height: 820px;
   background-color: #f9f9f9;
   border-left: 1px solid rgb(237, 237, 237);
@@ -366,6 +366,7 @@ body {
 
 .study-detail-summary-area {
   padding: 40px 25px;
+  margin-bottom: 200px;
 }
 
 .study-detail-summary-list {
@@ -390,6 +391,21 @@ body {
 }
 
 /* 스터디 상세 - 소개부분 */
+
+.study-info-content {
+  padding-bottom: 100px;
+  margin-bottom: 100px;
+}
+
+.study-location-content {
+  padding: 30px;
+  margin-bottom: 200px;
+}
+
+/* #map {
+  width: 500px !important;
+} */
+
 .study-detail-info-area {
   margin-top: 70px;
 }
