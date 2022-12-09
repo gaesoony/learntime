@@ -9,21 +9,13 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script src="https://kit.fontawesome.com/939838bb27.js"crossorigin="anonymous"></script>
 
-<!-- include libraries(jQuery, bootstrap) -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-
-<!-- include summernote css/js-->
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css">
 
 <title>Insert title here</title>
 
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
-
 	
 	<div id="board-banner">
 		<img src="/app/resources/img/freeBoardBanner.png" alt="자유게시판 배너">
@@ -52,7 +44,8 @@
             <input type="text" placeholder="제목을 입력해주세요">
         </div>
         <div id="content-txt">내용</div>
-        <textarea id="summernote" name="editordata"></textarea>
+        <textarea class="summernote" name="editordata"></textarea>
+    
 
         <div id="btn-box">
             <div id="cancel-btn">취소</div>
@@ -62,7 +55,7 @@
         </form>
     </div>
 
-    <script>
+    <!-- <script>
         // 메인화면 페이지 로드 함수
         $(document).ready(function() {
             $('#summernote').summernote({
@@ -71,11 +64,28 @@
                 maxHeight: 400
             });
         });
-        </script>
+        </script> -->
 
     <%@include file ="/WEB-INF/views/common/footer.jsp" %>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- 서머노트 로딩-->
+    <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+    <script>
+        $('.summernote').summernote({
+            height: 350,
+            placeholder: '내용을 작성하세요',
+            lang: "ko-KR"
+        });
+    </script>
+
+
 </body>
+
+
 
 
 

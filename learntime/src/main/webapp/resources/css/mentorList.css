@@ -1,0 +1,328 @@
+#main-wrap{
+    width: 1160px;
+    position: relative;
+    margin: auto;
+}
+
+#board-banner{
+    width: 100%;
+    background-image: url("/app/resources/img/mentorBanner1.png");
+    height: 180px;
+}
+#banner-text-box{
+    width: 1160px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    color: rgb(231, 255, 231);
+}
+
+#banner-text-box>span:first-child{
+    margin-top: 40px;
+    font-size: 24px;
+}
+
+#banner-text-box>span:nth-child(2){
+    margin-top: 8px;
+    font-size: 16px;
+}
+
+#banner-text-box>span:nth-child(3){
+    margin-top: 30px;
+}
+
+#banner-text-box a{
+    font-size: 16px;
+    color: rgb(231, 255, 231);
+}
+
+
+#side-wrap,
+#content-wrap{
+    display: inline-block;
+}
+
+#side-wrap{
+    position: sticky;
+    top: 80px;
+    width: 240px;
+
+}
+#content-wrap{
+    margin-left: 20px;
+    width: 880px;
+    vertical-align:top;
+    margin-top: 15px;
+    
+    /* flex-direction: column;
+    align-items: center; */
+}
+#side-wrap>div{
+    margin-top: 15px;
+}
+
+/* 메인 */
+#mentoring-list-box{
+    display: flex;
+    width: 880px;
+    height: auto;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    align-content: flex-start;
+    margin-bottom: 100px;
+}
+
+.mentoring{
+    height: 180px;
+    width: 180px;
+    box-shadow: 2px 2px 2px rgb(206, 206, 206);
+    border-radius: 10px;
+    border: 1px solid rgb(206, 206, 206);
+    padding: 15px;
+    margin-bottom: 20px;
+    margin-right: 8px;
+}
+.mentoring:hover{
+    background-color: #f9fff9;
+    cursor: pointer;
+}
+
+.mentroing-title{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+.mentoring-job,
+.mentoring-career,
+.mentoring-nacara{
+    margin-top: 5px;
+    font-size: 14px;
+    color: #7d7d7d;
+}
+
+.nacara-input{
+    color: #003502;
+}
+
+.star-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.star-score{
+    margin-right: 20px;
+    vertical-align: center;
+}
+
+.mentor{
+    border-top: 1px solid rgb(206, 206, 206);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 10px;
+    
+}
+.writer-img{
+    height: 25px;
+    width: 25px;
+}
+.writer-img>img{
+    height: 100%;
+    width: 100%;
+}
+.mentor>span{
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* 사이드 */
+#search-box{
+    display: flex;
+    flex-direction: row;
+
+}
+#search-area{
+    width: 190px;
+    height: 40px;
+    border-radius: 10px 0 0 10px;
+    border: 2px solid #5ecc80;
+}
+
+#search-btn-area{
+    width: 40px;
+    height: 40px;
+    border-radius: 0 10px 10px 0;
+    background-color: #5ecc80;
+    border: 2px solid #5ecc80;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#sorting-box>select{
+    width: 170px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid #5ecc80;
+    padding-left: 10px;
+    outline: none;
+    font-weight: 600;
+}
+
+#category-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 210px;
+    height: 20px;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    border: 2px solid #d9d9d9;
+    background-color: #d9d9d9;
+    color: #444444;
+}
+#category-title>span{
+    margin-right: 5px;
+}
+
+#category-content{
+    width: 210px;
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+    border: 2px solid #d9d9d9;
+}
+.category{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5px;
+    color: #666666;
+}
+.category>input[type="checkbox"]{
+    display: none;
+}
+.category>label{
+    margin-left: 5px;
+}
+/* 임시 */
+input[type='checkbox'] + .stylish-checkbox {
+    width: 16px;
+    height: 16px;
+    top: 1px;
+    border: 2px solid #7d7d7d;
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  input[type='checkbox']:checked + .stylish-checkbox,
+  input[type='checkbox']:checked + .stylish-checkbox::after {
+      content: '✔';
+      padding: 0;
+      margin: 0;
+      color: #5ecc80;
+  }
+
+.category>input[type="checkbox"]:checked{
+    
+    background-color: #5ecc80;
+}
+
+#filter-reset{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #666666;
+    font-size: 14px;
+}
+
+#filter-reset>span:hover{
+    cursor: pointer;
+}
+
+/* paging */
+#paging{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    margin-top: 40px;  
+    margin-bottom: 100px;
+    width: 400px;
+  }
+  
+  .paging-btn{
+    height: 25px;
+    width: 25px;
+    border: 1px solid #aeaeae;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 24px;
+    color: #535353;
+    cursor: pointer;
+  }
+  .paging-btn:hover{
+    background-color: #58c079;
+    color: white;
+  }
+  
+  #next-btn{
+    width: 40px;
+  }
+
+
+  /* 아이콘 */
+.refresh{
+    font-size: 20px;
+    color: #666666;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
+}
+
+.search{
+    color: white;
+    font-size: 24px;
+}
+
+.filter{
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
+}
+
+.star{
+    color: rgb(255, 204, 0);
+    font-size: 30px;
+    margin-left: -5px;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
+}
+
+.star-fill{
+    color: rgb(255, 204, 0);
+    font-size: 30px;
+    margin-left: -5px;
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
+}

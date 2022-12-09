@@ -14,7 +14,7 @@
 	<div class="side-bar">
 
 		<div class="logo-box">
-			<img id="logo" src="/app/resources/img/logo_grean1.png" alt="learntime-logo">
+			<img id="logo" src="${pageContext.request.contextPath}/resources/img/logo_green1.png" alt="learntime-logo">
 		</div>
 		<div class="admin-profile-box">
 			<div id="admin-profile">

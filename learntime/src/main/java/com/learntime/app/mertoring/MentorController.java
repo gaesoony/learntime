@@ -13,4 +13,24 @@ public class MentorController {
 		return "/mentoring/mentorReview";
 		
 	}
+	
+	@GetMapping("/list")
+	public String mentorList() {
+		return "/mentoring/mentorList";
+		
+	}
+	
+	@GetMapping("/mentoring/regist")
+	public String mentoringRegist() {
+		return "/mentoring/mentoringRegist";
+		
+	}
+	
+	@GetMapping("/regist")
+	public String mentorRegist() {
+		return "/mentoring/mentorRegist";
+		
+	}
+	
 }
+
