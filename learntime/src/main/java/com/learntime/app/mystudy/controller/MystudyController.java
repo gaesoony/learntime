@@ -31,4 +31,10 @@ public class MystudyController {
 	public String write() {
 		return "mystudy/board/write";
 	}
+	
+	//게시판 템플릿 글수정 화면
+	@GetMapping("board/edit")
+	public String edit() {
+		return "mystudy/board/edit";
+	}
 }

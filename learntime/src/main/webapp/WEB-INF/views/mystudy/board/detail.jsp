@@ -51,7 +51,7 @@ pageEncoding="UTF-8"%>
                 </ul>
               </div>
               <div>
-                <a href="">수정</a>
+                <a href="/app/mystudy/board/edit">수정</a>
                 <a href="">삭제</a>
               </div>
             </div>
