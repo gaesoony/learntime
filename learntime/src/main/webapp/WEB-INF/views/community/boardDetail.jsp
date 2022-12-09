@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="/app/resources/css/boardDetail.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script src="https://kit.fontawesome.com/939838bb27.js"crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/app/resources/css/summernote/summernote-lite.css">
 
 <title>Insert title here</title>
 </head>
@@ -82,7 +83,7 @@
 						<span id="comment-writer">망치맨</span>
 					</div>
 					<div id="comment-area">
-						<textarea name="" id="" cols="30" rows="10" placeholder="api 넣을 예정임니다.....:("></textarea>
+						<textarea class="summernote" name="editordata"></textarea>
 					</div>
 				</div>
 			</div>
@@ -179,21 +180,22 @@
 			</div>
 			
 		</div>
-		
-
-
-
-
-
-
-
-
-
-
-
-
 
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- 서머노트 로딩-->
+    <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+    <script>
+        $('.summernote').summernote({
+            height: 150,
+            placeholder: '내용을 작성하세요',
+            lang: "ko-KR"
+        });
+    </script>
 </body>
 </html>
