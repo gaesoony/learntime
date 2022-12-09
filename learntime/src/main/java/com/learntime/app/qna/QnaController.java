@@ -19,4 +19,10 @@ public class QnaController {
 	public String detail() {
 		return "/qna/detail";
 	}
+	
+	//게시글 작성 (화면)
+	@GetMapping("/write")
+	public String write() {
+		return "/qna/write";
+	}
 }

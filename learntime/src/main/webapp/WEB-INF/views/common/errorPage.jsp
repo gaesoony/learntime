@@ -7,41 +7,38 @@
 <title>Insert title here</title>
 <style>
     .container{
-        margin: 200px;
+        padding-top: 160px;
+        margin: 0 auto;
     }
     .img{
         text-align: center;
     }
     h2{
-        font-size: 2rem;
+        font-size: 45px;
         text-align: center;
         color: #5ECC80;
     }
     h4{
+        font-size: 20px;
         text-align: center;
         font-weight: 500;
         color: gray;
+        margin-bottom: 55px;
     }
     .homebtn{
         margin: 0 auto;
-        padding: 8px;
-        width: 10vw;
-        text-align: center;
-        border: 1px solid gray;
+        display: block;
+        width: 15vw;
+        padding: 7px;
+        font-size: 22px;
+        border: 1px solid #5ECC80;
         border-radius: 30px;
         background-color: #5ECC80;
-        border-color: #5ECC80;
+        color: white;
+        font-weight: 550;
     }
     .homebtn:hover{
         background-color: white;
-    }
-    .home{
-        margin: 0 auto;
-        text-decoration: none;
-        color: white;
-        font-weight: 600;
-    }
-    .home:hover{
         color: #5ECC80;
     }
 </style>
@@ -49,8 +46,7 @@
 <body>
 	
 	<div class="container">
-
-        <div class="img"><img width="250wh" height="auto" src="/app/resources/img/error.png" alt="error"></div>
+        <div class="img"><img width="320vw" height="auto" src="/app/resources/img/error.png" alt="error"></div>
 
         <h2>Page Not Found</h2>
         <h4>
@@ -58,8 +54,7 @@
            	<br>
            	요청하신 페이지가 사라졌거나, 잘못된 경로를 이용하셨어요:(
         </h4>
-        <div class="homebtn"><a class="home" href="#none">Home</a></div>
-        
+        <button type="button" class="homebtn" onclick="location.href='/app/main';" style='cursor:pointer;'>Home</button>
     </div>
     
 </body>

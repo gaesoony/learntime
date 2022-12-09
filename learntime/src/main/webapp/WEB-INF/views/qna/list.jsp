@@ -32,10 +32,10 @@
         font-weight: 400;
     }
     .sidebar{
-        width: 258px;
+        width: 245px;
         height: 36vh;
         padding: 20px;
-        margin-top: 225px;
+        margin-top: 200px;
         background-color: white;
         border: 1px solid #9D9D9D;
         border-radius: 10px;
@@ -110,172 +110,153 @@
         margin: 0 auto;
         margin-bottom: 20px;
     }
+    .searchbar{
+        margin-left: 10px;
+    }
     .search{
         margin-top: 20px;
-        background: white;
+        margin-bottom: 20px;
+        width: 38vw;
+        height: 4vh;
         border: 1px solid #979797;
         border-radius: 10px;
-        width: 36vw;
-        height: 3vh;
-        padding: 10px;
+        padding-left: 20px;
+        float: left; 
     }
-    .searchbox{
-        display: flex;
-    }
-    .searchbar{
-        width: 35vw;
-        border: none;
-        font-size: 19px;
-        margin-top: 5px;
+    .searchblank{
+        width: 80%;
         outline: none;
+        border: none;
+        text-decoration: none;
+        font-size: 18px;
+        margin-top: 7px;
+        color: #CACACA;
     }
     .searchbtn{
-        width: 172px;
-        height: 50px;
+        margin-top: 20px;
+        margin-left: 19px;
+        width: 7vw;
+        height: 4vh;
         text-decoration: none;
-        font-size: 20px;
         background-color: #5ECC80;
-        border-radius: 10px;
         color: white;
+        border-radius: 10px;
         border: none;
-        margin-left: 740px;
+        font-size: 20px;
     }
     .catelist{
-        padding: 30px;
+        margin-top: 30px;
+        margin-bottom: 5px;
+        margin-left: 15px;
+        width: 47vw;
     }
-    li{
+    .cate{
         float: left;
-        margin-right: 30px;
-        margin-top: 27px;
+        margin-right: 429px;
+        display: flex;
+        padding-top: 20px;
     }
-    .catelist1{
+    .writebtn{
         text-decoration: none;
-        color: black;
-    }
-    .catelist2{
-        text-decoration: none;
-        color: #979797;
-    }
-    .catelist2:hover{
-        color: black;
-    }
-    .catelist3{
-        text-decoration: none;
-        color: #979797;
-    }
-    .catelist3:hover{
-        color: black;
-    }
-    .catelist4{
-        text-decoration: none;
-        color: #979797;
-    }
-    .catelist4:hover{
-        color: black;
-    }
-    .category{
-        height: 9vh;
-        width: 40vw;
-    }
-    .write{
-        width: 172px;
-        height: 50px;
-        text-decoration: none;
-        font-size: 20px;
-        background-color: #D1F1DB;
-        border-radius: 10px;
-        color: rgb(81, 81, 81);
         border: none;
-        margin-left: 725px;
+        background-color: #D1F1DB;
+        color: #666666;
+        font-size: 18px;
+        width: 7vw;
+        height: 4vh;
+        border-radius: 10px;
+    }
+    .ca{
+        margin-right: 10px;
+        color: #B7B7B7;
+    }
+    .ca:hover{
+        color: #333B3D;
+        font-weight: 550;
     }
     .line2{
         border-top: 1px solid #B7B7B7;
     }
+    .titleb{
+        height: 100%;
+        width: 97%;
+        margin: 0 auto;
+        margin-top: 30px;
+        line-height: 25px;
+    }
     .title{
-        width: 700px;
-        height: 5vh;
-        font-size: 21px;
+        font-size: 20px;
         font-weight: 550;
-        padding: 20px;
-        vertical-align: bottom;
+        width: 80%;
+    }
+    .contentbox{
+        height: 100%;
     }
     .content{
-        padding: 20px;
-        font-size: 18px;
+        width: 80%;
+        font-size: 17px;
         color: #6F6F6F;
+        margin-top: 5px;
+        float: left;
+        line-height: 20px;
+    }
+    .circle{
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background-color: #5ECC80;
+        margin-left: 790px;
+        
+    }
+    .replytitle{
+        color: white;
+        font-size: 30px;
+        font-weight: 550;
+        display: block;
+        margin-left: 37px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        padding-top: 15px;
+    }
+    .replycontent{
+        color: white;
+        font-size: 15px;
+        margin-left: 31px;
+    }
+    .hashtagbox{
+        width: 78%;
+        margin-bottom: 10px;
     }
     .hashtag{
         display: flex;
-        margin-left: 20px;
     }
-    .hash1{
-        padding: 5px;
-        width: 4vw;
-        margin-right: 20px;
-        border-radius: 20px;
+    .hash{
+        padding: 6px;
         background-color: #AAAAAA;
         color: white;
-        text-align: center;
+        border-radius: 15px;
+        margin-right: 10px;
+        font-size: 13px;
     }
-    .hash2{
-        padding: 5px;
-        width: 4vw;
-        margin-right: 20px;
-        border-radius: 20px;
-        background-color: #AAAAAA;
-        color: white;
-        text-align: center;
+    .etcbox{
+        margin-left: 3px;
+        margin-bottom: 15px;
     }
-    .hash3{
-        padding: 5px;
-        width: 4vw;
-        margin-right: 20px;
-        border-radius: 20px;
-        background-color: #AAAAAA;
-        color: white;
-        text-align: center;
-    }
-    .nick{
-        font-size: 18px;
-        margin-left: 20px;
-        margin-top: 10px;
-        margin-bottom: 20px;
-        margin-right: 20px;
-        float: left;
-    }
-    .eyeimg{
+    .etc{
         display: flex;
-        margin-top: 1px;
-        float: left;
+        color: #6F6F6F;
     }
-    .eye{
-        float: left;
-        margin-top: 15px;
-        margin-right: 20px;
+    .profile2{
+        width: 30px;
     }
-    .chatimg{
-        display: flex;
-        margin-top: 25px;
-        float: left;
-        margin-right: 5px;
+    .etc>li{
+        margin-right: 10px;
     }
-    .chat{
-        float: left;
-        margin-top: 14px;
-        margin-right: 20px;
-    }
-    .enrollDate{
-        float: left;
-        margin-top: 15px;
-        margin-right: 20px;
+    .thumbsup{
+        color: #5ECC80;
     }
     .line3{
-        width: 100%;
-        border-top: 2px solid #B7B7B7;
-    }
-    .fa-solid{
-        margin-top: 16px;
-        margin-right: 10px;
+        border-top: 1px solid #B7B7B7;
     }
 
 </style>
@@ -338,60 +319,152 @@
                         <a href="#none" class="cate3">미해결</a>
                         <div class="line1"></div>
 
-                        <div class="search">
-                            <div class="searchbox">
+                        <!-- 검색 -->
+                        <div class="searchbar">
+                            <div class="search">
                                 <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-                                <input type="text" class="searchbar" name="searchbar" placeholder="궁금한 질문을 검색해보세요!">
+                                <input type="text" class="searchblank" placeholder="궁금한 질문을 검색해보세요!"> 
                             </div>
-                            <button class="searchbtn">검색</button>
+                            <input type="submit" class="searchbtn" value="검색" style='cursor:pointer;'>
                         </div>
 
+                        <!-- 카테고리 & 글쓰기 -->
                         <div class="category">
-                            <ul class="catelist">
-                                <li><a class="catelist1" href="none">º 최신순</a></li>
-                                <li><a class="catelist2" href="none">º 정확도순</a></li>
-                                <li><a class="catelist3" href="none">º 답변 많은순</a></li>
-                                <li><a class="catelist4" href="none">º 좋아요순</a></li>
-                                <button class="write" name="write">글쓰기✏️</button>
-                            </ul>
+                            <div class="catelist">
+                                <ul class="cate">
+                                    <li><a href="" class="ca">· 최신순</a></li>
+                                    <li><a href="" class="ca">· 정확도순</a></li>
+                                    <li><a href="" class="ca">· 답변 많은순</a></li>
+                                    <li><a href="" class="ca">· 좋아요순</a></li>
+                                </ul>
+                                <input type="submit" class="writebtn" value="글쓰기✏️" style='cursor:pointer;'>
+                            </div>
+                            <div class="line2"></div>
                         </div>
 
-                        <div class="maincon">
-                            <div class="mainlist">
-                                <table>
-                                    <tr>
-                                        <div class="line2"></div>
-                                        <td class="title">[미해결] 연간관계의 메서드와 카테고리가 이해되지 않습니다.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="content">학습하는 분들께 도움이 되고, 더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="hashtag">
-                                            <div class="hash1">
-                                                <div class="hash1-1">#JAVA</div>
-                                            </div>
-                                            <div class="hash2">
-                                                <div>#자바</div>
-                                            </div>
-                                            <div class="hash3">
-                                                <div>#CSS</div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="nick">nick01</td>
-                                        <td class="eyeimg"><i class="fa-solid fa-eye"></i></td>
-                                        <td class="eye">56</td>
-                                        <td class="chatimg"><i class="fa-regular fa-comment fa-lg"></i></td>
-                                        <td class="chat">12</td>
-                                        <td class="enrollDate">2022.12.07.</td>
-                                    </tr>
-                                    <tr>
-                                        <td><div class="line3"></div></td>
-                                    </tr>
-                                    
-                                </table>
+                        <!-- 본문 리스트 -->
+                        <div class="titlebox">
+                            <div class="titleb">
+                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
+                                <div class="contentbox">
+                                    <div class="content">
+                                        학습하는 분들께 도움이 되고,
+                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+                                        학습하는 분들께 도움이 되고,
+                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+                                    </div>
+
+                                    <!-- 동그라미 답변 갯수 -->
+                                    <div class="circle">
+                                        <div class="replytitle">0</div>
+                                        <div class="replycontent">답변</div>
+                                    </div>
+
+                                    <!-- 본문 속 해시태그 -->
+                                    <div class="hashtagbox">
+                                        <ul class="hashtag">
+                                            <li class="hash">#JAVA</li>
+                                            <li class="hash">#자바</li>
+                                            <li class="hash">#CSS</li>
+                                        </ul>
+                                    </div>
+                                    <div class="etcbox">
+                                        <ul class="etc">
+                                            <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                                            <li>nick02</li>
+                                            <li><i class="fa-regular fa-eye"></i>56</li>
+                                            <li><i class="fa-regular fa-comment"></i>13</li>
+                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i>26</li>
+                                            <li>2022.12.09.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="line3"></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- 본문 리스트 -->
+                        <div class="titlebox">
+                            <div class="titleb">
+                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
+                                <div class="contentbox">
+                                    <div class="content">
+                                        학습하는 분들께 도움이 되고,
+                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+                                        학습하는 분들께 도움이 되고,
+                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+                                    </div>
+
+                                    <!-- 동그라미 답변 갯수 -->
+                                    <div class="circle">
+                                        <div class="replytitle">0</div>
+                                        <div class="replycontent">답변</div>
+                                    </div>
+
+                                    <!-- 본문 속 해시태그 -->
+                                    <div class="hashtagbox">
+                                        <ul class="hashtag">
+                                            <li class="hash">#JAVA</li>
+                                            <li class="hash">#자바</li>
+                                            <li class="hash">#CSS</li>
+                                        </ul>
+                                    </div>
+                                    <div class="etcbox">
+                                        <ul class="etc">
+                                            <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                                            <li>nick02</li>
+                                            <li><i class="fa-regular fa-eye"></i>56</li>
+                                            <li><i class="fa-regular fa-comment"></i>13</li>
+                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i>26</li>
+                                            <li>2022.12.09.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="line3"></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- 본문 리스트 -->
+                        <div class="titlebox">
+                            <div class="titleb">
+                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
+                                <div class="contentbox">
+                                    <div class="content">
+                                        학습하는 분들께 도움이 되고,
+                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+                                        학습하는 분들께 도움이 되고,
+                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+                                    </div>
+
+                                    <!-- 동그라미 답변 갯수 -->
+                                    <div class="circle">
+                                        <div class="replytitle">0</div>
+                                        <div class="replycontent">답변</div>
+                                    </div>
+
+                                    <!-- 본문 속 해시태그 -->
+                                    <div class="hashtagbox">
+                                        <ul class="hashtag">
+                                            <li class="hash">#JAVA</li>
+                                            <li class="hash">#자바</li>
+                                            <li class="hash">#CSS</li>
+                                        </ul>
+                                    </div>
+                                    <div class="etcbox">
+                                        <ul class="etc">
+                                            <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                                            <li>nick02</li>
+                                            <li><i class="fa-regular fa-eye"></i>56</li>
+                                            <li><i class="fa-regular fa-comment"></i>13</li>
+                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i>26</li>
+                                            <li>2022.12.09.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="line3"></div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -400,12 +473,6 @@
         </div>
     </div>
 
-    <i class="fa-regular fa-comment"></i>
-    <i class="fa-solid fa-heart"></i>
-    <i class="fa-solid fa-heart-crack"></i>
-    <i class="fa-solid fa-magnifying-glass"></i>
-    
-    <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	
     <script src="https://kit.fontawesome.com/4b219bc5a3.js" crossorigin="anonymous"></script>
 </body>
