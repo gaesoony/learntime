@@ -1,4 +1,4 @@
-package com.learntime.app.qna;
+package com.learntime.app.qna.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
