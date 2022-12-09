@@ -1,0 +1,64 @@
+/* 게시판 템플릿 목록 */
+
+/* 검색부분 */
+
+.search-section {
+  margin: 20px;
+}
+
+.search-box {
+  outline: none;
+  background-color: rgba(240, 240, 240, 0.786);
+  color: rgb(42, 42, 42);
+  width: 600px;
+  padding: 10px 10px 10px 30px;
+
+  border: 1px solid rgb(225, 225, 225);
+}
+
+.fa-magnifying-glass {
+  position: absolute;
+  top: 13px;
+  left: 10px;
+  color: gray;
+}
+
+.select-box {
+  width: 90px;
+  height: 40px;
+  border: 1px solid rgb(206, 206, 206);
+  margin-left: 6px;
+  outline: none;
+  padding: 0px 5px;
+  cursor: pointer;
+}
+
+.write-btn {
+  width: 100px;
+  height: 40px;
+  border: none;
+  outline: none;
+  background-color: #5ecc80;
+  color: white;
+  cursor: pointer;
+}
+
+/* 게시판 목록 부분 */
+
+.grid {
+  display: grid;
+  grid-template-columns: 0.5fr 5fr 1.2fr 1fr 1fr;
+}
+
+.grid div {
+  height: 40px;
+  border-bottom: 1px solid rgb(219, 219, 219);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+}
+
+.grid-title {
+  font-weight: 500;
+}
