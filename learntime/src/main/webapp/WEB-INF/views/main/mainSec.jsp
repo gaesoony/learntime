@@ -63,7 +63,10 @@
                         <div class="container-sec">
                             <ul class="container-slide-sec">
                                 <c:forEach var="slide-sec" begin="1" end="12" >
-                                    <li class="slide-sec"></li>
+                                    <li class="slide-sec">
+                                        <div class="java-photo"><img src="/app/resources/img/main/java.png"></div>
+                                        <div class="java-content"></div>
+                                    </li>
                                 </c:forEach>
                             </ul>
                         </div>
@@ -99,5 +102,50 @@
         </div>
     </div>
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
+
+<script>
+	//변수 지정
+	var slides = document.querySelector('.container-slide'),
+		slide = document.querySelectorAll('.slide'),
+		currentIdx = 0,
+		slideCount = slide.length,
+		slideWidth = 250,
+		slideMargin = 13,
+		prevBtn = document.querySelector('.prevBtn'),
+		nextBtn = document.querySelector('.nextBtn');
+        
+
+ 
+ 	slides.style.width = (slideWidth + slideMargin)* slideCount - slideMargin +'px';
+ 	//slides.style.width = '1200px';
+ 	
+ 	function moveSlide(num){
+ 		slides.style.left= -num*263+'px';
+ 		currentIdx = num;
+ 	}
+ 	
+ 	nextBtn.addEventListener('click',function(){
+ 		if(currentIdx < slideCount -4){
+ 			moveSlide(currentIdx + 1);
+           
+ 		}else{
+ 			moveSlide(0);
+             
+ 		}
+ 		
+ 	});
+ 	
+ 	prevBtn.addEventListener('click',function(){
+ 		if(currentIdx > 0){
+ 			moveSlide(currentIdx - 1);
+ 		}else{
+ 			moveSlide(slideCount - 4);
+ 		}
+ 		
+ 	});
+ 	
+ 	
+ 
+</script>
 </body>
 </html>
