@@ -14,7 +14,7 @@
         <div class="the-upper">
             <div class="mentoring-title">
                 <div class="empty"></div>
-                <div class="mentoring-title-icon">선배와 동료들에게<span id="color-change">&nbsp;조언</span>을 구해보세요</div>
+                <div class="mentoring-title-icon">선배와 동료들에게<span id="color-change">&nbsp;조언</span>을 구해보세요<img width="35px" height="35px" src="https://cdn-icons-png.flaticon.com/128/7991/7991313.png"></div>
                 <div class="mentoring-content-more">더보기<img width="10px" height="10px" src="https://cdn-icons-png.flaticon.com/128/271/271228.png"></div>
             </div>
             <div class="mentoring-content">
@@ -23,7 +23,27 @@
                         <div class="container">
                             <ul class="container-slide">
                                 <c:forEach var="slide" begin="1" end="12" >
-                                    <li class="slide"></li>
+                                    <li class="slide">
+                                        <div class="slide-box">
+                                            <div id="mentoring-ad1">서버개발자 취준생을 위한<br>멘토링/고민상담/이력서 첨삭</div>
+                                            <div id="mentoring-ad2">비바리퍼블리카(토스)에서 근무하고<br>있는 4년차 서버개발자입니다.</div>
+                                            <div id="mentoring-ad3">
+                                                <div id="border-box1">
+                                                    <div id="inner-box1"></div>
+                                                </div>
+                                                <div id="border-box2">
+                                                    <div id="inner-box2">sunny</div>
+                                                </div>
+                                                <div id="border-box3">
+                                                    <div id="inner-box3"></div>
+                                                </div>
+                                                <div id="border-box4">
+                                                    <div id="inner-box4"></div>
+                                                </div>
+                                            </div>
+                                            <div id="mentoring-ad4">직무   백엔드/서버 개발자<br>경력   미들(4~8년)</div>
+                                        </div>
+                                    </li>
                                 </c:forEach>
                             </ul>
                         </div>
@@ -43,7 +63,10 @@
                         <div class="container-sec">
                             <ul class="container-slide-sec">
                                 <c:forEach var="slide-sec" begin="1" end="12" >
-                                    <li class="slide-sec"></li>
+                                    <li class="slide-sec">
+                                        <div class="java-photo"><img src="/app/resources/img/main/java.png"></div>
+                                        <div class="java-content"></div>
+                                    </li>
                                 </c:forEach>
                             </ul>
                         </div>
@@ -79,5 +102,50 @@
         </div>
     </div>
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
+
+<script>
+	//변수 지정
+	var slides = document.querySelector('.container-slide'),
+		slide = document.querySelectorAll('.slide'),
+		currentIdx = 0,
+		slideCount = slide.length,
+		slideWidth = 250,
+		slideMargin = 13,
+		prevBtn = document.querySelector('.prevBtn'),
+		nextBtn = document.querySelector('.nextBtn');
+        
+
+ 
+ 	slides.style.width = (slideWidth + slideMargin)* slideCount - slideMargin +'px';
+ 	//slides.style.width = '1200px';
+ 	
+ 	function moveSlide(num){
+ 		slides.style.left= -num*263+'px';
+ 		currentIdx = num;
+ 	}
+ 	
+ 	nextBtn.addEventListener('click',function(){
+ 		if(currentIdx < slideCount -4){
+ 			moveSlide(currentIdx + 1);
+           
+ 		}else{
+ 			moveSlide(0);
+             
+ 		}
+ 		
+ 	});
+ 	
+ 	prevBtn.addEventListener('click',function(){
+ 		if(currentIdx > 0){
+ 			moveSlide(currentIdx - 1);
+ 		}else{
+ 			moveSlide(slideCount - 4);
+ 		}
+ 		
+ 	});
+ 	
+ 	
+ 
+</script>
 </body>
 </html>
