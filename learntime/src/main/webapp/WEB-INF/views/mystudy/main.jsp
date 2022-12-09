@@ -9,68 +9,11 @@ pageEncoding="UTF-8"%>
       rel="stylesheet"
       href="${pageContext.request.contextPath}/resources/css/mystudy/main.css?ver=2"
     />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
     <main class="space-between">
-      <aside class="mystudy-left-aside">
-        <div class="mystudy-img-aside">
-          <div class="mystudy-logo">
-            <img
-              src="${pageContext.request.contextPath}/resources/img/mystudy/UsersThree.png"
-              alt=""
-            />
-          </div>
-          <div>
-            <ul class="mystudy-list">
-              <a href=""
-                ><img
-                  src="${pageContext.request.contextPath}/resources/img/study/study-profile.JPG"
-                  alt=""
-              /></a>
-              <a href=""
-                ><img
-                  src="${pageContext.request.contextPath}/resources/img/study/study-profile.JPG"
-                  alt=""
-              /></a>
-              <a href=""
-                ><img
-                  src="${pageContext.request.contextPath}/resources/img/study/study-profile.JPG"
-                  alt=""
-              /></a>
-              <a href=""
-                ><img
-                  src="${pageContext.request.contextPath}/resources/img/study/study-profile.JPG"
-                  alt=""
-              /></a>
-              <a href=""
-                ><img
-                  src="${pageContext.request.contextPath}/resources/img/study/study-profile.JPG"
-                  alt=""
-              /></a>
-            </ul>
-          </div>
-        </div>
-        <div class="mystudy-cate-aside relative">
-          <h1>비전공자 자바스터디<i class="fa-solid fa-seedling"></i></h1>
-          <ul class="mystudy-cate-list">
-            <a href=""><i class="fa-solid fa-angle-right"></i>스터디 정보</a>
-            <a href=""><i class="fa-solid fa-angle-right"></i>공지 사항</a>
-            <a href=""><i class="fa-solid fa-angle-right"></i>자료 공유</a>
-            <a href=""><i class="fa-solid fa-angle-right"></i>과제 제출</a>
-          </ul>
-          <div class="mystudy-manage-area">
-            <i class="fa-solid fa-gear"></i><span>관리</span>
-          </div>
-        </div>
-      </aside>
+      <%@ include file="/WEB-INF/views/mystudy/common/side.jsp" %>
       <article class="mystudy-article">
         <div class="mystudy-board-title">스터디 정보</div>
         <div>
@@ -229,45 +172,8 @@ pageEncoding="UTF-8"%>
           </section>
         </div>
       </article>
-      <aside class="mystudy-right-aside">
-        <h1>참여 멤버(3명)</h1>
-        <ul class="study-member-list">
-          <li>
-            <img
-              class="user-profile"
-              src="${pageContext.request.contextPath}/resources/img/study/profile.png"
-              alt=""
-            />
-            <a href="">한혜원</a>
-            <img
-              class="crown"
-              src="${pageContext.request.contextPath}/resources/img/mystudy/crown.png"
-              alt=""
-            />
-          </li>
-          <li>
-            <img
-              class="user-profile"
-              src="${pageContext.request.contextPath}/resources/img/study/profile.png"
-              alt=""
-            />
-            <a href="">한혜원</a>
-          </li>
-          <li>
-            <img
-              class="user-profile"
-              src="${pageContext.request.contextPath}/resources/img/study/profile.png"
-              alt=""
-            />
-            <a href="">한혜원</a>
-          </li>
-        </ul>
-      </aside>
     </main>
-    <script
-      src="https://kit.fontawesome.com/939838bb27.js"
-      crossorigin="anonymous"
-    ></script>
+
     <script>
       const studyTab1 = document.querySelector(".study-tab:first-child");
       const studyTab2 = document.querySelector(".study-tab:last-child");
@@ -291,20 +197,6 @@ pageEncoding="UTF-8"%>
         studyTab1.classList.remove("clicked");
         studyInfoContent.classList.add("hidden");
       });
-    </script>
-    <script>
-      window.addEventListener("resize", function () {
-        console.log(window.innerHeight);
-        const leftAside = document.querySelector(".mystudy-left-aside");
-        const rightAside = document.querySelector(".mystudy-right-aside");
-        leftAside.style.height = window.innerHeight - 75 + "px";
-        rightAside.style.height = window.innerHeight - 75 + "px";
-      });
-      console.log(window.innerHeight);
-      const leftAside = document.querySelector(".mystudy-left-aside");
-      const rightAside = document.querySelector(".mystudy-right-aside");
-      leftAside.style.height = window.innerHeight - 75 + "px";
-      rightAside.style.height = window.innerHeight - 75 + "px";
     </script>
   </body>
 </html>
