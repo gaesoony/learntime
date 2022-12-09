@@ -25,4 +25,10 @@ public class MystudyController {
 	public String detail() {
 		return "mystudy/board/detail";
 	}
+	
+	//게시판 템플릿 글작성 화면
+	@GetMapping("board/write")
+	public String write() {
+		return "mystudy/board/write";
+	}
 }

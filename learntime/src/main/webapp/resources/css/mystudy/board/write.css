@@ -1,0 +1,43 @@
+.mystudy-board-detail {
+  padding: 35px;
+}
+
+.mystudy-board-detail-title-section {
+  margin-bottom: 20px;
+}
+
+.mystudy-board-detail-title {
+  padding: 10px;
+  color: gray;
+  border: none;
+  width: 100%;
+  font-size: 20px;
+}
+
+.mystudy-board-detail-title:focus {
+  outline: 2px solid #d8efde;
+  border-radius: 5px;
+}
+
+.cancel-save-btn-area {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cancel-save-btn-area input {
+  width: 60px;
+  height: 35px;
+  border: none;
+  margin-left: 5px;
+}
+
+.cancel-save-btn-area input:first-child {
+  color: gray;
+  border: 1px solid rgb(200, 200, 200);
+  background-color: white;
+}
+
+.cancel-save-btn-area input:last-child {
+  color: white;
+  background-color: #5ecc80;
+}
