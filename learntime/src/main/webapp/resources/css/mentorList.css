@@ -341,3 +341,44 @@ input[type='checkbox'] + .stylish-checkbox {
     'GRAD' 0,
     'opsz' 48;
 }
+
+
+
+
+
+/* 모달달 */
+.background {
+    background: rgba(0, 0, 0, 0.3);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    display: flex;
+    z-index:30;
+}
+.foreground {
+    text-align: center;
+    height: 700px;
+    width: 600px;
+    margin: auto;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+}
+.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+#application-btn{
+    width: 80px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: #58c079;
+    color: white;
+}

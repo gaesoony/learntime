@@ -17,9 +17,9 @@
 
     <div id="main-wrap">
         <div id="mentoring-category-box">
-            <input type="radio" name="mentoring-category" id="mentoring-category1" checked>
+            <input type="radio" name="mentoring-category" id="mentoring-category1">
             <label for="mentoring-category1">신청한 멘토링</label>
-            <input type="radio" name="mentoring-category" id="mentoring-category2">
+            <input type="radio" name="mentoring-category" id="mentoring-category2" checked>
             <label for="mentoring-category2">멘토 지원하기</label>
             <input type="radio" name="mentoring-category" id="mentoring-category3">
             <label for="mentoring-category3">나의 멘토링 관리</label>
@@ -28,22 +28,23 @@
         <form action="">
         <div id="basic-info-box">
             <div id="basic-info-title" class="title">
-                <span>기본 정보</span>
-                <div id="save-btn">저장</div>
+                <span>멘토 정보</span>
+                <!-- <div id="save-btn">저장</div> -->
             </div>
 
             <div id="basic-info" class="info-box">
+                <div id="email-title" class="sub-title">
+                    <span>이름(실명)</span>
+                    <span class="sub-title-plus">*</span>
+                </div>
+                <input type="text" id="" placeholder="실명을 입력해주세요">
+
                 <div id="phone-title" class="sub-title">
                     <span>연락받을 이메일</span>
                     <span class="sub-title-plus">*</span>
                 </div>
                 <input type="text" id="phone-input" placeholder="멘토링에 사용하실 이메일을 입력해주세요">
                 
-                <div id="email-title" class="sub-title">
-                    <span>이름(실명)</span>
-                    <span class="sub-title-plus">*</span>
-                </div>
-                <input type="text" id="" placeholder="실명을 입력해주세요">
 
                 <div id="phone-title" class="sub-title">
                     <span>연락처</span>

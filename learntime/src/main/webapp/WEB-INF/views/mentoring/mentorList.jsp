@@ -14,11 +14,27 @@
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 
+    <!-- 모달 -->
+    <div class="background">
+        <div class="foreground">
+            <div class="close-btn">첫번째 모달</div>
+            
+
+            
+            <div id="application-btn">신청하기</div>
+        </div>
+    </div>
+
+
+    <!-- 두번재 모달 -->
+
+
+
 	<div id="board-banner">
 		<div id="banner-text-box">
             <span>멘토링</span>
             <span>지식을 나눠보세요</span>
-            <span><a href="">멘토 지원하기 ></a></span>
+            <span><a href="/app/mentor/regist">멘토 지원하기 ></a></span>
         </div>
 	</div>
     <div id="main-wrap">
@@ -280,16 +296,6 @@
 
 
             </div>
-            
-            
-            
-           
-
-
-
-
-
-                
 
                 
             <div id="paging">
@@ -306,22 +312,27 @@
                 <div class="paging-btn" id="next-btn">다음</div>
             </div>
 
-        
         </div>
         
-       
-
-
     </div>
 
-
-   
-   
-   
-   
     <%@include file="/WEB-INF/views/common/footer.jsp"%>
+
+    <script>
+        //모달
+        $('.mentoring').on('click',function(){
+            $('.background').addClass('show');
+        })
+        
+        $('.close-btn').on('click',function(){
+            $('.background').removeClass('show');
+        })
+          
+        
+    </script>
 
 </body>
 
-</html>
+
+
 </html>

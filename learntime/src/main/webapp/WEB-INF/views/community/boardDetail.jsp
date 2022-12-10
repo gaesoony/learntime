@@ -20,7 +20,7 @@
 		<img src="/app/resources/img/freeBoardBanner.png" alt="자유게시판 배너">
 	</div>
 
-	<div class="cate-line">커리어</div>
+	<div class="cate-line">카테고리 - 커리어</div>
 
 	<div id="main-wrap">
 		<div id="content-info">

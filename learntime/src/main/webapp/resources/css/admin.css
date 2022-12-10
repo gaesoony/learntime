@@ -1,20 +1,14 @@
-/* temp */
-*{
-    color: rgb(236, 236, 236);
-}
-
-
-
 /* admin-sidebar */
 
 .side-bar{
-    display: inline-block;
+    float: left;
     width: 300px;
     min-height: 1080px;
     height: auto;
     background-color: #454545;
     position: sticky;
-    
+
+    /* font-size: 0; */
 }
 .logo-box{
     width: auto;
@@ -40,6 +34,7 @@
     justify-content:space-between;
     align-items: center;
     height: 60px;
+    color: rgb(236, 236, 236);
 }
 #profile-img{
     width: 55px;
@@ -151,10 +146,15 @@ img#logo{
     cursor: pointer;
 }
 
-a {
+.big_menu a{
+    color: #d9d9d9;
+}
+
+.small_menu a {
     color: #d9d9d9;
     background-color: transparent;
 }
+
 
 /* google material icons*/
 .material-symbols-rounded {
@@ -174,4 +174,21 @@ a {
 
 .main{
     display: inline-block;
+}
+
+
+/* include 시 적용 부분 */
+body{
+    width: 1920px;
+}
+
+#content-wrap{
+    /* float: left; */
+    float: right;
+    vertical-align: top;
+    margin-left: -300px;
+    padding-left: 300px;
+    width: 100%;
+    min-height: 1080px;
+    box-sizing: border-box;
 }
