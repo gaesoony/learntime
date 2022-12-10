@@ -294,10 +294,10 @@ select {
         <div class="mystudy-cate-aside relative">
           <h1>비전공자 자바스터디<i class="fa-solid fa-seedling"></i></h1>
           <ul class="mystudy-cate-list">
-            <a href="/app/mystudy/main"><i class="fa-solid fa-angle-right"></i>스터디 정보</a>
-            <a href="/app/mystudy/board/list"><i class="fa-solid fa-angle-right"></i>공지 사항</a>
-            <a href=""><i class="fa-solid fa-angle-right"></i>자료 공유</a>
-            <a href=""><i class="fa-solid fa-angle-right"></i>과제 제출</a>
+            <a href="/app/mystudy/manage/info"><i class="fa-solid fa-angle-right"></i>스터디 정보 관리</a>
+            <a href="/app/mystudy/manage/profile"><i class="fa-solid fa-angle-right"></i>프로필 관리</a>
+            <a href="/app/mystudy/manage/member"><i class="fa-solid fa-angle-right"></i>참여 멤버 관리</a>
+            <a href="/app/mystudy/manage/category"><i class="fa-solid fa-angle-right"></i>카테고리 관리</a>
           </ul>
           <div class="mystudy-manage-area">
             <a href="/app/mystudy/manage/info">
