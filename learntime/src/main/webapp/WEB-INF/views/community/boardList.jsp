@@ -19,7 +19,7 @@
             <img src="/app/resources/img/freeBoardBanner.png" alt="자유게시판 배너">
         </div>
         <div id="board-category">
-            <div id="write-btn">
+            <div id="write-btn" onclick="location.href='/app/community/board/write'">
                 <span id="edit-icon" class="material-symbols-rounded">edit</span>
                 <span>작성하기</span> 
             </div>
@@ -59,7 +59,7 @@
             </div>
         </div>
         <div id="board-list">
-            <div class="board-content notice">
+            <div class="board-content notice" onclick="location.href='/app/community/board/detail'">
                 <div class="title-box">
                     <span>[런타임]공지사항 JAVA 언어로 배우는 디자인 패턴 입문 이벤트</span>
                 </div>

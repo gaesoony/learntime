@@ -32,5 +32,12 @@ public class BoardController {
 	public String summer() {
 		return "/community/summernote";
 	}
+	
+	
+//	관리자
+//	@GetMapping("admin")
+//	public String admin() {
+//		return "community/adminCommunity";
+//	}
 
 }

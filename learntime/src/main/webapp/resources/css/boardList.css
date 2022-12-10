@@ -160,11 +160,15 @@ input[type="submit"]#search-submit{
   padding-right: 15px;
   padding-left: 15px;
 }
+.board-content:hover{
+  background:rgba(0,0,0,0.02);
+  cursor: pointer;
+}
 
 .title-box{
   width: 870px;
   line-height: 80px;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .content-info-box{
