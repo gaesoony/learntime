@@ -2,22 +2,27 @@
     pageEncoding="UTF-8"%>
 <style>
 
+body{
+    position: relative;
+} 
+
 #mypageSide{
     width: 1200px;
-    height: 100vh;
     margin: auto;
+    
 
 }
 
 #mypageSide-area{
     width: 160px;
-    height: 700px;
+    height: auto;
     padding: 70px;
     display: grid;
     grid-template-rows: 160px;
     position: fixed;
-    top: 95px;
-    bottom: 230px;
+    top: 35px;
+    --left: 1px;
+    bottom: 270px;
     background-color: #FFFFFF;
     --box-shadow:0px 3px 10px rgba(0, 0, 0, 0.1);
     z-index: 300; 
@@ -40,7 +45,7 @@
     font-size: 20px;
 }
 
-#profile-follow{
+#profile-follow a,#profile-follow span{
    color: #535353;
     font-size: 14px;
 }
@@ -70,7 +75,11 @@
              </div>
 
              <div id="profile-nick">닉네임</div>
-             <div id="profile-follow">100 팔로우 중 100 팔로잉</div>
+             <div id="profile-follow">
+                <a href="#">100 팔로우 중</a>
+                <span>|</span>
+                <a href="#"> 100 팔로잉</a>
+             </div>
         </div>
 
         <div id="mypage-btn">
@@ -78,16 +87,16 @@
         </div>
     
         <div id="my-cate">
-             <div class=".cate"><a href="#">홈</a></div>
+             <div class=".cate"><a href="/app/member/mypage/home">홈</a></div>
              <div class=".cate"><a href="#">MAKE GRASS</a></div>
-             <div class=".cate"><a href="#">STUDY/PROJECT</a></div>
+             <div class=".cate"><a href="/app/member/mypage/study">STUDY/PROJECT</a></div>
              <div class=".cate"><a href="#">LEARNING</a></div>
              <div class=".cate"><a href="#">MENTORING</a></div>
              <div class=".cate"><a href="#">COMMUNITY</a></div>
-             <div class=".cate"><a href="#">보유한 스킨</a></div>
-             <div class=".cate"><a href="#">보유한 뱃지</a></div>
-             <div class=".cate"><a href="#">DM</a></div>
-             <div class=".cate"><a href="#">계정정보</a></div>
+             <div class=".cate"><a href="/app/member/mypage/skin">보유한 스킨</a></div>
+             <div class=".cate"><a href="/app/member/mypage/badge">보유한 뱃지</a></div>
+             <div class=".cate"><a href="/app/member/mypage/dm/list">DM</a></div>
+             <div class=".cate"><a href="/app/member/mypage/edit">계정정보</a></div>
         </div>
      
      </div>

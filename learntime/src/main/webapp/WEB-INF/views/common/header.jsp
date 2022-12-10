@@ -186,7 +186,7 @@
                 <span class="material-symbols-outlined">close</span>
             </button>
 
-            <div id="logo"><a href="#" ><img src="/app/resources/img/logo_green2.png" alt="런타임로고"></a></div>
+            <div id="logo"><a href="/app/main" ><img src="/app/resources/img/logo_green2.png" alt="런타임로고"></a></div>
             
             <form action="" method="POST">
                 <div>

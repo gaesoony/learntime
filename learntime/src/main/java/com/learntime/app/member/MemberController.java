@@ -46,10 +46,29 @@ public class MemberController {
 	}
 	
 	
-//	마이페이지(화면)
-	@GetMapping("/mypage")
+//	마이페이지-홈(화면)
+	@GetMapping("/mypage/home")
 	public String mypage() {
 		return "/member/mypage-home";
+	}
+	
+//  마이페이지-스터디(화면)
+	  @GetMapping("/mypage/study")
+	  public String mypageStudy() {
+	      return "/member/mypage-study";
+	  }
+	
+	
+//	마이페이지-보유한 뱃지(화면)
+	@GetMapping("/mypage/badge")
+	public String mypageBadge() {
+		return "/member/mypage-badge";
+	}
+	
+//	마이페이지-계정 정보(화면)
+	@GetMapping("/mypage/edit")
+	public String mypageEdit() {
+		return "/member/mypage-edit";
 	}
 	
 	
