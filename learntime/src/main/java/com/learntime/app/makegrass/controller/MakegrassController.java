@@ -13,5 +13,17 @@ public class MakegrassController {
 	public String list() {
 		return "/makegrass/list";
 	}
+	
+	//잔디심기 작성 (화면)
+	@GetMapping("/write")
+	public String write() {
+		return "/makegrass/write";
+	}
+	
+	//잔디심기 상세 조회 (화면)
+	@GetMapping("/detail")
+	public String detail() {
+		return "/makegrass/detail";
+	}
 
 }
