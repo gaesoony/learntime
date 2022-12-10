@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 <style>
     .banner{
-        padding: 20px;
-        height: 8vh;
+        padding: 50px;
+        height: 150px;
         background-color: #333B3D;
     }
     .main{
@@ -17,17 +17,18 @@
     }
     .bannertitle1{
         width: 70vw;
-        margin-left: 335px;
+        margin-left: 310px;
+        margin-top: 35px;
         color: white;
-        font-size: 30px;
+        font-size: 25px;
         font-weight: 550;
     }
     .bannertitle2{
         width: 70vw;
         margin-top: 15px;
-        margin-left: 335px;
+        margin-left: 310px;
         color: white;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 400;
     }
     .sidebar{
