@@ -12,14 +12,16 @@
 .logo-section{
     border:1px solid red;
     height: 180px;
-    background-image: url("../img/faq/Group229.png" );
+    background-image: url("${pageContext.request.contextPath}/resources/img/faq/Group229.png" );
     background-size: contain;
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
 
+} 
 
-}
+
+
 .list-section{
     border:1px solid red;
     height:1100px;
@@ -30,21 +32,26 @@
 
 .logo{
     margin-right: 100px;
-}
+    border: 1px solid red;
+} 
 
-#logo-title1{
+ #logo-title1{
+    border: 1px solid red;
     color: white;
     font-size: xx-large;
     font-weight: 900;
     text-align: right;
     margin-bottom:20px;
+   
 }
 
 #logo-title2{
     color: white;
     font-size: x-large;
     font-weight: 900;
-}
+    border: 1px solid red;
+    
+} 
 
 /* 카테고리 */
 
@@ -64,6 +71,7 @@
     height: 50px;
     border-radius: 1rem;
     background-color: #5ECC80;
+    color:white;
     font-size: large;
     font-weight: 600;
     display: inline-block;
@@ -73,13 +81,11 @@
     
 
 }
-a{
-	color:white;
-}
+
 .search-window{
     
     margin: 0 auto;
-    width: 600px;
+    width: 800px;
     height: 80px;
     display: flex;
     align-items: flex-end;
@@ -118,8 +124,11 @@ a{
 #search-box{
     border:none;
     border-bottom:5px solid #535353;
-    width: 350px;
-    height: 100%;
+    width: 550px;
+    height: 50px;
+    border: 3px solid gray;
+    margin-left: 5px;
+    margin-right: 5px;
 
 
 
@@ -137,8 +146,7 @@ input{
 #searchBtn{
     
     width: 114px;
-    height: 50px;
-    border-radius: 1em;
+    height: 56px;
     background-color: #5ECC80;
     display: flex;
     justify-content: center;
@@ -148,20 +156,22 @@ input{
 
 }
 #title-search{
-    width: 145px;
-    height: 100%;
+    width: 100px;
+    height: 50px;
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
+    border: 3px solid gray;
 
 }
 select{
-    border-radius:1em ;
+   
     width:100px ;
     height: 50px;
     font-size: larger;
     font-weight: 600;
     text-align: center;
+    border: none;
 }
 
 /* 리스트 */

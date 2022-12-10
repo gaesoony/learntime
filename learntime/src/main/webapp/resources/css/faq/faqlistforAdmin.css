@@ -12,7 +12,7 @@
 .logo-section{
     border:1px solid red;
     height: 180px;
-    background-image: url("/app/resources/img/faq/Group229.png" );
+    background-image: url("${pageContext.request.contextPath}/resources/img/faq/Group229.png" );
     background-size: contain;
     display: flex;
     flex-direction: row-reverse;
@@ -32,7 +32,7 @@
     margin-right: 100px;
 }
 
-#logo-title1{
+.logo-title1{
     color: white;
     font-size: xx-large;
     font-weight: 900;
@@ -40,7 +40,7 @@
     margin-bottom:20px;
 }
 
-#logo-title2{
+.logo-title2{
     color: white;
     font-size: x-large;
     font-weight: 900;
@@ -69,13 +69,12 @@
     display: inline-block;
     text-align: center;
     line-height: 50px;
+    color: white;
 
     
 
 }
-a{
-	color:white;
-}
+
 .search-window{
     
     margin: 0 auto;
@@ -164,5 +163,27 @@ select{
     text-align: center;
 }
 
+
 /* 리스트 */
+
+
+.page-btn-section{
+    width: 100%;
+    height: 100px;
+    border:1px solid red;
+    display: flex;
+    
+
+}
+.writeBtn-faq{
+    width: 100px;
+    height: 50px;
+    border-radius: 1rem;
+    background-color: #5ECC80;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    font-weight: 600;
+
+}
 

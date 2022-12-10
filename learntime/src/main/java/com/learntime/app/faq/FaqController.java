@@ -26,8 +26,8 @@ public class FaqController {
 		return "faq/faqDetailList";
 	}
 	//FAQ 글쓰기(운영자)
-		@GetMapping("faq/faqWrite")
-		public String faqWrite() {
-			return "faq/faqWrite";
-		}
+	@GetMapping("faq/faqWrite")
+	public String faqWrite() {
+		return "faq/faqWrite";
+	}
 }

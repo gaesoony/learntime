@@ -14,8 +14,8 @@
 <div class="list-main">
     <div class="logo-section">
         <div class="logo">
-            <div id="logo-title1"><span>FAQ</span></div>
-            <div id="logo-title2"><span>무엇을 도와드릴까요?</span></div>
+            <div class="logo-title1"><span>FAQ</span></div>
+            <div class="logo-title2"><span>무엇을 도와드릴까요?</span></div>
         </div>
     </div>
     <div class="list-section">
@@ -44,7 +44,11 @@
             <div>제목</div>
             <div>작성일시</div>
         </div>
-        <div class="page-section"></div>
+        <div class="page-btn-section">
+            <div class="page-section"></div>
+            <div class="writeBtn-faq">글쓰기</div>
+        </div>
+        
     </div>
 </div>
 

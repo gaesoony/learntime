@@ -13,20 +13,20 @@
 
 <div class="list-main">
     <div class="logo-section">
-        <div class="logo">
+         <div class="logo">
             <div id="logo-title1"><span>FAQ</span></div>
             <div id="logo-title2"><span>무엇을 도와드릴까요?</span></div>
         </div>
     </div>
     <div class="list-section">
         <div class="category-section">
-            <div class="list-categoryBtn"><a href="">전체</a></div>
-            <div class="list-categoryBtn"><a href="">스터디</a></div>
-            <div class="list-categoryBtn"><a href="">공부인증</a></div>
-            <div class="list-categoryBtn"><a href="">Q&A</a></div>
-            <div class="list-categoryBtn"><a href="">멘토링</a></div>
-            <div class="list-categoryBtn"><a href="">커뮤니티</a></div>
-            <div class="list-categoryBtn"><a href="">스킨샵</a></div>
+            <a href=""><div class="list-categoryBtn">전체</div></a>
+            <a href=""><div class="list-categoryBtn">스터디</div></a>
+            <a href=""><div class="list-categoryBtn">공부인증</div></a>
+            <a href=""><div class="list-categoryBtn">Q&A</div></a>
+            <a href=""><div class="list-categoryBtn">멘토링</div></a>
+            <a href=""><div class="list-categoryBtn">커뮤니티</div></a>
+            <a href=""><div class="list-categoryBtn">스킨샵</div></a>
         </div>
         <div class="search-window">
             <div id="title-search">

@@ -1,0 +1,150 @@
+@charset "UTF-8";
+
+.question-main{
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: 180px 200px 200px 450px 200px;
+    border: 1px solid red;
+}
+/* 로고 */
+ .logo-question{
+    width: 100%;
+    height: 180px;
+    background-image: url("/app/resources/img/faq/image\ 85.png");
+    background-size: cover;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.logo-phrases{
+    width: 80%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+.one-by-one{
+    color: white;
+    font-size: xx-large;
+    font-weight: 900;
+    margin: 10px;
+    margin-right: 100px;
+
+}
+.guide{
+    color: white;
+    font-size: larger;
+    font-weight: 900;
+    margin: 10px;
+    margin-right: 100px;
+}
+/* 카테고리 */
+.category-question{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.cate-list{
+    width: 800px;
+    height: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.cate{
+    width:180px;
+    height: 50px;
+    border-radius: 1rem;
+    background-color: #5ECC80;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    font-size: larger;
+    font-weight: 600;
+}
+.ques{
+    width:180px;
+    height: 50px;
+    border-radius: 1rem;
+    background-color: white;
+    border: 1px solid gray;
+    color: #5ECC80;
+    text-align: center;
+    line-height: 50px;
+    font-size: larger;
+    font-weight: 600;
+}
+/* 검색창 */
+.search-question{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.gathering-blocks{
+    width: 900px;
+    height: 100px;
+    display: flex;
+    align-items: flex-end;
+
+}
+.select-content{
+    width: 100px;
+    height: 50px;
+    border: 3px solid gray;
+}
+.search-box2{
+    width: 680px;
+    height: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: 3px solid gray;
+}
+.search-btn2{
+    width: 120px;
+    height: 55px;
+    background-color: #5ECC80;
+    text-align: center;
+    
+
+}
+select{
+    
+    width:100px ;
+    height: 50px;
+    font-size: larger;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+}
+input{
+    border: none;
+    background-color: #5ECC80;
+    color: white;
+    font-size: large;
+    font-weight: 600;
+    width: 50px;
+    height: 50px;
+
+}
+.list-question{
+    width: 100%;
+    height: 450px;
+    border: 1px solid red;
+
+}
+.page-question{
+    width: 100%;
+    height: 200px;
+    border: 1px solid red;
+
+} 
