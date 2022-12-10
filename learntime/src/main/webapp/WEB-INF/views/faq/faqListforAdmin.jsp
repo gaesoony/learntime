@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/app/resources/css/reset.css">
-<link rel="stylesheet" href="/app/resources/css/faq/faqCss.css">
+<link rel="stylesheet" href="/app/resources/css/faq/faqlistforAdmin.css">
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/common/header.jsp" %>

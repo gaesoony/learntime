@@ -1,0 +1,168 @@
+@charset "UTF-8";
+
+.list-main{
+    width:1200px;
+    height:auto;
+    margin:0 auto;
+    display:flex;
+    flex-direction: column;
+    
+}
+/* 로고 */
+.logo-section{
+    border:1px solid red;
+    height: 180px;
+    background-image: url("../img/faq/Group229.png" );
+    background-size: contain;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+
+
+}
+.list-section{
+    border:1px solid red;
+    height:1100px;
+    display: grid;
+    grid-template-rows:200px 200px 500px 200px ;
+
+}
+
+.logo{
+    margin-right: 100px;
+}
+
+#logo-title1{
+    color: white;
+    font-size: xx-large;
+    font-weight: 900;
+    text-align: right;
+    margin-bottom:20px;
+}
+
+#logo-title2{
+    color: white;
+    font-size: x-large;
+    font-weight: 900;
+}
+
+/* 카테고리 */
+
+.category-section{
+    
+    margin: 0 auto;
+    width: 1100px;
+    height: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.list-categoryBtn{
+    
+    width: 114px;
+    height: 50px;
+    border-radius: 1rem;
+    background-color: #5ECC80;
+    font-size: large;
+    font-weight: 600;
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+
+    
+
+}
+a{
+	color:white;
+}
+.search-window{
+    
+    margin: 0 auto;
+    width: 600px;
+    height: 80px;
+    display: flex;
+    align-items: flex-end;
+    
+    
+
+}
+.list-all{
+    border:1px solid red;
+    margin: 0 auto;
+    width: 1200px;
+    height: 500px;
+    
+
+}
+.page-section{
+    border:1px solid red;
+    margin: 0 auto;
+    width: 500px;
+    height: 100px;
+    
+
+}
+.list-section >.category-section {
+    align-self: flex-end;
+    margin-bottom:30px;
+}
+
+/* 검색창 */
+
+.list-section >.search-window {
+    align-self: center;
+    
+}
+
+#search-box{
+    border:none;
+    border-bottom:5px solid #535353;
+    width: 350px;
+    height: 100%;
+
+
+
+}
+input{
+    border: none;
+    background-color: #5ECC80;
+    color: white;
+    font-size: large;
+    font-weight: 600;
+    width: 50px;
+    height: 50px;
+
+}
+#searchBtn{
+    
+    width: 114px;
+    height: 50px;
+    border-radius: 1em;
+    background-color: #5ECC80;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+
+}
+#title-search{
+    width: 145px;
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+
+}
+select{
+    border-radius:1em ;
+    width:100px ;
+    height: 50px;
+    font-size: larger;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* 리스트 */
+

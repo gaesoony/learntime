@@ -14,4 +14,20 @@ public class FaqController {
 		return "faq/faqList";
 		
 	}
+	// FAQ 리스트 화면(운영자)
+	@GetMapping("faq/faqListforAdmin")
+	public String faqListforAdmin() {
+		return "faq/faqListforAdmin";
+		
+	}
+	//FAQ 상세조회
+	@GetMapping("faq/faqDetailList")
+	public String faqDetailList() {
+		return "faq/faqDetailList";
+	}
+	//FAQ 글쓰기(운영자)
+		@GetMapping("faq/faqWrite")
+		public String faqWrite() {
+			return "faq/faqWrite";
+		}
 }

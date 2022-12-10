@@ -12,7 +12,7 @@
 .logo-section{
     border:1px solid red;
     height: 180px;
-    background-image: url("../img/faq/Group229.png" );
+    background-image: url("/app/resources/img/faq/Group229.png" );
     background-size: contain;
     display: flex;
     flex-direction: row-reverse;
@@ -64,7 +64,6 @@
     height: 50px;
     border-radius: 1rem;
     background-color: #5ECC80;
-    color: white;
     font-size: large;
     font-weight: 600;
     display: inline-block;
@@ -73,6 +72,9 @@
 
     
 
+}
+a{
+	color:white;
 }
 .search-window{
     
@@ -134,8 +136,8 @@ input{
 }
 #searchBtn{
     
-    width: 60px;
-    height: 60px;
+    width: 114px;
+    height: 50px;
     border-radius: 1em;
     background-color: #5ECC80;
     display: flex;
