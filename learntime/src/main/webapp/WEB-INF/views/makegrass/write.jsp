@@ -36,6 +36,16 @@
         outline: none;
         margin-bottom: 20px;
      }
+     .worktime{
+        border: none;
+        text-decoration: none;
+        width: 100%;
+        height: 5vh;
+        font-size: 22px;
+        color: #AAAAAA;
+        outline: none;
+        margin-bottom: 20px;
+     }
      .cancle{
         width: 5vw;
         height: 4vh;
@@ -60,34 +70,13 @@
         height: 50vh;
         margin-bottom: 30px;
      }
-     .selectbox{
-        position: relative;
-        width: 150px;
-        height: 35px;
-        border-radius: 4px;
-        border: 1px solid #5ECC80;
-        margin-bottom: 20px;
-     }
-     .selectbox .select{
-        width: inherit;
-        height: inherit;
-        background: transparent;
-        border: 0 none;
-        outline: 0 none;
-        padding: 0 5px;
-        position: relative;
-        z-index: 3;
-        font-size: 18px;
-        color: #5ECC80;
-        font-weight: 550;
-     }
-     .selectbox .select option{
-        background: #5ECC80;
-        color: white;
-        padding: 3px 0;
-        font-size: 18px;
-     }
 </style>
+
+<link
+    href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
+    rel="stylesheet"
+/>
+
 </head>
 <body>
 
@@ -98,20 +87,14 @@
 
     <div class="mainbox">
         <div class="maintitle">
-            <div class="selectbox">
-                <select class="select">
-                    <option value="stac">기술</option>
-                    <option value="career">커리어</option>
-                </select>
-            </div>
-            </div>
             <input type="text" name="title" class="title" placeholder="제목을 입력하세요">
             <input type="text" name="hashtag" class="hashtag" placeholder="해시태그를 입력하세요">
+            <input type="text" name="worktime" class="worktime" placeholder="공부한 시간을 입력하세요(분단위)">
 
-            <textarea class="content" name="content" placeholder="에디터 넣을 예정"></textarea>
+            <textarea class="content">*에디터 넣을 예정</textarea>
 
             <button type="button" onClick="history.back();" class="cancle" style='cursor:pointer;'>취소</button>
-            <button type="button" onclick="location.href='/app/qna/list'" class="write" style='cursor:pointer;'>등록</button>
+            <button type="button" onclick="location.href='/app/makegrass/list'" class="write" style='cursor:pointer;'>등록</button>
             
         </div>
     </div>

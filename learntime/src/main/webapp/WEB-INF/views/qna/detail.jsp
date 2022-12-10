@@ -86,7 +86,6 @@
     }
     .ha{
         text-align: center;
-        width: 3vw;
         background-color: #AAAAAA;
         color: white;
         border-radius: 20px;
@@ -407,7 +406,7 @@
     <!-- 상단 초록색 바-->
     <div class="banner"></div>
 
-    <!-- 오른쪽 사이드바 -->
+    <!-- 왼쪽 사이드바 -->
     <div class="sidebox">
         <div class="side">
             <div class="si">
@@ -430,8 +429,6 @@
 
     <!-- 상세조회 메인 부분 -->
     <div class="main">
-
-        <!-- 왼쪽 사이드 랭킹 -->
 
         <div class="maintitle">
             <div class="title">
@@ -469,7 +466,7 @@
                 <ul class="hash">
                     <li class="ha">#JAVA</li>
                     <li class="ha">#자바</li>
-                    <li class="ha">CSS</li>
+                    <li class="ha">#CSS</li>
                 </ul>
             </div>
         </div>
@@ -517,7 +514,7 @@
             <div class="endend">nick03</div>
             <div class="endendenrollDate">2202.12.08.</div>
             <div class="endheart2"><i class="fa-solid fa-thumbs-up"></i>15</div>
-            <div class="edit4"><input type="button" id="edit4" style='cursor:pointer;' value="답변 수정"></div>
+            <div class="edit4"><input type="button" id="edit4" style='cursor:pointer;' value="댓글 수정"></div>
             <div class="edit5"> / </div>
             <div class="edit6"><input type="button" id="edit6" style='cursor:pointer;' value="삭제"></div>
             <div class="endline3"></div>
