@@ -27,7 +27,7 @@
 			</div>
 			<div id="logout">log out</div>
 		</div>
-		<div class="menu sub_menu">
+		<div class="menu sub_menu" id="sub-menu">
 			<ul class="big_menu">
 				<li><span class="material-symbols-rounded">grid_view</span> <span><a
 						href="">대시 보드</a></span> <span
@@ -201,6 +201,7 @@
 		});
 	</script>
 
+
 	<!-- 높이 맞춰주기
 	<script defer>
 		$(function(){
@@ -212,4 +213,18 @@
 		console.log($('.sidebar').height());
 
 	</script> -->
+
+	<!-- 사이드 스크롤바 -->
+
+	<script>
+		window.addEventListener("resize", function () {
+			console.log(window.innerHeight);
+			const menu = document.querySelector("#sub-menu");
+			console.log(menu);
+			menu.style.height = window.innerHeight - 340 + "px";
+		});
+		console.log(window.innerHeight);
+		const menu = document.querySelector("#sub-menu");
+		menu.style.height = window.innerHeight - 340 + "px";
+	</script>
 	
