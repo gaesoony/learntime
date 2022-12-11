@@ -16,7 +16,6 @@ pageEncoding="UTF-8"%>
         width: 1200px;
         height: 100vh;
         margin: auto;
-        border: 1px solid black;
       }
 
       #mypage {
@@ -25,12 +24,10 @@ pageEncoding="UTF-8"%>
         display: grid;
         grid-template-columns: 300px 900px;
         margin-top: 20px;
-        border: 1px solid black;
       }
 
       #home-area {
         padding: 40px;
-        border: 1px solid black;
       }
 
       /* 공통css */

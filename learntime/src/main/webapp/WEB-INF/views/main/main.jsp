@@ -22,7 +22,7 @@ pageEncoding="UTF-8"%>
   <body>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
     <main>
-      <section class="main-banner">
+      <section class="main-banner container">
         <img src="/app/resources/img/study/banner1.png" alt="메인배너" />
       </section>
       <section class="main-study-section middle">
