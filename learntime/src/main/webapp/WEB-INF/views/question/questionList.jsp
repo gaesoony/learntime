@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,9 +47,13 @@
             </div>
         </div>
         <div class="list-question">
-            <div class="pick-cate">카테고리</div>
-            <div class="pick-title">제목</div>
-            <div class="pick-date">작성일자</div>
+            <c:forEach var="questionList" begin="1" end="10" >
+                <div class="questionList">
+                    <div class="pick-cate">카테고리</div>
+                    <div class="pick-title">제목</div>
+                    <div class="pick-date">작성일자</div>
+                </div>
+            </c:forEach>
         </div>
         <div class="page-question"></div>
     </div>

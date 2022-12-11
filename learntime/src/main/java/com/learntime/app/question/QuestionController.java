@@ -7,10 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class QuestionController {
 	
 	// 문의게시판 리스트 화면
-		@GetMapping("question/questionList")
-		public String questionList() {
-			return "question/questionList";
-			
-		}
+	@GetMapping("question/questionList")
+	public String questionList() {
+		return "question/questionList";
+		
+	}
+	
+	// 문의게시판 글쓰기 
+	@GetMapping("question/questionWrite")
+	public String questionWrite() {
+		return "question/questionWrite";
+		
+	}
 
 }

@@ -94,11 +94,45 @@
 
 }
 .list-all{
-    border:1px solid red;
+  
     margin: 0 auto;
     width: 1200px;
     height: 500px;
     
+
+}
+.faqList{
+    width: 100%;
+    height: 45px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 6fr 3fr;
+    border-top: 3px solid #535353;
+    border-bottom:3px solid #535353;;
+   
+
+}
+
+.q-mark{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.category-faq{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.title-faq{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.date-faq{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 .page-section{

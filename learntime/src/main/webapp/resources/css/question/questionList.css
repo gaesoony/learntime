@@ -136,15 +136,42 @@ input{
     height: 50px;
 
 }
+/* 리스트 */
 .list-question{
-    width: 100%;
-    height: 450px;
+    width: 1200px;
+    height: 500px;
     border: 1px solid red;
+
+}
+.questionList{
+    width: 1200px;
+    height: 45px;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    border-top: 3px solid #535353;
+    border-bottom:3px solid #535353;;
+}
+.pick-cate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.pick-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.pick-date{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 .page-question{
     width: 100%;
-    height: 200px;
+    height: 150px;
     border: 1px solid red;
 
 } 
