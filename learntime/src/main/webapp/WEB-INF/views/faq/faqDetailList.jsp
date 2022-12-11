@@ -11,10 +11,10 @@
 <body>
 <%@ include file = "/WEB-INF/views/common/header.jsp" %>
 <div class="list-main">
-    <div class="logo-section">
-        <div class="logo">
-            <div id="logo-title1"><span>FAQ</span></div>
-            <div id="logo-title2"><span>무엇을 도와드릴까요?</span></div>
+    <div class="banner-section">
+        <div class="banner">
+            <div id="banner-title1"><span>FAQ</span></div>
+            <div id="banner-title2"><span>무엇을 도와드릴까요?</span></div>
         </div>
     </div>
     <div class="faq-detail-list">

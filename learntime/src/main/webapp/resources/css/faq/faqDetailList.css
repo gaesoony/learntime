@@ -8,8 +8,8 @@
     flex-direction: column;
     
 }
-/* 로고 */
-.logo-section{
+/* 배너 */
+.banner-section{
     
     height: 180px;
     background-image: url("/app/resources/img/faq/Group229.png");
@@ -21,11 +21,11 @@
 
 }
 
-.logo{
+.banner{
     margin-right: 100px;
 }
 
-#logo-title1{
+#banner-title1{
     color: white;
     font-size: xx-large;
     font-weight: 900;
@@ -33,7 +33,7 @@
     margin-bottom:20px;
 }
 
-#logo-title2{
+#banner-title2{
     color: white;
     font-size: x-large;
     font-weight: 900;

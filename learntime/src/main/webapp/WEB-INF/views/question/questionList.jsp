@@ -14,8 +14,8 @@
 
 
 	<div class="question-main">
-        <div class="logo-question">
-            <div class="logo-phrases">
+        <div class="banner-question">
+            <div class="banner-phrases">
                 <div class="one-by-one">1:1 문의게시판</div>
                 <div class="guide">궁금하신 점을 남겨주시면 접수 순서대로 답변 드리겠습니다.</div>
             </div>
