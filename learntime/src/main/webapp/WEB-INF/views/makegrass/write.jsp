@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 에디터 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css">
 <style>
     .banner{
         height: 61px;
@@ -54,6 +56,8 @@
         font-size: 20px;
         color: #37774A;
         border-radius: 10px;
+        margin-top: 30px;
+        margin-bottom: 50px;
         margin-left: 885px;
      }
      .write{
@@ -64,11 +68,6 @@
         color: white;
         border: #5ECC80;
         border-radius: 10px;
-     }
-     .content{
-        width: 1084px;
-        height: 50vh;
-        margin-bottom: 30px;
      }
 </style>
 
@@ -91,7 +90,7 @@
             <input type="text" name="hashtag" class="hashtag" placeholder="해시태그를 입력하세요">
             <input type="text" name="worktime" class="worktime" placeholder="공부한 시간을 입력하세요(분단위)">
 
-            <textarea class="content">*에디터 넣을 예정</textarea>
+            <textarea class="summernote" name="editordata"></textarea>
 
             <button type="button" onClick="history.back();" class="cancle" style='cursor:pointer;'>취소</button>
             <button type="button" onclick="location.href='/app/makegrass/list'" class="write" style='cursor:pointer;'>등록</button>
@@ -102,6 +101,17 @@
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
     <script src="https://kit.fontawesome.com/4b219bc5a3.js" crossorigin="anonymous"></script>
+
+    <!-- 서머노트 로딩-->
+    <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+    <script>
+        $('.summernote').summernote({
+            height: 350,
+            placeholder: '- 공부한 내용을 남겨주세요. <br><br> - 잠깐! 런타임 서비스 운영 관련 문의는 1:1 문의 게시판을 이용해주세요.',
+            lang: "ko-KR"
+        });
+    </script>
 
 </body>
 </html>
