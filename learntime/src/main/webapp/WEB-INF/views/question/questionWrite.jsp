@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/app/resources/css/reset.css">
-<link rel="stylesheet" href="/app/resources/css/faq/faqWrite.css">
+<link rel="stylesheet" href="/app/resources/css/question/questionWrite.css">
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/common/header.jsp" %>

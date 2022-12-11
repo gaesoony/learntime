@@ -19,5 +19,12 @@ public class QuestionController {
 		return "question/questionWrite";
 		
 	}
+	
+	// 문의게시판 상세조회(회원)
+	@GetMapping("question/qDetailList")
+	public String qDetailList() {
+		return "question/qDetailList";
+			
+		}
 
 }
