@@ -782,7 +782,7 @@
 
     <!-- 메인 리스트 부분 -->
     <div class="mainbox">
-        <div class="mainlist">
+        <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
             <div class="thumbnail"></div>
             <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
             <div class="bookimg"><i class="fa-solid fa-book"></i></div>
@@ -806,7 +806,7 @@
             </div>
         </div>
 
-        <div class="mainlist">
+        <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
             <div class="thumbnail"></div>
             <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
             <div class="bookimg"><i class="fa-solid fa-book"></i></div>
@@ -830,7 +830,7 @@
             </div>
         </div>
 
-        <div class="mainlist">
+        <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
             <div class="thumbnail"></div>
             <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
             <div class="bookimg"><i class="fa-solid fa-book"></i></div>
@@ -854,7 +854,7 @@
             </div>
         </div>
 
-        <div class="mainlist">
+        <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
             <div class="thumbnail"></div>
             <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
             <div class="bookimg"><i class="fa-solid fa-book"></i></div>
@@ -878,7 +878,7 @@
             </div>
         </div>
 
-        <div class="mainlist">
+        <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
             <div class="thumbnail"></div>
             <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
             <div class="bookimg"><i class="fa-solid fa-book"></i></div>
@@ -902,7 +902,7 @@
             </div>
         </div>
 
-        <div class="mainlist">
+        <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
             <div class="thumbnail"></div>
             <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
             <div class="bookimg"><i class="fa-solid fa-book"></i></div>
@@ -926,7 +926,7 @@
             </div>
         </div>
 
-        <div class="mainlist">
+        <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
             <div class="thumbnail"></div>
             <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
             <div class="bookimg"><i class="fa-solid fa-book"></i></div>
@@ -950,7 +950,7 @@
             </div>
         </div>
 
-        <div class="mainlist">
+        <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
             <div class="thumbnail"></div>
             <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
             <div class="bookimg"><i class="fa-solid fa-book"></i></div>
@@ -974,7 +974,7 @@
             </div>
         </div>
 
-        <div class="mainlist">
+        <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
             <div class="thumbnail"></div>
             <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
             <div class="bookimg"><i class="fa-solid fa-book"></i></div>
@@ -997,6 +997,7 @@
                 </ul>
             </div>
         </div>
+        <!-- 끝 -->
 
         <!-- 오른쪽 사이드바 -->
         <aside class="rightsidebox">
@@ -1045,6 +1046,12 @@
         </aside>
 
     </div>
+
+    <script>
+        function navToDetail(){
+            window.location.href="/app/makegrass/detail";
+        }
+    </script>
 
     <script src="https://kit.fontawesome.com/4b219bc5a3.js" crossorigin="anonymous"></script>
 

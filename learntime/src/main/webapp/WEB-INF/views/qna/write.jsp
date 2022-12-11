@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 에디터 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css">
 <style>
     .banner{
         height: 61px;
@@ -45,6 +47,8 @@
         color: #37774A;
         border-radius: 10px;
         margin-left: 885px;
+        margin-top: 30px;
+        margin-bottom: 50px;
      }
      .write{
         width: 5vw;
@@ -54,11 +58,6 @@
         color: white;
         border: #5ECC80;
         border-radius: 10px;
-     }
-     .content{
-        width: 1084px;
-        height: 50vh;
-        margin-bottom: 30px;
      }
      .selectbox{
         position: relative;
@@ -108,7 +107,7 @@
             <input type="text" name="title" class="title" placeholder="제목을 입력하세요">
             <input type="text" name="hashtag" class="hashtag" placeholder="해시태그를 입력하세요">
 
-            <textarea class="content" name="content" placeholder="에디터 넣을 예정"></textarea>
+            <textarea class="summernote" name="editordata"></textarea>
 
             <button type="button" onClick="history.back();" class="cancle" style='cursor:pointer;'>취소</button>
             <button type="button" onclick="location.href='/app/qna/list'" class="write" style='cursor:pointer;'>등록</button>
@@ -119,6 +118,17 @@
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
     <script src="https://kit.fontawesome.com/4b219bc5a3.js" crossorigin="anonymous"></script>
+
+    <!-- 서머노트 로딩-->
+    <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+    <script>
+        $('.summernote').summernote({
+            height: 350,
+            placeholder: '- 학습 관련 질문을 남겨주세요. (상세히 작성하면 더 좋아요!) <br><br> - 먼저 유사한 질문이 있는지 검색해보세요. <br><br> - 싫어요 누적 개수 10개 시, 해당 게시물이 블라인드 처리될 수도 있습니다. <br><br> - 잠깐! 런타임 서비스 운영 관련 문의는 1:1 문의 게시판을 이용해주세요.',
+            lang: "ko-KR"
+        });
+    </script>
 
 </body>
 </html>

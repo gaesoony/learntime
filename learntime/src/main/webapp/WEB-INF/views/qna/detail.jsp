@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 에디터 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css">
 <style>
 	.banner{
         height: 61px;
@@ -135,8 +137,6 @@
     }
     .input{
         width: 925px;
-        height: 174px;
-        border: 1px solid gray;
         margin: 0 auto;
         margin-top: 15px;
     }
@@ -240,12 +240,12 @@
     }
     .endup{
         font-size: 20px;
-        color: #5ECC80;
+        color: #444444;
         margin-left: 915px;
     }
     .enddown{
         font-size: 20px;
-        color: #5ECC80;
+        color: #444444;
     }
     .endline2{
         width: 950px;
@@ -296,13 +296,13 @@
     }
     .endup2{
         font-size: 20px;
-        color: #5ECC80;
+        color: #444444;
         margin-top: 30px;
         margin-left: 845px;
     }
     .enddown2{
         font-size: 20px;
-        color: #5ECC80;
+        color: #444444;
     }
     .endline4{
         width: 825px;
@@ -443,10 +443,10 @@
                     <td class="nick">nick01</td>
                     <td class="enrollDate">2202.12.07.</td>
                     <td class="heart"><i class="fa-solid fa-thumbs-up"></i>25</td>
-                    <td class="thumbsup"><i class="fa-regular fa-thumbs-up"></i></td>
-                    <td class="thumbsdown"><i class="fa-regular fa-thumbs-down"></i></td>
-                    <td class="bookmark"><i class="fa-regular fa-bookmark"></i></td>
-                    <td class="dots"><i class="fa-solid fa-ellipsis-vertical"></i></td>
+                    <td class="thumbsup" id="thumbsup" onclick="changeColor5()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-up"></i></td>
+                    <td class="thumbsdown" id="thumbsdown" onclick="changeColor6()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-down"></i></td>
+                    <td class="bookmark" id="bookmark" onclick="changeColor7()" style="cursor: pointer;"><i class="fa-regular fa-bookmark"></i></td>
+                    <td class="dots" style="cursor: pointer;"><i class="fa-solid fa-ellipsis-vertical"></i></td>
                 </tr>
             </table>
             <div class="line1"></div>
@@ -477,7 +477,9 @@
             <div><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
             <div class="replyplz">nick01님, 답변해주세요!</div>
             <div class="replyplz-1">모두에게 도움이 되는 답변의 주인공이 되어주세요:)</div>
-            <div class="input"><input type="text"></div>
+            <div class="input">
+                <textarea class="summernote" name="editordata"></textarea>
+            </div>
             <button type="button" class="replybtn" style='cursor:pointer;'>답변 등록</button>
         </div>
 
@@ -503,8 +505,8 @@
                 대신 스프링 데이터 JPA를 사용할 경우 구현 클래스를 자동으로 생성하여 주입 받아
                 사용가능합니다.
             </div>
-            <div class="endup"><i class="fa-regular fa-thumbs-up"></i></div>
-            <div class="enddown"><i class="fa-regular fa-thumbs-down"></i></div>
+            <div class="endup" id="endup" onclick="changeColor3()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-up"></i></div>
+            <div class="enddown" id="enddown" onclick="changeColor4()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-down"></i></div>
 
             <div class="endline2"></div>
 
@@ -523,8 +525,8 @@
                 의존관계 자동주입 시점에 스프링컨테이너에 프로토타입빈을 요청하면 스프링컨테이너는<br>
                 프로토타입빈을 생성해서 반환한다. 반환된 프로토타입빈을 this.prototypeBean =prototypeBean; 에 의해서 내부필드에 주입되어서 보관한다.
             </div>
-            <div class="endup2"><i class="fa-regular fa-thumbs-up"></i></div>
-            <div class="enddown2"><i class="fa-regular fa-thumbs-down"></i></div>
+            <div class="endup2" id="endup2" onclick="changeColor()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-up"></i></div>
+            <div class="enddown2" id="enddown2" onclick="changeColor2()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-down"></i></div>
 
             <div class="endline4"></div>
 
@@ -538,5 +540,39 @@
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
     <script src="https://kit.fontawesome.com/4b219bc5a3.js" crossorigin="anonymous"></script>
+
+    <!-- 서머노트 로딩-->
+    <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+    <script>
+        $('.summernote').summernote({
+            height: 130,
+            lang: "ko-KR"
+        });
+
+        // 좋아요 && 싫어요 색깔 변경
+        function changeColor(){
+            document.getElementById("endup2").style.color = "#5ECC80";
+        }
+        function changeColor2(){
+            document.getElementById("enddown2").style.color = "#5ECC80";
+        }
+        function changeColor3(){
+            document.getElementById("endup").style.color = "#5ECC80";
+        }
+        function changeColor4(){
+            document.getElementById("enddown").style.color = "#5ECC80";
+        }
+        function changeColor5(){
+            document.getElementById("thumbsup").style.color = "#5ECC80";
+        }
+        function changeColor6(){
+            document.getElementById("thumbsdown").style.color = "#5ECC80";
+        }
+        function changeColor7(){
+            document.getElementById("bookmark").style.color = "#5ECC80";
+        }
+    </script>
+
 </body>
 </html>
