@@ -277,11 +277,11 @@ input[type="range"]::-webkit-slider-thumb {
     display: flex; 
 }
 
-.have-token{
+.have-token2{
     grid-column: span 2;
     height: 24px;
 }
-.token-cnt{
+.token-cnt2{
     width: 160px;
     height: 28px;
     padding: 10px;
@@ -457,10 +457,10 @@ input[type="range"]::-webkit-slider-thumb {
             </div>
 
             <div id="token">
-                <div class="have-token">
+                <div class="have-token2">
                     보유 토큰
                 </div>
-                <div class="token-cnt">
+                <div class="token-cnt2">
                     <span class="material-symbols-outlined">toll</span>
                     300개
                 </div>

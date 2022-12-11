@@ -65,6 +65,12 @@ public class MemberController {
 		return "/member/mypage-badge";
 	}
 	
+//	마이페이지-dm 리스트(화면)
+	@GetMapping("/mypage/dm/list")
+	public String dmList() {
+		return "/member/mypage-dmList";
+	}	
+	
 //	마이페이지-계정 정보(화면)
 	@GetMapping("/mypage/edit")
 	public String mypageEdit() {

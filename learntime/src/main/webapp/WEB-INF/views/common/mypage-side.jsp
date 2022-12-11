@@ -4,29 +4,28 @@
 
 body{
     position: relative;
-} 
+}
+
 
 #mypageSide{
     width: 1200px;
+    height: auto;
     margin: auto;
+   
     
-
 }
 
 #mypageSide-area{
     width: 160px;
-    height: auto;
+    height: 620px;
     padding: 70px;
     display: grid;
     grid-template-rows: 160px;
     position: fixed;
-    top: 35px;
-    --left: 1px;
-    bottom: 270px;
+    top: 75px;
+    bottom: 200px;
     background-color: #FFFFFF;
-    --box-shadow:0px 3px 10px rgba(0, 0, 0, 0.1);
-    z-index: 300; 
-   
+
 }
 
 #my-info{
@@ -65,6 +64,7 @@ body{
 #my-cate div a:hover{
     color: #5ECC80;
 }
+
 
 </style>
 <div id="mypageSide">
