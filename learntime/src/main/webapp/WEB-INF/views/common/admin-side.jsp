@@ -29,8 +29,8 @@
 		</div>
 		<div class="menu sub_menu" id="sub-menu">
 			<ul class="big_menu">
-				<li><span class="material-symbols-rounded">grid_view</span> <span><a
-						href="">대시 보드</a></span> <span
+				<li><span class="material-symbols-rounded">grid_view</span> 
+					<span><a href="${pageContext.request.contextPath}/admin/dashboard">대시 보드</a></span> <span
 					class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
 				</li>
 			</ul>
@@ -153,27 +153,27 @@
 			</ul>
 			<ul class="big_menu">
 				<li><span class="material-symbols-rounded">smart_button</span>
-					<span>배너 관리</span> <span
+					<span><a href="${pageContext.request.contextPath}/admin/popup/list">배너 관리</a></span> <span
 					class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
 				</li>
-				<ul class="small_menu">
+				<!-- <ul class="small_menu">
 					<li><a href="#">소메뉴1-1</a></li>
 					<li><a href="#">소메뉴1-2</a></li>
 					<li><a href="#">소메뉴1-3</a></li>
 					<li><a href="#">소메뉴1-4</a></li>
-				</ul>
+				</ul> -->
 			</ul>
 			<ul class="big_menu">
 				<li><span class="material-symbols-rounded">backup_table</span>
-					<span>팝업 관리</span> <span
-					class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
+					<span><a href="${pageContext.request.contextPath}/admin/popup/list">팝업 관리</a></span> 
+					<span class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
 				</li>
-				<ul class="small_menu">
+				<!-- <ul class="small_menu">
 					<li><a href="#">소메뉴1-1</a></li>
 					<li><a href="#">소메뉴1-2</a></li>
 					<li><a href="#">소메뉴1-3</a></li>
 					<li><a href="#">소메뉴1-4</a></li>
-				</ul>
+				</ul> -->
 			</ul>
 			<ul class="big_menu">
 				<li><span class="material-symbols-rounded">pie_chart</span> <span>통계</span>
@@ -218,12 +218,12 @@
 
 	<script>
 		window.addEventListener("resize", function () {
-			console.log(window.innerHeight);
+			// console.log(window.innerHeight);
 			const menu = document.querySelector("#sub-menu");
-			console.log(menu);
+			// console.log(menu);
 			menu.style.height = window.innerHeight - 340 + "px";
 		});
-		console.log(window.innerHeight);
+		// console.log(window.innerHeight);
 		const menu = document.querySelector("#sub-menu");
 		menu.style.height = window.innerHeight - 340 + "px";
 	</script>
