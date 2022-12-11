@@ -144,11 +144,11 @@
         width: 1200px;
         height: 75px;
         display: grid;
-        grid-template-columns: 140px 140px repeat(8,1.2fr) 50px 50px;
+        grid-template-columns: 140px 170px repeat(5,120px) 190px 50px 50px;
         
     }
     #empty{
-        grid-column: span 3;
+        --grid-column: span 3;
     }
 
     #header div{
@@ -254,7 +254,7 @@
     $("form").on("submit", function (e) {
     	// 유효성 검사 추가하기
           
-         });
+    });
 
     
     </script>

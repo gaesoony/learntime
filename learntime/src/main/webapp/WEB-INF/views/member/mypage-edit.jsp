@@ -153,17 +153,96 @@
     }
 
     #profile-area>div{
-        width: 100%;
+        --width: 100%;
        
     }
 
-    .profile-img{
+    /* .profile-img{
         display: flex;
         justify-content: center;
     }
     .profile-img img{
         width: 207px;
+    } */
+
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
+
+    .hidden {
+        display: none;
+    }
+
+    .relative {
+    position: relative;
+    }
+
+
+    .profile-img {
+        background-color: rgb(222, 222, 222);
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        margin-right: 50px;
+        display: grid;
+        /* border: 1px solid rgb(196, 196, 196); */
+      }
+
+      .profile-img img {
+        width: 130px;
+        height: 130px;
+        display: flex;
+        justify-content: center;
+        margin: auto;
+      }
+
+      .profile-name div {
+        margin-bottom: 10px;
+        color: rgb(79, 79, 79);
+      }
+
+      .profile-name input {
+        width: 300px;
+        height: 40px;
+        padding: 10px;
+        color: rgb(79, 79, 79);
+        border: 1px solid rgb(174, 174, 174);
+        outline: none;
+        font-size: 15px;
+      }
+
+      
+
+      .file-btn-area {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+      }
+
+      .file-btn {
+        width: 40px;
+        height: 40px;
+        border: none;
+        border-radius: 50%;
+        background-color: rgb(241, 241, 241);
+        cursor: pointer;
+      }
+
+      .file-btn img {
+        width: 22px;
+        height: 22px;
+      }
+
+      #preview {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+      }
+
+    /*  */
 
     #profile-area> div input{
         width: 792px;
@@ -288,10 +367,13 @@
         </div>
 
         <div id="pwd2">
-            <div class="titleText">비밀번호</div>
-            <input type="password" name="pwd" placeholder="현재 비밀번호 입력 시 탈퇴하기가 진행됩니다.">
-            <span class="material-symbols-outlined">visibility</span>
-            <button class="edit-btn2">탈퇴하기</button>
+            <form action="">
+                <div class="titleText">비밀번호</div>
+                <input type="password" name="pwd" placeholder="현재 비밀번호 입력 시 탈퇴하기가 진행됩니다." autoComplete="off">
+                <span class="material-symbols-outlined">visibility</span>
+                <button class="edit-btn2">탈퇴하기</button>
+            </form>
+            
         </div>
     
     </div>
@@ -304,7 +386,44 @@
         <div id="edit-area">
            <div id="profile-area">
                 <div class="profile-img">
-                    <img src="/app/resources/img/profile_default.png" alt="기본프로필이미지">
+                    <div class="profile-img center relative">
+                        <img
+                          src="/app/resources/img/profile_default.png"
+                          alt=""
+                        />
+                        <img
+                          id="preview"
+                          src="/app/resources/img/profile_default.png"
+                        />
+                        <div class="file-btn-area">
+                          <label for="file" class="file-btn center"
+                            ><img
+                              src="${pageContext.request.contextPath}/resources/img/mystudy/image-plus.png"
+                              alt=""
+                          /></label>
+                          <input
+                            id="file"
+                            type="file"
+                            class="hidden"
+                            onchange="readURL(this);"
+                          />
+          
+                          <script>
+                            function readURL(input) {
+                              if (input.files && input.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                  document.getElementById("preview").src =
+                                    e.target.result;
+                                };
+                                reader.readAsDataURL(input.files[0]);
+                              } else {
+                                document.getElementById("preview").src = "";
+                              }
+                            }
+                          </script>
+                        </div>
+                      </div>
                 </div>
                 <div id="nick-area">
                     <div class="titleText">닉네임</div>
@@ -354,8 +473,6 @@
     
 </div>
 
-<%@include file="/WEB-INF/views/common/mypage-side.jsp" %>
-<%@include file="/WEB-INF/views/common/footer2.jsp" %>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -396,13 +513,13 @@
 			fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
 			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
 
-            
+            width:820,
             height: 150,                 // 에디터 높이
             minHeight: 150,             // 최소 높이
             maxHeight: 150,             // 최대 높이
-            focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+            focus: false,                  // 에디터 로딩후 포커스를 맞출지 여부
             lang: "ko-KR",					// 한글 설정
-            placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
+            placeholder: '자기소개를 작성해보세요'	//placeholder 설정
     
     });
 
@@ -416,10 +533,10 @@
     $('#modal-closed2').on('click',function(){
         $('.blackBG2').removeClass('show');
     })
-
-       
-		
-
 </script>
+
+
+<%@include file="/WEB-INF/views/common/mypage-side.jsp" %>
+<%@include file="/WEB-INF/views/common/footer2.jsp" %>
 </body>
 </html>
