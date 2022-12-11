@@ -8,12 +8,12 @@
     flex-direction: column;
     
 }
-/* 로고 */
-.logo-section{
+/* 배너 */
+.banner-section{
     border:1px solid red;
     height: 180px;
-    background-image: url("${pageContext.request.contextPath}/resources/img/faq/Group229.png" );
-    background-size: contain;
+    background-color: #343B3D;
+    
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
@@ -30,13 +30,13 @@
 
 }
 
-.logo{
+.banner{
     margin-right: 100px;
-    border: 1px solid red;
+    
 } 
 
- #logo-title1{
-    border: 1px solid red;
+ #banner-title1{
+    
     color: white;
     font-size: xx-large;
     font-weight: 900;
@@ -45,11 +45,10 @@
    
 }
 
-#logo-title2{
+#banner-title2{
     color: white;
     font-size: x-large;
     font-weight: 900;
-    border: 1px solid red;
     
 } 
 
@@ -70,8 +69,10 @@
     width: 114px;
     height: 50px;
     border-radius: 1rem;
-    background-color: #5ECC80;
-    color:white;
+    border: 2px solid lightgray;
+    box-shadow: 2px lightgray;
+    background-color: white;
+    color:#5ECC80;
     font-size: large;
     font-weight: 600;
     display: inline-block;
@@ -94,11 +95,46 @@
 
 }
 .list-all{
-    border:1px solid red;
+  
     margin: 0 auto;
     width: 1200px;
     height: 500px;
     
+
+}
+.faqList{
+    width: 100%;
+    height: 45px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 6fr 3fr;
+    border-top: 3px solid #535353;
+    border-bottom:3px solid #535353;;
+   
+   
+
+}
+
+.q-mark{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.category-faq{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.title-faq{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.date-faq{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 .page-section{

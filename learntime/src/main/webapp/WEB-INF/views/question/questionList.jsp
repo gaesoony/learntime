@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,8 +14,8 @@
 
 
 	<div class="question-main">
-        <div class="logo-question">
-            <div class="logo-phrases">
+        <div class="banner-question">
+            <div class="banner-phrases">
                 <div class="one-by-one">1:1 문의게시판</div>
                 <div class="guide">궁금하신 점을 남겨주시면 접수 순서대로 답변 드리겠습니다.</div>
             </div>
@@ -46,9 +47,13 @@
             </div>
         </div>
         <div class="list-question">
-            <div class="pick-cate">카테고리</div>
-            <div class="pick-title">제목</div>
-            <div class="pick-date">작성일자</div>
+            <c:forEach var="questionList" begin="1" end="10" >
+                <div class="questionList">
+                    <div class="pick-cate">카테고리</div>
+                    <div class="pick-title">제목</div>
+                    <div class="pick-date">작성일자</div>
+                </div>
+            </c:forEach>
         </div>
         <div class="page-question"></div>
     </div>

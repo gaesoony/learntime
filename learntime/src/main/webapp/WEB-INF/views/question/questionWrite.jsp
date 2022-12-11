@@ -7,34 +7,34 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/app/resources/css/reset.css">
-<link rel="stylesheet" href="/app/resources/css/faq/faqWrite.css">
+<link rel="stylesheet" href="/app/resources/css/question/questionWrite.css">
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/common/header.jsp" %>
 <div class="list-main">
     <div class="banner-section">
         <div class="banner">
-            <div id="banner-title1"><span>FAQ</span></div>
-            <div id="banner-title2"><span>무엇을 도와드릴까요?</span></div>
+            <div id="banner-title1"><span>1:1 문의게시판</span></div>
+            <div id="banner-title2"><span>궁금하신 점을 남겨주시면 접수 순서대로 답변 드리겠습니다.</span></div>
         </div>
     </div>
-    <div class="faq-detail-list">
-        <div class="faq-sign">
+    <div class="q-detail-list">
+        <div class="q-sign">
             <div class="line1">
                 <div class="line-a"></div>
             </div>
-            <div class="name-faq">FAQ</div>
+            <div class="name-q">1:1 문의게시판 </div>
             <div class="line2">
                 <div class="line-b"></div>
             </div>
         </div>
-        <div class="faq-title-date">
-            <div class="category-faq">멘토링</div>
-            <div class="title-faq"></div>
-            <div class="date-faq"></div>
+        <div class="q-title-date">
+            <div class="category-q">멘토링</div>
+            <div class="title-q"></div>
+            <div class="date-q"></div>
         </div>
         <div class="empty1"></div>
-        <div class="faq-content">
+        <div class="q-content">
             <textarea class="summernote" name="editordata"></textarea>
         </div>
         <div class="backBtn">

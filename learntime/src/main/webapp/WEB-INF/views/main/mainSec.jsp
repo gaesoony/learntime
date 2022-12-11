@@ -64,7 +64,7 @@
                             <ul class="container-slide-sec">
                                 <c:forEach var="slide-sec" begin="1" end="12" >
                                     <li class="slide-sec">
-                                        <div class="java-photo"><img width="230px" height="200px" src="/app/resources/img/main/java.png"></div>
+                                        <div class="java-photo"><img width="230px" height="200px" style="border-top-left-radius: 1rem; border-top-right-radius: 1rem;"  src="/app/resources/img/main/java.png"></div>
                                         <div class="java-content">
                                             <div class="profile-box">
                                                 <div class="profile-photo"><img width="60px" height="60px" src="/app/resources/img/main/Ellipse 2.png"></div>
@@ -153,26 +153,26 @@
  	//변수 지정
 	var slidesSec = document.querySelector('.container-slide-sec'),
 		slideSec = document.querySelectorAll('.slide-sec'),
-		currentIdx = 0,
-		slideCount = slideSec.length,
-		slideWidth = 250,
-		slideMargin = 13,
+		currentIdxSec = 0,
+		slideCountSec = slideSec.length,
+		slideWidthSec = 250,
+		slideMarginSec = 13,
 		prevBtnSec = document.querySelector('.prevBtn-sec'),
 		nextBtnSec = document.querySelector('.nextBtn-sec');
         
 
  
- 	slidesSec.style.width = (slideWidth + slideMargin)* slideCount - slideMargin +'px';
+ 	slidesSec.style.width = (slideWidthSec + slideMarginSec)* slideCountSec - slideMarginSec +'px';
  	
  	
  	function moveSlide(num){
  		slidesSec.style.left= -num*263+'px';
- 		currentIdx = num;
+ 		currentIdxSec = num;
  	}
  	
  	nextBtnSec.addEventListener('click',function(){
- 		if(currentIdx < slideCount -4){
- 			moveSlide(currentIdx + 1);
+ 		if(currentIdxSec < slideCountSec -4){
+ 			moveSlide(currentIdxSec + 1);
            
  		}else{
  			moveSlide(0);
@@ -182,10 +182,10 @@
  	});
  	
  	prevBtnSec.addEventListener('click',function(){
- 		if(currentIdx > 0){
- 			moveSlide(currentIdx - 1);
+ 		if(currentIdxSec > 0){
+ 			moveSlide(currentIdxSec - 1);
  		}else{
- 			moveSlide(slideCount - 4);
+ 			moveSlide(slideCountSec - 4);
  		}
  		
  	});
