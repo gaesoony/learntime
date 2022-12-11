@@ -22,9 +22,6 @@ pageEncoding="UTF-8"%>
         box-sizing: border-box;
       }
 
-      a {
-        color: rgb(28, 28, 28) !important;
-      }
       .admin-main {
         position: absolute;
         left: 300px;
@@ -33,7 +30,7 @@ pageEncoding="UTF-8"%>
 
       .admin-main-header {
         /* width: 100%; */
-        height: 60px;
+        height: 55px;
         background-color: white;
         border-bottom: 1px solid rgb(236, 236, 236);
         padding-left: 25px;
@@ -53,8 +50,9 @@ pageEncoding="UTF-8"%>
 
       .admin-main-content {
         padding: 25px;
-        background-color: #e2e2e2;
-        box-shadow: inset rgb(0, 0, 0) 0px 25px 20px -40px;
+        background-color: #efefef;
+        /* box-shadow: inset rgb(0, 0, 0) 0px 25px 20px -40px; */
+        box-shadow: inset 0px 2px 2px #c5c5c5;
       }
 
       .flex {
@@ -193,6 +191,7 @@ pageEncoding="UTF-8"%>
         display: flex;
         justify-content: space-between;
         align-items: center;
+        font-weight: 500;
       }
 
       .dashboard-header {
@@ -209,6 +208,7 @@ pageEncoding="UTF-8"%>
       .board-section-grid-div {
         height: 250px;
         background-color: white;
+        box-shadow: rgba(0, 0, 0, 0.088) 0px 2px 4px;
       }
 
       .board-section-grid-div:nth-child(2n) {
@@ -254,6 +254,25 @@ pageEncoding="UTF-8"%>
         background-color: white;
       }
 
+      .manager-list,
+      .operator-list {
+        padding: 20px 20px 10px 20px;
+      }
+
+      .manager-list img,
+      .operator-list img {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+      }
+
+      .manager-list li,
+      .operator-list li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
       .operator-section {
         background-color: white;
       }
@@ -265,6 +284,7 @@ pageEncoding="UTF-8"%>
         color: white;
         border: none;
         font-size: 16px;
+        cursor: pointer;
       }
 
       .manager-profile img {
@@ -314,6 +334,10 @@ pageEncoding="UTF-8"%>
         right: 10px;
         color: rgb(209, 209, 209);
         font-size: 20px;
+      }
+
+      .cursor {
+        cursor: pointer;
       }
     </style>
   </head>
@@ -551,7 +575,10 @@ pageEncoding="UTF-8"%>
         </article>
         <aside class="dashboard-aside">
           <section class="manager-info relative">
-            <i class="fa-solid fa-gear setting-icon"></i>
+            <i
+              class="fa-solid fa-gear setting-icon cursor"
+              onclick="location.href='${pageContext.request.contextPath}/admin/dashboard/manager/profile'"
+            ></i>
             <div class="manager-profile">
               <div>
                 <img
@@ -569,20 +596,75 @@ pageEncoding="UTF-8"%>
               <div>192.168.0.1</div>
             </div>
           </section>
-          <section class="manager-section">
+          <section class="manager-section shadow">
             <header class="dashboard-header">
               <h1>관리자</h1>
-              <div>더보기</div>
+              <div>
+                <a
+                  href="${pageContext.request.contextPath}/admin/dashboard/manager/list"
+                  >더보기</a
+                >
+              </div>
             </header>
+            <ul class="manager-list">
+              <li>
+                <img
+                  src="${pageContext.request.contextPath}/resources/img/study/profile.png"
+                  alt=""
+                />
+                <span>한혜원</span>
+              </li>
+              <li>
+                <img
+                  src="${pageContext.request.contextPath}/resources/img/study/profile.png"
+                  alt=""
+                />
+                <span>한혜원</span>
+              </li>
+              <li>
+                <img
+                  src="${pageContext.request.contextPath}/resources/img/study/profile.png"
+                  alt=""
+                />
+                <span>한혜원</span>
+              </li>
+            </ul>
           </section>
-          <section class="operator-section">
+          <section class="operator-section shadow">
             <header class="dashboard-header">
               <h1>운영자</h1>
               <div>더보기</div>
             </header>
+            <ul class="operator-list">
+              <li>
+                <img
+                  src="${pageContext.request.contextPath}/resources/img/study/profile.png"
+                  alt=""
+                />
+                <span>한혜원</span>
+              </li>
+              <li>
+                <img
+                  src="${pageContext.request.contextPath}/resources/img/study/profile.png"
+                  alt=""
+                />
+                <span>한혜원</span>
+              </li>
+              <li>
+                <img
+                  src="${pageContext.request.contextPath}/resources/img/study/profile.png"
+                  alt=""
+                />
+                <span>한혜원</span>
+              </li>
+            </ul>
           </section>
           <section class="manager-log-btn">
-            <input type="button" value="관리자 로그 내역" />
+            <input
+              type="button"
+              value="관리자 로그 내역"
+              onclick="location.href='${pageContext.request.contextPath}/admin/dashboard/manager/log'"
+            />
           </section>
         </aside>
       </section>
