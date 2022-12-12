@@ -116,7 +116,10 @@
     }
 
 
-    
+    .main-color {
+        color: #5ecc80;
+      }
+
    
 </style>
 </head>
@@ -128,9 +131,11 @@
 
 <div id="mypage-box">
     <div id="mypage">
-        <div id="bin"></div>
+        <div id="bin">
+            <%@include file="/WEB-INF/views/common/mypage-side.jsp"%>
+        </div>
         <div id="home-area">
-           <div id="intro-area">
+            <div id="intro-area">
                 <div id="intro">소개글</div>
                 <div id="intro-btn">
                     <button id="edit" class="btn btn-primary" onclick="edit()" type="button">편집</button>
@@ -167,11 +172,9 @@
         </div>
     </div>
     
+    
 </div>
-
-<%@include file="/WEB-INF/views/common/mypage-side.jsp" %>
 <%@include file="/WEB-INF/views/common/footer2.jsp" %>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
@@ -202,7 +205,7 @@
             maxHeight: 100,             // 최대 높이
             focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
             lang: "ko-KR",					// 한글 설정
-            placeholder: '자기소개를 작성해보세요'	//placeholder 설정
+            placeholder: '자기소개를 작성해 보세요.'	//placeholder 설정
     
         });
     };
@@ -213,5 +216,13 @@
     };
     
 </script>
+
+
+
+<script>
+    const category = document.querySelector("#my-cate div:nth-child(1) a");
+    category.classList.add("main-color");
+</script>
+
 </body>
 </html>

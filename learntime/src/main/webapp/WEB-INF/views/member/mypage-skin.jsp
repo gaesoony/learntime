@@ -27,7 +27,7 @@
         height: auto;
    }
 
-   #badge{
+   #have-skin{
         height: 45px;
         font-size: 18px;
         font-weight: 700;
@@ -37,21 +37,28 @@
         border-bottom: 1px solid #000000;
     }
 
-   #have-badge{
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
 
+    .skin{
+    width: 200px;
+    --height: 300px;
+    margin: 10px 0;
+    margin-top: 20px;
+    text-align: left;
     
+}
 
-    .badge{
-        width: 130px;
-        height: 130px;
-        background-color: #D9D9D9;
-        margin-top: 20px;
-        
-    }
+.skin-img{
+    width: 200px;
+    height: 200px;
+    border-radius:4px;
+    border:1px solid #D9D9D9;
+}
+
+.skin-title{
+    margin: 10px 0;
+    font-weight: 600;
+    font-size: 18px;
+}
 
    .main-color {
         color: #5ecc80;
@@ -73,16 +80,13 @@
             <%@include file="/WEB-INF/views/common/mypage-side.jsp"%>
         </div>
         <div id="home-area">
-            <div id="badge">보유한 뱃지</div>
+            <div id="have-skin">보유한 스킨</div>
         
-            <div id="have-badge">
-                <div class="badge"></div>
-                <div class="badge"></div>
-                <div class="badge"></div>
-                <div class="badge"></div>
-                <div class="badge"></div>
+            <div class="skin">
+                <div class="skin-img">이미지 영역</div>
+                <div class="skin-title">스킨 제목</div>
+                <div class="skin-content">스킨 설명</div>
             </div>
-
         </div>
     </div>
     
