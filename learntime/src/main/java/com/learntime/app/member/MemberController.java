@@ -57,25 +57,37 @@ public class MemberController {
 	  public String mypageStudy() {
 	      return "/member/mypage-study";
 	  }
+	  
+//   마이페이지-qna(화면)
+	   @GetMapping("/mypage/qna")
+	   public String mypageQna() {
+	      return "/member/mypage-qna";
+	   }
+  
+//	마이페이지-보유한 스킨(화면)
+		@GetMapping("/mypage/skin")
+		public String mypageSkin() {
+			return "/member/mypage-skin";
+		}
 	
 	
 //	마이페이지-보유한 뱃지(화면)
-	@GetMapping("/mypage/badge")
-	public String mypageBadge() {
-		return "/member/mypage-badge";
-	}
+		@GetMapping("/mypage/badge")
+		public String mypageBadge() {
+			return "/member/mypage-badge";
+		}
 	
 //	마이페이지-dm 리스트(화면)
-	@GetMapping("/mypage/dm/list")
-	public String dmList() {
-		return "/member/mypage-dmList";
-	}	
+		@GetMapping("/mypage/dm/list")
+		public String dmList() {
+			return "/member/mypage-dmList";
+		}	
 	
 //	마이페이지-계정 정보(화면)
-	@GetMapping("/mypage/edit")
-	public String mypageEdit() {
-		return "/member/mypage-edit";
-	}
+		@GetMapping("/mypage/edit")
+		public String mypageEdit() {
+			return "/member/mypage-edit";
+		}
 	
 	
 	

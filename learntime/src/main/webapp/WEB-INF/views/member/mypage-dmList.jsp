@@ -5,11 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>LEARN TIME | MY PAGE</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css">
-
 <style>
-       /* 탈퇴 모달 시작 */
-       .blackBG2 {
+/* 채팅 모달 시작 */
+.blackBG2 {
             background: rgba(0, 0, 0, 0.5);
             width: 100vw;
             height: 100vh;
@@ -49,7 +47,9 @@
         }
 
 
-    /* 탈퇴 모달 끗 */
+    /* 채팅  모달 끗 */
+
+
     #mypage-box{
         width: 1200px;
         height: 100%;
@@ -59,24 +59,20 @@
 
     #mypage{
         width: 100%;
-        height: 100vh;
         display: grid;
         grid-template-columns: 300px 900px;
         
-       
-        
     }
-    
-    #dm-area{
-        padding: 40px;
-        margin-top: 20px;
+
+   #home-area{
+        padding: 40px;  
+        height: auto;
         border: 1px solid #d9d9d9;
-        
-       
-    }
+        margin-top: 20px;
+   }
 
 
-    .dm{
+   .dm{
         width: 100%;
         height: 70px;
         display: grid;
@@ -102,13 +98,17 @@
     .send-msg,.send-time,.material-symbols-outlined{
         color: #535353;
     }
+
+    .main-color {
+        color: #5ecc80;
+    }
+
+
+ 
    
 </style>
 </head>
 <body>
-
-<%@include file="/WEB-INF/views/common/header.jsp" %>
-
 
 <!-- 디엠 모달 -->
 <div class="blackBG2">
@@ -120,12 +120,19 @@
     </div>
 </div>
 
+<%@include file="/WEB-INF/views/common/header.jsp" %>
+
+
 
 <div id="mypage-box">
     <div id="mypage">
-        <div id="bin"></div>
-        <div id="dm-area">
-          <div class="dm">
+        <div id="bin">
+            <%@include file="/WEB-INF/views/common/mypage-side.jsp"%>
+        </div>
+        <div id="home-area">
+            
+
+            <div class="dm">
                 <div class="send-img"></div>
                 <div class="send-nick">닉네임</div>
                 <div class="send-msg">팀 프로젝트 같이 해요~</div>
@@ -176,23 +183,30 @@
             </div>
          </div>
         </div>
+
+        </div>
     </div>
     
+  
 </div>
-
-<%@include file="/WEB-INF/views/common/mypage-side.jsp" %>
 <%@include file="/WEB-INF/views/common/footer2.jsp" %>
+<script>
+    //모달 띄우기
+    $('.send-msg').on('click',function(){
+     $('.blackBG2').addClass('show');
+ })
+ 
+     //모달 닫기
+     $('#modal-closed2').on('click',function(){
+         $('.blackBG2').removeClass('show');
+     })
+</script>
+
 
 <script>
-       //모달 띄우기
-       $('.send-msg').on('click',function(){
-        $('.blackBG2').addClass('show');
-    })
-    
-        //모달 닫기
-        $('#modal-closed2').on('click',function(){
-            $('.blackBG2').removeClass('show');
-        })
+    const category = document.querySelector("#my-cate div:nth-child(9) a");
+    category.classList.add("main-color");
 </script>
+
 </body>
 </html>

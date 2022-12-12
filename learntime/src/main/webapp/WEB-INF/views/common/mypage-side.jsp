@@ -7,23 +7,10 @@ body{
 }
 
 
-#mypageSide{
-    width: 1200px;
-    height: auto;
-    margin: auto;
-   
-    
-}
-
 #mypageSide-area{
     width: 160px;
-    height: 620px;
+    height: 600px;
     padding: 70px;
-    display: grid;
-    grid-template-rows: 160px;
-    position: fixed;
-    top: 75px;
-    bottom: 200px;
     background-color: #FFFFFF;
 
 }
@@ -32,6 +19,7 @@ body{
     display: grid;
     justify-items: center;
     align-items: center;
+   
     
 }
 
@@ -42,6 +30,7 @@ body{
 #profile-nick{
     font-weight: 600;
     font-size: 20px;
+    margin: 10px;
 }
 
 #profile-follow a,#profile-follow span{
@@ -67,38 +56,36 @@ body{
 
 
 </style>
-<div id="mypageSide">
-    <div id="mypageSide-area">
-        <div id="my-info">
-             <div id="profile-img">
-                <img src="/app/resources/img/profile_default.png" alt="기본프로필이미지">
-             </div>
+<div id="mypageSide-area">
+    <div id="my-info">
+         <div id="profile-img">
+            <img src="/app/resources/img/profile_default.png" alt="기본프로필이미지">
+         </div>
 
-             <div id="profile-nick">닉네임</div>
-             <div id="profile-follow">
-                <a href="#">100 팔로우 중</a>
-                <span>|</span>
-                <a href="#"> 100 팔로잉</a>
-             </div>
-        </div>
+         <div id="profile-nick">닉네임</div>
+         <div id="profile-follow">
+            <a href="#">100 팔로우 중</a>
+            <span>|</span>
+            <a href="#"> 100 팔로잉</a>
+         </div>
+    </div>
 
-        <div id="mypage-btn">
-            
-        </div>
-    
-        <div id="my-cate">
-             <div class=".cate"><a href="/app/member/mypage/home">홈</a></div>
-             <div class=".cate"><a href="#">MAKE GRASS</a></div>
-             <div class=".cate"><a href="/app/member/mypage/study">STUDY/PROJECT</a></div>
-             <div class=".cate"><a href="#">LEARNING</a></div>
-             <div class=".cate"><a href="#">MENTORING</a></div>
-             <div class=".cate"><a href="#">COMMUNITY</a></div>
-             <div class=".cate"><a href="/app/member/mypage/skin">보유한 스킨</a></div>
-             <div class=".cate"><a href="/app/member/mypage/badge">보유한 뱃지</a></div>
-             <div class=".cate"><a href="/app/member/mypage/dm/list">DM</a></div>
-             <div class=".cate"><a href="/app/member/mypage/edit">계정정보</a></div>
-        </div>
-     
-     </div>
+    <div id="mypage-btn">
+        
+    </div>
+
+    <div id="my-cate">
+         <div class=".cate"><a href="/app/member/mypage/home">홈</a></div>
+         <div class=".cate"><a href="#">MAKE GRASS</a></div>
+         <div class=".cate"><a href="/app/member/mypage/study">STUDY/PROJECT</a></div>
+         <div class=".cate"><a href="#">LEARNING</a></div>
+         <div class=".cate"><a href="#">MENTORING</a></div>
+         <div class=".cate"><a href="#">COMMUNITY</a></div>
+         <div class=".cate"><a href="/app/member/mypage/skin">보유한 스킨</a></div>
+         <div class=".cate"><a href="/app/member/mypage/badge">보유한 뱃지</a></div>
+         <div class=".cate"><a href="/app/member/mypage/dm/list">DM</a></div>
+         <div class=".cate"><a href="/app/member/mypage/edit">계정정보</a></div>
+    </div>
+ 
 </div>
 

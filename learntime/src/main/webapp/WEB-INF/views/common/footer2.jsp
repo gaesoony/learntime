@@ -6,12 +6,13 @@
             --border:1px solid red;
             font-family: 'Noto Sans KR', sans-serif;
             font-weight: 300;
-            font-size:14px;
+            font-size: 14px;
         }
         #footer-area{
             width: 100%;
             height: 200px;
             margin-top:30px;
+            
 
         }
         #footer #top{
@@ -87,8 +88,8 @@
         }
        
     </style>
-</head>
-<body>
+
+
     <div id="footer-area">
         <div id="footer">
            <div id="top">

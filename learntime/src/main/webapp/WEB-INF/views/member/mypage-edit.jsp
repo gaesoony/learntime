@@ -333,16 +333,18 @@
         margin: 20px auto;
     }
 
+    .main-color {
+        color: #5ecc80;
+    }
+
   
    
 </style>
 </head>
 <body>
 
-<%@include file="/WEB-INF/views/common/header.jsp" %>
-
- <!-- 탈퇴 모달 -->
- <div class="blackBG2">
+<!-- 탈퇴 모달 -->
+<div class="blackBG2">
     <div class="whiteBG2">
         <button type="button" id="modal-closed2">
             <span class="material-symbols-outlined">close</span>
@@ -379,99 +381,106 @@
     </div>
 </div>
 
+<%@include file="/WEB-INF/views/common/header.jsp" %>
+
+
 
 <div id="mypage-box">
     <div id="mypage">
-        <div id="bin"></div>
-        <div id="edit-area">
-           <div id="profile-area">
-                <div class="profile-img">
-                    <div class="profile-img center relative">
-                        <img
-                          src="/app/resources/img/profile_default.png"
-                          alt=""
-                        />
-                        <img
-                          id="preview"
-                          src="/app/resources/img/profile_default.png"
-                        />
-                        <div class="file-btn-area">
-                          <label for="file" class="file-btn center"
-                            ><img
-                              src="${pageContext.request.contextPath}/resources/img/mystudy/image-plus.png"
-                              alt=""
-                          /></label>
-                          <input
-                            id="file"
-                            type="file"
-                            class="hidden"
-                            onchange="readURL(this);"
-                          />
-          
-                          <script>
-                            function readURL(input) {
-                              if (input.files && input.files[0]) {
-                                var reader = new FileReader();
-                                reader.onload = function (e) {
-                                  document.getElementById("preview").src =
-                                    e.target.result;
-                                };
-                                reader.readAsDataURL(input.files[0]);
-                              } else {
-                                document.getElementById("preview").src = "";
-                              }
-                            }
-                          </script>
-                        </div>
-                      </div>
-                </div>
-                <div id="nick-area">
-                    <div class="titleText">닉네임</div>
-                    <input type="text" name="nick">
-                    <div id="nickReult"></div>
-                </div>
-               
-                <div id="profile-editor">
-                    <div class="titleText">자기소개</div>
-                    <div class="click2edit"></div>
-                    
-                </div>
-
-                <button class="edit-btn">저장하기</button>
-                
-           </div>
-           <div id="email-area" class="area-grid">
-                <div class="titleText">이메일</div>
-                <input type="text" name="email">
-                <button class="edit-btn">저장하기</button>
-           </div>
-           <div id="pwd-area" class="area-grid">
-                <div class="titleText">비밀번호</div>
-                <div>비밀번호를 새롭게 발급받아보세요!</div>
-                <button class="edit-btn">발급받기</button>
-           </div>
-           <div id="phone-area" class="area-grid">
-                <div class="titleText">휴대폰 번호</div>
-                <input type="text" name="phone" placeholder="- 제외한 번호만">
-                <button class="edit-btn">저장하기</button>
-           </div>
-           <div id="stack-area" class="area-grid">
-                <div class="titleText">관심 기술 스택</div>
-                <select name="techStackNo" required style="color: #535353">
-					<option value="" disabled selected >관심 기술 스택을 선택해 주세요.</option>
-					<option value="1">JAVA</option>
-					</select>
-				<div id="stackResult"></div>
-                <button class="edit-btn">저장하기</button>
-           </div>
-           <div id="delete-area">
-                <div class="titleText">회원 탈퇴</div>
-                <button id="delete-btn">탈퇴하기</button>
-           </div>
+        <div id="bin">
+            <%@include file="/WEB-INF/views/common/mypage-side.jsp"%>
         </div>
+        <div id="edit-area">
+            <div id="profile-area">
+                 <div class="profile-img">
+                     <div class="profile-img center relative">
+                         <img
+                           src="/app/resources/img/profile_default.png"
+                           alt=""
+                         />
+                         <img
+                           id="preview"
+                           src="/app/resources/img/profile_default.png"
+                         />
+                         <div class="file-btn-area">
+                           <label for="file" class="file-btn center"
+                             ><img
+                               src="${pageContext.request.contextPath}/resources/img/mystudy/image-plus.png"
+                               alt=""
+                           /></label>
+                           <input
+                             id="file"
+                             type="file"
+                             class="hidden"
+                             onchange="readURL(this);"
+                           />
+           
+                           <script>
+                             function readURL(input) {
+                               if (input.files && input.files[0]) {
+                                 var reader = new FileReader();
+                                 reader.onload = function (e) {
+                                   document.getElementById("preview").src =
+                                     e.target.result;
+                                 };
+                                 reader.readAsDataURL(input.files[0]);
+                               } else {
+                                 document.getElementById("preview").src = "";
+                               }
+                             }
+                           </script>
+                         </div>
+                       </div>
+                 </div>
+                 <div id="nick-area">
+                     <div class="titleText">닉네임</div>
+                     <input type="text" name="nick">
+                     <div id="nickReult"></div>
+                 </div>
+                
+                 <div id="profile-editor">
+                     <div class="titleText">자기소개</div>
+                     <div class="click2edit"></div>
+                     
+                 </div>
+ 
+                 <button class="edit-btn">저장하기</button>
+                 
+            </div>
+            <div id="email-area" class="area-grid">
+                 <div class="titleText">이메일</div>
+                 <input type="text" name="email">
+                 <button class="edit-btn">저장하기</button>
+            </div>
+            <div id="pwd-area" class="area-grid">
+                 <div class="titleText">비밀번호</div>
+                 <div>비밀번호를 새롭게 발급받아보세요!</div>
+                 <button class="edit-btn">발급받기</button>
+            </div>
+            <div id="phone-area" class="area-grid">
+                 <div class="titleText">휴대폰 번호</div>
+                 <input type="text" name="phone" placeholder="- 제외한 번호만">
+                 <button class="edit-btn">저장하기</button>
+            </div>
+            <div id="stack-area" class="area-grid">
+                 <div class="titleText">관심 기술 스택</div>
+                 <select name="techStackNo" required style="color: #535353">
+                     <option value="" disabled selected >관심 기술 스택을 선택해 주세요.</option>
+                     <option value="1">JAVA</option>
+                     </select>
+                 <div id="stackResult"></div>
+                 <button class="edit-btn">저장하기</button>
+            </div>
+            <div id="delete-area">
+                 <div class="titleText">회원 탈퇴</div>
+                 <button id="delete-btn">탈퇴하기</button>
+            </div>
+         </div>
     </div>
     
+  
 </div>
+<%@include file="/WEB-INF/views/common/footer2.jsp" %>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -536,7 +545,12 @@
 </script>
 
 
-<%@include file="/WEB-INF/views/common/mypage-side.jsp" %>
-<%@include file="/WEB-INF/views/common/footer2.jsp" %>
+<script>
+    const category = document.querySelector("#my-cate div:nth-child(10) a");
+    category.classList.add("main-color");
+</script>
 </body>
+
+
+
 </html>

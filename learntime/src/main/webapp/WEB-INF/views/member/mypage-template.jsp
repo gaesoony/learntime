@@ -27,36 +27,6 @@
         height: auto;
    }
 
-   #badge{
-        height: 45px;
-        font-size: 18px;
-        font-weight: 700;
-        color: #5ECC80;
-        display: flex;
-        align-items: center;
-        border-bottom: 1px solid #000000;
-    }
-
-   #have-badge{
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
-
-    
-
-    .badge{
-        width: 130px;
-        height: 130px;
-        background-color: #D9D9D9;
-        margin-top: 20px;
-        
-    }
-
-   .main-color {
-        color: #5ecc80;
-    }
-
  
    
 </style>
@@ -73,15 +43,9 @@
             <%@include file="/WEB-INF/views/common/mypage-side.jsp"%>
         </div>
         <div id="home-area">
-            <div id="badge">보유한 뱃지</div>
-        
-            <div id="have-badge">
-                <div class="badge"></div>
-                <div class="badge"></div>
-                <div class="badge"></div>
-                <div class="badge"></div>
-                <div class="badge"></div>
-            </div>
+            
+
+            이 안에서 작업해주시면 감사하겠숩니다! 
 
         </div>
     </div>
@@ -89,10 +53,7 @@
   
 </div>
 <%@include file="/WEB-INF/views/common/footer2.jsp" %>
-<script>
-    const category = document.querySelector("#my-cate div:nth-child(8) a");
-    category.classList.add("main-color");
-</script>
+
 
 </body>
 </html>
