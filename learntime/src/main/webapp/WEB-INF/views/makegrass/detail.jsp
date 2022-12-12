@@ -161,7 +161,6 @@
         color: white;
     }
     .middle{
-        height: 1300px;
         background-color: #F4FBF6;
         padding-top: 70px;
     }
@@ -370,10 +369,6 @@
         padding-top: 15px;
         border-top: 1px solid #D8D7D7;
     }
-    .pluschat{
-        margin: 0 auto;
-        font-size: 17px;
-    }
     .endheart2{
         padding-top: 10px;
         font-size: 15px;
@@ -435,21 +430,9 @@
         margin-bottom: 20px;
         box-shadow: 3px 3px 2px 2px #b1ebc3;
     }
-    .pluschatbox{
-        width: 82%;
-        margin: 0 auto;
-        padding: 20px;
-        text-align: center;
-        margin-bottom: 20px;
-    }
     .pluschat{
         font-size: 18px;
         color: #444444;
-    }
-    .plusline{
-        margin: 0 auto;
-        width: 4vw;
-        border-top: 2px solid #5ECC80;
     }
     .replybox{
         padding-top: 40px;
@@ -474,6 +457,43 @@
         border-radius: 10px;
         box-shadow: 3px 3px 2px 2px #b1ebc3;
 
+    }
+    .input2{
+        width: 820px;
+        margin: 0 auto;
+        margin-top: 15px;
+    }
+    .replybtn2{
+        width: 5vw;
+        height: 3.5vh;
+        margin-top: 10px;
+        background-color: #5ECC80;
+        color: white;
+        border-radius: 20px;
+        margin-left: 810px;
+        text-decoration: none;
+        border-style: none;
+        font-size: 15px;
+    }
+    .replybtn2:hover{
+        font-weight: 550;
+    }
+    .endline5{
+        width: 950px;
+        margin: 0 auto;
+        margin-top: 25px;
+        margin-bottom: 30px;
+        padding-top: 15px;
+        border-top: 1px solid #D8D7D7;
+    }
+    .endsection{
+        width: 100%;
+        height: 150px;
+        background-color: #F4FBF6;
+        margin-bottom: -30px;
+    }
+    #reply{
+        display: none;
     }
 </style>
 </head>
@@ -658,31 +678,38 @@
         
                     <div class="endline2"></div>
         
-                    <div class="chat">댓글</div>
+                    <div class="chat" id="chat" style="cursor: pointer;">댓글 <i class="fa-solid fa-chevron-down"></i></div>
         
-                    <div><img class="profile4" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
-                    <div class="endend">nick03</div>
-                    <div class="endendenrollDate">2202.12.08.</div>
-                    <div class="endheart2"><i class="fa-solid fa-thumbs-up"></i>15</div>
-                    <div class="edit4"><input type="button" id="edit4" style='cursor:pointer;' value="댓글 수정"></div>
-                    <div class="edit5"> / </div>
-                    <div class="edit6"><input type="button" id="edit6" style='cursor:pointer;' value="삭제"></div>
-                    <div class="endline3"></div>
-                    <div class="endendcontent">
-                        말씀하신 내용 바탕으로 정리해보았는데,<br>
-                        의존관계 자동주입 시점에 스프링컨테이너에 프로토타입빈을 요청하면 스프링컨테이너는<br>
-                        프로토타입빈을 생성해서 반환한다. 반환된 프로토타입빈을 this.prototypeBean =prototypeBean; 에 의해서 내부필드에 주입되어서 보관한다.
-                    </div>
-                    <div class="endup2" style="cursor: pointer;"><i class="fa-regular fa-thumbs-up"></i></div>
-                    <div class="enddown2" style="cursor: pointer;"><i class="fa-regular fa-thumbs-down"></i></div>
-        
-                    <div class="endline4"></div>
-        
-                    <div class="pluschatbox">
-                        <a class="pluschat" href="#none">댓글 달기</a>
-                        <div class="plusline"></div>
+                    <div id="reply">
+                        <div><img class="profile4" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
+                        <div class="endend">nick03</div>
+                        <div class="endendenrollDate">2202.12.08.</div>
+                        <div class="endheart2"><i class="fa-solid fa-thumbs-up"></i>15</div>
+                        <div class="edit4"><input type="button" id="edit4" style='cursor:pointer;' value="댓글 수정"></div>
+                        <div class="edit5"> / </div>
+                        <div class="edit6"><input type="button" id="edit6" style='cursor:pointer;' value="삭제"></div>
+                        <div class="endline3"></div>
+                        <div class="endendcontent">
+                            말씀하신 내용 바탕으로 정리해보았는데,<br>
+                            의존관계 자동주입 시점에 스프링컨테이너에 프로토타입빈을 요청하면 스프링컨테이너는<br>
+                            프로토타입빈을 생성해서 반환한다. 반환된 프로토타입빈을 this.prototypeBean =prototypeBean; 에 의해서 내부필드에 주입되어서 보관한다.
+                        </div>
+                        <div class="endup2" style="cursor: pointer;"><i class="fa-regular fa-thumbs-up"></i></div>
+                        <div class="enddown2" style="cursor: pointer;"><i class="fa-regular fa-thumbs-down"></i></div>
+            
+                        <div class="endline4"></div>
+
+                        <!-- 대댓글 input 부분 -->
+                        <div class="pluschat2" id="pluschat2">
+                            <div class="input2">
+                                <textarea class="summernote2" name="editordata2"></textarea>
+                            </div>
+                            <button type="button" class="replybtn2" style='cursor:pointer;'>댓글 등록</button>
+                            <div class="endline5"></div>
+                        </div>
                     </div>
                 </div>
+                <div class="endsection"></div>
             </div>
         </article>
     </section>
@@ -699,6 +726,18 @@
             height: 130,
             lang: "ko-KR"
         });
+
+        $('.summernote2').summernote({
+            height: 100,
+            placeholder: '- 댓글을 작성해주세요:)',
+            lang: "ko-KR"
+        });
+
+        // 댓글 펼치기
+        $('#chat').click(function(){
+            $('#reply').slideToggle();
+        })
+
     </script>
 
 </body>
