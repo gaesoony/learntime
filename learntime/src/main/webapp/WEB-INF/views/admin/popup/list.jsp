@@ -159,7 +159,7 @@ pageEncoding="UTF-8"%>
     /* 검색부분 */
 
     .search-section {
-      margin-bottom: 10px;
+      margin-bottom: 24px;
     }
 
     .search-box {
@@ -218,6 +218,7 @@ pageEncoding="UTF-8"%>
               class="search-box"
             />
             <select name="" id="" class="select-box">
+              <option value="">전체</option>
               <option value="">활성화</option>
               <option value="">비활성화</option>
               <option value="">삭제</option>
@@ -236,7 +237,7 @@ pageEncoding="UTF-8"%>
             <header class="relative">
               <div class="header-section">1</div>
               <div class="header-section">
-                <span>런타임 배너입니다</span>
+                <span>런타임 팝업입니다</span>
                 <span class="status">비활성화</span>
               </div>
               <div class="header-section">
@@ -248,7 +249,9 @@ pageEncoding="UTF-8"%>
                 </div>
               </div>
               <ul class="more-list hidden">
-                <a href="">수정</a>
+                <a href="${pageContext.request.contextPath}/admin/popup/edit"
+                  >수정</a
+                >
                 <a href="">활성화</a>
                 <a href="">영구삭제</a>
               </ul>
