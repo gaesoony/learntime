@@ -15,21 +15,156 @@
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 
     <!-- 모달 -->
-    <div class="background">
+    <div class="background" id="first-modal">
         <div class="foreground">
-            <div class="close-btn">첫번째 모달</div>
-            
+            <div class="mentoring-modal-title">
+                <span class="modal-sub-title">멘토링 소개</span>
+                <div class="close-btn"><span class="material-symbols-rounded close-icon">close</span></div>
+            </div>
 
-            
+            <div class="modal-info-box">
+                <div id="modal-mentor">
+                    <div class="modal-nick">
+                        <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="">
+                        <a href="">&nbsp코딩하는망치맨</a>
+                    </div>
+                    <div id="modal-mentoring-info">1회 멘토링 : 1시간 / 22,000원 / 1명</div>
+                </div>
+                <div id="modal-job">직무 PO/PM</div>
+                <div id="modal-career">경력 30년</div>
+            </div>
+
+            <div class="modal-info-box">
+                <div id="modal-metoring-title">스프링으로 생산력 향상 시켜드립니다.</div>
+                <div id="modal-metoring-content">
+                    <p>
+                        안녕하세요.. 스프링 쌉고수 입니다. 생산력 향상 시켜드립니다.
+                        <br><br>
+                        줌으로 비대면 진행 합니다.
+                        <br><br>
+                        <img src="/app/resources/img/spring_book.jpg" alt="">
+                        <br><br>
+                        멘토링 교재입니다. 참고 바랍니다.
+                    </p>
+                </div>
+            </div>
+
+
+
+                <div class="mentoring-modal-title">
+                    <span class="modal-sub-title">멘토링 후기</span>
+                    <div class="close-btn">
+                        <span>멘토 후기 더보기&nbsp;</span>
+                        <span class="material-symbols-rounded close-icon">navigate_next</span>
+                    </div>
+                </div>
+
+
+
+                <div class="modal-info-box">
+                    <div class="modal-review-box">
+                        <div class="modal-review-info">
+                            <div class="writer-box">
+                                <div class="modal-nick">
+                                    <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="">
+                                    <span class="writer-nick">망치맨</span>
+                                </div>        
+                            </div>
+                            <div class="star-box">
+                                <span class="material-symbols-rounded star">star</span>
+                                <span class="material-symbols-rounded star">star</span>
+                                <span class="material-symbols-rounded star">star</span>
+                                <span class="material-symbols-rounded star">star</span>
+                                <span class="material-symbols-rounded star">star</span>
+                            </div>
+                        </div>
+                        <div class="review-content">
+                            <p>
+                                제가 국비지원 출신이라서 어떻게 해야 더 좋은 곳으로 갈 수 있을지 막막 했는데 방향을 이제 확실하게 알게 되었고 개발과 관련된 다양한 정보들을 얻어 볼 수 있는 기회가 되어서 매우 좋았습니다. 감사합니다.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-review-box">
+                        <div class="modal-review-info">
+                            <div class="writer-box">
+                                <div class="modal-nick">
+                                    <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="">
+                                    <span class="writer-nick">망치맨</span>
+                                </div>        
+                            </div>
+                            <div class="star-box">
+                                <span class="material-symbols-rounded star">star</span>
+                                <span class="material-symbols-rounded star">star</span>
+                                <span class="material-symbols-rounded star">star</span>
+                                <span class="material-symbols-rounded star">star</span>
+                                <span class="material-symbols-rounded star">star</span>
+                            </div>
+                        </div>
+                        <div class="review-content">
+                            <p>
+                                제가 국비지원 출신이라서 어떻게 해야 더 좋은 곳으로 갈 수 있을지 막막 했는데 방향을 이제 확실하게 알게 되었고 개발과 관련된 다양한 정보들을 얻어 볼 수 있는 기회가 되어서 매우 좋았습니다. 감사합니다.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-review-box">
+                        <div class="modal-review-info">
+                            <div class="writer-box">
+                                <div class="modal-nick">
+                                    <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="">
+                                    <span class="writer-nick">망치맨</span>
+                                </div>        
+                            </div>
+                            <div class="star-box">
+                                <span class="material-symbols-rounded star">star</span>
+                                <span class="material-symbols-rounded star">star</span>
+                                <span class="material-symbols-rounded star">star</span>
+                                <span class="material-symbols-rounded star">star</span>
+                                <span class="material-symbols-rounded star">star</span>
+                            </div>
+                        </div>
+                        <div class="review-content">
+                            <p>
+                                제가 국비지원 출신이라서 어떻게 해야 더 좋은 곳으로 갈 수 있을지 막막 했는데 방향을 이제 확실하게 알게 되었고 개발과 관련된 다양한 정보들을 얻어 볼 수 있는 기회가 되어서 매우 좋았습니다. 감사합니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             <div id="application-btn">신청하기</div>
         </div>
     </div>
 
+    <!-- make modal div -->
+    <div id="second-modal" class="background">
+        <div id="second-modal-content" class="foreground">
+            <div id="second-modal-header">
+                <span>멘토링 신청</span>
+                <span id="second-modal-close">X</span>
+            </div>
+            <div id="second-modal-body">
+                <div id="second-modal-body-content">
+                    <div id="second-modal-body-content-title">
+                        <span>멘토링 신청</span>
+                    </div>
+                    <div id="second-modal-body-content-text">
+                        <span>멘토링 신청을 하시겠습니까?</span>
+                    </div>
+                    <div id="second-modal-body-content-btn">
+                        <div id="second-modal-body-content-btn-cancel">취소</div>
+                        <div id="second-modal-body-content-btn-ok">확인</div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div> 
 
-    <!-- 두번재 모달 -->
+    
+    
 
 
 
+
+
+    
 	<div id="board-banner">
 		<div id="banner-text-box">
             <span>멘토링</span>
@@ -318,16 +453,33 @@
 
     <%@include file="/WEB-INF/views/common/footer.jsp"%>
 
+    
     <script>
-        //모달
+        //버튼 클릭시 show 클래스 추가
         $('.mentoring').on('click',function(){
-            $('.background').addClass('show');
+            $('#first-modal').addClass('show');
         })
-        
+        //닫기 버튼 클릭시 show 클래스 제거
         $('.close-btn').on('click',function(){
-            $('.background').removeClass('show');
+            $('#first-modal').removeClass('show');
         })
-          
+        //#application-btn 클릭시 #first-modal 제거, #second-modal 추가
+        $('#application-btn').on('click',function(){
+            $('#first-modal').removeClass('show');
+            $('#second-modal').addClass('show');
+        })
+
+        //#next-btn 클릭시 #second-modal 제거, #third-modal 추가
+        $('#next-btn').on('click',function(){
+            $('#second-modal').removeClass('show');
+            $('#third-modal').addClass('show');
+        });
+
+
+
+
+
+    
         
     </script>
 
