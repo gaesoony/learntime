@@ -104,13 +104,14 @@
         color: white;
     }
     .middle{
-        height: 1300px;
+        /* height: 100%; */
         background-color: #F4FBF6;
         padding-top: 70px;
+        margin-bottom: -30px;
     }
     .middlemain{
         width: 1002px;
-        height: 355px;
+        /* height: 355px; */
         background-color: white;
         border: 1px solid #5ECC80;
         margin: 0 auto;
@@ -140,10 +141,16 @@
         margin: 0 auto;
         margin-top: 15px;
     }
+    .input2{
+        width: 820px;
+        margin: 0 auto;
+        margin-top: 15px;
+    }
     .replybtn{
         width: 5vw;
         height: 3.5vh;
         margin-top: 10px;
+        margin-bottom: 25px;
         background-color: #5ECC80;
         color: white;
         border-radius: 20px;
@@ -153,6 +160,21 @@
         font-size: 15px;
     }
     .replybtn:hover{
+        font-weight: 550;
+    }
+    .replybtn2{
+        width: 5vw;
+        height: 3.5vh;
+        margin-top: 10px;
+        background-color: #5ECC80;
+        color: white;
+        border-radius: 20px;
+        margin-left: 810px;
+        text-decoration: none;
+        border-style: none;
+        font-size: 15px;
+    }
+    .replybtn2:hover{
         font-weight: 550;
     }
     .end{
@@ -197,7 +219,7 @@
         font-size: 15px;
         color: #5ECC80;
         float: left;
-        margin-right: 690px;
+        margin-right: 680px;
         letter-spacing: 2px;
     }
     .edit1{
@@ -311,6 +333,14 @@
         padding-top: 15px;
         border-top: 1px solid #D8D7D7;
     }
+    .endline5{
+        width: 950px;
+        margin: 0 auto;
+        margin-top: 25px;
+        margin-bottom: 30px;
+        padding-top: 15px;
+        border-top: 1px solid #D8D7D7;
+    }
     .pluschat{
         margin: 0 auto;
         font-size: 17px;
@@ -320,7 +350,7 @@
         font-size: 15px;
         color: #5ECC80;
         float: left;
-        margin-right: 450px;
+        margin-right: 440px;
         letter-spacing: 2px;
     }
     .edit4{
@@ -397,6 +427,15 @@
         margin-left: 900px;
         color: #5ECC80;
         font-size: 40px;
+    }
+    .endsection{
+        width: 100%;
+        height: 150px;
+        background-color: #F4FBF6;
+        margin-bottom: -30px;
+    }
+    #reply{
+        display: none;
     }
 </style>
 </head>
@@ -510,31 +549,38 @@
 
             <div class="endline2"></div>
 
-            <div class="chat">댓글</div>
+            <div class="chat" id="chat" style="cursor: pointer;">댓글 <i class="fa-solid fa-chevron-down"></i></div>
 
-            <div><img class="profile4" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
-            <div class="endend">nick03</div>
-            <div class="endendenrollDate">2202.12.08.</div>
-            <div class="endheart2"><i class="fa-solid fa-thumbs-up"></i>15</div>
-            <div class="edit4"><input type="button" id="edit4" style='cursor:pointer;' value="댓글 수정"></div>
-            <div class="edit5"> / </div>
-            <div class="edit6"><input type="button" id="edit6" style='cursor:pointer;' value="삭제"></div>
-            <div class="endline3"></div>
-            <div class="endendcontent">
-                말씀하신 내용 바탕으로 정리해보았는데,<br>
-                의존관계 자동주입 시점에 스프링컨테이너에 프로토타입빈을 요청하면 스프링컨테이너는<br>
-                프로토타입빈을 생성해서 반환한다. 반환된 프로토타입빈을 this.prototypeBean =prototypeBean; 에 의해서 내부필드에 주입되어서 보관한다.
-            </div>
-            <div class="endup2" id="endup2" onclick="changeColor()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-up"></i></div>
-            <div class="enddown2" id="enddown2" onclick="changeColor2()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-down"></i></div>
+            <!-- 댓글 부분 -->
+            <div id="reply">
+                <div><img class="profile4" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
+                <div class="endend">nick03</div>
+                <div class="endendenrollDate">2202.12.08.</div>
+                <div class="endheart2"><i class="fa-solid fa-thumbs-up"></i>15</div>
+                <div class="edit4"><input type="button" id="edit4" style='cursor:pointer;' value="댓글 수정"></div>
+                <div class="edit5"> / </div>
+                <div class="edit6"><input type="button" id="edit6" style='cursor:pointer;' value="삭제"></div>
+                <div class="endline3"></div>
+                <div class="endendcontent">
+                    말씀하신 내용 바탕으로 정리해보았는데,<br>
+                    의존관계 자동주입 시점에 스프링컨테이너에 프로토타입빈을 요청하면 스프링컨테이너는<br>
+                    프로토타입빈을 생성해서 반환한다. 반환된 프로토타입빈을 this.prototypeBean =prototypeBean; 에 의해서 내부필드에 주입되어서 보관한다.
+                </div>
+                <div class="endup2" id="endup2" onclick="changeColor()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-up"></i></div>
+                <div class="enddown2" id="enddown2" onclick="changeColor2()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-down"></i></div>
 
-            <div class="endline4"></div>
+                <div class="endline4"></div>
 
-            <div class="pluschatbox">
-                <a class="pluschat" href="#none">댓글 달기</a>
-                <div class="plusline"></div>
+                <div class="pluschat2" id="pluschat2">
+                    <div class="input2">
+                        <textarea class="summernote2" name="editordata2"></textarea>
+                    </div>
+                    <button type="button" class="replybtn2" style='cursor:pointer;'>댓글 등록</button>
+                    <div class="endline5"></div>
+                </div>
             </div>
         </div>
+        <div class="endsection"></div>
     </div>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
@@ -548,6 +594,17 @@
         $('.summernote').summernote({
             height: 130,
             lang: "ko-KR"
+        });
+
+        $('.summernote2').summernote({
+            height: 100,
+            placeholder: '- 댓글을 작성해주세요:)',
+            lang: "ko-KR"
+        });
+
+        // 댓글 펼치기
+        $('#chat').click(function(){
+            $('#reply').slideToggle();
         });
 
         // 좋아요 && 싫어요 색깔 변경

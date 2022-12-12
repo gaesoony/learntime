@@ -188,7 +188,6 @@
         line-height: 25px;
     }
     .title{
-        display: inline-block;
         width: 40vw;
         font-size: 20px;
         font-weight: 550;
@@ -354,7 +353,7 @@
                         <!-- 본문 리스트 -->
                         <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
                             <div class="titleb">
-                                <a href="/app/qna/detail" class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</a>
+                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="contentbox">
                                     <div class="content">
                                         학습하는 분들께 도움이 되고,
@@ -396,7 +395,7 @@
                         <!-- 본문 리스트 -->
                         <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
                             <div class="titleb">
-                                <a href="/app/qna/detail" class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</a>
+                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="contentbox">
                                     <div class="content">
                                         학습하는 분들께 도움이 되고,
@@ -438,7 +437,7 @@
                         <!-- 본문 리스트 -->
                         <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
                             <div class="titleb">
-                                <a href="/app/qna/detail" class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</a>
+                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="contentbox">
                                     <div class="content">
                                         학습하는 분들께 도움이 되고,
@@ -480,7 +479,7 @@
                         <!-- 본문 리스트 -->
                         <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
                             <div class="titleb">
-                                <a href="/app/qna/detail" class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</a>
+                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="contentbox">
                                     <div class="content">
                                         학습하는 분들께 도움이 되고,
@@ -522,7 +521,7 @@
                         <!-- 본문 리스트 -->
                         <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
                             <div class="titleb">
-                                <a href="/app/qna/detail" class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</a>
+                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="contentbox">
                                     <div class="content">
                                         학습하는 분들께 도움이 되고,
@@ -564,7 +563,7 @@
                         <!-- 본문 리스트 -->
                         <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
                             <div class="titleb">
-                                <a href="/app/qna/detail" class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</a>
+                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="contentbox">
                                     <div class="content">
                                         학습하는 분들께 도움이 되고,
@@ -606,7 +605,7 @@
                         <!-- 본문 리스트 -->
                         <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
                             <div class="titleb">
-                                <a href="/app/qna/detail" class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</a>
+                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="contentbox">
                                     <div class="content">
                                         학습하는 분들께 도움이 되고,
@@ -648,7 +647,7 @@
                         <!-- 본문 리스트 -->
                         <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
                             <div class="titleb">
-                                <a href="/app/qna/detail" class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</a>
+                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="contentbox">
                                     <div class="content">
                                         학습하는 분들께 도움이 되고,
@@ -690,7 +689,7 @@
                         <!-- 본문 리스트 -->
                         <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
                             <div class="titleb">
-                                <a href="/app/qna/detail" class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</a>
+                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="contentbox">
                                     <div class="content">
                                         학습하는 분들께 도움이 되고,
@@ -732,7 +731,7 @@
                         <!-- 본문 리스트 -->
                         <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
                             <div class="titleb">
-                                <a href="/app/qna/detail" class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</a>
+                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="contentbox">
                                     <div class="content">
                                         학습하는 분들께 도움이 되고,
@@ -770,7 +769,7 @@
 
                             </div>
                         </div>
-                        <!--  -->
+                        <!-- 본문 리스트 여기까지 -->
                     </div>
                 </div>
             </div>
