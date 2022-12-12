@@ -63,7 +63,7 @@ pageEncoding="UTF-8"%>
     }
 
     .popup-list li {
-      width: 370px;
+      width: 1100px;
       height: 300px;
       background-color: white;
       box-shadow: rgba(0, 0, 0, 0.088) 0px 2px 4px;
@@ -94,7 +94,7 @@ pageEncoding="UTF-8"%>
     }
 
     .header-section:nth-child(2) {
-      width: 300px;
+      width: 1020px;
       display: flex;
       display: flex;
       justify-content: flex-start;
@@ -159,7 +159,7 @@ pageEncoding="UTF-8"%>
     /* 검색부분 */
 
     .search-section {
-      margin-bottom: 10px;
+      margin-bottom: 24px;
     }
 
     .search-box {
@@ -218,6 +218,7 @@ pageEncoding="UTF-8"%>
               class="search-box"
             />
             <select name="" id="" class="select-box">
+              <option value="">전체</option>
               <option value="">활성화</option>
               <option value="">비활성화</option>
               <option value="">삭제</option>
@@ -248,14 +249,16 @@ pageEncoding="UTF-8"%>
                 </div>
               </div>
               <ul class="more-list hidden">
-                <a href="">수정</a>
+                <a href="${pageContext.request.contextPath}/admin/banner/edit"
+                  >수정</a
+                >
                 <a href="">활성화</a>
                 <a href="">영구삭제</a>
               </ul>
             </header>
             <section class="popup-img">
               <img
-                src="${pageContext.request.contextPath}/resources/img/study/study-profile.JPG"
+                src="${pageContext.request.contextPath}/resources/img/study/banner1.png"
                 alt=""
               />
             </section>
