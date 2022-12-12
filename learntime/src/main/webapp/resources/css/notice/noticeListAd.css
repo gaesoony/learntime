@@ -1,0 +1,253 @@
+@charset "UTF-8";
+
+.main-notice{
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+.banner-notice{
+    width: 100%;
+    height: 200px;
+   
+
+}
+.search-notice{
+    width: 100%;
+    height: 120px;
+   
+
+}
+
+.page-notice{
+    width: 100%;
+    height: 100px;
+
+
+}
+/* 배너 */
+
+.banner-dark{
+    width: 100%;
+    height: 200px;
+    background-color: #343B3D;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+}
+.phrases-banner{
+    width: 400px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+
+}
+.phrase-a{
+    font-size: xx-large;
+    font-weight: 900;
+    color: white;
+    margin: 10px;
+    margin-right: 100px;
+
+}
+.phrase-b{
+    font-size: larger;
+    font-weight: 900;
+    color: white;
+    margin: 10px;
+    margin-right: 100px;
+    
+}
+/* 검색창 */
+.search-notice-ad{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.searchBox-etc{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.write-notice-ad{
+    width: 100px;
+    height: 50px;
+    background-color: white;
+    color: #5ECC80;
+    border: 3px solid lightgray;
+    text-align: center;
+    line-height: 50px;
+    font-size: larger;
+    font-weight: 600;
+    margin-right: 370px;
+
+}
+#notice{
+    border: none;
+    width: 100px;
+    height: 53px;
+    font-size: large;
+    font-weight: 900;
+    text-align: center;
+    border: 3px solid gray;
+    margin-left: 5px;
+}
+.search-box-notice{
+    width: 300px;
+    height: 47px;
+    border:3px solid gray;
+    margin-left: 5px;
+}
+.notice-input{
+    border: none;
+    width: 100px;
+    height: 53px;
+    background-color: #5ECC80;
+    text-align: center;
+    margin-left: 5px;
+}
+input{
+    background-color: #5ECC80;
+    border: none;
+    font-size: large;
+    font-weight: 900;
+    line-height: 50px;
+    color: white;
+
+}
+/* 카테고리 */
+
+.notice-list{
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: space-between;
+
+
+}
+
+.cate-box{
+    width: 150px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 20px;
+    
+
+}
+
+.cate-pick{
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    color: #5ECC80;
+    border: 3px solid lightgray;
+    font-size: larger;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: center;
+    line-height: 50px;
+    
+
+}
+/* 리스트 */
+
+.notice-list-twoColored{
+    width: 1000px;
+    height: 600px;
+    display: flex;
+    align-items: center;
+
+}
+.notice-group{
+    width: 100%;
+    height: 540px;
+
+}
+.notice-green{
+    width: 100%;
+    height: 90px;
+    border-top:2px solid lightgray;
+    border-bottom: 2px solid lightgray;
+    display: flex;
+    flex-direction: column;
+    background-color: #e9fde9;
+}
+.notice-white{
+    width: 100%;
+    height: 90px;
+    border-top:2px solid lightgray;
+    border-bottom: 2px solid lightgray;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-id-etc{
+    width: 100%;
+    height: 20px;
+    display: flex;
+    
+
+}
+.admin-id{
+    width: 100px;
+    height: 100%;
+  
+
+}
+.enroll-date{
+    width: 200px;
+    height: 100%;
+  
+
+}
+.written-notice{
+    width: 100%;
+    height: 45px;
+    display: flex;
+
+}
+.cate-notice{
+    width: 100px;
+    height: 100%;
+    line-height: 45px;
+    font-weight: 600;
+    font-size: larger;
+}
+.posted-notice{
+    width: 850px;
+    height: 100%;
+    line-height: 45px;
+    font-weight: 600;
+    font-size: larger;
+
+}
+.views-etc{
+    width: 100%;
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+}
+.views{
+    width: 70px;
+    height: 100%;
+}
+.replies{
+    width: 70px;
+    height: 100%;
+
+}
+
+
+
