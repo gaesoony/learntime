@@ -26,5 +26,12 @@ public class QuestionController {
 		return "question/qDetailList";
 			
 		}
+	
+	// 문의게시판 상세조회(운영자)
+	@GetMapping("question/qDetailListAd")
+	public String qDetailListAd() {
+		return "question/qDetailListAd";
+			
+		}
 
 }

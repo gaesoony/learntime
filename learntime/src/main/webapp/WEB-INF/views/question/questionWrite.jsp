@@ -29,7 +29,15 @@
             </div>
         </div>
         <div class="q-title-date">
-            <div class="category-q">멘토링</div>
+            <div class="category-q"><select name="category" id="categories">
+                <option value="total">전체</option>
+                <option value="study">스터디</option>
+                <option value="study-confirmed">공부인증</option>
+                <option value="QnA">Q&A</option>
+                <option value="mentoring">멘토링</option>
+                <option value="community">커뮤니티</option>
+                <option value="skin-shop">스킨샵</option>
+            </select></div>
             <div class="title-q"></div>
             <div class="date-q"></div>
         </div>
@@ -38,8 +46,6 @@
             <textarea class="summernote" name="editordata"></textarea>
         </div>
         <div class="backBtn">
-            <div class="btn-to">수정</div>
-            <div class="btn-to">삭제</div>
             <div class="btn-to">글목록</div>
         </div>
     </div>
