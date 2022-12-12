@@ -72,25 +72,26 @@
                         </div>
                         <div class="leaved-comment">접속이 잘 안되네요</div>
                         <div class="hide-comment">
-                            <div class="hide-reply"><span id="comm-hide">댓글 모두 숨기기</span></div>
-                            <div class="write-reply"><span>댓글 쓰기</span></div>
-                        </div>
-                    </div>
-                    <div class="comment-b-for-a" style="display: none;">
-                        <div class="reply-reply">
-                            <div class="profile-etc-re">
-                                <div class="profile-pic-re"><img width="70px" height="70px" src="/app/resources/img/faq/image 130.png"></div>
-                                <div class="profile-id-re"><img width="200px" height="70px" src="/app/resources/img/faq/image 129.png"></div>
-                                <div class="good-or-bad-re">
-                                    <div class="btn-good-or-bad">
-                                        <div class="downBtn"><img width="20px" height="20px" src="https://cdn-icons-png.flaticon.com/128/32/32195.png"></div>
-                                        <div class="middleBtn">3</div>
-                                        <div class="upBtn"><img width="20px" height="20px" src="https://cdn-icons-png.flaticon.com/128/271/271239.png"></div>
+                            <div class="write-reply">댓글 쓰기 </div>
+                            <div class="hide-reply">댓글 모두 숨기기
+                                <div class="comment-b-for-a" >
+                                    <div class="reply-reply">
+                                        <div class="profile-etc-re">
+                                            <div class="profile-pic-re"><img width="70px" height="70px" src="/app/resources/img/faq/image 130.png"></div>
+                                            <div class="profile-id-re"><img width="200px" height="70px" src="/app/resources/img/faq/image 129.png"></div>
+                                            <div class="good-or-bad-re">
+                                                <div class="btn-good-or-bad-re">
+                                                    <div class="downBtn"><img width="20px" height="20px" src="https://cdn-icons-png.flaticon.com/128/32/32195.png"></div>
+                                                    <div class="middleBtn">3</div>
+                                                    <div class="upBtn"><img width="20px" height="20px" src="https://cdn-icons-png.flaticon.com/128/271/271239.png"></div>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="leaved-comment-re">@겨울의속삭임님<br>해당이슈는 수정하여 반영하였습니다. 감사합니다.</div>
+                                        <div class="hide-comment-re"><span>댓글쓰기</span></div>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
-                            <div class="leaved-comment-re">@겨울의속삭임님<br>해당이슈는 수정하여 반영하였습니다. 감사합니다.</div>
-                            <div class="hide-comment-re"><span>댓글쓰기</span></div>
                         </div>
                     </div>
                 </div>
@@ -119,22 +120,16 @@
         });
 
 
- 
-
         $(document).ready(function(){
-            isShow = true;
             $('.hide-reply').click(function(){
-                if(isShow){
-                    isShow = false;
-                    $('comment-b-for-a').hide();
-                    
-                }else{
-                    isShow = true;
-                    $('comment-b-for-a').show();
-                   
-                }
+                $('.comment-b-for-a').toggle('slow');
             });
         });
+
+
+
+
+    
     </script>
 
 </body>
