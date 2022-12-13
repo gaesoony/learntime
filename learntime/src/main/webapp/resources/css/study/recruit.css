@@ -420,15 +420,77 @@ html .ui-button.ui-state-disabled:active {
   margin-bottom: 30px;
 }
 
-.study-introduce-tag input {
+/* .study-search-tag {
   padding: 10px;
   border: none;
   width: 800px;
-}
+} */
 
-.study-introduce-tag input:focus {
+/* .study-introduce-tag input:focus {
   outline: 2px solid rgba(161, 222, 180, 0.659);
   border-radius: 5px;
+} */
+
+/* 태그 */
+.study-search-tag-div {
+  width: 633px;
+  height: 45px;
+  border: 1px solid rgb(211, 211, 211);
+  padding: 10px 0px;
+  padding-left: 14px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  outline: none;
+  overflow: auto;
+  font-size: 14px;
+}
+
+.study-search-tag {
+  outline: none;
+  border: none;
+}
+
+.tag-div {
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.tag-btn {
+  border: none;
+  background-color: #e7eef9;
+  border-radius: 3px;
+  padding: 3px 17px 3px 10px;
+}
+
+.tag-list {
+  display: inline-block;
+}
+
+.tag-div i {
+  position: absolute;
+  right: 8px;
+  top: 5px;
+  font-size: 5px;
+}
+
+.reset-btn {
+  width: 60px;
+  height: 43px;
+  border: none;
+  background-color: white;
+  border-radius: 3px;
+  position: absolute;
+  top: 0;
+  right: 141px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.fa-rotate-left {
+  position: absolute;
+  top: 14px;
+  right: 127px;
 }
 
 /* 스터디 장소 */

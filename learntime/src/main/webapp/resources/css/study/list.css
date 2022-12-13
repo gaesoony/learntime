@@ -61,6 +61,10 @@
   font-family: "Noto Sans KR", sans-serif;
 }
 
+.cursor {
+  cursor: pointer;
+}
+
 /* 스터디/프로젝트 배너 */
 .study-banner {
   width: 100%;
@@ -178,8 +182,7 @@
 
 /* 검색창 2개 */
 
-.study-search-name,
-.study-search-tag {
+.study-search-name {
   width: 633px;
   height: 45px;
   border: 1px solid rgb(211, 211, 211);
@@ -188,6 +191,51 @@
   box-sizing: border-box;
   border-radius: 3px;
   outline: none;
+}
+
+.study-search-name:focus {
+  outline: 1px solid #5ecc80;
+}
+
+.study-search-tag-div {
+  width: 633px;
+  height: 45px;
+  border: 1px solid rgb(211, 211, 211);
+  padding: 10px 0px;
+  padding-left: 35px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  outline: none;
+  overflow: auto;
+}
+
+.study-search-tag {
+  outline: none;
+  border: none;
+}
+
+.tag-div {
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.tag-btn {
+  border: none;
+  background-color: #e7eef9;
+  border-radius: 3px;
+  padding: 3px 17px 3px 10px;
+}
+
+.tag-list {
+  display: inline-block;
+}
+
+.tag-div i {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  font-size: 5px;
 }
 
 .study-search-name {
@@ -206,13 +254,14 @@
   cursor: pointer;
 }
 
-.study-search-tag + input[type="reset"] {
+.reset-btn {
   width: 60px;
   height: 43px;
   border: none;
   background-color: white;
   border-radius: 3px;
   position: absolute;
+  top: 0;
   right: 59px;
   font-weight: 700;
   cursor: pointer;
@@ -224,7 +273,7 @@ input[type="reset"] + i {
   top: 14px;
 }
 
-.study-search-area div:first-child i {
+.fa-magnifying-glass {
   position: absolute;
   left: 15px;
   top: 15px;
@@ -262,7 +311,7 @@ input[type="reset"] + i {
 }
 
 .bar1 {
-  width: 45px;
+  width: 41px;
   height: 4px;
   background-color: #5ecc80;
   position: absolute;
@@ -271,7 +320,7 @@ input[type="reset"] + i {
 }
 
 .bar2 {
-  width: 100px;
+  width: 94px;
   height: 4px;
   background-color: #5ecc80;
   position: absolute;
@@ -280,7 +329,7 @@ input[type="reset"] + i {
 }
 
 .bar3 {
-  width: 62px;
+  width: 60px;
   height: 4px;
   background-color: #5ecc80;
   position: absolute;
@@ -289,7 +338,7 @@ input[type="reset"] + i {
 }
 
 .bar4 {
-  width: 62px;
+  width: 60px;
   height: 4px;
   background-color: #5ecc80;
   position: absolute;
@@ -298,7 +347,7 @@ input[type="reset"] + i {
 }
 
 .bar5 {
-  width: 43px;
+  width: 42px;
   height: 4px;
   background-color: #5ecc80;
   position: absolute;
@@ -307,7 +356,7 @@ input[type="reset"] + i {
 }
 
 .bar6 {
-  width: 81px;
+  width: 76px;
   height: 4px;
   background-color: #5ecc80;
   position: absolute;
@@ -316,7 +365,7 @@ input[type="reset"] + i {
 }
 
 .study-type-bar1 {
-  width: 45px;
+  width: 42px;
   height: 4px;
   background-color: #5ecc80;
   position: absolute;
@@ -334,7 +383,7 @@ input[type="reset"] + i {
 }
 
 .study-type-bar3 {
-  width: 81px;
+  width: 77px;
   height: 4px;
   background-color: #5ecc80;
   position: absolute;

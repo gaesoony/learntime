@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
     <link rel="stylesheet" href="/app/resources/css/variables.css" />
-    <link rel="stylesheet" href="/app/resources/css/study/recruit.css?ver=3" />
+    <link rel="stylesheet" href="/app/resources/css/study/recruit.css?ver=4" />
 
     <link
       href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
@@ -480,9 +480,57 @@ pageEncoding="UTF-8"%>
           <div class="study-introduce-title">
             <input type="text" placeholder="제목을 입력하세요" />
           </div>
-          <div class="study-introduce-tag">
-            <input type="text" placeholder="태그를 설정하세요 (최대 10개)" />
+          <div class="study-introduce-tag relative">
+            <div class="study-search-tag-div">
+              <i class="fa-solid fa-hashtag gray1"></i>
+              <div class="tag-list"></div>
+              <input
+                class="study-search-tag"
+                type="text"
+                placeholder="태그를 입력하세요"
+                onkeyup="if(window.event.keyCode==13){makeTag(event)}"
+              />
+            </div>
+            <input
+              type="reset"
+              value="초기화"
+              class="reset-btn"
+              onclick="resetTag()"
+            /><i
+              class="fa-solid fa-rotate-left cursor"
+              onclick="resetTag()"
+            ></i>
           </div>
+          <script>
+            function makeTag(e) {
+              const value = e.target.value;
+              const str =
+                '<div class="relative tag-div" onclick="deleteTag(event)">' +
+                '<input type="button" value="' +
+                value +
+                '" class="tag-btn" onclick="deleteTag2(event)"/> ' +
+                '<i class="fa-solid fa-xmark" onclick="deleteTag2(event)"></i>' +
+                "</div>";
+
+              const tagList = document.querySelector(".tag-list");
+              tagList.innerHTML += str;
+
+              e.target.value = "";
+            }
+
+            function resetTag() {
+              const tagList = document.querySelector(".tag-list");
+              tagList.textContent = "";
+            }
+
+            function deleteTag(e) {
+              e.target.remove();
+            }
+
+            function deleteTag2(e) {
+              e.target.parentNode.remove();
+            }
+          </script>
           <div>
             <textarea name="editordata" id="summernote"></textarea>
           </div>
