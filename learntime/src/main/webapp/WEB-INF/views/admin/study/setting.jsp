@@ -72,13 +72,14 @@ pageEncoding="UTF-8"%>
       color: #5ecc80;
     }
 
-    .write-btn {
-      width: 100px;
-      height: 40px;
-      border: none;
+    .delete-btn {
+      width: 67px;
+      height: 30px;
+      border: 1px solid red;
+      border-radius: 20px;
       outline: none;
-      background-color: #5ecc80;
-      color: white;
+      background-color: #ffffff;
+      color: rgb(225, 24, 24);
       cursor: pointer;
     }
 
@@ -87,26 +88,42 @@ pageEncoding="UTF-8"%>
     .content-section {
       background-color: white;
       border: 1px solid rgb(221, 221, 221);
+      margin-bottom: 20px;
     }
 
     .content-section-top {
       display: flex;
       align-items: center;
-      font-weight: 500;
+      color: rgb(85, 85, 85);
       font-size: 16px;
-      height: 100px;
-      padding-left: 30px;
+      height: 120px;
+      padding-left: 50px;
     }
 
     .content-section-top span:first-child {
-      margin-right: 50px;
+      margin-right: 54px;
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .content-section-bottom {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .grid-section {
+      width: 60%;
+      margin-bottom: 80px;
+      border-top: 2px solid rgba(0, 0, 0, 0.5);
+      border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+      margin-left: 226px;
     }
 
     .grid {
-      width: 60%;
+      width: 100%;
       display: grid;
-      grid-template-columns: 0.6fr 2fr 2fr 2fr;
-      margin-bottom: 100px;
+      grid-template-columns: 1.3fr 1fr 2fr 1fr;
     }
 
     .grid div {
@@ -131,13 +148,34 @@ pageEncoding="UTF-8"%>
       margin-bottom: 200px;
     }
 
-    .btn-area input {
-      background-color: white;
-      border: 1px solid #5ecc80;
-      width: 90px;
-      height: 35px;
-      color: #5ecc80;
+    .save-btn {
+      background-color: #5ecc80;
+      width: 105px;
+      height: 43px;
+      color: #ffffff;
       cursor: pointer;
+      border: none;
+      font-size: 16px;
+    }
+
+    .tech-icon {
+      width: 30px;
+      height: 30px;
+    }
+
+    .scroll-grid {
+      max-height: 360px;
+      overflow: auto;
+    }
+
+    .input-setting {
+      width: 100px;
+
+      padding: 0px 3px 0px 3px;
+    }
+
+    .img-num {
+      width: 30px;
     }
   </style>
   <body>
@@ -156,30 +194,141 @@ pageEncoding="UTF-8"%>
             >
           </div>
           <div class="content-section-middle">
-            <div class="grid">
-              <div class="grid-title">아이콘</div>
-              <div class="grid-title">기술 스택 이름</div>
-              <div class="grid-title">분야</div>
-              <div class="grid-title"></div>
-
-              <% for(int i=1; i<=10; i++) {%>
-
-              <div>
-                <img src="../../../../resources/img/study/java.svg" alt="" />
+            <div class="grid-section">
+              <div class="grid">
+                <div class="grid-title">아이콘</div>
+                <div class="grid-title">기술 스택 이름</div>
+                <div class="grid-title">분야</div>
+                <div class="grid-title"></div>
               </div>
-              <div>Java</div>
-              <div>
-                <select name="" id="">
-                  <option value="">프론트엔드</option>
-                  <option value="">백엔드</option>
-                </select>
-              </div>
-              <div>
-                <div>삭제</div>
-              </div>
+              <div class="grid scroll-grid">
+                <% for(int i=1; i<=15; i++) {%>
 
-              <%}%>
+                <div>
+                  <img
+                    src="${pageContext.request.contextPath}/resources/img/study/java.svg"
+                    alt=""
+                    class="tech-icon"
+                  />
+                </div>
+                <div>Java</div>
+                <div>
+                  <select name="" id="">
+                    <option value="">프론트엔드</option>
+                    <option value="">백엔드</option>
+                  </select>
+                </div>
+                <div>
+                  <input type="button" class="delete-btn" value="삭제" />
+                </div>
+
+                <%}%>
+              </div>
             </div>
+          </div>
+          <div class="content-section-bottom">
+            <input type="button" value="저장하기" class="save-btn" />
+          </div>
+        </section>
+        <section class="content-section">
+          <div class="content-section-top">
+            <span class="main-color">진행 기간 관리</span>
+            <span>진행 기간을 수정 및 추가 삭제가 가능합니다</span>
+          </div>
+          <div class="content-section-middle">
+            <div class="grid-section">
+              <div class="grid">
+                <div class="grid-title">진행 기간 이름</div>
+                <div class="grid-title"></div>
+                <div class="grid-title"></div>
+                <div class="grid-title"></div>
+              </div>
+              <div class="grid scroll-grid">
+                <% for(int i=1; i<=8; i++) {%>
+
+                <div>
+                  <input type="text" value="기간미정" class="input-setting" />
+                </div>
+                <div></div>
+                <div></div>
+                <div>
+                  <input type="button" class="delete-btn" value="삭제" />
+                </div>
+
+                <%}%>
+              </div>
+            </div>
+          </div>
+          <div class="content-section-bottom">
+            <input type="button" value="저장하기" class="save-btn" />
+          </div>
+        </section>
+        <section class="content-section">
+          <div class="content-section-top">
+            <span class="main-color">모집 구분 관리</span>
+            <span>모집 구분을 수정 및 추가 삭제가 가능합니다</span>
+          </div>
+          <div class="content-section-middle">
+            <div class="grid-section">
+              <div class="grid">
+                <div class="grid-title">모집 구분 이름</div>
+                <div class="grid-title"></div>
+                <div class="grid-title"></div>
+                <div class="grid-title"></div>
+              </div>
+              <div class="grid scroll-grid">
+                <% for(int i=1; i<=2; i++) {%>
+
+                <div>
+                  <input type="text" value="스터디" class="input-setting" />
+                </div>
+                <div></div>
+                <div></div>
+                <div>
+                  <input type="button" class="delete-btn" value="삭제" />
+                </div>
+
+                <%}%>
+              </div>
+            </div>
+          </div>
+          <div class="content-section-bottom">
+            <input type="button" value="저장하기" class="save-btn" />
+          </div>
+        </section>
+        <section class="content-section">
+          <div class="content-section-top">
+            <span class="main-color">이미지 첨부 관리</span>
+            <span>이미지 최대 첨부 개수 수정이 가능합니다</span>
+          </div>
+          <div class="content-section-middle">
+            <div class="grid-section">
+              <div class="grid">
+                <div class="grid-title">최대 첨부 개수</div>
+                <div class="grid-title"></div>
+                <div class="grid-title"></div>
+                <div class="grid-title"></div>
+              </div>
+              <div class="grid scroll-grid">
+                <% for(int i=1; i<=1; i++) {%>
+
+                <div>
+                  이미지 최대&nbsp;<input
+                    type="text"
+                    value="5"
+                    class="img-num"
+                  />장 까지
+                </div>
+                <div></div>
+                <div></div>
+                <div></div>
+
+                <%}%>
+              </div>
+            </div>
+          </div>
+          <div class="content-section-bottom">
+            <input type="button" value="저장하기" class="save-btn" />
           </div>
         </section>
       </div>
