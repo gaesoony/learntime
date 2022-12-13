@@ -549,7 +549,7 @@
 
             <div class="endline2"></div>
 
-            <div class="chat" id="chat" style="cursor: pointer;">댓글 <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="chat" id="chat" style="cursor: pointer;">댓글 <i class="fa-solid fa-chevron-right"></i></div>
 
             <!-- 댓글 부분 -->
             <div id="reply">
