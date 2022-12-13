@@ -438,8 +438,9 @@ html .ui-button.ui-state-disabled:active {
 }
 
 .myAddress {
-  width: 400px;
-  padding: 5px;
+  width: 340px;
+  padding: 7px;
+  font-size: 14px;
 }
 
 .myAddress-btn {
@@ -454,4 +455,42 @@ html .ui-button.ui-state-disabled:active {
 
 .search-study-location {
   margin-bottom: 20px;
+}
+
+.detailAddress {
+  border: 1px solid rgb(190, 190, 190);
+  width: 373px;
+  height: 35px;
+  padding-left: 28px;
+  font-size: 14px;
+  margin-top: 9px;
+  outline: none;
+  margin-left: 36px;
+  border-radius: 30px;
+}
+
+/* 버튼 부분 (취소/등록) */
+
+.btn-section {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+
+.btn-section input {
+  width: 65px;
+  height: 35px;
+}
+
+.cancel-btn {
+  background-color: white;
+  border: 1px solid rgb(173, 173, 173);
+  margin-right: 10px;
+  color: rgb(56, 56, 56);
+}
+
+.save-btn {
+  background-color: #5ecc80;
+  border: none;
+  color: white;
 }

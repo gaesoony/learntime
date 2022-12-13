@@ -58,7 +58,7 @@ pageEncoding="UTF-8"%>
                 </ul>
               </div>
               <div>
-                <a href="">수정</a>
+                <a href="${pageContext.request.contextPath}/study/edit">수정</a>
                 <a href="">삭제</a>
               </div>
             </div>
