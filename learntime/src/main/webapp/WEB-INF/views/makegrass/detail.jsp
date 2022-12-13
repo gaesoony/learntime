@@ -678,7 +678,7 @@
         
                     <div class="endline2"></div>
         
-                    <div class="chat" id="chat" style="cursor: pointer;">댓글 <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="chat" id="chat" style="cursor: pointer;">댓글 <i class="fa-solid fa-chevron-right"></i></div>
         
                     <div id="reply">
                         <div><img class="profile4" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
