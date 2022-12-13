@@ -124,6 +124,7 @@ img#logo{
     padding-top: 5px;
     height: 25px;
     background-color: #2f2f2f;
+    box-sizing: border-box;
 }
 .sub_menu>.big_menu>.small_menu li:first-child{
     padding-top: 7px;
@@ -201,3 +202,4 @@ body{
 #sub-menu::-webkit-scrollbar{
     display: none;
 }
+
