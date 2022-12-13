@@ -5,29 +5,27 @@ pageEncoding="UTF-8"%>
   <head>
     <meta charset="UTF-8" />
     <title>LEARN TIME | MY PAGE</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
       rel="stylesheet"
+      href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css"
     />
+
     <style>
       #mypage-box {
         width: 1200px;
-        height: 100vh;
+        height: 100%;
         margin: auto;
       }
 
       #mypage {
         width: 100%;
-        height: 100%;
         display: grid;
         grid-template-columns: 300px 900px;
-        margin-top: 20px;
       }
 
       #home-area {
         padding: 40px;
+        height: auto;
       }
 
       /* 공통css */
@@ -180,12 +178,13 @@ pageEncoding="UTF-8"%>
     </style>
   </head>
   <body>
-    <%@include file="/WEB-INF/views/common/header.jsp" %> <%@include
-    file="/WEB-INF/views/common/mypage-side.jsp" %>
+    <%@include file="/WEB-INF/views/common/header.jsp" %>
 
     <div id="mypage-box">
       <div id="mypage">
-        <div id="bin"></div>
+        <div id="bin">
+          <%@include file="/WEB-INF/views/common/mypage-side.jsp"%>
+        </div>
         <div id="home-area">
           <ul class="category-list flex bold700">
             <li class="category clicked relative">가입 신청 내역</li>
@@ -230,7 +229,8 @@ pageEncoding="UTF-8"%>
         </div>
       </div>
     </div>
-    <%@include file="/WEB-INF/views/common/footer.jsp" %>
+    <%@include file="/WEB-INF/views/common/footer2.jsp" %>
+
     <script>
       const cate1 = document.querySelector(".category:nth-child(1)");
       const cate2 = document.querySelector(".category:nth-child(2)");

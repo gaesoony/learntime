@@ -13,6 +13,16 @@ pageEncoding="UTF-8"%>
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
+    />
+    <script src="${pageContext.request.contextPath}/resources/js/admin/statistics/learning.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
   </head>
   <style>
     #content-wrap {
@@ -43,6 +53,10 @@ pageEncoding="UTF-8"%>
     .space-between {
       display: flex;
       justify-content: space-between;
+    }
+
+    .hidden {
+      display: none;
     }
 
     .info-section {
@@ -97,6 +111,7 @@ pageEncoding="UTF-8"%>
       font-size: 18px;
       margin-bottom: 8px;
       font-weight: 700;
+      word-spacing: -4px;
     }
 
     .info-title div:last-child {
@@ -142,14 +157,62 @@ pageEncoding="UTF-8"%>
     .statistics header {
       height: 50px;
       border-bottom: 1px solid rgb(225, 225, 225);
-      padding-left: 20px;
-      line-height: 50px;
+      padding: 0px 20px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      /* font-weight: 600; */
+    }
+
+    .chart-div {
+      height: 300px;
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .legend-div {
+      position: absolute;
+      top: 41px;
+      left: 309px;
+      height: 193px;
+      overflow: auto;
+    }
+
+    .legend-div::-webkit-scrollbar {
+      display: none;
+    }
+
+    .legend-div ul li {
+      margin: 20px 0px;
+      color: #666;
+      font-family: "Noto Sans KR", sans-serif;
+    }
+
+    .legend-div ul li span {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      margin-right: 15px;
+      vertical-align: middle;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+      color: gray;
+      cursor: pointer;
+    }
+
+    .btn-active {
+      color: rgb(237, 114, 77);
     }
   </style>
   <body>
     <%@include file="/WEB-INF/views/common/admin-side.jsp"%>
     <div id="content-wrap">
-      <div id="admin-category-title" class="shadow-light">카테고리</div>
+      <div id="admin-category-title" class="shadow-light">지식인 통계</div>
       <div class="wrapper">
         <section class="info-section">
           <ul class="info-list">
@@ -159,7 +222,7 @@ pageEncoding="UTF-8"%>
                   <i class="fa-solid fa-users"></i>
                 </div>
                 <div class="info-title">
-                  <div>오늘 질문</div>
+                  <div>오늘 질문수</div>
                   <div>Today's Pageview</div>
                 </div>
               </div>
@@ -174,7 +237,7 @@ pageEncoding="UTF-8"%>
                   <i class="fa-solid fa-users"></i>
                 </div>
                 <div class="info-title">
-                  <div>오늘 질문 해결</div>
+                  <div>오늘 답변수</div>
                   <div>Today's Pageview</div>
                 </div>
               </div>
@@ -189,7 +252,7 @@ pageEncoding="UTF-8"%>
                   <i class="fa-solid fa-users"></i>
                 </div>
                 <div class="info-title">
-                  <div>오늘 답변</div>
+                  <div>오늘 채택 답변수</div>
                   <div>Today's Pageview</div>
                 </div>
               </div>
@@ -204,7 +267,7 @@ pageEncoding="UTF-8"%>
                   <i class="fa-solid fa-users"></i>
                 </div>
                 <div class="info-title">
-                  <div>오늘 채택 답변</div>
+                  <div>???</div>
                   <div>Today's Pageview</div>
                 </div>
               </div>
@@ -217,52 +280,189 @@ pageEncoding="UTF-8"%>
         </section>
         <ul class="statistics-list">
           <li class="statistics">
-            <header>질문 분야</header>
-            <section>
-              <div>그래프자리</div>
-              <ul>
-                <li>Java</li>
-                <li>Spring</li>
-                <li>Python</li>
-              </ul>
+            <header class="flex">
+              <div>질문 분야</div>
+              <div>
+                <span
+                  class="material-symbols-outlined btn-active pie-btn"
+                  onclick="showPieChart(event)"
+                >
+                  pie_chart
+                </span>
+                <span
+                  class="material-symbols-outlined bar-btn"
+                  onclick="showBarChart(event)"
+                >
+                  insert_chart
+                </span>
+              </div>
+            </header>
+            <section class="pie-chart-section">
+              <div class="chart-div">
+                <canvas
+                  id="chart-mentor-type"
+                  width="220px"
+                  height="220px"
+                ></canvas>
+                <div id="legend-mentor-type" class="legend-div"></div>
+              </div>
+            </section>
+            <section class="hidden bar-chart-section">
+              <div class="chart-div">
+                <canvas
+                  id="bar-mentor-type"
+                  width="480px"
+                  height="250px"
+                ></canvas>
+              </div>
             </section>
           </li>
           <li class="statistics">
-            <header>해결/미해결</header>
-            <section>
-              <div>그래프자리</div>
-              <ul>
-                <li>Java</li>
-                <li>Spring</li>
-                <li>Python</li>
-              </ul>
+            <header class="flex">
+              <div>해결/미해결</div>
+              <div>
+                <span
+                  class="material-symbols-outlined btn-active pie-btn"
+                  onclick="showPieChart(event)"
+                >
+                  pie_chart
+                </span>
+                <span
+                  class="material-symbols-outlined bar-btn"
+                  onclick="showBarChart(event)"
+                >
+                  insert_chart
+                </span>
+              </div>
+            </header>
+            <section class="pie-chart-section">
+              <div class="chart-div">
+                <canvas
+                  id="chart-mentor-job-type"
+                  width="220px"
+                  height="220px"
+                ></canvas>
+                <div id="legend-mentor-job-type" class="legend-div"></div>
+              </div>
+            </section>
+            <section class="hidden bar-chart-section">
+              <div class="chart-div">
+                <canvas
+                  id="bar-mentor-job-type"
+                  width="480px"
+                  height="250px"
+                ></canvas>
+              </div>
             </section>
           </li>
           <li class="statistics">
-            <header>스터디/프로젝트</header>
-            <section>
-              <div>그래프자리</div>
-              <ul>
-                <li>Java</li>
-                <li>Spring</li>
-                <li>Python</li>
-              </ul>
+            <header class="flex">
+              <div>???</div>
+              <div>
+                <span
+                  class="material-symbols-outlined btn-active pie-btn"
+                  onclick="showPieChart(event)"
+                >
+                  pie_chart
+                </span>
+                <span
+                  class="material-symbols-outlined bar-btn"
+                  onclick="showBarChart(event)"
+                >
+                  insert_chart
+                </span>
+              </div>
+            </header>
+            <section class="pie-chart-section">
+              <div class="chart-div">
+                <canvas
+                  id="chart-mentor-job"
+                  width="220px"
+                  height="220px"
+                ></canvas>
+                <div id="legend-mentor-job" class="legend-div"></div>
+              </div>
+            </section>
+            <section class="hidden bar-chart-section">
+              <div class="chart-div">
+                <canvas
+                  id="bar-mentor-job"
+                  width="480px"
+                  height="250px"
+                ></canvas>
+              </div>
             </section>
           </li>
           <li class="statistics">
-            <header>모집중/모집완료</header>
-            <section>
-              <div>그래프자리</div>
-              <ul>
-                <li>Java</li>
-                <li>Spring</li>
-                <li>Python</li>
-              </ul>
+            <header class="flex">
+              <div>???</div>
+              <div>
+                <span
+                  class="material-symbols-outlined btn-active pie-btn"
+                  onclick="showPieChart(event)"
+                >
+                  pie_chart
+                </span>
+                <span
+                  class="material-symbols-outlined bar-btn"
+                  onclick="showBarChart(event)"
+                >
+                  insert_chart
+                </span>
+              </div>
+            </header>
+            <section class="pie-chart-section">
+              <div class="chart-div">
+                <canvas
+                  id="chart-mentor-career"
+                  width="220px"
+                  height="220px"
+                ></canvas>
+                <div id="legend-mentor-career" class="legend-div"></div>
+              </div>
+            </section>
+            <section class="hidden bar-chart-section">
+              <div class="chart-div">
+                <canvas
+                  id="bar-mentor-career"
+                  width="480px"
+                  height="250px"
+                ></canvas>
+              </div>
             </section>
           </li>
         </ul>
       </div>
     </div>
+    <script>
+      function showPieChart(e) {
+        const parent = e.target.parentNode.parentNode.parentNode;
+        const pieSection = parent.querySelector(".pie-chart-section");
+        const barSection = parent.querySelector(".bar-chart-section");
+
+        pieSection.classList.remove("hidden");
+        barSection.classList.add("hidden");
+
+        const pieBtn = parent.querySelector(".pie-btn");
+        const barBtn = parent.querySelector(".bar-btn");
+        pieBtn.classList.add("btn-active");
+        barBtn.classList.remove("btn-active");
+      }
+
+      function showBarChart(e) {
+        const parent = e.target.parentNode.parentNode.parentNode;
+        const pieSection = parent.querySelector(".pie-chart-section");
+        const barSection = parent.querySelector(".bar-chart-section");
+
+        pieSection.classList.add("hidden");
+        barSection.classList.remove("hidden");
+
+        const pieBtn = parent.querySelector(".pie-btn");
+        const barBtn = parent.querySelector(".bar-btn");
+        pieBtn.classList.remove("btn-active");
+        barBtn.classList.add("btn-active");
+      }
+    </script>
     <script
       src="https://kit.fontawesome.com/939838bb27.js"
       crossorigin="anonymous"

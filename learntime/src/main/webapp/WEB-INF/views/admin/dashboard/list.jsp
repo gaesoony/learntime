@@ -16,6 +16,8 @@ pageEncoding="UTF-8"%>
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
       * {
         font-family: "Noto Sans KR", sans-serif;
@@ -339,6 +341,35 @@ pageEncoding="UTF-8"%>
       .cursor {
         cursor: pointer;
       }
+
+      .chart-box {
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+      }
+
+      #myChart {
+        width: 100% !important;
+        height: 80% !important;
+      }
+
+      .point {
+        width: 7px;
+        height: 7px;
+
+        border-radius: 50%;
+        margin: 0px 5px;
+      }
+
+      .pageView-color {
+        background-color: rgb(251, 165, 138);
+      }
+
+      .visitor-color {
+        background-color: rgb(122, 122, 122);
+      }
     </style>
   </head>
   <body>
@@ -420,10 +451,86 @@ pageEncoding="UTF-8"%>
               <header class="dashboard-header">
                 <h1>방문자 현황</h1>
                 <div class="flex">
-                  <div>페이지뷰</div>
-                  <div>방문자수</div>
+                  <div class="flex">
+                    <div class="point pageView-color"></div>
+                    페이지뷰
+                  </div>
+                  <div class="flex">
+                    <div class="point visitor-color"></div>
+                    방문자수
+                  </div>
                 </div>
               </header>
+              <div class="chart-box">
+                <canvas id="myChart"></canvas>
+                <script>
+                  new Chart(document.getElementById("myChart"), {
+                    type: "line",
+                    data: {
+                      labels: [
+                        "12/06",
+                        "12/07",
+                        "12/08",
+                        "12/09",
+                        "12/10",
+                        "12/11",
+                        "12/12",
+                      ],
+                      datasets: [
+                        {
+                          data: [100, 3, 30, 23, 40, 5, 50],
+                          borderColor: "rgba(248,90,42,0.8)",
+                          backgroundColor: "rgba(248,90,42,0.1)",
+                          fill: true,
+                          lineTension: 0,
+                        },
+                        {
+                          data: [10, 30, 3, 13, 20, 15, 2],
+                          borderColor: "rgb(76,76,76,0.8)",
+                          backgroundColor: "rgba(76,76,76,0.1)",
+                          fill: true,
+                          lineTension: 0,
+                        },
+                      ],
+                    },
+                    options: {
+                      plugins: {
+                        legend: {
+                          display: false,
+                        },
+                      },
+                      responsive: true,
+                      title: {
+                        display: false,
+                        text: "라인 차트 테스트",
+                      },
+                      tooltips: {
+                        mode: "index",
+                        intersect: false,
+                      },
+                      hover: {
+                        mode: "nearest",
+                        intersect: true,
+                      },
+                      scales: {
+                        xAxes: [
+                          {
+                            display: true,
+                          },
+                        ],
+                        yAxes: [
+                          {
+                            display: true,
+                            ticks: {
+                              suggestedMin: 0,
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  });
+                </script>
+              </div>
             </div>
             <div class="data-section-right shadow">
               <header class="dashboard-header">일자별 요약</header>

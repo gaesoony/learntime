@@ -28,7 +28,11 @@ pageEncoding="UTF-8"%>
         <div id="login-date">최근 로그인 2022/12/12 20:19:22</div>
       </div>
       <div id="admin-config">
-        <span id="config-icon" class="material-symbols-rounded">
+        <span
+          id="config-icon"
+          class="material-symbols-rounded"
+          onclick="location.href='${pageContext.request.contextPath}/admin/dashboard/manager/profile'"
+        >
           settings
         </span>
       </div>
@@ -65,8 +69,16 @@ pageEncoding="UTF-8"%>
         <span class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
       </li>
       <ul class="small_menu">
-        <li><a href="#">스터디/프로젝트 목록</a></li>
-        <li><a href="#">환경 설정</a></li>
+        <li>
+          <a href="${pageContext.request.contextPath}/admin/study/list"
+            >스터디/프로젝트 목록</a
+          >
+        </li>
+        <li>
+          <a href="${pageContext.request.contextPath}/admin/study/setting"
+            >환경 설정</a
+          >
+        </li>
       </ul>
     </ul>
     <ul class="big_menu">
