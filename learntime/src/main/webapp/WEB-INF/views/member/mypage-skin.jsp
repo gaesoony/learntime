@@ -94,7 +94,7 @@
 </div>
 <%@include file="/WEB-INF/views/common/footer2.jsp" %>
 <script>
-    const category = document.querySelector("#my-cate div:nth-child(8) a");
+    const category = document.querySelector("#my-cate div:nth-child(7) a");
     category.classList.add("main-color");
 </script>
 

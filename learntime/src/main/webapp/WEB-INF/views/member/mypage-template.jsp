@@ -43,10 +43,7 @@
             <%@include file="/WEB-INF/views/common/mypage-side.jsp"%>
         </div>
         <div id="home-area">
-            
-
             이 안에서 작업해주시면 감사하겠숩니다! 
-
         </div>
     </div>
     

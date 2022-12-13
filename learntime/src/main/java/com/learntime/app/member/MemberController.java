@@ -44,7 +44,18 @@ public class MemberController {
 	public String resultPwd() {
 		return "/member/resultPwd";
 	}
+
+//	마이페이지-팔로잉(화면)
+	@GetMapping("/mypage/following")
+	public String mypageFollowing() {
+		return "/member/mypage-following";
+	}
 	
+//	마이페이지-팔로우(화면)
+	@GetMapping("/mypage/follow")
+	public String mypageFollow() {
+		return "/member/mypage-follow";
+	}
 	
 //	마이페이지-홈(화면)
 	@GetMapping("/mypage/home")
