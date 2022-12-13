@@ -146,8 +146,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px 10px 10px 0;
 }
 
 .star-score{
@@ -381,6 +380,7 @@ input[type='checkbox'] + .stylish-checkbox {
 }
 .foreground {
     position: relative;
+    top: -80px;
     text-align: center;
     height: 700px;
     width: 600px;
@@ -405,33 +405,25 @@ input[type='checkbox'] + .stylish-checkbox {
 }
 
 #application-btn{
-    width: 80px;
-    height: 30px;
+    width: 90px;
+    height: 40px;
     border-radius: 10px;
     background-color: #58c079;
     color: white;
 }
 
-/* .close-btn{
-    top: 20px;
-    right: 35px;
-} */
 .mentoring-modal-title{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .close-icon{
     cursor: pointer;
 }
-
-/* .modal-sub-title{
-
-} */
 
 .modal-info-box{
     margin: 10px 0;
@@ -454,6 +446,10 @@ input[type='checkbox'] + .stylish-checkbox {
     width: 566px;
 }
 
+#modal-mentor div{
+    font-size: 15px;
+}
+
 .modal-nick{
     display: flex;
     flex-direction: row;
@@ -461,13 +457,30 @@ input[type='checkbox'] + .stylish-checkbox {
     align-items: center;
 }
 
+#modal-job,
+#modal-career{
+    font-size: 12px;
+    font-weight: 400;
+    color: #7d7d7d;
+    margin-left: 30px;
+    margin-top: 5px;
+}
+
 .modal-profile-img{
     height: 25px;
     width: 25px;
 }
 
+#modal-metoring-title{
+    font-size: 20px;
+    font-weight: 600;
+
+    margin-bottom: 20px;
+}
+
 p{
     text-align: left;
+    font-size: 15px;
 }
 
 /* 후기 */
@@ -500,5 +513,42 @@ p{
     'GRAD' 0,
     'opsz' 48;
 }
+
+.modal-nick>span{
+    margin-left: 5px;
+}
+.modal-nick>a:hover{
+   text-decoration: underline;
+}
+   
+
+.modal-review-box p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+
+    line-height: 18px;
+
+}
+
+.more-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 16px;
+    
+    color: #7d7d7d;
+    font-size: 14px;
+}
+
+
+
+
+
+
+
+
 
 
