@@ -64,9 +64,9 @@ body{
 
          <div id="profile-nick">닉네임</div>
          <div id="profile-follow">
-            <a href="#">100 팔로우 중</a>
+            <a href="${pageContext.request.contextPath}/member/mypage/follow">100 팔로우 중</a>
             <span>|</span>
-            <a href="#"> 100 팔로잉</a>
+            <a href="${pageContext.request.contextPath}/member/mypage/following"> 100 팔로잉</a>
          </div>
     </div>
 
@@ -75,16 +75,16 @@ body{
     </div>
 
     <div id="my-cate">
-         <div class=".cate"><a href="/app/member/mypage/home">홈</a></div>
+         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/home">홈</a></div>
          <div class=".cate"><a href="#">MAKE GRASS</a></div>
-         <div class=".cate"><a href="/app/member/mypage/study">STUDY/PROJECT</a></div>
-         <div class=".cate"><a href="#">LEARNING</a></div>
+         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/study">STUDY/PROJECT</a></div>
+         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/qna">LEARNING</a></div>
          <div class=".cate"><a href="#">MENTORING</a></div>
          <div class=".cate"><a href="#">COMMUNITY</a></div>
-         <div class=".cate"><a href="/app/member/mypage/skin">보유한 스킨</a></div>
-         <div class=".cate"><a href="/app/member/mypage/badge">보유한 뱃지</a></div>
-         <div class=".cate"><a href="/app/member/mypage/dm/list">DM</a></div>
-         <div class=".cate"><a href="/app/member/mypage/edit">계정정보</a></div>
+         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/skin">보유한 스킨</a></div>
+         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/badge">보유한 뱃지</a></div>
+         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/dm/list">DM</a></div>
+         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/edit">계정정보</a></div>
     </div>
  
 </div>

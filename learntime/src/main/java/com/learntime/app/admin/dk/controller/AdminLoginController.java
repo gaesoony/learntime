@@ -12,4 +12,9 @@ public class AdminLoginController {
 	public String adminLogin() {
 		return "/admin/admin-login";
 	}
+	
+	@GetMapping("/member/manage")
+	public String join() {
+		return "/admin/member/memberManage";
+	}
 }
