@@ -49,86 +49,86 @@
                 </div>
             </div>
 
+        
+
+            <div class="mentoring-modal-title">
+                <span class="modal-sub-title">멘토링 후기</span>
+                <a href="/app/mentor/review/list" class="more-btn">
+                    <span>멘토 후기 더보기&nbsp;</span>
+                    <span class="material-symbols-rounded close-icon">navigate_next</span>
+                </a>
+            </div>
 
 
-                <div class="mentoring-modal-title">
-                    <span class="modal-sub-title">멘토링 후기</span>
-                    <div class="close-btn">
-                        <span>멘토 후기 더보기&nbsp;</span>
-                        <span class="material-symbols-rounded close-icon">navigate_next</span>
+
+            <div class="modal-info-box">
+                <div class="modal-review-box">
+                    <div class="modal-review-info">
+                        <div class="writer-box">
+                            <div class="modal-nick">
+                                <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="">
+                                <span class="writer-nick">망치맨</span>
+                            </div>        
+                        </div>
+                        <div class="star-box">
+                            <span class="material-symbols-rounded star">star</span>
+                            <span class="material-symbols-rounded star">star</span>
+                            <span class="material-symbols-rounded star">star</span>
+                            <span class="material-symbols-rounded star">star</span>
+                            <span class="material-symbols-rounded star">star</span>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>
+                            제가 국비지원 출신이라서 어떻게 해야 더 좋은 곳으로 갈 수 있을지 막막 했는데 방향을 이제 확실하게 알게 되었고 개발과 관련된 다양한 정보들을 얻어 볼 수 있는 기회가 되어서 매우 좋았습니다. 감사합니다.
+                        </p>
                     </div>
                 </div>
-
-
-
-                <div class="modal-info-box">
-                    <div class="modal-review-box">
-                        <div class="modal-review-info">
-                            <div class="writer-box">
-                                <div class="modal-nick">
-                                    <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="">
-                                    <span class="writer-nick">망치맨</span>
-                                </div>        
-                            </div>
-                            <div class="star-box">
-                                <span class="material-symbols-rounded star">star</span>
-                                <span class="material-symbols-rounded star">star</span>
-                                <span class="material-symbols-rounded star">star</span>
-                                <span class="material-symbols-rounded star">star</span>
-                                <span class="material-symbols-rounded star">star</span>
-                            </div>
+                <div class="modal-review-box">
+                    <div class="modal-review-info">
+                        <div class="writer-box">
+                            <div class="modal-nick">
+                                <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="">
+                                <span class="writer-nick">망치맨</span>
+                            </div>        
                         </div>
-                        <div class="review-content">
-                            <p>
-                                제가 국비지원 출신이라서 어떻게 해야 더 좋은 곳으로 갈 수 있을지 막막 했는데 방향을 이제 확실하게 알게 되었고 개발과 관련된 다양한 정보들을 얻어 볼 수 있는 기회가 되어서 매우 좋았습니다. 감사합니다.
-                            </p>
+                        <div class="star-box">
+                            <span class="material-symbols-rounded star">star</span>
+                            <span class="material-symbols-rounded star">star</span>
+                            <span class="material-symbols-rounded star">star</span>
+                            <span class="material-symbols-rounded star">star</span>
+                            <span class="material-symbols-rounded star">star</span>
                         </div>
                     </div>
-                    <div class="modal-review-box">
-                        <div class="modal-review-info">
-                            <div class="writer-box">
-                                <div class="modal-nick">
-                                    <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="">
-                                    <span class="writer-nick">망치맨</span>
-                                </div>        
-                            </div>
-                            <div class="star-box">
-                                <span class="material-symbols-rounded star">star</span>
-                                <span class="material-symbols-rounded star">star</span>
-                                <span class="material-symbols-rounded star">star</span>
-                                <span class="material-symbols-rounded star">star</span>
-                                <span class="material-symbols-rounded star">star</span>
-                            </div>
-                        </div>
-                        <div class="review-content">
-                            <p>
-                                제가 국비지원 출신이라서 어떻게 해야 더 좋은 곳으로 갈 수 있을지 막막 했는데 방향을 이제 확실하게 알게 되었고 개발과 관련된 다양한 정보들을 얻어 볼 수 있는 기회가 되어서 매우 좋았습니다. 감사합니다.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="modal-review-box">
-                        <div class="modal-review-info">
-                            <div class="writer-box">
-                                <div class="modal-nick">
-                                    <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="">
-                                    <span class="writer-nick">망치맨</span>
-                                </div>        
-                            </div>
-                            <div class="star-box">
-                                <span class="material-symbols-rounded star">star</span>
-                                <span class="material-symbols-rounded star">star</span>
-                                <span class="material-symbols-rounded star">star</span>
-                                <span class="material-symbols-rounded star">star</span>
-                                <span class="material-symbols-rounded star">star</span>
-                            </div>
-                        </div>
-                        <div class="review-content">
-                            <p>
-                                제가 국비지원 출신이라서 어떻게 해야 더 좋은 곳으로 갈 수 있을지 막막 했는데 방향을 이제 확실하게 알게 되었고 개발과 관련된 다양한 정보들을 얻어 볼 수 있는 기회가 되어서 매우 좋았습니다. 감사합니다.
-                            </p>
-                        </div>
+                    <div class="review-content">
+                        <p>
+                            제가 국비지원 출신이라서 어떻게 해야 더 좋은 곳으로 갈 수 있을지 막막 했는데 방향을 이제 확실하게 알게 되었고 개발과 관련된 다양한 정보들을 얻어 볼 수 있는 기회가 되어서 매우 좋았습니다. 감사합니다.
+                        </p>
                     </div>
                 </div>
+                <div class="modal-review-box">
+                    <div class="modal-review-info">
+                        <div class="writer-box">
+                            <div class="modal-nick">
+                                <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="">
+                                <span class="writer-nick">망치맨</span>
+                            </div>        
+                        </div>
+                        <div class="star-box">
+                            <span class="material-symbols-rounded star">star</span>
+                            <span class="material-symbols-rounded star">star</span>
+                            <span class="material-symbols-rounded star">star</span>
+                            <span class="material-symbols-rounded star">star</span>
+                            <span class="material-symbols-rounded star">star</span>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>
+                            제가 국비지원 출신이라서 어떻게 해야 더 좋은 곳으로 갈 수 있을지 막막 했는데 방향을 이제 확실하게 알게 되었고 개발과 관련된 다양한 정보들을 얻어 볼 수 있는 기회가 되어서 매우 좋았습니다. 감사합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
             <div id="application-btn">신청하기</div>
         </div>
     </div>
@@ -156,13 +156,6 @@
             </div>
         </div> 
     </div> 
-
-    
-    
-
-
-
-
 
     
 	<div id="board-banner">
@@ -225,6 +218,18 @@
                 <span> 필터 초기화</span>
             </div>
         </div>
+
+        <!-- span 누르면 checkbox, select, input 초기화 시키는 제이쿼리 함수 -->
+        <script>
+            $(document).ready(function(){
+                $("#filter-reset").click(function(){
+                    $("input[type=checkbox]").prop("checked", false);
+                    $("select").prop("selectedIndex", 0);
+                    $("input[type=text]").val("");
+                });
+            });
+        </script>
+
 
         <div id="content-wrap">
             <div id="mentoring-list-box">
@@ -428,11 +433,7 @@
                         <span>코딩하는망치맨</span>
                     </div>
                 </div>
-
-
             </div>
-
-                
             <div id="paging">
                 <div class="paging-btn">1</div>
                 <div class="paging-btn">2</div>
@@ -453,7 +454,7 @@
 
     <%@include file="/WEB-INF/views/common/footer.jsp"%>
 
-    
+   
     <script>
         //버튼 클릭시 show 클래스 추가
         $('.mentoring').on('click',function(){
@@ -463,8 +464,9 @@
         $('.close-btn').on('click',function(){
             $('#first-modal').removeClass('show');
         })
-        //#application-btn 클릭시 #first-modal 제거, #second-modal 추가
-        $('#application-btn').on('click',function(){
+        //#application-btn 클릭시 #first-modal 제거, #second-modal 추가 하고 이벤트 버블링 막아주기
+        $('#application-btn').on('click',function(e){
+            e.stopPropagation();
             $('#first-modal').removeClass('show');
             $('#second-modal').addClass('show');
         })
@@ -475,12 +477,29 @@
             $('#third-modal').addClass('show');
         });
 
+        //esc 누르면 모달창 닫기
+        $(document).keyup(function(e){
+            if(e.keyCode == 27){
+                $('#first-modal').removeClass('show');
+                $('#second-modal').removeClass('show');
+                $('#third-modal').removeClass('show');
+            }
+        });
 
+        // background 클릭시 모달창 닫고 foreground 클릭시 모달창 닫지 않기
+        $('#first-modal').on('click',function(){
+            $('#first-modal').removeClass('show');
+        });
+        $('#second-modal').on('click',function(){
+            $('#second-modal').removeClass('show');
+        });
+        $('#third-modal').on('click',function(){
+            $('#third-modal').removeClass('show');
+        });
+        $('.foreground').on('click',function(e){
+            e.stopPropagation();
+        });
 
-
-
-    
-        
     </script>
 
 </body>
