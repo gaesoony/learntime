@@ -28,27 +28,41 @@
                 <div class="line-c"></div>
             </div>
         </div>
-        <div class="notice-title-date">
-            <div class="category-notice"><select name="category" id="categories">
-                <option value="total">전체</option>
-                <option value="study">스터디</option>
-                <option value="study-confirmed">공부인증</option>
-                <option value="QnA">Q&A</option>
-                <option value="mentoring">멘토링</option>
-                <option value="community">커뮤니티</option>
-                <option value="skin-shop">스킨샵</option>
-            </select></div>
-            <div class="title-notice"></div>
-            <div class="date-notice"></div>
-        </div>
-        <div class="empty1"></div>
-        <div class="notice-content">
-            <textarea class="summernote" name="editordata"></textarea>
-        </div>
-        <div class="backBtn">
-            <div class="btn-to">수정</div>
-            <div class="btn-to">삭제</div>
-            <div class="btn-to">글목록</div>
+        <div class="gathering-divs">
+            <div class="cate-select-box">
+                <div class="cate-selection">
+                    <div class="cate-pin">상단고정</div>
+                    <div class="activated">
+                        <div class="all-cate"><input type="checkbox"  name="allCate">전체</div>
+                        <div class="activate"><input type="checkbox" name="activate">활성화</div>
+                        <div class="non-activated"><input type="checkbox"  name="non-activated">비활성화</div>
+                    </div>
+                </div>
+            </div>
+            <div class="notice-cate-content">
+                <div class="notice-title-date">
+                    <div class="category-notice"><select name="category" id="categories">
+                        <option value="total">전체</option>
+                        <option value="study">스터디</option>
+                        <option value="study-confirmed">공부인증</option>
+                        <option value="QnA">Q&A</option>
+                        <option value="mentoring">멘토링</option>
+                        <option value="community">커뮤니티</option>
+                        <option value="skin-shop">스킨샵</option>
+                    </select></div>
+                    <div class="title-notice"></div>
+                    <div class="date-notice"></div>
+                </div>
+                <div class="empty1"></div>
+                <div class="notice-content">
+                    <textarea class="summernote" name="editordata"></textarea>
+                </div>
+                <div class="backBtn">
+                    <div class="btn-to">수정</div>
+                    <div class="btn-to">삭제</div>
+                    <div class="btn-to">글목록</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

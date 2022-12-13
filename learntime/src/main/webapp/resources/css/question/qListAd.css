@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+.main-admin-q{
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+}
+.line-on-the-top{
+    width: 100%;
+    height: 300px;
+  
+    display: flex;
+}
+.box-for-line-a{
+    width: 150px;
+    height: 100%;
+   
+
+}
+.half-box-a{
+    width: 100%;
+    height: 50%;
+    border-bottom: 5px solid gray;
+}
+.half-box-b{
+    width: 100%;
+    height: 50%;
+    border-bottom: 5px solid gray;
+}
+.title-box{
+    width: 150px;
+    height: 100%;
+
+    text-align: center;
+    line-height:300px ;
+    font-size: xx-large;
+    font-weight: 900;
+
+
+}
+.box-for-line-b{
+    width: 900px;
+    height: 100%;
+   
+
+}
+.deleteBtn{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+#erase{
+    border: none;
+    width: 100px;
+    height: 50px;
+    font-size: larger;
+    font-weight: 600;
+    background-color: #5ECC80;
+    color: white;
+}
+.listed-q{
+    width: 100%;
+    height: 675px;
+    
+    display: flex;
+    flex-direction: column;
+
+}
+.faqlistAd{
+    width: 1200px;
+    height: 45px;
+    border-top: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
+    float: left;
+    
+ 
+}
+.radioBtn{
+    width: 30px;
+    height: 30px;
+
+}
+.category-faq-ad{
+    width: 60px;
+    height: 100%;
+}
+.title-faq-ad{
+    width: 700px;
+    height: 100%;
+}
+.comment-faq-ad{
+    width: 10px;
+    height: 10px;
+}
+.nickname-faq-ad{
+    width: 100px;
+    height: 100%;
+}
+.enrollDate-faq-ad{
+    width: 200px;
+    height: 100%;
+    
+}
+.deleteBtn-faq-ad{
+    width: 100px;
+    height: 100%;
+}
+.page-qList-ad{
+    width: 100%;
+    height: 200px;
+    border: 1px solid red;
+
+}

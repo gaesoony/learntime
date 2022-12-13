@@ -42,7 +42,8 @@
   
     height:750px;
     display: grid;
-    grid-template-rows:100px 100px 50px 350px 100px;
+    grid-template-rows:100px 100px 50px 400px 100px;
+    
 }
 .notice-sign{
     width: 100%;
@@ -78,45 +79,115 @@
     height: 50%;
     border-bottom:5px solid gray;
 }
-.notice-title-date{
-    width: 100%;
+
+.gathering-divs{
+    width: 1200px;
+    height: 650px;
+    display: flex;
+    flex-direction: row;
+   
+}
+.cate-select-box{
+    width: 250px;
     height: 100%;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: flex-end;
+}
+.cate-selection{
+    width: 150px;
+    height: 200px;
+    border: 3px solid lightgray;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 150px;
+
+}
+.cate-pin{
+    width: 100%;
+    height: 80px;
+    border-bottom: 2px solid lightgray;
+    font-size: large;
+    font-weight: 600;
+    background-color: lightgray;
+    text-align: center;
+    line-height: 80px;
+}
+.activated{
+    width: 100%;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: larger;
+
+}
+.empty1{
+    width: 100%;
+    height: 50px;
+}
+.notice-cate-content{
+    width: 900px;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+}
+.notice-title-date{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    
     
 
 }
 .category-notice{
-    width: 150px;
+    width: 100px;
     height: 100%;
     text-align: center;
     line-height: 130px;
+    display: flex;
+    align-items: flex-end;
+
+    
 }
 .title-notice{
-    width: 750px;
+    width:470px;
     height: 50px;
     text-align: center;
     line-height: 130px;
-    border-bottom:2px solid lightgray;
+    border-bottom:3px solid lightgray;
 }
 .date-notice{
-    width: 290px;
+    width: 180px;
     height: 50px;
     text-align: center;
     line-height: 130px;
-    border-bottom:2px solid lightgray;
+    border-bottom:3px solid lightgray;
 
 }
 .notice-content{
-    width: 100%;
+    width: 900px;
     height: 400px;
-    border-top: 2px solid gray;
+    display: flex;
+    justify-content: center;
+    
+
     
 }
+
 .backBtn{
+    width: 400px;
+    height: 100px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    
+    
 }
 .btn-to{
     width: 100px;
@@ -133,8 +204,9 @@
 #categories{
     width: 120px;
     height: 50px;
-    border: 5px solid gray;
+    border: 3px solid lightgray;
     font-size: larger;
     text-align: center;
     
 }
+
