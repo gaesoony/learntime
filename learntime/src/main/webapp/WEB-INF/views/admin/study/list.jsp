@@ -183,7 +183,11 @@ pageEncoding="UTF-8"%>
             <% for(int i=1; i<=10; i++) {%>
             <div><input type="checkbox" /></div>
             <div>1</div>
-            <div>토이프로젝트 앱 개발자 구합니다!</div>
+            <div>
+              <a href="${pageContext.request.contextPath}/admin/study/detail"
+                >토이프로젝트 앱 개발자 구합니다!</a
+              >
+            </div>
             <div>
               <a href="/app/mystudy/board/detail">한혜원</a>
             </div>
