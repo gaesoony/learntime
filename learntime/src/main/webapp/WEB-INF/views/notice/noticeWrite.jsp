@@ -83,6 +83,7 @@
     <script>
         $('.summernote').summernote({
             height: 350,
+            width: 900,
             placeholder: '내용을 작성하세요',
             lang: "ko-KR"
         });

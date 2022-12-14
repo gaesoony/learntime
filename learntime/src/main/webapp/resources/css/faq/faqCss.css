@@ -99,6 +99,7 @@
     margin: 0 auto;
     width: 1200px;
     height: 500px;
+   
     
 
 }
@@ -107,8 +108,7 @@
     height: 45px;
     display: grid;
     grid-template-columns: 1fr 2fr 6fr 3fr;
-    border-top: 3px solid #535353;
-    border-bottom:3px solid #535353;;
+    grid-row: 2px solid lightgray;
    
    
 
@@ -211,4 +211,6 @@ select{
 }
 
 /* 리스트 */
-
+.item:nth-child(1){
+    grid-row: 2px solid lightgray;
+}

@@ -125,17 +125,17 @@
  	slides.style.width = (slideWidth + slideMargin)* slideCount - slideMargin +'px';
  	//slides.style.width = '1200px';
  	
- 	function moveSlide(num){
+ 	function moveSlide2(num){
  		slides.style.left= -num*263+'px';
  		currentIdx = num;
  	}
  	
  	nextBtn.addEventListener('click',function(){
  		if(currentIdx < slideCount -4){
- 			moveSlide(currentIdx + 1);
+ 			moveSlide2(currentIdx + 1);
            
  		}else{
- 			moveSlide(0);
+ 			moveSlide2(0);
              
  		}
  		
@@ -143,9 +143,9 @@
  	
  	prevBtn.addEventListener('click',function(){
  		if(currentIdx > 0){
- 			moveSlide(currentIdx - 1);
+ 			moveSlide2(currentIdx - 1);
  		}else{
- 			moveSlide(slideCount - 4);
+ 			moveSlide2(slideCount - 4);
  		}
  		
  	});
