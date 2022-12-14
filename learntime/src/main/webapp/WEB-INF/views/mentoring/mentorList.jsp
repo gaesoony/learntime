@@ -129,31 +129,135 @@
                     </div>
                 </div>
             </div>
-            <div id="application-btn">신청하기</div>
+            <div id="application-btn" class="modal-btn">신청하기</div>
         </div>
     </div>
 
-    <!-- make modal div -->
+    <!-- 두번째 모달 -->
     <div id="second-modal" class="background">
         <div id="second-modal-content" class="foreground">
-            <div id="second-modal-header">
-                <span>멘토링 신청</span>
-                <span id="second-modal-close">X</span>
+            <div class="mentoring-modal-title">
+                <span class="modal-sub-title">멘토링 소개</span>
+                <div class="close-btn"><span class="material-symbols-rounded close-icon">close</span></div>
             </div>
-            <div id="second-modal-body">
-                <div id="second-modal-body-content">
-                    <div id="second-modal-body-content-title">
-                        <span>멘토링 신청</span>
+
+            <div class="modal-info-box">
+                <div id="modal-mentor">
+                    <div class="modal-nick">
+                        <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="">
+                        <a href="">&nbsp코딩하는망치맨</a>
                     </div>
-                    <div id="second-modal-body-content-text">
-                        <span>멘토링 신청을 하시겠습니까?</span>
-                    </div>
-                    <div id="second-modal-body-content-btn">
-                        <div id="second-modal-body-content-btn-cancel">취소</div>
-                        <div id="second-modal-body-content-btn-ok">확인</div>
-                    </div>
+                    <div id="modal-mentoring-info">1회 멘토링 : 1시간 / 22,000원 / 1명</div>
+                </div>
+                <div id="modal-job">직무 PO/PM</div>
+                <div id="modal-career">경력 30년</div>
+            </div>
+
+            <div class="mentoring-modal-title">
+                <span class="modal-sub-title">스케줄 설정</span>
+            </div>
+
+            <div class="modal-info-box">
+                <div id="modal-metoring-title">date picker api 찾아보기</div>
+                <div id="modal-metoring-content">
+                    <p>
+                        빨리좀 찾아보자..
+                    </p>
                 </div>
             </div>
+            <div class="modal-info-box" id="time-select-box">
+                <select name="" id="time-select">
+                    <option value="">12:00 ~ 14:00</option>
+                    <option value="">14:00 ~ 16:00</option>
+                    <option value="">16:00 ~ 18:00</option>
+                </select>
+                <div id="time-select-result"></div>
+            </div>
+            <div class="mentoring-modal-title">
+                <span class="modal-sub-title">연락처</span>
+            </div>
+            <div class="modal-info-box sm-box">
+                <input type="text" placeholder="01000000000">
+            </div>
+            <div class="mentoring-modal-title">
+                <span class="modal-sub-title">이메일</span>
+            </div>
+            <div class="modal-info-box sm-box">
+                <input type="text" placeholder="example@email.com">
+            </div>
+            <div class="mentoring-modal-title">
+                <span class="modal-sub-title">멘토에게 남길 메세지</span>
+            </div>
+            <div class="modal-info-box sm-box" id="massage-box">
+                <input id="massage-input" type="text" placeholder="멘토에게 남길 메세지를 간단히 작성해주세요">
+            </div>
+
+            <div class="modal-btn-box">
+                <div id="pre-btn-2" class="modal-btn pre-btn">이전으로</div>
+                <div id="next-btn-2" class="modal-btn next-btn">다음으로</div>
+            </div>
+        </div> 
+    </div> 
+
+    <!-- 세번째 모달 -->
+    <div id="third-modal" class="background">
+        <div id="third-modal-content" class="foreground">
+            <div class="mentoring-modal-title">
+                <span class="modal-sub-title">멘토링 소개</span>
+                <div class="close-btn"><span class="material-symbols-rounded close-icon">close</span></div>
+            </div>
+
+            <div class="modal-info-box">
+                <div id="modal-mentor">
+                    <div class="modal-nick">
+                        <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="">
+                        <a href="">&nbsp코딩하는망치맨</a>
+                    </div>
+                    <div id="modal-mentoring-info">1회 멘토링 : 1시간 / 22,000원 / 1명</div>
+                </div>
+                <div id="modal-job">직무 PO/PM</div>
+                <div id="modal-career">경력 30년</div>
+            </div>
+
+            <div id="modal-seletedmentor">
+                <div class="grid-title">멘토링 명</div>
+                <div>스프링으로 생산력 향상 시켜드립니다.</div>
+                <div class="grid-title">멘토</div>
+                <div>코딩하는망치맨</div>
+                <div class="grid-title">멘티</div>
+                <div>김량우</div>
+                <div class="grid-title">일정</div>
+                <div>2022.12.04, 20:00~22:00</div>
+                <div class="grid-title">연락처</div>
+                <div>010-9697-9377</div>
+                <div class="grid-title">이메일</div>
+                <div>ryangwooz@gmail.com</div>
+                <div class="grid-title">메세지</div>
+                <div>잘좀 해달라구</div>
+            </div>
+            
+            <div class="mentoring-modal-title" id="pay-info-box">
+                <span class="modal-sub-title">결제금액</span>
+                <span>22,000원</span>
+            </div>
+
+            <div id="pay-agree-box">
+                <input type="checkbox" name="" id="pay-agree">
+                <label for="pay-agree">구매조건 및 결제대행 서비스 약관에 동의하여아 합니다.(필수)</label>
+            </div>
+            
+            <div class="modal-btn-box">
+                <div id="pre-btn-3" class="modal-btn pre-btn">이전으로</div>
+                <div id="next-btn-3" class="modal-btn next-btn">다음으로</div>
+            </div>
+        </div> 
+    </div> 
+
+    <!-- 네번째 모달 -->
+    <div id="fourth-modal" class="background">
+        <div id="pay-modal">
+            <div>신용카드</div>
+            <div>카카오페이</div>
         </div> 
     </div> 
 
@@ -229,7 +333,7 @@
                 });
             });
         </script>
-
+        
 
         <div id="content-wrap">
             <div id="mentoring-list-box">
@@ -463,6 +567,8 @@
         //닫기 버튼 클릭시 show 클래스 제거
         $('.close-btn').on('click',function(){
             $('#first-modal').removeClass('show');
+            $('#second-modal').removeClass('show');
+            $('#first-modal').removeClass('show');
         })
         //#application-btn 클릭시 #first-modal 제거, #second-modal 추가 하고 이벤트 버블링 막아주기
         $('#application-btn').on('click',function(e){
@@ -470,11 +576,24 @@
             $('#first-modal').removeClass('show');
             $('#second-modal').addClass('show');
         })
-
-        //#next-btn 클릭시 #second-modal 제거, #third-modal 추가
-        $('#next-btn').on('click',function(){
+        //#next-btn-2 클릭시 2번째 닫고 3번째 열기
+        $('#next-btn-2').on('click',function(){
             $('#second-modal').removeClass('show');
             $('#third-modal').addClass('show');
+        });
+        //#pre-btn-2 클릭시 2번째 닫고 1번째 열기
+        $('#pre-btn-2').on('click',function(){
+            $('#second-modal').removeClass('show');
+            $('#first-modal').addClass('show');
+        });
+        //#next-btn-3 클릭시 4번째 열기
+        $('#next-btn-3').on('click',function(){
+            $('#fourth-modal').addClass('show');
+        });
+        //#pre-btn-3 클릭시 3번째 닫고 2번째 열기
+        $('#pre-btn-3').on('click',function(){
+            $('#third-modal').removeClass('show');
+            $('#second-modal').addClass('show');
         });
 
         //esc 누르면 모달창 닫기
@@ -483,6 +602,7 @@
                 $('#first-modal').removeClass('show');
                 $('#second-modal').removeClass('show');
                 $('#third-modal').removeClass('show');
+                $('#fourth-modal').removeClass('show');
             }
         });
 
@@ -496,9 +616,27 @@
         $('#third-modal').on('click',function(){
             $('#third-modal').removeClass('show');
         });
+        $('#fourth-modal').on('click',function(){
+            $('#fourth-modal').removeClass('show');
+        });
         $('.foreground').on('click',function(e){
             e.stopPropagation();
         });
+        $('#pay-modal').on('click',function(e){
+            e.stopPropagation();
+        });
+
+
+
+        // 시간 선택 후 div 출력
+        $(document).ready(function() {
+            $('#time-select').change(function() {
+                var time = $('#time-select option:selected').text();
+                console.log(time);
+                $('#time-select-result').text(time);
+            });
+        });
+            
 
     </script>
 

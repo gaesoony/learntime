@@ -39,18 +39,18 @@
                 </div>
                 <input type="text" id="" placeholder="실명을 입력해주세요">
 
-                <div id="phone-title" class="sub-title">
+                <div id="email-title" class="sub-title">
                     <span>연락받을 이메일</span>
                     <span class="sub-title-plus">*</span>
                 </div>
-                <input type="text" id="phone-input" placeholder="멘토링에 사용하실 이메일을 입력해주세요">
+                <input type="text" id="email-input" placeholder="멘토링에 사용하실 이메일을 입력해주세요">
                 
 
                 <div id="phone-title" class="sub-title">
                     <span>연락처</span>
                     <span class="sub-title-plus">*</span>
                 </div>
-                <input type="text" id="" placeholder="010-0000-0000">
+                <input type="text" id="phone-input" placeholder="01000000000">
 
                 <div id="category-title" class="sub-title">
                     <span>희망분야</span>
@@ -83,7 +83,25 @@
     </div>
 
 
-        <%@include file ="/WEB-INF/views/common/footer.jsp" %>
+    <%@include file ="/WEB-INF/views/common/footer.jsp" %>
+
+
+    <script>
+        $(document).ready(function() {
+            var input = $('#phone-input');
+            var placeholder = input.attr('placeholder');
+            input.blur(function() {
+                input.attr('placeholder', placeholder);
+            });
+            input.keyup(function() {
+                var inputVal = input.val();
+                var placeholderVal = placeholder.substr(0, inputVal.length);
+                if (inputVal == placeholderVal) {
+                    input.attr('placeholder', placeholderVal);
+                }
+            });
+        }) 
+    </script>
 
 
 

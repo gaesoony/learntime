@@ -346,9 +346,17 @@
 
     </div>
 
+    <!-- span 누르면 checkbox, select, input 초기화 시키는 제이쿼리 함수 -->
+    <script>
+        $(document).ready(function(){
+            $("#filter-reset").click(function(){
+                $("input[type=checkbox]").prop("checked", false);
+                $("select").prop("selectedIndex", 0);
+                $("input[type=text]").val("");
+            });
+        });
+    </script>
 
-   
-   
    
    
     <%@include file="/WEB-INF/views/common/footer.jsp"%>

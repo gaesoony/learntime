@@ -53,10 +53,12 @@
     box-shadow: 0 2px 2px #c5c5c5;
 }
 .statistic{
-    width: 200px;
+    width: 330px;
     height: 60px;
     border-radius: 10px;
 }
+
+
 
 #search-box{
     width: 1280px;
@@ -151,9 +153,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-right: 20px;
-
     padding: 15px;
+}
+
+.statistic:not(:last-child){
+    margin-right: 30px;
 }
 
 .statis-img-box>img{
