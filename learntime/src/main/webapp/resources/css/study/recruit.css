@@ -557,3 +557,47 @@ html .ui-button.ui-state-disabled:active {
   border: none;
   color: white;
 }
+
+/* 기술스택 여러개 선택하는 부분 */
+
+.selected-tech {
+  display: flex;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.tech-btn-list {
+  width: 300px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.selected-tech::-webkit-scrollbar {
+  display: none;
+}
+
+.tech-btn-list::-webkit-scrollbar {
+  display: none;
+}
+
+.tech-btn-div {
+  position: relative;
+}
+
+.tech-btn {
+  padding: 5px 17px 8px 9px;
+  background-color: rgb(228, 247, 255);
+  border: none;
+  border-radius: 3px;
+  margin-right: 5px;
+  font-size: 10px;
+}
+
+.tech-btn-div i {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  font-size: 5px;
+}
