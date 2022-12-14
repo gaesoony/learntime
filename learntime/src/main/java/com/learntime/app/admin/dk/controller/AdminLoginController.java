@@ -14,7 +14,22 @@ public class AdminLoginController {
 	}
 	
 	@GetMapping("/member/manage")
-	public String join() {
+	public String memberManage() {
 		return "/admin/member/memberManage";
+	}
+	
+	@GetMapping("/member/manage/detail")
+	public String memberDetail() {
+		return "/admin/member/memberDetail";
+	}
+	
+	@GetMapping("/member/createOperator")
+	public String createOperator() {
+		return "/admin/member/createOperator";
+	}
+	
+	@GetMapping("/member/grade")
+	public String memberGrade() {
+		return "/admin/member/memberGrade";
 	}
 }
