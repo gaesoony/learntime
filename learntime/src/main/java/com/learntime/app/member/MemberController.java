@@ -63,6 +63,13 @@ public class MemberController {
 		return "/member/mypage-home";
 	}
 	
+	  
+//  마이페이지-makegrass(화면)
+	  @GetMapping("/mypage/makegrass")
+	  public String mypageMakegrass() {
+	     return "/member/mypage-makegrass";
+	  }
+	
 //  마이페이지-스터디(화면)
 	  @GetMapping("/mypage/study")
 	  public String mypageStudy() {

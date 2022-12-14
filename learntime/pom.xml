@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.learntime</groupId>
+	<groupId>com.kh</groupId>
 	<artifactId>app</artifactId>
 	<name>learntime</name>
 	<packaging>war</packaging>
@@ -167,7 +167,15 @@
 		   <groupId>org.springframework</groupId>
 		   <artifactId>spring-tx</artifactId>
 		   <version>${org.springframework-version}</version>
-		</dependency>				       
+		</dependency>	
+		
+		<!-- 암호화 -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>5.8.0</version>
+		</dependency>
+					       
 	</dependencies>
     <build>
         <plugins>

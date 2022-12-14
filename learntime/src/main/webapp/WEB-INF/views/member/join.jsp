@@ -159,7 +159,7 @@ label[for="joinAgree-check"] {
 
 				<div id="pwd">
 					<div class="text">비밀번호</div>
-					<input type="password" name="pwd">
+					<input type="password" name="pwd" autocomplete="off">
 					<span class="material-symbols-outlined">visibility</span>
 					<div id="pwdReult"></div>
 				</div>
@@ -167,7 +167,7 @@ label[for="joinAgree-check"] {
 				
 				<div id="pwd">
 					<div class="text">비밀번호 확인</div>
-					<input type="password" name="pwd2">
+					<input type="password" name="pwd2" autocomplete="off">
 					<span class="material-symbols-outlined">visibility</span>
 					<div id="pwdCheck"></div>
 				</div>

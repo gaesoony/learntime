@@ -76,10 +76,10 @@ body{
 
     <div id="my-cate">
          <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/home">홈</a></div>
-         <div class=".cate"><a href="#">MAKE GRASS</a></div>
+         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/makegrass">MAKE GRASS</a></div>
          <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/study">STUDY/PROJECT</a></div>
          <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/qna">LEARNING</a></div>
-         <div class=".cate"><a href="#">MENTORING</a></div>
+         <div class=".cate"><a href="">MENTORING</a></div>
          <div class=".cate"><a href="#">COMMUNITY</a></div>
          <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/skin">보유한 스킨</a></div>
          <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/badge">보유한 뱃지</a></div>

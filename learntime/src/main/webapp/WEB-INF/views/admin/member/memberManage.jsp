@@ -217,95 +217,97 @@ pageEncoding="UTF-8"%>
     <div id="content-wrap">
       <div id="admin-category-title" class="shadow-light">회원 관리</div>
       <div class="wrapper">
-        <section class="search-section space-between">
-          <div class="relative" id="search">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="내용을 입력해주세요" class="search-box"/>
-                <select name="" id="" class="select-box">
-                <option value="">닉네임</option>
-                <option value="">아이디</option>
-                </select>
-                <select name="" id="" class="select-box">
-                <option value="">계정상태</option>
-                <option value="">활성화</option>
-                <option value="">삭제</option>
-                </select>
-          </div>
-        </section>
-        <section class="content-section">
-          <div class="content-section-top">
-           <div id="memberAll">
-                <span>전체 관리자 수</span>
-                <span class="main-color">100</span>
-                <span>명</span>
-           </div>
-           <div id="manage">
-                <span>선택한 회원을</span>
-                <select name="" id="grade">
-                    <option value="">새싹</option>
-                </select>
-                <button id="grade-btn">변경하기</button>
-                <button id="delete-btn">탈퇴</button>
-                 
-           </div>
-          </div>
-          <div class="grid">
-            <div class="grid-title"><input type="checkbox" /></div>
-            <div class="grid-title">번호</div>
-            <div class="grid-title">닉네임</div>
-            <div class="grid-title">계정</div>
-            <div class="grid-title">유형</div>
-            <div class="grid-title">등급</div>
-            <div class="grid-title">전화번호</div>
-            <div class="grid-title">가입일</div>
-            <div class="grid-title">보유 토큰</div>
-            <div class="grid-title">작성한 글</div>
-            <div class="grid-title">작성한 댓글</div>
-            <div class="grid-title">작성한 문의</div>
-            <div class="grid-title">계정상태</div>
-            <div class="grid-title"></div>
+            <section class="search-section space-between">
+              <div class="relative" id="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="내용을 입력해주세요" class="search-box"/>
+                    <select name="" id="" class="select-box">
+                      <option value="">닉네임</option>
+                      <option value="">아이디</option>
+                    </select>
+                    <select name="" id="" class="select-box">
+                      <option value="">계정상태</option>
+                      <option value="">활성화</option>
+                      <option value="">삭제</option>
+                    </select>
+              </div>
+            </section>
+            <section class="content-section">
+              <div class="content-section-top">
+                <div id="memberAll">
+                      <span>전체 관리자 수</span>
+                      <span class="main-color">100</span>
+                      <span>명</span>
+                </div>
+                <div id="manage">
+                      <span>선택한 회원을</span>
+                      <select name="" id="grade">
+                          <option value="">새싹</option>
+                      </select>
+                      <button id="grade-btn">변경하기</button>
+                      <button id="delete-btn">탈퇴</button>    
+                </div>
+              </div>
+              <div class="grid">
+                <div class="grid-title"><input type="checkbox" /></div>
+                <div class="grid-title">번호</div>
+                <div class="grid-title">닉네임</div>
+                <div class="grid-title">계정</div>
+                <div class="grid-title">유형</div>
+                <div class="grid-title">등급</div>
+                <div class="grid-title">전화번호</div>
+                <div class="grid-title">가입일</div>
+                <div class="grid-title">보유 토큰</div>
+                <div class="grid-title">작성한 글</div>
+                <div class="grid-title">작성한 댓글</div>
+                <div class="grid-title">작성한 문의</div>
+                <div class="grid-title">계정상태</div>
+                <div class="grid-title"></div>
 
-            <% for(int i=1; i<=10; i++) {%>
-            <div><input type="checkbox" /></div>
-            <div>1</div>
-            <div>개수니</div>
-            <div>gaesoony@gmail.com</div>
-            <div>운영자</div>
-            <div>등급</div>
-            <div>010-1234-5678</div>
-            <div>2022-12-13</div>
-            <div>0</div>
-            <div>0</div>
-            <div>0</div>
-            <div>0</div>
-            <div>삭제</div>
-            <div>
-                <span class="material-symbols-outlined">more_horiz</span>
-            </div>
+                <% for(int i=1; i<=10; i++) {%>
+                    <div><input type="checkbox" /></div>
+                    <div>1</div>
+                    <div>개수니</div>
+                    <div>gaesoony@gmail.com</div>
+                    <div>운영자</div>
+                    <div>등급</div>
+                    <div>010-1234-5678</div>
+                    <div>2022-12-13</div>
+                    <div>0</div>
+                    <div>0</div>
+                    <div>0</div>
+                    <div>0</div>
+                    <div>삭제</div>
+                    <div>
+                        <a href="${pageContext.request.contextPath}/admin/member/manage/detail"> <span class="material-symbols-outlined">more_horiz</span></a>
+                       
+                    </div>
 
-            <%}%>
-          </div>
+                <%}%>
+              </div>
 
-          <div class="btn-area">
-            <input type="button" value="운영자 생성"/>
-          </div>
+              <div class="btn-area">
+                <input type="button" value="운영자 생성" onclick="location.href='${pageContext.request.contextPath}/admin/member/createOperator'"/>
+              </div>
 
-          <div id="paging">
-            <div class="paging-btn">1</div>
-            <div class="paging-btn">2</div>
-            <div class="paging-btn">3</div>
-            <div class="paging-btn">4</div>
-            <div class="paging-btn">5</div>
-            <div class="paging-btn">6</div>
-            <div class="paging-btn">7</div>
-            <div class="paging-btn">8</div>
-            <div class="paging-btn">9</div>
-            <div class="paging-btn">10</div>
-            <div class="paging-btn" id="next-btn">다음</div>
-        </div>
-        
-    
-    
+              <div id="paging">
+                <div class="paging-btn">1</div>
+                <div class="paging-btn">2</div>
+                <div class="paging-btn">3</div>
+                <div class="paging-btn">4</div>
+                <div class="paging-btn">5</div>
+                <div class="paging-btn">6</div>
+                <div class="paging-btn">7</div>
+                <div class="paging-btn">8</div>
+                <div class="paging-btn">9</div>
+                <div class="paging-btn">10</div>
+                <div class="paging-btn" id="next-btn">다음</div>
+              </div>
+            
+            </section>
+      
+      </div>
+    </div>
     <script
       src="https://kit.fontawesome.com/939838bb27.js"
       crossorigin="anonymous"
