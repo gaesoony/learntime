@@ -78,7 +78,7 @@
     border-bottom:5px solid gray;
 }
 .q-title-date{
-    width: 100%;
+    width: 1200px;
     height: 100%;
     display: flex;
 
@@ -94,18 +94,19 @@
 
 }
 .title-q{
-    width: 750px;
+    width: 1200px;
     height: 100%;
     text-align: center;
     line-height: 130px;
-    border-bottom:2px solid lightgray;
+    border-bottom: 3px solid lightgray;
+    
 }
 .date-q{
     width: 290px;
     height: 100%;
     text-align: center;
     line-height: 130px;
-    border-bottom:2px solid lightgray;
+    border-bottom:3px solid lightgray;
 
 }
 .q-content{
@@ -133,7 +134,7 @@
 #categories{
     width: 120px;
     height: 50px;
-    border: none;
+    border: 3px solid lightgray;
     font-size: larger;
     text-align: center;
     

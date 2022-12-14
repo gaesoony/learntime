@@ -1,5 +1,6 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,13 +21,13 @@
     </div>
     <div class="list-section">
         <div class="category-section">
-            <div class="list-categoryBtn"><a href="">전체</a></div>
-            <div class="list-categoryBtn"><a href="">스터디</a></div>
-            <div class="list-categoryBtn"><a href="">공부인증</a></div>
-            <div class="list-categoryBtn"><a href="">Q&A</a></div>
-            <div class="list-categoryBtn"><a href="">멘토링</a></div>
-            <div class="list-categoryBtn"><a href="">커뮤니티</a></div>
-            <div class="list-categoryBtn"><a href="">스킨샵</a></div>
+            <a href=""><div class="list-categoryBtn">전체</div></a>
+            <a href=""><div class="list-categoryBtn">스터디</div></a>
+            <a href=""><div class="list-categoryBtn">공부인증</div></a>
+            <a href=""><div class="list-categoryBtn">Q&A</div></a>
+            <a href=""><div class="list-categoryBtn">멘토링</div></a>
+            <a href=""><div class="list-categoryBtn">커뮤니티</div></a>
+            <a href=""><div class="list-categoryBtn">스킨샵</div></a>
         </div>
         <div class="search-window">
             <div id="title-search">
@@ -36,19 +37,22 @@
                 </select>
             </div>
             <div id="search-box"></div>
-            <div id="searchBtn"><input type="submit" value="검색"></div>
+            <div id="searchBtn"><input class="search" type="submit" value="검색"></div>
         </div>
         <div class="list-all">
-            <div>마크</div>
-            <div>카테고리</div>
-            <div>제목</div>
-            <div>작성일시</div>
+            <c:forEach var="faqList" begin="1" end="10" >
+                <div class="faqList">
+                    <div class="q-mark">마크</div>
+                    <div class="category-faq">카테고리</div>
+                    <div class="title-faq">제목</div>
+                    <div class="date-faq">작성일시</div>
+                </div>
+            </c:forEach>
         </div>
-        <div class="page-btn-section">
+        <div class="page-write-section">
             <div class="page-section"></div>
-            <div class="writeBtn-faq">글쓰기</div>
+            <div class="writeBtn-section"><input type="submit" class="write" name="writeBtn-faq-ad" value="글쓰기"></div>
         </div>
-        
     </div>
 </div>
 

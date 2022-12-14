@@ -14,4 +14,10 @@ public class AdminQuestionController {
 		return "admin/question/qListAd";
 	}
 
+	//신규문의 상세조회(운영자)
+	@GetMapping("qDetailListAdmin")
+	public String qDetailListAdmin() {
+		return "admin/question/qDetailListAdmin";
+	}
+
 }

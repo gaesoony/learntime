@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/app/resources/css/reset.css">
-<link rel="stylesheet" href="/app/resources/css/question/qListAd copy.css">
+<link rel="stylesheet" href="/app/resources/css/faq/faqListAd copy.css">
 </head>
 <body>
     <%@include file="/WEB-INF/views/common/admin-side.jsp"%>
@@ -16,7 +16,7 @@
         <div class="box-for-line-a">
             <div class="half-box-a"></div>
         </div>
-        <div class="title-box">문의</div>
+        <div class="title-box">FAQ</div>
         <div class="box-for-line-b">
             <div class="half-box-b"></div>
         </div>
@@ -28,6 +28,9 @@
         <c:forEach var="faqListAd" begin="1" end="15" >
             <div class="faqListAd">
                 <div><input type="radio" name="faq-ad" id="radioBtn"></div>
+                <div class="mark-ad">
+                    <div class="green-circle">Q</div>
+                </div>
                 <div class="category-faq-ad">[멘토링]</div>
                 <div class="title-faq-ad">멘토링 서비스가 궁금해요</div>
                 <div class="comment-faq-ad">(3)</div>

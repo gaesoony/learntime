@@ -1,0 +1,17 @@
+package com.learntime.app.faq;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@RequestMapping("admin/faq")
+@Controller
+public class FaqAdminController {
+	
+	//관리자페이지 faq 리스트
+	@GetMapping("faqListAd")
+	public String faqListAd() {
+		return "admin/faq/faqListAd";
+	}
+
+}

@@ -111,3 +111,11 @@
     border: 1px solid red;
 
 }
+
+.green-circle{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #5ECC80;
+    color: white;
+}

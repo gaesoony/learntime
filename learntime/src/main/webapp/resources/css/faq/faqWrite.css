@@ -12,12 +12,10 @@
 .banner-section{
     
     height: 180px;
-    background-image: url("/app/resources/img/faq/Group229.png");
-    background-size: contain;
+    background-color: #343B3D;
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-
 
 }
 
