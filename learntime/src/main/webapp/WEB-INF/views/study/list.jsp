@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%>
   <head>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
-    <link rel="stylesheet" href="/app/resources/css/study/list.css?ver=5" />
+    <link rel="stylesheet" href="/app/resources/css/study/list.css?ver=6" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -109,17 +109,50 @@ pageEncoding="UTF-8"%>
               <input type="submit" value="검색" />
             </div>
             <div class="relative">
-              <i class="fa-solid fa-hashtag gray1"></i>
+              <div class="study-search-tag-div">
+                <i class="fa-solid fa-hashtag gray1"></i>
+                <div class="tag-list"></div>
+                <input
+                  class="study-search-tag"
+                  type="text"
+                  placeholder="태그로 검색해보세요!"
+                  onkeyup="if(window.event.keyCode==13){makeTag(event)}"
+                />
+              </div>
               <input
-                class="study-search-tag"
-                type="text"
-                placeholder="태그로 검색해보세요!"
-              />
-              <input type="reset" value="초기화" /><i
-                class="fa-solid fa-rotate-left"
+                type="reset"
+                value="초기화"
+                class="reset-btn"
+                onclick="resetTag()"
+              /><i
+                class="fa-solid fa-rotate-left cursor"
+                onclick="resetTag()"
               ></i>
             </div>
           </section>
+          <script>
+            function makeTag(e) {
+              const value = e.target.value;
+              const str =
+                '<div class="relative tag-div">' +
+                '<input type="button" value="' +
+                value +
+                '" class="tag-btn" /> ' +
+                '<i class="fa-solid fa-xmark"></i>' +
+                "</div>";
+
+              const tagList = document.querySelector(".tag-list");
+              tagList.innerHTML += str;
+
+              e.target.value = "";
+            }
+
+            function resetTag() {
+              console.log("클릭");
+              const tagList = document.querySelector(".tag-list");
+              tagList.textContent = "";
+            }
+          </script>
           <section class="study-tech-area">
             <ul class="tech-category-list flex bold700">
               <li class="tech-category tech-clicked relative">

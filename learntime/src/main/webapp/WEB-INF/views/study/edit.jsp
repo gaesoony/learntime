@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
     <link rel="stylesheet" href="/app/resources/css/variables.css" />
-    <link rel="stylesheet" href="/app/resources/css/study/recruit.css?ver=5" />
+    <link rel="stylesheet" href="/app/resources/css/study/recruit.css?ver=4" />
 
     <link
       href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
@@ -224,31 +224,9 @@ pageEncoding="UTF-8"%>
                         />
                         <label for="project">spring</label>
                       </div>
-
-                      <div class="option option-tech">
-                        <input
-                          type="radio"
-                          class="radio"
-                          id="javascript"
-                          name="tech"
-                        />
-                        <label for="project">javascript</label>
-                      </div>
-
-                      <div class="option option-tech">
-                        <input
-                          type="radio"
-                          class="radio"
-                          id="python"
-                          name="tech"
-                        />
-                        <label for="project">python</label>
-                      </div>
                     </div>
 
-                    <div class="selected selected-tech">
-                      <div class="tech-btn-list">프로젝트 사용 스택</div>
-                    </div>
+                    <div class="selected selected-tech">프로젝트 사용 스택</div>
                   </div>
                 </div>
                 <div class="container1">
@@ -387,8 +365,7 @@ pageEncoding="UTF-8"%>
               const selectedType = document.querySelector(".selected-type");
               const selectedWay = document.querySelector(".selected-way");
               const selectedPeriod = document.querySelector(".selected-period");
-              const selectedTech = document.querySelector(".tech-btn-list");
-              const selectedTech2 = document.querySelector(".selected-tech");
+              const selectedTech = document.querySelector(".selected-tech");
 
               const optionsContainerType = document.querySelector(
                 ".options-container-type"
@@ -421,8 +398,7 @@ pageEncoding="UTF-8"%>
                 optionsContainerPeriod.classList.toggle("active");
               });
 
-              selectedTech2.addEventListener("click", () => {
-                console.log("클릭됨");
+              selectedTech.addEventListener("click", () => {
                 optionsContainerTech.classList.toggle("active");
               });
 
@@ -449,28 +425,10 @@ pageEncoding="UTF-8"%>
 
               optionsListTech.forEach((o) => {
                 o.addEventListener("click", () => {
-                  if (selectedTech.innerHTML.trim() == "프로젝트 사용 스택") {
-                    selectedTech.innerHTML = "";
-                  }
-                  selectedTech.innerHTML +=
-                    "<div class='tech-btn-div' onclick='deleteTech(event)'>" +
-                    "<input onclick='deleteTech2(event)' class='tech-btn' type='button' value='" +
-                    o.querySelector("label").innerHTML +
-                    "'>" +
-                    "<i class='fa-solid fa-xmark' onclick='deleteTech2(event)'></i>" +
-                    "</div>";
+                  selectedTech.innerHTML = o.querySelector("label").innerHTML;
                   optionsContainerTech.classList.remove("active");
                 });
               });
-            </script>
-            <script>
-              function deleteTech(e) {
-                e.target.remove();
-              }
-
-              function deleteTech2(e) {
-                e.target.parentNode.remove();
-              }
             </script>
             <div class="recruit-question-area">
               <div class="recruit-question-area-top flex">
