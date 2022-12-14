@@ -15,20 +15,6 @@
 * {
     font-family: "Noto Sans KR", sans-serif;
   }
-  
-  /* 스터디/프로젝트 배너 */
-  /* .study-banner {
-    width: 100%;
-    height: 200px;
-    background-color: #333b3d;
-    color: white;
-    padding: 25px 0px;
-    box-sizing: border-box;
-  }
-  
-  .study-banner > div {
-    width: 1200px;
-  } */
 
 #banner-text-box{
     width: 1200px;
@@ -106,6 +92,7 @@
 .mentoring:hover{
     background-color: #fdfffd;
     cursor: pointer;
+    box-shadow: 2px 7px 7px rgb(238, 238, 238);
     transform: translateY(-8px);
 
     transition: all 0.3s ease-out;
@@ -405,11 +392,20 @@ input[type='checkbox'] + .stylish-checkbox {
 }
 
 #application-btn{
-    width: 90px;
-    height: 40px;
-    border-radius: 10px;
     background-color: #58c079;
     color: white;
+    
+    position: relative;
+    left: 480px;
+}
+
+.modal-btn{
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+
 }
 
 .mentoring-modal-title{
@@ -543,12 +539,97 @@ p{
     font-size: 14px;
 }
 
+#time-select-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
 
+#time-select-box>select{
+    width: 120px;
+}
 
+.sm-box{
+    padding: 5px 15px;
+}
 
+.sm-box>input[type="text"]{
+    outline: none;
+    border: none;
+    font-size: 14px;
+    width: 100%;
+}
 
+.modal-btn-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.pre-btn{
+    background-color: #fdfffd;
+    border: #aeaeae 1px solid;
+    color: #aeaeae;
+    margin-left: 350px;
+}
+.next-btn{
+    background-color: #58c079;
+    border: #58c079 1px solid;
+    color: white;
+    width: 120px;
+}
 
+/* 세번째 모달 */
+#modal-seletedmentor{
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    margin-top: 20px;
+    padding-bottom: 150px;
 
+    border-bottom: 2px solid #58c079;
 
+}
+#modal-seletedmentor>div{
+    text-align: left;
+    line-height: 35px;
+    font-size: 14px;
+}
 
+.grid-title{
+    font-weight: 600;
+}
+
+#pay-info-box{
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#pay-agree-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+#pay-modal{
+    position: relative;
+    top: -80px;
+    text-align: center;
+    height: 350px;
+    width: 300px;
+    margin: auto;
+    background: white;
+    border-radius: 8px;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+    overflow-y: auto;
+}
