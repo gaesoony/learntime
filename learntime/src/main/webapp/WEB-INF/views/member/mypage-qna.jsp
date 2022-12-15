@@ -146,8 +146,8 @@
     .reply-list{
         border: 1px solid #D9D9D9;
         width: 1000px;
-        height: 550px;
-        margin-top: 770px;
+        height: 530px;
+        margin-top: 780px;
         margin-bottom: 20px;
     }
     .reply-title{
