@@ -44,5 +44,23 @@ public class MentorController {
 		
 	}
 	
+	
+	//임시
+	
+	@GetMapping("/mymentoring/temp3")
+	public String myMentoringT3() {
+		return "/member/mypage-mentoring3";
+	}
+	@GetMapping("/mymentoring/temp2")
+	public String myMentoringT2() {
+		return "/member/mypage-mentoring2";
+	}
+	@GetMapping("/mymentoring/temp")
+	public String myMentoringT1() {
+		return "/member/mypage-mentoring";
+	}
+	
+	
+	
 }
 

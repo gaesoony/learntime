@@ -273,7 +273,7 @@
 		<div id="banner-text-box">
             <span>멘토링</span>
             <span>지식을 나눠보세요</span>
-            <span><a href="/app/mentor/regist">멘토 지원하기 ></a></span>
+            <span><a href="/app/mentor/mymentoring/temp2">멘토 지원하기 ></a></span>
         </div>
 	</div>
     <div id="main-wrap">
