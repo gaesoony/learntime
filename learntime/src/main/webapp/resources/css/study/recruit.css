@@ -561,16 +561,19 @@ html .ui-button.ui-state-disabled:active {
 /* 기술스택 여러개 선택하는 부분 */
 
 .selected-tech {
+  width: 100%;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   overflow-y: scroll;
 }
 
 .tech-btn-list {
   width: 300px;
-  height: 100px;
+
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+
   overflow-y: scroll;
 }
 
@@ -584,6 +587,7 @@ html .ui-button.ui-state-disabled:active {
 
 .tech-btn-div {
   position: relative;
+  margin-bottom: 5px;
 }
 
 .tech-btn {
