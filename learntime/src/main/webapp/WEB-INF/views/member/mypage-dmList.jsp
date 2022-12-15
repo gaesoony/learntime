@@ -149,21 +149,7 @@
                 </div>
           </div>
 
-          <div class="dm">
-            <div class="send-img"></div>
-            <div class="send-nick">닉네임</div>
-            <div class="send-msg">팀 프로젝트 같이 해요~</div>
-            <div class="send-time">1분전</div>
-            <div class="alarm-no">
-                <span class="material-symbols-outlined">
-                    notifications_off
-                </span>
-            </div>
-            <div class="dm-delete">
-                <span class="material-symbols-outlined">
-                    delete
-                </span>
-            </div>
+          ㅈ
       </div>
 
       <div class="dm">
