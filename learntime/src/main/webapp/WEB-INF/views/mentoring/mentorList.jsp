@@ -177,7 +177,7 @@
                 <span class="modal-sub-title">연락처</span>
             </div>
             <div class="modal-info-box sm-box">
-                <input type="text" placeholder="01000000000">
+                <input type="text" placeholder="01000000000" id="phone-input">
             </div>
             <div class="mentoring-modal-title">
                 <span class="modal-sub-title">이메일</span>
@@ -256,13 +256,20 @@
     <!-- 네번째 모달 -->
     <div id="fourth-modal" class="background">
         <div id="pay-modal">
-            <div>신용카드</div>
-            <div>카카오페이</div>
+            <div id="pay-modal-title">결제수단 선택</div>
+            <div class="pay-btn">
+                <img src="/app/resources/img/payment_icon_yellow_small.png" alt="">
+                <span>카카오페이</span>
+            </div>
+            <div class="pay-btn">
+                <span class="material-symbols-outlined payment-icon">credit_card</span>
+                <span>신용카드</span>
+            </div>
         </div> 
     </div> 
 
     
-	<div id="board-banner">
+	<div id="board-banner"> 
 		<div id="banner-text-box">
             <span>멘토링</span>
             <span>지식을 나눠보세요</span>
@@ -568,7 +575,7 @@
         $('.close-btn').on('click',function(){
             $('#first-modal').removeClass('show');
             $('#second-modal').removeClass('show');
-            $('#first-modal').removeClass('show');
+            $('#third-modal').removeClass('show');
         })
         //#application-btn 클릭시 #first-modal 제거, #second-modal 추가 하고 이벤트 버블링 막아주기
         $('#application-btn').on('click',function(e){
@@ -607,22 +614,22 @@
         });
 
         // background 클릭시 모달창 닫고 foreground 클릭시 모달창 닫지 않기
-        $('#first-modal').on('click',function(){
+        $('#first-modal').on('mousedown',function(){
             $('#first-modal').removeClass('show');
         });
-        $('#second-modal').on('click',function(){
+        $('#second-modal').on('mousedown',function(){
             $('#second-modal').removeClass('show');
         });
-        $('#third-modal').on('click',function(){
+        $('#third-modal').on('mousedown',function(){
             $('#third-modal').removeClass('show');
         });
-        $('#fourth-modal').on('click',function(){
+        $('#fourth-modal').on('mousedown',function(){
             $('#fourth-modal').removeClass('show');
         });
-        $('.foreground').on('click',function(e){
+        $('.foreground').on('mousedown',function(e){
             e.stopPropagation();
         });
-        $('#pay-modal').on('click',function(e){
+        $('#pay-modal').on('mousedown',function(e){
             e.stopPropagation();
         });
 
@@ -636,7 +643,7 @@
                 $('#time-select-result').text(time);
             });
         });
-            
+
 
     </script>
 
