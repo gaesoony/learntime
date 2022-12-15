@@ -13,5 +13,11 @@ public class FaqAdminController {
 	public String faqListAd() {
 		return "admin/faq/faqListAd";
 	}
+	
+	//관리자페이지 faq 상세조회
+	@GetMapping("faqDetailListAdmin")
+	public String faqDetailListAdmin() {
+		return "admin/faq/faqDetailListAdmin";
+	}
 
 }

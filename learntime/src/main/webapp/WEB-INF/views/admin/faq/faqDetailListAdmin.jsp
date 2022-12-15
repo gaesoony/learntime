@@ -7,7 +7,7 @@
 
 <title>Insert title here</title>
 <link rel="stylesheet" href="/app/resources/css/reset.css">
-<link rel="stylesheet" href="/app/resources/css/question/qDetailListAdmin.css">
+<link rel="stylesheet" href="/app/resources/css/faq/faqDetailListAdmin.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body>
@@ -19,7 +19,7 @@
                 <div class="line1-m">
                     <div class="line-a-m"></div>
                 </div>
-                <div class="name-q-m">문의 </div>
+                <div class="name-q-m">FAQ </div>
                 <div class="line2-m">
                     <div class="line-b-m"></div>
                 </div>
@@ -111,25 +111,26 @@
 </div>
 
 
-   <script>
-         $(document).ready(function(){
+  <script>
+
+        $(document).ready(function(){
             $('.hide-reply').click(function(){
                 $('.comment-b-for-a').toggle('slow');
             });
         });
 
-   </script>
+  </script>
+    
 
 
 
 
-
-       
+        
 
 
 
     
-    
+
 
 </body>
 </html>

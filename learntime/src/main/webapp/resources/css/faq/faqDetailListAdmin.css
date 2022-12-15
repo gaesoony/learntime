@@ -154,8 +154,9 @@
 }
 /* 내용 */
 textarea{
-    width: 1200px;
     height: 350px;
+    width: 1200px;
+    
 }
 
 /* 댓글 */
