@@ -87,20 +87,11 @@
 
 
     <script>
-        $(document).ready(function() {
-            var input = $('#phone-input');
-            var placeholder = input.attr('placeholder');
-            input.blur(function() {
-                input.attr('placeholder', placeholder);
-            });
-            input.keyup(function() {
-                var inputVal = input.val();
-                var placeholderVal = placeholder.substr(0, inputVal.length);
-                if (inputVal == placeholderVal) {
-                    input.attr('placeholder', placeholderVal);
-                }
-            });
-        }) 
+        $('#phone-input').on('keyup', function() {
+            var input = $(this).val(); // Get input value
+            var placeholder = $(this).attr('placeholder'); // Get placeholder text
+            $(this).attr('placeholder', placeholder.substring(input.length)); // Update placeholder
+        });
     </script>
 
 

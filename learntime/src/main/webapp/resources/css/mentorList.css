@@ -620,7 +620,7 @@ p{
     position: relative;
     top: -80px;
     text-align: center;
-    height: 350px;
+    height: 250px;
     width: 300px;
     margin: auto;
     background: white;
@@ -632,4 +632,39 @@ p{
 
     overflow: hidden;
     overflow-y: auto;
+}
+
+#pay-modal-title{
+    font-size: 20px;
+    font-weight: 600;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #aeaeae;
+    text-align: left;
+}
+
+.pay-btn{
+    border: 2px solid #aeaeae;
+    border-radius: 5px;
+    height: 35px;
+    margin-top: 15px;
+    font-size: 18px;
+    line-height: 31px;
+    color: #aeaeae;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.pay-btn>img{
+    height: 25px;
+}
+
+.payment-icon{
+    font-size: 25px;
+    margin: 0 17.5px;
+}
+
+.pay-btn>span:last-child{
+    width: 200px;
 }

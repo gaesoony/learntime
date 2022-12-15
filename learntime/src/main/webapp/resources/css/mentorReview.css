@@ -259,8 +259,3 @@ input[type='checkbox'] + .stylish-checkbox {
     'opsz' 48;
 }
 
-.modal-review-info{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}

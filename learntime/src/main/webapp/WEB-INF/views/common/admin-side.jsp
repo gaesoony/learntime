@@ -44,10 +44,7 @@ pageEncoding="UTF-8"%>
       <li>
         <span class="material-symbols-rounded">grid_view</span>
         <span
-          ><a href="${pageContext.request.contextPath}/admin/dashboard"
-            >대시 보드</a
-          ></span
-        >
+          ><a href="${pageContext.request.contextPath}/admin/dashboard">대시 보드</a></span>
         <span class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
       </li>
     </ul>
@@ -70,14 +67,10 @@ pageEncoding="UTF-8"%>
       </li>
       <ul class="small_menu">
         <li>
-          <a href="${pageContext.request.contextPath}/admin/study/list"
-            >스터디/프로젝트 목록</a
-          >
+          <a href="${pageContext.request.contextPath}/admin/study/list">스터디/프로젝트 목록</a>
         </li>
         <li>
-          <a href="${pageContext.request.contextPath}/admin/study/setting"
-            >환경 설정</a
-          >
+          <a href="${pageContext.request.contextPath}/admin/study/setting">환경 설정</a>
         </li>
       </ul>
     </ul>
@@ -197,19 +190,9 @@ pageEncoding="UTF-8"%>
     <ul class="big_menu">
       <li>
         <span class="material-symbols-rounded">smart_button</span>
-        <span
-          ><a href="${pageContext.request.contextPath}/admin/banner/list"
-            >배너 관리</a
-          ></span
-        >
+        <span><a href="${pageContext.request.contextPath}/admin/banner/list">배너 관리</a></span>
         <span class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
       </li>
-      <!-- <ul class="small_menu">
-					<li><a href="#">소메뉴1-1</a></li>
-					<li><a href="#">소메뉴1-2</a></li>
-					<li><a href="#">소메뉴1-3</a></li>
-					<li><a href="#">소메뉴1-4</a></li>
-				</ul> -->
     </ul>
     <ul class="big_menu">
       <li>
@@ -221,12 +204,6 @@ pageEncoding="UTF-8"%>
         >
         <span class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
       </li>
-      <!-- <ul class="small_menu">
-					<li><a href="#">소메뉴1-1</a></li>
-					<li><a href="#">소메뉴1-2</a></li>
-					<li><a href="#">소메뉴1-3</a></li>
-					<li><a href="#">소메뉴1-4</a></li>
-				</ul> -->
     </ul>
     <ul class="big_menu">
       <li>
@@ -274,20 +251,7 @@ pageEncoding="UTF-8"%>
   });
 </script>
 
-<!-- 높이 맞춰주기
-	<script defer>
-		$(function(){
-			$('.sidebar').css('height', $('#content-wrap').height());
-		});
-
-		console.log($('#content-wrap').height());
-
-		console.log($('.sidebar').height());
-
-	</script> -->
-
 <!-- 사이드 스크롤바 -->
-
 <script>
   window.addEventListener("resize", function () {
     // console.log(window.innerHeight);
