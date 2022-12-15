@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/app/resources/css/adminCommunityModify.css">
+<link rel="stylesheet" href="/app/resources/css/community/adminCommunityModify.css">
 <link rel="stylesheet" href="/app/resources/css/summernote/summernote-lite.css">
 <title>Insert title here</title>
 </head>

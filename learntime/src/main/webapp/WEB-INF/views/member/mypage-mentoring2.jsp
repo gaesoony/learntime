@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%>
     <meta charset="UTF-8" />
     <title>LEARN TIME | MY PAGE</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css"/>
-    <link rel="stylesheet" href="/app/resources/css/mentorRegist.css">
+    <link rel="stylesheet" href="/app/resources/css/mentoring/mentorRegist.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
       #mypage-box {

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/app/resources/css/adminCommunity.css">
+<link rel="stylesheet" href="/app/resources/css/community/adminCommunity.css">
 <title>Insert title here</title>
 </head>
 <body>

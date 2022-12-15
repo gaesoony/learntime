@@ -13,6 +13,11 @@ public class AdminMentorController {
 		return "/admin/mentor/mentoring";
 	}
 	
+	@GetMapping("/mentoring/detail")
+	public String mentoringDetail() {
+		return "/admin/mentor/mentoringDetail";
+	}
+	
 	@GetMapping("/review")
 	public String review() {
 		return "/admin/mentor/review";

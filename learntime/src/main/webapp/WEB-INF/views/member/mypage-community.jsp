@@ -8,7 +8,7 @@ pageEncoding="UTF-8"%>
     <link
       rel="stylesheet"
       href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css"/>
-    <link rel="stylesheet" href="/app/resources/css/myCommunity.css">
+    <link rel="stylesheet" href="/app/resources/css/community/myCommunity.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <style>
