@@ -13,18 +13,4 @@ public class AdminController {
 		return "/admin/adminTemplate";
 	}
 	
-	@GetMapping("/community/board")
-	public String adminCommunity() {
-		return "/community/adminCommunity";
-	}
-	
-	@GetMapping("/community/board/detail")
-	public String adminCommunityDetail() {
-		return "/community/adminCommunityDetail";
-	}
-	
-	@GetMapping("/community/board/modify")
-	public String adminCommunityModify() {
-		return "/community/adminCommunityModify";
-	}
 }

@@ -33,18 +33,10 @@ public class BoardController {
 		return "/community/summernote";
 	}
 	
-	
 	//마이페이지 임시
 	@GetMapping("mypage")
 	public String myCommunity() {
 		return "/member/mypage-community";
 	}
-	
-	
-//	관리자
-//	@GetMapping("admin")
-//	public String admin() {
-//		return "community/adminCommunity";
-//	}
 
 }

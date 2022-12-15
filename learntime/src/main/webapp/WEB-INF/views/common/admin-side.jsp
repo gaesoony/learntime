@@ -105,10 +105,8 @@ pageEncoding="UTF-8"%>
         <span class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
       </li>
       <ul class="small_menu">
-        <li><a href="#">소메뉴1-1</a></li>
-        <li><a href="#">소메뉴1-2</a></li>
-        <li><a href="#">소메뉴1-3</a></li>
-        <li><a href="#">소메뉴1-4</a></li>
+        <li><a href="/app/admin/mentor/mentoring">멘토링</a></li>
+        <li><a href="/app/admin/mentor/review">멘토링 후기</a></li>
       </ul>
     </ul>
     <ul class="big_menu">
@@ -118,7 +116,7 @@ pageEncoding="UTF-8"%>
         <span class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
       </li>
       <ul class="small_menu">
-        <li><a href="/app/admin/community/board">게시물 관리</a></li>
+        <li><a href="/app/admin/community/list">게시물 관리</a></li>
         <li><a href="#">댓글 관리</a></li>
       </ul>
     </ul>
@@ -213,26 +211,16 @@ pageEncoding="UTF-8"%>
       </li>
       <ul class="small_menu">
         <li>
-          <a href="${pageContext.request.contextPath}/admin/statistics/study"
-            >스터디/프로젝트</a
-          >
+          <a href="${pageContext.request.contextPath}/admin/statistics/study">스터디/프로젝트</a>
         </li>
         <li>
-          <a
-            href="${pageContext.request.contextPath}/admin/statistics/mentoring"
-            >멘토링</a
-          >
+          <a href="${pageContext.request.contextPath}/admin/statistics/mentoring">멘토링</a>
         </li>
         <li>
-          <a href="${pageContext.request.contextPath}/admin/statistics/learning"
-            >지식인</a
-          >
+          <a href="${pageContext.request.contextPath}/admin/statistics/learning">지식인</a >
         </li>
         <li>
-          <a
-            href="${pageContext.request.contextPath}/admin/statistics/makegrass"
-            >공부인증</a
-          >
+          <a href="${pageContext.request.contextPath}/admin/statistics/makegrass">공부인증</a>
         </li>
       </ul>
     </ul>
