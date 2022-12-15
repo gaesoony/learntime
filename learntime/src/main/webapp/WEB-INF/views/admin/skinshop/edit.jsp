@@ -4,7 +4,7 @@ pageEncoding="UTF-8"%>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>LEARN TIME | 관리자 페이지 - 회원 정보</title>
+    <title>LEARN TIME | 관리자 페이지 - 스킨 추가</title>
 
     <!-- 구글아이콘 -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -29,11 +29,12 @@ pageEncoding="UTF-8"%>
 
     .wrapper {
       padding: 40px 50px;
+     
     }
 
     .content-section{
         width: 445px;
-        height:835px;
+        height:1010px;
         background-color: white;
         border: 1px solid rgb(221, 221, 221);
 
@@ -45,7 +46,7 @@ pageEncoding="UTF-8"%>
     #join-area{
         padding: 50px;
         display: grid;
-        grid-template-rows: repeat(6,1fr);
+        grid-template-rows: repeat(4,1fr);
         align-items: center;
         justify-content: center;
 
@@ -122,6 +123,29 @@ pageEncoding="UTF-8"%>
         margin-top: 20px;
     }
 
+    label[for="imgPath"] span{
+        color: #FFFFFF;
+        font-size: 100px;
+    }
+
+    .img-area{
+        width: 320px;
+        height: 320px;
+        background: #D9D9D9;
+        
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+    input[type="file"]{
+        display: none;
+    }
+
+
+
     #join-area .delete{
         background-color: #FFFFFF;
         border:1px solid #d90000;
@@ -140,58 +164,54 @@ pageEncoding="UTF-8"%>
   <body>
     <%@include file="/WEB-INF/views/common/admin-side.jsp"%>
     <div id="content-wrap">
-      <div id="admin-category-title" class="shadow-light">회원 정보</div>
+      <div id="admin-category-title" class="shadow-light">스킨 추가</div>
       <div class="wrapper">
           
         <section class="content-section">
           
-            <form action="" method="POST">
+            <form action="" method="">
                 <div id="join-area">
     
-                    <div id="join-title">
-                        <div class="title">회원 정보</div>
-                    </div>
-    
-                    <div id="id">
-                        <div class="text">이메일</div>
-                        <input type="text" name="id">
+                    <div id="name">
+                        <div class="text">스킨 이름</div>
+                        <input type="text" name="name">
                     </div>
                     
-    
-                    <div id="pwd">
-                        <div class="text">비밀번호</div>
-                        <input type="password" name="pwd" autocomplete="off">
-                        <span class="material-symbols-outlined">visibility</span>
-                        <div id="pwdReult"></div>
+                    <div id="info">
+                        <div class="text">스킨 정보</div>
+                        <input type="text" name="info">
                     </div>
                     
                     
-                    <div id="nick">
-                        <div class="text">닉네임</div>
-                        <input type="text" name="nick">
-                        <div id="nickReult"></div>
-                    </div>
                     
-                    
-                    <div id="phone">
-                        <div class="text">전화번호</div>
-                        <input type="text" name="phone" placeholder="- 제외한 번호만" >
+                    <div id="">
+                        <div class="text">스킨 스타일</div>
+                        <input type="text" name="">
                     </div>
 
-                    <div id="stack">
-                        <div class="text">관심 기술 스택</div>
-                        <select name="techStackNo" required style="color: #535353">
-                        <option value="" disabled selected >관심 기술 스택을 선택해 주세요.</option>
-                        <option value="1">JAVA</option>
-                        </select>
-                        <div id="stackResult"></div>
+                    <div id="">
+                        <div class="text">스킨 가격</div>
+                        <input type="text" name="">
+                    </div>
+                    
+                    
+                    <div id="">
+                        <div class="text">스킨 이미지</div>
+                        <div class="img-area">
+                            <label for="imgPath">
+                                <span class="material-symbols-outlined">
+                                    add_photo_alternate
+                                    </span>
+                            </label>
+                        </div>
+                        
+                        <input type="file" name="imgPath" id="imgPath">
                     </div>
                     
                     <button>수정하기</button>
-                    <button class="delete">삭제하기</button>
-                    <button id="before"onclick="location.href='${pageContext.request.contextPath}/admin/member/manage'">이전으로</button>
+                    <button class="delete">비활성화</button>
+                    <button  type="button" id="before"onclick="location.href='${pageContext.request.contextPath}/admin/skinshop/list'">이전으로</button>
     
-                  
                 </div>
             </form>
          
@@ -204,26 +224,5 @@ pageEncoding="UTF-8"%>
     ></script>
 
 
-    <script>
-		//비밀번호 보기,숨기기 
-		$(document).ready(function(){
-			$('#pwd div+input+span').on('click',function(){
-				$('input').toggleClass('active');
-				if($('input').hasClass('active')){
-					$(this).attr('class',"material-symbols-outlined")
-					.prev('input').attr('type',"text");
-				}else{
-					$(this).attr('class',"material-symbols-outlined")
-					.prev('input').attr('type','password');
-				}
-			});
-		});
-		
-	   
-	    $("form").on("submit", function (e) {
-	    	// 유효성 검사 추가하기
-	          
-	         });
-	</script>
   </body>
 </html>
