@@ -49,9 +49,9 @@
         <div class="list-question">
             <c:forEach var="questionList" begin="1" end="10" >
                 <div class="questionList">
-                    <div class="pick-cate">카테고리</div>
-                    <div class="pick-title">제목</div>
-                    <div class="pick-date">작성일자</div>
+                    <div class="pick-cate">[스터디]</div>
+                    <div class="pick-title">어떻게 이용하면 되나요?</div>
+                    <div class="pick-date">2022.12.16</div>
                 </div>
             </c:forEach>
         </div>

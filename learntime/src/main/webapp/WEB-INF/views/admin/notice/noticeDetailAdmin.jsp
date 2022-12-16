@@ -11,12 +11,6 @@
 <body>
 <%@ include file = "/WEB-INF/views/common/header.jsp" %>
 <div class="list-main">
-    <div class="banner-section">
-        <div class="banner">
-            <div id="banner-title1"><span>공지사항</span></div>
-            <div id="banner-title2"><span>런타임의 새로운 소식들!</span></div>
-        </div>
-    </div>
     <div class="notice-detail-list">
         <div class="notice-sign">
             <div class="line1">
@@ -41,7 +35,13 @@
                 </div>
             </div>
         </div>
-        <div class="notice-content"></div>
+        <div class="notice-content">
+            <div class="content-area"></div>
+            <div class="btn-area">
+                <div class="open"><input type="button" value="공개" class="open" name="open"></div>
+                <div class="close"><input type="button" value="삭제" class="close" name="close"></div>
+            </div>
+        </div>
     </div>
     <div class="notice-comments">
         <div class="reply-section">

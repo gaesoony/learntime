@@ -68,8 +68,7 @@
     width: 114px;
     height: 50px;
     border-radius: 1rem;
-    border: 2px solid lightgray;
-    box-shadow: 2px lightgray;
+    border: 3px solid lightgray;
     background-color: white;
     color:#5ECC80;
     font-size: large;
@@ -98,6 +97,7 @@
     margin: 0 auto;
     width: 1200px;
     height: 500px;
+    border-top: 2px solid lightgray;;
    
     
 
@@ -107,7 +107,7 @@
     height: 45px;
     display: grid;
     grid-template-columns: 1fr 2fr 6fr 3fr;
-    grid-row: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
    
    
 
@@ -117,23 +117,40 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 30px;
+    height: 30px;
+   
+
+}
+.green-circle2{
+    width: 30px;
+    height: 30px;
+    background-color: #5ECC80;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+   
 
 }
 .category-faq{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    font-weight: 600;
 }
 .title-faq{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    font-weight: 600;
 
 }
 .date-faq{
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: 600;
 
 }
 .page-section{

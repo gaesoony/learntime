@@ -8,41 +8,12 @@
     flex-direction: column;
     
 }
-/* 배너 */
-.banner-section{
-    
-    height: 180px;
-    background-color: #343B3D;
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
 
-
-
-}
-
-.banner{
-    margin-right: 100px;
-}
-
-#banner-title1{
-    color: white;
-    font-size: xx-large;
-    font-weight: 900;
-    text-align: right;
-    margin-bottom:20px;
-}
-
-#banner-title2{
-    color: white;
-    font-size: x-large;
-    font-weight: 900;
-}
 .notice-detail-list{
   
     height:750px;
     display: grid;
-    grid-template-rows:100px 250px 350px 600px;
+    grid-template-rows:100px 250px 450px 600px;
 }
 .notice-sign{
     width: 100%;
@@ -94,8 +65,12 @@
     display: flex;
     align-items: flex-end;
     margin-bottom: 30px;
+    color: gray;
 
 
+}
+.enroll-date-a{
+    color: gray;
 }
 .info-etc{
     width: 100%;
@@ -109,6 +84,7 @@
 }
 .reply-no{
     margin-left: 20px;
+    margin-top: 5px;
 }
 .title-info{
     width: 100%;
@@ -125,16 +101,40 @@
 .cate-notice-a{
     width: 10%;
     font-size: large;
-    font-weight:600;
+    font-weight: 600;
 
 }
 .title-info{
     font-size: large;
-    font-weight:600;
+    font-weight: 600;
 }
 .notice-content{
+    width:1200px;
+    height: 450px;
+    display: flex;
+}
+
+.gathering-divs-c{
     width:100%;
+    height: 450px;
+    border: 1px solid red;
+
+}
+.content-area{
+    width: 1200px;
     height: 350px;
+    border: 1px solid red;
+    position: relative;
+    left: 500px;
+
+
+}
+.btn-area{
+    width: 1200px;
+    height: 100px;
+    border: 1px solid red;
+    
+
 }
 
 

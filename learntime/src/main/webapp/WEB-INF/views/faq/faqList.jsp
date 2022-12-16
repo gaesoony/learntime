@@ -42,10 +42,12 @@
         <div class="list-all">
             <c:forEach var="faqList" begin="1" end="10" >
                 <div class="faqList">
-                    <div class="q-mark">마크</div>
-                    <div class="category-faq">카테고리</div>
-                    <div class="title-faq">제목</div>
-                    <div class="date-faq">작성일시</div>
+                    <div class="q-mark">
+                        <div class="green-circle2">Q</div>
+                    </div>
+                    <div class="category-faq">[공부인증]</div>
+                    <div class="title-faq">공부인증 어떻게 하나요?</div>
+                    <div class="date-faq">2022.12.16</div>
                 </div>
             </c:forEach>
         </div>
