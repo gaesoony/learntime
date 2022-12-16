@@ -1,0 +1,116 @@
+#content-wrap{
+    background-color: #efefef;
+}
+
+#admin-category-title{
+    padding: 0 20px;
+    color: black;
+    background-color: white;
+    box-shadow: 0px 2px 2px #c5c5c5;
+
+    height: 55px;
+    line-height: 55px;
+    font-size: 18px;
+}
+
+#content-main-wrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 1580px;
+    min-height: 1000px;
+
+    padding: 20px;
+}
+
+#main-side{
+    display: inline-block;
+    width: 220px;
+    height: auto;
+}
+
+/* 컨텐츠 레이아웃 */
+
+#mentor-info-box{
+    width: 520px;
+    height: 200px;
+    padding: 15px;
+}
+
+#mentee-info-box{
+    margin-top: 20px;
+    width: 520px;
+    height: 200px;
+    padding: 15px;
+}
+
+#member-info-box{
+    margin-top: 20px;
+    width: 520px;
+    height: 200px;
+    padding: 15px;
+}
+
+#mentoring-info-box{
+    width: 950px;
+    min-height: 300px;
+    padding: 15px;
+}
+
+#btn-box{
+    width: 980px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+#main-content{
+    display: inline-block;
+    flex-direction: column;
+    margin-left: 20px;
+
+    width: 1010px;
+    height: 500px;
+}
+
+.shadow-light{
+    background-color: white;
+    box-shadow: 0 2px 2px #c5c5c5;
+}
+
+#search-box{
+    width: 1280px;
+    height: 30px;
+}
+
+
+
+.txt-sm{
+    font-size: 10px;
+    color: #888888;
+}
+
+.hidden{
+    display: none;
+}
+
+.padding-20{
+    padding: 20px;
+}
+
+.btn{
+    height: 25px;
+    width: 90px;
+    margin-left: 10px;
+    color: white;
+    background-color: #888888;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 25px;
+}
+
+
+

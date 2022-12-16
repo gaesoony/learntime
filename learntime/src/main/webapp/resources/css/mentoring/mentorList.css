@@ -658,12 +658,9 @@ p{
 }
 
 .pay-btn:hover{
-    background-color: #f5fff5;
-    border: 2px solid #e4ffe4;
+    background-color: #d7d7d7;
     color: rgb(5, 30, 5);
     cursor: pointer;
-
-    box-shadow: 0 2px 2px #e4ffe4;
     
 }
 

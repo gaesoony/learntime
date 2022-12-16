@@ -55,8 +55,8 @@ pageEncoding="UTF-8"%>
         <span class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
       </li>
       <ul class="small_menu">
-        <li><a href="#">회원 목록</a></li>
-        <li><a href="#">회원 등급</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/member/manage">회원 목록</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/member/grade">회원 등급</a></li>
       </ul>
     </ul>
     <ul class="big_menu">
@@ -81,8 +81,8 @@ pageEncoding="UTF-8"%>
         <span class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
       </li>
       <ul class="small_menu">
-        <li><a href="#">소메뉴2-1</a></li>
-        <li><a href="#">소메뉴2-2</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/qna/list">러닝 목록</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/qna/detail">러닝 세부사항</a></li>
       </ul>
     </ul>
     <ul class="big_menu">
@@ -92,10 +92,8 @@ pageEncoding="UTF-8"%>
         <span class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
       </li>
       <ul class="small_menu">
-        <li><a href="#">소메뉴1-1</a></li>
-        <li><a href="#">소메뉴1-2</a></li>
-        <li><a href="#">소메뉴1-3</a></li>
-        <li><a href="#">소메뉴1-4</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/makegrass/list">잔디심기 목록</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/makegrass/detail">잔디심기 세부사항</a></li>
       </ul>
     </ul>
     <ul class="big_menu">
@@ -105,8 +103,8 @@ pageEncoding="UTF-8"%>
         <span class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
       </li>
       <ul class="small_menu">
-        <li><a href="/app/admin/mentor/mentoring">멘토링</a></li>
-        <li><a href="/app/admin/mentor/review">멘토링 후기</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/mentor/mentoring">멘토링 목록</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/mentor/review">멘토링 후기</a></li>
       </ul>
     </ul>
     <ul class="big_menu">
@@ -116,74 +114,44 @@ pageEncoding="UTF-8"%>
         <span class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
       </li>
       <ul class="small_menu">
-        <li><a href="/app/admin/community/list">게시물 관리</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/community/list">게시물 관리</a></li>
         <li><a href="#">댓글 관리</a></li>
       </ul>
     </ul>
     <ul class="big_menu">
       <li>
         <span class="material-symbols-rounded">notifications</span>
-        <span>공지사항 관리</span>
+        <span><a href="${pageContext.request.contextPath}/admin/notice/noticeListAdmin">공지사항 관리</a></span>
         <span class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
       </li>
-      <ul class="small_menu">
-        <li><a href="#">소메뉴1-1</a></li>
-        <li><a href="#">소메뉴1-2</a></li>
-        <li><a href="#">소메뉴1-3</a></li>
-        <li><a href="#">소메뉴1-4</a></li>
-      </ul>
     </ul>
     <ul class="big_menu">
       <li>
         <span class="material-symbols-rounded">quiz</span>
-        <span>FAQ 관리</span>
+        <span><a href="${pageContext.request.contextPath}/admin/faq/faqListAd">FAQ 관리</a></span>
         <span class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
       </li>
-      <ul class="small_menu">
-        <li><a href="#">소메뉴1-1</a></li>
-        <li><a href="#">소메뉴1-2</a></li>
-        <li><a href="#">소메뉴1-3</a></li>
-        <li><a href="#">소메뉴1-4</a></li>
-      </ul>
     </ul>
     <ul class="big_menu">
       <li>
         <span class="material-symbols-rounded">contact_support</span>
-        <span>신규 문의 관리</span>
+        <span><a href="${pageContext.request.contextPath}/admin/question/qListAd">문의 게시판 관리</a></span>
         <span class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
       </li>
-      <ul class="small_menu">
-        <li><a href="#">소메뉴1-1</a></li>
-        <li><a href="#">소메뉴1-2</a></li>
-        <li><a href="#">소메뉴1-3</a></li>
-        <li><a href="#">소메뉴1-4</a></li>
-      </ul>
     </ul>
     <ul class="big_menu">
       <li>
         <span class="material-symbols-rounded">storefront</span>
-        <span>스킨샵 관리</span>
+        <span><a href="${pageContext.request.contextPath}/admin/skinshop/list">스킨샵 관리</a></span>
         <span class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
       </li>
-      <ul class="small_menu">
-        <li><a href="#">소메뉴1-1</a></li>
-        <li><a href="#">소메뉴1-2</a></li>
-        <li><a href="#">소메뉴1-3</a></li>
-        <li><a href="#">소메뉴1-4</a></li>
-      </ul>
     </ul>
     <ul class="big_menu">
       <li>
         <span class="material-symbols-rounded">local_police</span>
-        <span>뱃지 관리</span>
+        <span><a href="${pageContext.request.contextPath}/admin/badge/list">뱃지 관리</a></span>
         <span class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
       </li>
-      <ul class="small_menu">
-        <li><a href="#">소메뉴1-1</a></li>
-        <li><a href="#">소메뉴1-2</a></li>
-        <li><a href="#">소메뉴1-3</a></li>
-        <li><a href="#">소메뉴1-4</a></li>
-      </ul>
     </ul>
     <ul class="big_menu">
       <li>
@@ -195,11 +163,7 @@ pageEncoding="UTF-8"%>
     <ul class="big_menu">
       <li>
         <span class="material-symbols-rounded">backup_table</span>
-        <span
-          ><a href="${pageContext.request.contextPath}/admin/popup/list"
-            >팝업 관리</a
-          ></span
-        >
+        <span><a href="${pageContext.request.contextPath}/admin/popup/list">팝업 관리</a></span>
         <span class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
       </li>
     </ul>
@@ -251,3 +215,15 @@ pageEncoding="UTF-8"%>
   const menu = document.querySelector("#sub-menu");
   menu.style.height = window.innerHeight - 340 + "px";
 </script>
+
+<!-- 스몰메뉴 없으면 아래 아이콘 없애기 -->
+<script>
+  $(function () {
+    $(".big_menu>li").each(function () {
+      if ($(this).next().length == 0) {
+        $(this).children(".arrow-icon").hide();
+      }
+    });
+  });
+</script>
+

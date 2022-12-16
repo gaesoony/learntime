@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/app/resources/css/mentoring/adminMentoring.css">
+<link rel="stylesheet" href="/app/resources/css/mentoring/adminMentoringReview.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -26,10 +26,7 @@
                 </div>  
 
                 <div id="board-filter-box" class="shadow-light">
-                    필터 생각해보고 넣을거임... <br>
-                    필터 생각해보고 넣을거임... <br>
-                    필터 생각해보고 넣을거임... <br>
-                    필터 생각해보고 넣을거임... <br>
+                    필터
                 </div>
 
 
@@ -44,55 +41,69 @@
                 </div>
 
                 <div id="board-list" class="shadow-light">
-                    <!-- 반복시작 -->
                     <div id="board-title" class="board">
                         <div>번호</div>
-                        <div>분야</div>
                         <div>멘토링 제목</div>
-                        <div>멘토</div>
+                        <div>작성자</div>
                         <div>등록일</div>
                         <div>별점</div>
-                        <div>????</div>
                         <div>처리</div>
                     </div>
+                    
+                    <!-- 반복시작 -->
+
                     <div class="board-content board">
                         <div>77</div>
-                        <div>분야1</div>
-                        <div>긴~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 제목입니다.</div>
+                        <div>긴~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 제목입니다.</div>
                         <div>망치맨</div>
                         <div>2022.12.11 12:22:22</div>
                         <div>20</div>
-                        <div>????</div>
                         <div class="board-btn-box">
-                            <div class="detail-btn" onclick="location.href='/app/admin/mentoring/detail'">상세보기</div>
+                            <div class="detail-btn">상세보기</div>
                             <div class="delete-btn">삭제</div>
                         </div>
                     </div>
+                    <div class="content-detail">
+                        <div class="review-content">
+                            <p>좋아요~~~~~~~~~~~~~~~~~~~~~~~~</p>
+                        </div>
+                        <div class="review-mentoring">망치맨의 통통튀는 스프링 강의 - 망치맨</div>
+                    </div>
+
                     <div class="board-content board">
                         <div>77</div>
-                        <div>분야1</div>
-                        <div>제목</div>
+                        <div>망치맨의 통통튀는 스프링 강의</div>
                         <div>망치맨</div>
                         <div>2022.12.11 12:22:22</div>
                         <div>20</div>
-                        <div>????</div>
                         <div class="board-btn-box">
-                            <div class="detail-btn" onclick="location.href='/app/admin/mentoring/detail'">상세보기</div>
+                            <div class="detail-btn">상세보기</div>
                             <div class="delete-btn">삭제</div>
                         </div>
                     </div>
+                    <div class="content-detail">
+                        <div class="review-content">
+                            <p>좋아요~~~~~~~~~~~~~~~~~~~~~~~~</p>
+                        </div>
+                        <div class="review-mentoring">망치맨의 통통튀는 스프링 강의 - 망치맨</div>
+                    </div>
+
                     <div class="board-content board">
                         <div>77</div>
-                        <div>분야1</div>
-                        <div>제목</div>
+                        <div>망치맨의 통통튀는 스프링 강의</div>
                         <div>망치맨</div>
                         <div>2022.12.11 12:22:22</div>
                         <div>20</div>
-                        <div>????</div>
                         <div class="board-btn-box">
-                            <div class="detail-btn" onclick="location.href='/app/admin/mentoring/detail'">상세보기</div>
+                            <div class="detail-btn">상세보기</div>
                             <div class="delete-btn">삭제</div>
                         </div>
+                    </div>
+                    <div class="content-detail">
+                        <div class="review-content">
+                            <p>좋아요~~~~~~~~~~~~~~~~~~~~~~~~</p>
+                        </div>
+                        <div class="review-mentoring">망치맨의 통통튀는 스프링 강의 - 망치맨</div>
                     </div>
 
                     <div id="paging">
@@ -117,6 +128,21 @@
 
 
     </div>
+    
+    <script>
+        //content-detail 처음에 숨기는 제이쿼리 함수
+        $(document).ready(function(){
+            $(".content-detail").hide();
+        });
+
+        //detail-btn 클릭 하면 부모의 부모의 인접 content-detail 클래스가 보이게 하는 제이쿼리 코드
+
+        $(document).ready(function(){
+            $(".detail-btn").click(function(){
+                $(this).parent().parent().next().toggle();
+            });
+        });
+    </script>
 	
 </body>
 </html>

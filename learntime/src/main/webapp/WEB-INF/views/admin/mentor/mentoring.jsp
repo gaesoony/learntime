@@ -32,10 +32,7 @@
                 </div>  
 
                 <div id="board-filter-box" class="shadow-light">
-                    필터 생각해보고 넣을거임... <br>
-                    필터 생각해보고 넣을거임... <br>
-                    필터 생각해보고 넣을거임... <br>
-                    필터 생각해보고 넣을거임... <br>
+                    필터
                 </div>
 
 
@@ -70,7 +67,7 @@
                         <div>20</div>
                         <div>????</div>
                         <div class="board-btn-box">
-                            <div class="detail-btn" onclick="location.href='/app/admin/mentoring/detail'">상세보기</div>
+                            <div class="detail-btn" onclick="location.href='/app/admin/mentor/mentoring/detail'">상세보기</div>
                             <div class="delete-btn">삭제</div>
                         </div>
                     </div>
@@ -83,7 +80,7 @@
                         <div>20</div>
                         <div>????</div>
                         <div class="board-btn-box">
-                            <div class="detail-btn" onclick="location.href='/app/admin/mentoring/detail'">상세보기</div>
+                            <div class="detail-btn" onclick="location.href='/app/admin/mentor/mentoring/detail'">상세보기</div>
                             <div class="delete-btn">삭제</div>
                         </div>
                     </div>
@@ -96,7 +93,7 @@
                         <div>20</div>
                         <div>????</div>
                         <div class="board-btn-box">
-                            <div class="detail-btn" onclick="location.href='/app/admin/mentoring/detail'">상세보기</div>
+                            <div class="detail-btn" onclick="location.href='/app/admin/mentor/mentoring/detail'">상세보기</div>
                             <div class="delete-btn">삭제</div>
                         </div>
                     </div>

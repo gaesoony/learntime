@@ -248,7 +248,7 @@
             
             <div class="modal-btn-box">
                 <div id="pre-btn-3" class="modal-btn pre-btn">이전으로</div>
-                <div id="next-btn-3" class="modal-btn next-btn">다음으로</div>
+                <div id="next-btn-3" class="modal-btn next-btn">결제하기</div>
             </div>
         </div> 
     </div> 
