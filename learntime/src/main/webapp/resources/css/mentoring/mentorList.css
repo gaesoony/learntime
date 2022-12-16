@@ -656,6 +656,14 @@ p{
     align-items: center;
     justify-content: space-around;
 }
+
+.pay-btn:hover{
+    background-color: #d7d7d7;
+    color: rgb(5, 30, 5);
+    cursor: pointer;
+    
+}
+
 .pay-btn>img{
     height: 25px;
 }

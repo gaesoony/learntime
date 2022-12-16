@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/app/resources/css/reset.css">
-<link rel="stylesheet" href="/app/resources/css/mentorList.css">
+<link rel="stylesheet" href="/app/resources/css/mentoring/mentorList.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script src="https://kit.fontawesome.com/939838bb27.js"crossorigin="anonymous"></script>
 
@@ -248,7 +248,7 @@
             
             <div class="modal-btn-box">
                 <div id="pre-btn-3" class="modal-btn pre-btn">이전으로</div>
-                <div id="next-btn-3" class="modal-btn next-btn">다음으로</div>
+                <div id="next-btn-3" class="modal-btn next-btn">결제하기</div>
             </div>
         </div> 
     </div> 
@@ -273,7 +273,7 @@
 		<div id="banner-text-box">
             <span>멘토링</span>
             <span>지식을 나눠보세요</span>
-            <span><a href="/app/mentor/regist">멘토 지원하기 ></a></span>
+            <span><a href="/app/mentor/mymentoring/temp2">멘토 지원하기 ></a></span>
         </div>
 	</div>
     <div id="main-wrap">

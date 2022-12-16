@@ -178,10 +178,6 @@ img#logo{
 
 
 /* include 시 적용 부분 */
-body{
-    /* width: 1920px; */
-}
-
 #content-wrap{
     /* float: left; */
     float: right;
@@ -202,4 +198,10 @@ body{
 #sub-menu::-webkit-scrollbar{
     display: none;
 }
+
+.big_menu>li>span>a:hover{
+    color: white;
+}
+
+
 

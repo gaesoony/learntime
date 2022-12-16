@@ -1,0 +1,220 @@
+#main-wrap{
+    width: 800px;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 600px;
+    height: auto;
+}
+#category-wrap{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #cbcbcb;
+    width: 820px;
+}
+
+#community-category-box{
+    margin-top: 10px;
+    /* width: 720px; */
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* radio */
+input[type="radio"]{
+    display: none;
+  }
+  
+input[type="radio"] + label{
+display: inline-block;
+height: 15px;
+margin-right: 20px;
+text-align: center;
+cursor: pointer;
+font-size: 18px;
+font-weight: 500;
+padding-bottom: 5px;
+color: #6b6b6b;
+}
+
+input[type="radio"]:checked + label{
+border-bottom: 3px solid #58c079;
+color: #000000;
+font-weight: 550;
+}
+
+#my-writing-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#my-scrap-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.community-content-head{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 820px;
+    height: 40px;
+    margin: 5px 0;
+}
+
+.community-content-head>select{
+    border: 1px solid #cbcbcb;
+    border-radius: 5px;
+    height: 35px;
+    width: 90px;
+    text-align: center;
+    outline: none;
+}
+
+.search-box{
+    border: 1px solid #9ee4b4;
+    border-radius: 5px; 
+    padding: 0 10px;
+    width: 700px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.search-icon{
+    color: #9ee4b4;
+}
+
+.search-box input{
+    margin-left: 10px;
+    font-size: 16px;
+    border: none;
+    outline: #9ee4b4;
+    width: 650px;
+    height: 35px;
+}
+
+/* 컨텐츠 - 내글*/
+.community-content{
+    display: grid;
+    grid-template-columns: 1.5fr 10fr 3fr 1fr;
+    width: 820px;
+    height: 40px;
+}
+
+.community-content-title{
+    background-color: #ddf5e4;
+    font-weight: 600;
+}
+
+.community-content-title>div:not(:last-child){
+    border-right: 1px solid white;
+}
+
+.community-content>div{
+    line-height: 40px;
+    text-align: center;
+    font-size: 13px;
+    padding: 0 3px;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* 컨텐츠 - 내스크랩*/
+.scrap-content{
+    display: grid;
+    grid-template-columns: 1.5fr 10fr 2fr 3fr 1fr;
+    width: 820px;
+    height: 40px;
+}
+
+.scrap-content-title{
+    background-color: #ddf5e4;
+    font-weight: 600;
+}
+
+.scrap-content-title>div:not(:last-child){
+    border-right: 1px solid white;
+}
+
+.scrap-content>div{
+    line-height: 40px;
+    text-align: center;
+    font-size: 13px;
+    padding: 0 3px;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* paging */
+#paging{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    margin-top: 40px;  
+    margin-bottom: 100px;
+    width: 400px;
+}
+
+.paging-btn{
+    height: 25px;
+    width: 25px;
+    border: 1px solid #aeaeae;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 24px;
+    color: #535353;
+    cursor: pointer;
+}
+.paging-btn:hover{
+    background-color: #58c079;
+    color: white;
+}
+
+#next-btn{
+    width: 40px;
+}
+
+
+/* 없을때 나오는 공지 */
+
+.m-notice{
+    margin-top: 20px;
+    font-size: 12px;
+    color: #4c4c4c;
+    line-height: 15px;
+    text-align: center;
+}

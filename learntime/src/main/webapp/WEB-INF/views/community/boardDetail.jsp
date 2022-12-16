@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/app/resources/css/reset.css">
-<link rel="stylesheet" href="/app/resources/css/boardDetail.css">
+<link rel="stylesheet" href="/app/resources/css/community/boardDetail.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script src="https://kit.fontawesome.com/939838bb27.js"crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/app/resources/css/summernote/summernote-lite.css">
@@ -67,7 +67,7 @@
 			</div>
 
 			<div id="btns-box">
-				<div id="modify-btn">수정</div>
+				<div id="modify-btn" onclick="location.href='/app/community/board/modify'">수정</div>
 				<div id="delete-btn">삭제</div>
 			</div>
 

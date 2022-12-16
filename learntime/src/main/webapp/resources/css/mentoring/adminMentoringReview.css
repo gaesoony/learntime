@@ -1,0 +1,236 @@
+#content-wrap{
+    background-color: #efefef;
+}
+
+#admin-category-title{
+    padding: 0 20px;
+    color: black;
+    background-color: white;
+    box-shadow: 0px 2px 2px #c5c5c5;
+
+    height: 55px;
+    line-height: 55px;
+    font-size: 18px;
+}
+
+#content-main-wrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 1580px;
+    min-height: 1000px;
+
+    padding: 20px;
+}
+
+#main-side{
+    display: inline-block;
+    width: 220px;
+    height: auto;
+}
+
+#board-category-box{
+    width: 220px;
+    height: auto;
+    padding: 15px;
+}
+
+#board-filter-box{
+    width: 220px;
+    height: 300px;
+    padding: 15px;
+}
+
+#main-side>div:not(:first-child){
+    margin-top: 20px;
+}
+
+#main-content{
+    display: inline-block;
+    flex-direction: column;
+    margin-left: 20px;
+
+    width: 1310px;
+    height: 500px;
+}
+
+.shadow-light{
+    background-color: white;
+    box-shadow: 0 2px 2px #c5c5c5;
+}
+
+#search-box{
+    width: 1280px;
+    height: 30px;
+}
+
+#board-list{
+    width: 1280px;
+    min-height: 300px;
+    margin-top: 20px;
+    padding: 15px;
+
+}
+
+/* 세부 */
+
+/* 사이드 */
+.board-category{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 25px;
+    padding: 0 5px ;
+}
+.board-category>a{
+    font-size: 14px;
+    font-weight: 800px;
+}
+
+#board-category-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.txt-sm{
+    font-size: 10px;
+    color: #888888;
+}
+
+.hidden{
+    display: none;
+}
+
+
+/* 컨텐츠 검색 */
+#search-box{
+    padding: 15px 15px 10px 15px;
+}
+#search-box>form{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#search-box>form>input[type="text"]{
+    width: 1200px;
+    outline: none;
+    margin-left: 10px;
+    height: 25px;
+    border: none;
+    font-size: 16px;
+}
+
+/* 자유게시판 리스트 */
+
+.board{
+    display: grid;
+    grid-template-columns: 1fr 7.5fr 2fr 2.5fr 1fr 2.5fr;
+}
+#board-title>div{
+    text-align: center;
+    line-height: 35px;
+    font-size: 14px;
+    background-color: #454545;
+    color: white;
+    height: 35px;
+}
+.board:not(:first-child){
+    margin-top: 2px;
+}
+
+.board:not(:first-child)>div{
+    text-align: center;
+    line-height: 35px;
+    font-size: 14px;
+    background-color: #e3e3e3;
+    color: rgb(0, 0, 0);
+    height: 35px;
+}
+
+.board>div:not(:last-child){
+    border-right: 2px solid white;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    padding: 0 5px;
+}
+
+.board-btn-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.board-btn-box>div{
+    height: 25px;
+    padding: 0 5px;
+    background-color: #454545;
+    color: white;
+    border-radius: 3px;
+    font: 10px;
+    line-height: 25px;
+}
+.board-btn-box>div:hover{
+    background-color: #202020;
+    cursor: pointer;
+}
+
+.board-btn-box>div:not(:last-child){
+    margin-right: 8px;
+}
+
+
+/* paging */
+#paging{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;  
+    margin-bottom: 100px;
+  }
+  
+  .paging-btn{
+    height: 25px;
+    width: 25px;
+    border: 1px solid #aeaeae;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 24px;
+    color: #535353;
+    cursor: pointer;
+    margin-right: 3px;
+  }
+  .paging-btn:hover{
+    background-color: #454545;
+    color: white;
+  }
+  
+  #next-btn{
+    width: 40px;
+  }
+
+  .content-detail{  
+    margin: 2px 0;
+    background-color: #e1e1e1;
+    padding: 10px;
+    min-height: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .review-mentoring{
+    color: #888888;
+    font-size: 12px;
+  }
+
+  .review-content{
+    color: #202020;
+    font-size: 12px;
+  }
