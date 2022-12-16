@@ -15,7 +15,7 @@
     }
     #mypage{
         width: 100%;
-        height: 2000px;
+        height: 2100px;
         display: grid;
         grid-template-columns: 300px 900px;
     }
@@ -29,7 +29,9 @@
     .qna-list1{
         border: 1px solid #D9D9D9;
         width: 1000px;
-        height: 580px;
+        margin-top: 30px;
+        position: absolute;
+        padding-bottom: 20px;
     }
     .list1-category{
         margin-top: 25px;
@@ -41,14 +43,15 @@
         margin-right: 20px;
         font-size: 20px;
         border: none;
-        border-bottom: 1px solid #5ECC80;
     }
-    .category:checked{
+    .active2{
         color: black;
+        font-weight: 550;
     }
     .line1{
         border-top: 1px solid #B7B7B7;
         width: 940px;
+        margin-top: 10px;
     }
     .qnalist{
         margin-left: 30px;
@@ -119,8 +122,9 @@
     .scrap-list{
         border: 1px solid #D9D9D9;
         width: 1000px;
-        height: 570px;
-        margin-top: 380px;
+        margin-top: 690px;
+        position: absolute;
+        padding-bottom: 20px;
     }
     .scrap-title{
         font-size: 20px;
@@ -136,7 +140,6 @@
     .scrap-list-button{
         background-color: white;
         color: #4D4D4D;
-        margin-top: 13px;
         border: none;
         font-size: 16px;
         margin-left: 750px;
@@ -146,9 +149,10 @@
     .reply-list{
         border: 1px solid #D9D9D9;
         width: 1000px;
-        height: 530px;
-        margin-top: 780px;
+        margin-top: 1370px;
         margin-bottom: 20px;
+        position: absolute;
+        padding-bottom: 20px;
     }
     .reply-title{
         font-size: 20px;
@@ -189,6 +193,37 @@
         margin-top: 20px;
         border-top: 1px solid #B7B7B7;
     }
+
+    /* paging */
+    #paging{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: auto;
+        margin-top: 40px;
+        margin-bottom: 30px;
+        width: 400px;
+    }
+    
+    .paging-btn{
+        height: 25px;
+        width: 25px;
+        border: 1px solid #aeaeae;
+        border-radius: 2px;
+        text-align: center;
+        line-height: 24px;
+        color: #535353;
+        cursor: pointer;
+    }
+    .paging-btn:hover{
+        background-color: #58c079;
+        color: white;
+    }
+    
+    #next-btn{
+        width: 40px;
+    }
 </style>
 </head>
 <body>
@@ -206,9 +241,9 @@
                 <div class="qna-list1">
                     <!-- 전체, 해결, 미해결 카테고리 -->
                     <div class="list1-category">
-                        <input type="button" class="category" value="전체" style="cursor: pointer;">
-                        <input type="button" class="category" value="해결" style="cursor: pointer;">
-                        <input type="button" class="category" value="미해결" style="cursor: pointer;">
+                        <button class="category" style="cursor: pointer;">전체</button>
+                        <button class="category" style="cursor: pointer;">해결</button>
+                        <button class="category" style="cursor: pointer;">미해결</button>
                         <div class="line1"></div>
                     </div>
 
@@ -257,12 +292,28 @@
                             <div class="end-line"></div>
                         </div>
                     </div>
+
+                    <!-- 버튼 -->
+                    <div id="paging">
+                        <div class="paging-btn">1</div>
+                        <div class="paging-btn">2</div>
+                        <div class="paging-btn">3</div>
+                        <div class="paging-btn">4</div>
+                        <div class="paging-btn">5</div>
+                        <div class="paging-btn">6</div>
+                        <div class="paging-btn">7</div>
+                        <div class="paging-btn">8</div>
+                        <div class="paging-btn">9</div>
+                        <div class="paging-btn">10</div>
+                        <div class="paging-btn" id="next-btn">다음</div>
+                    </div>
                     <!--  -->
                 </div>
 
                 <!-- 두번째 리스트 -->
                 <div class="scrap-list">
                     <div class="scrap-title"><i class="fa-regular fa-bookmark"></i> MY Learning 스크랩</div>
+                    <input type="button" onclick="location.href='/app/qna/list'" class="scrap-list-button" style="cursor: pointer;" value="더 많은 Learning 보러가기 >>">
                     <div class="scrap-title-line"></div>
 
                     <!-- 리스트 본문1 -->
@@ -311,7 +362,22 @@
                         </div>
                     </div>
                     <!--  -->
-                    <input type="button" onclick="location.href='/app/qna/list'" class="scrap-list-button" style="cursor: pointer;" value="더 많은 Learning 보러가기 >>">
+
+                    <!-- 버튼 -->
+                    <div id="paging">
+                        <div class="paging-btn">1</div>
+                        <div class="paging-btn">2</div>
+                        <div class="paging-btn">3</div>
+                        <div class="paging-btn">4</div>
+                        <div class="paging-btn">5</div>
+                        <div class="paging-btn">6</div>
+                        <div class="paging-btn">7</div>
+                        <div class="paging-btn">8</div>
+                        <div class="paging-btn">9</div>
+                        <div class="paging-btn">10</div>
+                        <div class="paging-btn" id="next-btn">다음</div>
+                    </div>
+
                 </div>
 
                 <!-- 세번째 리스트 -->
@@ -355,6 +421,21 @@
                         <div class="reply-end-line"></div>
                     </div>
                     <!--  -->
+
+                    <!-- 버튼 -->
+                    <div id="paging">
+                        <div class="paging-btn">1</div>
+                        <div class="paging-btn">2</div>
+                        <div class="paging-btn">3</div>
+                        <div class="paging-btn">4</div>
+                        <div class="paging-btn">5</div>
+                        <div class="paging-btn">6</div>
+                        <div class="paging-btn">7</div>
+                        <div class="paging-btn">8</div>
+                        <div class="paging-btn">9</div>
+                        <div class="paging-btn">10</div>
+                        <div class="paging-btn" id="next-btn">다음</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -366,6 +447,19 @@
         function navToDetail(){
             window.location.href="/app/qna/detail";
         }
+
+        // 상단 버튼
+        $('.top-btn-box .top-btn').on("click",function(){
+            $(".top-btn-box .top-btn.active").removeClass('active');
+            $(this).addClass("active");
+        });
+
+        // 나의 Learning에 카테고리 선택
+        $('.list1-category .category').on("click",function(){
+            $(".list1-category .category.active2").removeClass('active2');
+            $(this).addClass("active2");
+        });
+
     </script>
 
     <script src="https://kit.fontawesome.com/4b219bc5a3.js" crossorigin="anonymous"></script>
