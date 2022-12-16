@@ -100,7 +100,7 @@
 
                 </div>
             </div>
-            <form action="/app/member/findPwd" method="post">
+            <form action="${pageContext.request.contextPath}/member/findPwd" method="post">
             <div id="find-email">
                 <div class="text">이메일</div>
                 
@@ -111,9 +111,9 @@
             </div>
             </form>
             <div id="account_find">
-                <a href="/app/member/findId">아이디(이메일) 찾기</a>
+                <a href="${pageContext.request.contextPath}/member/findId">아이디(이메일) 찾기</a>
                 <span>|</span>
-                <a href="/app/member/join">회원가입</a>
+                <a href="${pageContext.request.contextPath}/member/join">회원가입</a>
             </div>
 
         </div>

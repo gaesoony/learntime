@@ -133,13 +133,13 @@
 
         <div id="result-btn">
             
-            <button id="main-btn" onclick="location.href='/app/main'">메인으로</button>
+            <button id="main-btn" onclick="location.href='${pageContext.request.contextPath}/main'">메인으로</button>
         </div>
 
         <div id="account_find">
-            <a href="/app/member/findId">아이디(이메일) 찾기</a>
+            <a href="${pageContext.request.contextPath}/member/findId">아이디(이메일) 찾기</a>
             <span>|</span>
-            <a href="/app/member/join">회원가입</a>
+            <a href="${pageContext.request.contextPath}/member/join">회원가입</a>
         </div>
     </div>
 

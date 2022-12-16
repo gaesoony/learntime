@@ -186,7 +186,7 @@
                 <span class="material-symbols-outlined">close</span>
             </button>
 
-            <div id="logo"><a href="/app/main" ><img src="/app/resources/img/logo_green2.png" alt="런타임로고"></a></div>
+            <div id="logo"><a href="${pageContext.request.contextPath}/main" ><img src="${pageContext.request.contextPath}/resources/img/logo_green2.png" alt="런타임로고"></a></div>
             
             <form action="" method="POST">
                 <div>
@@ -202,11 +202,11 @@
             </form>
 
             <div id="account_find">
-                <a href="/app/member/findId">아이디(이메일) 찾기</a>
+                <a href="${pageContext.request.contextPath}/member/findId">아이디(이메일) 찾기</a>
                 <span>|</span>
-                <a href="/app/member/findPwd">비밀번호 찾기</a>
+                <a href="${pageContext.request.contextPath}/member/findPwd">비밀번호 찾기</a>
                 <span>|</span>
-                <a href="/app/member/join">회원가입</a>
+                <a href="${pageContext.request.contextPath}/member/join">회원가입</a>
             </div>
             <div id="line">간편 로그인</div>
             <div id="loginApi">
@@ -221,15 +221,15 @@
     <!-- 헤더 -->
 	 <div id="header-area">
         <div id="header">
-            <div id="logo"><a href="/app/main"><img src="/app/resources/img/logo_green2.png" alt="런타임로고"></a></div>
-            <div id="study-project"><a href="/app/study/list">STUDY / PROJECT</a></div>
-            <div id="mentoring"><a href="/app/mentor/list">MENTORING</a></div>
-            <div id="learning"><a href="/app/qna/list">LEARNING</a></div>
-            <div id="make-grass"><a href="/app/makegrass/list">MAKE GRASS</a></div>
-            <div id="skinshop"><a href="/app/skinshop">SKIN SHOP</a></div>
-            <div id="community"><a href="/app/community/board/list">COMMUNITY</a></div>
+            <div id="logo"><a href="${pageContext.request.contextPath}/main"><img src="${pageContext.request.contextPath}/resources/img/logo_green2.png" alt="런타임로고"></a></div>
+            <div id="study-project"><a href="${pageContext.request.contextPath}/study/list">STUDY / PROJECT</a></div>
+            <div id="mentoring"><a href="${pageContext.request.contextPath}/mentor/list">MENTORING</a></div>
+            <div id="learning"><a href="${pageContext.request.contextPath}/qna/list">LEARNING</a></div>
+            <div id="make-grass"><a href="${pageContext.request.contextPath}/makegrass/list">MAKE GRASS</a></div>
+            <div id="skinshop"><a href="${pageContext.request.contextPath}/skinshop">SKIN SHOP</a></div>
+            <div id="community"><a href="${pageContext.request.contextPath}/community/board/list">COMMUNITY</a></div>
             <div id="empty"></div>
-            <div id="join"><a href="/app/member/join">JOIN</a></div>
+            <div id="join"><a href="${pageContext.request.contextPath}/member/join">JOIN</a></div>
             <div id="login">	
             <button id="login-btn">LOGIN</button>
             </div>

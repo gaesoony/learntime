@@ -6,7 +6,9 @@
 <meta charset="UTF-8">
 <title>LEARN TIME | MY PAGE</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+	
 <style>
     /* 탈퇴 모달 시작 */
         .blackBG2 {
@@ -259,7 +261,7 @@
     
     .area-grid{
         display: grid;
-        grid-template-rows:20px 48px;
+        grid-template-rows:20px auto;
         align-items: center;
         justify-items: center;
     }
@@ -268,7 +270,7 @@
         width: 792px;
         height: 24px;
         border: 1px solid #D9D9D9;
-        border-radius: 8px;
+        border-radius: 4px;
         padding: 14px;
     }
 
@@ -337,6 +339,31 @@
         color: #5ecc80;
     }
 
+    .choices__inner{
+	width: 807px;
+	display: flex;
+	background-color: #FFFFFF;
+    }
+
+    .choices__input{
+        background-color: #FFFFFF;
+        display: none;
+    }
+
+    .choices__list--multiple .choices__item{
+	background-color: #5ecc80;
+	border: 1px solid #5ecc80;
+		
+    }
+
+    .choices[data-type*=select-multiple] .choices__button{
+        border-left: 1px solid #FFFFFF;
+    }
+
+    .choices__list--dropdown{
+        width: 822px;
+    }
+
   
    
 </style>
@@ -350,7 +377,7 @@
             <span class="material-symbols-outlined">close</span>
         </button>
 
-        <div id="logo"><a href="/app/main" ><img src="/app/resources/img/logo_green2.png" alt="런타임로고"></a></div>
+        <div id="logo"><a href="${pageContext.request.contextPath}/main" ><img src="${pageContext.request.contextPath}/resources/img/logo_green2.png" alt="런타임로고"></a></div>
     
         <div id="delete-info">
             서비스에 만족하지 못하셨나요? 탈퇴하기 전에 먼저 개선 요청을 해보시는 건 어떨까요?<br>
@@ -395,12 +422,12 @@
                  <div class="profile-img">
                      <div class="profile-img center relative">
                          <img
-                           src="/app/resources/img/profile_default.png"
+                           src="${pageContext.request.contextPath}/resources/img/profile_default.png"
                            alt=""
                          />
                          <img
                            id="preview"
-                           src="/app/resources/img/profile_default.png"
+                           src="${pageContext.request.contextPath}/resources/img/profile_default.png"
                          />
                          <div class="file-btn-area">
                            <label for="file" class="file-btn center"
@@ -464,11 +491,24 @@
             </div>
             <div id="stack-area" class="area-grid">
                  <div class="titleText">관심 기술 스택</div>
-                 <select name="techStackNo" required style="color: #535353">
-                     <option value="" disabled selected >관심 기술 스택을 선택해 주세요.</option>
-                     <option value="1">JAVA</option>
-                     </select>
-                 <div id="stackResult"></div>
+                 <div class="row d-flex justify-content-center">
+                    <div class="col-md-6"> 		
+                        <select id="choices-multiple-remove-button"multiple>
+                            <option value="HTML">HTML</option>
+                            <option value="Jquery">Jquery</option>
+                            <option value="CSS">CSS</option>
+                            <option value="Java">Java</option>
+                            <option value="Javascript">Javascript</option>
+                            <option value="Angular">Angular</option>
+                            <option value="Python">Python</option>
+                            <option value="Hybris">Hybris</option>
+                            <option value="SQL">SQL</option>
+                            <option value="NOSQL">NOSQL</option>
+                            <option value="NodeJS">NodeJS</option>
+                        </select> 
+                    
+                    </div>					
+                </div>
                  <button class="edit-btn">저장하기</button>
             </div>
             <div id="delete-area">
@@ -530,6 +570,18 @@
             lang: "ko-KR",					// 한글 설정
             placeholder: '자기소개를 작성해보세요'	//placeholder 설정
     
+    });
+
+    $(document).ready(function(){
+
+        var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+            removeItemButton: true,
+            maxItemCount:11,
+            searchResultLimit:11,
+            renderChoiceLimit:11
+        }); 
+
+
     });
 
 

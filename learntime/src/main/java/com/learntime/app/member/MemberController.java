@@ -81,7 +81,17 @@ public class MemberController {
 	   public String mypageQna() {
 	      return "/member/mypage-qna";
 	   }
-  
+//   마이페이지-멘토링(화면)	   
+	   @GetMapping("/mypage/mentoring")
+	   public String myMentoring() {
+	      return "member/mypage-mentoring";
+	   }
+//   마이페이지-커뮤니티(화면)	
+	   @GetMapping("/mypage/community")
+	   public String myCommunity() {
+	      return "member/mypage-community";
+	   }
+	   
 //	마이페이지-보유한 스킨(화면)
 		@GetMapping("/mypage/skin")
 		public String mypageSkin() {
@@ -107,8 +117,6 @@ public class MemberController {
 			return "/member/mypage-edit";
 		}
 	
-	
-	
-	
+
 	
 }

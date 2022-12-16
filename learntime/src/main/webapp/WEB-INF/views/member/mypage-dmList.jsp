@@ -149,10 +149,7 @@
                 </div>
           </div>
 
-          ㅈ
-      </div>
-
-      <div class="dm">
+          <div class="dm">
             <div class="send-img"></div>
             <div class="send-nick">닉네임</div>
             <div class="send-msg">팀 프로젝트 같이 해요~</div>
@@ -171,6 +168,11 @@
         </div>
 
         </div>
+
+          
+      </div>
+
+      
     </div>
     
   
