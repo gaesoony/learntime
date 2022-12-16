@@ -30,6 +30,10 @@ pageEncoding="UTF-8"%>
       align-items: center;
     }
 
+    .relative {
+      position: relative;
+    }
+
     .profile-info-area {
       height: 630px;
       display: flex;
@@ -86,8 +90,8 @@ pageEncoding="UTF-8"%>
 
     .file-btn-area {
       position: absolute;
-      top: 240px;
-      right: 900px;
+      top: 2px;
+      right: 18px;
     }
 
     .file-btn {

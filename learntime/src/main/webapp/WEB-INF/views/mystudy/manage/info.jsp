@@ -207,7 +207,11 @@ pageEncoding="UTF-8"%>
 
                       <div class="select-box relative">
                         <div class="options-container options-container-tech">
-                          <div class="option option-tech">
+                          <div
+                            id="option-java"
+                            class="option option-tech"
+                            onclick="hiddenTag(event)"
+                          >
                             <input
                               type="radio"
                               class="radio"
@@ -217,7 +221,11 @@ pageEncoding="UTF-8"%>
                             <label for="study">java</label>
                           </div>
 
-                          <div class="option option-tech">
+                          <div
+                            id="option-spring"
+                            class="option option-tech"
+                            onclick="hiddenTag(event)"
+                          >
                             <input
                               type="radio"
                               class="radio"
@@ -226,10 +234,38 @@ pageEncoding="UTF-8"%>
                             />
                             <label for="project">spring</label>
                           </div>
+
+                          <div
+                            id="option-javascript"
+                            class="option option-tech"
+                            onclick="hiddenTag(event)"
+                          >
+                            <input
+                              type="radio"
+                              class="radio"
+                              id="javascript"
+                              name="tech"
+                            />
+                            <label for="project">javascript</label>
+                          </div>
+
+                          <div
+                            id="option-python"
+                            class="option option-tech"
+                            onclick="hiddenTag(event)"
+                          >
+                            <input
+                              type="radio"
+                              class="radio"
+                              id="python"
+                              name="tech"
+                            />
+                            <label for="project">python</label>
+                          </div>
                         </div>
 
                         <div class="selected selected-tech">
-                          프로젝트 사용 스택
+                          <div class="tech-btn-list">프로젝트 사용 스택</div>
                         </div>
                       </div>
                     </div>
@@ -386,7 +422,10 @@ pageEncoding="UTF-8"%>
                   const selectedWay = document.querySelector(".selected-way");
                   const selectedPeriod =
                     document.querySelector(".selected-period");
-                  const selectedTech = document.querySelector(".selected-tech");
+                  const selectedTech = document.querySelector(".tech-btn-list");
+                  const selectedTech2 = document.querySelector(
+                    ".selected-tech:not(.tech-btn-list .tech-btn )"
+                  );
 
                   const optionsContainerType = document.querySelector(
                     ".options-container-type"
@@ -422,7 +461,8 @@ pageEncoding="UTF-8"%>
                     optionsContainerPeriod.classList.toggle("active");
                   });
 
-                  selectedTech.addEventListener("click", () => {
+                  selectedTech2.addEventListener("click", () => {
+                    console.log("클릭됨");
                     optionsContainerTech.classList.toggle("active");
                   });
 
@@ -452,12 +492,44 @@ pageEncoding="UTF-8"%>
 
                   optionsListTech.forEach((o) => {
                     o.addEventListener("click", () => {
-                      selectedTech.innerHTML =
-                        o.querySelector("label").innerHTML;
+                      if (
+                        selectedTech.innerHTML.trim() == "프로젝트 사용 스택"
+                      ) {
+                        selectedTech.innerHTML = "";
+                      }
+                      selectedTech.innerHTML +=
+                        "<div class='tech-btn-div' onclick='deleteTech(event)'>" +
+                        "<input onclick='deleteTech2(event)' class='tech-btn' type='button' value='" +
+                        o.querySelector("label").innerHTML +
+                        "'>" +
+                        "<i class='fa-solid fa-xmark' onclick='deleteTech2(event)'></i>" +
+                        "</div>";
                       optionsContainerTech.classList.remove("active");
                     });
                   });
                 </script>
+                <script>
+                  function deleteTech(e) {
+                    e.target.remove();
+                    const value = e.target.querySelector("input").value;
+                    const option = document.querySelector("#option-" + value);
+                    option.classList.toggle("hidden");
+                  }
+
+                  function deleteTech2(e) {
+                    e.target.parentNode.remove();
+                    const value =
+                      e.target.parentNode.querySelector("input").value;
+                    const option = document.querySelector("#option-" + value);
+                    option.classList.toggle("hidden");
+                  }
+
+                  function hiddenTag(e) {
+                    console.log("들어옴");
+                    e.target.classList.toggle("hidden");
+                  }
+                </script>
+
                 <div class="recruit-question-area">
                   <div class="recruit-question-area-top flex">
                     <div>가입 질문 사용하기</div>
@@ -788,6 +860,12 @@ pageEncoding="UTF-8"%>
           studyLocation.classList.remove("hidden");
         }
       }
+    </script>
+    <script>
+      // 상세페이지로 들어갔을때 초기위치가 댓글쪽이어서 최상단으로 올려줌
+      setTimeout(function () {
+        scrollTo(0, 0);
+      }, 100);
     </script>
   </body>
 </html>

@@ -42,6 +42,7 @@ pageEncoding="UTF-8"%>
         background-color: #ffffff;
         color: rgb(88, 88, 88);
         border: 1px solid rgb(167, 167, 167);
+        margin-left: 5px;
       }
 
       .fa-bars {
@@ -67,6 +68,14 @@ pageEncoding="UTF-8"%>
       .border {
         border: 1px solid gray;
       }
+
+      .hidden {
+        display: none;
+      }
+
+      input[type="button"] {
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
@@ -83,8 +92,8 @@ pageEncoding="UTF-8"%>
                 <span class="ico-drag"></span>
                 <div class="el space-between drag-box-inner">
                   <div>
-                    <i class="fa-solid fa-bars"></i>
-                    <input
+                    <i class="fa-solid fa-bars"></i
+                    ><input
                       type="text"
                       value="공지사항"
                       class="cate-name"
@@ -95,11 +104,19 @@ pageEncoding="UTF-8"%>
                     <input
                       type="button"
                       value="수정"
-                      class="manage-btn"
+                      class="manage-btn edit-btn"
                       onclick="editCateName(event)"
+                    /><input
+                      type="button"
+                      value="완료"
+                      class="manage-btn hidden finish-btn"
+                      onclick="finishCateName(event)"
+                    /><input
+                      type="button"
+                      value="삭제"
+                      class="manage-btn"
+                      onclick="deleteCate(event)"
                     />
-
-                    <input type="button" value="삭제" class="manage-btn" />
                   </div>
                 </div>
               </div>
@@ -107,8 +124,8 @@ pageEncoding="UTF-8"%>
                 <span class="ico-drag"></span>
                 <div class="el space-between drag-box-inner">
                   <div>
-                    <i class="fa-solid fa-bars"></i>
-                    <input
+                    <i class="fa-solid fa-bars"></i
+                    ><input
                       type="text"
                       value="자료공유(10)"
                       class="cate-name"
@@ -116,9 +133,22 @@ pageEncoding="UTF-8"%>
                     />
                   </div>
                   <div>
-                    <input type="button" value="수정" class="manage-btn" />
-
-                    <input type="button" value="삭제" class="manage-btn" />
+                    <input
+                      type="button"
+                      value="수정"
+                      class="manage-btn edit-btn"
+                      onclick="editCateName(event)"
+                    /><input
+                      type="button"
+                      value="완료"
+                      class="manage-btn hidden finish-btn"
+                      onclick="finishCateName(event)"
+                    /><input
+                      type="button"
+                      value="삭제"
+                      class="manage-btn"
+                      onclick="deleteCate(event)"
+                    />
                   </div>
                 </div>
               </div>
@@ -126,8 +156,8 @@ pageEncoding="UTF-8"%>
                 <span class="ico-drag"></span>
                 <div class="el space-between drag-box-inner">
                   <div>
-                    <i class="fa-solid fa-bars"></i>
-                    <input
+                    <i class="fa-solid fa-bars"></i
+                    ><input
                       type="text"
                       value="과제제출(10)"
                       class="cate-name"
@@ -135,9 +165,22 @@ pageEncoding="UTF-8"%>
                     />
                   </div>
                   <div>
-                    <input type="button" value="수정" class="manage-btn" />
-
-                    <input type="button" value="삭제" class="manage-btn" />
+                    <input
+                      type="button"
+                      value="수정"
+                      class="manage-btn edit-btn"
+                      onclick="editCateName(event)"
+                    /><input
+                      type="button"
+                      value="완료"
+                      class="manage-btn hidden finish-btn"
+                      onclick="finishCateName(event)"
+                    /><input
+                      type="button"
+                      value="삭제"
+                      class="manage-btn"
+                      onclick="deleteCate(event)"
+                    />
                   </div>
                 </div>
               </div>
@@ -145,8 +188,8 @@ pageEncoding="UTF-8"%>
                 <span class="ico-drag"></span>
                 <div class="el space-between drag-box-inner">
                   <div>
-                    <i class="fa-solid fa-bars"></i>
-                    <input
+                    <i class="fa-solid fa-bars"></i
+                    ><input
                       type="text"
                       value="게시판"
                       class="cate-name"
@@ -154,9 +197,22 @@ pageEncoding="UTF-8"%>
                     />
                   </div>
                   <div>
-                    <input type="button" value="수정" class="manage-btn" />
-
-                    <input type="button" value="삭제" class="manage-btn" />
+                    <input
+                      type="button"
+                      value="수정"
+                      class="manage-btn edit-btn"
+                      onclick="editCateName(event)"
+                    /><input
+                      type="button"
+                      value="완료"
+                      class="manage-btn hidden finish-btn"
+                      onclick="finishCateName(event)"
+                    /><input
+                      type="button"
+                      value="삭제"
+                      class="manage-btn"
+                      onclick="deleteCate(event)"
+                    />
                   </div>
                 </div>
               </div>
@@ -164,8 +220,8 @@ pageEncoding="UTF-8"%>
                 <span class="ico-drag"></span>
                 <div class="el space-between drag-box-inner">
                   <div>
-                    <i class="fa-solid fa-bars"></i>
-                    <input
+                    <i class="fa-solid fa-bars"></i
+                    ><input
                       type="text"
                       value="게시판"
                       class="cate-name"
@@ -173,9 +229,22 @@ pageEncoding="UTF-8"%>
                     />
                   </div>
                   <div>
-                    <input type="button" value="수정" class="manage-btn" />
-
-                    <input type="button" value="삭제" class="manage-btn" />
+                    <input
+                      type="button"
+                      value="수정"
+                      class="manage-btn edit-btn"
+                      onclick="editCateName(event)"
+                    /><input
+                      type="button"
+                      value="완료"
+                      class="manage-btn hidden finish-btn"
+                      onclick="finishCateName(event)"
+                    /><input
+                      type="button"
+                      value="삭제"
+                      class="manage-btn"
+                      onclick="deleteCate(event)"
+                    />
                   </div>
                 </div>
               </div>
@@ -183,8 +252,8 @@ pageEncoding="UTF-8"%>
                 <span class="ico-drag"></span>
                 <div class="el space-between drag-box-inner">
                   <div>
-                    <i class="fa-solid fa-bars"></i>
-                    <input
+                    <i class="fa-solid fa-bars"></i
+                    ><input
                       type="text"
                       value="게시판"
                       class="cate-name"
@@ -192,9 +261,22 @@ pageEncoding="UTF-8"%>
                     />
                   </div>
                   <div>
-                    <input type="button" value="수정" class="manage-btn" />
-
-                    <input type="button" value="삭제" class="manage-btn" />
+                    <input
+                      type="button"
+                      value="수정"
+                      class="manage-btn edit-btn"
+                      onclick="editCateName(event)"
+                    /><input
+                      type="button"
+                      value="완료"
+                      class="manage-btn hidden finish-btn"
+                      onclick="finishCateName(event)"
+                    /><input
+                      type="button"
+                      value="삭제"
+                      class="manage-btn"
+                      onclick="deleteCate(event)"
+                    />
                   </div>
                 </div>
               </div>
@@ -259,16 +341,58 @@ pageEncoding="UTF-8"%>
             </script>
             <script>
               function editCateName(e) {
+                console.log("수정");
                 const parent = e.target.parentNode.parentNode;
                 const input = parent.querySelector(".cate-name");
                 input.removeAttribute("readonly");
                 input.classList.add("border");
-                console.log(input);
+                e.target.classList.toggle("hidden");
+                const finishBtn = parent.querySelector(".finish-btn");
+                finishBtn.classList.toggle("hidden");
+              }
+
+              function finishCateName(e) {
+                console.log("완료");
+                const parent = e.target.parentNode.parentNode;
+                e.target.classList.toggle("hidden");
+                const editBtn = parent.querySelector(".edit-btn");
+                editBtn.classList.toggle("hidden");
+                const input = parent.querySelector(".cate-name");
+                input.classList.remove("border");
+                input.setAttribute("readonly", "true");
+              }
+
+              function addCate() {
+                const container = document.querySelector(".container");
+
+                container.innerHTML +=
+                  '<div class="draggable drag-box" draggable="true">' +
+                  '<span class="ico-drag"></span>' +
+                  '<div class="el space-between drag-box-inner">' +
+                  "<div>" +
+                  '<i class="fa-solid fa-bars"></i>' +
+                  '<input type="text" value="게시판" class="cate-name" readonly />' +
+                  "</div>" +
+                  "<div>" +
+                  '<input type="button" value="수정" class="manage-btn edit-btn" onclick="editCateName(event)" />' +
+                  '<input type="button" value="완료" class="manage-btn hidden finish-btn" onclick="finishCateName(event)" />' +
+                  '<input type="button" value="삭제" class="manage-btn" onclick="deleteCate(event)"/>' +
+                  "</div>" +
+                  "</div></div>";
+              }
+
+              function deleteCate(e) {
+                e.target.parentNode.parentNode.parentNode.remove();
               }
             </script>
           </section>
           <div class="btn-area">
-            <input type="button" value="카테고리 추가" class="cate-btn" />
+            <input
+              type="button"
+              value="카테고리 추가"
+              class="cate-btn"
+              onclick="addCate()"
+            />
             <input type="button" value="저장하기" class="cate-btn" />
           </div>
         </div>

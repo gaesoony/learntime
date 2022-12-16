@@ -21,6 +21,10 @@ pageEncoding="UTF-8"%>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- datepicker -->
   </head>
@@ -205,7 +209,11 @@ pageEncoding="UTF-8"%>
 
                   <div class="select-box relative">
                     <div class="options-container options-container-tech">
-                      <div class="option option-tech">
+                      <div
+                        id="option-java"
+                        class="option option-tech"
+                        onclick="hiddenTag(event)"
+                      >
                         <input
                           type="radio"
                           class="radio"
@@ -215,7 +223,11 @@ pageEncoding="UTF-8"%>
                         <label for="study">java</label>
                       </div>
 
-                      <div class="option option-tech">
+                      <div
+                        id="option-spring"
+                        class="option option-tech"
+                        onclick="hiddenTag(event)"
+                      >
                         <input
                           type="radio"
                           class="radio"
@@ -225,7 +237,11 @@ pageEncoding="UTF-8"%>
                         <label for="project">spring</label>
                       </div>
 
-                      <div class="option option-tech">
+                      <div
+                        id="option-javascript"
+                        class="option option-tech"
+                        onclick="hiddenTag(event)"
+                      >
                         <input
                           type="radio"
                           class="radio"
@@ -235,7 +251,11 @@ pageEncoding="UTF-8"%>
                         <label for="project">javascript</label>
                       </div>
 
-                      <div class="option option-tech">
+                      <div
+                        id="option-python"
+                        class="option option-tech"
+                        onclick="hiddenTag(event)"
+                      >
                         <input
                           type="radio"
                           class="radio"
@@ -388,7 +408,9 @@ pageEncoding="UTF-8"%>
               const selectedWay = document.querySelector(".selected-way");
               const selectedPeriod = document.querySelector(".selected-period");
               const selectedTech = document.querySelector(".tech-btn-list");
-              const selectedTech2 = document.querySelector(".selected-tech");
+              const selectedTech2 = document.querySelector(
+                ".selected-tech:not(.tech-btn-list .tech-btn )"
+              );
 
               const optionsContainerType = document.querySelector(
                 ".options-container-type"
@@ -466,12 +488,24 @@ pageEncoding="UTF-8"%>
             <script>
               function deleteTech(e) {
                 e.target.remove();
+                const value = e.target.querySelector("input").value;
+                const option = document.querySelector("#option-" + value);
+                option.classList.toggle("hidden");
               }
 
               function deleteTech2(e) {
                 e.target.parentNode.remove();
+                const value = e.target.parentNode.querySelector("input").value;
+                const option = document.querySelector("#option-" + value);
+                option.classList.toggle("hidden");
+              }
+
+              function hiddenTag(e) {
+                console.log("들어옴");
+                e.target.classList.toggle("hidden");
               }
             </script>
+
             <div class="recruit-question-area">
               <div class="recruit-question-area-top flex">
                 <div>가입 질문 사용하기</div>
@@ -530,7 +564,7 @@ pageEncoding="UTF-8"%>
                 class="study-search-tag"
                 type="text"
                 placeholder="태그를 입력하세요"
-                onkeyup="if(window.event.keyCode==13){makeTag(event)}"
+                onkeyup="if(window.event.keyCode==13){makeTag(event)} if(window.event.keyCode==8){deleteBeforeTag()}"
               />
             </div>
             <input
@@ -547,10 +581,10 @@ pageEncoding="UTF-8"%>
             function makeTag(e) {
               const value = e.target.value;
               const str =
-                '<div class="relative tag-div" onclick="deleteTag(event)">' +
-                '<input type="button" value="' +
+                '<div class="relative cursor tag-div" onclick="deleteTag(event)">' +
+                '<input onclick="deleteTag2(event)" type="button" value="' +
                 value +
-                '" class="tag-btn" onclick="deleteTag2(event)"/> ' +
+                '" class="tag-btn cursor" /> ' +
                 '<i class="fa-solid fa-xmark" onclick="deleteTag2(event)"></i>' +
                 "</div>";
 
@@ -572,9 +606,42 @@ pageEncoding="UTF-8"%>
             function deleteTag2(e) {
               e.target.parentNode.remove();
             }
+
+            function deleteBeforeTag() {
+              const lastTag = document.querySelector(
+                ".tag-list div:last-child"
+              );
+              lastTag.remove();
+            }
           </script>
           <div>
-            <textarea name="editordata" id="summernote"></textarea>
+            <textarea name="editordata" id="summernote">
+              <p>
+                스터디 모집글을 아래 양식을 참고해 작성해주세요.
+                <br>
+                <br>
+                마크다운, 단축키를 이용해서 편리하게 글을 작성할 수 있어요.
+                <br>
+                <br>
+                꼼꼼히 작성하면 멋진 스터디 팀원을 만나실 수 있을거예요.
+              </p>
+              <br>
+              <p>
+                <strong>
+                  [개발 스터디 모집 내용 예시]
+                </strong>
+              </p>
+              <br>
+              <ul>
+                <li>✔스터디 주제 :</li>
+                <li>✔스터디 목표 :</li>
+                <li>✔예상 스터디 일정(횟수) :</li>
+                <li>✔예상 커리큘럼 간략히 :</li>
+                <li>✔스터디 소개와 개설 이유 :</li>
+                <li>✔스터디 관련 주의사항 :</li>
+              </ul>
+        
+            </textarea>
           </div>
           <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
           <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
@@ -587,7 +654,8 @@ pageEncoding="UTF-8"%>
                 maxHeight: null, // 최대 높이
                 focus: true, // 에디터 로딩후 포커스를 맞출지 여부
                 lang: "ko-KR", // 한글 설정
-                placeholder: "최대 2048자까지 쓸 수 있습니다", //placeholder 설정
+                placeholder: "", //placeholder 설정
+                disableResizeEditor: true,
               });
             });
           </script>
@@ -797,6 +865,12 @@ pageEncoding="UTF-8"%>
           studyLocation.classList.remove("hidden");
         }
       }
+    </script>
+    <script>
+      // 상세페이지로 들어갔을때 초기위치가 댓글쪽이어서 최상단으로 올려줌
+      setTimeout(function () {
+        scrollTo(0, 0);
+      }, 100);
     </script>
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
     <script

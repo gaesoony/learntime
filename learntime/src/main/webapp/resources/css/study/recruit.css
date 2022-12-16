@@ -1,6 +1,7 @@
 @charset "utf-8";
 * {
   box-sizing: border-box;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 /* 공통css */
@@ -132,13 +133,13 @@
 
 .select-box {
   display: flex;
-  width: 330px;
+  width: 396px;
   flex-direction: column;
 }
 
 .box {
   padding: 12px 17px 12px 17px;
-  width: 330px;
+  width: 396px;
   background: #ffffff;
   border-radius: 5px;
   margin-bottom: 8px;
@@ -198,6 +199,7 @@
 }
 
 .box input {
+  height: 25px;
   width: 300px;
   border: none;
   outline: #505050;
@@ -205,10 +207,11 @@
   color: #767676;
   font-weight: 700;
   cursor: pointer;
+  padding-bottom: 9px;
 }
 
 .selected-people input {
-  width: 250px;
+  width: 335px;
   border: none;
   outline: #505050;
   font-size: 15px;
@@ -397,7 +400,7 @@ html .ui-button.ui-state-disabled:active {
 /* 프로젝트 소개 */
 
 .study-introduce-title {
-  margin-left: 10px;
+  /* margin-left: 10px; */
   font-size: 20px;
   font-weight: 700;
   color: gray;
@@ -416,7 +419,7 @@ html .ui-button.ui-state-disabled:active {
 }
 
 .study-introduce-tag {
-  margin-left: 10px;
+  /* margin-left: 10px; */
   margin-bottom: 30px;
 }
 
@@ -464,8 +467,13 @@ html .ui-button.ui-state-disabled:active {
   font-size: 13px;
 }
 
+.tag-btn:hover {
+  background-color: #f2f6ff;
+  color: #828282;
+}
+
 .tag-list {
-  display: inline-block;
+  display: inline;
 }
 
 .tag-div i {
@@ -483,7 +491,7 @@ html .ui-button.ui-state-disabled:active {
   border-radius: 3px;
   position: absolute;
   top: 0;
-  right: 141px;
+  right: 153px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -491,7 +499,7 @@ html .ui-button.ui-state-disabled:active {
 .fa-rotate-left {
   position: absolute;
   top: 14px;
-  right: 127px;
+  right: 143px;
 }
 
 /* 스터디 장소 */
@@ -596,12 +604,14 @@ html .ui-button.ui-state-disabled:active {
   border: none;
   border-radius: 3px;
   margin-right: 5px;
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgb(35, 35, 35);
 }
 
 .tech-btn-div i {
   position: absolute;
   right: 12px;
-  top: 8px;
+  top: 6px;
   font-size: 5px;
 }

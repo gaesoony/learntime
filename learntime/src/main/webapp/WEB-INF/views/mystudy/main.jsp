@@ -196,6 +196,9 @@ pageEncoding="UTF-8"%>
 
         studyTab1.classList.remove("clicked");
         studyInfoContent.classList.add("hidden");
+        window.setTimeout(function () {
+          map.relayout();
+        }, 0);
       });
     </script>
   </body>
