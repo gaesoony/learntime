@@ -15,7 +15,7 @@
     }
     #mypage{
         width: 100%;
-        height: 1700px;
+        height: 1900px;
         display: grid;
         grid-template-columns: 300px 900px;
     }
@@ -29,7 +29,8 @@
     .makegrass-list{
         border: 1px solid #D9D9D9;
         width: 1000px;
-        height: 740px;
+        height: 850px;
+        margin-top: 30px;
     }
     .makegrass-list-title{
         font-size: 18px;
@@ -149,7 +150,7 @@
     /* 잔디심기 박스 아래 상태 */
     .makegrass-status{
         height: 3vh;
-        margin-top: 80px;
+        margin-top: 110px;
         margin-left: 815px;
         font-size: 17px;
     }
@@ -183,6 +184,7 @@
 
     /* MY 공부인증 리스트 */
     .my-makegrass-title{
+        margin-top: 40px;
         font-size: 20px;
         margin-bottom: 20px;
     }
@@ -200,7 +202,7 @@
         background-color: white;
         float: left;
         margin-right: 25px;
-        margin-bottom: 25px;
+        margin-bottom: 50px;
     }
     .thumbnail{
         width: 200px;
@@ -252,12 +254,43 @@
         color: #868686;
     }
 
+    /* paging */
+    #paging{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: auto;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        width: 400px;
+    }
+    
+    .paging-btn{
+        height: 25px;
+        width: 25px;
+        border: 1px solid #aeaeae;
+        border-radius: 2px;
+        text-align: center;
+        line-height: 24px;
+        color: #535353;
+        cursor: pointer;
+    }
+    .paging-btn:hover{
+        background-color: #58c079;
+        color: white;
+    }
+    
+    #next-btn{
+        width: 40px;
+    }
+
     /* 두번째 리스트 */
     .scrap-list-box{
         border: 1px solid #D9D9D9;
         width: 1000px;
-        height: 740px;
-        margin-top: 120px;
+        height: 840px;
+        margin-top: 260px;
     }
     .scrap-list-title{
         margin-top: 30px;
@@ -283,7 +316,7 @@
 
     /* 댓글 모음 부분 */
     .reply-list-title{
-        margin-top: 190px;
+        margin-top: 80px;
         margin-left: 40px;
         font-size: 18px;
     }
@@ -807,6 +840,21 @@
                     <div class="plus-my-makegrass-box">
                         <div class="plus" onclick="navToList()" style="cursor: pointer;">더보기 <i class="fa-solid fa-angle-right"></i></div>
                     </div>
+
+                    <!-- 버튼 -->
+                    <div id="paging">
+                        <div class="paging-btn">1</div>
+                        <div class="paging-btn">2</div>
+                        <div class="paging-btn">3</div>
+                        <div class="paging-btn">4</div>
+                        <div class="paging-btn">5</div>
+                        <div class="paging-btn">6</div>
+                        <div class="paging-btn">7</div>
+                        <div class="paging-btn">8</div>
+                        <div class="paging-btn">9</div>
+                        <div class="paging-btn">10</div>
+                        <div class="paging-btn" id="next-btn">다음</div>
+                    </div>
                 </div>
 
                 <!-- 두번째 리스트 -->
@@ -878,6 +926,21 @@
                         <!-- 더보기 -->
                         <div class="plus-scrap-box">
                             <div class="scrap-plus" onclick="navToList()" style="cursor: pointer;">더보기 <i class="fa-solid fa-angle-right"></i></div>
+                        </div>
+
+                        <!-- 버튼 -->
+                        <div id="paging">
+                            <div class="paging-btn">1</div>
+                            <div class="paging-btn">2</div>
+                            <div class="paging-btn">3</div>
+                            <div class="paging-btn">4</div>
+                            <div class="paging-btn">5</div>
+                            <div class="paging-btn">6</div>
+                            <div class="paging-btn">7</div>
+                            <div class="paging-btn">8</div>
+                            <div class="paging-btn">9</div>
+                            <div class="paging-btn">10</div>
+                            <div class="paging-btn" id="next-btn">다음</div>
                         </div>
 
                     <!-- 댓글 모음 -->

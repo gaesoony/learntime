@@ -71,33 +71,16 @@
     .mainside{
         padding: 40px;
     }
-    .cate1{
-        margin-right: 20px;
-        font-size: 20px;
-        text-decoration: none;
-        color: black;
-        font-weight: 550;
-    }
-    .cate2{
-        margin-right: 20px;
+    .side-category{
+        width: 4vw;
+        border: none;
+        background-color: white;
+        margin-right: 5px;
         font-size: 20px;
         color: gray;
         text-decoration: none;
     }
-    .cate2:checked{
-        color: black;
-    }
-    .cate2:hover{
-        color: black;
-        font-weight: 550;
-    }
-    .cate3{
-        margin-right: 20px;
-        font-size: 20px;
-        color: gray;
-        text-decoration: none;
-    }
-    .cate3:hover{
+    .active{
         color: black;
         font-weight: 550;
     }
@@ -322,9 +305,9 @@
                 </div>
                 <div class="mainbody">
                     <div class="mainside">
-                        <a href="#none" class="cate1">전체</a>
-                        <a href="#none" class="cate2">해결</a>
-                        <a href="#none" class="cate3">미해결</a>
+                        <button href="#none" class="side-category" style='cursor:pointer;'>전체</button>
+                        <button href="#none" class="side-category" style='cursor:pointer;'>해결</button>
+                        <button href="#none" class="side-category" style='cursor:pointer;'>미해결</button>
                         <div class="line1"></div>
 
                         <!-- 검색 -->
@@ -779,6 +762,12 @@
     <div class="bottom"></div>
 
     <script>
+        // 상단 카테고리 (전체 | 해결 | 미해결)
+        $('.mainside .side-category').on("click",function(){
+            $(".mainside .side-category.active").removeClass('active');
+            $(this).addClass("active");
+        });
+
         function navToDetail(){
             window.location.href="/app/qna/detail";
         }
