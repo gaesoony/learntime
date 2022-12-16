@@ -222,13 +222,18 @@
 
 .tag-btn {
   border: none;
-  background-color: #e7eef9;
+  background-color: #e8f1ff;
   border-radius: 3px;
   padding: 3px 17px 3px 10px;
 }
 
+.tag-btn:hover {
+  background-color: #f2f6ff;
+  color: #828282;
+}
+
 .tag-list {
-  display: inline-block;
+  display: inline;
 }
 
 .tag-div i {

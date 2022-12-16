@@ -116,7 +116,7 @@ pageEncoding="UTF-8"%>
                   class="study-search-tag"
                   type="text"
                   placeholder="태그로 검색해보세요!"
-                  onkeyup="if(window.event.keyCode==13){makeTag(event)}"
+                  onkeyup="if(window.event.keyCode==13){makeTag(event)} if(window.event.keyCode==8){deleteBeforeTag()}"
                 />
               </div>
               <input
@@ -134,11 +134,11 @@ pageEncoding="UTF-8"%>
             function makeTag(e) {
               const value = e.target.value;
               const str =
-                '<div class="relative tag-div">' +
-                '<input type="button" value="' +
+                '<div class="relative cursor tag-div" onclick="deleteTag(event)">' +
+                '<input onclick="deleteTag2(event)" type="button" value="' +
                 value +
-                '" class="tag-btn" /> ' +
-                '<i class="fa-solid fa-xmark"></i>' +
+                '" class="tag-btn cursor" /> ' +
+                '<i class="fa-solid fa-xmark" onclick="deleteTag2(event)"></i>' +
                 "</div>";
 
               const tagList = document.querySelector(".tag-list");
@@ -148,9 +148,23 @@ pageEncoding="UTF-8"%>
             }
 
             function resetTag() {
-              console.log("클릭");
               const tagList = document.querySelector(".tag-list");
               tagList.textContent = "";
+            }
+
+            function deleteTag(e) {
+              e.target.remove();
+            }
+
+            function deleteTag2(e) {
+              e.target.parentNode.remove();
+            }
+
+            function deleteBeforeTag() {
+              const lastTag = document.querySelector(
+                ".tag-list div:last-child"
+              );
+              lastTag.remove();
             }
           </script>
           <section class="study-tech-area">

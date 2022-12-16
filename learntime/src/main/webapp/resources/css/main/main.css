@@ -1,5 +1,9 @@
 /* 공통css */
 
+* {
+  box-sizing: border-box;
+}
+
 .middle {
   display: flex;
   justify-content: center;
@@ -42,11 +46,15 @@
   color: rgb(49, 137, 252);
 }
 
+.relative {
+  position: relative;
+}
+
 /* 배너 */
 
 .main-banner img {
   width: 100%;
-  height: 280px;
+  height: 305px;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
@@ -481,6 +489,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 50px;
 }
 
 .main-mentor-banner div:first-child {
@@ -518,4 +527,463 @@
 
 .main-mentor-banner-list {
   margin-top: 60px;
+}
+
+/* 메인 배너 아래부분 css */
+
+.the-lower-part-of-main {
+  width: 1200px;
+  height: auto;
+  margin: 0 auto;
+}
+/* 레이아웃 */
+.the-upper {
+  width: 100%;
+  height: 600px;
+}
+.the-middle {
+  width: 100%;
+  height: 600px;
+}
+.the-lower {
+  width: 100%;
+  height: 750px;
+  display: flex;
+  align-items: center;
+}
+.mentoring-title {
+  width: 100%;
+  height: 25%;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+}
+.mentoring-content {
+  width: 100%;
+  /* height: 75%; */
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+/* 멘토링 타이틀 */
+.mentoring-title-icon {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 50px;
+  font-size: 25px;
+  font-weight: 700;
+}
+.mentoring-content-more {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-bottom: 50px;
+  /* font-weight: 700; */
+}
+#color-change {
+  color: #5ecc80;
+}
+
+/* 슬라이드 */
+
+.slice-as-three {
+  width: 100%;
+  height: 350px;
+  /* display: grid;
+  grid-template-columns: 1fr 8fr 1fr; */
+  align-items: center;
+}
+.prevBtn,
+.nextBtn {
+  position: absolute;
+
+  z-index: 1;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  box-shadow: 0 5px 13px -7px rgb(0 0 0 / 50%);
+}
+.container {
+  width: 1200px;
+  height: 350px;
+  overflow: hidden;
+}
+.prevBtn {
+  top: 133px;
+  left: -13px;
+}
+.nextBtn {
+  top: 133px;
+  right: -10px;
+}
+
+.prevBtn i,
+.nextBtn i {
+  color: gray;
+}
+
+.container-slide {
+  position: relative;
+  width: 1040px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  overflow: hidden;
+  transition: left 0.5s ease-out;
+  margin-left: 10px;
+}
+.slide {
+  width: 280px;
+  height: 300px;
+  /* margin: 13px; */
+  float: left;
+  border: 2px solid #5ecc80;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.slide-box {
+  width: 225px;
+  height: 290px;
+}
+
+#mentoring-ad1,
+#mentoring-ad2,
+#mentoring-ad3,
+#mentoring-ad4 {
+  width: 100%;
+  /* height: 25%; */
+}
+#mentoring-ad1 {
+  font-weight: 700;
+  font-size: 20px;
+  display: flex;
+  /* align-items: flex-end; */
+  margin-top: 27px;
+  /* justify-content: center; */
+  line-height: 25px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#mentoring-ad2 {
+  margin-top: 20px;
+  margin-bottom: 13px;
+  padding-bottom: 20px;
+  font-size: 14px;
+  color: rgb(152, 152, 152);
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  border-bottom: 1px solid gray;
+  line-height: 19px;
+}
+#mentoring-ad3 {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  margin-bottom: 3px;
+}
+#mentoring-ad4 {
+  padding-top: 10px;
+  /* display: flex; */
+  color: rgb(151, 151, 151);
+  font-size: 14px;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+
+#mentoring-ad4 div:first-child {
+  margin-bottom: 10px;
+}
+
+#mentoring-ad4 div:last-child {
+  margin-bottom: 20px;
+}
+
+#border-box1,
+#border-box2,
+#border-box3,
+#border-box4 {
+  width: 25%;
+  height: 100%;
+}
+#border-box1 {
+  display: flex;
+  align-items: center;
+}
+#border-box2 {
+  display: flex;
+  align-items: center;
+}
+#border-box3 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+#border-box4 {
+  display: flex;
+  align-items: center;
+}
+#inner-box1 {
+  width: 45px;
+  height: 45px;
+  background-image: url("/app/resources/img/main/Ellipse\ 2.png");
+  background-size: 45px;
+}
+#inner-box2 {
+  width: 50px;
+  height: 25px;
+  text-align: center;
+  display: flex;
+}
+#inner-box3 {
+  width: 43px;
+  height: 22px;
+  border: 1px solid #5ecc80;
+  border-radius: 20px;
+  color: #5ecc80;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-image: url("/app/resources/img/main/Frame\ 23.png");
+  background-size: 50px;
+  text-align: center; */
+}
+#inner-box4 {
+  width: 50px;
+  height: 25px;
+  /* background-image: url("/app/resources/img/main/Frame\ 20.png");
+  text-align: center; */
+}
+
+/* 스터디 제목 부분 */
+
+.studying-title {
+  width: 100%;
+  height: 25%;
+
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+}
+.studying-content {
+  width: 100%;
+  height: 75%;
+
+  display: flex;
+  align-items: center;
+}
+.studying-title-icon {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 50px;
+}
+.studying-content-more {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-bottom: 50px;
+  font-weight: 700;
+}
+
+/* 슬라이드 */
+
+.slice-as-three-sec {
+  width: 100%;
+  height: 350px;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  align-items: center;
+}
+.prevBtn-sec,
+.nextBtn-sec {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.container-sec {
+  width: 1040px;
+  height: 350px;
+  overflow: hidden;
+}
+.prevBtn-sec {
+  background-image: url("/app/resources/img/main/Group\ 28.png");
+  background-size: 80px;
+}
+.nextBtn-sec {
+  background-image: url("/app/resources/img/main/Ellipse\ 108.png");
+  background-size: 80px;
+}
+
+.container-slide-sec {
+  position: relative;
+  width: 1040px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  overflow: hidden;
+  transition: left 0.5s ease-out;
+}
+.slide-sec {
+  width: 230px;
+  height: 300px;
+  margin: 13px;
+  float: left;
+  border: 2px solid gray;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.java-photo {
+  width: 230px;
+  height: 200px;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.java-content {
+  width: 230px;
+  height: 100px;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-box {
+  width: 210px;
+  height: 60px;
+  display: flex;
+}
+.profile-photo {
+  width: 60px;
+  height: 60px;
+}
+.java-title {
+  width: 150px;
+  height: 60px;
+  margin-left: 10px;
+}
+.heart {
+  width: 50px;
+  height: 30px;
+  position: relative;
+  top: 30px;
+  right: 50px;
+}
+/* 공지사항 왼쪽*/
+.notice {
+  width: 100%;
+  height: 500px;
+  display: flex;
+}
+.notice-list {
+  width: 598px;
+  height: 495px;
+  border: 5px solid #5ecc80;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.faq-per-person {
+  width: 597px;
+  height: 495px;
+  border: 5px solid #5ecc80;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #5ecc80;
+}
+
+.lists {
+  width: 548px;
+  height: 445px;
+}
+.list {
+  width: 100%;
+  height: 60px;
+  border-bottom: 2px solid gray;
+}
+#boldline {
+  border-bottom: 5px solid gray;
+  display: flex;
+}
+.notice-title {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: larger;
+}
+.arrow {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+#list-one,
+#list-two,
+#list-three,
+#list-four,
+#list-five {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 5px;
+}
+
+/* 공지사항 오른쪽 */
+
+.faq-div {
+  width: 497px;
+  height: 295px;
+}
+.faq-title {
+  width: 100%;
+  height: 120px;
+  color: white;
+  font-size: xx-large;
+  font-weight: 900;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  line-height: 40px;
+  text-align: center;
+}
+.faq-content {
+  width: 100%;
+  height: 50px;
+  font-size: small;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.faq-box {
+  width: 100%;
+  height: 125px;
+  display: flex;
+  justify-content: center;
+}
+#personal-faq-box {
+  width: 165px;
+  height: 65px;
+  background-color: white;
+  color: #5ecc80;
+  font-size: larger;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

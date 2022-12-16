@@ -326,11 +326,11 @@ pageEncoding="UTF-8"%>
               </div>
               <div class="study-popup-foot">
                 <div class="study-pop-btn study-confirm" id="study-confirm">
-                  신청
+                  수락
                 </div>
 
                 <div class="study-pop-btn study-close" id="study-close">
-                  취소
+                  거절
                 </div>
               </div>
             </div>

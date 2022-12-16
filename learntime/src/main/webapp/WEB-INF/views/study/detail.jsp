@@ -175,7 +175,7 @@ pageEncoding="UTF-8"%>
                 var mapContainer = document.getElementById("map"), // 지도를 표시할 div
                   mapOption = {
                     center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                    level: 1, // 지도의 확대 레벨
+                    level: 4, // 지도의 확대 레벨
                   };
 
                 // 지도를 생성합니다
@@ -194,6 +194,7 @@ pageEncoding="UTF-8"%>
                         result[0].y,
                         result[0].x
                       );
+                      map.setCenter(coords);
 
                       // 결과값으로 받은 위치를 마커로 표시합니다
                       var marker = new kakao.maps.Marker({
@@ -209,6 +210,7 @@ pageEncoding="UTF-8"%>
                       infowindow.open(map, marker);
 
                       // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                      console.log(coords);
                       map.setCenter(coords);
                     }
                   }
@@ -380,13 +382,16 @@ pageEncoding="UTF-8"%>
 
         studyTab1.classList.remove("clicked");
         studyInfoContent.classList.add("hidden");
+        window.setTimeout(function () {
+          map.relayout();
+        }, 0);
       });
     </script>
     <script>
       // 상세페이지로 들어갔을때 초기위치가 댓글쪽이어서 최상단으로 올려줌
       setTimeout(function () {
         scrollTo(0, 0);
-      }, 100);
+      }, 25);
     </script>
     <script
       src="https://kit.fontawesome.com/939838bb27.js"
