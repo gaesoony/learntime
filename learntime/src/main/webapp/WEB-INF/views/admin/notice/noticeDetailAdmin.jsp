@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/app/resources/css/reset.css">
-<link rel="stylesheet" href="/app/resources/css/notice/noticeDetail.css">
+<link rel="stylesheet" href="/app/resources/css/notice/noticeDetailAdmin.css">
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/common/header.jsp" %>
@@ -36,10 +36,12 @@
             </div>
         </div>
         <div class="notice-content">
-            <div class="content-area"></div>
-            <div class="btn-area">
-                <div class="open"><input type="button" value="공개" class="open" name="open"></div>
-                <div class="close"><input type="button" value="삭제" class="close" name="close"></div>
+            <div class="gathering-divs-c">
+                <div class="content-area"></div>
+                <div class="btn-area">
+                    <div class="open"><input type="button" value="공개" class="open" name="open"></div>
+                    <div class="close"><input type="button" value="삭제" class="close" name="close"></div>
+                </div>
             </div>
         </div>
     </div>

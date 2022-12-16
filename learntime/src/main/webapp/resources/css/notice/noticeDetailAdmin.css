@@ -112,6 +112,8 @@
     width:1200px;
     height: 450px;
     display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .gathering-divs-c{
@@ -124,15 +126,16 @@
     width: 1200px;
     height: 350px;
     border: 1px solid red;
-    position: relative;
-    left: 500px;
-
+   
 
 }
 .btn-area{
     width: 1200px;
     height: 100px;
     border: 1px solid red;
+    display: flex;
+    justify-content: flex-end;
+    
     
 
 }
