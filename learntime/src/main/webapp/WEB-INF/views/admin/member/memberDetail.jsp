@@ -9,6 +9,9 @@ pageEncoding="UTF-8"%>
     <!-- 구글아이콘 -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+	<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+
 
   </head>
   <style>
@@ -33,7 +36,7 @@ pageEncoding="UTF-8"%>
 
     .content-section{
         width: 445px;
-        height:835px;
+        
         background-color: white;
         border: 1px solid rgb(221, 221, 221);
 
@@ -45,7 +48,7 @@ pageEncoding="UTF-8"%>
     #join-area{
         padding: 50px;
         display: grid;
-        grid-template-rows: repeat(6,1fr);
+        grid-template-rows: repeat(5,1fr);
         align-items: center;
         justify-content: center;
 
@@ -76,13 +79,13 @@ pageEncoding="UTF-8"%>
         margin-bottom: 3px;
     }
 
-    input{
-        width: 292px;
-        height: 20px;
-        padding:14px; 
-        border-radius:4px;
-        border:1px solid #D9D9D9;
-    }
+   input[type="text"]:not(.choices__input),input[type="password"]{
+	width: 292px;
+	height: 20px;
+	padding:14px; 
+	border-radius:4px;
+	border:1px solid #D9D9D9;
+	}
 
     #pwd{
         position: relative;
@@ -105,7 +108,7 @@ pageEncoding="UTF-8"%>
         border:1px solid #D9D9D9;
     }
 
-    #join-area button{
+    .edit,.delete,#before{
         background: inherit ; 
         border:none; 
         box-shadow:none; 
@@ -132,6 +135,32 @@ pageEncoding="UTF-8"%>
         background-color: #FFFFFF;
         color: #5ECC80;
         border: 1px solid #5ECC80;
+    }
+    
+    .choices__inner{
+	width: 305px;
+	display: flex;
+	background-color: #FFFFFF;
+	}
+	
+	.choices__input{
+		background-color: #FFFFFF;
+		display: none;
+	}
+	
+	.choices__list--dropdown{
+		width: 320px;
+	}
+
+
+    .choices__list--multiple .choices__item{
+	background-color: #5ecc80;
+	border: 1px solid #5ecc80;
+		
+    }
+
+    .choices[data-type*=select-multiple] .choices__button{
+        border-left: 1px solid #FFFFFF;
     }
 
     
@@ -179,15 +208,29 @@ pageEncoding="UTF-8"%>
                     </div>
 
                     <div id="stack">
-                        <div class="text">관심 기술 스택</div>
-                        <select name="techStackNo" required style="color: #535353">
-                        <option value="" disabled selected >관심 기술 스택을 선택해 주세요.</option>
-                        <option value="1">JAVA</option>
-                        </select>
-                        <div id="stackResult"></div>
-                    </div>
+					<div class="text">관심 기술 스택</div>
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-6"> 		
+							<select id="choices-multiple-remove-button"multiple>
+								<option value="HTML">HTML</option>
+								<option value="Jquery">Jquery</option>
+								<option value="CSS">CSS</option>
+								<option value="Java">Java</option>
+								<option value="Javascript">Javascript</option>
+								<option value="Angular">Angular</option>
+								<option value="Python">Python</option>
+								<option value="Hybris">Hybris</option>
+								<option value="SQL">SQL</option>
+								<option value="NOSQL">NOSQL</option>
+								<option value="NodeJS">NodeJS</option>
+							</select> 
+						
+						</div>					
+					</div>
+						
+				</div>
                     
-                    <button>수정하기</button>
+                    <button class="edit">수정하기</button>
                     <button class="delete">삭제하기</button>
                     <button id="before"onclick="location.href='${pageContext.request.contextPath}/admin/member/manage'">이전으로</button>
     
@@ -224,6 +267,18 @@ pageEncoding="UTF-8"%>
 	    	// 유효성 검사 추가하기
 	          
 	         });
+	    
+		 $(document).ready(function(){
+			    
+				var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+				removeItemButton: true,
+				maxItemCount:11,
+				searchResultLimit:11,
+				renderChoiceLimit:11
+				}); 
+	
+	
+			});
 	</script>
   </body>
 </html>

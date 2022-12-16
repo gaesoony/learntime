@@ -92,18 +92,18 @@
         <div id="footer">
            <div id="top">
             
-            <a href="#">공지사항</a>
+            <a href="${pageContext.request.contextPath}/notice/noticeList">공지사항</a>
             <span>|</span>
-            <a href="#">FAQ</a>
+            <a href="${pageContext.request.contextPath}/faq/faqList">FAQ</a>
             <span>|</span>
-            <a href="#">1:1 문의하기</a>
+            <a href="${pageContext.request.contextPath}/question/questionList">1:1 문의하기</a>
                
            </div>
 
            <div id="bottom">
             <div id="company_info">
                 
-                <a href="#" id="foot-logo"><img src="/app/resources/img/logo_green2.png" alt="런타임로고">LEARN TIME</a>
+                <a href="${pageContext.request.contextPath}/main" id="foot-logo"><img src="${pageContext.request.contextPath}/resources/img/logo_green2.png" alt="런타임로고">LEARN TIME</a>
                 <span>|</span>
                 <a href="#">개인정보처리방침</a>
                 <span>|</span>

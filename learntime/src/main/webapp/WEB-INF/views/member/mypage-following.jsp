@@ -8,6 +8,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css">
 
 <style>
+    #all-area{
+        width: 100%;
+        height: 100%;
+        margin: auto;
+    }
     #mypage-box{
         width: 1200px;
         height: 100%;
@@ -114,37 +119,40 @@
 
 <%@include file="/WEB-INF/views/common/header.jsp" %>
 
-
-
-<div id="mypage-box">
-    <div id="mypage">
-        <div id="bin">
-            <%@include file="/WEB-INF/views/common/mypage-side.jsp"%>
-        </div>
-        <div id="home-area">
-            <div id="cate">
-                <div id="cate-follow">
-                    <a href="${pageContext.request.contextPath}/member/mypage/follow">팔로워</a>
+<div id="all-area">
+    <div id="mypage-box">
+        <div id="mypage">
+            <div id="bin">
+                <%@include file="/WEB-INF/views/common/mypage-side.jsp"%>
+            </div>
+            <div id="home-area">
+                <div id="cate">
+                    <div id="cate-follow">
+                        <a href="${pageContext.request.contextPath}/member/mypage/follow">팔로워</a>
+                    </div>
+        
+                    <div id="cate-following">
+                        <a href="${pageContext.request.contextPath}/member/mypage/following">팔로잉</a>
+                    </div>
                 </div>
     
-                <div id="cate-following">
-                    <a href="${pageContext.request.contextPath}/member/mypage/following">팔로잉</a>
-                </div>
+                <div class="list">
+                    <div class="f-img"></div>
+                    <div class="f-nick">닉네임</div>
+                    
+                    <div class="following">
+                    </div>
+               
             </div>
-
-            <div class="list">
-                <div class="f-img"></div>
-                <div class="f-nick">닉네임</div>
-                
-                <div class="following">
-                </div>
-           
         </div>
+        
+        
     </div>
     
-  
 </div>
+
 <%@include file="/WEB-INF/views/common/footer2.jsp" %>
+
 
 <script>
     const cate = document.querySelector("#cate div:nth-child(2) a");

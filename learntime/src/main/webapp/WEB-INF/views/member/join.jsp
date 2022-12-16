@@ -5,10 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>LEARN TIME | 회원가입</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+				
 <style>
 #join-main{
 	width: 350px;
-	height: 100vh;
+	
 	margin: auto;
 	
 }
@@ -52,7 +55,7 @@ margin: auto;
 	margin-bottom: 3px;
 }
 
-input{
+input[type="text"]:not(.choices__input),input[type="password"]{
 	width: 292px;
 	height: 20px;
 	padding:14px; 
@@ -73,15 +76,9 @@ input{
 
 }
 
-select{
-	width: 320px;
-	height: 42px;
-	border-radius:4px;
-	padding:5px; 
-	border:1px solid #D9D9D9;
-}
 
-#join-area button{
+
+#join-area #join-btn{
 	background: inherit ; 
 	border:none; 
 	box-shadow:none; 
@@ -137,6 +134,32 @@ label[for="joinAgree-check"] {
 	margin: 2px;
 }
 
+.choices__inner{
+	width: 305px;
+	display: flex;
+	background-color: #FFFFFF;
+}
+
+.choices__input{
+	background-color: #FFFFFF;
+	display: none;
+}
+
+.choices__list--multiple .choices__item{
+	background-color: #5ecc80;
+	border: 1px solid #5ecc80;
+		
+}
+
+.choices[data-type*=select-multiple] .choices__button{
+	border-left: 1px solid #FFFFFF;
+}
+
+.choices__list--dropdown{
+	width: 320px;
+}
+
+
 </style>
 </head>
 <body>
@@ -188,14 +211,30 @@ label[for="joinAgree-check"] {
 				
 				<div id="stack">
 					<div class="text">관심 기술 스택</div>
-					<select name="techStackNo" required style="color: #535353">
-					<option value="" disabled selected >관심 기술 스택을 선택해 주세요.</option>
-					<option value="1">JAVA</option>
-					</select>
-					<div id="stackResult"></div>
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-6"> 		
+							<select id="choices-multiple-remove-button" multiple>
+								<option value="HTML">HTML</option>
+								<option value="Jquery">Jquery</option>
+								<option value="CSS">CSS</option>
+								<option value="Java">Java</option>
+								<option value="Javascript">Javascript</option>
+								<option value="Angular">Angular</option>
+								<option value="Python">Python</option>
+								<option value="Hybris">Hybris</option>
+								<option value="SQL">SQL</option>
+								<option value="NOSQL">NOSQL</option>
+								<option value="NodeJS">NodeJS</option>
+							</select> 
+						
+						</div>					
+					</div>
+						
 				</div>
+
 				
-				<button>회원가입</button>
+				
+				<button id="join-btn">회원가입</button>
 				
 				<div id="joinAgree-area">
 					<div class="joinAgree">
@@ -214,9 +253,11 @@ label[for="joinAgree-check"] {
 			
 			</div>
 		</form>
-			
+		
 	</div>
-	
+
+
+
 	<script>
 		//비밀번호 보기,숨기기 
 		$(document).ready(function(){
@@ -237,8 +278,22 @@ label[for="joinAgree-check"] {
 	    	// 유효성 검사 추가하기
 	          
 	         });
+
+		$(document).ready(function(){
+
+			var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+			removeItemButton: true,
+			maxItemCount:11,
+			searchResultLimit:11,
+			renderChoiceLimit:11
+			}); 
+
+
+		});
+
+			
 	</script>
-	
 	<%@include file="/WEB-INF/views/common/footer.jsp" %>
+	
 </body>
 </html>

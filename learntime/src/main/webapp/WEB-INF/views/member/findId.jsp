@@ -98,7 +98,7 @@
                     사용중인 계정의 이메일 주소를 알려드립니다.
                 </div>
             </div>
-            <form action="/app/member/findId" method="post">
+            <form action="${pageContext.request.contextPath}/member/findId" method="post">
             <div id="find-phone">
                 <div class="text">전화번호</div>
                 
@@ -109,9 +109,9 @@
             </div>
             </form>
             <div id="account_find">
-                <a href="/app/member/findPwd">비밀번호 찾기</a>
+                <a href="${pageContext.request.contextPath}/member/findPwd">비밀번호 찾기</a>
                 <span>|</span>
-                <a href="/app/member/join">회원가입</a>
+                <a href="${pageContext.request.contextPath}/member/join">회원가입</a>
             </div>
 
         </div>
