@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .list-main{
-    width:1200px;
+    width:100%;
     height:auto;
     margin:0 auto;
     display:flex;
@@ -10,7 +10,7 @@
 }
 /* 배너 */
 .banner-section{
-    
+    width: 100%;
     height: 180px;
     background-color: #343B3D;
     display: flex;
@@ -22,7 +22,7 @@
 }
 
 .banner{
-    margin-right: 100px;
+    margin-right: 350px;
 }
 
 #banner-title1{
@@ -39,10 +39,11 @@
     font-weight: 900;
 }
 .notice-detail-list{
-  
+    width: 1200px;
     height:750px;
     display: grid;
     grid-template-rows:100px 250px 350px 600px;
+    margin: 0 auto;
 }
 .notice-sign{
     width: 100%;
@@ -108,7 +109,11 @@
     margin-left: 20px;
 }
 .reply-no{
-    margin-left: 20px;
+    margin-left: 25px;
+    margin-top: 2px;
+}
+.messages-notice{
+    margin-left: 3px;
 }
 .title-info{
     width: 100%;
@@ -141,10 +146,16 @@
 
 
 /* 댓글 */
+
+.notice-comments{
+    width: 1200px;
+    height: 1200px;
+    margin: 0 auto;
+}
 .reply-section{
 
     width: 100%;
-    height: 900px;
+    height: 1200px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -152,7 +163,7 @@
 
 }
 .reply-num{
-    width: 100%;
+    width: 1200px;
     height: 50px;
     
 }
@@ -222,14 +233,14 @@ input{
 }
 .comment-box{
     width: 1000px;
-    height: 500px;
+    height: 1000px;
     display: flex;
     margin-top: 100px;
     
 }
 .gathering-boxes{
     width: 1000px;
-    height: 100%;
+    height: 1000px;
     
 
 }
@@ -271,45 +282,45 @@ input{
 
 }
 .btn-good-or-bad{
-    width: 200px;
-    height: 70px;
+    width: 150px;
+    height: 50px;
     display: flex;
    
     
 }
 .btn-good-or-bad-re{
-    width: 200px;
-    height: 70px;
+    width: 150px;
+    height: 50px;
     display: flex;
     margin-left: 10px;
     
 }
 .downBtn{
-    width: 55px;
-    height: 70px;
-    border: 3px solid lightgray;
+    width: 40px;
+    height: 50px;
+    border: 2px solid lightgray;
     text-align: center;
-    line-height: 70px;
+    line-height: 50px;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
 }
 .middleBtn{
-    width: 90px;
-    height: 70px;
-    border: 3px solid lightgray;
+    width: 70px;
+    height: 50px;
+    border: 2px solid lightgray;
     text-align: center;
-    line-height: 70px;
+    line-height: 50px;
     font-size: x-large;
     font-weight: 600;;
     color: black;
     
 }
 .upBtn{
-    width: 55px;
-    height: 70px;
-    border: 3px solid lightgray;
+    width: 40px;
+    height: 50px;
+    border: 2px solid lightgray;
     text-align: center;
-    line-height: 70px;
+    line-height: 50px;
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
 
@@ -321,8 +332,8 @@ input{
 
 }
 .hide-comment{
-    width: 100%;
-    height: 30px;
+    width: 1000px;
+    height: 300px;
     display: flex;
     flex-direction: row-reverse;
 
@@ -336,6 +347,9 @@ input{
   
 
 }
+.hide-write-reply{
+    display: flex;
+}
 .write-reply{
     width: 88%;
     color: gray;
@@ -344,6 +358,10 @@ input{
     font-weight: 600;
 
 
+}
+.write-reply-reply{
+    display: flex;
+    align-items: center;
 }
 .comment-b-for-a{
     width: 100%;
@@ -365,6 +383,9 @@ input{
 
 
 }
+.reply-section{
+    width: 100%;
+}
 .profile-etc-re{
     width: 970px;
     height: 90px;
@@ -377,7 +398,6 @@ input{
     width: 70px;
     height: 70px;
     
-   
    
   
 }
@@ -420,3 +440,225 @@ input{
     
 
 }
+@charset "UTF-8";
+
+.list-main-m{
+    width:100%;
+    height:auto;
+    margin:0 auto;
+    display:flex;
+    flex-direction: column;
+    
+    
+}
+
+
+.q-detail-list-m{
+    width: 100%;
+    height:750px;
+    display: grid;
+    grid-template-rows:100px 100px 50px 400px 100px;
+    margin: 0 auto;
+}
+.q-sign-m{
+    width: 1200px;
+    height: 100%;
+    display: flex;
+    margin: 0 auto;
+
+}
+.line1-m{
+    width: 100px;
+    height: 100%;
+
+}
+.name-q-m{
+    width: 300px;
+    height: 100%;
+    font-size: xx-large;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.line2-m{
+    width: 790px;
+    height: 100%;
+}
+.line-a-m{
+    width: 100%;
+    height: 50%;
+    border-bottom:5px solid gray;
+}
+.line-b-m{
+    width: 100%;
+    height: 50%;
+    border-bottom:5px solid gray;
+}
+
+/* 제목 */
+.q-title-date-m{
+    width: 1200px;
+    height: 90px;
+    border-bottom:2px solid lightgray;
+    margin: 0 auto;
+  
+
+}
+.gathering-divs-d{
+    width: 1200px;
+    height: 90px;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.q-title-cate{
+    
+    width:1200px;
+    height: 45px;
+    display: flex;
+    
+
+}
+.q-enrollDate-comment{
+    
+    width:1200px;
+    height: 45px;
+    display: flex;
+    line-height: 60px;
+}
+.q-nick{
+    width: 100px;
+    height: 45px;
+    font-size: small;
+    color: gray;
+    
+
+}
+.date-q-m{
+    width: 800px;
+    height: 45px;
+    font-size: small;
+    color: gray;
+    
+}
+.q-hit{
+    width: 300px;
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+    font-size: small;
+    color: gray;
+}
+.q-comment{
+    margin-left: 10px;
+}
+
+.category-q-m{
+    width: 100px;
+    height: 45px;
+    font-weight: 600;
+    line-height: 80px;
+    
+    
+}
+.title-q-m{
+    width: 750px;
+    height: 45px;
+    font-weight: 600;
+    line-height: 80px;
+    
+    
+ 
+}
+
+.q-content-m{
+    width: 1200px;
+    height: 400px;
+    border-top: 2px solid lightgray;
+    margin: 0 auto;
+    
+}
+.backBtn-m{
+    width: 1200px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0 auto;
+}
+.btn-to-m{
+    width: 100px;
+    height: 50px;
+    background-color: #5ECC80;
+    color: white;
+    font-weight: 600;
+    border-radius: 1rem;
+    text-align: center;
+    line-height: 50px;
+    margin-left: 10px;
+}
+
+/* 댓글 */
+.reply-section{
+    width: 100%;
+}
+.profile-etc-re{
+    width: 970px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+   
+
+}
+.profile-pic-re{
+    width: 70px;
+    height: 70px;
+    
+   
+  
+}
+
+
+.profile-id-re{
+    width: 660px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+ 
+}
+.good-or-bad-re{
+    width: 200px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    margin-right: 40px;
+ 
+    
+    
+
+}
+.leaved-comment-re{
+    width: 970px;
+    height: 100px;
+    color: black;
+    font-size: medium;
+    font-weight: 100px;
+
+
+}
+.hide-comment-re{
+    width: 970px;
+    height: 40px;
+    font-size: small;
+    color: gray;
+    font-weight: 600;
+    
+
+}
+
+
+
+
+
+

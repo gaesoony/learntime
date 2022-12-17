@@ -33,9 +33,9 @@
                 <div class="cate-selection">
                     <div class="cate-pin">상단고정</div>
                     <div class="activated">
-                        <div class="all-cate"><input type="checkbox"  name="allCate">전체</div>
-                        <div class="activate"><input type="checkbox" name="activate">활성화</div>
-                        <div class="non-activated"><input type="checkbox"  name="non-activated">비활성화</div>
+                        <div class="all-cate"><input type="radio"  name="pin">전체</div>
+                        <div class="activate"><input type="radio" name="pin">활성화</div>
+                        <div class="non-activated"><input type="radio"  name="pin">비활성화</div>
                     </div>
                 </div>
             </div>
@@ -58,8 +58,7 @@
                     <textarea class="summernote" name="editordata"></textarea>
                 </div>
                 <div class="backBtn">
-                    <div class="btn-to">수정</div>
-                    <div class="btn-to">삭제</div>
+                    <div class="btn-to">등록</div>
                     <div class="btn-to">글목록</div>
                 </div>
             </div>
@@ -85,7 +84,8 @@
             height: 350,
             width: 1000,
             placeholder: '내용을 작성하세요',
-            lang: "ko-KR"
+            lang: "ko-KR",
+            disableResizeEditor: true
         });
     </script>
 

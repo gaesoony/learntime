@@ -20,42 +20,45 @@
                 <div class="guide">궁금하신 점을 남겨주시면 접수 순서대로 답변 드리겠습니다.</div>
             </div>
         </div>
-        <div class="category-question">
-            <div class="cate-list">
-                <a href=""><div class="ques">문의하기</div></a>
-                <a href=""><div class="cate">전체</div></a>
-                <a href=""><div class="cate">스터디</div></a>
-                <a href=""><div class="cate">공부인증</div></a>
-                <a href=""><div class="cate">Q&A</div></a>
-                <a href=""><div class="cate">멘토링</div></a>
-                <a href=""><div class="cate">커뮤니티</div></a>
-                <a href=""><div class="cate">스킨샵</div></a>
+        <div class="cate-search-list">
+            <div class="search-question">
+                <div class="gathering-blocks">
+                    <div class="select-content">
+                        <select name="select-title-content" >
+                            <option value="title-option">제목</option>
+                            <option value="content-option">내용</option>
+                        </select>
+                    </div>
+                    <div class="search-box2">
+                        <div class="search-line"></div>
+                    </div>
+                    <div class="search-btn2"><input type="submit" value="검색"></div>
+                </div>
             </div>
-        </div>
-        <div class="search-question">
-            <div class="gathering-blocks">
-                <div class="select-content">
-                    <select name="select-title-content" >
-                        <option value="title-option">제목</option>
-                        <option value="content-option">내용</option>
-                    </select>
+            <div class="category-question">
+                <div class="cate-list">
+                    <a href=""><div class="ques">문의하기</div></a>
+                    <a href=""><div class="cate">전체</div></a>
+                    <a href=""><div class="cate">스터디</div></a>
+                    <a href=""><div class="cate">공부인증</div></a>
+                    <a href=""><div class="cate">Q&A</div></a>
+                    <a href=""><div class="cate">멘토링</div></a>
+                    <a href=""><div class="cate">커뮤니티</div></a>
+                    <a href=""><div class="cate">스킨샵</div></a>
                 </div>
-                <div class="search-box2">
-                    <div class="search-line"></div>
-                </div>
-                <div class="search-btn2"><input type="submit" value="검색"></div>
             </div>
+            <div class="list-question">
+                <c:forEach var="questionList" begin="1" end="10" >
+                    <div class="questionList">
+                        <div class="pick-cate">[스터디]</div>
+                        <div class="pick-title">어떻게 이용하면 되나요?</div>
+                        <div class="pick-date">2022.12.16</div>
+                    </div>
+                </c:forEach>
+            </div>
+            <div class="page-question"></div>
         </div>
-        <div class="list-question">
-            <c:forEach var="questionList" begin="1" end="10" >
-                <div class="questionList">
-                    <div class="pick-cate">[스터디]</div>
-                    <div class="pick-title">어떻게 이용하면 되나요?</div>
-                    <div class="pick-date">2022.12.16</div>
-                </div>
-            </c:forEach>
-        </div>
-        <div class="page-question"></div>
+        
     </div>
 
 

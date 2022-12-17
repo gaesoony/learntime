@@ -33,5 +33,13 @@ public class QuestionController {
 		return "question/qDetailListAd";
 			
 		}
+	
+	// 문의게시판 수정페이지(회원)
+	@GetMapping("question/qDetailListModify")
+	public String qDetailListModify() {
+		return "question/qDetailListModify";
+			
+		}
+
 
 }

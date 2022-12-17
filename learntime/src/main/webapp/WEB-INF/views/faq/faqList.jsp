@@ -19,6 +19,16 @@
             <div id="banner-title2"><span>무엇을 도와드릴까요?</span></div>
         </div>
     </div>
+    <div class="search-window">
+        <div id="title-search">
+            <select name="select-title" >
+                <option value="title">제목</option>
+                <option value="content">내용</option>
+            </select>
+        </div>
+        <div id="search-box"></div>
+        <div id="searchBtn"><input type="submit" value="검색"></div>
+    </div>
     <div class="list-section">
         <div class="category-section">
             <a href=""><div class="list-categoryBtn">전체</div></a>
@@ -29,16 +39,7 @@
             <a href=""><div class="list-categoryBtn">커뮤니티</div></a>
             <a href=""><div class="list-categoryBtn">스킨샵</div></a>
         </div>
-        <div class="search-window">
-            <div id="title-search">
-                <select name="select-title" >
-                    <option value="title">제목</option>
-                    <option value="content">내용</option>
-                </select>
-            </div>
-            <div id="search-box"></div>
-            <div id="searchBtn"><input type="submit" value="검색"></div>
-        </div>
+        
         <div class="list-all">
             <c:forEach var="faqList" begin="1" end="10" >
                 <div class="faqList">

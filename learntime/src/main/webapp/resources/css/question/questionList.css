@@ -1,12 +1,15 @@
 @charset "UTF-8";
 
 .question-main{
-    width: 1200px;
+    width: 100%;
     height: auto;
     margin: 0 auto;
     display: grid;
     grid-template-rows: 180px 200px 200px 450px 200px;
   
+}
+.cate-search-list{
+    margin: 0 auto;
 }
 /* 배너 */
  .banner-question{
@@ -24,6 +27,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
+    margin-right: 300px;
 }
 .one-by-one{
     color: white;
@@ -47,10 +51,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 50px;
 
 }
 .cate-list{
-    width: 800px;
+    width: 660px;
     height: 120px;
     display: flex;
     flex-wrap: wrap;
@@ -58,18 +63,18 @@
     align-items: center;
 }
 .cate{
-    width:177px;
-    height: 47px;
+    width:144px;
+    height: 44px;
     background-color: white;
     color: #5ECC80;
-    border: 3px solid lightgray;
+    border: 2px solid lightgray;
     text-align: center;
     line-height: 50px;
     font-size: larger;
     font-weight: 600;
 }
 .ques{
-    width:180px;
+    width:150px;
     height: 50px;
     background-color: #5ECC80;
     color: white;
@@ -109,7 +114,7 @@
 }
 .search-btn2{
     width: 120px;
-    height: 55px;
+    height: 56px;
     background-color: #5ECC80;
     text-align: center;
     
@@ -132,14 +137,14 @@ input{
     font-size: large;
     font-weight: 600;
     width: 50px;
-    height: 50px;
+    height: 54px;
 
 }
 /* 리스트 */
 .list-question{
     width: 1200px;
     height: 500px;
-    border-top: 3px solid #535353;
+    border-top: 1px solid lightgray;
    
 
 }
@@ -148,7 +153,7 @@ input{
     height: 45px;
     display: grid;
     grid-template-columns: 1fr 5fr 2fr;
-    border-bottom:3px solid #535353;
+    border-bottom:1px solid lightgray;
 }
 .pick-cate{
     display: flex;
