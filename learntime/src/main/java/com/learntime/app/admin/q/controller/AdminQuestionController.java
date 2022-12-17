@@ -19,5 +19,13 @@ public class AdminQuestionController {
 	public String qDetailListAdmin() {
 		return "admin/question/qDetailListAdmin";
 	}
+	
+	// 문의게시판 수정페이지
+	@GetMapping("question/qDetailListAdminModify")
+	public String qDetailListAdminModify() {
+		return "admin/question/qDetailListAdminModify";
+		
+	}
+		
 
 }

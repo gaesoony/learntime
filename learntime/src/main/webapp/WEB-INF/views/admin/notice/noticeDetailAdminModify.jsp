@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <!-- <link rel="stylesheet" href="/app/.css"> -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css">
 <title>Insert title here</title>
 </head>
 <style>
@@ -135,7 +136,7 @@
     height: 650px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    margin-bottom: 30px;
 }
 
 .gathering-divs-c{
@@ -398,7 +399,7 @@ input{
 }
 .notice-detail-list{
     width: 1200px;
-    height:750px;
+    height:850px;
     display: grid;
     grid-template-rows:100px 250px 350px 600px;
     margin: 0 auto;
@@ -843,8 +844,9 @@ input{
 .backBtn-m{
     display: flex;
     justify-content: flex-end;
-    align-items: center;
-    margin-bottom: 570px;
+    align-items: flex-start;
+    margin-top: 350px;
+ 
 }
 .btn-to-m{
     width: 100px;
@@ -867,7 +869,7 @@ input{
 	<%@include file="/WEB-INF/views/common/admin-side.jsp"%>
     <div id="content-wrap">
         <div id="admin-category-title" class="shadow-light">
-            카테고리
+            공지사항
         </div>
         <div class="list-main">
             <div class="notice-detail-list">
@@ -892,9 +894,11 @@ input{
                             <div class="cate-notice-a">[전체]</div>
                             <div class="title-info">스팸 단어로 인한 글 등록 불가 문제 관련 공지사항</div>
                         </div>
+                        <div class="notice-content">
+                            <textarea class="summernote" name="editordata"></textarea>
+                        </div>
                     </div>
                 </div>
-                <div class="notice-content"></div>
                 <div class="backBtn-m">
                     <div class="btn-to-m">공개</div>
                     <div class="btn-to-m">수정</div>
@@ -976,21 +980,39 @@ input{
     </div>
  </div>
 
+
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+ <!-- 서머노트 로딩-->
+ <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
+ <script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+ 
+
+
     <script>
 
-        //대댓글 쓰기
-        $('.write-reply').click(function(){
-                $('.hide-comment').slideToggle();
-            });
-    
+    $('.summernote').summernote({
+            height: 350,
+            placeholder: '내용을 작성하세요',
+            lang: "ko-KR",
+            disableResizeEditor: true
+        });
+
+    //대댓글 쓰기
+    $('.write-reply').click(function(){
+            $('.hide-comment').slideToggle();
+        });
+
     
             
             
-            // 댓글 펼치기
-            $('.hide-reply').click(function(){
-                $('.comment-b-for-a').slideToggle();
-            });
-    
+    // 댓글 펼치기
+    $('.hide-reply').click(function(){
+        $('.comment-b-for-a').slideToggle();
+    });
+
     </script>
 
         

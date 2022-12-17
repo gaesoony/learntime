@@ -1,8 +1,28 @@
-@charset "UTF-8";
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- <link rel="stylesheet" href="/app/.css"> -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css">
+<title>Insert title here</title>
+</head>
+<style>
 #content-wrap{
     background-color: #efefef;
 }
 
+#admin-category-title{
+    padding: 0 20px;
+    color: black;
+    background-color: white;
+    box-shadow: 0px 2px 2px #c5c5c5;
+
+    height: 55px;
+    line-height: 55px;
+    font-size: 18px;
+}
 
 .list-main-m{
     width:1200px;
@@ -132,6 +152,7 @@
     width: 100%;
     height: 400px;
     border-top: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
     
 }
 .backBtn-m{
@@ -154,8 +175,9 @@
 }
 /* 내용 */
 textarea{
-    width: 1200px;
     height: 350px;
+    width: 1200px;
+    
 }
 
 /* 댓글 */
@@ -238,204 +260,81 @@ input{
 
 
 }
-.comment-box{
-    width: 1000px;
-    height: 500px;
-    display: flex;
-    margin-top: 100px;
-    
-}
-.gathering-boxes{
-    width: 1000px;
-    height: 100%;
+
+
     
 
-}
-.comment-a{
-    width: 100%;
-    height: 150px;
-    display: flex;
-    flex-direction: column;
-    
-
-}
-.profile-etc{
-    width: 100%;
-    height: 90px;
-    display: flex;
-    align-items: center;
-   
-
-}
-.profile-pic{
-    width: 70px;
-    height: 70px;
-   
-  
-}
-.profile-id{
-    width: 660px;
-    height: 90px;
-    display: flex;
-    align-items: center;
-    margin-left: 30px;
-   
-}
-.good-or-bad{
-    width: 200px;
-    height: 90px;
-    display: flex;
-    align-items: center;
-
-}
-.btn-good-or-bad{
-    width: 200px;
-    height: 70px;
-    display: flex;
-   
-    
-}
-.btn-good-or-bad-re{
-    width: 200px;
-    height: 70px;
-    display: flex;
-    margin-left: 10px;
-    
-}
-.downBtn{
-    width: 55px;
-    height: 70px;
-    border: 3px solid lightgray;
-    text-align: center;
-    line-height: 70px;
-    border-top-left-radius: 1rem;
-    border-bottom-left-radius: 1rem;
-}
-.middleBtn{
-    width: 90px;
-    height: 70px;
-    border: 3px solid lightgray;
-    text-align: center;
-    line-height: 70px;
-    font-size: x-large;
-    font-weight: 600;;
-    color: black;
-    
-}
-.upBtn{
-    width: 55px;
-    height: 70px;
-    border: 3px solid lightgray;
-    text-align: center;
-    line-height: 70px;
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-
-}
-.leaved-comment{
-    width: 100%;
-    height: 30px;
-    
-
-}
-.hide-comment{
-    width: 100%;
-    height: 30px;
-    display: flex;
-    flex-direction: row-reverse;
-
-}
-.hide-reply{
-    width: 12%;
-    color: skyblue;
-    line-height: 40px;
-    font-size: small;
-    font-weight: 600;
-  
-
-}
-.write-reply{
-    width: 88%;
-    color: gray;
-    line-height: 40px;
-    font-size: small;
-    font-weight: 600;
 
 
-}
-.comment-b-for-a{
-    width: 100%;
-    height: 250px;
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    margin-top: 100px;
-    font-weight: 400;
+
+</style>
+<body>
+	<%@include file="/WEB-INF/views/common/admin-side.jsp"%>
+    <div id="content-wrap">
+        <div id="admin-category-title" class="shadow-light">
+            FAQ
+        </div>
+        <div class="list-main-m">
+            <div class="q-detail-list-m">
+                <div class="q-sign-m">
+                    <div class="line1-m">
+                        <div class="line-a-m"></div>
+                    </div>
+                    <div class="name-q-m">FAQ </div>
+                    <div class="line2-m">
+                        <div class="line-b-m"></div>
+                    </div>
+                </div>
+                <div class="making-gap">
+                    <div class="q-title-date-m">
+                        <div class="q-title-cate">
+                            <div class="category-q-m">[멘토링]</div>
+                            <div class="title-q-m">멘토링 서비스가 궁금해요</div>
+                        </div>
+                        <div class="q-enrollDate-comment">
+                            <div class="q-nick">user11</div>
+                            <div class="date-q-m">2022.12.14</div>
+                            <div class="q-hit">
+                                <div class="q-reply-num-count">댓글수</div>
+                                <div class="q-comment">3</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="empty1-m"></div>
+                    <div class="making-gap-a">
+                        <div class="q-content-m">
+                            <textarea class="summernote" name="editordata"></textarea>
+                        </div>
+                        <div class="making-gap-b">
+                            <div class="backBtn-m">
+                                <div class="btn-to-m">공개</div>
+                                <div class="btn-to-m">수정</div>
+                                <div class="btn-to-m">삭제</div>
+                                <div class="btn-to-m">글목록</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- 서머노트 로딩-->
+    <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+    <script>
+        $('.summernote').summernote({
+            height: 350,
+            placeholder: '내용을 작성하세요',
+            lang: "ko-KR",
+            disableResizeEditor: true
+        });
+    </script>
 
 
-}
-.reply-reply{
-    width: 970px;
-    height: 230px;
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-
-
-}
-.profile-etc-re{
-    width: 970px;
-    height: 90px;
-    display: flex;
-    align-items: center;
-   
-
-}
-.profile-pic-re{
-    width: 70px;
-    height: 70px;
-    
-   
-   
-  
-}
-
-
-.profile-id-re{
-    width: 660px;
-    height: 90px;
-    display: flex;
-    align-items: center;
-    margin-left: 30px;
- 
-}
-.good-or-bad-re{
-    width: 200px;
-    height: 90px;
-    display: flex;
-    align-items: center;
-    margin-right: 40px;
- 
-    
-    
-
-}
-.leaved-comment-re{
-    width: 970px;
-    height: 100px;
-    color: black;
-    font-size: medium;
-    font-weight: 100px;
-
-
-}
-.hide-comment-re{
-    width: 970px;
-    height: 40px;
-    font-size: small;
-    color: gray;
-    font-weight: 600;
-    
-
-}
-
+        
+</body>
+</html>

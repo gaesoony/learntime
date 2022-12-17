@@ -21,6 +21,13 @@ public class NoticeAdminController {
 			return "admin/notice/noticeDetailAdmin";
 			
 		}
+
+		// 공지사항 수정페이지
+		@GetMapping("noticeDetailAdminModify")
+		public String noticeDetailAdmiModify() {
+			return "admin/notice/noticeDetailAdminModify";
+			
+		}
 		
 		
 

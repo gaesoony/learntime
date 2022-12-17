@@ -197,8 +197,6 @@ textarea{
     width: 70px;
     height: 70px;
     
-   
-  
 }
 
 
@@ -822,7 +820,7 @@ input{
 	<%@include file="/WEB-INF/views/common/admin-side.jsp"%>
     <div id="content-wrap">
         <div id="admin-category-title" class="shadow-light">
-            카테고리
+            문의
         </div>
         <div class="list-main-m">
             <div class="q-detail-list-m">

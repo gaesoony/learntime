@@ -20,4 +20,10 @@ public class FaqAdminController {
 		return "admin/faq/faqDetailListAdmin";
 	}
 
+	//관리자페이지 faq 수정페이지
+	@GetMapping("faqDetailListAdminModify")
+	public String faqDetailListAdminModify() {
+		return "admin/faq/faqDetailListAdminModify";
+	}
+
 }

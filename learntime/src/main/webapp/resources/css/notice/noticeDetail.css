@@ -331,22 +331,8 @@ input{
     
 
 }
-.hide-comment{
-    width: 1000px;
-    height: 300px;
-    display: flex;
-    flex-direction: row-reverse;
 
-}
-.hide-reply{
-    width: 12%;
-    color: skyblue;
-    line-height: 40px;
-    font-size: small;
-    font-weight: 600;
-  
 
-}
 .hide-write-reply{
     display: flex;
 }
@@ -431,16 +417,9 @@ input{
 
 
 }
-.hide-comment-re{
-    width: 970px;
-    height: 40px;
-    font-size: small;
-    color: gray;
-    font-weight: 600;
-    
 
-}
-@charset "UTF-8";
+
+
 
 .list-main-m{
     width:100%;
