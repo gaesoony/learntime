@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
-<link rel="stylesheet" href="/app/resources/css/reset.css">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/variables.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <!-- 구글아이콘 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<!-- 폰트어썸 아이콘 -->
+<script src="https://kit.fontawesome.com/939838bb27.js" crossorigin="anonymous"></script>
 
 
- <style>
+<style>
+
     /* 모달 시작 */
 	  .blackBG {
         background: rgba(0, 0, 0, 0.5);
@@ -27,9 +30,9 @@
         visibility: visible;
         opacity: 1;
       }
-      .whiteBG {
+      #modal-whiteBG {
         text-align: center;
-        width: 320px;
+        width: 320px; 
         margin: auto;
         background: white;
         border-radius: 8px;
@@ -133,11 +136,10 @@
         box-shadow:0px 3px 10px rgba(0, 0, 0, 0.1);
     }
     #header-area *{
-        font-family: 'Noto Sans KR', sans-serif;
+     
         font-weight: 300;
         --border: 1px solid red;
         margin: auto;
-        
     }
 
     #header{
@@ -171,17 +173,20 @@
     }
     
     #login-btn{
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 300;
       font-size:16px;
     } 
+
     /* 헤더 CSS 끗 */
 
 
 
-    </style>
+</style>
 
     <!-- 로그인 모달 -->
 	  <div class="blackBG">
-      <div class="whiteBG">
+      <div id="modal-whiteBG">
             <button type="button" id="modal-closed">
                 <span class="material-symbols-outlined">close</span>
             </button>
@@ -217,44 +222,48 @@
 	    </div>
 	  </div>
 
-
-    <!-- 헤더 -->
-	 <div id="header-area">
-        <div id="header">
-            <div id="logo"><a href="${pageContext.request.contextPath}/main"><img src="${pageContext.request.contextPath}/resources/img/logo_green2.png" alt="런타임로고"></a></div>
-            <div id="study-project"><a href="${pageContext.request.contextPath}/study/list">STUDY / PROJECT</a></div>
-            <div id="mentoring"><a href="${pageContext.request.contextPath}/mentor/list">MENTORING</a></div>
-            <div id="learning"><a href="${pageContext.request.contextPath}/qna/list">LEARNING</a></div>
-            <div id="make-grass"><a href="${pageContext.request.contextPath}/makegrass/list">MAKE GRASS</a></div>
-            <div id="skinshop"><a href="${pageContext.request.contextPath}/skinshop">SKIN SHOP</a></div>
-            <div id="community"><a href="${pageContext.request.contextPath}/community/board/list">COMMUNITY</a></div>
-            <div id="empty"></div>
-            <div id="join"><a href="${pageContext.request.contextPath}/member/join">JOIN</a></div>
-            <div id="login">	
-            <button id="login-btn">LOGIN</button>
-            </div>
+<header>
+  <!-- 헤더 -->
+  <div id="header-area">
+    <div id="header">
+        <div id="logo"><a href="${pageContext.request.contextPath}/main"><img src="${pageContext.request.contextPath}/resources/img/logo_green2.png" alt="런타임로고"></a></div>
+        <div id="study-project"><a href="${pageContext.request.contextPath}/study/list">STUDY / PROJECT</a></div>
+        <div id="mentoring"><a href="${pageContext.request.contextPath}/mentor/list">MENTORING</a></div>
+        <div id="learning"><a href="${pageContext.request.contextPath}/qna/list">LEARNING</a></div>
+        <div id="make-grass"><a href="${pageContext.request.contextPath}/makegrass/list">MAKE GRASS</a></div>
+        <div id="skinshop"><a href="${pageContext.request.contextPath}/skinshop">SKIN SHOP</a></div>
+        <div id="community"><a href="${pageContext.request.contextPath}/community/board/list">COMMUNITY</a></div>
+        <div id="empty"></div>
+        <div id="join"><a href="${pageContext.request.contextPath}/member/join">JOIN</a></div>
+        <div id="login">	
+        <button id="login-btn">LOGIN</button>
         </div>
     </div>
-    
-    
-    
-    
-    <script>
-    //모달 띄우기
-    $('#login-btn').on('click',function(){
-    	$('.blackBG').addClass('show');
-    })
-    
-     //모달 닫기
-    $('#modal-closed').on('click',function(){
-    	$('.blackBG').removeClass('show');
-    })
-    
+  </div>
+</header>
    
-    $("form").on("submit", function (e) {
-    	// 유효성 검사 추가하기
-          
-    });
-
     
-    </script>
+    
+  <script>
+  //모달 띄우기
+  $('#login-btn').on('click',function(){
+    $('.blackBG').addClass('show');
+  })
+  
+    //모달 닫기
+  $('#modal-closed').on('click',function(){
+    $('.blackBG').removeClass('show');
+  })
+
+  $('.blackBG').on('click',function(){
+    $('.blackBG').removeClass('show');
+  })
+  
+  
+  $("form").on("submit", function (e) {
+    // 유효성 검사 추가하기
+        
+  });
+
+  
+  </script>

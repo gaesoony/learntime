@@ -31,6 +31,8 @@ pageEncoding="UTF-8"%>
 
     .wrapper {
       padding: 40px 50px;
+      width: 1200px;
+      margin: auto;
     }
 
     .search-section {

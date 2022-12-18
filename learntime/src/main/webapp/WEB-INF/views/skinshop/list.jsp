@@ -486,6 +486,10 @@ input[type="range"]::-webkit-slider-thumb {
     	$('.blackBG2').removeClass('show');
     })
 
+    $('.blackBG').on('click',function(){
+    $('.blackBG').removeClass('show');
+    })
+
 
 
     const inputLeft = document.getElementById("input-left");

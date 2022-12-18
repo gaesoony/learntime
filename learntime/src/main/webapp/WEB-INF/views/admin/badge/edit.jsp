@@ -126,6 +126,7 @@ pageEncoding="UTF-8"%>
     label[for="imgPath"] span{
         color: #FFFFFF;
         font-size: 100px;
+        cursor: pointer;
     }
 
     .img-area{
