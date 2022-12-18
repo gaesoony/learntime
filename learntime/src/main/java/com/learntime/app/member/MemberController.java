@@ -64,11 +64,23 @@ public class MemberController {
 	}
 	
 	  
-//  마이페이지-makegrass(화면)
-	  @GetMapping("/mypage/makegrass")
-	  public String mypageMakegrass() {
-	     return "/member/mypage-makegrass";
-	  }
+//  마이페이지-makegrass list(화면)
+    @GetMapping("/mypage/makegrassList")
+    public String mypageMakegrassList() {
+       return "/member/mypage-makegrassList";
+    }
+    
+// 마이페이지-makegrass scrap(화면)
+    @GetMapping("/mypage/makegrassScrap")
+    public String mypageMakegrassScrap() {
+       return "/member/mypage-makegrassScrap";
+    }
+    
+// 마이페이지-makegrass reply(화면)
+    @GetMapping("/mypage/makegrassReply")
+    public String mypageMakegrassReply() {
+       return "/member/mypage-makegrassReply";
+    }
 	
 //  마이페이지-스터디(화면)
 	  @GetMapping("/mypage/study")
@@ -76,16 +88,31 @@ public class MemberController {
 	      return "/member/mypage-study";
 	  }
 	  
-//   마이페이지-qna(화면)
-	   @GetMapping("/mypage/qna")
-	   public String mypageQna() {
-	      return "/member/mypage-qna";
-	   }
+	//   마이페이지-qna list(화면)
+      @GetMapping("/mypage/qnaList")
+      public String mypageQnaList() {
+         return "/member/mypage-qnaList";
+      }
+      
+//   마이페이지-qna scrap(화면)
+      @GetMapping("/mypage/qnaScrap")
+      public String mypageQnaScrap() {
+         return "/member/mypage-qnaScrap";
+      }
+         
+//   마이페이지-qna reply(화면)
+      @GetMapping("/mypage/qnaReply")
+      public String mypageQnaReply() {
+         return "/member/mypage-qnaReply";
+      }
+      
+	   
 //   마이페이지-멘토링(화면)	   
 	   @GetMapping("/mypage/mentoring")
 	   public String myMentoring() {
 	      return "member/mypage-mentoring";
 	   }
+	   
 //   마이페이지-커뮤니티(화면)	
 	   @GetMapping("/mypage/community")
 	   public String myCommunity() {
@@ -115,6 +142,12 @@ public class MemberController {
 		@GetMapping("/mypage/edit")
 		public String mypageEdit() {
 			return "/member/mypage-edit";
+		}
+		
+//  마이페이지-계정 정보-비밀번호 변경 이메일 전송(화면)
+		@GetMapping("/mypage/edit/pwd")
+		public String mypageEditPwd() {
+			return "/member/mypage-pwdEdit";
 		}
 	
 

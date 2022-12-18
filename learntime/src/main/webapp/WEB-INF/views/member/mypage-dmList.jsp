@@ -188,6 +188,10 @@
      $('#modal-closed2').on('click',function(){
          $('.blackBG2').removeClass('show');
      })
+
+     $('.blackBG').on('click',function(){
+    $('.blackBG').removeClass('show');
+    })
 </script>
 
 

@@ -46,11 +46,24 @@
     
 
     .badge{
+        
+        margin: 10px 0;
+        margin-top: 20px;
+        text-align: left;
+            
+    }
+
+    .badge-img{
         width: 130px;
         height: 130px;
-        background-color: #D9D9D9;
-        margin-top: 20px;
-        
+        border-radius:4px;
+        border:1px solid #D9D9D9;
+    }
+
+    .badge-title{
+        margin: 10px 0;
+        font-weight: 600;
+        font-size: 18px;
     }
 
    .main-color {
@@ -76,11 +89,32 @@
             <div id="badge">보유한 뱃지</div>
         
             <div id="have-badge">
-                <div class="badge"></div>
-                <div class="badge"></div>
-                <div class="badge"></div>
-                <div class="badge"></div>
-                <div class="badge"></div>
+                <div class="badge">
+                    <div class="badge-img">이미지 영역</div>
+                    <div class="badge-title">뱃지 제목</div>
+                    <div class="badge-content">뱃지 설명</div>
+                </div>
+                <div class="badge">
+                    <div class="badge-img">이미지 영역</div>
+                    <div class="badge-title">뱃지 제목</div>
+                    <div class="badge-content">뱃지 설명</div>
+                </div>
+                <div class="badge">
+                    <div class="badge-img">이미지 영역</div>
+                    <div class="badge-title">뱃지 제목</div>
+                    <div class="badge-content">뱃지 설명</div>
+                </div>
+                <div class="badge">
+                    <div class="badge-img">이미지 영역</div>
+                    <div class="badge-title">뱃지 제목</div>
+                    <div class="badge-content">뱃지 설명</div>
+                </div>
+                <div class="badge">
+                    <div class="badge-img">이미지 영역</div>
+                    <div class="badge-title">뱃지 제목</div>
+                    <div class="badge-content">뱃지 설명</div>
+                </div>
+               
             </div>
 
         </div>

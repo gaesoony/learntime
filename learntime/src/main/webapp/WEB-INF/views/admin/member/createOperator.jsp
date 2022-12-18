@@ -14,6 +14,7 @@ pageEncoding="UTF-8"%>
   <style>
     #content-wrap {
       background-color: #efefef;
+    
     }
 
     #admin-category-title {
@@ -21,7 +22,7 @@ pageEncoding="UTF-8"%>
       color: black;
       background-color: white;
       box-shadow: 0px 2px 2px #c5c5c5;
-
+    
       height: 55px;
       line-height: 55px;
       font-size: 18px;
@@ -29,11 +30,12 @@ pageEncoding="UTF-8"%>
 
     .wrapper {
       padding: 40px 50px;
+      
     }
 
     .content-section{
         width: 445px;
-        height:835px;
+        
         background-color: white;
         border: 1px solid rgb(221, 221, 221);
 
@@ -122,6 +124,12 @@ pageEncoding="UTF-8"%>
         margin-top: 20px;
     }
 
+    #join-area #before{
+        background-color: #FFFFFF;
+        color: #5ECC80;
+        border: 1px solid #5ECC80;
+    }
+
     
  
   </style>
@@ -183,6 +191,8 @@ pageEncoding="UTF-8"%>
                     
                     
                     <button>생성하기</button>
+                    <button id="before"onclick="location.href='${pageContext.request.contextPath}/admin/member/manage'">이전으로</button>
+    
     
                   
                 </div>

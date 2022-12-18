@@ -28,7 +28,7 @@
         }
         .whiteBG2 {
             width: 800px;
-            height: 560px;
+            height: auto;
             margin: auto;
             background: white;
             border-radius: 8px;
@@ -69,7 +69,7 @@
         #delete-notice{
             background-color: #d9d9d96f;
             width: 760px;
-            height: 160px;
+           
             padding: 20px;
             line-height: 160%;
             font-size: 14px;
@@ -107,14 +107,14 @@
 
     #mypage-box{
         width: 1200px;
-        height: 100%;
+        --height: 100%;
         margin: auto;
         
     }
 
     #mypage{
         width: 100%;
-        height: 100%;
+        --height: 100%;
         display: grid;
         grid-template-columns: 300px 900px;
         
@@ -124,7 +124,7 @@
     #edit-area{
         width: 100%;
         display: grid;
-        grid-template-rows: 730px repeat(4,224px) 96px;
+        grid-template-rows: 730px repeat(4,224px) auto;
         margin-top: 20px;
         
     }
@@ -593,6 +593,10 @@
     //모달 닫기
     $('#modal-closed2').on('click',function(){
         $('.blackBG2').removeClass('show');
+    })
+
+    $('.blackBG').on('click',function(){
+    $('.blackBG').removeClass('show');
     })
 </script>
 
