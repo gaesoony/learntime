@@ -13,27 +13,28 @@
         background-color: #5ECC80;
     }
     .mainbox{
-        width: 1084px;
+        width: 1002px;
         margin: 0 auto;
-        margin-top: 50px;
+        margin-top: 70px;
     }
     .title{
         border: none;
         text-decoration: none;
         width: 100%;
         height: 5vh;
-        font-size: 33px;
+        font-size: 28px;
         font-weight: 550;
         color: #AAAAAA;
         outline: none;
-        margin-bottom: 20px;
+        margin-top: 25px;
+        margin-bottom: 25px;
      }
      .hashtag{
         border: none;
         text-decoration: none;
         width: 100%;
         height: 5vh;
-        font-size: 22px;
+        font-size: 18px;
         color: #AAAAAA;
         outline: none;
         margin-bottom: 20px;
@@ -43,17 +44,17 @@
         height: 4vh;
         border: 2px solid #5ECC80;
         background-color: white;
-        font-size: 20px;
+        font-size: 18px;
         color: #37774A;
         border-radius: 10px;
-        margin-left: 885px;
+        margin-left: 840px;
         margin-top: 30px;
         margin-bottom: 50px;
      }
      .write{
         width: 5vw;
         height: 4vh;
-        font-size: 20px;
+        font-size: 18px;
         background-color: #5ECC80;
         color: white;
         border: #5ECC80;
@@ -61,11 +62,10 @@
      }
      .selectbox{
         position: relative;
-        width: 150px;
+        width: 110px;
         height: 35px;
         border-radius: 4px;
         border: 1px solid #5ECC80;
-        margin-bottom: 20px;
      }
      .selectbox .select{
         width: inherit;
@@ -76,7 +76,7 @@
         padding: 0 5px;
         position: relative;
         z-index: 3;
-        font-size: 18px;
+        font-size: 16px;
         color: #5ECC80;
         font-weight: 550;
      }
@@ -84,7 +84,7 @@
         background: #5ECC80;
         color: white;
         padding: 3px 0;
-        font-size: 18px;
+        font-size: 16px;
      }
 </style>
 </head>
@@ -126,7 +126,8 @@
         $('.summernote').summernote({
             height: 350,
             placeholder: '- 학습 관련 질문을 남겨주세요. (상세히 작성하면 더 좋아요!) <br><br> - 먼저 유사한 질문이 있는지 검색해보세요. <br><br> - 싫어요 누적 개수 10개 시, 해당 게시물이 블라인드 처리될 수도 있습니다. <br><br> - 잠깐! 런타임 서비스 운영 관련 문의는 1:1 문의 게시판을 이용해주세요.',
-            lang: "ko-KR"
+            lang: "ko-KR",
+            disableResizeEditor: true,
         });
     </script>
 

@@ -388,12 +388,12 @@
     .sidebox{
         width: 7vw;
         float: left;
-        margin-top: 200px;
-        margin-left: 200px;
+        margin-top: 190px;
+        margin-left: 80px;
         position: fixed;
     }
     .side{
-        width: 5vw;
+        width: 7vw;
         margin: 0 auto;
     }
     .si{

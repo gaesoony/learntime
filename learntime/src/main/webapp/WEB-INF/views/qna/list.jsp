@@ -15,7 +15,7 @@
     }
     .banner>div{
         width: 1200px;
-        margin-left: 360px;
+        margin-left: 170px;
         color: white;
     }
     .main{
@@ -32,15 +32,15 @@
         font-size: 16px;
     }
     .sidebar{
-        width: 245px;
-        height: 36vh;
+        width: 190px;
+        height: 310px;
         padding: 20px;
-        margin-top: 200px;
+        margin-top: 45px;
         background-color: white;
         border: 1px solid #9D9D9D;
         border-radius: 10px;
         float: left;
-        margin-left: 120px;
+        margin-left: 35px;
     }
     .crown{
         width: 1.5vw;
@@ -54,12 +54,12 @@
         width: 9vw;
         margin-left: 10px;
         float: left; 
-        font-size: 18px; 
+        font-size: 16px; 
         margin-bottom: 20px;
     }
     .sidenum{
         margin: 10px;
-        font-size: 18px;
+        font-size: 16px;
         vertical-align: top;
     }
     .mainbody{
@@ -72,11 +72,10 @@
         padding: 40px;
     }
     .side-category{
-        width: 4vw;
+        width: 70px;
         border: none;
         background-color: white;
-        margin-right: 5px;
-        font-size: 20px;
+        font-size: 18px;
         color: gray;
         text-decoration: none;
     }
@@ -91,7 +90,7 @@
         
     }
     .sidetitle{
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 550;
         margin: 0 auto;
         margin-bottom: 20px;
@@ -102,8 +101,8 @@
     .search{
         margin-top: 20px;
         margin-bottom: 20px;
-        width: 38vw;
-        height: 4vh;
+        width: 740px;
+        height: 35px;
         border: 1px solid #979797;
         border-radius: 10px;
         padding-left: 20px;
@@ -122,23 +121,23 @@
         margin-top: 20px;
         margin-left: 19px;
         width: 7vw;
-        height: 4vh;
+        height: 35px;
         text-decoration: none;
         background-color: #5ECC80;
         color: white;
         border-radius: 10px;
         border: none;
-        font-size: 20px;
+        font-size: 18px;
     }
     .catelist{
         margin-top: 30px;
-        margin-bottom: 5px;
+        margin-bottom: 15px;
         margin-left: 15px;
-        width: 47vw;
+        width: 65vw;
     }
     .cate{
         float: left;
-        margin-right: 429px;
+        margin-right: 440px;
         display: flex;
         padding-top: 20px;
     }
@@ -147,9 +146,9 @@
         border: none;
         background-color: #D1F1DB;
         color: #666666;
-        font-size: 18px;
+        font-size: 16px;
         width: 7vw;
-        height: 4vh;
+        height: 35px;
         border-radius: 10px;
     }
     .ca{
@@ -172,7 +171,7 @@
     }
     .title{
         width: 40vw;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 550;
         line-height: 30px;
     }
@@ -181,7 +180,7 @@
     }
     .content{
         width: 80%;
-        font-size: 17px;
+        font-size: 16px;
         color: #6F6F6F;
         margin-top: 5px;
         float: left;
