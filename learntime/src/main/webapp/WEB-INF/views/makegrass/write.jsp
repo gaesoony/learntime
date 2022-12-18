@@ -13,7 +13,7 @@
         background-color: #5ECC80;
     }
     .mainbox{
-        width: 1084px;
+        width: 1004px;
         margin: 0 auto;
         margin-top: 50px;
     }
@@ -22,7 +22,7 @@
         text-decoration: none;
         width: 100%;
         height: 5vh;
-        font-size: 33px;
+        font-size: 28px;
         font-weight: 550;
         color: #AAAAAA;
         outline: none;
@@ -33,7 +33,7 @@
         text-decoration: none;
         width: 100%;
         height: 5vh;
-        font-size: 22px;
+        font-size: 18px;
         color: #AAAAAA;
         outline: none;
         margin-bottom: 20px;
@@ -43,7 +43,7 @@
         text-decoration: none;
         width: 100%;
         height: 5vh;
-        font-size: 22px;
+        font-size: 18px;
         color: #AAAAAA;
         outline: none;
         margin-bottom: 20px;
@@ -53,17 +53,17 @@
         height: 4vh;
         border: 2px solid #5ECC80;
         background-color: white;
-        font-size: 20px;
+        font-size: 18px;
         color: #37774A;
         border-radius: 10px;
+        margin-left: 840px;
         margin-top: 30px;
         margin-bottom: 50px;
-        margin-left: 885px;
      }
      .write{
         width: 5vw;
         height: 4vh;
-        font-size: 20px;
+        font-size: 18px;
         background-color: #5ECC80;
         color: white;
         border: #5ECC80;
@@ -109,7 +109,8 @@
         $('.summernote').summernote({
             height: 350,
             placeholder: '- 공부한 내용을 남겨주세요. <br><br> - 잠깐! 런타임 서비스 운영 관련 문의는 1:1 문의 게시판을 이용해주세요.',
-            lang: "ko-KR"
+            lang: "ko-KR",
+            disableResizeEditor: true,
         });
     </script>
 

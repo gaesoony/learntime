@@ -13,125 +13,127 @@
     }
     .banner{
         position: absolute;
-        width: 64%;
-        height: 87%;
+        width: 1200px;
+        height: 35vh;
         background-color: white;
         border-radius: 20px;
-        margin-left: 355px;
-        margin-top: 23px;
+        margin-left: 165px;
+        margin-top: 25px;
     }
     .monthbox{
-        width: 100%;
-        margin-top: 15px;
+        width: 1100px;
+        margin-top: 10px;
         display: flex;
-        margin-left: 90px;
+        margin-left: 105px;
     }
     .month{
-        margin-right: 70px;
-        font-size: 17px;
+        width: 1100px;
+        margin-right: 60px;
+        font-size: 15px;
     }
     .daybox{
         width: 3vw;
-        margin-left: 25px;
-        margin-top: 25px;
+        margin-left: 20px;
+        margin-top: 10px;
         float: left;
     }
     .day{
-        margin-bottom: 21.5px;
+        margin-bottom: 18px;
+        font-size: 12px;
     }
     .grassbox1{
         display: flex;
-        margin-top: 20px;
+        margin-top: 10px;
         margin-right: 10px;
     }
     .grass1{
-        width: 30px;
-        height: 18px;
+        width: 18px;
+        height: 15px;
         background-color: #D9D9D9;
         margin-right: 5px;
     }
     .grassbox2{
         display: flex;
-        margin-top: 20px;
+        margin-top: 15px;
         margin-right: 10px;
     }
     .grass2{
-        width: 30px;
-        height: 18px;
+        width: 18px;
+        height: 15px;
         background-color: #D9D9D9;
         margin-right: 5px;
     }
     .grassbox3{
         display: flex;
-        margin-top: 20px;
+        margin-top: 15px;
         margin-right: 10px;
     }
     .grass3{
-        width: 30px;
-        height: 18px;
+        width: 18px;
+        height: 15px;
         background-color: #D9D9D9;
         margin-right: 5px;
     }
     .grassbox4{
         display: flex;
-        margin-top: 20px;
+        margin-top: 15px;
         margin-right: 10px;
     }
     .grass4{
-        width: 30px;
-        height: 18px;
+        width: 18px;
+        height: 15px;
         background-color: #D9D9D9;
         margin-right: 5px;
     }
     .grassbox5{
         display: flex;
-        margin-top: 20px;
+        margin-top: 15px;
         margin-right: 10px;
     }
     .grass5{
-        width: 30px;
-        height: 18px;
+        width: 18px;
+        height: 15px;
         background-color: #D9D9D9;
         margin-right: 5px;
     }
     .grassbox6{
         display: flex;
-        margin-top: 20px;
+        margin-top: 15px;
         margin-right: 10px;
     }
     .grass6{
-        width: 30px;
-        height: 18px;
+        width: 18px;
+        height: 15px;
         background-color: #D9D9D9;
         margin-right: 5px;
     }
     .grassbox7{
         display: flex;
-        margin-top: 20px;
+        margin-top: 15px;
         margin-right: 10px;
     }
     .grass7{
-        width: 30px;
-        height: 18px;
+        width: 18px;
+        height: 15px;
         background-color: #D9D9D9;
         margin-right: 5px;
     }
     .listtitle{
         width: 996px;
         margin: 0 auto;
-        font-size: 27px;
+        font-size: 25px;
         margin-top: 70px;
     }
     .userbox{
         margin-bottom: 5px;
     }
     .leftside{
-        width: 250px;
+        width: 200px;
         height: 370px;
         border-radius: 10px;
         border: 1px solid #9D9D9D;
         background-color: white;
-        margin-left: 100px;
+        margin-left: 30px;
         margin-top: 30px;
     }
     .leftsidebox{
@@ -141,13 +143,13 @@
         margin-left: 15px;
         margin-top: 15px;
         margin-bottom: 17px;
+        font-size: 16px;
     }
     .crown{
-        font-size: 18px;
         font-weight: 550;
     }
     .crownimg{
-        width: 30px;
+        width: 28px;
         margin-right: 10px;
     }
     .profile{
@@ -159,21 +161,22 @@
     }
     .user{
         width: 2.5vw;
-        font-size: 18px;
+        font-size: 16px;
         margin-right: 5px;
     }
     .usernick{
         margin-top: 20px;
-        margin-right: 90px;
+        margin-right: 50px;
         float: left;
+        font-size: 16px;
     }
     .usernum{
         width: 2vw;
-        margin-left: 210px;
+        margin-left: 165px;
         padding-top: 20px;
     }
     .mainbox{
-        width: 996px;
+        width: 995px;
         height: 1382px;
         margin: 0 auto;
         margin-top: 30px;
@@ -199,20 +202,20 @@
     .clockimg{
         margin-left: 25px;
         margin-top: 10px;
-        font-size: 20px;
+        font-size: 17px;
     }
     .bookimg{
-        font-size: 20px;
-        margin-left: 25px;
-        margin-top: 20px;
+        font-size: 17px;
+        margin-left: 27px;
+        margin-top: 10px;
     }
     .content{
-        width: 13vw;
-        height: 12vh;
-        font-size: 17px;
+        width: 16vw;
+        height: 18vh;
+        font-size: 15px;
         margin-left: 25px;
         margin-top: 10px;
-        line-height: 20px;
+        line-height: 23px;
     }
     .contentline{
         width: 90%;
@@ -248,12 +251,11 @@
     }
     .contentDate{
         margin-left: 30px;
-        margin-top: 5px;
         color: #868686;
     }
     .rightsidebox{
-        width: 240px;
-        margin-left: 1050px;
+        width: 200px;
+        margin-left: 1000px;
     }
     .rightsidelist{
         height: 325px;
@@ -262,6 +264,7 @@
 
     }
     .rightsidetitle{
+        font-size: 15px;
         margin-top: 20px;
         padding-left: 20px;
         font-weight: 550;
@@ -276,10 +279,10 @@
         margin-left: 5px;
     }
     .writebtn{
-        width: 4.5vw;
+        width: 6vw;
         height: 3vh;
-        margin-left: 1300px;
-        margin-top: 60px;
+        margin-left: 1120px;
+        margin-top: 40px;
     }
     .wbtn{
         background-color: white;

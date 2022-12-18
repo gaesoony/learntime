@@ -13,16 +13,16 @@
         background-color: #5ECC80;
     }
     .leftside{
-        width: 250px;
+        width: 190px;
         height: 395px;
         border-radius: 10px;
         border: 1px solid #9D9D9D;
         background-color: white;
-        margin-left: 100px;
-        margin-top: 210px;
+        margin-left: 30px;
+        margin-top: 200px;
     }
     .leftsidebox{
-        width: 23vw;
+        width: 200px;
         float: left;
     }
     .leftsidetitle{
@@ -31,11 +31,11 @@
         margin-bottom: 17px;
     }
     .crown{
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 550;
     }
     .crownimg{
-        width: 30px;
+        width: 25px;
         margin-right: 10px;
     }
     .profile{
@@ -47,33 +47,33 @@
     }
     .user{
         width: 2.5vw;
-        font-size: 18px;
+        font-size: 16px;
         margin-right: 5px;
     }
     .usernick{
         margin-top: 20px;
-        margin-right: 90px;
+        margin-right: 50px;
         float: left;
     }
     .usernum{
         width: 2vw;
-        margin-left: 210px;
-        padding-top: 27px;
+        margin-left: 155px;
+        padding-top: 20px;
+        margin-bottom: 10px;
     }
     .mainbox{
+        margin-left: 70px;
         width: 1002px;
-        margin: 0 auto;
         float: left;
     }
     .main{
         width: 1002px;
-        margin: 0 auto;
         margin-top: 70px;
         margin-bottom: 50px;
     }
     .maintitle{
         margin-left: 13px;
-        font-size: 28px;
+        font-size: 25px;
         font-weight: 550;
     }
     .title-end{
@@ -82,31 +82,30 @@
     }
     .profile{
         width: 30px;
-        margin-right: 8px;
+        margin-right: 5px;
     }
     .profile3{
         width: 25px;
-        margin-right: 8px;
-        margin-bottom: 11px;
+        margin-right: 5px;
+        padding-bottom: 15px;
     }
     .nick{
-        font-size: 20px;
+        font-size: 18px;
         color: #989898;
         vertical-align: middle;
         padding-right: 20px;
     }
     .enrollDate{
-        font-size: 20px;
+        font-size: 18px;
         color: #989898;
         vertical-align: middle;
         padding-right: 20px;
     }
     .heart{
-        font-size: 20px;
+        font-size: 18px;
         color: #5ECC80;
         vertical-align: middle;
-        padding-right: 550px;
-        letter-spacing: 2px;
+        padding-right: 580px;
     }
     .thumbsup{
         font-size: 20px;
@@ -129,11 +128,11 @@
         vertical-align: middle;
     }
     .line1{
-        border-bottom: 1px solid #C0C0C0;
+        border-top: 1px solid #C0C0C0;
         margin-bottom: 30px;
     }
     .content{
-        font-size: 20px;
+        font-size: 16px;
         color: #434343;
         line-height: 28px;
     }
@@ -435,15 +434,15 @@
         color: #444444;
     }
     .replybox{
-        padding-top: 40px;
+        padding-top: 70px;
     }
     .rightsidebox{
         height: 70vh;
         display: flex;
     }
     .sidebarbox{
-        margin-top: 210px;
-        margin-left: 80px;
+        margin-top: 200px;
+        margin-left: 50px;
         position: fixed;
     }
     .side{
@@ -589,7 +588,7 @@
                         <td><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></td>
                         <td class="nick">nick01</td>
                         <td class="enrollDate">2202.12.07.</td>
-                        <td class="heart"><i class="fa-solid fa-thumbs-up"></i>25</td>
+                        <td class="heart"><i class="fa-solid fa-thumbs-up"></i> 25</td>
                         <td class="thumbsup" style="cursor: pointer;"><i class="fa-regular fa-thumbs-up"></i></td>
                         <td class="thumbsdown" style="cursor: pointer;"><i class="fa-regular fa-thumbs-down"></i></td>
                         <td class="bookmark" style="cursor: pointer;"><i class="fa-regular fa-bookmark"></i></td>
