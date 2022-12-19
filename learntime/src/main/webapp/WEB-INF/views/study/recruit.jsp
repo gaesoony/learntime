@@ -50,7 +50,7 @@ pageEncoding="UTF-8"%>
                           type="radio"
                           class="radio"
                           id="study"
-                          name="category"
+                          name="groupType"
                         />
                         <label for="study">스터디</label>
                       </div>
@@ -60,7 +60,7 @@ pageEncoding="UTF-8"%>
                           type="radio"
                           class="radio"
                           id="project"
-                          name="category"
+                          name="groupType"
                         />
                         <label for="project">프로젝트</label>
                       </div>
@@ -78,6 +78,7 @@ pageEncoding="UTF-8"%>
                   <div class="box">
                     <div class="selected-people">
                       <input
+                        name="numberPeople"
                         type="number"
                         min="2"
                         max="30"
@@ -100,7 +101,7 @@ pageEncoding="UTF-8"%>
                           type="radio"
                           class="radio"
                           id="online"
-                          name="way"
+                          name="groupWay"
                           onclick="locationOnOff2(event)"
                         />
                         <label for="online" onclick="locationOnOff2(event)"
@@ -116,7 +117,7 @@ pageEncoding="UTF-8"%>
                           type="radio"
                           class="radio"
                           id="offline"
-                          name="way"
+                          name="groupWay"
                           onclick="locationOnOff2(event)"
                         />
                         <label for="offline" onclick="locationOnOff2(event)"
@@ -138,9 +139,9 @@ pageEncoding="UTF-8"%>
                           type="radio"
                           class="radio"
                           id="none"
-                          name="period"
+                          name="groupPeriod"
                         />
-                        <label for="study">기간미정</label>
+                        <label for="none">기간미정</label>
                       </div>
 
                       <div class="option option-period">
@@ -148,54 +149,63 @@ pageEncoding="UTF-8"%>
                           type="radio"
                           class="radio"
                           id="1month"
-                          name="period"
+                          name="groupPeriod"
                         />
-                        <label for="project">1개월</label>
+                        <label for="1month">1개월</label>
                       </div>
                       <div class="option option-period">
                         <input
                           type="radio"
                           class="radio"
                           id="2month"
-                          name="period"
+                          name="groupPeriod"
                         />
-                        <label for="project">2개월</label>
+                        <label for="2month">2개월</label>
                       </div>
                       <div class="option option-period">
                         <input
                           type="radio"
                           class="radio"
                           id="3month"
-                          name="period"
+                          name="groupPeriod"
                         />
-                        <label for="project">3개월</label>
+                        <label for="3month">3개월</label>
                       </div>
                       <div class="option option-period">
                         <input
                           type="radio"
                           class="radio"
                           id="4month"
-                          name="period"
+                          name="groupPeriod"
                         />
-                        <label for="project">4개월</label>
+                        <label for="4month">4개월</label>
                       </div>
                       <div class="option option-period">
                         <input
                           type="radio"
                           class="radio"
                           id="5month"
-                          name="period"
+                          name="groupPeriod"
                         />
-                        <label for="project">5개월</label>
+                        <label for="5month">5개월</label>
                       </div>
                       <div class="option option-period">
                         <input
                           type="radio"
                           class="radio"
-                          id="6monthover"
-                          name="period"
+                          id="6month"
+                          name="groupPeriod"
                         />
-                        <label for="project">6개월이상</label>
+                        <label for="6month">6개월</label>
+                      </div>
+                      <div class="option option-period">
+                        <input
+                          type="radio"
+                          class="radio"
+                          id="long"
+                          name="groupPeriod"
+                        />
+                        <label for="long">장기</label>
                       </div>
                     </div>
 

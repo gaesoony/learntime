@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="studyMapper">
+	<insert id="insertGroup">
+		INSERT INTO GROUP
+		(
+			NO
+			,WRITER
+			,G_TYPE_NO
+			,G_WAY_NO
+			,G_PERIOD_NO
+			,NUMBER_PEOPLE
+			,TECH_STACK_NO
+			,START_DATE
+			,START_TIME
+			,END_TIME
+			,INTRO
+			,PLACE
+			,ADDRESS
+			,HIT
+			,CLOSING_YN
+			,DELETE_YN
+			,MODIFY_DATE
+			,ENROLL_DATE
+		)
+		VALUES
+		(
+			SEQ_GROUP_NO.NEXTVAL
+			,#{writer}
+			,#{gTypeNo}
+			,#{gWayNo}
+			,#{gPeriodNo}
+			,#{numberPeople}
+			,#{techStackNo}
+			,#{startDate}
+			,#{startTime}
+			,#{endTime}
+			,#{intro}
+			,#{place}
+			,#{address}
+			, '0'
+			, 'N'
+			, 'N'
+			, SYSDATE
+			, SYSDATE
+
+		)
+	</insert>
+	
+</mapper>
