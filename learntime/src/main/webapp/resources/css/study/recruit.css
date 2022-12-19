@@ -82,7 +82,7 @@
 .study-recruit-num {
   width: 30px;
   height: 30px;
-  background-color: var(--main);
+  background-color: var(--main-color);
   border-radius: 50%;
   color: white;
   margin-right: 10px;
