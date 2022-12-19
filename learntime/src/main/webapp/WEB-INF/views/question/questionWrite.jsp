@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/app/resources/css/reset.css">
+<link rel="stylesheet" href="/app/resources/css/common.css">
 <link rel="stylesheet" href="/app/resources/css/question/questionWrite.css">
 </head>
 <body>
@@ -38,7 +39,7 @@
                 <option value="community">커뮤니티</option>
                 <option value="skin-shop">스킨샵</option>
             </select></div>
-            <div class="title-q"></div>
+            <div class="title-q"><input type="text" name="title-q" size= "100" class="title-question"></div>
             <div class="date-q"></div>
         </div>
         <div class="empty1"></div>
@@ -46,8 +47,8 @@
             <textarea class="summernote" name="editordata"></textarea>
         </div>
         <div class="backBtn">
-            <div class="btn-to">등록</div>
-            <div class="btn-to">글목록</div>
+            <div class="btn-to"><input type="submit" class="submit-btn" value="등록"></div>
+            <a href="/app/question/questionList"><div class="btn-to">글목록</div></a>
         </div>
     </div>
 </div>
