@@ -1,4 +1,4 @@
-package com.learntime.app.community;
+package com.learntime.app.community.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +28,7 @@ public class BoardController {
 	
 	
 	
-//	글쓰기
+//	글쓰기 TODO
 	@GetMapping("board/write")
 	public String boardWrite() {
 		return "/community/boardWrite";
@@ -39,6 +39,8 @@ public class BoardController {
 		
 		int result = bs.write(vo);
 		System.out.println(result);
+		
+		return "board/list";
 	}
 	
 	@GetMapping("board/modify")
