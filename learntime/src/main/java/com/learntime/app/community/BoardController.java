@@ -39,6 +39,8 @@ public class BoardController {
 		
 		int result = bs.write(vo);
 		System.out.println(result);
+		
+		return "community/board/list";
 	}
 	
 	@GetMapping("board/modify")
