@@ -12,8 +12,8 @@
 <body>
     <%@ include file = "/WEB-INF/views/common/header.jsp" %>
 
-
-	<div class="question-main">
+	<form action="/app/question/questionList" method="post">
+		<div class="question-main">
         <div class="banner-question">
             <div class="banner-phrases">
                 <div class="one-by-one">1:1 문의게시판</div>
@@ -30,21 +30,22 @@
                         </select>
                     </div>
                     <div class="search-box2">
-                        <div class="search-line"></div>
+                    	<input type="text" size="100" class="search-input">
+                    	<div class="search-line"></div>
                     </div>
-                    <div class="search-btn2"><input type="submit" value="검색"></div>
+                    <div class="search-btn2"><input type="submit" value="검색" class="search-btn-input"></div>
                 </div>
             </div>
             <div class="category-question">
                 <div class="cate-list">
-                    <a href=""><div class="ques">문의하기</div></a>
-                    <a href=""><div class="cate">전체</div></a>
-                    <a href=""><div class="cate">스터디</div></a>
-                    <a href=""><div class="cate">공부인증</div></a>
-                    <a href=""><div class="cate">Q&A</div></a>
-                    <a href=""><div class="cate">멘토링</div></a>
-                    <a href=""><div class="cate">커뮤니티</div></a>
-                    <a href=""><div class="cate">스킨샵</div></a>
+                    <button><div class="ques">문의하기</div></button> 
+                    <button><div class="cate">전체</div></button>
+                    <button><div class="cate">스터디</div></button>
+                    <button><div class="cate">공부인증</div></button>
+                    <button><div class="cate">Q&A</div></button>
+                    <button><div class="cate">멘토링</div></button>
+                    <button><div class="cate">커뮤니티</div></button>
+                    <button><div class="cate">스킨샵</div></button>
                 </div>
             </div>
             <div class="list-question">
@@ -58,8 +59,9 @@
             </div>
             <div class="page-question"></div>
         </div>
-        
     </div>
+	</form>
+	
 
 
 

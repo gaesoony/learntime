@@ -5,8 +5,10 @@
 <mapper namespace="questionMapper">
 
 	<insert id="questionWrite">
-  		INSERT INTO BOARD (TITLE, CONTENT, ENROLL_DATE) 
-		VALUES(#{title},#{content}, SYSDATE)
+  		INSERT INTO QUESTION_BOARD (NO, CATE_NO,WRITER,TITLE,CONTENT,ENROLL_DATE,
+  		DELETE_YN,MODIFY_DATE) 
+		VALUES(SEQ_QUESTION_BOARD_NO,#{cateNo},#{writer},#{title},
+		#{content}, SYSDATE,'N',SYSDATE)
   </insert>
 	
 	

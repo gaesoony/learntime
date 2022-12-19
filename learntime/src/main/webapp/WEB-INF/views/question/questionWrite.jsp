@@ -12,7 +12,8 @@
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/common/header.jsp" %>
-<div class="list-main">
+<form action="/app/question/questionWrite" method="post">
+	<div class="list-main">
     <div class="banner-section">
         <div class="banner">
             <div id="banner-title1"><span>1:1 문의게시판</span></div>
@@ -31,13 +32,13 @@
         </div>
         <div class="q-title-date">
             <div class="category-q"><select name="category" id="categories">
-                <option value="total">전체</option>
-                <option value="study">스터디</option>
-                <option value="study-confirmed">공부인증</option>
-                <option value="QnA">Q&A</option>
-                <option value="mentoring">멘토링</option>
-                <option value="community">커뮤니티</option>
-                <option value="skin-shop">스킨샵</option>
+                <option value="전체">전체</option>
+                <option value="스터디">스터디</option>
+                <option value="공부인증">공부인증</option>
+                <option value="Q&A">Q&A</option>
+                <option value="멘토링">멘토링</option>
+                <option value="커뮤니티">커뮤니티</option>
+                <option value="스킨샵">스킨샵</option>
             </select></div>
             <div class="title-q"><input type="text" name="title-q" size= "100" class="title-question"></div>
             <div class="date-q"></div>
@@ -53,6 +54,8 @@
     </div>
 </div>
 
+	
+</form>
 
 
 
