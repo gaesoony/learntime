@@ -14,6 +14,9 @@
 
 <style>
 
+ 
+
+
     /* 모달 시작 */
 	  .blackBG {
         background: rgba(0, 0, 0, 0.5);
@@ -65,7 +68,7 @@
       .inputbox{
         width: 292px;
         height: 20px;
-        padding:14px; 
+        margin:14px; 
         border-radius:4px;
         border:1px solid #D9D9D9;
       }
@@ -74,7 +77,7 @@
         width: 320px;
         height: 48px;
         border-radius:4px;
-        background-color: #5ECC80;
+        background-color: var(--main-color);
         color: #FFFFFF;
       }
 
@@ -136,8 +139,6 @@
         box-shadow:0px 3px 10px rgba(0, 0, 0, 0.1);
     }
     #header-area *{
-     
-        font-weight: 300;
         --border: 1px solid red;
         margin: auto;
     }
@@ -161,8 +162,12 @@
         justify-content: center;
     }
 
+    #header div a{
+      font-weight: 300;
+    }
+
     #header div a:hover,#header div #login-btn:hover{
-        color: #5ECC80;
+        color: var(--main-color);
         
     }
 
@@ -173,7 +178,7 @@
     }
     
     #login-btn{
-      font-family: "Noto Sans KR", sans-serif;
+     
       font-weight: 300;
       font-size:16px;
     } 
@@ -222,25 +227,23 @@
 	    </div>
 	  </div>
 
-<header>
-  <!-- 헤더 -->
-  <div id="header-area">
-    <div id="header">
-        <div id="logo"><a href="${pageContext.request.contextPath}/main"><img src="${pageContext.request.contextPath}/resources/img/logo_green2.png" alt="런타임로고"></a></div>
-        <div id="study-project"><a href="${pageContext.request.contextPath}/study/list">STUDY / PROJECT</a></div>
-        <div id="mentoring"><a href="${pageContext.request.contextPath}/mentor/list">MENTORING</a></div>
-        <div id="learning"><a href="${pageContext.request.contextPath}/qna/list">LEARNING</a></div>
-        <div id="make-grass"><a href="${pageContext.request.contextPath}/makegrass/list">MAKE GRASS</a></div>
-        <div id="skinshop"><a href="${pageContext.request.contextPath}/skinshop">SKIN SHOP</a></div>
-        <div id="community"><a href="${pageContext.request.contextPath}/community/board/list">COMMUNITY</a></div>
-        <div id="empty"></div>
-        <div id="join"><a href="${pageContext.request.contextPath}/member/join">JOIN</a></div>
-        <div id="login">	
-        <button id="login-btn">LOGIN</button>
-        </div>
-    </div>
+<!-- 헤더 -->
+<div id="header-area">
+  <div id="header">
+      <div id="logo"><a href="${pageContext.request.contextPath}/main"><img src="${pageContext.request.contextPath}/resources/img/logo_green2.png" alt="런타임로고"></a></div>
+      <div id="study-project"><a href="${pageContext.request.contextPath}/study/list">STUDY / PROJECT</a></div>
+      <div id="mentoring"><a href="${pageContext.request.contextPath}/mentor/list">MENTORING</a></div>
+      <div id="learning"><a href="${pageContext.request.contextPath}/qna/list">LEARNING</a></div>
+      <div id="make-grass"><a href="${pageContext.request.contextPath}/makegrass/list">MAKE GRASS</a></div>
+      <div id="skinshop"><a href="${pageContext.request.contextPath}/skinshop">SKIN SHOP</a></div>
+      <div id="community"><a href="${pageContext.request.contextPath}/community/board/list">COMMUNITY</a></div>
+      <div id="empty"></div>
+      <div id="join"><a href="${pageContext.request.contextPath}/member/join">JOIN</a></div>
+      <div id="login">	
+      <button id="login-btn">LOGIN</button>
+      </div>
   </div>
-</header>
+</div>
    
     
     
