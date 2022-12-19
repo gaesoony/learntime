@@ -52,7 +52,6 @@
         color: #5ECC80;
         vertical-align: middle;
         padding-right: 600px;
-        letter-spacing: 2px;
     }
     .thumbsup{
         font-size: 20px;
@@ -220,7 +219,6 @@
         color: #5ECC80;
         float: left;
         margin-right: 680px;
-        letter-spacing: 2px;
     }
     .edit1{
         float: left;
@@ -351,7 +349,6 @@
         color: #5ECC80;
         float: left;
         margin-right: 440px;
-        letter-spacing: 2px;
     }
     .edit4{
         float: left;
@@ -481,7 +478,7 @@
                     <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필"></td>
                     <td class="nick">nick01</td>
                     <td class="enrollDate">2202.12.07.</td>
-                    <td class="heart"><i class="fa-solid fa-thumbs-up"></i>25</td>
+                    <td class="heart"><i class="fa-solid fa-thumbs-up"></i> 25</td>
                     <td class="thumbsup" id="thumbsup" onclick="changeColor5()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-up"></i></td>
                     <td class="thumbsdown" id="thumbsdown" onclick="changeColor6()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-down"></i></td>
                     <td class="bookmark" id="bookmark" onclick="changeColor7()" style="cursor: pointer;"><i class="fa-regular fa-bookmark"></i></td>
@@ -532,7 +529,7 @@
             <div><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
             <div class="endnick">nick02</div>
             <div class="endenrollDate">2022.12.08</div>
-            <div class="endheart"><i class="fa-solid fa-thumbs-up"></i>12</div>
+            <div class="endheart"><i class="fa-solid fa-thumbs-up"></i> 12</div>
             <div class="edit1"><input type="button" id="edit1" style='cursor:pointer;' value="답변 수정"></div>
             <div class="edit2"> / </div>
             <div class="edit3"><input type="button" id="edit3" style='cursor:pointer;' value="삭제"></div>
@@ -556,7 +553,7 @@
                 <div><img class="profile4" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
                 <div class="endend">nick03</div>
                 <div class="endendenrollDate">2202.12.08.</div>
-                <div class="endheart2"><i class="fa-solid fa-thumbs-up"></i>15</div>
+                <div class="endheart2"><i class="fa-solid fa-thumbs-up"></i> 15</div>
                 <div class="edit4"><input type="button" id="edit4" style='cursor:pointer;' value="댓글 수정"></div>
                 <div class="edit5"> / </div>
                 <div class="edit6"><input type="button" id="edit6" style='cursor:pointer;' value="삭제"></div>

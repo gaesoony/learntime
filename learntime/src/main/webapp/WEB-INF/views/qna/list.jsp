@@ -362,9 +362,9 @@
                                         <ul class="etc">
                                             <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
                                             <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i>56</li>
-                                            <li><i class="fa-regular fa-comment"></i>13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i>26</li>
+                                            <li><i class="fa-regular fa-eye"></i> 56</li>
+                                            <li><i class="fa-regular fa-comment"></i> 13</li>
+                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
                                             <li>2022.12.09.</li>
                                         </ul>
                                     </div>
@@ -404,9 +404,9 @@
                                         <ul class="etc">
                                             <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
                                             <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i>56</li>
-                                            <li><i class="fa-regular fa-comment"></i>13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i>26</li>
+                                            <li><i class="fa-regular fa-eye"></i> 56</li>
+                                            <li><i class="fa-regular fa-comment"></i> 13</li>
+                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
                                             <li>2022.12.09.</li>
                                         </ul>
                                     </div>
@@ -446,9 +446,9 @@
                                         <ul class="etc">
                                             <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
                                             <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i>56</li>
-                                            <li><i class="fa-regular fa-comment"></i>13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i>26</li>
+                                            <li><i class="fa-regular fa-eye"></i> 56</li>
+                                            <li><i class="fa-regular fa-comment"></i> 13</li>
+                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
                                             <li>2022.12.09.</li>
                                         </ul>
                                     </div>
@@ -488,9 +488,9 @@
                                         <ul class="etc">
                                             <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
                                             <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i>56</li>
-                                            <li><i class="fa-regular fa-comment"></i>13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i>26</li>
+                                            <li><i class="fa-regular fa-eye"></i> 56</li>
+                                            <li><i class="fa-regular fa-comment"></i> 13</li>
+                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
                                             <li>2022.12.09.</li>
                                         </ul>
                                     </div>
@@ -530,9 +530,9 @@
                                         <ul class="etc">
                                             <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
                                             <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i>56</li>
-                                            <li><i class="fa-regular fa-comment"></i>13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i>26</li>
+                                            <li><i class="fa-regular fa-eye"></i> 56</li>
+                                            <li><i class="fa-regular fa-comment"></i> 13</li>
+                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
                                             <li>2022.12.09.</li>
                                         </ul>
                                     </div>
@@ -572,9 +572,9 @@
                                         <ul class="etc">
                                             <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
                                             <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i>56</li>
-                                            <li><i class="fa-regular fa-comment"></i>13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i>26</li>
+                                            <li><i class="fa-regular fa-eye"></i> 56</li>
+                                            <li><i class="fa-regular fa-comment"></i> 13</li>
+                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
                                             <li>2022.12.09.</li>
                                         </ul>
                                     </div>
@@ -614,9 +614,9 @@
                                         <ul class="etc">
                                             <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
                                             <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i>56</li>
-                                            <li><i class="fa-regular fa-comment"></i>13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i>26</li>
+                                            <li><i class="fa-regular fa-eye"></i> 56</li>
+                                            <li><i class="fa-regular fa-comment"></i> 13</li>
+                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
                                             <li>2022.12.09.</li>
                                         </ul>
                                     </div>
@@ -656,9 +656,9 @@
                                         <ul class="etc">
                                             <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
                                             <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i>56</li>
-                                            <li><i class="fa-regular fa-comment"></i>13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i>26</li>
+                                            <li><i class="fa-regular fa-eye"></i> 56</li>
+                                            <li><i class="fa-regular fa-comment"></i> 13</li>
+                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
                                             <li>2022.12.09.</li>
                                         </ul>
                                     </div>
@@ -698,9 +698,9 @@
                                         <ul class="etc">
                                             <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
                                             <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i>56</li>
-                                            <li><i class="fa-regular fa-comment"></i>13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i>26</li>
+                                            <li><i class="fa-regular fa-eye"></i> 56</li>
+                                            <li><i class="fa-regular fa-comment"></i> 13</li>
+                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
                                             <li>2022.12.09.</li>
                                         </ul>
                                     </div>
@@ -740,9 +740,9 @@
                                         <ul class="etc">
                                             <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
                                             <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i>56</li>
-                                            <li><i class="fa-regular fa-comment"></i>13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i>26</li>
+                                            <li><i class="fa-regular fa-eye"></i> 56</li>
+                                            <li><i class="fa-regular fa-comment"></i> 13</li>
+                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
                                             <li>2022.12.09.</li>
                                         </ul>
                                     </div>

@@ -255,7 +255,6 @@
         color: #5ECC80;
         float: left;
         margin-right: 675px;
-        letter-spacing: 2px;
     }
     .edit1{
         float: left;
@@ -374,7 +373,6 @@
         color: #5ECC80;
         float: left;
         margin-right: 435px;
-        letter-spacing: 2px;
     }
     .edit4{
         float: left;
@@ -660,7 +658,7 @@
                     <div><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
                     <div class="endnick">nick02</div>
                     <div class="endenrollDate">2022.12.08</div>
-                    <div class="endheart"><i class="fa-solid fa-thumbs-up"></i>12</div>
+                    <div class="endheart"><i class="fa-solid fa-thumbs-up"></i> 12</div>
                     <div class="edit1"><input type="button" id="edit1" style='cursor:pointer;' value="댓글 수정"></div>
                     <div class="edit2"> / </div>
                     <div class="edit3"><input type="button" id="edit3" style='cursor:pointer;' value="삭제"></div>
@@ -683,7 +681,7 @@
                         <div><img class="profile4" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
                         <div class="endend">nick03</div>
                         <div class="endendenrollDate">2202.12.08.</div>
-                        <div class="endheart2"><i class="fa-solid fa-thumbs-up"></i>15</div>
+                        <div class="endheart2"><i class="fa-solid fa-thumbs-up"></i> 15</div>
                         <div class="edit4"><input type="button" id="edit4" style='cursor:pointer;' value="댓글 수정"></div>
                         <div class="edit5"> / </div>
                         <div class="edit6"><input type="button" id="edit6" style='cursor:pointer;' value="삭제"></div>

@@ -26,8 +26,7 @@
 
   /* 본문 box */
   .main-box{
-    width: 80vw;
-    height: 100%;
+    width: 1200px;
     margin: 0 auto;
     margin-top: 30px;
     border: 1px solid #9D9D9D;
@@ -36,13 +35,12 @@
   }
     .main{
         width: 1002px;
-        margin: 0 auto;
         margin-top: 70px;
         margin-bottom: 50px;
-        margin-left: 280px;
+        margin-left: 110px;
     }
     .maintitle{
-        font-size: 28px;
+        font-size: 22px;
         font-weight: 550;
     }
     .title-end{
@@ -50,43 +48,44 @@
         margin-bottom: 20px;
     }
     .nick{
-        font-size: 20px;
+        font-size: 18px;
         color: #989898;
         vertical-align: middle;
         padding-right: 20px;
     }
     .enrollDate{
-        font-size: 20px;
+        font-size: 18px;
         color: #989898;
         vertical-align: middle;
         padding-right: 20px;
     }
     .heart{
-        font-size: 20px;
+        font-size: 18px;
         color: #5ECC80;
         vertical-align: middle;
         padding-right: 350px;
-        letter-spacing: 2px;
     }
     .edit{
         border: none;
         font-size: 15px;
         color: #434343;
-        margin-left: 200px;
+        margin-left: 240px;
         margin-bottom: 10px;
+        background-color: white;
     }
     .delete{
         border: none;
         font-size: 15px;
         color: #434343;
         margin-left: 15px;
+        background-color: white;
     }
     .line1{
         border-bottom: 1px solid #C0C0C0;
         margin-bottom: 30px;
     }
     .content{
-        font-size: 20px;
+        font-size: 16px;
         color: #434343;
         line-height: 28px;
     }
@@ -104,6 +103,7 @@
         padding: 10px;
         float: left;
         margin-right: 10px;
+        font-size: 15px;
     }
     .hash2{
         background-color:  #AAAAAA;
@@ -115,12 +115,16 @@
     }
 
     /* 댓글 부분 */
+    .reply-box-wrap{
+        width: 1200px;
+    }
     .middle{
         background-color: #F4FBF6;
         padding-top: 70px;
     }
     .middlemain{
-        width: 1002px;
+        width: 1025px;
+        height: 350px;
         background-color: white;
         border: 1px solid #5ECC80;
         margin: 0 auto;
@@ -137,13 +141,13 @@
     .profile2{
         width: 2vw;
         float: left;
-        margin-left: 30px;
-        margin-top: 30px;
+        margin-left: 45px;
+        margin-top: 35px;
         margin-right: 10px;
     }
     .replyplz-1{
         color: #989898;
-        margin-left: 35px;
+        margin-left: 45px;
     }
     .input{
         width: 925px;
@@ -151,13 +155,13 @@
         margin-top: 15px;
     }
     .replybtn{
-        width: 5vw;
-        height: 3.5vh;
+        width: 90px;
+        height: 30px;
         margin-top: 10px;
         background-color: #5ECC80;
         color: white;
         border-radius: 20px;
-        margin-left: 860px;
+        margin-left: 880px;
         text-decoration: none;
         border-style: none;
         font-size: 15px;
@@ -189,9 +193,15 @@
     .profile3{
         width: 2vw;
         float: left;
-        margin-left: 30px;
-        margin-top: 20px;
+        margin-top: 22px;
         margin-right: 10px;
+    }
+    .profile5{
+        width: 2vw;
+        float: left;
+        margin-top: 25px;
+        margin-right: 10px;
+        margin-left: 30px;
     }
     .endnick{
         font-size: 18px;
@@ -210,7 +220,6 @@
         color: #5ECC80;
         float: left;
         margin-right: 675px;
-        letter-spacing: 2px;
     }
     .edit1{
         float: left;
@@ -227,6 +236,7 @@
         float: left;
         color: #989898;
         margin-right: 5px;
+        margin-top: 2px;
     }
     #edit3{
         color: #989898;
@@ -310,7 +320,6 @@
         color: #5ECC80;
         float: left;
         margin-right: 435px;
-        letter-spacing: 2px;
     }
     .edit4{
         float: left;
@@ -328,7 +337,7 @@
         float: left;
         color: #989898;
         margin-right: 5px;
-        margin-top: 15px;
+        margin-top: 20px;
     }
     #edit6{
         color: #989898;
@@ -338,33 +347,6 @@
         font-size: 15px;
         margin-top: 15px;
     }
-    .siderank{
-        border: 1px solid #9D9D9D;
-        width: 258px;
-        height: 371px;
-        float: left;
-    }
-    .sidebox{
-        width: 7vw;
-        float: left;
-        margin-top: 200px;
-        margin-left: 200px;
-        position: fixed;
-    }
-    .side{
-        width: 5vw;
-        margin: 0 auto;
-    }
-    .si{
-        background-color: #5ECC80;
-        color: white;
-        font-size: 20px;
-        border-radius: 10px;
-        text-align: center;
-        padding: 10px;
-        margin-bottom: 20px;
-        box-shadow: 3px 3px 2px 2px #b1ebc3;
-    }
     .pluschat{
         font-size: 18px;
         color: #444444;
@@ -373,7 +355,6 @@
         padding-top: 40px;
     }
     .rightsidebox{
-        height: 70vh;
         display: flex;
     }
     .sidebarbox{
@@ -409,7 +390,6 @@
         text-decoration: none;
         border-style: none;
         font-size: 15px;
-        margin-bottom: 20px;
     }
     .replybtn2:hover{
         font-weight: 550;
@@ -424,7 +404,7 @@
     }
     .endsection{
         width: 100%;
-        height: 150px;
+        /* height: 150px; */
         background-color: #F4FBF6;
         margin-bottom: -30px;
     }
@@ -436,7 +416,7 @@
 <body>
   <%@include file="/WEB-INF/views/common/admin-side.jsp"%>
   <div id="content-wrap">
-    <div id="admin-category-title" class="shadow-light">Learning Detail 관리</div>
+    <div id="admin-category-title" class="shadow-light">Make grass Detail 관리</div>
 
     <!-- 본문 box -->
     <section class="main-box">
@@ -454,7 +434,7 @@
                         <td><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></td>
                         <td class="nick">nick01</td>
                         <td class="enrollDate">2202.12.07.</td>
-                        <td class="heart"><i class="fa-solid fa-thumbs-up"></i>25</td>
+                        <td class="heart"><i class="fa-solid fa-thumbs-up"></i> 25</td>
                         <td><button class="edit" style="cursor: pointer;">수정</button></td>
                         <td><button class="delete" style="cursor: pointer;">삭제</button></td>
                     </tr>
@@ -463,22 +443,13 @@
                 <table class="two">
                     <tr>
                         <td class="content">
-                            Json 형식으로 데이터를 교환하는 경우도 MVC 구조라고 할 수 있을까요?
-                            안녕하세요. 제로초님.
-                            제가 현재 제로초님 강의를 듣고 따로 사용자 프로필 사진을 등록하는 기능을 작업 중인데, 여기서 권한을
-                            설정할 때 permissions 설정 관련해서 질문을 드리려 합니다.
-                            우선 저는  앱이 처음 실행될 때 권한을 묻는 게 아니라, 사용자가 프로필 사진을 등록을 할 때 권한 요청을
-                            창을 띄우고 싶어서 클릭시에 permissions 을 불러오도록 했습니다.
-                            우선 저는  앱이 처음 실행될 때 권한을 묻는 게 아니라, 사용자가 프로필 사진을 등록을 할 때 권한 요청을
-                            창을 띄우고 싶어서 클릭시에 permissions 을 불러오도록 했습니다.
-                            우선 저는  앱이 처음 실행될 때 권한을 묻는 게 아니라, 사용자가 프로필 사진을 등록을 할 때 권한 요청을
-                            창을 띄우고 싶어서 클릭시에 permissions 을 불러오도록 했습니다.
-                            우선 저는  앱이 처음 실행될 때 권한을 묻는 게 아니라, 사용자가 프로필 사진을 등록을 할 때 권한 요청을
-                            창을 띄우고 싶어서 클릭시에 permissions 을 불러오도록 했습니다.
-                            우선 저는  앱이 처음 실행될 때 권한을 묻는 게 아니라, 사용자가 프로필 사진을 등록을 할 때 권한 요청을
-                            창을 띄우고 싶어서 클릭시에 permissions 을 불러오도록 했습니다.
-                            우선 저는  앱이 처음 실행될 때 권한을 묻는 게 아니라, 사용자가 프로필 사진을 등록을 할 때 권한 요청을
-                            창을 띄우고 싶어서 클릭시에 permissions 을 불러오도록 했습니다.
+                            자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함.
+                            자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함.
+                            자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함.
+                            자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함.
+                            자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함.
+                            자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함.
+                            자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함.
                         </td>
                     </tr>
                 </table>
@@ -492,7 +463,7 @@
             </div>
         </article>
             <!-- 댓글 부분 -->
-    <section>
+    <section class="reply-box-wrap">
         <article class="replybox">
             <!-- 댓글 부분 -->
             <div class="middle">
@@ -512,10 +483,10 @@
                 </div>
         
                 <div class="jjinend">
-                    <div><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
+                    <div><img class="profile5" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
                     <div class="endnick">nick02</div>
                     <div class="endenrollDate">2022.12.08</div>
-                    <div class="endheart"><i class="fa-solid fa-thumbs-up"></i>12</div>
+                    <div class="endheart"><i class="fa-solid fa-thumbs-up"></i> 12</div>
                     <div class="edit1"><input type="button" id="edit1" style='cursor:pointer;' value="댓글 수정"></div>
                     <div class="edit2"> / </div>
                     <div class="edit3"><input type="button" id="edit3" style='cursor:pointer;' value="삭제"></div>
@@ -536,7 +507,7 @@
                         <div><img class="profile4" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
                         <div class="endend">nick03</div>
                         <div class="endendenrollDate">2202.12.08.</div>
-                        <div class="endheart2"><i class="fa-solid fa-thumbs-up"></i>15</div>
+                        <div class="endheart2"><i class="fa-solid fa-thumbs-up"></i> 15</div>
                         <div class="edit4"><input type="button" id="edit4" style='cursor:pointer;' value="댓글 수정"></div>
                         <div class="edit5"> / </div>
                         <div class="edit6"><input type="button" id="edit6" style='cursor:pointer;' value="삭제"></div>
@@ -574,7 +545,8 @@
 <script>
     $('.summernote').summernote({
         height: 130,
-        lang: "ko-KR"
+        lang: "ko-KR",
+        disableResizeEditor: true,
     });
 
     $('.summernote2').summernote({

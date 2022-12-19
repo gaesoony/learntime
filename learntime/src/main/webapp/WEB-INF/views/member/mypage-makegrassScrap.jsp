@@ -60,82 +60,62 @@
     #title-box{
         width: 100%;
         height: auto;
-        border: 1px solid #a2a2a2;
         margin-top: 10px;
     }
 
-    /* 리스트 본문 */
-    .realcontent{
-        justify-content: flex-start;
+    /* 리스트 부분 */
+    .mainbox{
+        width: 800px;
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: 270px 270px 270px;
+        row-gap: 20px;
+        justify-content: center;
     }
-    .qnalist{
-        margin-left: 20px;
-        width: 798px;
+    .mainlist{
+        width: 220px;
+        height: 300px;
+        border: 2px solid #5ECC80;
+        border-radius: 20px;
+        margin: 0 auto;
     }
-    .title{
+    .thumbnail{
+        width: 200px;
+        height: 90px;
+        background-color: #5ECC80;
+        margin: 0 auto;
+        margin-top: 15px;
+    }
+    .clockimg{
+        margin-left: 10px;
+        margin-top: 10px;
         font-size: 15px;
-        font-weight: 550;
-        width: 600px;
-        line-height: 25px;
+    }
+    .bookimg{
+        font-size: 15px;
+        margin-left: 13px;
+        margin-top: 10px;
     }
     .content{
-        width: 600px;
-        height: 60px;
-        margin-top: 10px;
-        font-size: 13px;
-        line-height: 20px;
-        float: left;
-        color: #6F6F6F;
-    }
-    .circle{
-        border: 1px solid #5ECC80;
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        background-color: #5ECC80;
-        margin-left: 660px;
-    }
-    .replytitle{
-        color: white;
-        font-size: 20px;
-        font-weight: 550;
-        display: block;
-        margin-left: 30px;
-        margin-bottom: 5px;
-        padding-top: 10px;
-    }
-    .replycontent{
-        color: white;
-        font-size: 14px;
-        margin-left: 21px;
-        margin-top: 10px;
-    }
-    .hashtag{
-        width: 100%;
-        list-style: none;
-        display: flex;
-        margin-top: -10px;
+        width: 200px;
+        height: 100px;
         font-size: 12px;
+        margin-left: 13px;
+        margin-top: 5px;
+        line-height: 17px;
     }
-    .hash{
-        padding: 5px;
-        margin-right: 15px;
-        background-color: #AAAAAA;
-        color: white;
-        border-radius: 10px;
+    .contentline{
+        width: 90%;
+        margin: 0 auto;
+        border-top: 2px solid #5ECC80;
     }
-    .enrollDate{
-        width: 750px;
-        color: #6F6F6F;
-        margin-top: 10px;
+    .contentDate{
+        margin-left: 15px;
+        color: #868686;
         font-size: 12px;
+        margin-top: 10px;
     }
-    .end-line{
-        width: 780px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        border-top: 1px solid #B7B7B7;
-    }
+
 </style>
 </head>
 <body>
@@ -167,27 +147,121 @@
 
                     <div id="title-box">
 
-                        <!-- 본문 -->
-                        <div class="realcontent" onclick="navToDetail()" style="cursor: pointer;">
-                            <div class="qnalist">
-                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.</div>
-                                <div class="content">학습하는 분들께 도움이 되고, 더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.꼭 확인해주세요.꼭 확인해주세요.</div>
-    
-                                <!-- 동그라미 답변 -->
-                                <div class="circle">
-                                    <div class="replytitle">0</div>
-                                    <div class="replycontent">답변</div>
+                        <div class="mainbox">
+                            <!-- 리스트1 -->
+                            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
+                                <div class="thumbnail"></div>
+                                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
+                                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
+                                <div class="content">
+                                    백앤드로 JAVA Script와 화면
+                                    구현을 위한 CSS, 추가로 AJAX에
+                                    대한 부분도 함께 공부함.
+                                    백앤드로 JAVA Script와 화면.
                                 </div>
-    
-                                <!-- 해시태그 -->
-                                <div class="hashtag">
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>자바</li>
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>JAVA</li>
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>CSS</li>
+                                <div class="contentline"></div>
+                                <div class="info">
+                                    <ul>
+                                        <li class="contentDate">2202-12-09</li>
+                                    </ul>
                                 </div>
-                                <div class="enrollDate">2202.12.12.</div>
-                                <div class="end-line"></div>
                             </div>
+
+                            <!-- 리스트2 -->
+                            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
+                                <div class="thumbnail"></div>
+                                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
+                                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
+                                <div class="content">
+                                    백앤드로 JAVA Script와 화면
+                                    구현을 위한 CSS, 추가로 AJAX에
+                                    대한 부분도 함께 공부함.
+                                    백앤드로 JAVA Script와 화면.
+                                </div>
+                                <div class="contentline"></div>
+                                <div class="info">
+                                    <ul>
+                                        <li class="contentDate">2202-12-09</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 리스트3 -->
+                            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
+                                <div class="thumbnail"></div>
+                                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
+                                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
+                                <div class="content">
+                                    백앤드로 JAVA Script와 화면
+                                    구현을 위한 CSS, 추가로 AJAX에
+                                    대한 부분도 함께 공부함.
+                                    백앤드로 JAVA Script와 화면.
+                                </div>
+                                <div class="contentline"></div>
+                                <div class="info">
+                                    <ul>
+                                        <li class="contentDate">2202-12-09</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 리스트4 -->
+                            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
+                                <div class="thumbnail"></div>
+                                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
+                                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
+                                <div class="content">
+                                    백앤드로 JAVA Script와 화면
+                                    구현을 위한 CSS, 추가로 AJAX에
+                                    대한 부분도 함께 공부함.
+                                    백앤드로 JAVA Script와 화면.
+                                </div>
+                                <div class="contentline"></div>
+                                <div class="info">
+                                    <ul>
+                                        <li class="contentDate">2202-12-09</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 리스트5 -->
+                            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
+                                <div class="thumbnail"></div>
+                                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
+                                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
+                                <div class="content">
+                                    백앤드로 JAVA Script와 화면
+                                    구현을 위한 CSS, 추가로 AJAX에
+                                    대한 부분도 함께 공부함.
+                                    백앤드로 JAVA Script와 화면.
+                                </div>
+                                <div class="contentline"></div>
+                                <div class="info">
+                                    <ul>
+                                        <li class="contentDate">2202-12-09</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 리스트6 -->
+                            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
+                                <div class="thumbnail"></div>
+                                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
+                                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
+                                <div class="content">
+                                    백앤드로 JAVA Script와 화면
+                                    구현을 위한 CSS, 추가로 AJAX에
+                                    대한 부분도 함께 공부함.
+                                    백앤드로 JAVA Script와 화면.
+                                </div>
+                                <div class="contentline"></div>
+                                <div class="info">
+                                    <ul>
+                                        <li class="contentDate">2202-12-09</li>
+                                    </ul>
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
@@ -202,14 +276,10 @@
         const category = document.querySelector("#my-cate div:nth-child(2) a");
         category.classList.add("main-color");
 
-        $('#list-category-box .licate').on("click", function(){
-            $("#list-category-box .licate.active").removeClass('active');
-            $(this).addClass("active");
-        });
-
         function navToDetail(){
             window.location.href="/app/makegrass/detail";
         }
+
     </script>
 
     <script src="https://kit.fontawesome.com/4b219bc5a3.js" crossorigin="anonymous"></script>

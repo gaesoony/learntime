@@ -57,10 +57,11 @@
         margin: 0 auto;
         border-top: 1.5px solid #a2a2a2;
     }
+
     #title-box{
         width: 100%;
         height: auto;
-        border: 1px solid #a2a2a2;
+        /* border: 1px solid #a2a2a2; */
         margin-top: 10px;
     }
 
@@ -71,58 +72,24 @@
     .qnalist{
         margin-left: 20px;
         width: 798px;
+        margin-top: 20px;
     }
     .title{
-        font-size: 15px;
-        font-weight: 550;
-        width: 600px;
-        line-height: 25px;
-    }
-    .content{
-        width: 600px;
-        height: 60px;
-        margin-top: 10px;
-        font-size: 13px;
-        line-height: 20px;
-        float: left;
-        color: #6F6F6F;
-    }
-    .circle{
-        border: 1px solid #5ECC80;
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        background-color: #5ECC80;
-        margin-left: 660px;
-    }
-    .replytitle{
-        color: white;
-        font-size: 20px;
-        font-weight: 550;
-        display: block;
-        margin-left: 30px;
-        margin-bottom: 5px;
-        padding-top: 10px;
-    }
-    .replycontent{
-        color: white;
         font-size: 14px;
-        margin-left: 21px;
-        margin-top: 10px;
+        font-weight: 550;
+        width: 790px;
+        line-height: 25px;
+        margin-bottom: 10px;
     }
-    .hashtag{
-        width: 100%;
-        list-style: none;
-        display: flex;
-        margin-top: -10px;
-        font-size: 12px;
-    }
-    .hash{
-        padding: 5px;
-        margin-right: 15px;
-        background-color: #AAAAAA;
+    #check{
+        width: 60px;
+        background-color: #5ecc80;
         color: white;
-        border-radius: 10px;
+        font-size: 15px;
+        padding: 8px;
+        border-radius: 20px;
+        margin-bottom: 15px;
+        text-align: center;
     }
     .enrollDate{
         width: 750px;
@@ -170,21 +137,63 @@
                         <!-- 본문 -->
                         <div class="realcontent" onclick="navToDetail()" style="cursor: pointer;">
                             <div class="qnalist">
-                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.</div>
-                                <div class="content">학습하는 분들께 도움이 되고, 더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.꼭 확인해주세요.꼭 확인해주세요.</div>
-    
-                                <!-- 동그라미 답변 -->
-                                <div class="circle">
-                                    <div class="replytitle">0</div>
-                                    <div class="replycontent">답변</div>
-                                </div>
-    
-                                <!-- 해시태그 -->
-                                <div class="hashtag">
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>자바</li>
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>JAVA</li>
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>CSS</li>
-                                </div>
+
+                                <div id="check"><i class="fa-regular fa-comment"></i> 댓글</div>
+
+                                <div class="title">이거슨 답변입니다. 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.</div>
+                                
+                                <div class="enrollDate">2202.12.12.</div>
+                                <div class="end-line"></div>
+                            </div>
+                        </div>
+
+                        <!-- 본문2 -->
+                        <div class="realcontent" onclick="navToDetail()" style="cursor: pointer;">
+                            <div class="qnalist">
+
+                                <div id="check"><i class="fa-regular fa-comment"></i> 댓글</div>
+
+                                <div class="title">이거슨 답변입니다. 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.</div>
+                                
+                                <div class="enrollDate">2202.12.12.</div>
+                                <div class="end-line"></div>
+                            </div>
+                        </div>
+
+                        <!-- 본문3 -->
+                        <div class="realcontent" onclick="navToDetail()" style="cursor: pointer;">
+                            <div class="qnalist">
+
+                                <div id="check"><i class="fa-regular fa-comment"></i> 댓글</div>
+
+                                <div class="title">이거슨 답변입니다. 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.</div>
+                                
+                                <div class="enrollDate">2202.12.12.</div>
+                                <div class="end-line"></div>
+                            </div>
+                        </div>
+
+                        <!-- 본문4 -->
+                        <div class="realcontent" onclick="navToDetail()" style="cursor: pointer;">
+                            <div class="qnalist">
+
+                                <div id="check"><i class="fa-regular fa-comment"></i> 댓글</div>
+
+                                <div class="title">이거슨 답변입니다. 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.</div>
+                                
+                                <div class="enrollDate">2202.12.12.</div>
+                                <div class="end-line"></div>
+                            </div>
+                        </div>
+
+                        <!-- 본문5 -->
+                        <div class="realcontent" onclick="navToDetail()" style="cursor: pointer;">
+                            <div class="qnalist">
+
+                                <div id="check"><i class="fa-regular fa-comment"></i> 댓글</div>
+
+                                <div class="title">이거슨 답변입니다. 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.</div>
+                                
                                 <div class="enrollDate">2202.12.12.</div>
                                 <div class="end-line"></div>
                             </div>
@@ -201,11 +210,6 @@
     <script>
         const category = document.querySelector("#my-cate div:nth-child(2) a");
         category.classList.add("main-color");
-
-        $('#list-category-box .licate').on("click", function(){
-            $("#list-category-box .licate.active").removeClass('active');
-            $(this).addClass("active");
-        });
 
         function navToDetail(){
             window.location.href="/app/makegrass/detail";

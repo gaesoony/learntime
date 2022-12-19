@@ -62,7 +62,6 @@
     #title-box{
         width: 100%;
         height: auto;
-        border: 1px solid #a2a2a2;
         margin-top: 10px;
     }
     #list-category-box{

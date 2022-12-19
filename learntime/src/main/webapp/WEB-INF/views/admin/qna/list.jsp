@@ -73,8 +73,7 @@
 
   /* 본문 box */
   .main-box{
-    width: 80vw;
-    height: 100vh;
+    width: 1200px;
     margin: 0 auto;
     margin-top: 30px;
     border: 1px solid #9D9D9D;
@@ -82,10 +81,16 @@
     border-radius: 10px;
   }
 
+  /* 중간 바 */
+  .middle-wrap{
+    display: flex;
+    height: 120px;
+  }
+
   /* 카테고리 */
   .category-box{
-    width: 15vw;
-    margin-top: 80px;
+    width: 200px;
+    margin-top: 115px;
     margin-left: 30px;
     float: left;
   }
@@ -93,6 +98,7 @@
     border: none;
     font-size: 15px;
     color: #9D9D9D;
+    background-color: white;
   }
   .active{
     color: black;
@@ -100,47 +106,49 @@
 
   /* warning */
   .warning-box{
-    width: 620px;
-    height: 50px;
+    width: 420px;
+    height: 40px;
     border: 1px solid #F87171;
     background-color: #FEF2F2;
     border-radius: 10px;
-    margin-left: 25px;
-    float: left;
-    margin-right: 30px;
-    margin-top: 50px;
+    margin-left: 85px;
+    margin-right: 20px;
+    margin-top: 95px;
   }
   .warning{
     color: #7F1D1D;
-    font-size: 15px;
-    margin-left: 20px;
-    margin-top: 17px;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 15px;
   }
 
   /* 검색바 */
   .search-box{
-    width: 523px;
-    height: 50px;
+    width: 400px;
+    height: 40px;
     background-color: white;
     border: 1px solid #D4D4D4;
     display: flex;
     border-radius: 5px;
-    margin-top: 50px;
+    margin-top: 95px;
   }
   #search{
     width: 470px;
-    height: 48px;
+    height: 38px;
     font-size: 15px;
     border: none;
     margin: 0 auto;
     outline: none;
+    margin-left: 5px;
   }
   .search-btn{
-    height: 46px;
+    height: 38px;
     border: none;
     font-size: 20px;
     background-color: white;
     text-align: center;
+    margin-right: 5px;
+    cursor: pointer;
   }
 
   /* 게시판 목록 부분 */
@@ -250,20 +258,23 @@
         </div>
       </div>
 
-      <!-- 카테고리 -->
-      <div class="category-box">
-        <button class="category" style="cursor: pointer;">· 등록</button>
-        <button class="category" style="cursor: pointer;">· 삭제</button>
-        <button class="category" style="cursor: pointer;">· 블라인드</button>
-      </div>
+      <!-- 중간 바 -->
+      <div class="middle-wrap">
+        <!-- 카테고리 -->
+        <div class="category-box">
+          <button class="category" style="cursor: pointer;">· 등록</button>
+          <button class="category" style="cursor: pointer;">· 삭제</button>
+          <button class="category" style="cursor: pointer;">· 블라인드</button>
+        </div>
 
-      <div class="warning-box">
-        <div class="warning"><i class="fa-solid fa-circle-info"></i> 이미 블라인드 처리된 게시물은 공개 여부 활성화가 불가능합니다.</div>
-      </div>
+        <div class="warning-box">
+          <div class="warning"><i class="fa-solid fa-circle-info"></i> 이미 블라인드 처리된 게시물은 공개 여부 활성화가 불가능합니다.</div>
+        </div>
 
-      <div class="search-box">
-        <input type="text" id="search" placeholder="  Search...">
-        <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <div class="search-box">
+          <input type="text" id="search" placeholder="  Search...">
+          <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
       </div>
 
       <section class="content-section">
@@ -275,7 +286,7 @@
           <div class="grid-title">조회수</div>
           <div class="grid-title">댓글수</div>
           <div class="grid-title">스크랩수</div>
-          <div class="grid-title">블라인드</div>
+          <div class="grid-title">상태</div>
 
           <% for(int i=1; i<=10; i++) {%>
           <div>1</div>
@@ -284,14 +295,12 @@
               >Learning 관리자 페이지</a
             >
           </div>
-          <div>
-            <a href="/app/mystudy/board/detail">nick01</a>
-          </div>
+          <div>nick01</div>
           <div>2022-10-10 12:12:12</div>
           <div>100</div>
           <div>100</div>
           <div>100</div>
-          <div>상태</div>
+          <div>블라인드</div>
 
           <%}%>
         </div>

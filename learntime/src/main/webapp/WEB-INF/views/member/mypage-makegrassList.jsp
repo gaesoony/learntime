@@ -60,82 +60,202 @@
     #title-box{
         width: 100%;
         height: auto;
-        border: 1px solid #a2a2a2;
         margin-top: 10px;
     }
 
-    /* 리스트 본문 */
-    .realcontent{
-        justify-content: flex-start;
+    /* 잔디심기 부분 */
+    .banner{
+        border: 2px solid #5ecc80;
+        width: 800px;
+        height: 26vh;
+        border-radius: 20px;
+        margin: 0 auto;
     }
-    .qnalist{
-        margin-left: 20px;
-        width: 798px;
+    .monthbox{
+        width: 800px;
+        margin-top: 10px;
+        display: flex;
+        margin-left: 73px;
     }
-    .title{
+    .month{
+        font-size: 10px;
+        margin-right: 45px;
+    }
+    .daybox{
+        width: 3vw;
+        margin-left: 15px;
+        margin-top: 10px;
+        float: left;
+    }
+    .day{
+        margin-bottom: 12px;
+        font-size: 10px;
+    }
+    .grassbox1{
+        display: flex;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+    .grass1{
+        width: 15px;
+        height: 12px;
+        background-color: #D9D9D9;
+        margin-right: 5px;
+    }
+    .grassbox2{
+        display: flex;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+    .grass2{
+        width: 15px;
+        height: 12px;
+        background-color: #D9D9D9;
+        margin-right: 5px;
+    }
+    .grassbox3{
+        display: flex;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+    .grass3{
+        width: 15px;
+        height: 12px;
+        background-color: #D9D9D9;
+        margin-right: 5px;
+    }
+    .grassbox4{
+        display: flex;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+    .grass4{
+        width: 15px;
+        height: 12px;
+        background-color: #D9D9D9;
+        margin-right: 5px;
+    }
+    .grassbox5{
+        display: flex;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+    .grass5{
+        width: 15px;
+        height: 12px;
+        background-color: #D9D9D9;
+        margin-right: 5px;
+    }
+    .grassbox6{
+        display: flex;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+    .grass6{
+        width: 15px;
+        height: 12px;
+        background-color: #D9D9D9;
+        margin-right: 5px;
+    }
+    .grassbox7{
+        display: flex;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+    .grass7{
+        width: 15px;
+        height: 12px;
+        background-color: #D9D9D9;
+        margin-right: 5px;
+    }
+
+    /* 잔디 상태 */
+    #makegrass-status-box{
+        width: 120px;
+        height: 20px;
+        margin-top: 5px;
+        margin-left: 680px;
+        display: flex;
+    }
+    #status{
+        font-size: 13px;
+        margin-right: 5px;
+    }
+    #box1{
+        width: 13px;
+        height: 11px;
+        background-color: #AEDDBD;
+        margin-right: 5px;
+        margin-top: 2px;
+    }
+    #box2{
+        width: 13px;
+        height: 11px;
+        background-color: #72DA92;
+        margin-right: 5px;
+        margin-top: 2px;
+    }
+    #box3{
+        width: 13px;
+        height: 11px;
+        background-color: #3CB160;
+        margin-right: 5px;
+        margin-top: 2px;
+    }
+
+    /* 리스트 부분 */
+    .mainbox{
+        width: 800px;
+        margin-top: 50px;
+        display: grid;
+        grid-template-columns: 270px 270px 270px;
+        row-gap: 20px;
+        justify-content: center;
+    }
+    .mainlist{
+        width: 220px;
+        height: 300px;
+        border: 2px solid #5ECC80;
+        border-radius: 20px;
+        margin: 0 auto;
+    }
+    .thumbnail{
+        width: 200px;
+        height: 90px;
+        background-color: #5ECC80;
+        margin: 0 auto;
+        margin-top: 15px;
+    }
+    .clockimg{
+        margin-left: 10px;
+        margin-top: 10px;
         font-size: 15px;
-        font-weight: 550;
-        width: 600px;
-        line-height: 25px;
+    }
+    .bookimg{
+        font-size: 15px;
+        margin-left: 13px;
+        margin-top: 10px;
     }
     .content{
-        width: 600px;
-        height: 60px;
-        margin-top: 10px;
-        font-size: 13px;
-        line-height: 20px;
-        float: left;
-        color: #6F6F6F;
-    }
-    .circle{
-        border: 1px solid #5ECC80;
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        background-color: #5ECC80;
-        margin-left: 660px;
-    }
-    .replytitle{
-        color: white;
-        font-size: 20px;
-        font-weight: 550;
-        display: block;
-        margin-left: 30px;
-        margin-bottom: 5px;
-        padding-top: 10px;
-    }
-    .replycontent{
-        color: white;
-        font-size: 14px;
-        margin-left: 21px;
-        margin-top: 10px;
-    }
-    .hashtag{
-        width: 100%;
-        list-style: none;
-        display: flex;
-        margin-top: -10px;
+        width: 200px;
+        height: 100px;
         font-size: 12px;
+        margin-left: 13px;
+        margin-top: 5px;
+        line-height: 17px;
     }
-    .hash{
-        padding: 5px;
-        margin-right: 15px;
-        background-color: #AAAAAA;
-        color: white;
-        border-radius: 10px;
+    .contentline{
+        width: 90%;
+        margin: 0 auto;
+        border-top: 2px solid #5ECC80;
     }
-    .enrollDate{
-        width: 750px;
-        color: #6F6F6F;
-        margin-top: 10px;
+    .contentDate{
+        margin-left: 15px;
+        color: #868686;
         font-size: 12px;
+        margin-top: 10px;
     }
-    .end-line{
-        width: 780px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        border-top: 1px solid #B7B7B7;
-    }
+
 </style>
 </head>
 <body>
@@ -167,27 +287,542 @@
 
                     <div id="title-box">
 
-                        <!-- 본문 -->
-                        <div class="realcontent" onclick="navToDetail()" style="cursor: pointer;">
-                            <div class="qnalist">
-                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.</div>
-                                <div class="content">학습하는 분들께 도움이 되고, 더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.꼭 확인해주세요.꼭 확인해주세요.</div>
-    
-                                <!-- 동그라미 답변 -->
-                                <div class="circle">
-                                    <div class="replytitle">0</div>
-                                    <div class="replycontent">답변</div>
+                        <!-- 잔디심기 부분 -->
+                        <div class="bannerbox">
+                            <div class="banner">
+                                <ul class="monthbox">
+                                    <li class="month">1월</li>
+                                    <li class="month">2월</li>
+                                    <li class="month">3월</li>
+                                    <li class="month">4월</li>
+                                    <li class="month">5월</li>
+                                    <li class="month">6월</li>
+                                    <li class="month">7월</li>
+                                    <li class="month">8월</li>
+                                    <li class="month">9월</li>
+                                    <li class="month">10월</li>
+                                    <li class="month">11월</li>
+                                    <li class="month">12월</li>
+                                </ul>
+                                <ul class="daybox">
+                                    <li class="day">SAT</li>
+                                    <li class="day">SUN</li>
+                                    <li class="day">MON</li>
+                                    <li class="day">TUE</li>
+                                    <li class="day">WED</li>
+                                    <li class="day">THU</li>
+                                    <li class="day">FRI</li>
+                                </ul>
+                    
+                                <!-- 잔디 -->
+                                <div class="grassbox">
+                                    <ul class="grassbox1">
+                                        <li class="grass1" title="22년 1월 1일"></li>
+                                        <li class="grass1" title="22년 1월 8일"></li>
+                                        <li class="grass1" title="22년 1월 15일"></li>
+                                        <li class="grass1" title="22년 1월 22일"></li>
+                                        <li class="grass1" title="22년 1월 29일"></li>
+                                        <li class="grass1" title="22년 2월 5일"></li>
+                                        <li class="grass1" title="22년 2월 12일"></li>
+                                        <li class="grass1" title="22년 2월 19일"></li>
+                                        <li class="grass1" title="22년 2월 26일"></li>
+                                        <li class="grass1" title="22년 3월 5일"></li>
+                                        <li class="grass1" title="22년 3월 12일"></li>
+                                        <li class="grass1" title="22년 3월 19일"></li>
+                                        <li class="grass1" title="22년 3월 26일"></li>
+                                        <li class="grass1" title="22년 4월 2일"></li>
+                                        <li class="grass1" title="22년 4월 9일"></li>
+                                        <li class="grass1" title="22년 4월 16일"></li>
+                                        <li class="grass1" title="22년 4월 23일"></li>
+                                        <li class="grass1" title="22년 4월 30일"></li>
+                                        <li class="grass1" title="22년 5월 7일"></li>
+                                        <li class="grass1" title="22년 5월 14일"></li>
+                                        <li class="grass1" title="22년 5월 21일"></li>
+                                        <li class="grass1" title="22년 5월 28일"></li>
+                                        <li class="grass1" title="22년 6월 4일"></li>
+                                        <li class="grass1" title="22년 6월 11일"></li>
+                                        <li class="grass1" title="22년 6월 18일"></li>
+                                        <li class="grass1" title="22년 6월 25일"></li>
+                                        <li class="grass1" title="22년 7월 2일"></li>
+                                        <li class="grass1" title="22년 7월 9일"></li>
+                                        <li class="grass1" title="22년 7월 16일"></li>
+                                        <li class="grass1" title="22년 7월 23일"></li>
+                                        <li class="grass1" title="22년 7월 30일"></li>
+                                        <li class="grass1" title="22년 8월 6일"></li>
+                                        <li class="grass1" title="22년 8월 13일"></li>
+                                        <li class="grass1" title="22년 8월 20일"></li>
+                                        <li class="grass1" title="22년 8월 27일"></li>
+                                        <li class="grass1" title="22년 9월 3일"></li>
+                                        <li class="grass1" title="22년 9월 10일"></li>
+                                        <li class="grass1" title="22년 9월 17일"></li>
+                                        <li class="grass1" title="22년 9월 24일"></li>
+                                        <li class="grass1" title="22년 10월 1일"></li>
+                                        <li class="grass1" title="22년 10월 8일"></li>
+                                        <li class="grass1" title="22년 10월 15일"></li>
+                                        <li class="grass1" title="22년 10월 22일"></li>
+                                        <li class="grass1" title="22년 10월 29일"></li>
+                                        <li class="grass1" title="22년 11월 5일"></li>
+                                        <li class="grass1" title="22년 11월 12일"></li>
+                                        <li class="grass1" title="22년 11월 19일"></li>
+                                        <li class="grass1" title="22년 11월 26일"></li>
+                                        <li class="grass1" title="22년 12월 3일"></li>
+                                        <li class="grass1" title="22년 12월 10일"></li>
+                                        <li class="grass1" title="22년 12월 17일"></li>
+                                        <li class="grass1" title="22년 12월 24일"></li>
+                                        <li class="grass1" title="22년 12월 31일"></li>
+                                    </ul>
+                                    <ul class="grassbox2">
+                                        <li class="grass2" title="22년 1월 2일"></li>
+                                        <li class="grass2" title="22년 1월 9일"></li>
+                                        <li class="grass2" title="22년 1월 16일"></li>
+                                        <li class="grass2" title="22년 1월 23일"></li>
+                                        <li class="grass2" title="22년 1월 30일"></li>
+                                        <li class="grass2" title="22년 2월 6일"></li>
+                                        <li class="grass2" title="22년 2월 13일"></li>
+                                        <li class="grass2" title="22년 2월 20일"></li>
+                                        <li class="grass2" title="22년 2월 27일"></li>
+                                        <li class="grass2" title="22년 3월 6일"></li>
+                                        <li class="grass2" title="22년 3월 13일"></li>
+                                        <li class="grass2" title="22년 3월 20일"></li>
+                                        <li class="grass2" title="22년 3월 27일"></li>
+                                        <li class="grass2" title="22년 4월 3일"></li>
+                                        <li class="grass2" title="22년 4월 10일"></li>
+                                        <li class="grass2" title="22년 4월 17일"></li>
+                                        <li class="grass2" title="22년 4월 24일"></li>
+                                        <li class="grass2" title="22년 5월 1일"></li>
+                                        <li class="grass2" title="22년 5월 8일"></li>
+                                        <li class="grass2" title="22년 5월 15일"></li>
+                                        <li class="grass2" title="22년 5월 22일"></li>
+                                        <li class="grass2" title="22년 5월 29일"></li>
+                                        <li class="grass2" title="22년 6월 5일"></li>
+                                        <li class="grass2" title="22년 6월 12일"></li>
+                                        <li class="grass2" title="22년 6월 19일"></li>
+                                        <li class="grass2" title="22년 6월 26일"></li>
+                                        <li class="grass2" title="22년 7월 3일"></li>
+                                        <li class="grass2" title="22년 7월 10일"></li>
+                                        <li class="grass2" title="22년 7월 17일"></li>
+                                        <li class="grass2" title="22년 7월 24일"></li>
+                                        <li class="grass2" title="22년 7월 31일"></li>
+                                        <li class="grass2" title="22년 8월 7일"></li>
+                                        <li class="grass2" title="22년 8월 14일"></li>
+                                        <li class="grass2" title="22년 8월 21일"></li>
+                                        <li class="grass2" title="22년 8월 28일"></li>
+                                        <li class="grass2" title="22년 9월 4일"></li>
+                                        <li class="grass2" title="22년 9월 11일"></li>
+                                        <li class="grass2" title="22년 9월 18일"></li>
+                                        <li class="grass2" title="22년 9월 25일"></li>
+                                        <li class="grass2" title="22년 10월 2일"></li>
+                                        <li class="grass2" title="22년 10월 9일"></li>
+                                        <li class="grass2" title="22년 10월 16일"></li>
+                                        <li class="grass2" title="22년 10월 23일"></li>
+                                        <li class="grass2" title="22년 10월 30일"></li>
+                                        <li class="grass2" title="22년 11월 6일"></li>
+                                        <li class="grass2" title="22년 11월 13일"></li>
+                                        <li class="grass2" title="22년 11월 20일"></li>
+                                        <li class="grass2" title="22년 11월 27일"></li>
+                                        <li class="grass2" title="22년 12월 4일"></li>
+                                        <li class="grass2" title="22년 12월 11일"></li>
+                                        <li class="grass2" title="22년 12월 18일"></li>
+                                        <li class="grass2" title="22년 12월 25일"></li>
+                                    </ul>
+                                    <ul class="grassbox3">
+                                        <li class="grass3" title="22년 1월 3일"></li>
+                                        <li class="grass3" title="22년 1월 10일"></li>
+                                        <li class="grass3" title="22년 1월 17일"></li>
+                                        <li class="grass3" title="22년 1월 24일"></li>
+                                        <li class="grass3" title="22년 1월 31일"></li>
+                                        <li class="grass3" title="22년 2월 7일"></li>
+                                        <li class="grass3" title="22년 2월 14일"></li>
+                                        <li class="grass3" title="22년 2월 21일"></li>
+                                        <li class="grass3" title="22년 2월 28일"></li>
+                                        <li class="grass3" title="22년 3월 7일"></li>
+                                        <li class="grass3" title="22년 3월 14일"></li>
+                                        <li class="grass3" title="22년 3월 21일"></li>
+                                        <li class="grass3" title="22년 3월 28일"></li>
+                                        <li class="grass3" title="22년 4월 4일"></li>
+                                        <li class="grass3" title="22년 4월 11일"></li>
+                                        <li class="grass3" title="22년 4월 18일"></li>
+                                        <li class="grass3" title="22년 4월 25일"></li>
+                                        <li class="grass3" title="22년 5월 2일"></li>
+                                        <li class="grass3" title="22년 5월 9일"></li>
+                                        <li class="grass3" title="22년 5월 16일"></li>
+                                        <li class="grass3" title="22년 5월 23일"></li>
+                                        <li class="grass3" title="22년 5월 30일"></li>
+                                        <li class="grass3" title="22년 6월 6일"></li>
+                                        <li class="grass3" title="22년 6월 13일"></li>
+                                        <li class="grass3" title="22년 6월 20일"></li>
+                                        <li class="grass3" title="22년 6월 27일"></li>
+                                        <li class="grass3" title="22년 7월 4일"></li>
+                                        <li class="grass3" title="22년 7월 11일"></li>
+                                        <li class="grass3" title="22년 7월 18일"></li>
+                                        <li class="grass3" title="22년 7월 25일"></li>
+                                        <li class="grass3" title="22년 8월 1일"></li>
+                                        <li class="grass3" title="22년 8월 8일"></li>
+                                        <li class="grass3" title="22년 8월 15일"></li>
+                                        <li class="grass3" title="22년 8월 22일"></li>
+                                        <li class="grass3" title="22년 8월 29일"></li>
+                                        <li class="grass3" title="22년 9월 5일"></li>
+                                        <li class="grass3" title="22년 9월 12일"></li>
+                                        <li class="grass3" title="22년 9월 19일"></li>
+                                        <li class="grass3" title="22년 9월 26일"></li>
+                                        <li class="grass3" title="22년 10월 3일"></li>
+                                        <li class="grass3" title="22년 10월 10일"></li>
+                                        <li class="grass3" title="22년 10월 17일"></li>
+                                        <li class="grass3" title="22년 10월 24일"></li>
+                                        <li class="grass3" title="22년 10월 31일"></li>
+                                        <li class="grass3" title="22년 11월 7일"></li>
+                                        <li class="grass3" title="22년 11월 14일"></li>
+                                        <li class="grass3" title="22년 11월 21일"></li>
+                                        <li class="grass3" title="22년 11월 28일"></li>
+                                        <li class="grass3" title="22년 12월 5일"></li>
+                                        <li class="grass3" title="22년 12월 12일"></li>
+                                        <li class="grass3" title="22년 12월 19일"></li>
+                                        <li class="grass3" title="22년 12월 26일"></li>
+                                    </ul>
+                                    <ul class="grassbox4">
+                                        <li class="grass4" title="22년 1월 4일"></li>
+                                        <li class="grass4" title="22년 1월 11일"></li>
+                                        <li class="grass4" title="22년 1월 18일"></li>
+                                        <li class="grass4" title="22년 1월 25일"></li>
+                                        <li class="grass4" title="22년 2월 1일"></li>
+                                        <li class="grass4" title="22년 2월 8일"></li>
+                                        <li class="grass4" title="22년 2월 15일"></li>
+                                        <li class="grass4" title="22년 2월 22일"></li>
+                                        <li class="grass4" title="22년 3월 1일"></li>
+                                        <li class="grass4" title="22년 3월 8일"></li>
+                                        <li class="grass4" title="22년 3월 15일"></li>
+                                        <li class="grass4" title="22년 3월 22일"></li>
+                                        <li class="grass4" title="22년 3월 29일"></li>
+                                        <li class="grass4" title="22년 4월 5일"></li>
+                                        <li class="grass4" title="22년 4월 12일"></li>
+                                        <li class="grass4" title="22년 4월 19일"></li>
+                                        <li class="grass4" title="22년 4월 26일"></li>
+                                        <li class="grass4" title="22년 5월 3일"></li>
+                                        <li class="grass4" title="22년 5월 10일"></li>
+                                        <li class="grass4" title="22년 5월 17일"></li>
+                                        <li class="grass4" title="22년 5월 24일"></li>
+                                        <li class="grass4" title="22년 5월 31일"></li>
+                                        <li class="grass4" title="22년 6월 7일"></li>
+                                        <li class="grass4" title="22년 6월 14일"></li>
+                                        <li class="grass4" title="22년 6월 21일"></li>
+                                        <li class="grass4" title="22년 6월 28일"></li>
+                                        <li class="grass4" title="22년 7월 5일"></li>
+                                        <li class="grass4" title="22년 7월 12일"></li>
+                                        <li class="grass4" title="22년 7월 19일"></li>
+                                        <li class="grass4" title="22년 7월 26일"></li>
+                                        <li class="grass4" title="22년 8월 2일"></li>
+                                        <li class="grass4" title="22년 8월 9일"></li>
+                                        <li class="grass4" title="22년 8월 16일"></li>
+                                        <li class="grass4" title="22년 8월 23일"></li>
+                                        <li class="grass4" title="22년 8월 30일"></li>
+                                        <li class="grass4" title="22년 9월 6일"></li>
+                                        <li class="grass4" title="22년 9월 13일"></li>
+                                        <li class="grass4" title="22년 9월 20일"></li>
+                                        <li class="grass4" title="22년 9월 27일"></li>
+                                        <li class="grass4" title="22년 10월 4일"></li>
+                                        <li class="grass4" title="22년 10월 11일"></li>
+                                        <li class="grass4" title="22년 10월 18일"></li>
+                                        <li class="grass4" title="22년 10월 25일"></li>
+                                        <li class="grass4" title="22년 11월 1일"></li>
+                                        <li class="grass4" title="22년 11월 8일"></li>
+                                        <li class="grass4" title="22년 11월 15일"></li>
+                                        <li class="grass4" title="22년 11월 22일"></li>
+                                        <li class="grass4" title="22년 11월 29일"></li>
+                                        <li class="grass4" title="22년 12월 6일"></li>
+                                        <li class="grass4" title="22년 12월 13일"></li>
+                                        <li class="grass4" title="22년 12월 20일"></li>
+                                        <li class="grass4" title="22년 12월 27일"></li>
+                                    </ul>
+                                    <ul class="grassbox5">
+                                        <li class="grass5" title="22년 1월 5일"></li>
+                                        <li class="grass5" title="22년 1월 12일"></li>
+                                        <li class="grass5" title="22년 1월 19일"></li>
+                                        <li class="grass5" title="22년 1월 26일"></li>
+                                        <li class="grass5" title="22년 2월 2일"></li>
+                                        <li class="grass5" title="22년 2월 9일"></li>
+                                        <li class="grass5" title="22년 2월 16일"></li>
+                                        <li class="grass5" title="22년 2월 23일"></li>
+                                        <li class="grass5" title="22년 3월 2일"></li>
+                                        <li class="grass5" title="22년 3월 9일"></li>
+                                        <li class="grass5" title="22년 3월 16일"></li>
+                                        <li class="grass5" title="22년 3월 23일"></li>
+                                        <li class="grass5" title="22년 3월 30일"></li>
+                                        <li class="grass5" title="22년 4월 6일"></li>
+                                        <li class="grass5" title="22년 4월 13일"></li>
+                                        <li class="grass5" title="22년 4월 20일"></li>
+                                        <li class="grass5" title="22년 4월 27일"></li>
+                                        <li class="grass5" title="22년 5월 4일"></li>
+                                        <li class="grass5" title="22년 5월 11일"></li>
+                                        <li class="grass5" title="22년 5월 18일"></li>
+                                        <li class="grass5" title="22년 5월 25일"></li>
+                                        <li class="grass5" title="22년 6월 1일"></li>
+                                        <li class="grass5" title="22년 6월 8일"></li>
+                                        <li class="grass5" title="22년 6월 15일"></li>
+                                        <li class="grass5" title="22년 6월 22일"></li>
+                                        <li class="grass5" title="22년 6월 29일"></li>
+                                        <li class="grass5" title="22년 7월 6일"></li>
+                                        <li class="grass5" title="22년 7월 13일"></li>
+                                        <li class="grass5" title="22년 7월 20일"></li>
+                                        <li class="grass5" title="22년 7월 27일"></li>
+                                        <li class="grass5" title="22년 8월 3일"></li>
+                                        <li class="grass5" title="22년 8월 10일"></li>
+                                        <li class="grass5" title="22년 8월 17일"></li>
+                                        <li class="grass5" title="22년 8월 24일"></li>
+                                        <li class="grass5" title="22년 8월 31일"></li>
+                                        <li class="grass5" title="22년 9월 7일"></li>
+                                        <li class="grass5" title="22년 9월 14일"></li>
+                                        <li class="grass5" title="22년 9월 21일"></li>
+                                        <li class="grass5" title="22년 9월 28일"></li>
+                                        <li class="grass5" title="22년 10월 5일"></li>
+                                        <li class="grass5" title="22년 10월 12일"></li>
+                                        <li class="grass5" title="22년 10월 19일"></li>
+                                        <li class="grass5" title="22년 10월 26일"></li>
+                                        <li class="grass5" title="22년 11월 2일"></li>
+                                        <li class="grass5" title="22년 11월 9일"></li>
+                                        <li class="grass5" title="22년 11월 16일"></li>
+                                        <li class="grass5" title="22년 11월 23일"></li>
+                                        <li class="grass5" title="22년 11월 30일"></li>
+                                        <li class="grass5" title="22년 12월 7일"></li>
+                                        <li class="grass5" title="22년 12월 14일"></li>
+                                        <li class="grass5" title="22년 12월 21일"></li>
+                                        <li class="grass5" title="22년 12월 28일"></li>
+                                    </ul>
+                                    <ul class="grassbox6">
+                                        <li class="grass6" title="22년 1월 6일"></li>
+                                        <li class="grass6" title="22년 1월 13일"></li>
+                                        <li class="grass6" title="22년 1월 20일"></li>
+                                        <li class="grass6" title="22년 1월 27일"></li>
+                                        <li class="grass6" title="22년 2월 3일"></li>
+                                        <li class="grass6" title="22년 2월 10일"></li>
+                                        <li class="grass6" title="22년 2월 17일"></li>
+                                        <li class="grass6" title="22년 2월 24일"></li>
+                                        <li class="grass6" title="22년 3월 3일"></li>
+                                        <li class="grass6" title="22년 3월 10일"></li>
+                                        <li class="grass6" title="22년 3월 17일"></li>
+                                        <li class="grass6" title="22년 3월 24일"></li>
+                                        <li class="grass6" title="22년 3월 31일"></li>
+                                        <li class="grass6" title="22년 4월 7일"></li>
+                                        <li class="grass6" title="22년 4월 14일"></li>
+                                        <li class="grass6" title="22년 4월 21일"></li>
+                                        <li class="grass6" title="22년 4월 29일"></li>
+                                        <li class="grass6" title="22년 5월 5일"></li>
+                                        <li class="grass6" title="22년 5월 12일"></li>
+                                        <li class="grass6" title="22년 5월 19일"></li>
+                                        <li class="grass6" title="22년 5월 26일"></li>
+                                        <li class="grass6" title="22년 6월 2일"></li>
+                                        <li class="grass6" title="22년 6월 9일"></li>
+                                        <li class="grass6" title="22년 6월 16일"></li>
+                                        <li class="grass6" title="22년 6월 23일"></li>
+                                        <li class="grass6" title="22년 6월 30일"></li>
+                                        <li class="grass6" title="22년 7월 7일"></li>
+                                        <li class="grass6" title="22년 7월 14일"></li>
+                                        <li class="grass6" title="22년 7월 21일"></li>
+                                        <li class="grass6" title="22년 7월 28일"></li>
+                                        <li class="grass6" title="22년 8월 4일"></li>
+                                        <li class="grass6" title="22년 8월 11일"></li>
+                                        <li class="grass6" title="22년 8월 18일"></li>
+                                        <li class="grass6" title="22년 8월 25일"></li>
+                                        <li class="grass6" title="22년 9월 1일"></li>
+                                        <li class="grass6" title="22년 9월 8일"></li>
+                                        <li class="grass6" title="22년 9월 15일"></li>
+                                        <li class="grass6" title="22년 9월 22일"></li>
+                                        <li class="grass6" title="22년 9월 29일"></li>
+                                        <li class="grass6" title="22년 10월 6일"></li>
+                                        <li class="grass6" title="22년 10월 13일"></li>
+                                        <li class="grass6" title="22년 10월 20일"></li>
+                                        <li class="grass6" title="22년 10월 27일"></li>
+                                        <li class="grass6" title="22년 11월 3일"></li>
+                                        <li class="grass6" title="22년 11월 10일"></li>
+                                        <li class="grass6" title="22년 11월 17일"></li>
+                                        <li class="grass6" title="22년 11월 24일"></li>
+                                        <li class="grass6" title="22년 12월 1일"></li>
+                                        <li class="grass6" title="22년 12월 8일"></li>
+                                        <li class="grass6" title="22년 12월 15일"></li>
+                                        <li class="grass6" title="22년 12월 22일"></li>
+                                        <li class="grass6" title="22년 12월 29일"></li>
+                                    </ul>
+                                    <ul class="grassbox7">
+                                        <li class="grass7" title="22년 1월 7일"></li>
+                                        <li class="grass7" title="22년 1월 14일"></li>
+                                        <li class="grass7" title="22년 1월 21일"></li>
+                                        <li class="grass7" title="22년 1월 28일"></li>
+                                        <li class="grass7" title="22년 2월 4일"></li>
+                                        <li class="grass7" title="22년 2월 11일"></li>
+                                        <li class="grass7" title="22년 2월 18일"></li>
+                                        <li class="grass7" title="22년 2월 25일"></li>
+                                        <li class="grass7" title="22년 3월 4일"></li>
+                                        <li class="grass7" title="22년 3월 11일"></li>
+                                        <li class="grass7" title="22년 3월 18일"></li>
+                                        <li class="grass7" title="22년 3월 25일"></li>
+                                        <li class="grass7" title="22년 4월 1일"></li>
+                                        <li class="grass7" title="22년 4월 8일"></li>
+                                        <li class="grass7" title="22년 4월 15일"></li>
+                                        <li class="grass7" title="22년 4월 22일"></li>
+                                        <li class="grass7" title="22년 4월 29일"></li>
+                                        <li class="grass7" title="22년 5월 6일"></li>
+                                        <li class="grass7" title="22년 5월 13일"></li>
+                                        <li class="grass7" title="22년 5월 20일"></li>
+                                        <li class="grass7" title="22년 5월 27일"></li>
+                                        <li class="grass7" title="22년 6월 3일"></li>
+                                        <li class="grass7" title="22년 6월 10일"></li>
+                                        <li class="grass7" title="22년 6월 17일"></li>
+                                        <li class="grass7" title="22년 6월 24일"></li>
+                                        <li class="grass7" title="22년 7월 1일"></li>
+                                        <li class="grass7" title="22년 7월 8일"></li>
+                                        <li class="grass7" title="22년 7월 15일"></li>
+                                        <li class="grass7" title="22년 7월 22일"></li>
+                                        <li class="grass7" title="22년 7월 29일"></li>
+                                        <li class="grass7" title="22년 8월 5일"></li>
+                                        <li class="grass7" title="22년 8월 12일"></li>
+                                        <li class="grass7" title="22년 8월 19일"></li>
+                                        <li class="grass7" title="22년 8월 26일"></li>
+                                        <li class="grass7" title="22년 9월 2일"></li>
+                                        <li class="grass7" title="22년 9월 9일"></li>
+                                        <li class="grass7" title="22년 9월 16일"></li>
+                                        <li class="grass7" title="22년 9월 23일"></li>
+                                        <li class="grass7" title="22년 9월 30일"></li>
+                                        <li class="grass7" title="22년 10월 7일"></li>
+                                        <li class="grass7" title="22년 10월 14일"></li>
+                                        <li class="grass7" title="22년 10월 21일"></li>
+                                        <li class="grass7" title="22년 10월 28일"></li>
+                                        <li class="grass7" title="22년 11월 4일"></li>
+                                        <li class="grass7" title="22년 11월 11일"></li>
+                                        <li class="grass7" title="22년 11월 18일"></li>
+                                        <li class="grass7" title="22년 11월 25일"></li>
+                                        <li class="grass7" title="22년 12월 2일"></li>
+                                        <li class="grass7" title="22년 12월 9일"></li>
+                                        <li class="grass7" title="22년 12월 16일"></li>
+                                        <li class="grass7" title="22년 12월 23일"></li>
+                                        <li class="grass7" title="22년 12월 30일"></li>
+                                    </ul>
                                 </div>
-    
-                                <!-- 해시태그 -->
-                                <div class="hashtag">
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>자바</li>
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>JAVA</li>
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>CSS</li>
-                                </div>
-                                <div class="enrollDate">2202.12.12.</div>
-                                <div class="end-line"></div>
                             </div>
+                        </div>
+
+                        <!-- 잔디심기 상태 부분 -->
+                        <div id="makegrass-status-box">
+                            <div id="status">Less</div>
+                            <div id="box1"></div>
+                            <div id="box2"></div>
+                            <div id="box3"></div>
+                            <div id="status">More</div>
+                        </div>
+
+                        <div class="mainbox">
+                            <!-- 리스트1 -->
+                            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
+                                <div class="thumbnail"></div>
+                                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
+                                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
+                                <div class="content">
+                                    백앤드로 JAVA Script와 화면
+                                    구현을 위한 CSS, 추가로 AJAX에
+                                    대한 부분도 함께 공부함.
+                                    백앤드로 JAVA Script와 화면.
+                                </div>
+                                <div class="contentline"></div>
+                                <div class="info">
+                                    <ul>
+                                        <li class="contentDate">2202-12-09</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 리스트2 -->
+                            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
+                                <div class="thumbnail"></div>
+                                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
+                                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
+                                <div class="content">
+                                    백앤드로 JAVA Script와 화면
+                                    구현을 위한 CSS, 추가로 AJAX에
+                                    대한 부분도 함께 공부함.
+                                    백앤드로 JAVA Script와 화면.
+                                </div>
+                                <div class="contentline"></div>
+                                <div class="info">
+                                    <ul>
+                                        <li class="contentDate">2202-12-09</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 리스트3 -->
+                            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
+                                <div class="thumbnail"></div>
+                                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
+                                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
+                                <div class="content">
+                                    백앤드로 JAVA Script와 화면
+                                    구현을 위한 CSS, 추가로 AJAX에
+                                    대한 부분도 함께 공부함.
+                                    백앤드로 JAVA Script와 화면.
+                                </div>
+                                <div class="contentline"></div>
+                                <div class="info">
+                                    <ul>
+                                        <li class="contentDate">2202-12-09</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 리스트4 -->
+                            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
+                                <div class="thumbnail"></div>
+                                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
+                                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
+                                <div class="content">
+                                    백앤드로 JAVA Script와 화면
+                                    구현을 위한 CSS, 추가로 AJAX에
+                                    대한 부분도 함께 공부함.
+                                    백앤드로 JAVA Script와 화면.
+                                </div>
+                                <div class="contentline"></div>
+                                <div class="info">
+                                    <ul>
+                                        <li class="contentDate">2202-12-09</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 리스트5 -->
+                            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
+                                <div class="thumbnail"></div>
+                                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
+                                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
+                                <div class="content">
+                                    백앤드로 JAVA Script와 화면
+                                    구현을 위한 CSS, 추가로 AJAX에
+                                    대한 부분도 함께 공부함.
+                                    백앤드로 JAVA Script와 화면.
+                                </div>
+                                <div class="contentline"></div>
+                                <div class="info">
+                                    <ul>
+                                        <li class="contentDate">2202-12-09</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 리스트6 -->
+                            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
+                                <div class="thumbnail"></div>
+                                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
+                                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
+                                <div class="content">
+                                    백앤드로 JAVA Script와 화면
+                                    구현을 위한 CSS, 추가로 AJAX에
+                                    대한 부분도 함께 공부함.
+                                    백앤드로 JAVA Script와 화면.
+                                </div>
+                                <div class="contentline"></div>
+                                <div class="info">
+                                    <ul>
+                                        <li class="contentDate">2202-12-09</li>
+                                    </ul>
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
@@ -202,14 +837,10 @@
         const category = document.querySelector("#my-cate div:nth-child(2) a");
         category.classList.add("main-color");
 
-        $('#list-category-box .licate').on("click", function(){
-            $("#list-category-box .licate.active").removeClass('active');
-            $(this).addClass("active");
-        });
-
         function navToDetail(){
             window.location.href="/app/makegrass/detail";
         }
+
     </script>
 
     <script src="https://kit.fontawesome.com/4b219bc5a3.js" crossorigin="anonymous"></script>
