@@ -1,7 +1,10 @@
 package com.learntime.app.community.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,16 +19,29 @@ public class BoardController {
 	@Autowired
 	private BoardService bs;
 
+	
+// 	글 목록 TODO
 	@GetMapping("/board/list")
-	public String boardList() {
+	public String boardList(Model model) {
+		
+		List<BoardVo> boardList = bs.select();
+		
+		if(boardList == null) {
+			return "";
+		}
+		
+		System.out.println(boardList);
+		
+		model.addAttribute("boardList", boardList);
+		
 		return "/community/boardList";
 	}
 	
+//	글 상세조회	
 	@GetMapping("/board/detail")
 	public String boardDetail() {
 		return "/community/boardDetail";
 	}
-	
 	
 	
 //	글쓰기 TODO
@@ -37,21 +53,20 @@ public class BoardController {
 	@PostMapping("board/write")
 	public String boardWrtie(BoardVo vo) {
 		
+		System.out.println("컨트롤러vo : " + vo );
+		
 		int result = bs.write(vo);
 		System.out.println(result);
 		
-		return "board/list";
+		return "redirect:/community/board/list";
 	}
 	
+// 글수정 TODO
 	@GetMapping("board/modify")
 	public String boardModify() {
 		return "/community/boardModify";
 	}
 	
-	@GetMapping("board/summer")
-	public String summer() {
-		return "/community/summernote";
-	}
 	
 	//마이페이지 임시
 	@GetMapping("mypage")
