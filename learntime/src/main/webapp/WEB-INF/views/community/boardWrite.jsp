@@ -18,11 +18,11 @@
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	
 	<div id="board-banner">
-		<img src="/app/resources/img/freeBoardBanner.png" alt="자유게시판 배너">
+		<img src="${pageContext.request.contextPath}/resources/img/freeBoardBanner.png" alt="자유게시판 배너">
 	</div>
    
     <div id="main-wrap">
-        <form action="" method="post">
+        <form action="${pageContext.request.contextPath}/community/board/write" method="post">
 
         <div id="main-title">
             <span id="nickname">NickName</span>
@@ -32,19 +32,19 @@
         </div>
         <div id="cate-txt">카테고리</div>
         <div id="cate-select-box">
-            <select name="" id="" required>
+            <select name="cateNo" id="" required>
                 <option value="" disabled selected>카테고리를 선택해주세요</option>
-                <option value="cate1">카테고리1</option>
-                <option value="cate2">카테고리2</option>
-                <option value="cate3">카테고리3</option>
+                <option value="1">카테고리1</option>
+                <option value="2">카테고리2</option>
+                <option value="3">카테고리3</option>
             </select>
         </div>
         <div id="title-txt">제목</div>
         <div id="title-input-box">
-            <input type="text" placeholder="제목을 입력해주세요">
+            <input type="text" name=title placeholder="제목을 입력해주세요">
         </div>
         <div id="content-txt">내용</div>
-        <textarea class="summernote" name="editordata"></textarea>
+        <textarea class="summernote" name="content"></textarea>
     
 
         <div id="btn-box">
