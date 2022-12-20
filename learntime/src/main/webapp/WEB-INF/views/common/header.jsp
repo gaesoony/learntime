@@ -1,6 +1,10 @@
+<%@page import="com.learntime.app.member.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%
+	MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/variables.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">

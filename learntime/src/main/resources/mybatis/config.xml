@@ -9,9 +9,9 @@
 	  	<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	
-	<!-- <typeAliases>
-	<typeAlias type="com.kh.app.member.vo.MemberVo" alias="MemberVo"/>
-	</typeAliases>
-	 -->
+<!-- 	<typeAliases>
+	<typeAlias type="com.learntime.app.member.vo.MemberVo" alias="MemberVo"/>
+	</typeAliases> -->
+	
 	
 </configuration>
