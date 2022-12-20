@@ -89,7 +89,10 @@ function makeTag(e) {
   const value = e.target.value;
   const str =
     '<div class="relative cursor tag-div" onclick="deleteTag(event)">' +
-    '<input onclick="deleteTag2(event)" type="button" value="' +
+    '<input onclick="deleteTag2(event)" type="text" name="tag" style="width:' +
+    (value.length + 2) * 12 +
+    "px" +
+    ';" value="' +
     value +
     '" class="tag-btn cursor" /> ' +
     '<i class="fa-solid fa-xmark" onclick="deleteTag2(event)"></i>' +
@@ -168,12 +171,14 @@ function searchKeyWordLocation() {
 
     // 마커에 클릭이벤트를 등록합니다
     kakao.maps.event.addListener(marker, "click", function () {
+      const placeName = document.querySelector("#place-name");
       // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
       infowindow.setContent(
         '<div style="padding:5px;font-size:12px;">' +
           place.place_name +
           "</div>"
       );
+      placeName.value = place.place_name;
       infowindow.open(map, marker);
 
       searchDetailAddrFromCoords(place, function (result, status) {

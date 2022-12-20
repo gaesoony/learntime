@@ -472,6 +472,9 @@ html .ui-button.ui-state-disabled:active {
 }
 
 .tag-btn {
+  /* width: 55px; */
+  height: 26px;
+  outline: none;
   border: none;
   background-color: #e7eef9;
   border-radius: 3px;

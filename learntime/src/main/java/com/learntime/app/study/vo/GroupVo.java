@@ -29,6 +29,8 @@ public class GroupVo {
 
 	private String[] question;
 	
+	private String[] tag;
+	
 	public void strTechStachNoList() {
 		this.techStackNoList = String.join(",", techStackNo); 
 	}

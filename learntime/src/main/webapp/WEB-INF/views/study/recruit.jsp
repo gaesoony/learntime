@@ -29,6 +29,7 @@ pageEncoding="UTF-8"%>
       <form
         action="${pageContext.request.contextPath}/study/recruit"
         method="post"
+        onsubmit="return checkValidate();"
       >
         <main class="study-recruit-main">
           <section class="study-info">
@@ -86,7 +87,6 @@ pageEncoding="UTF-8"%>
                           type="number"
                           min="2"
                           max="30"
-                          required
                           placeholder="인원수를 입력해주세요"
                         />
                       </div>
@@ -501,10 +501,12 @@ pageEncoding="UTF-8"%>
 
                 <input
                   type="text"
+                  name="address"
                   class="detailAddress"
                   placeholder="장소 검색 후 마커를 클릭하면 주소가 표시됩니다"
-                  readonly
+                  disabled
                 />
+                <input type="hidden" id="place-name" name="place" disabled />
               </div>
 
               <div id="map" style="width: 100%; height: 500px"></div>
@@ -524,6 +526,20 @@ pageEncoding="UTF-8"%>
     </div>
 
     <script>
+      const numberPeople = document.querySelector("input[name=numberPeople]");
+      const startDate = document.querySelector("input[name=startDate]");
+      const title = document.querySelector("input[name=title]");
+      const studyLocation = document.querySelector(".study-location");
+
+      numberPeople.addEventListener("blur", function (event) {
+        if (event.target.value < 2 && event.target.value !== "") {
+          event.target.value = 2;
+        }
+
+        if (event.target.value > 30) {
+          event.target.value = 30;
+        }
+      });
       const selectedType = document.querySelector(".selected-type");
       const selectedWay = document.querySelector(".selected-way");
       const selectedPeriod = document.querySelector(".selected-period");
@@ -544,6 +560,135 @@ pageEncoding="UTF-8"%>
       const optionsContainerTech = document.querySelector(
         ".options-container-tech"
       );
+
+      function checkValidate() {
+        let flagType = false;
+        let flagWay = false;
+        let flagTech = false;
+        let flagPeriod = false;
+        let flagPeople = false;
+        let flagStartDate = false;
+        let flagTitle = false;
+        let flagQuestion = true;
+        let flagPlace = true;
+
+        const studyWay = document.querySelector(".selected-way");
+        if (studyWay.innerHTML == "오프라인") {
+          const place = document.querySelector("input[name=place]");
+          if (place.value == "") {
+            flagPlace = false;
+          }
+        }
+
+        optionsContainerType
+          .querySelectorAll("input[type=radio]")
+          .forEach(function (item) {
+            if (item.checked) {
+              flagType = true;
+            }
+          });
+
+        optionsContainerWay
+          .querySelectorAll("input[type=radio]")
+          .forEach(function (item) {
+            if (item.checked) {
+              flagWay = true;
+            }
+          });
+
+        optionsContainerPeriod
+          .querySelectorAll("input[type=radio]")
+          .forEach(function (item) {
+            if (item.checked) {
+              flagPeriod = true;
+            }
+          });
+
+        optionsContainerTech
+          .querySelectorAll("input[type=checkbox]")
+          .forEach(function (item) {
+            if (item.checked) {
+              flagTech = true;
+            }
+          });
+
+        const question = document.querySelectorAll("input[name=question]");
+        question.forEach(function (item) {
+          if (item.value === "") {
+            flagQuestion = false;
+          }
+        });
+
+        if (numberPeople.value !== "") {
+          flagPeople = true;
+        }
+
+        if (startDate.value !== "") {
+          flagStartDate = true;
+        }
+
+        if (title.value !== "") {
+          flagTitle = true;
+        }
+
+        if (flagType == false) {
+          alert("모집구분을 선택해주세요");
+          return false;
+        }
+
+        if (flagPeople == false) {
+          alert("모집인원을 작성해주세요");
+          return false;
+        }
+
+        if (flagWay == false) {
+          alert("진행방식을 선택해주세요");
+          return false;
+        }
+
+        if (flagPeriod == false) {
+          alert("진행기간을 선택해주세요");
+          return false;
+        }
+
+        if (flagTech == false) {
+          alert("기술스택을 선택해주세요");
+          return false;
+        }
+
+        if (flagStartDate == false) {
+          alert("시작예정일을 선택해주세요");
+          return false;
+        }
+
+        if (flagTitle == false) {
+          alert("제목을 입력해주세요");
+          return false;
+        }
+
+        if (flagQuestion == false) {
+          alert("가입질문을 입력해주세요");
+          return false;
+        }
+
+        if (flagPlace == false) {
+          alert("장소를 입력해주세요");
+          return false;
+        }
+
+        let flag =
+          flagType &&
+          flagWay &&
+          flagTech &&
+          flagPeriod &&
+          flagPeople &&
+          flagStartDate &&
+          flagTitle &&
+          flagQuestion &&
+          flagPlace;
+
+        return flag;
+      }
 
       const optionsListType = document.querySelectorAll(".option-type");
       const optionsListWay = document.querySelectorAll(".option-way");
@@ -591,7 +736,6 @@ pageEncoding="UTF-8"%>
 
       optionsListTech.forEach((o) => {
         o.addEventListener("click", (event) => {
-          console.log(event.target);
           if (selectedTech.innerHTML.trim() == "프로젝트 사용 스택") {
             selectedTech.innerHTML = "";
           }
@@ -629,24 +773,30 @@ pageEncoding="UTF-8"%>
         e.stopPropagation();
         e.target.remove();
         const value = e.target.querySelector("input").value;
+
         const option = document.querySelector("#option-" + value);
         option.parentNode.classList.toggle("hidden");
         const selectedTech = document.querySelector(".tech-btn-list");
         if (selectedTech.innerHTML.trim() == "") {
           selectedTech.innerHTML = "프로젝트 사용 스택";
         }
+        const input = optionsContainerTech.querySelector("#" + value);
+        input.checked = false;
       }
 
       function deleteTech2(e) {
         e.stopPropagation();
         e.target.parentNode.remove();
         const value = e.target.parentNode.querySelector("input").value;
+
         const option = document.querySelector("#option-" + value);
         option.parentNode.classList.toggle("hidden");
         const selectedTech = document.querySelector(".tech-btn-list");
         if (selectedTech.innerHTML.trim() == "") {
           selectedTech.innerHTML = "프로젝트 사용 스택";
         }
+        const input = optionsContainerTech.querySelector("#" + value);
+        input.checked = false;
       }
 
       function hiddenTag(e) {
@@ -732,30 +882,47 @@ pageEncoding="UTF-8"%>
       }
 
       function locationOnOff(e) {
+        console.log(e.target);
         let studyWay = document.querySelector(".selected-way");
         let studyWayStr = e.target.querySelector("label").innerHTML;
 
         let studyLocation = document.querySelector(".study-location");
+        const place = document.querySelector("input[name=place]");
+        const address = document.querySelector("input[name=address]");
         if (studyWayStr == "온라인" || studyWayStr == "온라인/오프라인") {
           studyLocation.classList.add("hidden");
+          place.setAttribute("disabled", "true");
+          address.setAttribute("disabled", "true");
         }
 
         if (studyWayStr == "오프라인") {
           studyLocation.classList.remove("hidden");
+          place.setAttribute("disabled", "false");
+          address.setAttribute("disabled", "false");
+          address.setAttribute("readonly", "true");
         }
       }
 
       function locationOnOff2(e) {
+        console.log(e.target);
+
         let studyWay = document.querySelector(".selected-way");
         let studyWayStr = e.target.parentNode.querySelector("label").innerHTML;
 
         let studyLocation = document.querySelector(".study-location");
+        const place = document.querySelector("input[name=place]");
+        const address = document.querySelector("input[name=address]");
         if (studyWayStr == "온라인" || studyWayStr == "온라인/오프라인") {
           studyLocation.classList.add("hidden");
+          place.setAttribute("disabled", "true");
+          address.setAttribute("disabled", "true");
         }
 
         if (studyWayStr == "오프라인") {
           studyLocation.classList.remove("hidden");
+          place.setAttribute("disabled", "false");
+          address.setAttribute("disabled", "false");
+          address.setAttribute("readonly", "true");
         }
       }
     </script>
