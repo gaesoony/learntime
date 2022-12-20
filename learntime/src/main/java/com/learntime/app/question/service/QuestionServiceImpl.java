@@ -1,5 +1,8 @@
 package com.learntime.app.question.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +25,13 @@ public class QuestionServiceImpl implements QuestionService{
 	public int questionWrite(QuestionVo vo) {
 		
 		return dao.questionWrite(sst, vo);
+	}
+
+
+
+	public List<QuestionVo> selectQuestionList(Map<String, String> map) {
+		
+		return dao.selectQuestionList(sst,map);
 	}
 
 }

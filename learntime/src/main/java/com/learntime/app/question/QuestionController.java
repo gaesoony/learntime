@@ -1,6 +1,7 @@
 package com.learntime.app.question;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +32,9 @@ public class QuestionController {
 		String keyword = req.getParameter("search-input");
 		Map<String,String> map = new HashMap<>();
 		map.put("category",category);
+		map.put("keyword",keyword);
+		
+		List<QuestionVo> list=qs.selectQuestionList(map);
 		
 		
 	}
