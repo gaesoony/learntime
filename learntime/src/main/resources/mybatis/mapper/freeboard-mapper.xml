@@ -20,8 +20,17 @@
 
 	</insert>
 	
-	<select id="selectList" resultType = "com.learntime.app.community.vo.BoardVo">
-		SELECT * FROM FREE_BOARD
+	<select id="selectList" resultType = "BoardVo">
+		SELECT * FROM FREE_BOARD FB
+		JOIN (  SELECT  BOARD_NO,
+		                SUM(CASE WHEN STATUS = 'L' THEN 1 ELSE 0 END) AS LIKES,
+		                SUM(CASE WHEN STATUS = 'H' THEN 1 ELSE 0 END) AS HATES
+		        FROM FREE_BOARD_LIKE_HATE
+		        WHERE BOARD_NO = 1
+		        GROUP BY BOARD_NO) FLH
+		ON FB.NO = FLH.BOARD_NO
+		JOIN (SELECT  NO, ID, NICK WRITER_NICK, IMG_PATH WRITER_IMG FROM MEMBER) M
+		ON FB.WRITER = M.NO
 	
 	</select>
 
