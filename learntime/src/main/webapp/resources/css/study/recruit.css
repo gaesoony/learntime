@@ -182,6 +182,10 @@
   order: 0;
 }
 
+.options-container > label {
+  width: 100%;
+}
+
 .selected:not(.selected-people):after {
   content: "";
   background: url("../../img/study/arrow_down.png");
@@ -257,6 +261,14 @@
 .selected {
   padding: 12px 17px 12px 17px;
   cursor: pointer;
+}
+
+.option-tech {
+  padding: 0 !important;
+}
+
+.option-tech label {
+  padding: 12px 17px 12px 17px;
 }
 
 .select-box .option:hover {

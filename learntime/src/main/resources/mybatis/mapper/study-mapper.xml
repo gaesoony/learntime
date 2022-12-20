@@ -4,42 +4,44 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="studyMapper">
 	<insert id="insertGroup">
-		INSERT INTO GROUP
+		INSERT INTO RECRUIT_GROUP
 		(
 			NO
-			,WRITER
-			,G_TYPE_NO
-			,G_WAY_NO
-			,G_PERIOD_NO
-			,NUMBER_PEOPLE
-			,TECH_STACK_NO
-			,START_DATE
-			,START_TIME
-			,END_TIME
-			,INTRO
-			,PLACE
-			,ADDRESS
-			,HIT
-			,CLOSING_YN
-			,DELETE_YN
-			,MODIFY_DATE
-			,ENROLL_DATE
+			, WRITER
+			, G_TYPE_NO
+			, G_WAY_NO
+			, G_PERIOD_NO
+			, NUMBER_PEOPLE
+			, TECH_STACK_NO
+			, START_DATE
+			, START_TIME
+			, END_TIME
+			, TITLE
+			, INTRO
+			, PLACE
+			, ADDRESS
+			, HIT
+			, CLOSING_YN
+			, DELETE_YN
+			, MODIFY_DATE
+			, ENROLL_DATE
 		)
 		VALUES
 		(
-			SEQ_GROUP_NO.NEXTVAL
-			,#{writer}
-			,#{gTypeNo}
-			,#{gWayNo}
-			,#{gPeriodNo}
-			,#{numberPeople}
-			,#{techStackNo}
-			,#{startDate}
-			,#{startTime}
-			,#{endTime}
-			,#{intro}
-			,#{place}
-			,#{address}
+			SEQ_RECRUIT_GROUP_NO.NEXTVAL
+			, '1'
+			, #{gTypeNo}
+			, #{gWayNo}
+			, #{gPeriodNo}
+			, #{numberPeople}
+			, #{techStackNoList}
+			, #{startDate}
+			, #{startTime}
+			, #{endTime}
+			, #{title}
+			, #{intro}
+			, #{place}
+			, #{address}
 			, '0'
 			, 'N'
 			, 'N'
@@ -48,5 +50,29 @@
 
 		)
 	</insert>
-	
+	<insert id="insertQuestion">
+		INSERT INTO RECRUIT_QUESTION
+		(
+			NO
+			, G_NO
+			, QUESTION
+			, DELETE_YN
+			, MODIFY_DATE
+		)
+		VALUES
+		(
+			SEQ_RECRUIT_QUESTION_NO.NEXTVAL
+			, (SELECT NO FROM RECRUIT_GROUP ORDER BY NO DESC OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY)
+			, #{question}
+			, 'N'
+			, SYSDATE	
+		)
+	</insert>
+	<insert id="insertTechStack">
+		INSERT INTO GROUP_TECH_STACK
+		(
+			(SELECT NO FROM RECRUIT_GROUP ORDER BY NO DESC OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY)
+			, #{techStackNo}
+		)
+	</insert>
 </mapper>

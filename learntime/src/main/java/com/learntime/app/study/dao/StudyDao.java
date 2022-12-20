@@ -9,4 +9,10 @@ public interface StudyDao {
 	//insert group
 	public int insertGroup(SqlSessionTemplate sst, GroupVo vo);
 
+	//insert question
+	public int insertQuestion(SqlSessionTemplate sst, GroupVo vo);
+	
+	//insert tag
+	public int insertTag(SqlSessionTemplate sst, GroupVo vo);
+
 }

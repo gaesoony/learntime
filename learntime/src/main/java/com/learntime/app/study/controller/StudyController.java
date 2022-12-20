@@ -37,7 +37,15 @@ public class StudyController {
 	//스터디/프로젝트 모집 (DB)
 	@PostMapping("/recruit")
 	public String recruit(GroupVo vo) {
-		return "";
+		System.out.println(vo);
+		
+		int result = studyService.recruit(vo);
+		if(result == 1) {
+			return "redirect:/study/list";
+		}else {
+			return "common/errorPage";
+		}
+
 	}
 	
 	//스터디/프로젝트 수정 (화면)
