@@ -28,10 +28,18 @@ public class QuestionServiceImpl implements QuestionService{
 	}
 
 
-
+	@Override
 	public List<QuestionVo> selectQuestionList(Map<String, String> map) {
 		
 		return dao.selectQuestionList(sst,map);
+	}
+
+
+
+	@Override
+	public QuestionVo selectOne() {
+		
+		return dao.selectOne();
 	}
 
 }

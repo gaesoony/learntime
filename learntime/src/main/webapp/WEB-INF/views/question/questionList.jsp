@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/app/resources/css/reset.css">
 <link rel="stylesheet" href="/app/resources/css/question/questionList.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body>
     <%@ include file = "/WEB-INF/views/common/header.jsp" %>
@@ -38,22 +39,22 @@
             </div>
             <div class="category-question">
                 <div class="cate-list">
-                    <button><div class="ques">문의하기</div></button> 
-                    <button><div class="cate">전체</div></button>
-                    <button><div class="cate">스터디</div></button>
-                    <button><div class="cate">공부인증</div></button>
-                    <button><div class="cate">Q&A</div></button>
-                    <button><div class="cate">멘토링</div></button>
-                    <button><div class="cate">커뮤니티</div></button>
-                    <button><div class="cate">스킨샵</div></button>
+                    <input type="button" name="button" value="문의하기" class="ques">
+             		<input type="button" name="button" value="전체" class="cate">
+                    <input type="button" name="button" value="스터디" class="cate">
+                    <input type="button" name="button" value="공부인증" class="cate">
+                    <input type="button" name="button" value="Q&A" class="cate">
+                    <input type="button" name="button" value="멘토링" class="cate">
+                    <input type="button" name="button" value="커뮤니티" class="cate">
+                    <input type="button" name="button" value="스킨샵" class="cate">
                 </div>
             </div>
             <div class="list-question">
                 <c:forEach var="questionList" begin="1" end="10" >
-                    <div class="questionList">
-                        <div class="pick-cate">[스터디]</div>
-                        <div class="pick-title">어떻게 이용하면 되나요?</div>
-                        <div class="pick-date">2022.12.16</div>
+                    <a href="/app/question/qDetailList"><div class="questionList"></a>
+                        <div class="pick-cate">${name}</div>
+                        <div class="pick-title">${title }</div>
+                        <div class="pick-date">${enrollDate}</div>
                     </div>
                 </c:forEach>
             </div>
@@ -62,6 +63,29 @@
     </div>
 	</form>
 	
+	<script type="text/javascript">
+	
+	var path = "${pageContext.request.contextPath }";
+	$(function(){
+		$("input:button[name='button']").on('click',function(){
+			var kind = $(this).val();
+			$.ajax({
+				url: path + "",
+				type: "post",
+				data:{id : $(this).val(),
+					"kind":kind},
+				success: function(data){
+					$('body').html(data);
+					
+				},
+				error: function(data){
+					alert('error');
+				}
+			})
+		});
+	});
+	
+	</script>
 
 
 

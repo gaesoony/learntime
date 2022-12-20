@@ -10,6 +10,12 @@
 		VALUES(SEQ_QUESTION_BOARD_NO,#{cateNo},#{writer},#{title},
 		#{content}, SYSDATE,'N',SYSDATE)
   </insert>
+  
+  <select id="questionList" resultType="com.learntime.app.question.vo.QuestionVo">
+  	SELECT C.NAME, Q.TITLE, Q.ENROLL_DATE
+    FROM QUESTION_BOARD Q
+    JOIN COMMON_CATEGORY C ON Q.CATE_NO= C.NO
+  </select>
 	
 	
 </mapper>

@@ -19,7 +19,7 @@ public class QuestionDao {
 
 	public List<QuestionVo> selectQuestionList(SqlSessionTemplate sst, Map<String, String> map) {
 		
-		return sst.selectList("questionMapper.question");
+		return sst.selectList("questionMapper.questionList",map);
 	}
 
 }

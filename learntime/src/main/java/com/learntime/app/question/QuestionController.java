@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -27,14 +28,20 @@ public class QuestionController {
 	}
 	
 	@PostMapping ("question/questionList")
-	public String questionList(QuestionVo vo,HttpServletRequest req) {
+	public String questionList(QuestionVo vo,HttpServletRequest req,Model model) {
 		String category = req.getParameter("select-title-content");
 		String keyword = req.getParameter("search-input");
 		Map<String,String> map = new HashMap<>();
 		map.put("category",category);
 		map.put("keyword",keyword);
 		
-		List<QuestionVo> list=qs.selectQuestionList(map);
+		List<QuestionVo> list= qs.selectQuestionList(map);
+		model.addAttribute("list",list);	
+		
+		
+		
+		
+		return "question/questionList";
 		
 		
 	}
@@ -61,7 +68,10 @@ public class QuestionController {
 	
 	// 문의게시판 상세조회(회원)
 	@GetMapping("question/qDetailList")
-	public String qDetailList() {
+	public String qDetailList(QuestionVo vo) {
+		
+		
+		
 		return "question/qDetailList";
 			
 		}
