@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.learntime.app.member.service.MemberService;
 import com.learntime.app.member.vo.MemberVo;
@@ -33,6 +35,14 @@ public class MemberController {
 		request.getSession().setAttribute("redirectURI", referer);
 		return "main/main";
 	}
+
+//	로그아웃
+@GetMapping("/member/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/main";
+	}
+
 	
 	
 //	회원가입 (화면)
@@ -46,15 +56,23 @@ public class MemberController {
 	public String join(MemberVo  vo) {
 		
 		int result=memberService.join(vo);
+		System.out.println(vo);
+		
 		if(result==1) {
-			return "main/main";
+			return "/member/joinCertification";
 		}else {
 			return"common/errorPage";
 		}
 
 	}
-	
-	
+//	닉네임 중복검사 (AJAX)
+	@ResponseBody
+	@GetMapping("/member/nickCheck")
+	public int nickCheck(@RequestParam("nick") String nick){ 
+		
+		
+		return memberService.nickCheck(nick);
+	}
 	
 //	회원가입 승인메일 발송 (화면)
 	@GetMapping("/member/join/certification")
@@ -68,6 +86,20 @@ public class MemberController {
 		return "/member/findId";
 	}
 	
+//  아이디 찾기(서버)
+	@PostMapping("/member/findId")
+	public String findId(String phone,HttpSession session) {
+		
+		MemberVo findId=memberService.findId(phone);
+		if(findId==null) {
+			session.invalidate();
+			return "redirect:/member/resultId";
+		}
+		session.setAttribute("findId", findId);
+		return"/member/resultId";
+		
+	}
+	
 //  아이디 찾기 결과(화면)
 	@GetMapping("/member/resultId")
 	public String resultId() {
@@ -79,6 +111,18 @@ public class MemberController {
 	@GetMapping("/member/findPwd")
 	public String findPwd() {
 		return "/member/findPwd";
+	}
+	
+//  비밀번호 찾기(서버)
+	@PostMapping("/member/findPwd")
+	public String findPwd(String id,HttpSession session) {
+		MemberVo findPwd=memberService.findPwd(id);
+		if(findPwd==null) {
+			session.invalidate();
+			return "redirect:/member/resultPwd";
+		}
+		session.setAttribute("findPwd", findPwd);
+		return"/member/resultPwd";
 	}
 	
 //  비밀번호 찾기 결과(화면)

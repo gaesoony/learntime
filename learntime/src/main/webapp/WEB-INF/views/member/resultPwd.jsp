@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	MemberVo findPwd = (MemberVo)session.getAttribute("findPwd");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -123,12 +127,24 @@
         </div>
         
         <div id="resultBox">
-           <div id="result-findId">메일이 전송된 이메일</div>
-           <div id="userId">gaesoony@gmail.com</div>
-           <div id="mail-info">
-                메일을 확인 해주세요.<br>
-                <span>몇 분내로 확인되지 않으면 스팸 폴더를 확인해주세요</span>
-        </div>
+           
+            <%if(findPwd!=null){ %>
+           		<div id="result-findId">메일이 전송된 이메일</div>
+				<div id="userId"> ${findPwd.id}</div>
+				     <div id="mail-info">
+				       메일을 확인 해주세요.<br>
+				       <span>몇 분내로 확인되지 않으면 스팸 폴더를 확인해주세요</span>
+				</div>
+           <%}else{ %>
+           		<div id="result-findId">메일 전송 실패</div>
+				<div id="userId">조회된 아이디가 없습니다.</div>
+				     <div id="mail-info">
+				       아이디를  다시 확인 해주세요.<br>
+				       <span></span>
+				</div>
+         
+           <%} %>
+         
         </div>
 
         <div id="result-btn">

@@ -14,6 +14,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <!-- 폰트어썸 아이콘 -->
 <script src="https://kit.fontawesome.com/939838bb27.js" crossorigin="anonymous"></script>
+<!-- 스윗 알람2 -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 <style>
@@ -46,6 +48,7 @@
         padding: 20px;
         display: grid;
         grid-template-rows: 30px 70px 190px 45px 30px 45px;
+        z-index:10001;
       }
 
       #login-btn,#modal-closed,.inputbox, .modal-login-btn{
@@ -151,7 +154,7 @@
         width: 1200px;
         height: 75px;
         display: grid;
-        grid-template-columns: 140px 170px repeat(5,120px) 190px 50px 50px;
+        grid-template-columns: 140px 170px repeat(5,120px) 190px 50px 50px 50px;
         
     }
     #empty{
@@ -202,19 +205,19 @@
 
             <div id="logo"><a href="${pageContext.request.contextPath}/main" ><img src="${pageContext.request.contextPath}/resources/img/logo_green2.png" alt="런타임로고"></a></div>
             
-            <form action="" method="POST">
+            <form action="${pageContext.request.contextPath}/member/login" method="POST">
                 <div>
-                    <input class="inputbox" type="text" name="memberId" placeholder="이메일">
+                    <input class="inputbox" type="text" name="id" placeholder="이메일">
                 </div>
                 <br>
                 <div>
-                    <input class="inputbox" type="password" name="memberPwd" autocomplete="off" placeholder="비밀번호">
+                    <input class="inputbox" type="password" name="pwd" autocomplete="off" placeholder="비밀번호">
                 </div>
                 <br>
                 
                 <button type="submit" class="modal-login-btn" >로그인</button>
             </form>
-
+            
             <div id="account_find">
                 <a href="${pageContext.request.contextPath}/member/findId">아이디(이메일) 찾기</a>
                 <span>|</span>
@@ -242,10 +245,14 @@
       <div id="skinshop"><a href="${pageContext.request.contextPath}/skinshop">SKIN SHOP</a></div>
       <div id="community"><a href="${pageContext.request.contextPath}/community/board/list">COMMUNITY</a></div>
       <div id="empty"></div>
+      <%if(loginMember==null){%>
       <div id="join"><a href="${pageContext.request.contextPath}/member/join">JOIN</a></div>
-      <div id="login">	
-      <button id="login-btn">LOGIN</button>
-      </div>
+      <div id="login"><button id="login-btn">LOGIN</button></div>
+      <%}else{%>
+        <div id="alarm"><span class="material-symbols-outlined">notifications</span></div>
+        <div id="mypage"><a href="${pageContext.request.contextPath}/member/mypage/home"><span class="material-symbols-outlined">account_circle</span></a></div>
+        <div id="mypage"><a href="${pageContext.request.contextPath}/member/logout"><span class="material-symbols-outlined">logout</span></a></div>
+      <%}%>
   </div>
 </div>
    
@@ -257,14 +264,18 @@
     $('.blackBG').addClass('show');
   })
   
-    //모달 닫기
+  // X 버튼으로 모달 닫기
   $('#modal-closed').on('click',function(){
     $('.blackBG').removeClass('show');
   })
 
-  $('.blackBG').on('click',function(){
-    $('.blackBG').removeClass('show');
-  })
+   //검은 배경 클릭시 모달 닫기
+  $(document).mouseup(function (e){
+    //배경이 클릭 될 경우 리턴 0이 됨
+	if($('.blackBG').has(e.target).length === 0){
+		$('.blackBG').removeClass('show');
+	}
+  });
   
   
   $("form").on("submit", function (e) {
