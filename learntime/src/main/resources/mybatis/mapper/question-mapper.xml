@@ -16,6 +16,18 @@
     FROM QUESTION_BOARD Q
     JOIN COMMON_CATEGORY C ON Q.CATE_NO= C.NO
   </select>
+  <select id="selectCount">
+  	SELECT COUNT(*)FROM QUESTION_BOARD
+  </select>
+  <select id="boardList" resultType="com.learntime.app.question.vo.QuestionVo">
+  	SELECT * FROM QUESTION_BOARD WHERE CATE_NO = #{cateNo}
+  </select>
+  
+  <select id="selectOne" resultType="com.learntime.app.question.vo.QuestionVo">
+  	SELECT C.NAME,Q.TITLE, M.NICK, Q.ENROLL_DATE
+  	FROM QUESTION_BOARD Q JOIN COMMON_CATEGORY ON Q.CATE_NO = C.NO
+  	JOIN MEMBER M ON M.NO = Q.WRITER
+  </select>
 	
 	
 </mapper>

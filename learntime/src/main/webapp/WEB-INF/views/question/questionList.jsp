@@ -39,14 +39,14 @@
             </div>
             <div class="category-question">
                 <div class="cate-list">
-                    <input type="button" name="button" value="문의하기" class="ques">
-             		<input type="button" name="button" value="전체" class="cate">
-                    <input type="button" name="button" value="스터디" class="cate">
-                    <input type="button" name="button" value="공부인증" class="cate">
-                    <input type="button" name="button" value="Q&A" class="cate">
-                    <input type="button" name="button" value="멘토링" class="cate">
-                    <input type="button" name="button" value="커뮤니티" class="cate">
-                    <input type="button" name="button" value="스킨샵" class="cate">
+                	<a href="/app/question/questionWrite"><div class="ques">문의하기</div></a>
+                    <a href="/questionList?cate = 1"><div class="cate">전체</div></a>
+                    <a href="/questionList?cate = 2"><div class="cate">스터디</div></a>
+                    <a href="/questionList?cate = 3"><div class="cate">공부인증</div></a>
+                    <a href="/questionList?cate = 4"><div class="cate">Q&A</div></a>
+                    <a href="/questionList?cate = 5"><div class="cate">멘토링</div></a>
+                    <a href="/questionList?cate = 6"><div class="cate">커뮤니티</div></a>
+                    <a href="/questionList?cate = 7"><div class="cate">스킨샵</div></a>
                 </div>
             </div>
             <div class="list-question">

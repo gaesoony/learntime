@@ -4,14 +4,18 @@ import java.util.List;
 import java.util.Map;
 
 import com.learntime.app.category.CategoryList;
+import com.learntime.app.question.vo.PageVo;
 import com.learntime.app.question.vo.QuestionVo;
 
 public interface QuestionService {
 	
 	public int questionWrite(QuestionVo vo);
 	
-	public List<QuestionVo> selectQuestionList(Map<String, String> map);
+	public List<QuestionVo> selectQuestionList(Map<String, String> map,PageVo pv);
+	public List<QuestionVo> boardList(int cate);
 	
-	public QuestionVo selectOne();
+	public int selectCount();
+	
+	public QuestionVo selectOne(QuestionVo vo);
 
 }
