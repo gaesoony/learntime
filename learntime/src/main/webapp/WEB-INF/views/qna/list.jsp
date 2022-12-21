@@ -114,7 +114,7 @@
         border: none;
         text-decoration: none;
         font-size: 18px;
-        margin-top: 7px;
+        margin-top: 4px;
         color: black;
     }
     .searchbtn{
@@ -137,7 +137,7 @@
     }
     .cate{
         float: left;
-        margin-right: 440px;
+        margin-right: 462px;
         display: flex;
         padding-top: 20px;
     }

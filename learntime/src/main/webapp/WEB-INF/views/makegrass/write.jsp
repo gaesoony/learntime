@@ -43,14 +43,13 @@
         text-decoration: none;
         width: 100%;
         height: 5vh;
-        font-size: 18px;
-        color: #AAAAAA;
+        font-size: 16px;
         outline: none;
         margin-bottom: 20px;
      }
      .cancle{
         width: 5vw;
-        height: 4vh;
+        height: 5vh;
         border: 2px solid #5ECC80;
         background-color: white;
         font-size: 18px;
@@ -62,7 +61,7 @@
      }
      .write{
         width: 5vw;
-        height: 4vh;
+        height: 5vh;
         font-size: 18px;
         background-color: #5ECC80;
         color: white;
@@ -88,12 +87,12 @@
         <div class="maintitle">
             <input type="text" name="title" class="title" placeholder="제목을 입력하세요">
             <input type="text" name="hashtag" class="hashtag" placeholder="해시태그를 입력하세요">
-            <input type="text" name="worktime" class="worktime" placeholder="공부한 시간을 입력하세요(분단위)">
+            <input type="text" name="worktime" class="worktime" placeholder="공부한 시간 | ex) 120분">
 
             <textarea class="summernote" name="editordata"></textarea>
 
-            <button type="button" onClick="history.back();" class="cancle" style='cursor:pointer;'>취소</button>
-            <button type="button" onclick="location.href='/app/makegrass/list'" class="write" style='cursor:pointer;'>등록</button>
+            <input type="button" onClick="history.back();" class="cancle" style='cursor:pointer;' value="취소">
+            <input type="submit" onclick="location.href='/app/makegrass/list'" class="write" style='cursor:pointer;' value="등록">
             
         </div>
     </div>

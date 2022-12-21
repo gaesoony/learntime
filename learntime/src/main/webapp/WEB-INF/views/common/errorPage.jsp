@@ -7,23 +7,23 @@
 <title>Insert title here</title>
 <style>
     .container{
-        padding-top: 160px;
+        padding-top: 120px;
         margin: 0 auto;
     }
     .img{
         text-align: center;
     }
     h2{
-        font-size: 45px;
+        font-size: 40px;
         text-align: center;
         color: #5ECC80;
     }
     h4{
-        font-size: 20px;
+        font-size: 18px;
         text-align: center;
         font-weight: 500;
         color: gray;
-        margin-bottom: 55px;
+        margin-bottom: 45px;
     }
     .homebtn{
         margin: 0 auto;

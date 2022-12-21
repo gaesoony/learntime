@@ -119,21 +119,21 @@
         margin-right: 5px;
     }
     .listtitle{
-        width: 996px;
+        width: 810px;
         margin: 0 auto;
-        font-size: 25px;
+        font-size: 22px;
         margin-top: 70px;
     }
     .userbox{
         margin-bottom: 5px;
     }
     .leftside{
-        width: 200px;
+        width: 230px;
         height: 370px;
         border-radius: 10px;
         border: 1px solid #9D9D9D;
         background-color: white;
-        margin-left: 30px;
+        margin-left: 55px;
         margin-top: 30px;
     }
     .leftsidebox{
@@ -172,48 +172,48 @@
     }
     .usernum{
         width: 2vw;
-        margin-left: 165px;
+        margin-left: 190px;
         padding-top: 20px;
     }
     .mainbox{
-        width: 995px;
+        width: 850px;
         height: 1382px;
         margin: 0 auto;
         margin-top: 30px;
     }
     .mainlist{
-        margin: 0 auto;
-        width: 300px;
-        height: 400px;
+        width: 253px;
+        height: 350px;
         border: 2px solid #5ECC80;
         border-radius: 20px;
         background-color: white;
         float: left;
-        margin-right: 25px;
+        margin-right: 10px;
         margin-bottom: 25px;
+        margin-left: 15px;
     }
     .thumbnail{
-        width: 250px;
-        height: 110px;
+        width: 220px;
+        height: 90px;
         background-color: #5ECC80;
         margin: 0 auto;
-        margin-top: 20px;
+        margin-top: 15px;
     }
     .clockimg{
-        margin-left: 25px;
+        margin-left: 15px;
         margin-top: 10px;
-        font-size: 17px;
+        font-size: 15px;
     }
     .bookimg{
-        font-size: 17px;
-        margin-left: 27px;
+        font-size: 15px;
+        margin-left: 17px;
         margin-top: 10px;
     }
     .content{
-        width: 16vw;
-        height: 18vh;
-        font-size: 15px;
-        margin-left: 25px;
+        width: 14.5vw;
+        height: 17vh;
+        font-size: 13px;
+        margin-left: 15px;
         margin-top: 10px;
         line-height: 23px;
     }
@@ -226,41 +226,46 @@
         display: flex;
     }
     .userprofile2{
-        margin-left: 23px;
+        margin-left: 17px;
         margin-top: 10px;
     }
     .profile2{
-        width: 30px;
+        width: 20px;
     }
     .contentnick{
-        width: 60px;
+        width: 40px;
         margin-left: 5px;
-        margin-top: 15px;
+        margin-top: 13px;
+        font-size: 13px;
     }
     .hit{
-        margin-left: 60px;
+        margin-left: 65px;
         display: flex;
         width: 60px;
         height: 30px;
         margin-top: 15px;
+        font-size: 13px;
     }
     .comment{
         width: 55px;
         height: 30px;
         margin-top: 15px;
+        font-size: 13px;
     }
     .contentDate{
-        margin-left: 30px;
+        margin-top: -10px;
+        margin-left: 20px;
         color: #868686;
+        font-size: 13px;
     }
     .rightsidebox{
         width: 200px;
-        margin-left: 1000px;
+        margin-left: 900px;
     }
     .rightsidelist{
-        height: 325px;
         border: 1px solid #9D9D9D;
         border-radius: 10px;
+        padding-bottom: 20px;
 
     }
     .rightsidetitle{
@@ -275,19 +280,18 @@
         display: flex;
     }
     .rightnick{
-        margin-top: 8px;
         margin-left: 5px;
     }
     .writebtn{
         width: 6vw;
         height: 3vh;
-        margin-left: 1120px;
+        margin-left: 1080px;
         margin-top: 40px;
     }
     .wbtn{
         background-color: white;
         color: #5ECC80;
-        font-size: 17px;
+        font-size: 16px;
         font-weight: 550;
         border: none;
         border-bottom: 1px solid #5ECC80;

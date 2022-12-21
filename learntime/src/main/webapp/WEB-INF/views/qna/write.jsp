@@ -41,7 +41,7 @@
      }
      .cancle{
         width: 5vw;
-        height: 4vh;
+        height: 5vh;
         border: 2px solid #5ECC80;
         background-color: white;
         font-size: 18px;
@@ -53,7 +53,7 @@
      }
      .write{
         width: 5vw;
-        height: 4vh;
+        height: 5vh;
         font-size: 18px;
         background-color: #5ECC80;
         color: white;
@@ -109,8 +109,8 @@
 
             <textarea class="summernote" name="editordata"></textarea>
 
-            <button type="button" onClick="history.back();" class="cancle" style='cursor:pointer;'>취소</button>
-            <button type="button" onclick="location.href='/app/qna/list'" class="write" style='cursor:pointer;'>등록</button>
+            <input type="button" onClick="history.back();" class="cancle" style='cursor:pointer;' value="취소"></input>
+            <input type="submit" onclick="location.href='/app/qna/list'" class="write" style='cursor:pointer;' value="등록"></input>
             
         </div>
     </div>

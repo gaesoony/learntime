@@ -137,7 +137,7 @@
         line-height: 28px;
     }
     .two{
-        margin-bottom: 80px;
+        margin-bottom: 130px;
     }
     .three{
         padding-bottom: 30px;
@@ -432,7 +432,8 @@
         color: #444444;
     }
     .replybox{
-        padding-top: 70px;
+        padding-top: 130px;
+        height: 100%;
     }
     .rightsidebox{
         height: 70vh;
