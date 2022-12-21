@@ -12,6 +12,9 @@ public interface BoardService {
 	
 	//select list
 	public List<BoardVo> select();
+	
+	//select one
+	public BoardVo selectOne(String bno);
 
 	
 }

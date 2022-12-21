@@ -32,4 +32,11 @@ public class BoardServiceImpl implements BoardService{
 		return dao.selectBoardList(sst);
 	}
 
+	
+	//자유게시판 상세보기
+	@Override
+	public BoardVo selectOne(String bno) {
+		return dao.selectBoardDetail(sst, bno);
+	}
+
 }

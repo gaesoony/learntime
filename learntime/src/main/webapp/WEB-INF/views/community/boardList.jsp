@@ -2,11 +2,10 @@
     pageEncoding="UTF-8"%>
 
 <!-- jstl 라이브러리 -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <!DOCTYPE html>
 <html>
@@ -93,14 +92,14 @@
             <!-- 반복시작 -->
             <c:forEach var="list" items="${boardList}">
 
-                <div class="board-content" onclick="location.href='/app/community/board/detail'">
+                <div class="board-content" onclick="location.href='/app/community/board/detail?bno=${list.no}'">
                     <div class="title-box">
                         <span>${list.title}</span>
                     </div>
                     <div class="content-info-box">
                         <div class="writer-info">
                             <div class="writer-profile"></div>
-                            <span class="writer-nick">${list.writer}</span>
+                            <span class="writer-nick">${list.writerNick}</span>
                             <div class="writer-date">1일 전</div>
                         </div>
                         <div class="content-info">
@@ -109,9 +108,7 @@
                             <span class="comment-number">3</span>
                             <span class="material-symbols-rounded thumbup-icon">thumb_up</span>
                             <span class="like-number">
-                                <!-- String을 숫자형식으로 바꿔서 계산하는 jstl -->
-                                <!-- list.likes 가 null 이 아니면 출력 -->
-                               
+                      
                             </span>
                         </div>
                     </div>
@@ -119,159 +116,6 @@
 
             </c:forEach>
             <!-- 반복 끝 -->
-
-            <div class="board-content">
-                <div class="title-box">
-                    <span>[런타임]공지사항 JAVA 언어로 배우는 디자인 패턴 입문 이벤트</span>
-                </div>
-                <div class="content-info-box">
-                    <div class="writer-info">
-                        <div class="writer-profile"></div>
-                        <span class="writer-nick">LearnTime</span>
-                        <div class="writer-date">1일 전</div>
-                    </div>
-                    <div class="content-info">
-                        <span class="hit-number">조회수 1,150</span>
-                        <span class="material-symbols-rounded comment-icon">comment</span>
-                        <span class="comment-number">3</span>
-                        <span class="material-symbols-rounded thumbup-icon">thumb_up</span>
-                        <span class="like-number">40</span>
-                    </div>
-                </div>
-            </div>
-            <div class="board-content">
-                <div class="title-box">
-                    <span>[런타임]공지사항 JAVA 언어로 배우는 디자인 패턴 입문 이벤트</span>
-                </div>
-                <div class="content-info-box">
-                    <div class="writer-info">
-                        <div class="writer-profile"></div>
-                        <span class="writer-nick">LearnTime</span>
-                        <div class="writer-date">1일 전</div>
-                    </div>
-                    <div class="content-info">
-                        <span class="hit-number">조회수 1,150</span>
-                        <span class="material-symbols-rounded comment-icon">comment</span>
-                        <span class="comment-number">3</span>
-                        <span class="material-symbols-rounded thumbup-icon">thumb_up</span>
-                        <span class="like-number">40</span>
-                    </div>
-                </div>
-            </div>
-            <div class="board-content">
-                <div class="title-box">
-                    <span>[런타임]공지사항 JAVA 언어로 배우는 디자인 패턴 입문 이벤트</span>
-                </div>
-                <div class="content-info-box">
-                    <div class="writer-info">
-                        <div class="writer-profile"></div>
-                        <span class="writer-nick">LearnTime</span>
-                        <div class="writer-date">1일 전</div>
-                    </div>
-                    <div class="content-info">
-                        <span class="hit-number">조회수 1,150</span>
-                        <span class="material-symbols-rounded comment-icon">comment</span>
-                        <span class="comment-number">3</span>
-                        <span class="material-symbols-rounded thumbup-icon">thumb_up</span>
-                        <span class="like-number">40</span>
-                    </div>
-                </div>
-            </div>
-            <div class="board-content">
-                <div class="title-box">
-                    <span>[런타임]공지사항 JAVA 언어로 배우는 디자인 패턴 입문 이벤트</span>
-                </div>
-                <div class="content-info-box">
-                    <div class="writer-info">
-                        <div class="writer-profile"></div>
-                        <span class="writer-nick">LearnTime</span>
-                        <div class="writer-date">1일 전</div>
-                    </div>
-                    <div class="content-info">
-                        <span class="hit-number">조회수 1,150</span>
-                        <span class="material-symbols-rounded comment-icon">comment</span>
-                        <span class="comment-number">3</span>
-                        <span class="material-symbols-rounded thumbup-icon">thumb_up</span>
-                        <span class="like-number">40</span>
-                    </div>
-                </div>
-            </div>
-            <div class="board-content">
-                <div class="title-box">
-                    <span>[런타임]공지사항 JAVA 언어로 배우는 디자인 패턴 입문 이벤트</span>
-                </div>
-                <div class="content-info-box">
-                    <div class="writer-info">
-                        <div class="writer-profile"></div>
-                        <span class="writer-nick">LearnTime</span>
-                        <div class="writer-date">1일 전</div>
-                    </div>
-                    <div class="content-info">
-                        <span class="hit-number">조회수 1,150</span>
-                        <span class="material-symbols-rounded comment-icon">comment</span>
-                        <span class="comment-number">3</span>
-                        <span class="material-symbols-rounded thumbup-icon">thumb_up</span>
-                        <span class="like-number">40</span>
-                    </div>
-                </div>
-            </div>
-            <div class="board-content">
-                <div class="title-box">
-                    <span>[런타임]공지사항 JAVA 언어로 배우는 디자인 패턴 입문 이벤트</span>
-                </div>
-                <div class="content-info-box">
-                    <div class="writer-info">
-                        <div class="writer-profile"></div>
-                        <span class="writer-nick">LearnTime</span>
-                        <div class="writer-date">1일 전</div>
-                    </div>
-                    <div class="content-info">
-                        <span class="hit-number">조회수 1,150</span>
-                        <span class="material-symbols-rounded comment-icon">comment</span>
-                        <span class="comment-number">3</span>
-                        <span class="material-symbols-rounded thumbup-icon">thumb_up</span>
-                        <span class="like-number">40</span>
-                    </div>
-                </div>
-            </div>
-            <div class="board-content">
-                <div class="title-box">
-                    <span>[런타임]공지사항 JAVA 언어로 배우는 디자인 패턴 입문 이벤트</span>
-                </div>
-                <div class="content-info-box">
-                    <div class="writer-info">
-                        <div class="writer-profile"></div>
-                        <span class="writer-nick">LearnTime</span>
-                        <div class="writer-date">1일 전</div>
-                    </div>
-                    <div class="content-info">
-                        <span class="hit-number">조회수 1,150</span>
-                        <span class="material-symbols-rounded comment-icon">comment</span>
-                        <span class="comment-number">3</span>
-                        <span class="material-symbols-rounded thumbup-icon">thumb_up</span>
-                        <span class="like-number">40</span>
-                    </div>
-                </div>
-            </div>
-            <div class="board-content">
-                <div class="title-box">
-                    <span>[런타임]공지사항 JAVA 언어로 배우는 디자인 패턴 입문 이벤트</span>
-                </div>
-                <div class="content-info-box">
-                    <div class="writer-info">
-                        <div class="writer-profile"></div>
-                        <span class="writer-nick">LearnTime</span>
-                        <div class="writer-date">1일 전</div>
-                    </div>
-                    <div class="content-info">
-                        <span class="hit-number">조회수 1,150</span>
-                        <span class="material-symbols-rounded comment-icon">comment</span>
-                        <span class="comment-number">3</span>
-                        <span class="material-symbols-rounded thumbup-icon">thumb_up</span>
-                        <span class="like-number">40</span>
-                    </div>
-                </div>
-            </div>
 
 
         </div>

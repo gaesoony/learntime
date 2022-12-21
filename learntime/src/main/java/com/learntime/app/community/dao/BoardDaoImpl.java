@@ -26,6 +26,12 @@ public class BoardDaoImpl implements BoardDao{
 
 		return sst.selectList("freeBoardMapper.selectList");
 	}
+
+	//상세글 조회
+	@Override
+	public BoardVo selectBoardDetail(SqlSessionTemplate sst, String bno) {
+		return sst.selectOne("freeBoardMapper.selectOne", bno);
+	}
 	
 	
 }

@@ -13,5 +13,8 @@ public interface BoardDao {
 	
 	//select boardList
 	public List<BoardVo> selectBoardList(SqlSessionTemplate sst);
+
+	//selelct boardDetail
+	public BoardVo selectBoardDetail(SqlSessionTemplate sst, String bno);
 	
 }

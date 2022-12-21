@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.learntime.app.community.service.BoardService;
 import com.learntime.app.community.vo.BoardVo;
@@ -39,7 +40,18 @@ public class BoardController {
 	
 //	글 상세조회	
 	@GetMapping("/board/detail")
-	public String boardDetail() {
+	public String boardDetail(@RequestParam String bno, Model model) {
+		
+		BoardVo bv = bs.selectOne(bno);
+		
+		if(bv == null) {
+			return "";
+		}
+		
+		System.out.println(bv);
+		
+		model.addAttribute("bv", bv);
+		
 		return "/community/boardDetail";
 	}
 	
