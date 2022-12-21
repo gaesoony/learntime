@@ -7,7 +7,7 @@
 <title>LEARN TIME | 회원가입</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
 <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
-				
+
 <style>
 #join-main{
 	width: 350px;
@@ -159,6 +159,15 @@ label[for="joinAgree-check"] {
 	width: 320px;
 }
 
+.result{
+	margin-top: 5px;
+	font-size: 12px;
+	letter-spacing: 1px;
+	line-height: 14px;
+	color: var(--deepGray);
+	
+}
+
 
 </style>
 </head>
@@ -166,7 +175,7 @@ label[for="joinAgree-check"] {
 <%@include file="/WEB-INF/views/common/header.jsp" %>
 
 	<div id="join-main">
-    	<form action="" method="POST">
+    	<form action="/app/member/join" method="post" onsubmit="return check();">
 			<div id="join-area">
 
 				<div id="join-title">
@@ -177,35 +186,38 @@ label[for="joinAgree-check"] {
 				<div id="id">
 					<div class="text">이메일</div>
 					<input type="text" name="id">
+					<div id="idResult" class="result"></div>
+					
 				</div>
 				
-
+				
 				<div id="pwd">
 					<div class="text">비밀번호</div>
-					<input type="password" name="pwd" autocomplete="off">
+					<input type="password" name="pwd" autocomplete="off" >
 					<span class="material-symbols-outlined">visibility</span>
-					<div id="pwdReult"></div>
+					<div id="pwdResult" class="result">영문,숫자,특수문자 2가지 이상 포함, 8자 이상 32자 이하, 연속 3자 이상 동일한 숫자,문자 제외</div>
 				</div>
 				
 				
 				<div id="pwd">
 					<div class="text">비밀번호 확인</div>
-					<input type="password" name="pwd2" autocomplete="off">
+					<input type="password" name="pwd2" autocomplete="off" placeholder="입력했던 비밀번호를 다시 입력해주세요">
 					<span class="material-symbols-outlined">visibility</span>
-					<div id="pwdCheck"></div>
+					<div id="pwdCheck" class="result"></div>
 				</div>
 				
 				
 				<div id="nick">
 					<div class="text">닉네임</div>
-					<input type="text" name="nick">
-					<div id="nickReult"></div>
+					<input type="text" name="nick" placeholder="영문,숫자,한글로 2자 이상 8자 이하">
+					<div id="nickResult" class="result"></div>
 				</div>
 				
 				
 				<div id="phone">
 					<div class="text">전화번호</div>
-					<input type="text" name="phone" placeholder="- 제외한 번호만">
+					<input type="text" name="phone" placeholder="- 제외한 숫자만">
+					<div id="phoneResult" class="result"></div>
 				</div>
 				
 				
@@ -213,18 +225,18 @@ label[for="joinAgree-check"] {
 					<div class="text">관심 기술 스택</div>
 					<div class="row d-flex justify-content-center">
 						<div class="col-md-6"> 		
-							<select id="choices-multiple-remove-button" multiple>
-								<option value="HTML">HTML</option>
-								<option value="Jquery">Jquery</option>
-								<option value="CSS">CSS</option>
-								<option value="Java">Java</option>
-								<option value="Javascript">Javascript</option>
-								<option value="Angular">Angular</option>
-								<option value="Python">Python</option>
-								<option value="Hybris">Hybris</option>
-								<option value="SQL">SQL</option>
-								<option value="NOSQL">NOSQL</option>
-								<option value="NodeJS">NodeJS</option>
+							<select id="choices-multiple-remove-button" name="techStackNo" multiple>
+								<option value="1">HTML</option>
+								<option value="2">Jquery</option>
+								<option value="3">CSS</option>
+								<option value="4">Java</option>
+								<option value="5">Javascript</option>
+								<option value="6">Angular</option>
+								<option value="7">Python</option>
+								<option value="8">Hybris</option>
+								<option value="9">SQL</option>
+								<option value="10">NOSQL</option>
+								<option value="11">NodeJS</option>
 							</select> 
 						
 						</div>					
@@ -271,15 +283,6 @@ label[for="joinAgree-check"] {
 					.prev('input').attr('type','password');
 				}
 			});
-		});
-		
-	   
-	    $("form").on("submit", function (e) {
-	    	// 유효성 검사 추가하기
-	          
-	         });
-
-		$(document).ready(function(){
 
 			var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
 			removeItemButton: true,
@@ -288,8 +291,191 @@ label[for="joinAgree-check"] {
 			renderChoiceLimit:11
 			}); 
 
+			
+			
+			$("input[name=nick]").eq(0).blur(function() {
+
+				
+				var nick=$("input[name=nick]").eq(0).val();
+				var nickCheck=/^[a-zA-Z0-9가-힣]{2,8}$/;
+				var blackCheck=/\s/;
+				
+				$.ajax({    
+						type: "get",
+						url: "/app/member/nickCheck?nick="+nick,
+						success: function(data) {
+							if(data==1){
+								$("#nickResult").text("이미 사용 중인 닉네임 입니다.");
+								$("#nickResult").css("color", "red");
+								$("#ㅊ").attr("disabled", true);
+								$("input[name=nick]").eq(0).focus();
+							}else {
+						
+								if(nickCheck.test(nick)){
+									// 0 : 아이디 길이 / 문자열 검사
+									$("#nickResult").text("");
+									$("#nickResult").attr("disabled", false);
+						
+								} else if(nick == ""){
+									$('#nickResult').text('닉네임을 입력해주세요');
+									$('#nickResult').css('color', 'red');
+									$("#nickResult").attr("disabled", true);				
+									
+								} else if(nick.search(blackCheck) != -1){
+									$('#nickResult').text("공백 없이 작성해 주세요.");
+									$('#nickResult').css('color', 'red');
+									$("#nickResult").attr("disabled", true);
+								
+								}	else {	
+									$('#nickResult').text("닉네임은 영문,숫자,한글로 2자 이상 8자 이하로 이뤄져야합니다. ");
+									$('#nickResult').css('color', 'red');
+									$("#nickResult").attr("disabled", true);
+								}
+						
+							}
+								
+						},
+						error: function() {   
+							$("#nickResult").text("닉네임 중복 확인 불가");
+								
+						}
+						
+									
+				});
+          
+
+			});
+
 
 		});
+		
+	</script>
+	
+	<script>
+			
+		function check(){
+			const id=$("input[name=id]").eq(1);
+			//이메일 형식이 (알파벳,숫자,-,_,.)@(알파벳,숫자,-,_,.).(알파벳,숫자,-,_,.//1자리 이상)
+			var idCheck = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+						
+
+			const pwd=$("input[name=pwd]").eq(1);
+			const pwd2=$("input[name=pwd2]");
+			//영문/숫자/특수문자 2가지 이상 포함, 8자 이상 32자 이하
+			var pwdCheck = /^(?!((?:[A-Za-z]+)|(?:[~!@#$%^&*()_+=]+)|(?:[0-9]+))$)[A-Za-z\d~!@#$%^&*()_+=]{8,32}$/;
+			//같은 문자 3번 이상 X
+			var pwd3WordCheck =/(\w)\1\1/;
+		
+
+			
+			const nick=$("input[name=nick]").eq(0);
+			//닉네임 중복확인 결과 div가 ""일때 인설트 됨
+			const nickDuplicationCheck=$("#nickResult");
+
+			const phone=$("input[name=phone]");
+			//숫자만
+			var phoneCheck=/[0-9]{11}/g;
+
+			const techStackNo=$("input[name=techStackNo]");
+		
+
+    		if(idCheck.test(id.val())==false){
+				Swal.fire({
+					icon: 'error',
+					title: '이메일을 다시 확인해주세요!',
+					text: '이메일 형식이 올바르지 않습니다.',
+					confirmButtonColor: '#5ECC80'
+				});
+				
+				id.focus();
+				return false;
+				
+			}
+
+			if(pwdCheck.test(pwd.val())==false){
+				Swal.fire({
+					icon: 'error',
+					title: '비밀번호를 다시 확인해주세요!',
+					text: '영문,숫자,특수문자 2가지 이상 포함, 8자 이상 32자 이하로 이뤄져야합니다.',
+					confirmButtonColor: '#5ECC80'
+				});
+
+				pwd.focus();
+				return false;
+				
+			}else if(pwd3WordCheck.test(pwd.val())){
+				Swal.fire({
+					icon: 'error',
+					title: '비밀번호를 다시 확인해주세요!',
+					text: '같은 문자를 3번 이상 사용하실 수 없습니다.',
+					confirmButtonColor: '#5ECC80'
+				});
+				pwd.focus();
+				return false;
+	   		}
+
+			if(pwd.val()!==pwd2.val()){
+				Swal.fire({
+					icon: 'error',
+					title: '비밀번호를 다시 확인해주세요!',
+					text: '비밀번호가 동일하지 않습니다.',
+					confirmButtonColor: '#5ECC80'
+				});
+				pwd2.focus();
+				return false;
+			}
+
+			if(nickDuplicationCheck.text()!=""){
+				Swal.fire({
+					icon: 'error',
+					title: '닉네임을 다시 확인해주세요.',
+					text: '닉네임 중복 확인이 되지 않았습니다.',
+					confirmButtonColor: '#5ECC80'
+				});
+				nick.focus();
+				return false;
+			}
+
+			if(!nick.val()){
+				Swal.fire({
+					icon: 'error',
+					title: '닉네임을 다시 확인해주세요.',
+					text: '닉네임을 입력해주세요',
+					confirmButtonColor: '#5ECC80'
+				});
+				nick.focus();
+				return false;
+			}
+
+
+			if(phoneCheck.test(phone.val())==false){
+				Swal.fire({
+					icon: 'error',
+					title: '전화번호를 다시 확인해주세요!',
+					text: '숫자만 입력해 주세요!',
+					confirmButtonColor: '#5ECC80'
+				});
+				phone.focus();
+				return false;
+			}
+
+			if($("#joinAgree-check").is(':checked')==false){
+				Swal.fire({
+					icon: 'error',
+					title: '가입 동의 체크를 해주세요.',
+					// text: '숫자만 입력해 주세요!',
+					confirmButtonColor: '#5ECC80'
+				});
+				
+				return false;
+			}
+
+			
+
+			
+		}
+
+
 
 			
 	</script>

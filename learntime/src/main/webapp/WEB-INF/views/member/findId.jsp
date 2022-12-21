@@ -98,7 +98,7 @@
                     사용중인 계정의 이메일 주소를 알려드립니다.
                 </div>
             </div>
-            <form action="${pageContext.request.contextPath}/member/findId" method="post">
+            <form action="${pageContext.request.contextPath}/member/findId" method="post" onsubmit="return phoneCheck();">
             <div id="find-phone">
                 <div class="text">전화번호</div>
                 
@@ -107,6 +107,29 @@
                 <button>아이디 찾기</button>
                 
             </div>
+            <script>
+
+                function phoneCheck(){
+                    const phone=$("input[name=phone]");
+                    //숫자만
+			        var phoneCheck=/[0-9]{11}/g;
+
+                    if(phoneCheck.test(phone.val())==false){
+                            Swal.fire({
+                                icon: 'error',
+                                title: '전화번호를 다시 확인해주세요!',
+                                text: '숫자만 입력해 주세요!',
+                                confirmButtonColor: '#5ECC80'
+                            });
+                        phone.focus();
+                        return false;
+			        }
+
+                }
+            </script>
+
+
+
             </form>
             <div id="account_find">
                 <a href="${pageContext.request.contextPath}/member/findPwd">비밀번호 찾기</a>

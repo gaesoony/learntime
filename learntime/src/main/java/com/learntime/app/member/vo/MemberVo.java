@@ -17,7 +17,7 @@ public class MemberVo {
 	private String intro;
 	private String accumToken;
 	private String holdToken;
-	private String teckStackNo;
+	private String[] teckStackNo;
 	private String adminYn;
 	
 

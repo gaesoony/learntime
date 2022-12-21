@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	MemberVo findId = (MemberVo)session.getAttribute("findId");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -119,8 +123,14 @@
         
         <div id="resultBox">
            <div id="result-findId">아이디(이메일)</div>
-           <div id="userId">gaesoony@gmail.com</div>
-           <div id="userEnrollDate">22-11-26 마지막 접속</div>
+           <%if(findId!=null){ %>
+           <div id="userId">${findId.id}</div>
+           <div id="userEnrollDate">가입일시 ${findId.enrollDate}</div>
+           <%}else{ %>
+            <div id="userId">조회된 아이디가 없습니다.</div>
+           <div id="userEnrollDate"></div>
+           <%} %>
+           
         </div>
 
         <div id="result-btn">

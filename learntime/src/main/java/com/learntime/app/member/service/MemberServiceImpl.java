@@ -45,5 +45,23 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.join(sst,vo);
 
 	}
+	//닉네임 중복 확인 AJAX
+	@Override
+	public int nickCheck(String nick) {
+		
+		return memberDao.nickCheck(sst,nick);
+	}
+	//아이디 찾기 (번호로 조회)
+	@Override
+	public MemberVo findId(String phone) {
+		
+		return memberDao.findId(sst,phone);
+	}
+	//비밀번호 찾기 (아이디로 조회)
+	@Override
+	public MemberVo findPwd(String id) {
+		
+		return memberDao.findPwd(sst,id);
+	}
 
 }
