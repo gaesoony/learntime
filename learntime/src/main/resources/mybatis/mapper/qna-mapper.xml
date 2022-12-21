@@ -4,7 +4,30 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="qnaMapper">
 	<insert id="write">
-		
+		INSERT INTO KNOWLEDGE_QUESTION
+		(
+		    NO
+		    , WRITER
+		    , CATE_NO
+		    , TITLE
+		    , CONTENT
+		    , ENROLL_DATE
+		    , DELETE_YN
+		    , MODIFY_DATE
+		    , HIT
+		)
+		VALUES
+		(
+		    SEQ_KNOWLEDGE_QUESTION_NO.NEXTVAL
+		    , '1'
+		    , #{cateNo}
+		    , #{title}
+		    , #{content}
+		    , SYSDATE
+		    , 'N'
+		    , SYSDATE
+		    , #{hit}
+		)
 	</insert>
 	
 </mapper>
