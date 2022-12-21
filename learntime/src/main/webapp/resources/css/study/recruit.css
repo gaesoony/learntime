@@ -263,6 +263,10 @@
   cursor: pointer;
 }
 
+.selected-tech {
+  padding: 0px 10px 2px 17px !important;
+}
+
 .option-tech {
   padding: 0 !important;
 }
@@ -610,11 +614,10 @@ html .ui-button.ui-state-disabled:active {
 
 .tech-btn-div {
   position: relative;
-  margin-bottom: 5px;
 }
 
 .tech-btn {
-  padding: 5px 17px 8px 9px;
+  padding: 5px 17px 7px 9px;
   background-color: rgb(228, 247, 255);
   border: none;
   border-radius: 3px;
@@ -629,4 +632,28 @@ html .ui-button.ui-state-disabled:active {
   right: 12px;
   top: 6px;
   font-size: 5px;
+}
+
+/* 질문추가버튼 */
+
+.add-btn {
+  width: 60px;
+  height: 25px;
+  border: 1px solid var(--main-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  color: var(--main-color);
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background-color: var(--main-color);
+  color: white;
+}
+
+.fa-square-xmark,
+.fa-square {
+  cursor: pointer;
 }

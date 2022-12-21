@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="studyMapper">
-	<insert id="insertGroup">
+	<insert id="insertGroupInfo">
 		INSERT INTO RECRUIT_GROUP
 		(
 			NO
@@ -50,29 +50,44 @@
 
 		)
 	</insert>
-	<insert id="insertQuestion">
-		INSERT INTO RECRUIT_QUESTION
-		(
-			NO
-			, G_NO
-			, QUESTION
-			, DELETE_YN
-			, MODIFY_DATE
-		)
-		VALUES
-		(
-			SEQ_RECRUIT_QUESTION_NO.NEXTVAL
-			, (SELECT NO FROM RECRUIT_GROUP ORDER BY NO DESC OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY)
-			, #{question}
-			, 'N'
-			, SYSDATE	
-		)
+	<insert id="insertGroupQuestion">
+		INSERT INTO RECRUIT_QUESTION (NO, G_NO, QUESTION, DELETE_YN, MODIFY_DATE)
+		    SELECT SEQ_RECRUIT_QUESTION_NO.NEXTVAL, A, B, C, D FROM 
+		    (
+		    <foreach collection="array" item="arr" separator="UNION ALL">
+		    	SELECT (SELECT NO FROM RECRUIT_GROUP ORDER BY NO DESC OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY) AS A, #{arr} AS B,'N' AS C,SYSDATE AS D FROM DUAL
+		    </foreach>
+		    )
 	</insert>
-	<insert id="insertTechStack">
-		INSERT INTO GROUP_TECH_STACK
-		(
-			(SELECT NO FROM RECRUIT_GROUP ORDER BY NO DESC OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY)
-			, #{techStackNo}
-		)
+	
+	<insert id="insertGroupTechStack">
+		INSERT INTO GROUP_TECH_STACK (G_NO, TECH_STACK_NO)
+		    SELECT A, B FROM 
+		    (
+		    <foreach collection="array" item="arr" separator="UNION ALL">
+		    	SELECT (SELECT NO FROM RECRUIT_GROUP ORDER BY NO DESC OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY) AS A, #{arr} AS B FROM DUAL
+		    </foreach>
+		    )
 	</insert>
+	
+	<insert id="insertCommonTag">
+		INSERT INTO TAG (NO, NAME)
+			SELECT SEQ_TAG_NO.NEXTVAL, A FROM
+		    (
+		    <foreach collection="array" item="arr" separator="UNION ALL">
+		    	SELECT #{arr} AS A FROM DUAL WHERE NOT EXISTS (SELECT NAME FROM TAG WHERE NAME = #{arr})
+		    </foreach>
+		    )
+	</insert>
+	
+	<insert id="insertGroupTag">
+		INSERT INTO GROUP_TAG (GROUP_NO, TAG_NO)
+			SELECT (SELECT NO FROM RECRUIT_GROUP ORDER BY NO DESC OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY), A FROM
+		    (
+		    <foreach collection="array" item="arr" separator="UNION ALL">
+		    	SELECT (SELECT NO FROM TAG WHERE NAME = #{arr}) AS A FROM DUAL
+		    </foreach>
+		    )
+	</insert>
+
 </mapper>
