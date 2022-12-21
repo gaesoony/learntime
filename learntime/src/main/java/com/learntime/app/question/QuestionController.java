@@ -62,19 +62,7 @@ public class QuestionController {
 		
 		
 	}
-	@PostMapping("question/questionList")
-	public String cateBoard(HttpServletRequest req, ModelAndView mv){
-		int cate = Integer.parseInt(req.getParameter("cate"));
-		
-		List<QuestionVo> boardList = qs.boardList(cate);
-		
-		mv.addObject("list",boardList);
-		mv.addObject("cate",cate);
-
-		return "question/questionList"; 
-
-
-	}
+	
 	
 	// 문의게시판 글쓰기 (화면)
 	@GetMapping("question/questionWrite")
