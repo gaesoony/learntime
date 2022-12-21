@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.learntime.app.category.CategoryList;
 import com.learntime.app.question.dao.QuestionDao;
+import com.learntime.app.question.vo.PageVo;
 import com.learntime.app.question.vo.QuestionVo;
 
 @Service
@@ -29,17 +30,35 @@ public class QuestionServiceImpl implements QuestionService{
 
 
 	@Override
-	public List<QuestionVo> selectQuestionList(Map<String, String> map) {
+	public List<QuestionVo> selectQuestionList(Map<String, String> map ,PageVo pv) {
 		
-		return dao.selectQuestionList(sst,map);
+		return dao.selectQuestionList(sst,map,pv);
 	}
 
+	@Override
+	public int selectCount() {
+		return dao.selectCount(sst);
+		
+	}
+
+	@Override
+	public QuestionVo selectOne(QuestionVo vo) {
+		
+		return dao.selectOne(sst,vo);
+	}
 
 
 	@Override
-	public QuestionVo selectOne() {
+	public List<QuestionVo> boardList(int cate) {
 		
-		return dao.selectOne();
+		return dao.boardList(sst,cate);
 	}
+
+
+	
+
+
+	
+
 
 }

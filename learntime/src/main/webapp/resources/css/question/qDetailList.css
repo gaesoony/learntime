@@ -155,6 +155,11 @@
     line-height: 50px;
     margin-left: 10px;
 }
+#btn-to-m{
+	font-size:medium;
+	border:none;
+}
+
 
 /* 댓글 */
 .reply-section{
@@ -221,8 +226,15 @@
     border-radius: 1rem;
    
 }
+textarea{
+	margin-top:10px;
+	border:none;
+	outline:none;
+}
 
-input{
+.input-comment{
+	
+	height:50px;
     border: none;
     background-color: #5ECC80;
     font-size: medium;
