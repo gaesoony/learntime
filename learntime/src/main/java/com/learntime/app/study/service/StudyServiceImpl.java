@@ -3,6 +3,7 @@ package com.learntime.app.study.service;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.learntime.app.study.dao.StudyDao;
 import com.learntime.app.study.vo.GroupVo;
@@ -17,25 +18,50 @@ public class StudyServiceImpl implements StudyService{
 	private StudyDao dao;
 
 	//스터디/프로젝트 모집
+	@Transactional
 	@Override
 	public int recruit(GroupVo vo) {
 		vo.strTechStachNoList();
-		System.out.println(vo);
-		if(vo.getQuestion() == null) {
-			int result1 = dao.insertGroup(sst, vo);
-			return result1;
+	
+		// 기본 정보 8개 + 제목 + 내용은 필수사항 + 주소 선택사항 -> RECRUIT_GROUP 테이블에 1행 INSERT
+		
+		// 가입질문은 선택사항 -> RECRUIT_QUESTION 테이블 질문 개수만큼 여러행 INSERT (+그룹번호 SELECT)
+		
+		// 기술스택은 필수사항 -> GROUP_TECH_STACK 테이블에 기술스택 개수만큼 여러행 INSERT (+그룹번호 SELECT)
+		
+		// 태그도 선택사항 -> TAG 테이블에 있으면 넘어가고 없으면 INSERT -> GROUP_TAG 테이블에 태그 개수만큼 여러행 INSERT (+그룹번호 SELECT)
+		
+		int result1 = 0;
+		int result2 = 0;
+		int result3 = 0;
+		int result4 = 0;
+		int result5 = 0;
+		
+		result1 = dao.insertGroupInfo(sst, vo);
+		
+		if(result1 >= 1) {
+			result2 = dao.insertGroupQuestion(sst, vo.getQuestion());
 		}
 		
-		if(vo.getQuestion() != null) {
-			int result2 = dao.insertGroup(sst, vo);
-			int result3 = 0;
-			if(result2 == 1) {
-				result3 = dao.insertQuestion(sst, vo);
-			}
-			return result2 * result3;
+		if(result2 >= 1) {
+			result3 = dao.insertGroupTechStack(sst, vo.getTechStackNo());
 		}
 		
-		return 0;
+		if(result3 >= 1) {
+			result4 = dao.insertCommonTag(sst, vo.getTag());
+		}
+		
+		if(result4 >= 1) {
+			result5 = dao.insertGroupTag(sst, vo.getTag());
+		}
+		
+		System.out.println("result1 :" + result1);
+		System.out.println("result2 :" + result2);
+		System.out.println("result3 :" + result3);
+		System.out.println("result4 :" + result4);
+		System.out.println("result5 :" + result5);
+
+		return result1 * result2 * result3 * result4 * result5;
 
 	}
 

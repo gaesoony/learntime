@@ -9,24 +9,33 @@ import com.learntime.app.study.vo.GroupVo;
 public class StudyDaoImpl implements StudyDao{
 
 	@Override
-	public int insertGroup(SqlSessionTemplate sst, GroupVo vo) {
-		System.out.println("기술스택:"+vo.getTechStackNo());
-		return sst.insert("studyMapper.insertGroup", vo);
+	public int insertGroupInfo(SqlSessionTemplate sst, GroupVo vo) {
+		System.out.println("그룹인포들어옴");
+		return sst.insert("studyMapper.insertGroupInfo", vo);
 	}
 
 	@Override
-	public int insertQuestion(SqlSessionTemplate sst, GroupVo vo) {
-		
-		for(int i=0; i<vo.getQuestion().length; i++) {
-			int result = sst.insert("studyMapper.insertQuestion", vo.getQuestion()[i]);
-			if(result == 0) return 0;
-		}
-		return 1;
+	public int insertGroupQuestion(SqlSessionTemplate sst, String[] str) {
+		System.out.println("그룹질문들어옴" + str);
+		return sst.insert("studyMapper.insertGroupQuestion", str);
 	}
 
 	@Override
-	public int insertTag(SqlSessionTemplate sst, GroupVo vo) {
-		return 0;
+	public int insertGroupTechStack(SqlSessionTemplate sst, String[] str) {
+		System.out.println("그룹스택들어옴" + str);
+		return sst.insert("studyMapper.insertGroupTechStack", str);
+	}
+	
+	@Override
+	public int insertCommonTag(SqlSessionTemplate sst, String[] str) {
+		System.out.println("그룹태그들어옴1" + str);
+		return sst.insert("studyMapper.insertCommonTag", str);
+	}
+	
+	@Override
+	public int insertGroupTag(SqlSessionTemplate sst, String[] str) {
+		System.out.println("그룹태그들어옴2" + str);
+		return sst.insert("studyMapper.insertGroupTag", str);
 	}
 
 }

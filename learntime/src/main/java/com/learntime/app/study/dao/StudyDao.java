@@ -6,13 +6,19 @@ import com.learntime.app.study.vo.GroupVo;
 
 public interface StudyDao {
 	
-	//insert group
-	public int insertGroup(SqlSessionTemplate sst, GroupVo vo);
-
-	//insert question
-	public int insertQuestion(SqlSessionTemplate sst, GroupVo vo);
+	//insert group info
+	public int insertGroupInfo(SqlSessionTemplate sst, GroupVo vo);
 	
-	//insert tag
-	public int insertTag(SqlSessionTemplate sst, GroupVo vo);
+	//insert group question
+	public int insertGroupQuestion(SqlSessionTemplate sst, String[] str);
+	
+	//insert group tech stack
+	public int insertGroupTechStack(SqlSessionTemplate sst, String[] str);
+	
+	//insert common tag
+	public int insertCommonTag(SqlSessionTemplate sst, String[] str);
+	
+	//insert group tag
+	public int insertGroupTag(SqlSessionTemplate sst, String[] str);
 
 }

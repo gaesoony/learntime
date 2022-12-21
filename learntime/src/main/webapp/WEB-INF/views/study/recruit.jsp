@@ -386,7 +386,9 @@ pageEncoding="UTF-8"%>
                   <div class="question-btn-off">
                     <i class="fa-regular fa-square"></i>
                   </div>
-                  <div onclick="create_question(event)">질문추가</div>
+                  <div class="add-btn" onclick="create_question(event)">
+                    질문추가
+                  </div>
                 </div>
                 <ul class="recruit-question-list hidden">
                   <!-- <li>
@@ -451,34 +453,7 @@ pageEncoding="UTF-8"%>
               ></i>
             </div>
             <div>
-              <textarea name="intro" id="summernote">
-              <p>
-                스터디 모집글을 아래 양식을 참고해 작성해주세요.
-                <br>
-                <br>
-                마크다운, 단축키를 이용해서 편리하게 글을 작성할 수 있어요.
-                <br>
-                <br>
-                꼼꼼히 작성하면 멋진 스터디 팀원을 만나실 수 있을거예요.
-              </p>
-              <br>
-              <p>
-                <strong>
-                  [개발 스터디 모집 내용 예시]
-                </strong>
-              </p>
-              <br>
-              <ul>
-                <li>✔스터디 주제 :</li>
-                <li>✔스터디 목표 :</li>
-                <li>✔예상 스터디 일정(횟수) :</li>
-                <li>✔예상 커리큘럼 간략히 :</li>
-                <li>✔스터디 소개와 개설 이유 :</li>
-                <li>✔스터디 관련 주의사항 :</li>
-              </ul>
-        
-            </textarea
-              >
+              <textarea name="intro" id="summernote"></textarea>
             </div>
           </section>
           <section class="study-location hidden">
@@ -505,6 +480,7 @@ pageEncoding="UTF-8"%>
                   class="detailAddress"
                   placeholder="장소 검색 후 마커를 클릭하면 주소가 표시됩니다"
                   disabled
+                  readonly
                 />
                 <input type="hidden" id="place-name" name="place" disabled />
               </div>
@@ -529,6 +505,7 @@ pageEncoding="UTF-8"%>
       const numberPeople = document.querySelector("input[name=numberPeople]");
       const startDate = document.querySelector("input[name=startDate]");
       const title = document.querySelector("input[name=title]");
+
       const studyLocation = document.querySelector(".study-location");
 
       numberPeople.addEventListener("blur", function (event) {
@@ -562,6 +539,7 @@ pageEncoding="UTF-8"%>
       );
 
       function checkValidate() {
+        const content = document.querySelector("textarea[name=intro]");
         let flagType = false;
         let flagWay = false;
         let flagTech = false;
@@ -569,6 +547,7 @@ pageEncoding="UTF-8"%>
         let flagPeople = false;
         let flagStartDate = false;
         let flagTitle = false;
+        let flagContent = false;
         let flagQuestion = true;
         let flagPlace = true;
 
@@ -629,6 +608,10 @@ pageEncoding="UTF-8"%>
 
         if (title.value !== "") {
           flagTitle = true;
+        }
+
+        if (content.innerHTML.trim() !== "") {
+          flagContent = true;
         }
 
         if (flagType == false) {
@@ -891,15 +874,14 @@ pageEncoding="UTF-8"%>
         const address = document.querySelector("input[name=address]");
         if (studyWayStr == "온라인" || studyWayStr == "온라인/오프라인") {
           studyLocation.classList.add("hidden");
-          place.setAttribute("disabled", "true");
-          address.setAttribute("disabled", "true");
+          place.setAttribute("disabled", "disabled");
+          address.setAttribute("disabled", "disabled");
         }
 
         if (studyWayStr == "오프라인") {
           studyLocation.classList.remove("hidden");
-          place.setAttribute("disabled", "false");
-          address.setAttribute("disabled", "false");
-          address.setAttribute("readonly", "true");
+          place.removeAttribute("disabled");
+          address.removeAttribute("disabled");
         }
       }
 
@@ -914,15 +896,14 @@ pageEncoding="UTF-8"%>
         const address = document.querySelector("input[name=address]");
         if (studyWayStr == "온라인" || studyWayStr == "온라인/오프라인") {
           studyLocation.classList.add("hidden");
-          place.setAttribute("disabled", "true");
-          address.setAttribute("disabled", "true");
+          place.setAttribute("disabled", "disabled");
+          address.setAttribute("disabled", "disabled");
         }
 
         if (studyWayStr == "오프라인") {
           studyLocation.classList.remove("hidden");
-          place.setAttribute("disabled", "false");
-          address.setAttribute("disabled", "false");
-          address.setAttribute("readonly", "true");
+          place.removeAttribute("disabled");
+          address.removeAttribute("disabled");
         }
       }
     </script>
