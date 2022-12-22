@@ -68,6 +68,48 @@
         border: #5ECC80;
         border-radius: 10px;
      }
+
+     /* 해시태그 */
+     .content{
+        width: 100%;
+        height: 6vh;
+        border: none;
+        margin-bottom: 55px;
+     }
+     #tag{
+        border: none;
+        font-size: 16px;
+        height: 5vh;
+        margin-bottom: 10px;
+        outline: none;
+     }
+
+    ul li {
+        display: inline-block;
+        letter-spacing: -.5px;
+
+        background-color: white;
+        border: 2px solid #5ECC80;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 16px;
+        margin-bottom: 20px;
+        padding: 10px;
+        color: #37774A;
+        margin-right: 10px;
+    }
+
+    .tag-item:hover {
+        background-color: #5ECC80;
+        color: white;
+    }
+
+    .del-btn {
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-left: 8px;
+    }
 </style>
 
 <link
@@ -86,8 +128,14 @@
     <div class="mainbox">
         <div class="maintitle">
             <input type="text" name="title" class="title" placeholder="제목을 입력하세요">
-            <input type="text" name="hashtag" class="hashtag" placeholder="해시태그를 입력하세요">
             <input type="text" name="worktime" class="worktime" placeholder="공부한 시간 | ex) 120분">
+            <div class="content">
+                <div>
+                    <input type="text" id="tag" placeholder="해시태그를 입력하세요" />
+                </div>
+                <ul id="tag-list">
+                </ul>
+            </div>
 
             <textarea class="summernote" name="editordata"></textarea>
 
@@ -111,6 +159,74 @@
             lang: "ko-KR",
             disableResizeEditor: true,
         });
+    </script>
+
+<script>
+    $(document)
+        .ready(function () {
+
+            var tag = {};
+            var counter = 0;
+
+            // 태그를 추가한다.
+            function addTag(value) {
+            tag[counter] = value; // 태그를 Object 안에 추가
+            counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
+            }
+
+            // 최종적으로 서버에 넘길때 tag 안에 있는 값을 array type 으로 만들어서 넘긴다.
+            function marginTag() {
+            return Object.values(tag)
+                .filter(function (word) {
+                return word !== "";
+                });
+            }
+
+            $("#tag")
+            .on("keyup", function (e) {
+                var self = $(this);
+                console.log("keypress");
+
+                // input 에 focus 되있을 때 엔터 및 스페이스바 입력시 구동
+                if (e.key === "Enter" || e.keyCode == 32) {
+
+                var tagValue = self.val(); // 값 가져오기
+
+                // 값이 없으면 동작 안합니다.
+                if (tagValue !== "") {
+
+                    // 같은 태그가 있는지 검사한다. 있다면 해당값이 array 로 return 된다.
+                    var result = Object.values(tag)
+                    .filter(function (word) {
+                        return word === tagValue;
+                    })
+
+                    // 태그 중복 검사
+                    if (result.length == 0) {
+                    $("#tag-list")
+                        .append("<li class='tag-item'>" + tagValue + "<span class='del-btn' idx='" + counter + "'>x</span></li>");
+                    addTag(tagValue);
+                    self.val("");
+                    } else {
+                    alert("해시태그 중복입니다");
+                    }
+                }
+                e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
+                }
+            });
+
+            // 삭제 버튼
+            // 삭제 버튼은 비동기적 생성이므로 document 최초 생성시가 아닌 검색을 통해 이벤트를 구현시킨다.
+            $(document)
+            .on("click", ".del-btn", function (e) {
+                var index = $(this)
+                .attr("idx");
+                tag[index] = "";
+                $(this)
+                .parent()
+                .remove();
+            });
+        })
     </script>
 
 </body>

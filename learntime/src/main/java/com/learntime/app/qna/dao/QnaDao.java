@@ -11,4 +11,7 @@ public interface QnaDao {
 	//게시글 작성
 	int write(SqlSessionTemplate sst, QnaVo vo);
 
+	int insertTag(SqlSessionTemplate sst, String[] tag);
+
+
 }
