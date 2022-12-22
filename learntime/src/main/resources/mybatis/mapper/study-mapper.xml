@@ -21,6 +21,8 @@
 			, PLACE
 			, ADDRESS
 			, HIT
+			, NAME
+			, IMG_PATH
 			, CLOSING_YN
 			, DELETE_YN
 			, MODIFY_DATE
@@ -29,7 +31,7 @@
 		VALUES
 		(
 			SEQ_RECRUIT_GROUP_NO.NEXTVAL
-			, '1'
+			, #{writer}
 			, #{gTypeNo}
 			, #{gWayNo}
 			, #{gPeriodNo}
@@ -43,6 +45,8 @@
 			, #{place}
 			, #{address}
 			, '0'
+			, '${writerNick}님의 스터디'
+			, 'study-profile.JPG'
 			, 'N'
 			, 'N'
 			, SYSDATE
@@ -89,5 +93,30 @@
 		    </foreach>
 		    )
 	</insert>
+	
+	<select id="selectMyGroupList" resultType="map">
+		SELECT G.NO, G.DELETE_YN, G.NAME, G.IMG_PATH, L.STATUS
+		FROM RECRUIT_LIST L
+		JOIN RECRUIT_GROUP G ON L.G_NO = G.NO
+		WHERE L.M_NO = #{no} 
+		AND G.DELETE_YN = 'N'
+		AND (L.STATUS IN ('B', 'C'))
+	</select>
+	
+	<select id="selectPopularTagList" resultType="map">
+		SELECT T.NO, T.NAME, COUNT(T.NO) CNT
+		FROM GROUP_TAG G
+		JOIN TAG T ON G.TAG_NO = T.NO
+		GROUP BY (T.NO, T.NAME)
+		ORDER BY CNT DESC FETCH NEXT 10 ROWS ONLY
+	</select>
+	
+	<select id="selectPopularTechStackList" resultType="map">
+		SELECT T.NO, T.NAME, T.IMG_PATH, COUNT(T.NO) CNT
+		FROM GROUP_TECH_STACK G
+		JOIN TECH_STACK T ON G.TECH_STACK_NO = T.NO
+		GROUP BY (T.NO, T.NAME, T.IMG_PATH)
+		ORDER BY CNT DESC FETCH NEXT 10 ROWS ONLY
+	</select>
 
 </mapper>

@@ -126,15 +126,20 @@
 .my-study {
   position: sticky;
   top: 140px;
-  padding: 20px 15px 10px 15px;
+  padding: 20px 15px 22px 15px;
 }
 
 .my-study h1 {
   margin-bottom: 20px;
 }
 
+.my-study-list span {
+  font-size: 14px;
+  color: #828282;
+}
+
 .my-study-list-detail {
-  margin-bottom: 12px;
+  margin-top: 12px;
 }
 
 .my-study-list-detail img {
