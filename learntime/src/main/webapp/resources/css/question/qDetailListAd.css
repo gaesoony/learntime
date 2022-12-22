@@ -445,5 +445,26 @@ input{
     
 
 }
+.input-comment{
+	
+	height:50px;
+    border: none;
+    background-color: #5ECC80;
+    font-size: medium;
+    font-weight: 600;
+    width: 90px;
+    color: white;
+    text-align: center;
+    line-height: 45px;
+    border-radius: 1rem;
+    margin-right: 40px;
+
+
+}
+
+.countHL{
+    font-size: x-large;
+    
+}
 
 

@@ -89,7 +89,6 @@ public class QuestionController {
 	public String qDetailList(QuestionVo vo) {
 		
 		
-		
 		return "question/qDetailList";
 			
 		}

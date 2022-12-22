@@ -12,7 +12,7 @@
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/common/header.jsp" %>
-<form action="/app/question/qDetailList" method="post">
+<form action="" method="get">
 	<div class="list-main-m">
     <div class="q-detail-list-m">
         <div class="q-sign-m">
