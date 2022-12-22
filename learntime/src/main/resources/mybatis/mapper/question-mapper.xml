@@ -26,7 +26,7 @@
   <select id="selectOne" resultType="com.learntime.app.question.vo.QuestionVo">
   	SELECT C.NAME,Q.TITLE, M.NICK, Q.ENROLL_DATE
   	FROM QUESTION_BOARD Q JOIN COMMON_CATEGORY ON Q.CATE_NO = C.NO
-  	JOIN MEMBER M ON M.NO = Q.WRITER
+  	JOIN MEMBER M ON M.NO = Q.WRITER 
   </select>
 	
 	
