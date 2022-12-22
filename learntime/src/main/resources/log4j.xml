@@ -6,35 +6,39 @@
 	<appender name="console" class="org.apache.log4j.ConsoleAppender">
 		<param name="Target" value="System.out" />
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+			<param name="ConversionPattern" value="%-5p [%d{yyyy년MM월dd일 HH시mm분ss초}] %m%n" />
 		</layout>
 	</appender>
 	
-	<!-- Application Loggers -->
-	<logger name="com.learntime.app">
-		<level value="info" />
-	</logger>
+	<!-- FileAppender (xml) -->
+	<appender name="faxml" class="org.apache.log4j.FileAppender">
+		<param name="file" value="D:/dev/logs/falog.xml"></param>
+		<param name="append" value="true"></param>
+		<layout class="org.apache.log4j.xml.XMLLayout"/>
+	</appender>
 	
-	<!-- 3rdparty Loggers -->
-	<logger name="org.springframework.core">
-		<level value="info" />
-	</logger>
+	<!-- FileAppender (txt) -->
+	<appender name="fatxt" class="org.apache.log4j.FileAppender">
+		<param name="file" value="D:/dev/logs/falog.txt"></param>
+		<param name="append" value="true"></param>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p [%d{yyyy년MM월dd일 HH시mm분ss초}] %m%n" />
+		</layout>
+	</appender>
 	
-	<logger name="org.springframework.beans">
-		<level value="info" />
-	</logger>
 	
-	<logger name="org.springframework.context">
-		<level value="info" />
-	</logger>
-
-	<logger name="org.springframework.web">
-		<level value="info" />
-	</logger>
+	<!-- 
+		ConversionPattern 
+		%p : priority
+		%c : 클래스 // category
+		%m : 메세지
+		%n : 개행문자 (줄바꿈)
+		%d : date
+	 -->
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
 	
