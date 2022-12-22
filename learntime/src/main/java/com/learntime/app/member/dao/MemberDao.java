@@ -17,5 +17,11 @@ public interface MemberDao {
 	//비밀번호 찾기 (아이디로 조회)
 	public MemberVo findPwd(SqlSessionTemplate sst, String id);
 	
+	// 이메일 인증 메일 링크 클릭 할 경우
+	public int updateEmailAuth(SqlSessionTemplate sst, String email);
+	
+	// 탈퇴(비밀번호로)
+	public int memberDeletePwd(SqlSessionTemplate sst, String pwd);
+	
 
 }

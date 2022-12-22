@@ -9,6 +9,7 @@
 		 SELECT *
 		  FROM MEMBER
 		  WHERE ID = #{id}
+		  AND EMAIL_AUTH='1'
 	
 	</select>
 	
@@ -26,6 +27,16 @@
 		  WHERE NICK = #{nick}
 	
 	</select>
+	
+	
+	<!--메일 인증  -->
+	<update id="updateEmailAuth">
+		UPDATE MEMBER 
+		SET EMAIL_AUTH='1'
+		WHERE ID=#{email}
+	</update>
+	
+	
 	
 	<!--아이디 찾기  -->
 	<select id="findId" resultType = "MemberVo">
