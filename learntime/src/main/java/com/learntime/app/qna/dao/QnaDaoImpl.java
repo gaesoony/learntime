@@ -11,7 +11,15 @@ public class QnaDaoImpl implements QnaDao {
 	//게시글 작성
 	@Override
 	public int write(SqlSessionTemplate sst, QnaVo vo) {
+		System.out.println("qna insert : " + vo);
 		return sst.insert("qnaMapper.write", vo);
 	}
 
+	@Override
+	public int insertTag(SqlSessionTemplate sst, String[] tag) {
+		System.out.println("tag insert : " + tag);
+		return sst.insert("qnaMapper.insertTag", tag);
+	}
+
+	
 }

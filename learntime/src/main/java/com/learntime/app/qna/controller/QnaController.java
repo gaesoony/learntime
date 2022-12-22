@@ -19,19 +19,19 @@ public class QnaController {
 	//목록 조회 (화면)
 	@GetMapping("/list")
 	public String list() {
-		return "/qna/list";
+		return "qna/list";
 	}
 	
 	//게시글 상세조회 (화면)
 	@GetMapping("/detail")
 	public String detail() {
-		return "/qna/detail";
+		return "qna/detail";
 	}
 	
 	//게시글 작성 (화면)
 	@GetMapping("/write")
 	public String write() {
-		return "/qna/write";
+		return "qna/write";
 	}
 	
 	//게시글 작성 (찐)
@@ -41,9 +41,10 @@ public class QnaController {
 		int result = qs.write(vo);
 		
 		if(result == 1) {
-			return "/qna/list";
+			System.out.println(result);
+			return "qna/list";
 		}else {
-			return "/error";
+			return "common/errorPage";
 		}
 	}
 }

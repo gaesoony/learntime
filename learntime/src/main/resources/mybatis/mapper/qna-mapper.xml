@@ -30,4 +30,19 @@
 		)
 	</insert>
 	
+	<insert id="insertTag">
+		INSERT INTO TAG
+		(
+		    NO
+		    , NAME
+		)
+		VALUES
+		(
+		    SEQ_TAG_NO.NEXTVAL
+		    , #{tag}
+		);
+		
+		SELECT * FROM TAG
+	</insert>
+	
 </mapper>
