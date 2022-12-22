@@ -1,5 +1,6 @@
 package com.learntime.app.member.controller;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -53,10 +54,10 @@ public class MemberController {
 	
 //	회원가입 (서버)
 	@PostMapping("/member/join")
-	public String join(MemberVo  vo) {
+	public String join(MemberVo  vo) throws Exception {
 		
 		int result=memberService.join(vo);
-		System.out.println(vo);
+		
 		
 		if(result==1) {
 			return "/member/joinCertification";
@@ -74,10 +75,23 @@ public class MemberController {
 		return memberService.nickCheck(nick);
 	}
 	
-//	회원가입 승인메일 발송 (화면)
+//	회원가입 인증 메일 발송 (화면)
 	@GetMapping("/member/join/certification")
 	public String certification() {
 		return "/member/joinCertification";
+	}
+	
+//	메일 인증 확인 링크 (화면)
+	@GetMapping("/member/emailAuth")
+	public String emailAuth(@RequestParam("email") String email) {
+		memberService.emailAuth(email);
+		return "/member/emailAuthSuccess";
+	}
+	
+//	메일 인증 확인 링크 (화면)
+	@GetMapping("/member/emailAuthSuccess")
+	public String emailAuth() {
+		return "/member/emailAuthSuccess";
 	}
 	
 //  아이디 찾기(화면)
@@ -174,7 +188,7 @@ public class MemberController {
 	      return "/member/mypage-study";
 	  }
 	  
-	//   마이페이지-qna list(화면)
+//   마이페이지-qna list(화면)
       @GetMapping("/member/mypage/qnaList")
       public String mypageQnaList() {
          return "/member/mypage-qnaList";
@@ -234,6 +248,18 @@ public class MemberController {
 		@GetMapping("/member/mypage/edit/pwd")
 		public String mypageEditPwd() {
 			return "/member/mypage-pwdEdit";
+		}
+		
+
+//  마이페이지-계정 정보-비밀번호 변경 이메일 전송(화면)
+		@PostMapping("/member/delete")
+		public String memberDeletePwd(String pwd,HttpSession session) {
+			int result=memberService.memberDeletePwd(pwd);
+			if(result==0) {
+				return "common/errorPage";
+			}
+			session.invalidate();
+			return "redirect:/main";
 		}
 	
 

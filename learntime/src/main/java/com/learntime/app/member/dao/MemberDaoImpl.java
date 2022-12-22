@@ -37,5 +37,16 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return sst.selectOne("memberMapper.findPwd",id);
 	}
+	//이메일 인증 완료
+	@Override
+	public int updateEmailAuth(SqlSessionTemplate sst, String email) {
+		return sst.update("memberMapper.updateEmailAuth", email);
+	}
+	//탈퇴
+	@Override
+	public int memberDeletePwd(SqlSessionTemplate sst, String pwd) {
+		
+		return sst.update("memberMapper.memberDeletePwd", pwd);
+	}
 
 }

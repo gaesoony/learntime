@@ -117,6 +117,7 @@
 <div id="resultPwd-area">
     <div id="result">
         <div id="result-title">
+         <%if(findPwd!=null){ %>
             <div id="title-big">
                 비밀번호 재설정 메일 발송
             </div>
@@ -124,6 +125,17 @@
                 입력한 이메일로 비밀번호 설정 메일이 <br>
                 전송되었습니다 ✉️
             </div>
+            <%}else{ %>
+            
+             <div id="title-big">
+                비밀번호 재설정 메일 발송 실패
+            </div>
+            <div id="title-small">
+                <!-- 입력한 이메일로 가입한 이력이 <br>
+                없습니다 T.T️ -->
+            </div>
+            
+             <%} %>
         </div>
         
         <div id="resultBox">
@@ -136,10 +148,10 @@
 				       <span>몇 분내로 확인되지 않으면 스팸 폴더를 확인해주세요</span>
 				</div>
            <%}else{ %>
-           		<div id="result-findId">메일 전송 실패</div>
-				<div id="userId">조회된 아이디가 없습니다.</div>
+           		<div id="result-findId">이메일 조회 결과</div>
+				<div id="userId">입력한 이메일로 가입한 이력이 없습니다.</div>
 				     <div id="mail-info">
-				       아이디를  다시 확인 해주세요.<br>
+				       이메일을 다시 확인 해주세요.<br>
 				       <span></span>
 				</div>
          

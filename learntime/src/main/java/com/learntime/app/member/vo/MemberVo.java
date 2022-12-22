@@ -19,6 +19,7 @@ public class MemberVo {
 	private String holdToken;
 	private String[] teckStackNo;
 	private String adminYn;
+	private String emailAuth;
 	
 
 }
