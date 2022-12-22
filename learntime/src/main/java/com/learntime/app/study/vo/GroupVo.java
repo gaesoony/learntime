@@ -7,6 +7,7 @@ public class GroupVo {
 	
 	private String no;
 	private String writer;
+	private String writerNick;
 	private String gTypeNo;
 	private String gWayNo;
 	private String gPeriodNo;

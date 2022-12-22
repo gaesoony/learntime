@@ -1,18 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%> <%@taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
-    <link rel="stylesheet" href="/app/resources/css/study/list.css?ver=6" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/study/list.css?ver=7" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
       rel="stylesheet"
-    />
+    /> -->
   </head>
   <body>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -21,7 +22,7 @@ pageEncoding="UTF-8"%>
         <div class="bold700">스터디와 사이드 프로젝트를 찾는</div>
         <div class="bold700">가장 쉬운 방법</div>
         <div class="flex">
-          <img src="/app/resources/img/study/study-banner-logo.png" alt="" />
+          <img src="${pageContext.request.contextPath}/resources/img/study/study-banner-logo.png" alt="" />
           <span>에서 함께할 개발자를 찾으세요</span>
         </div>
       </div>
@@ -35,65 +36,22 @@ pageEncoding="UTF-8"%>
               <span class="bold700 gray1">내가 가입한 모임</span>
             </h1>
             <ul class="my-study-list">
-              <li class="my-study-list-detail flex">
-                <img
-                  src="${pageContext.request.contextPath}/resources/img/study/study-profile.JPG"
-                  alt=""
-                />
-                <a
-                  href="${pageContext.request.contextPath}/mystudy/main"
-                  class="my-study-title gray1"
-                  >비전공자 스프링 스터디</a
-                >
-              </li>
-              <li class="my-study-list-detail flex">
-                <img
-                  src="${pageContext.request.contextPath}/resources/img/study/study-profile.JPG"
-                  alt=""
-                /><span class="my-study-title gray1"
-                  >비전공자 스프링 스터디</span
-                >
-              </li>
-              <li class="my-study-list-detail flex">
-                <img
-                  src="/app/resources/img/study/study-profile.JPG"
-                  alt=""
-                /><span class="my-study-title gray1"
-                  >비전공자 스프링 스터디</span
-                >
-              </li>
-              <li class="my-study-list-detail flex">
-                <img
-                  src="/app/resources/img/study/study-profile.JPG"
-                  alt=""
-                /><span class="my-study-title gray1"
-                  >비전공자 스프링 스터디</span
-                >
-              </li>
-              <li class="my-study-list-detail flex">
-                <img
-                  src="/app/resources/img/study/study-profile.JPG"
-                  alt=""
-                /><span class="my-study-title gray1"
-                  >비전공자 스프링 스터디</span
-                >
-              </li>
-              <li class="my-study-list-detail flex">
-                <img
-                  src="/app/resources/img/study/study-profile.JPG"
-                  alt=""
-                /><span class="my-study-title gray1"
-                  >비전공자 스프링 스터디</span
-                >
-              </li>
-              <li class="my-study-list-detail flex">
-                <img
-                  src="/app/resources/img/study/study-profile.JPG"
-                  alt=""
-                /><span class="my-study-title gray1"
-                  >비전공자 스프링 스터디</span
-                >
-              </li>
+              <c:if test="${myGroupList.size() == 0 or myGroupList == null}">
+                <span>아직 가입된 모임이 없습니다</span>
+              </c:if>
+              <c:forEach items="${myGroupList}" var="map">
+                <li class="my-study-list-detail flex">
+                  <img
+                    src="${pageContext.request.contextPath}/resources/img/study/${map.IMG_PATH}"
+                    alt=""
+                  />
+                  <a
+                    href="${pageContext.request.contextPath}/mystudy/main?no=${map.NO}"
+                    class="my-study-title gray1"
+                    >${map.NAME}</a
+                  >
+                </li>
+              </c:forEach>
             </ul>
           </div>
         </aside>
@@ -196,72 +154,14 @@ pageEncoding="UTF-8"%>
               </li>
             </ul>
             <ul class="tech-list">
-              <li>
-                <div class="flex">
-                  <img src="/app/resources/img/study/java.svg" alt="" />
-                  <span>Java</span>
-                </div>
-              </li>
-              <li>
-                <div class="flex">
-                  <img src="/app/resources/img/study/java.svg" alt="" />
-                  <span>Java</span>
-                </div>
-              </li>
-              <li>
-                <div class="flex">
-                  <img src="/app/resources/img/study/java.svg" alt="" />
-                  <span>Java</span>
-                </div>
-              </li>
-              <li>
-                <div class="flex">
-                  <img src="/app/resources/img/study/java.svg" alt="" />
-                  <span>Java</span>
-                </div>
-              </li>
-              <li>
-                <div class="flex">
-                  <img src="/app/resources/img/study/java.svg" alt="" />
-                  <span>Java</span>
-                </div>
-              </li>
-              <li>
-                <div class="flex">
-                  <img src="/app/resources/img/study/java.svg" alt="" />
-                  <span>Java</span>
-                </div>
-              </li>
-              <li>
-                <div class="flex">
-                  <img src="/app/resources/img/study/java.svg" alt="" />
-                  <span>Java</span>
-                </div>
-              </li>
-              <li>
-                <div class="flex">
-                  <img src="/app/resources/img/study/java.svg" alt="" />
-                  <span>Java</span>
-                </div>
-              </li>
-              <li>
-                <div class="flex">
-                  <img src="/app/resources/img/study/java.svg" alt="" />
-                  <span>Java</span>
-                </div>
-              </li>
-              <li>
-                <div class="flex">
-                  <img src="/app/resources/img/study/java.svg" alt="" />
-                  <span>Java</span>
-                </div>
-              </li>
-              <li>
-                <div class="flex">
-                  <img src="/app/resources/img/study/java.svg" alt="" />
-                  <span>Java</span>
-                </div>
-              </li>
+            	<c:forEach items="${popularTechStackList}" var="map">
+            		<li>
+		                <div class="flex">
+		                  <img src="${pageContext.request.contextPath}/resources/upload/techStack/${map.IMG_PATH}" alt="" />
+		                  <span>${map.NAME}</span>
+		                </div>
+		            </li>
+            	</c:forEach>
             </ul>
           </section>
           <section class="study-area">
@@ -758,46 +658,12 @@ pageEncoding="UTF-8"%>
               <span class="bold700 gray1">인기 태그</span>
             </h1>
             <ul class="popular-tag-list">
-              <li class="popular-tag-list-detail">
-                <i class="fa-solid fa-hashtag gray1"></i>
-                <span>스터디</span>
-              </li>
-              <li class="popular-tag-list-detail">
-                <i class="fa-solid fa-hashtag gray1"></i>
-                <span>프론트엔드</span>
-              </li>
-              <li class="popular-tag-list-detail">
-                <i class="fa-solid fa-hashtag gray1"></i>
-                <span>백엔드</span>
-              </li>
-              <li class="popular-tag-list-detail">
-                <i class="fa-solid fa-hashtag gray1"></i>
-                <span>모각코</span>
-              </li>
-              <li class="popular-tag-list-detail">
-                <i class="fa-solid fa-hashtag gray1"></i>
-                <span>알고리즘</span>
-              </li>
-              <li class="popular-tag-list-detail">
-                <i class="fa-solid fa-hashtag gray1"></i>
-                <span>코딩테스트</span>
-              </li>
-              <li class="popular-tag-list-detail">
-                <i class="fa-solid fa-hashtag gray1"></i>
-                <span>자바</span>
-              </li>
-              <li class="popular-tag-list-detail">
-                <i class="fa-solid fa-hashtag gray1"></i>
-                <span>자바스크립트</span>
-              </li>
-              <li class="popular-tag-list-detail">
-                <i class="fa-solid fa-hashtag gray1"></i>
-                <span>포트폴리오</span>
-              </li>
-              <li class="popular-tag-list-detail">
-                <i class="fa-solid fa-hashtag gray1"></i>
-                <span>프로젝트</span>
-              </li>
+            	<c:forEach items="${popularTagList}" var="map">
+            		<li class="popular-tag-list-detail">
+	                <i class="fa-solid fa-hashtag gray1"></i>
+	                <span>${map.NAME}</span>
+              		</li>
+            	</c:forEach>
             </ul>
           </div>
         </aside>

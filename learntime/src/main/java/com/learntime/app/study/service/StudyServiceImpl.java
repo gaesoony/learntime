@@ -1,5 +1,8 @@
 package com.learntime.app.study.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,7 +43,11 @@ public class StudyServiceImpl implements StudyService{
 		result1 = dao.insertGroupInfo(sst, vo);
 		
 		if(result1 >= 1) {
-			result2 = dao.insertGroupQuestion(sst, vo.getQuestion());
+			if(vo.getQuestion() == null) {
+				result2 = 1;
+			}else {
+				result2 = dao.insertGroupQuestion(sst, vo.getQuestion());
+			}
 		}
 		
 		if(result2 >= 1) {
@@ -48,11 +55,19 @@ public class StudyServiceImpl implements StudyService{
 		}
 		
 		if(result3 >= 1) {
-			result4 = dao.insertCommonTag(sst, vo.getTag());
+			if(vo.getTag() == null) {
+				result4 = 1;
+			}else {
+				result4 = dao.insertCommonTag(sst, vo.getTag());
+			}
 		}
 		
 		if(result4 >= 1) {
-			result5 = dao.insertGroupTag(sst, vo.getTag());
+			if(vo.getTag() == null) {
+				result5 = 1;
+			}else {
+				result5 = dao.insertGroupTag(sst, vo.getTag());
+			}
 		}
 		
 		System.out.println("result1 :" + result1);
@@ -63,6 +78,27 @@ public class StudyServiceImpl implements StudyService{
 
 		return result1 * result2 * result3 * result4 * result5;
 
+	}
+
+	//내가 가입한 모임 조회
+	@Override
+	public List<Map<String, String>> selectMyGroupList(String no) {
+		List<Map<String, String>> result = dao.selectMyGroupList(sst, no);
+		return result;
+	}
+
+	//인기 태그 목록 조회
+	@Override
+	public List<Map<String, String>> selectPopularTagList() {
+		List<Map<String, String>> result = dao.selectPopularTagList(sst);
+		return result;
+	}
+
+	//인기 기술스택 리스트 조회
+	@Override
+	public List<Map<String, String>> selectPopularTechStackList() {
+		List<Map<String, String>> result = dao.selectPopularTechStackList(sst);
+		return result;
 	}
 
 }

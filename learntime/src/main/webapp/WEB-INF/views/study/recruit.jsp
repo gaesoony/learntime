@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,7 +9,7 @@ pageEncoding="UTF-8"%>
     <title>Insert title here</title>
     <link
       rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/css/study/recruit.css?ver=5"
+      href="${path}/resources/css/study/recruit.css?ver=5"
     />
 
     <link
@@ -20,14 +22,12 @@ pageEncoding="UTF-8"%>
       href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
       rel="stylesheet"
     />
-
-    <script src="${pageContext.request.contextPath}/resources/js/study/recruit.js"></script>
   </head>
   <body>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
     <div class="middle">
       <form
-        action="${pageContext.request.contextPath}/study/recruit"
+        action="${path}/study/recruit"
         method="post"
         onsubmit="return checkValidate();"
       >
@@ -493,7 +493,7 @@ pageEncoding="UTF-8"%>
               type="button"
               value="취소"
               class="cancel-btn"
-              onclick="location.href='${pageContext.request.contextPath}/study/list'"
+              onclick="location.href='${path}/study/list'"
             />
             <input type="submit" value="등록" class="save-btn" />
           </section>
@@ -501,424 +501,27 @@ pageEncoding="UTF-8"%>
       </form>
     </div>
 
-    <script>
-      const numberPeople = document.querySelector("input[name=numberPeople]");
-      const startDate = document.querySelector("input[name=startDate]");
-      const title = document.querySelector("input[name=title]");
-
-      const studyLocation = document.querySelector(".study-location");
-
-      numberPeople.addEventListener("blur", function (event) {
-        if (event.target.value < 2 && event.target.value !== "") {
-          event.target.value = 2;
-        }
-
-        if (event.target.value > 30) {
-          event.target.value = 30;
-        }
-      });
-      const selectedType = document.querySelector(".selected-type");
-      const selectedWay = document.querySelector(".selected-way");
-      const selectedPeriod = document.querySelector(".selected-period");
-      const selectedTech = document.querySelector(".tech-btn-list");
-      const selectedTech2 = document.querySelector(
-        ".selected-tech:not(.tech-btn-list .tech-btn )"
-      );
-
-      const optionsContainerType = document.querySelector(
-        ".options-container-type"
-      );
-      const optionsContainerWay = document.querySelector(
-        ".options-container-way"
-      );
-      const optionsContainerPeriod = document.querySelector(
-        ".options-container-period"
-      );
-      const optionsContainerTech = document.querySelector(
-        ".options-container-tech"
-      );
-
-      function checkValidate() {
-        const content = document.querySelector("textarea[name=intro]");
-        let flagType = false;
-        let flagWay = false;
-        let flagTech = false;
-        let flagPeriod = false;
-        let flagPeople = false;
-        let flagStartDate = false;
-        let flagTitle = false;
-        let flagContent = false;
-        let flagQuestion = true;
-        let flagPlace = true;
-
-        const studyWay = document.querySelector(".selected-way");
-        if (studyWay.innerHTML == "오프라인") {
-          const place = document.querySelector("input[name=place]");
-          if (place.value == "") {
-            flagPlace = false;
-          }
-        }
-
-        optionsContainerType
-          .querySelectorAll("input[type=radio]")
-          .forEach(function (item) {
-            if (item.checked) {
-              flagType = true;
-            }
-          });
-
-        optionsContainerWay
-          .querySelectorAll("input[type=radio]")
-          .forEach(function (item) {
-            if (item.checked) {
-              flagWay = true;
-            }
-          });
-
-        optionsContainerPeriod
-          .querySelectorAll("input[type=radio]")
-          .forEach(function (item) {
-            if (item.checked) {
-              flagPeriod = true;
-            }
-          });
-
-        optionsContainerTech
-          .querySelectorAll("input[type=checkbox]")
-          .forEach(function (item) {
-            if (item.checked) {
-              flagTech = true;
-            }
-          });
-
-        const question = document.querySelectorAll("input[name=question]");
-        question.forEach(function (item) {
-          if (item.value === "") {
-            flagQuestion = false;
-          }
-        });
-
-        if (numberPeople.value !== "") {
-          flagPeople = true;
-        }
-
-        if (startDate.value !== "") {
-          flagStartDate = true;
-        }
-
-        if (title.value !== "") {
-          flagTitle = true;
-        }
-
-        if (content.innerHTML.trim() !== "") {
-          flagContent = true;
-        }
-
-        if (flagType == false) {
-          alert("모집구분을 선택해주세요");
-          return false;
-        }
-
-        if (flagPeople == false) {
-          alert("모집인원을 작성해주세요");
-          return false;
-        }
-
-        if (flagWay == false) {
-          alert("진행방식을 선택해주세요");
-          return false;
-        }
-
-        if (flagPeriod == false) {
-          alert("진행기간을 선택해주세요");
-          return false;
-        }
-
-        if (flagTech == false) {
-          alert("기술스택을 선택해주세요");
-          return false;
-        }
-
-        if (flagStartDate == false) {
-          alert("시작예정일을 선택해주세요");
-          return false;
-        }
-
-        if (flagTitle == false) {
-          alert("제목을 입력해주세요");
-          return false;
-        }
-
-        if (flagQuestion == false) {
-          alert("가입질문을 입력해주세요");
-          return false;
-        }
-
-        if (flagPlace == false) {
-          alert("장소를 입력해주세요");
-          return false;
-        }
-
-        let flag =
-          flagType &&
-          flagWay &&
-          flagTech &&
-          flagPeriod &&
-          flagPeople &&
-          flagStartDate &&
-          flagTitle &&
-          flagQuestion &&
-          flagPlace;
-
-        return flag;
-      }
-
-      const optionsListType = document.querySelectorAll(".option-type");
-      const optionsListWay = document.querySelectorAll(".option-way");
-      const optionsListPeriod = document.querySelectorAll(".option-period");
-      const optionsListTech = document.querySelectorAll(".option-tech");
-      const optionsListTechLabel =
-        document.querySelectorAll(".option-tech label");
-
-      selectedType.addEventListener("click", () => {
-        optionsContainerType.classList.toggle("active");
-      });
-
-      selectedWay.addEventListener("click", () => {
-        optionsContainerWay.classList.toggle("active");
-      });
-
-      selectedPeriod.addEventListener("click", () => {
-        optionsContainerPeriod.classList.toggle("active");
-      });
-
-      selectedTech2.addEventListener("click", () => {
-        optionsContainerTech.classList.toggle("active");
-      });
-
-      optionsListType.forEach((o) => {
-        o.addEventListener("click", () => {
-          selectedType.innerHTML = o.querySelector("label").innerHTML;
-          optionsContainerType.classList.remove("active");
-        });
-      });
-
-      optionsListWay.forEach((o) => {
-        o.addEventListener("click", () => {
-          selectedWay.innerHTML = o.querySelector("label").innerHTML;
-          optionsContainerWay.classList.remove("active");
-        });
-      });
-
-      optionsListPeriod.forEach((o) => {
-        o.addEventListener("click", () => {
-          selectedPeriod.innerHTML = o.querySelector("label").innerHTML;
-          optionsContainerPeriod.classList.remove("active");
-        });
-      });
-
-      optionsListTech.forEach((o) => {
-        o.addEventListener("click", (event) => {
-          if (selectedTech.innerHTML.trim() == "프로젝트 사용 스택") {
-            selectedTech.innerHTML = "";
-          }
-
-          selectedTech.innerHTML +=
-            "<div class='tech-btn-div' onclick='deleteTech(event)'>" +
-            "<input onclick='deleteTech2(event)' class='tech-btn' type='button' value='" +
-            o.querySelector("label").innerHTML +
-            "'>" +
-            "<i class='fa-solid fa-xmark' onclick='deleteTech2(event)'></i>" +
-            "</div>";
-          // optionsContainerTech.classList.remove("active");
-        });
-      });
-
-      optionsListTechLabel.forEach((o) => {
-        o.addEventListener("click", (event) => {
-          event.stopPropagation();
-          if (selectedTech.innerHTML.trim() == "프로젝트 사용 스택") {
-            selectedTech.innerHTML = "";
-          }
-
-          selectedTech.innerHTML +=
-            "<div class='tech-btn-div' onclick='deleteTech(event)'>" +
-            "<input onclick='deleteTech2(event)' class='tech-btn' type='button' value='" +
-            o.innerHTML +
-            "'>" +
-            "<i class='fa-solid fa-xmark' onclick='deleteTech2(event)'></i>" +
-            "</div>";
-          // optionsContainerTech.classList.remove("active");
-        });
-      });
-
-      function deleteTech(e) {
-        e.stopPropagation();
-        e.target.remove();
-        const value = e.target.querySelector("input").value;
-
-        const option = document.querySelector("#option-" + value);
-        option.parentNode.classList.toggle("hidden");
-        const selectedTech = document.querySelector(".tech-btn-list");
-        if (selectedTech.innerHTML.trim() == "") {
-          selectedTech.innerHTML = "프로젝트 사용 스택";
-        }
-        const input = optionsContainerTech.querySelector("#" + value);
-        input.checked = false;
-      }
-
-      function deleteTech2(e) {
-        e.stopPropagation();
-        e.target.parentNode.remove();
-        const value = e.target.parentNode.querySelector("input").value;
-
-        const option = document.querySelector("#option-" + value);
-        option.parentNode.classList.toggle("hidden");
-        const selectedTech = document.querySelector(".tech-btn-list");
-        if (selectedTech.innerHTML.trim() == "") {
-          selectedTech.innerHTML = "프로젝트 사용 스택";
-        }
-        const input = optionsContainerTech.querySelector("#" + value);
-        input.checked = false;
-      }
-
-      function hiddenTag(e) {
-        e.target.parentNode.classList.add("hidden");
-      }
-
-      function hiddenTag2(e) {
-        e.stopPropagation();
-        e.target.parentNode.parentNode.classList.add("hidden");
-      }
-
-      function stop(e) {
-        e.stopPropagation();
-      }
-
-      let divCnt = 1;
-      function create_question(e) {
-        if (divCnt == 5) {
-          return false;
-        }
-
-        const questionBtnOn = document.querySelector(".question-btn-on");
-        if (questionBtnOn.classList.contains("hidden")) {
-          return false;
-        }
-
-        let list = document.querySelector(".recruit-question-list");
-        let new_li = document.createElement("li");
-        let new_div = document.createElement("div");
-        new_div.innerHTML = "Q.";
-
-        new_li.appendChild(new_div);
-        new_li.innerHTML +=
-          "<input type='text' name='question' id='' /><i class='fa-solid fa-square-xmark' onclick='delete_question(event)'></i>";
-        list.appendChild(new_li);
-
-        divCnt++;
-        console.log(divCnt);
-      }
-
-      //가입질문 버튼
-      const questionBntOn = document.querySelector(".question-btn-on");
-      const questionBntOff = document.querySelector(".question-btn-off");
-      const recruitQuestionList = document.querySelector(
-        ".recruit-question-list"
-      );
-      const recruitQuestionExplain = document.querySelector(
-        ".recruit-question-explain"
-      );
-
-      questionBntOn.addEventListener("click", function () {
-        this.classList.add("hidden");
-        questionBntOff.classList.remove("hidden");
-        recruitQuestionList.classList.add("hidden");
-        recruitQuestionList.innerHTML = "";
-        recruitQuestionExplain.classList.add("hidden");
-        divCnt = 1;
-      });
-
-      questionBntOff.addEventListener("click", function () {
-        this.classList.add("hidden");
-        questionBntOn.classList.remove("hidden");
-        recruitQuestionList.classList.remove("hidden");
-        recruitQuestionList.innerHTML =
-          '<li><div>Q.</div><input type="text" name="question" id="" /><i class="fa-solid fa-square-xmark" onclick="delete_question(event)"></i></li>';
-        recruitQuestionExplain.classList.remove("hidden");
-        divCnt = 1;
-      });
-
-      function delete_question(e) {
-        let li = e.target.parentNode;
-        li.remove();
-        divCnt--;
-        console.log(divCnt);
-        if (divCnt == 0) {
-          const questionBntOn = document.querySelector(".question-btn-on");
-          questionBntOn.classList.add("hidden");
-          questionBntOff.classList.remove("hidden");
-          recruitQuestionList.classList.add("hidden");
-          recruitQuestionList.innerHTML = "";
-          recruitQuestionExplain.classList.add("hidden");
-        }
-      }
-
-      function locationOnOff(e) {
-        console.log(e.target);
-        let studyWay = document.querySelector(".selected-way");
-        let studyWayStr = e.target.querySelector("label").innerHTML;
-
-        let studyLocation = document.querySelector(".study-location");
-        const place = document.querySelector("input[name=place]");
-        const address = document.querySelector("input[name=address]");
-        if (studyWayStr == "온라인" || studyWayStr == "온라인/오프라인") {
-          studyLocation.classList.add("hidden");
-          place.setAttribute("disabled", "disabled");
-          address.setAttribute("disabled", "disabled");
-        }
-
-        if (studyWayStr == "오프라인") {
-          studyLocation.classList.remove("hidden");
-          place.removeAttribute("disabled");
-          address.removeAttribute("disabled");
-        }
-      }
-
-      function locationOnOff2(e) {
-        console.log(e.target);
-
-        let studyWay = document.querySelector(".selected-way");
-        let studyWayStr = e.target.parentNode.querySelector("label").innerHTML;
-
-        let studyLocation = document.querySelector(".study-location");
-        const place = document.querySelector("input[name=place]");
-        const address = document.querySelector("input[name=address]");
-        if (studyWayStr == "온라인" || studyWayStr == "온라인/오프라인") {
-          studyLocation.classList.add("hidden");
-          place.setAttribute("disabled", "disabled");
-          address.setAttribute("disabled", "disabled");
-        }
-
-        if (studyWayStr == "오프라인") {
-          studyLocation.classList.remove("hidden");
-          place.removeAttribute("disabled");
-          address.removeAttribute("disabled");
-        }
-      }
-    </script>
-
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css"
     />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"
+    ></script>
+    <script
+      defer
+      src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"
+    ></script>
+    <script
+      defer
+      src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"
+    ></script>
     <script
       type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cb4230ca104b4d83bce478dce786ba7d&libraries=services"
     ></script>
+    <script defer src="${path}/resources/js/study/recruit.js"></script>
   </body>
 </html>

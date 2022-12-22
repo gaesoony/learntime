@@ -1,90 +1,89 @@
-window.onload = function () {
-  //datepicker
-  $.datepicker.setDefaults({
-    dateFormat: "yy-mm-dd",
-    prevText: "이전 달",
-    nextText: "다음 달",
-    monthNames: [
-      "1월",
-      "2월",
-      "3월",
-      "4월",
-      "5월",
-      "6월",
-      "7월",
-      "8월",
-      "9월",
-      "10월",
-      "11월",
-      "12월",
-    ],
-    monthNamesShort: [
-      "1월",
-      "2월",
-      "3월",
-      "4월",
-      "5월",
-      "6월",
-      "7월",
-      "8월",
-      "9월",
-      "10월",
-      "11월",
-      "12월",
-    ],
-    dayNames: ["일", "월", "화", "수", "목", "금", "토"],
-    dayNamesShort: ["일", "월", "화", "수", "목", "금", "토"],
-    dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"],
-    showMonthAfterYear: true,
-    yearSuffix: "년",
-  });
+//datepicker
+$.datepicker.setDefaults({
+  dateFormat: "yy-mm-dd",
+  prevText: "이전 달",
+  nextText: "다음 달",
+  monthNames: [
+    "1월",
+    "2월",
+    "3월",
+    "4월",
+    "5월",
+    "6월",
+    "7월",
+    "8월",
+    "9월",
+    "10월",
+    "11월",
+    "12월",
+  ],
+  monthNamesShort: [
+    "1월",
+    "2월",
+    "3월",
+    "4월",
+    "5월",
+    "6월",
+    "7월",
+    "8월",
+    "9월",
+    "10월",
+    "11월",
+    "12월",
+  ],
+  dayNames: ["일", "월", "화", "수", "목", "금", "토"],
+  dayNamesShort: ["일", "월", "화", "수", "목", "금", "토"],
+  dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"],
+  showMonthAfterYear: true,
+  yearSuffix: "년",
+});
 
-  $(function () {
-    $(".datepicker").datepicker();
-  });
+$(function () {
+  $(".datepicker").datepicker();
+});
 
-  //timepicker - 시작시간
-  $(function () {
-    $("#time1").timepicker({
-      timeFormat: "h:mm p",
-      interval: 30,
-      minTime: "0",
-      maxTime: "11:30pm",
-      defaultTime: "12",
-      startTime: "12:00",
-      dynamic: false,
-      dropdown: true,
-      scrollbar: true,
-    });
+//timepicker - 시작시간
+$(function () {
+  $("#time1").timepicker({
+    timeFormat: "h:mm p",
+    interval: 30,
+    minTime: "0",
+    maxTime: "11:30pm",
+    defaultTime: "12",
+    startTime: "12:00",
+    dynamic: false,
+    dropdown: true,
+    scrollbar: true,
   });
+});
 
-  //timepicker - 종료시간
-  $(function () {
-    $("#time2").timepicker({
-      timeFormat: "h:mm p",
-      interval: 30,
-      minTime: "0",
-      maxTime: "11:30pm",
-      defaultTime: "12",
-      startTime: "12:00",
-      dynamic: false,
-      dropdown: true,
-      scrollbar: true,
-    });
+//timepicker - 종료시간
+$(function () {
+  $("#time2").timepicker({
+    timeFormat: "h:mm p",
+    interval: 30,
+    minTime: "0",
+    maxTime: "11:30pm",
+    defaultTime: "12",
+    startTime: "12:00",
+    dynamic: false,
+    dropdown: true,
+    scrollbar: true,
   });
+});
 
-  //썸머노트
-  $("#summernote").summernote({
-    height: 500, // 에디터 높이
-    minHeight: null, // 최소 높이
-    maxHeight: null, // 최대 높이
-    focus: false, // 에디터 로딩후 포커스를 맞출지 여부
-    lang: "ko-KR", // 한글 설정
-    placeholder: "프로젝트에 대해 소개해주세요!", //placeholder 설정
-    disableResizeEditor: true,
-  });
-};
+//썸머노트
+$("#summernote").summernote({
+  height: 500, // 에디터 높이
+  minHeight: null, // 최소 높이
+  maxHeight: null, // 최대 높이
+  focus: false, // 에디터 로딩후 포커스를 맞출지 여부
+  lang: "ko-KR", // 한글 설정
+  placeholder: "프로젝트에 대해 소개해주세요!", //placeholder 설정
+  disableResizeEditor: true,
+});
 
+//태그 생성
 function makeTag(e) {
   const value = e.target.value;
   const str =
@@ -104,24 +103,29 @@ function makeTag(e) {
   e.target.value = "";
 }
 
+//태그 초기화
 function resetTag() {
   const tagList = document.querySelector(".tag-list");
   tagList.textContent = "";
 }
 
+//태그 삭제1 (클릭)
 function deleteTag(e) {
   e.target.remove();
 }
 
+//태그 삭제2 (클릭)
 function deleteTag2(e) {
   e.target.parentNode.remove();
 }
 
+//태그 삭제 (백스페이스)
 function deleteBeforeTag() {
   const lastTag = document.querySelector(".tag-list div:last-child");
   lastTag.remove();
 }
 
+//장소 키워드 검색
 function searchKeyWordLocation() {
   // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
   var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
@@ -200,5 +204,405 @@ function searchKeyWordLocation() {
   function searchDetailAddrFromCoords(coords, callback) {
     // 좌표로 법정동 상세 주소 정보를 요청합니다
     geocoder.coord2Address(coords.x, coords.y, callback);
+  }
+}
+
+const numberPeople = document.querySelector("input[name=numberPeople]");
+const startDate = document.querySelector("input[name=startDate]");
+const title = document.querySelector("input[name=title]");
+const studyLocation = document.querySelector(".study-location");
+
+numberPeople.addEventListener("blur", function (event) {
+  if (event.target.value < 2 && event.target.value !== "") {
+    event.target.value = 2;
+  }
+
+  if (event.target.value > 30) {
+    event.target.value = 30;
+  }
+});
+
+const selectedType = document.querySelector(".selected-type");
+const selectedWay = document.querySelector(".selected-way");
+const selectedPeriod = document.querySelector(".selected-period");
+const selectedTech = document.querySelector(".tech-btn-list");
+const selectedTech2 = document.querySelector(
+  ".selected-tech:not(.tech-btn-list .tech-btn )"
+);
+
+const optionsContainerType = document.querySelector(".options-container-type");
+const optionsContainerWay = document.querySelector(".options-container-way");
+const optionsContainerPeriod = document.querySelector(
+  ".options-container-period"
+);
+const optionsContainerTech = document.querySelector(".options-container-tech");
+
+//submit시 유효성 검사
+function checkValidate() {
+  const content = document.querySelector("textarea[name=intro]");
+  let flagType = false;
+  let flagWay = false;
+  let flagTech = false;
+  let flagPeriod = false;
+  let flagPeople = false;
+  let flagStartDate = false;
+  let flagTitle = false;
+  let flagContent = false;
+  let flagQuestion = true;
+  let flagPlace = true;
+
+  const studyWay = document.querySelector(".selected-way");
+  if (studyWay.innerHTML == "오프라인") {
+    const place = document.querySelector("input[name=place]");
+    if (place.value == "") {
+      flagPlace = false;
+    }
+  }
+
+  optionsContainerType
+    .querySelectorAll("input[type=radio]")
+    .forEach(function (item) {
+      if (item.checked) {
+        flagType = true;
+      }
+    });
+
+  optionsContainerWay
+    .querySelectorAll("input[type=radio]")
+    .forEach(function (item) {
+      if (item.checked) {
+        flagWay = true;
+      }
+    });
+
+  optionsContainerPeriod
+    .querySelectorAll("input[type=radio]")
+    .forEach(function (item) {
+      if (item.checked) {
+        flagPeriod = true;
+      }
+    });
+
+  optionsContainerTech
+    .querySelectorAll("input[type=checkbox]")
+    .forEach(function (item) {
+      if (item.checked) {
+        flagTech = true;
+      }
+    });
+
+  const question = document.querySelectorAll("input[name=question]");
+  question.forEach(function (item) {
+    if (item.value === "") {
+      flagQuestion = false;
+    }
+  });
+
+  if (numberPeople.value !== "") {
+    flagPeople = true;
+  }
+
+  if (startDate.value !== "") {
+    flagStartDate = true;
+  }
+
+  if (title.value !== "") {
+    flagTitle = true;
+  }
+
+  if (content.value.length !== 0) {
+    flagContent = true;
+  }
+
+  if (flagType == false) {
+    alert("모집구분을 선택해주세요");
+    return false;
+  }
+
+  if (flagPeople == false) {
+    alert("모집인원을 작성해주세요");
+    return false;
+  }
+
+  if (flagWay == false) {
+    alert("진행방식을 선택해주세요");
+    return false;
+  }
+
+  if (flagPeriod == false) {
+    alert("진행기간을 선택해주세요");
+    return false;
+  }
+
+  if (flagTech == false) {
+    alert("기술스택을 선택해주세요");
+    return false;
+  }
+
+  if (flagStartDate == false) {
+    alert("시작예정일을 선택해주세요");
+    return false;
+  }
+
+  if (flagTitle == false) {
+    alert("제목을 입력해주세요");
+    return false;
+  }
+
+  if (flagContent == false) {
+    alert("내용을 입력해주세요");
+    return false;
+  }
+
+  if (flagQuestion == false) {
+    alert("가입질문을 입력해주세요");
+    return false;
+  }
+
+  if (flagPlace == false) {
+    alert("장소를 입력해주세요");
+    return false;
+  }
+
+  let flag =
+    flagType &&
+    flagWay &&
+    flagTech &&
+    flagPeriod &&
+    flagPeople &&
+    flagStartDate &&
+    flagTitle &&
+    flagQuestion &&
+    flagPlace;
+
+  return flag;
+}
+
+const optionsListType = document.querySelectorAll(".option-type");
+const optionsListWay = document.querySelectorAll(".option-way");
+const optionsListPeriod = document.querySelectorAll(".option-period");
+const optionsListTech = document.querySelectorAll(".option-tech");
+const optionsListTechLabel = document.querySelectorAll(".option-tech label");
+
+selectedType.addEventListener("click", () => {
+  optionsContainerType.classList.toggle("active");
+});
+
+selectedWay.addEventListener("click", () => {
+  optionsContainerWay.classList.toggle("active");
+});
+
+selectedPeriod.addEventListener("click", () => {
+  optionsContainerPeriod.classList.toggle("active");
+});
+
+selectedTech2.addEventListener("click", () => {
+  optionsContainerTech.classList.toggle("active");
+});
+
+optionsListType.forEach((o) => {
+  o.addEventListener("click", () => {
+    selectedType.innerHTML = o.querySelector("label").innerHTML;
+    optionsContainerType.classList.remove("active");
+  });
+});
+
+optionsListWay.forEach((o) => {
+  o.addEventListener("click", () => {
+    selectedWay.innerHTML = o.querySelector("label").innerHTML;
+    optionsContainerWay.classList.remove("active");
+  });
+});
+
+optionsListPeriod.forEach((o) => {
+  o.addEventListener("click", () => {
+    selectedPeriod.innerHTML = o.querySelector("label").innerHTML;
+    optionsContainerPeriod.classList.remove("active");
+  });
+});
+
+optionsListTech.forEach((o) => {
+  o.addEventListener("click", (event) => {
+    if (selectedTech.innerHTML.trim() == "프로젝트 사용 스택") {
+      selectedTech.innerHTML = "";
+    }
+
+    selectedTech.innerHTML +=
+      "<div class='tech-btn-div' onclick='deleteTech(event)'>" +
+      "<input onclick='deleteTech2(event)' class='tech-btn' type='button' value='" +
+      o.querySelector("label").innerHTML +
+      "'>" +
+      "<i class='fa-solid fa-xmark' onclick='deleteTech2(event)'></i>" +
+      "</div>";
+  });
+});
+
+optionsListTechLabel.forEach((o) => {
+  o.addEventListener("click", (event) => {
+    event.stopPropagation();
+    if (selectedTech.innerHTML.trim() == "프로젝트 사용 스택") {
+      selectedTech.innerHTML = "";
+    }
+
+    selectedTech.innerHTML +=
+      "<div class='tech-btn-div' onclick='deleteTech(event)'>" +
+      "<input onclick='deleteTech2(event)' class='tech-btn' type='button' value='" +
+      o.innerHTML +
+      "'>" +
+      "<i class='fa-solid fa-xmark' onclick='deleteTech2(event)'></i>" +
+      "</div>";
+  });
+});
+
+//기술스택 삭제1
+function deleteTech(e) {
+  e.stopPropagation();
+  e.target.remove();
+  const value = e.target.querySelector("input").value;
+
+  const option = document.querySelector("#option-" + value);
+  option.parentNode.classList.toggle("hidden");
+  const selectedTech = document.querySelector(".tech-btn-list");
+  if (selectedTech.innerHTML.trim() == "") {
+    selectedTech.innerHTML = "프로젝트 사용 스택";
+  }
+  const input = optionsContainerTech.querySelector("#" + value);
+  input.checked = false;
+}
+
+//기술스택 삭제2
+function deleteTech2(e) {
+  e.stopPropagation();
+  e.target.parentNode.remove();
+  const value = e.target.parentNode.querySelector("input").value;
+
+  const option = document.querySelector("#option-" + value);
+  option.parentNode.classList.toggle("hidden");
+  const selectedTech = document.querySelector(".tech-btn-list");
+  if (selectedTech.innerHTML.trim() == "") {
+    selectedTech.innerHTML = "프로젝트 사용 스택";
+  }
+  const input = optionsContainerTech.querySelector("#" + value);
+  input.checked = false;
+}
+
+function hiddenTag(e) {
+  e.target.parentNode.classList.add("hidden");
+}
+
+function hiddenTag2(e) {
+  e.stopPropagation();
+  e.target.parentNode.parentNode.classList.add("hidden");
+}
+
+function stop(e) {
+  e.stopPropagation();
+}
+
+//가입질문 생성
+let divCnt = 1;
+function create_question(e) {
+  if (divCnt == 5) {
+    return false;
+  }
+
+  const questionBtnOn = document.querySelector(".question-btn-on");
+  if (questionBtnOn.classList.contains("hidden")) {
+    return false;
+  }
+
+  let list = document.querySelector(".recruit-question-list");
+  let new_li = document.createElement("li");
+  let new_div = document.createElement("div");
+  new_div.innerHTML = "Q.";
+
+  new_li.appendChild(new_div);
+  new_li.innerHTML +=
+    "<input type='text' name='question' id='' /><i class='fa-solid fa-square-xmark' onclick='delete_question(event)'></i>";
+  list.appendChild(new_li);
+
+  divCnt++;
+}
+
+//가입질문 버튼 on, off
+const questionBntOn = document.querySelector(".question-btn-on");
+const questionBntOff = document.querySelector(".question-btn-off");
+const recruitQuestionList = document.querySelector(".recruit-question-list");
+const recruitQuestionExplain = document.querySelector(
+  ".recruit-question-explain"
+);
+
+questionBntOn.addEventListener("click", function () {
+  this.classList.add("hidden");
+  questionBntOff.classList.remove("hidden");
+  recruitQuestionList.classList.add("hidden");
+  recruitQuestionList.innerHTML = "";
+  recruitQuestionExplain.classList.add("hidden");
+  divCnt = 1;
+});
+
+questionBntOff.addEventListener("click", function () {
+  this.classList.add("hidden");
+  questionBntOn.classList.remove("hidden");
+  recruitQuestionList.classList.remove("hidden");
+  recruitQuestionList.innerHTML =
+    '<li><div>Q.</div><input type="text" name="question" id="" /><i class="fa-solid fa-square-xmark" onclick="delete_question(event)"></i></li>';
+  recruitQuestionExplain.classList.remove("hidden");
+  divCnt = 1;
+});
+
+//가입질문 삭제
+function delete_question(e) {
+  let li = e.target.parentNode;
+  li.remove();
+  divCnt--;
+  if (divCnt == 0) {
+    const questionBntOn = document.querySelector(".question-btn-on");
+    questionBntOn.classList.add("hidden");
+    questionBntOff.classList.remove("hidden");
+    recruitQuestionList.classList.add("hidden");
+    recruitQuestionList.innerHTML = "";
+    recruitQuestionExplain.classList.add("hidden");
+  }
+}
+
+//장소검색 on, off
+function locationOnOff(e) {
+  let studyWay = document.querySelector(".selected-way");
+  let studyWayStr = e.target.querySelector("label").innerHTML;
+
+  let studyLocation = document.querySelector(".study-location");
+  const place = document.querySelector("input[name=place]");
+  const address = document.querySelector("input[name=address]");
+  if (studyWayStr == "온라인" || studyWayStr == "온라인/오프라인") {
+    studyLocation.classList.add("hidden");
+    place.setAttribute("disabled", "disabled");
+    address.setAttribute("disabled", "disabled");
+  }
+
+  if (studyWayStr == "오프라인") {
+    studyLocation.classList.remove("hidden");
+    place.removeAttribute("disabled");
+    address.removeAttribute("disabled");
+  }
+}
+
+function locationOnOff2(e) {
+  let studyWay = document.querySelector(".selected-way");
+  let studyWayStr = e.target.parentNode.querySelector("label").innerHTML;
+
+  let studyLocation = document.querySelector(".study-location");
+  const place = document.querySelector("input[name=place]");
+  const address = document.querySelector("input[name=address]");
+  if (studyWayStr == "온라인" || studyWayStr == "온라인/오프라인") {
+    studyLocation.classList.add("hidden");
+    place.setAttribute("disabled", "disabled");
+    address.setAttribute("disabled", "disabled");
+  }
+
+  if (studyWayStr == "오프라인") {
+    studyLocation.classList.remove("hidden");
+    place.removeAttribute("disabled");
+    address.removeAttribute("disabled");
   }
 }
