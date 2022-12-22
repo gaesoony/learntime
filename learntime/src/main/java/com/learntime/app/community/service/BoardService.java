@@ -15,6 +15,10 @@ public interface BoardService {
 	
 	//select one
 	public BoardVo selectOne(String bno);
+	
+	
+	//insert comment
+	public int write(String bno);
 
 	
 }

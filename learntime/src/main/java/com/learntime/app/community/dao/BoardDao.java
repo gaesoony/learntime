@@ -17,4 +17,7 @@ public interface BoardDao {
 	//selelct boardDetail
 	public BoardVo selectBoardDetail(SqlSessionTemplate sst, String bno);
 	
+	//조회수증가
+	public int updateHit(SqlSessionTemplate sst, String bno);
+	
 }

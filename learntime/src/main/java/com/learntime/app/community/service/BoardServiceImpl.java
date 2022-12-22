@@ -33,10 +33,24 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	
-	//자유게시판 상세보기
+	//자유게시판 상세 보기
+	@Transactional
 	@Override
 	public BoardVo selectOne(String bno) {
+		
+		dao.updateHit(sst, bno);
+		
 		return dao.selectBoardDetail(sst, bno);
 	}
+
+	//자유게시판 댓글 쓰기
+	@Override
+	public int write(String bno) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	
+	
 
 }

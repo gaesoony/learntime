@@ -2,6 +2,8 @@ package com.learntime.app.community.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.learntime.app.community.service.BoardService;
 import com.learntime.app.community.vo.BoardVo;
+import com.learntime.app.member.vo.MemberVo;
 
 @RequestMapping("community")
 @Controller
@@ -58,7 +61,14 @@ public class BoardController {
 	
 //	글쓰기 TODO
 	@GetMapping("board/write")
-	public String boardWrite() {
+	public String boardWrite(HttpSession session) {
+		
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		
+		if(loginMember == null) {
+			return "/member/login";
+		}
+		
 		return "/community/boardWrite";
 	}
 	
@@ -84,6 +94,16 @@ public class BoardController {
 	@GetMapping("mypage")
 	public String myCommunity() {
 		return "/member/mypage-community";
+	}
+	
+// 댓글 쓰기 TODO
+	@PostMapping("comment/write")
+	public String cmtWrite() {
+		
+		//댓글쓰기
+		
+		
+		return "redirect:/community/board/detail";
 	}
 
 }

@@ -30,7 +30,14 @@ public class BoardDaoImpl implements BoardDao{
 	//상세글 조회
 	@Override
 	public BoardVo selectBoardDetail(SqlSessionTemplate sst, String bno) {
+		
 		return sst.selectOne("freeBoardMapper.selectOne", bno);
+	}
+	
+	//조회수 증가
+	@Override
+	public int updateHit(SqlSessionTemplate sst, String bno) {
+		return sst.update("freeBoardMapper.updateHit", bno);
 	}
 	
 	
