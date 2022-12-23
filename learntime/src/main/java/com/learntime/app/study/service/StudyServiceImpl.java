@@ -101,4 +101,40 @@ public class StudyServiceImpl implements StudyService{
 		return result;
 	}
 
+	
+	//모집 구분 리스트 조회
+	@Override
+	public List<Map<String, String>> selectGroupTypeList() {
+		List<Map<String, String>> result = dao.selectGroupTypeList(sst);
+		return result;
+	}
+
+	//진행 기간 리스트 조회
+	@Override
+	public List<Map<String, String>> selectGroupPeriodList() {
+		List<Map<String, String>> result = dao.selectGroupPeriodList(sst);
+		return result;
+	}
+
+	//기술 스택 리스트 조회
+	@Override
+	public List<Map<String, String>> selectTechStackList() {
+		List<Map<String, String>> result = dao.selectTechStackList(sst);
+		return result;
+	}
+
+	//기술 스택 유형으로 기술 스택 리스트 조회
+	@Override
+	public List<Map<String, String>> selectTechStackListByType(String type) {
+		List<Map<String, String>> result = dao.selectTechStackListByType(sst, type);
+		return result;
+	}
+
+	//그룹 리스트 조회
+	@Override
+	public List<Map<String, String>> selectGroupList(Map map) {
+		List<Map<String, String>> result = dao.selectGroupList(sst, map);
+		return result;
+	}
+
 }

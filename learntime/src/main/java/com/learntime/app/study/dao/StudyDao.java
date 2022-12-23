@@ -33,4 +33,19 @@ public interface StudyDao {
 	//select popular tech stack list
 	public List<Map<String, String>> selectPopularTechStackList(SqlSessionTemplate sst);
 
+	//select group type list
+	public List<Map<String, String>> selectGroupTypeList(SqlSessionTemplate sst);
+
+	//select group period list
+	public List<Map<String, String>> selectGroupPeriodList(SqlSessionTemplate sst);
+
+	//select tech stack list
+	public List<Map<String, String>> selectTechStackList(SqlSessionTemplate sst);
+
+	//select tech stack list by type
+	public List<Map<String, String>> selectTechStackListByType(SqlSessionTemplate sst, String type);
+
+	//select group list
+	public List<Map<String, String>> selectGroupList(SqlSessionTemplate sst, Map map);
+
 }

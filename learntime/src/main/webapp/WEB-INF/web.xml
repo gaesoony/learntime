@@ -39,6 +39,12 @@
 		<filter-name>utf8EncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<!-- 에러 페이지 처리 -->
+	<error-page>
+	  	<location>/error</location>
+	</error-page>
+
 
 	
 

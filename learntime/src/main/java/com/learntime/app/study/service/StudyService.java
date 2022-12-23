@@ -24,6 +24,21 @@ public interface StudyService {
 
 	//인기 기술스택 리스트 조회
 	public List<Map<String, String>> selectPopularTechStackList();
+
+	//모집 구분 리스트 조회
+	public List<Map<String, String>> selectGroupTypeList();
+
+	//진행 기간 리스트 조회
+	public List<Map<String, String>> selectGroupPeriodList();
+
+	//기술 스택 리스트 조회
+	public List<Map<String, String>> selectTechStackList();
+
+	//기술 스택 유형으로 기술 스택 리스트 조회
+	public List<Map<String, String>> selectTechStackListByType(String type);
+
+	//그룹 리스트 조회
+	public List<Map<String, String>> selectGroupList(Map map);
 	
 	
 	//추후 추가 예정..

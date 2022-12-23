@@ -118,5 +118,45 @@
 		GROUP BY (T.NO, T.NAME, T.IMG_PATH)
 		ORDER BY CNT DESC FETCH NEXT 10 ROWS ONLY
 	</select>
+	
+	<select id="selectGroupTypeList" resultType="map">
+		SELECT NO, NAME
+		FROM GROUP_TYPE
+	</select>
+	
+	<select id="selectGroupPeriodList" resultType="map">
+		SELECT NO, NAME
+		FROM GROUP_PERIOD
+	</select>
+	
+	<select id="selectTechStackList" resultType="map">
+		SELECT NO, NAME
+		FROM TECH_STACK
+	</select>
+	
+	<select id="selectTechStackListByType" resultType="map">
+		<choose>
+		    <when test="type.equals('인기')">
+		      	SELECT T.NO, T.NAME, T.IMG_PATH, COUNT(T.NO) CNT
+				FROM GROUP_TECH_STACK G
+				JOIN TECH_STACK T ON G.TECH_STACK_NO = T.NO
+				GROUP BY (T.NO, T.NAME, T.IMG_PATH)
+				ORDER BY CNT DESC FETCH NEXT 10 ROWS ONLY
+		    </when>
+		    <when test="type.equals('모두보기')">
+		        SELECT NO, NAME, IMG_PATH
+				FROM TECH_STACK
+		    </when>
+		    <otherwise>
+		      	SELECT A.NO, A.TYPE_NO, A.NAME, A.IMG_PATH, B.NAME
+				FROM TECH_STACK A
+				JOIN TECH_STACK_TYPE B ON A.TYPE_NO = B.NO
+				WHERE B.NAME = #{type}
+				ORDER BY A.NO
+		    </otherwise>
+		</choose>
+	</select>
+	
+
 
 </mapper>

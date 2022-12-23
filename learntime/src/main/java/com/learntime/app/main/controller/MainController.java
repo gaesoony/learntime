@@ -1,5 +1,8 @@
 package com.learntime.app.main.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +27,9 @@ public class MainController {
 		
 		//팝업
 		
-		//스터디
+		//스터디 리스트 select
+//		List<Map<String, String>> groupList = service.selectGroupList();
+//		model.addAttribute("groupList", groupList);
 		
 		//지식인
 		

@@ -6,7 +6,10 @@ uri="http://java.sun.com/jsp/jstl/core" %>
   <head>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/study/list.css?ver=7" />
+    <link
+      rel="stylesheet"
+      href="${pageContext.request.contextPath}/resources/css/study/list.css?ver=7"
+    />
 
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,7 +25,10 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <div class="bold700">스터디와 사이드 프로젝트를 찾는</div>
         <div class="bold700">가장 쉬운 방법</div>
         <div class="flex">
-          <img src="${pageContext.request.contextPath}/resources/img/study/study-banner-logo.png" alt="" />
+          <img
+            src="${pageContext.request.contextPath}/resources/img/study/study-banner-logo.png"
+            alt=""
+          />
           <span>에서 함께할 개발자를 찾으세요</span>
         </div>
       </div>
@@ -128,40 +134,43 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <section class="study-tech-area">
             <ul class="tech-category-list flex bold700">
               <li class="tech-category tech-clicked relative">
-                인기
+                <span>인기</span>
                 <div class="bar1"></div>
               </li>
 
               <li class="tech-category tech-unClicked relative">
-                프론트엔드
+                <span>프론트엔드</span>
                 <div class="bar2 hidden"></div>
               </li>
               <li class="tech-category tech-unClicked relative">
-                백엔드
+                <span>백엔드</span>
                 <div class="bar3 hidden"></div>
               </li>
               <li class="tech-category tech-unClicked relative">
-                모바일
+                <span>모바일</span>
                 <div class="bar4 hidden"></div>
               </li>
               <li class="tech-category tech-unClicked relative">
-                기타
+                <span>기타</span>
                 <div class="bar5 hidden"></div>
               </li>
               <li class="tech-category tech-unClicked relative">
-                모두보기
+                <span>모두보기</span>
                 <div class="bar6 hidden"></div>
               </li>
             </ul>
             <ul class="tech-list">
-            	<c:forEach items="${popularTechStackList}" var="map">
-            		<li>
-		                <div class="flex">
-		                  <img src="${pageContext.request.contextPath}/resources/upload/techStack/${map.IMG_PATH}" alt="" />
-		                  <span>${map.NAME}</span>
-		                </div>
-		            </li>
-            	</c:forEach>
+              <c:forEach items="${popularTechStackList}" var="map">
+                <li>
+                  <div class="flex">
+                    <img
+                      src="${pageContext.request.contextPath}/resources/upload/techStack/${map.IMG_PATH}"
+                      alt=""
+                    />
+                    <span>${map.NAME}</span>
+                  </div>
+                </li>
+              </c:forEach>
             </ul>
           </section>
           <section class="study-area">
@@ -199,12 +208,23 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <a href="">정확도순</a>
               </ul>
               <div class="write-btn">
-                <input
-                  type="button"
-                  value="글쓰기"
-                  onClick="location.href='/app/study/recruit'"
-                />
+                <c:if test="${loginMember != null}">
+                  <input
+                    type="button"
+                    value="글쓰기"
+                    onClick="location.href='/app/study/recruit'"
+                  />
+                </c:if>
+                <c:if test="${loginMember == null}">
+                  <input type="button" value="글쓰기" onClick="login();" />
+                </c:if>
               </div>
+              <script>
+                function login() {
+                  //모달 띄우기
+                  $(".blackBG").addClass("show");
+                }
+              </script>
             </div>
             <ul class="main-study-detail-list">
               <a href="/app/study/detail" class="main-study-detail">
@@ -658,18 +678,19 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               <span class="bold700 gray1">인기 태그</span>
             </h1>
             <ul class="popular-tag-list">
-            	<c:forEach items="${popularTagList}" var="map">
-            		<li class="popular-tag-list-detail">
-	                <i class="fa-solid fa-hashtag gray1"></i>
-	                <span>${map.NAME}</span>
-              		</li>
-            	</c:forEach>
+              <c:forEach items="${popularTagList}" var="map">
+                <li class="popular-tag-list-detail">
+                  <i class="fa-solid fa-hashtag gray1"></i>
+                  <span>${map.NAME}</span>
+                </li>
+              </c:forEach>
             </ul>
           </div>
         </aside>
       </main>
     </div>
     <script>
+      const techCategory = document.querySelectorAll(".tech-category");
       const techCate1 = document.querySelector(".tech-category:nth-child(1)");
       const techCate2 = document.querySelector(".tech-category:nth-child(2)");
       const techCate3 = document.querySelector(".tech-category:nth-child(3)");
@@ -691,6 +712,40 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       const studyTypeBar1 = studyType1.querySelector("div");
       const studyTypeBar2 = studyType2.querySelector("div");
       const studyTypeBar3 = studyType3.querySelector("div");
+
+      techCategory.forEach((o) => {
+        o.addEventListener("click", () => {
+          const techList = document.querySelector(".tech-list");
+
+          $.ajax({
+            url: "${pageContext.request.contextPath}/study/techStack",
+            type: "get",
+            data: {
+              type: o.querySelector("span").innerHTML.trim(),
+            },
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            success: function (data) {
+              var obj = JSON.parse(data);
+
+              let str = "";
+              for (let i = 0; i < obj.result.length; i++) {
+                str =
+                  str +
+                  "<li><div class='flex'>" +
+                  "<img src='${pageContext.request.contextPath}/resources/upload/techStack/" +
+                  obj.result[i].IMG_PATH +
+                  "' alt=''/>" +
+                  "<span>" +
+                  obj.result[i].NAME +
+                  "</span>" +
+                  "</div></li>";
+              }
+              console.log(str);
+              techList.innerHTML = str;
+            },
+          });
+        });
+      });
 
       techCate1.addEventListener("click", function () {
         this.classList.add("tech-clicked");
@@ -726,6 +781,37 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         bar4.classList.add("hidden");
         bar5.classList.add("hidden");
         bar6.classList.add("hidden");
+
+        const techList = document.querySelector(".tech-list");
+
+        $.ajax({
+          url: "${pageContext.request.contextPath}/study/techStack",
+          type: "get",
+          data: {
+            type: this.querySelector("span").innerHTML.trim(),
+          },
+          success: function (data) {
+            var obj = JSON.parse(data);
+            console.log(obj.result[0].NAME);
+            console.log(obj.result);
+
+            let str = "";
+            for (let i = 0; i < obj.result.length; i++) {
+              str =
+                str +
+                "<li><div class='flex'>" +
+                "<img src='${pageContext.request.contextPath}/resources/upload/techStack/" +
+                obj.result[i].IMG_PATH +
+                "' alt=''/>" +
+                "<span>" +
+                obj.result[i].NAME +
+                "</span>" +
+                "</div></li>";
+            }
+            console.log(str);
+            techList.innerHTML = str;
+          },
+        });
       });
 
       techCate3.addEventListener("click", function () {

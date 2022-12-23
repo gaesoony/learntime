@@ -45,33 +45,35 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 
                     <div class="select-box relative">
                       <div class="options-container options-container-type">
-                        <label>
-                          <div class="option option-type">
-                            <input
-                              type="radio"
-                              class="radio"
-                              id="study"
-                              name="gTypeNo"
-                              value="1"
-                            />
-                            <label for="study">스터디</label>
-                          </div>
-                        </label>
-                        <label>
-                          <div class="option option-type">
-                            <input
-                              type="radio"
-                              class="radio"
-                              id="project"
-                              name="gTypeNo"
-                              value="2"
-                            />
-                            <label for="project">프로젝트</label>
-                          </div>
-                        </label>
+                        <c:forEach items="${groupTypeList}" var="map">
+                          <label>
+                            <div class="option option-type">
+                              <input
+                                type="radio"
+                                class="radio"
+                                name="gTypeNo"
+                                id="${map.NO}"
+                                value="${map.NO}"
+                              />
+                              <label for="${map.NO}">${map.NAME}</label>
+                            </div>
+                          </label>
+                        </c:forEach>
                       </div>
 
-                      <div class="selected selected-type">스터디/프로젝트</div>
+                      <div class="selected selected-type">
+                        <c:forEach
+                          items="${groupTypeList}"
+                          var="map"
+                          varStatus="status"
+                        >
+                          ${map.NAME}
+                          <c:if
+                            test="${groupTypeList.size() > status.index + 1}"
+                            >/</c:if
+                          >
+                        </c:forEach>
+                      </div>
                     </div>
                   </div>
                   <div class="container1">
@@ -135,7 +137,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                         </label>
                       </div>
 
-                      <div class="selected selected-way">온라인/오프라인</div>
+                      <div class="selected selected-way">온라인 / 오프라인</div>
                     </div>
                   </div>
                   <div class="container1">
@@ -143,106 +145,31 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 
                     <div class="select-box relative">
                       <div class="options-container options-container-period">
-                        <label>
-                          <div class="option option-period">
-                            <input
-                              type="radio"
-                              class="radio"
-                              id="none"
-                              name="gPeriodNo"
-                              value="1"
-                            />
-                            <label for="none">기간미정</label>
-                          </div>
-                        </label>
-                        <label>
-                          <div class="option option-period">
-                            <input
-                              type="radio"
-                              class="radio"
-                              id="1month"
-                              name="gPeriodNo"
-                              value="2"
-                            />
-                            <label for="1month">1개월</label>
-                          </div>
-                        </label>
-                        <label>
-                          <div class="option option-period">
-                            <input
-                              type="radio"
-                              class="radio"
-                              id="2month"
-                              name="gPeriodNo"
-                              value="3"
-                            />
-                            <label for="2month">2개월</label>
-                          </div>
-                        </label>
-                        <label>
-                          <div class="option option-period">
-                            <input
-                              type="radio"
-                              class="radio"
-                              id="3month"
-                              name="gPeriodNo"
-                              value="4"
-                            />
-                            <label for="3month">3개월</label>
-                          </div>
-                        </label>
-                        <label>
-                          <div class="option option-period">
-                            <input
-                              type="radio"
-                              class="radio"
-                              id="4month"
-                              name="gPeriodNo"
-                              value="5"
-                            />
-                            <label for="4month">4개월</label>
-                          </div>
-                        </label>
-                        <label>
-                          <div class="option option-period">
-                            <input
-                              type="radio"
-                              class="radio"
-                              id="5month"
-                              name="gPeriodNo"
-                              value="6"
-                            />
-                            <label for="5month">5개월</label>
-                          </div>
-                        </label>
-                        <label>
-                          <div class="option option-period">
-                            <input
-                              type="radio"
-                              class="radio"
-                              id="6month"
-                              name="gPeriodNo"
-                              value="7"
-                            />
-                            <label for="6month">6개월</label>
-                          </div>
-                        </label>
-                        <label>
-                          <div class="option option-period">
-                            <input
-                              type="radio"
-                              class="radio"
-                              id="long"
-                              name="gPeriodNo"
-                              value="8"
-                            />
-                            <label for="long">장기</label>
-                          </div>
-                        </label>
+                        <c:forEach items="${groupPeriodList}" var="map">
+                          <label>
+                            <div class="option option-period">
+                              <input
+                                type="radio"
+                                class="radio"
+                                name="gPeriodNo"
+                                id="${map.NO}"
+                                value="${map.NO}"
+                              />
+                              <label for="${map.NO}">${map.NAME}</label>
+                            </div>
+                          </label>
+                        </c:forEach>
                       </div>
 
                       <div class="selected selected-period">
-                        기간미정 ~ 장기
+                        <c:forEach
+                          items="${groupPeriodList}"
+                          var="map"
+                          varStatus="status"
+                        >
+                          <c:if test="${status.first}">${map.NAME} ~ </c:if>
+                          <c:if test="${status.last}">${map.NAME}</c:if>
+                        </c:forEach>
                       </div>
                     </div>
                   </div>
@@ -251,78 +178,26 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 
                     <div class="select-box relative">
                       <div class="options-container options-container-tech">
-                        <label onclick="hiddenTag(event)">
-                          <div id="option-java" class="option option-tech">
-                            <input
-                              type="checkbox"
-                              class="radio"
-                              id="java"
-                              name="techStackNo"
-                              value="1"
-                              onclick="stop(event)"
-                            />
-                            <label for="java" onclick="hiddenTag2(event)"
-                              >java</label
+                        <c:forEach items="${techStackList}" var="map">
+                          <label>
+                            <div
+                              id="option-${map.NAME}"
+                              class="option option-tech"
+                              onclick="hiddenTag(event)"
                             >
-                          </div>
-                        </label>
-                        <label>
-                          <div
-                            id="option-spring"
-                            class="option option-tech"
-                            onclick="hiddenTag(event)"
-                          >
-                            <input
-                              type="checkbox"
-                              class="radio"
-                              id="spring"
-                              name="techStackNo"
-                              value="2"
-                              onclick="stop(event)"
-                            />
-                            <label for="spring" onclick="hiddenTag2(event)"
-                              >spring</label
-                            >
-                          </div>
-                        </label>
-                        <label>
-                          <div
-                            id="option-javascript"
-                            class="option option-tech"
-                            onclick="hiddenTag(event)"
-                          >
-                            <input
-                              type="checkbox"
-                              class="radio"
-                              id="javascript"
-                              name="techStackNo"
-                              value="3"
-                              onclick="stop(event)"
-                            />
-                            <label for="javascript" onclick="hiddenTag2(event)"
-                              >javascript</label
-                            >
-                          </div>
-                        </label>
-                        <label>
-                          <div
-                            id="option-python"
-                            class="option option-tech"
-                            onclick="hiddenTag(event)"
-                          >
-                            <input
-                              type="checkbox"
-                              class="radio"
-                              id="python"
-                              name="techStackNo"
-                              value="4"
-                              onclick="stop(event)"
-                            />
-                            <label for="python" onclick="hiddenTag2(event)"
-                              >python</label
-                            >
-                          </div>
-                        </label>
+                              <input
+                                type="checkbox"
+                                class="radio"
+                                name="techStackNo"
+                                value="${map.NO}"
+                                onclick="stop(event)"
+                              />
+                              <label onclick="hiddenTag2(event)"
+                                >${map.NAME}</label
+                              >
+                            </div>
+                          </label>
+                        </c:forEach>
                       </div>
 
                       <div class="selected selected-tech">
