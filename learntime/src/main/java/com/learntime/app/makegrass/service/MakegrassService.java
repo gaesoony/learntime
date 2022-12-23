@@ -7,6 +7,7 @@ import com.learntime.app.makegrass.vo.MakegrassVo;
 @Service
 public interface MakegrassService {
 
+	//게시글 작성
 	int write(MakegrassVo vo);
 
 }

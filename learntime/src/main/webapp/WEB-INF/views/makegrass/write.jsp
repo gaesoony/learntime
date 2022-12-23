@@ -24,7 +24,6 @@
         height: 5vh;
         font-size: 28px;
         font-weight: 550;
-        color: #AAAAAA;
         outline: none;
         margin-bottom: 20px;
      }
@@ -76,7 +75,7 @@
         border: none;
         margin-bottom: 55px;
      }
-     #tag{
+     #tagNo{
         border: none;
         font-size: 16px;
         height: 5vh;
@@ -128,19 +127,19 @@
     <div class="mainbox">
         <div class="maintitle">
             <input type="text" name="title" class="title" placeholder="제목을 입력하세요">
-            <input type="text" name="worktime" class="worktime" placeholder="공부한 시간 | ex) 120분">
+            <input type="text" name="learnTime" class="worktime" placeholder="공부한 시간 | ex) 120분">
             <div class="content">
                 <div>
-                    <input type="text" id="tag" placeholder="해시태그를 입력하세요" />
+                    <input type="text" id="tagNo" placeholder="해시태그를 입력하세요" />
                 </div>
-                <ul id="tag-list">
+                <ul id="tag-list" name="tag">
                 </ul>
             </div>
 
-            <textarea class="summernote" name="editordata"></textarea>
+            <textarea class="summernote" name="content"></textarea>
 
             <input type="button" onClick="history.back();" class="cancle" style='cursor:pointer;' value="취소">
-            <input type="submit" onclick="location.href='/app/makegrass/list'" class="write" style='cursor:pointer;' value="등록">
+            <input type="submit" class="write" style='cursor:pointer;' value="등록">
             
         </div>
     </div>
@@ -182,7 +181,7 @@
                 });
             }
 
-            $("#tag")
+            $("#tagNo")
             .on("keyup", function (e) {
                 var self = $(this);
                 console.log("keypress");

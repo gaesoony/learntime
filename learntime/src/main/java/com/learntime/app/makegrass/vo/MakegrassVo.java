@@ -16,4 +16,6 @@ public class MakegrassVo {
 	private String deleteYn;
 	private Timestamp modifyDate;
 	private int hit;
+	
+	private String[] tag; 
 }
