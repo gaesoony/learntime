@@ -23,9 +23,22 @@
 	<!--닉네임 중복 체크  -->
 	<select id="nickCheck" resultType = "Int">
 		 SELECT COUNT(*)
-		  FROM MEMBER
-		  WHERE NICK = #{nick}
+		 FROM MEMBER
+		 WHERE NICK = #{nick}
+		 <if test="no != null and no != ''">
+		    AND NO NOT IN(#{no})
+		</if>
+	</select>
 	
+	<!--이메일 중복 체크  -->
+	<select id="emailCheck" resultType = "Int">
+		 SELECT COUNT(*)
+		 FROM MEMBER
+		 WHERE ID = #{id}
+		<if test="no != null and no != ''">
+		    AND NO NOT IN(#{no})
+		</if>
+		
 	</select>
 	
 	
@@ -49,7 +62,31 @@
 	<select id="findPwd" resultType = "MemberVo">
 		 SELECT *
 		  FROM MEMBER
-		  WHERE ID = #{ID}
+		  WHERE ID = #{id}
 	</select>
+	
+	
+	<!--탈퇴  -->
+	<update id="memberDeletePwd">
+		UPDATE MEMBER 
+		SET QUIT_YN='Y'
+		WHERE ID=#{id}
+	</update>
+	
+	<!--계정정보 닉네임,소개,프로필사진 수정  -->
+	<update id="mypageEdiProfile">
+		UPDATE MEMBER 
+		SET NICK=#{nick},
+			INTRO=#{intro},
+			IMG_PATH=#{imgPath}
+		WHERE NO=#{no}
+	</update>
+	
+	<!--계정정보 이메일 수정  -->
+	<update id="mypageEditEmail">
+		UPDATE MEMBER 
+		SET ID=#{id}
+		WHERE NO=#{no}
+	</update>
 
 </mapper>

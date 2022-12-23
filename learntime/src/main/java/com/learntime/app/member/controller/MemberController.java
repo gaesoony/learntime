@@ -1,6 +1,5 @@
 package com.learntime.app.member.controller;
 
-import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -23,9 +22,27 @@ public class MemberController {
 	private MemberService memberService;
 	
 	
+//	잘못된 경로-로그인(화면)
+	@GetMapping("/wrong")
+	public String wrongPathLogin() {
+		
+		return "common/wrongPath-login";
+	}
+//	잘못된 경로-로그인(서)
+	@PostMapping("/wrong")
+	public String wrongPathLogin(MemberVo vo,HttpSession session, HttpServletRequest request) {
+		MemberVo loginMember=memberService.login(vo);
+		if(loginMember==null) {
+			return"common/errorPage";
+		}
+		session.setAttribute("loginMember", loginMember);
+		return "main/main";
+	}	
+	
+	
 //	로그인 (서버)
 	@PostMapping("/member/login")
-	public String lgoin(MemberVo vo,HttpSession session, HttpServletRequest request) {
+	public String login(MemberVo vo,HttpSession session, HttpServletRequest request) {
 		MemberVo loginMember=memberService.login(vo);
 		if(loginMember==null) {
 			return"common/errorPage";
@@ -34,11 +51,11 @@ public class MemberController {
 		//로그인 성공시 이전 페이지로 감.
 		String referer = request.getHeader("Referer");
 		request.getSession().setAttribute("redirectURI", referer);
-		return "main/main";
+		return "redirect:" + referer;
 	}
 
 //	로그아웃
-@GetMapping("/member/logout")
+	@GetMapping("/member/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/main";
@@ -66,13 +83,25 @@ public class MemberController {
 		}
 
 	}
+	
 //	닉네임 중복검사 (AJAX)
 	@ResponseBody
 	@GetMapping("/member/nickCheck")
 	public int nickCheck(@RequestParam("nick") String nick){ 
-		
-		
 		return memberService.nickCheck(nick);
+	}
+	
+	
+//	이메일 중복검사 (AJAX)
+	@ResponseBody
+	@GetMapping("/member/emailCheck")
+	public int emailCheck(@RequestParam("id")String id, MemberVo vo,HttpSession session){
+		MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
+		vo.setId(id);
+		if(loginMember!=null) {
+			vo.setNo(loginMember.getNo());
+		}
+		return memberService.emailCheck(vo);
 	}
 	
 //	회원가입 인증 메일 발송 (화면)
@@ -241,20 +270,47 @@ public class MemberController {
 //	마이페이지-계정 정보(화면)
 		@GetMapping("/member/mypage/edit")
 		public String mypageEdit() {
+			
 			return "/member/mypage-edit";
 		}
 		
-//  마이페이지-계정 정보-비밀번호 변경 이메일 전송(화면)
-		@GetMapping("/member/mypage/edit/pwd")
-		public String mypageEditPwd() {
-			return "/member/mypage-pwdEdit";
+//  마이페이지-계정 정보 수정 (사진, 닉네임, 자기소개)
+		@PostMapping("/member/mypage/edit/profile")
+		public String mypageEditProfile(MemberVo vo, HttpSession session) {
+			
+			MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
+			vo.setNo(loginMember.getNo());
+			
+			int result=memberService.mypageEditProfile(vo);
+			if(result==0) {
+				return"common/errorPage";
+			}
+			session.setAttribute("loginMember", vo);
+			return "redirect:/member/mypage/edit";
 		}
 		
+//  마이페이지-계정 정보 수정 (이메일)
+		@PostMapping("/member/mypage/edit/email")
+		public String mypageEditEmail(MemberVo vo, HttpSession session) {
+			
+			MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
+			vo.setNo(loginMember.getNo());
+			
+			int result=memberService.mypageEditEmail(vo);
+			if(result==0) {
+				return"common/errorPage";
+			}
+			session.setAttribute("loginMember", vo);
+			return "redirect:/member/mypage/edit";
+		}			
+		
 
-//  마이페이지-계정 정보-비밀번호 변경 이메일 전송(화면)
+//  마이페이지-탈퇴
 		@PostMapping("/member/delete")
-		public String memberDeletePwd(String pwd,HttpSession session) {
-			int result=memberService.memberDeletePwd(pwd);
+		public String memberDeletePwd(MemberVo vo,HttpSession session) {
+			MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
+			vo.setId(loginMember.getId());
+			int result=memberService.memberDeletePwd(vo);
 			if(result==0) {
 				return "common/errorPage";
 			}

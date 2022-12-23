@@ -11,6 +11,7 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.learntime.app.member.dao.MemberDao;
 import com.learntime.app.member.mail.MailHandler;
@@ -74,6 +75,13 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberDao.nickCheck(sst,nick);
 	}
+	//닉네임 중복 확인 AJAX
+	@Override
+	public int emailCheck(MemberVo vo) {
+		
+		return memberDao.emailCheck(sst,vo);
+	}
+	
 	//아이디 찾기 (번호로 조회)
 	@Override
 	public MemberVo findId(String phone) {
@@ -95,9 +103,34 @@ public class MemberServiceImpl implements MemberService {
 	}
 	// 탈퇴(비밀번호로)
 	@Override
-	public int memberDeletePwd(String pwd) {
-		memberDao.memberDeletePwd(sst,pwd);
-		return 0;
+	public int memberDeletePwd(MemberVo vo) {
+		
+		MemberVo dbMember=memberDao.login(sst,vo);
+		boolean isMatch=enc.matches(vo.getPwd(), dbMember.getPwd());
+		
+		if (isMatch) {
+			return memberDao.memberDeletePwd(sst,vo);
+		}else {
+			return 0;
+		}
+		
+		
 	}
+	
+	//------------계정 정보 수정-----------
+	//프로필,닉네임,자기소개
+	@Override
+	public int mypageEditProfile(MemberVo vo) {
+		
+		return memberDao.mypageEditProfile(sst,vo);
+	}
+	//이메일
+	@Override
+	public int mypageEditEmail(MemberVo vo) {
+		// TODO Auto-generated method stub
+		return memberDao.mypageEditEmail(sst,vo);
+	}
+
+
 
 }
