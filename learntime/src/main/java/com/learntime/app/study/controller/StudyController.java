@@ -1,5 +1,6 @@
 package com.learntime.app.study.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,12 +46,25 @@ public class StudyController {
 		
 		//인기 기술스택 select
 		List<Map<String, String>> popularTechStackList = service.selectPopularTechStackList();
-		System.out.println(popularTechStackList);
 		model.addAttribute("popularTechStackList", popularTechStackList);
 		
+		//status : 모집중만 보기
+		String status = "unrecruited";
 		
-		//전체 모임 정보 select
+		//order : 최신순
+		String order = "recent";
 		
+		//type : 스터디+프로젝트
+		String type = "all";
+		
+		Map map = new HashMap<String, String>();
+		map.put("status", status);
+		map.put("order", order);
+		map.put("type", type);
+		
+		//전체 모임 정보 select (디폴트 : 최신순 + 전체 스터디/프로젝트 + 모집중만 조회)
+//		List<Map<String, String>> groupList = service.selectGroupList(map);
+//		model.addAttribute("groupList", groupList);
 		
 		
 		return "study/list";
@@ -69,7 +83,22 @@ public class StudyController {
 	
 	//스터디/프로젝트 모집 (화면 + DB select)
 	@GetMapping("/recruit")
-	public String recruit() {
+	public String recruit(Model model) {
+		
+		//모집 구분 select
+		List<Map<String, String>> groupTypeList = service.selectGroupTypeList();
+		model.addAttribute("groupTypeList", groupTypeList);
+		
+		//진행 기간 select
+		List<Map<String, String>> groupPeriodList = service.selectGroupPeriodList();
+		model.addAttribute("groupPeriodList", groupPeriodList);
+		
+		//기술 스택 select
+		List<Map<String, String>> techStackList = service.selectTechStackList();
+		model.addAttribute("techStackList", techStackList);
+
+		
+		
 		return "study/recruit";
 	}
 	

@@ -59,4 +59,34 @@ public class StudyDaoImpl implements StudyDao{
 		return sst.selectList("studyMapper.selectPopularTechStackList");
 	}
 
+	//모집 구분 리스트 select
+	@Override
+	public List<Map<String, String>> selectGroupTypeList(SqlSessionTemplate sst) {
+		return sst.selectList("studyMapper.selectGroupTypeList");
+	}
+
+	//진행 기간 리스트 select
+	@Override
+	public List<Map<String, String>> selectGroupPeriodList(SqlSessionTemplate sst) {
+		return sst.selectList("studyMapper.selectGroupPeriodList");
+	}
+
+	//기술 스택 리스트 select
+	@Override
+	public List<Map<String, String>> selectTechStackList(SqlSessionTemplate sst) {
+		return sst.selectList("studyMapper.selectTechStackList");
+	}
+
+	//기술 스택 유형으로 기술 스택 select
+	@Override
+	public List<Map<String, String>> selectTechStackListByType(SqlSessionTemplate sst, String type) {
+		return sst.selectList("studyMapper.selectTechStackListByType", type);
+	}
+
+	//그룹 리스트 조회
+	@Override
+	public List<Map<String, String>> selectGroupList(SqlSessionTemplate sst, Map map) {
+		return sst.selectList("studyMapper.selectGroupList", map);
+	}
+
 }

@@ -32,10 +32,18 @@
 	</beans:bean>
 	
 	<!-- 파일 업로드 -->
-
 	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="defaultEncoding" value="UTF-8"/>
 		<beans:property name="maxUploadSize" value="10000000"/>
 	</beans:bean>
+	
+	<!-- 인터셉터 맵핑 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/study/recruit"/>
+			<exclude-mapping path="/member/join"/>
+			<beans:bean class="com.learntime.app.common.interceptor.LoginCheckInterceptor"></beans:bean>
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>
