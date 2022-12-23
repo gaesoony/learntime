@@ -7,8 +7,8 @@
 	<insert id="questionWrite">
   		INSERT INTO QUESTION_BOARD (NO, CATE_NO,WRITER,TITLE,CONTENT,ENROLL_DATE,
   		DELETE_YN,MODIFY_DATE) 
-		VALUES(SEQ_QUESTION_BOARD_NO,#{cateNo},#{writer},#{title},
-		#{content}, SYSDATE,'N',SYSDATE)
+		VALUES(SEQ_QUESTION_BOARD_NO.NEXTVAL,#{category},#{writer},#{title-q},
+		#{contentData}, SYSDATE,'N',SYSDATE)
   </insert>
   
   <select id="questionList" resultType="com.learntime.app.question.vo.QuestionVo">

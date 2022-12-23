@@ -33,33 +33,33 @@
                 <div class="cate-selection">
                     <div class="cate-pin">상단고정</div>
                     <div class="activated">
-                        <div class="all-cate"><input type="radio"  name="pin">전체</div>
-                        <div class="activate"><input type="radio" name="pin">활성화</div>
-                        <div class="non-activated"><input type="radio"  name="pin">비활성화</div>
+                        <div class="all-cate"><input type="radio"  name="pin" value="a">전체</div>
+                        <div class="activate"><input type="radio" name="pin" value="b">활성화</div>
+                        <div class="non-activated"><input type="radio"  name="pin" value="c">비활성화</div>
                     </div>
                 </div>
             </div>
             <div class="notice-cate-content">
                 <div class="notice-title-date">
                     <div class="category-notice"><select name="category" id="categories">
-                        <option value="total">전체</option>
-                        <option value="study">스터디</option>
-                        <option value="study-confirmed">공부인증</option>
-                        <option value="QnA">Q&A</option>
-                        <option value="mentoring">멘토링</option>
-                        <option value="community">커뮤니티</option>
-                        <option value="skin-shop">스킨샵</option>
+                        <option value="1">전체</option>
+                        <option value="2">스터디</option>
+                        <option value="3">공부인증</option>
+                        <option value="4">Q&A</option>
+                        <option value="5">멘토링</option>
+                        <option value="6">커뮤니티</option>
+                        <option value="7">스킨샵</option>
                     </select></div>
                     <div class="title-notice"></div>
                     <div class="date-notice"></div>
                 </div>
                 <div class="empty1"></div>
                 <div class="notice-content">
-                    <textarea class="summernote" name="editordata"></textarea>
+                    <textarea class="summernote" name="contentData"></textarea>
                 </div>
                 <div class="backBtn">
-                    <div class="btn-to">등록</div>
-                    <div class="btn-to">글목록</div>
+                    <div class="btn-to"><input type="submit" value="등록" class="sub-btn"></div>
+                    <a href="/app/notice/noticeList"><div class="btn-to">글목록</div></a> 
                 </div>
             </div>
         </div>

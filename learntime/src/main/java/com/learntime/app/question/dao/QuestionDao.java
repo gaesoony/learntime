@@ -7,7 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.learntime.app.category.CategoryList;
+
 import com.learntime.app.question.vo.PageVo;
 import com.learntime.app.question.vo.QuestionVo;
 

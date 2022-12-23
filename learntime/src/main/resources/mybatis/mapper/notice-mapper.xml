@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="noticeMapper">
+
+	<insert id="noticeWrite">
+  		INSERT INTO NOTICE (NO, CATE_NO,WRITER,TITLE,CONTENT,ENROLL_DATE,
+  		DELETE_YN,MODIFY_DATE,STATUS) 
+		VALUES(SEQ_NOTICE_NO.NEXTVAL,#{category},#{writer},#{title-notice},
+		#{contentData}, SYSDATE,'N',SYSDATE,#{pin})
+  </insert>
+  
+  
+	
+</mapper>

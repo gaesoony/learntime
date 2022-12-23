@@ -7,7 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.learntime.app.category.CategoryList;
+
 import com.learntime.app.question.dao.QuestionDao;
 import com.learntime.app.question.vo.PageVo;
 import com.learntime.app.question.vo.QuestionVo;

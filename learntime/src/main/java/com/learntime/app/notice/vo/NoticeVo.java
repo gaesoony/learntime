@@ -1,15 +1,11 @@
-package com.learntime.app.question.vo;
+package com.learntime.app.notice.vo;
 
 import java.sql.Timestamp;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-
-
 import lombok.Data;
 @Data
-public class QuestionVo {
+public class NoticeVo {
+	
 	private int no;
 	private int cateNo;
 	private String writer;
@@ -18,20 +14,8 @@ public class QuestionVo {
 	private Timestamp enrollDate;
 	private String deleteYn;
 	private Timestamp modifyDate;
+	private int hit;
+	private int status;
 	
-	
-
-	
-		
-
 
 }
-
-
-
-
-
-	
-	
-	
-

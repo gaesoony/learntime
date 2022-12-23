@@ -5,23 +5,28 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.learntime.app.category.CategoryList;
+import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.question.service.QuestionService;
 import com.learntime.app.question.service.QuestionServiceImpl;
 import com.learntime.app.question.vo.PageVo;
 import com.learntime.app.question.vo.Pagination;
 import com.learntime.app.question.vo.QuestionVo;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 public class QuestionController {
-	
+	@Autowired
 	private QuestionService qs;
 	
 	// 문의게시판 리스트 화면
@@ -75,7 +80,11 @@ public class QuestionController {
 	@PostMapping("question/questionWrite")
 	public String questionWrite(QuestionVo vo) {
 		
+		MemberVo loginMember = new MemberVo(); 
+		String writer = loginMember.getNo();
+		vo.setWriter(writer);
 		int result = qs.questionWrite(vo);
+		log.debug("vo:"+vo);
 		if(result == 1) {
 			return "question/questionList";
 		}else {

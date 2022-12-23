@@ -48,80 +48,13 @@
             <a href="/app/question/qDetailListModify"><div class="btn-to-m" id="btn-modify">수정</div></a>
             <input type="button" value="삭제" name="btn-to-m" class="btn-to-m" id="btn-to-m">
             <a href="/app/question/questionList"><div class="btn-to-m">글목록</div></a>
-        </div>
-        <div class="reply-section">
-            <div class="reply-num">6개의 댓글</div>
-            <div class="leave-comment">
-                <div class="div-box-a">
-                    <div class="div-box-b">
-                        <div class="profile-box"><img width="70px" height="70px" src="/app/resources/img/main/Ellipse 2.png"></div>
-                        <div class="div-box-d"><textarea rows="4" cols="115"></textarea></div>
-                    </div>
-                    <div class="div-box-c">
-                        <div class="input-box"><input type="button" value="댓글쓰기" class="input-comment"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="comment-box">
-                <div class="gathering-boxes">
-                    <div class="comment-a">
-                        <div class="profile-etc">
-                            <div class="profile-pic"><img width="70px" height="70px" src="/app/resources/img/faq/image 127.png"></div>
-                            <div class="profile-id"><img width="200px" height="70px" src="/app/resources/img/faq/image 91.png"></div>
-                            <div class="good-or-bad">
-                                <div class="btn-good-or-bad">
-                                    <div class="downBtn"><img width="20px" height="20px" src="https://cdn-icons-png.flaticon.com/128/32/32195.png"></div>
-                                    <div class="middleBtn">3</div>
-                                    <div class="upBtn"><img width="20px" height="20px" src="https://cdn-icons-png.flaticon.com/128/271/271239.png"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="leaved-comment">접속이 잘 안되네요</div>
-                        <div class="hide-write-reply">
-                            <div class="hide-reply">댓글 모두 숨기기</div>
-                            <div class="write-reply">댓글 쓰기 </div>
-                        </div>
-                    </div>
-                    <div class="hide-comment">
-                        <div class="write-reply-reply">
-                            <div class="leave-comment">
-                                <div class="div-box-a">
-                                    <div class="div-box-b">
-                                        <div class="profile-box"><img width="70px" height="70px" src="/app/resources/img/main/Ellipse 2.png"></div>
-                                        <div class="div-box-d"><textarea rows="4" cols="115"></textarea></div>
-                                    </div>
-                                    <div class="div-box-c">
-                                        <div class="input-box"><input type="button" value="댓글쓰기" class="input-comment"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>    
-                    <div class="comment-b-for-a" >
-                        <div class="reply-reply">
-                            <div class="profile-etc-re">
-                                <div class="profile-pic-re"><img width="70px" height="70px" src="/app/resources/img/faq/image 130.png"></div>
-                                <div class="profile-id-re"><img width="200px" height="70px" src="/app/resources/img/faq/image 129.png"></div>
-                                <div class="good-or-bad-re">
-                                    <div class="btn-good-or-bad-re">
-                                        <div class="downBtn"><input type='button' onclick="count('minus')"><img width="20px" height="20px" src="https://cdn-icons-png.flaticon.com/128/32/32195.png"></input></div>
-                                        <div class="middleBtn" >0</div>
-                                        <div class="upBtn"><input type="button" onclick="count('plus')"><img width="20px" height="20px" src="https://cdn-icons-png.flaticon.com/128/271/271239.png"></input></div>
-                                    </div>
-                                </div> 
-                            </div>
-                            <div class="leaved-comment-re">@겨울의속삭임님<br>해당이슈는 수정하여 반영하였습니다. 감사합니다.</div>
-                            <div class="hide-comment-re"><span>댓글쓰기</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
-        </div>
+        </div>   
+    </div>
     </div>
 </div>
 	
 </form>
+<%@ include file = "/WEB-INF/views/common/footer.jsp" %>
 
 
 

@@ -210,4 +210,11 @@
     text-align: center;
     
 }
+.sub-btn{
+    border: none;
+    background-color: #5ECC80;
+    font-size: medium;
+    font-weight: 600;
+    color: white;
+}
 
