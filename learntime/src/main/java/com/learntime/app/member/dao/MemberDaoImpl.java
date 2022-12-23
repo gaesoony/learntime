@@ -25,6 +25,14 @@ public class MemberDaoImpl implements MemberDao {
 
 		return sst.selectOne("memberMapper.nickCheck",nick);
 	}
+	
+	//이메일 중복확인 
+	@Override
+	public int emailCheck(SqlSessionTemplate sst, MemberVo vo) {
+		
+		return sst.selectOne("memberMapper.emailCheck",vo);
+	}
+	
 	//아이디 찾기 (번호로 조회)
 	@Override
 	public MemberVo findId(SqlSessionTemplate sst, String phone) {
@@ -44,9 +52,24 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	//탈퇴
 	@Override
-	public int memberDeletePwd(SqlSessionTemplate sst, String pwd) {
+	public int memberDeletePwd(SqlSessionTemplate sst, MemberVo vo) {
 		
-		return sst.update("memberMapper.memberDeletePwd", pwd);
+		return sst.update("memberMapper.memberDeletePwd", vo);
 	}
+	
+	//------------계정 정보 수정-----------
+	//프로필,닉네임,자기소개
+	@Override
+	public int mypageEditProfile(SqlSessionTemplate sst, MemberVo vo) {
+
+		return sst.update("memberMapper.mypageEdiProfile", vo);
+	}
+	// 이메일
+	@Override
+	public int mypageEditEmail(SqlSessionTemplate sst, MemberVo vo) {
+		
+		return sst.update("memberMapper.mypageEditEmail", vo);
+	}
+	
 
 }

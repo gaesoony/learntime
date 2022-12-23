@@ -73,9 +73,9 @@
       }
 
       .inputbox{
-        width: 292px;
+        width: 290px;
         height: 20px;
-        margin:14px; 
+        padding:14px; 
         border-radius:4px;
         border:1px solid #D9D9D9;
       }

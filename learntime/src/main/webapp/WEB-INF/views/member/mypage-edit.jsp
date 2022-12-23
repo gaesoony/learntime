@@ -129,7 +129,7 @@
         
     }
 
-    #edit-area>div{
+    #edit-area>form{
         border: 1px solid #D9D9D9;
         padding: 40px;
         margin-bottom: 10px;
@@ -396,7 +396,7 @@
         </div>
 
         <div id="pwd2">
-            <form action="">
+            <form action="${pageContext.request.contextPath}/member/delete" method="post">
                 <div class="titleText">비밀번호</div>
                 <input type="password" name="pwd" placeholder="현재 비밀번호 입력 시 탈퇴하기가 진행됩니다." autoComplete="off">
                 <span class="material-symbols-outlined">visibility</span>
@@ -418,67 +418,123 @@
             <%@include file="/WEB-INF/views/common/mypage-side.jsp"%>
         </div>
         <div id="edit-area">
+            <form action="${pageContext.request.contextPath}/member/mypage/edit/profile" method="post">
             <div id="profile-area">
-                 <div class="profile-img">
-                     <div class="profile-img center relative">
-                         <img
-                           src="${pageContext.request.contextPath}/resources/img/profile_default.png"
-                           alt=""
-                         />
-                         <img
-                           id="preview"
-                           src="${pageContext.request.contextPath}/resources/img/profile_default.png"
-                         />
-                         <div class="file-btn-area">
-                           <label for="file" class="file-btn center"
-                             ><img
-                               src="${pageContext.request.contextPath}/resources/img/mystudy/image-plus.png"
-                               alt=""
-                           /></label>
-                           <input
-                             id="file"
-                             type="file"
-                             class="hidden"
-                             onchange="readURL(this);"
-                           />
-           
-                           <script>
-                             function readURL(input) {
-                               if (input.files && input.files[0]) {
-                                 var reader = new FileReader();
-                                 reader.onload = function (e) {
-                                   document.getElementById("preview").src =
-                                     e.target.result;
-                                 };
-                                 reader.readAsDataURL(input.files[0]);
-                               } else {
-                                 document.getElementById("preview").src = "";
-                               }
-                             }
-                           </script>
-                         </div>
-                       </div>
-                 </div>
-                 <div id="nick-area">
-                     <div class="titleText">닉네임</div>
-                     <input type="text" name="nick">
-                     <div id="nickReult"></div>
-                 </div>
+               
+                <div class="profile-img">
+                    <div class="profile-img center relative">
+                        <img src="${pageContext.request.contextPath}/resources/img/profile_default.png" alt=""/>
+                        <img id="preview" src="${pageContext.request.contextPath}/resources/img/profile_default.png"/>
+                        <div class="file-btn-area">
+                            <label for="file" class="file-btn center">
+                                    <img src="${pageContext.request.contextPath}/resources/img/mystudy/image-plus.png"alt=""/>
+                                </label>
+                            <input id="file" type="file" class="hidden" onchange="readURL(this);"/>
+            
+                            <script>
+                                function readURL(input) {
+                                        if (input.files && input.files[0]) {
+                                            var reader = new FileReader();
+                                            reader.onload = function (e) {
+                                            document.getElementById("preview").src =
+                                                e.target.result;
+                                            };
+                                            reader.readAsDataURL(input.files[0]);
+                                        } else {
+                                            document.getElementById("preview").src = "";
+                                        }
+                                    }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div id="nick-area">
+                    <div class="titleText">닉네임</div>
+                    <input type="text" name="nick" value="${loginMember.nick}">
+                    <div id="nickReult"></div>
+                </div>
+                        
+                <div id="profile-editor">
+                    <div class="titleText">자기소개</div>
+                    <textarea class="click2edit" name="intro">${loginMember.intro}</textarea>
+                    
+                </div>
+        
+                <button class="edit-btn">저장하기</button>
                 
-                 <div id="profile-editor">
-                     <div class="titleText">자기소개</div>
-                     <div class="click2edit"></div>
-                     
-                 </div>
- 
-                 <button class="edit-btn">저장하기</button>
-                 
             </div>
-            <div id="email-area" class="area-grid">
-                 <div class="titleText">이메일</div>
-                 <input type="text" name="email">
-                 <button class="edit-btn">저장하기</button>
-            </div>
+            </form>
+
+            <form action="${pageContext.request.contextPath}/member/mypage/edit/email" method="post" onsubmit="return emailCheck();">
+                <div id="email-area" class="area-grid">
+                    <div class="titleText">이메일</div>
+                    <input type="text" name="id" value="${loginMember.id}">
+                    <div id="emailCheck"></div>
+                    <button class="edit-btn">저장하기</button>
+                </div>
+            </form>
+
+            <script>
+               
+                const idInput= $("input[name=id]").eq(1);
+                idInput.blur(function() {
+                    const id=$("input[name=id]").eq(1).val();
+                    console.log(id);
+                    var idCheck = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+                    
+                    $.ajax({    
+                        type: "get",
+                        url: "${pageContext.request.contextPath}/member/emailCheck?id="+id,
+                        success: function(data) {
+                            if(data==1){
+                                $("#emailCheck").text("이미 사용 중인 이메일 입니다.");
+                                $("#emailCheck").css("color", "red");
+                                $("#emailCheck").attr("disabled", true);
+                                $("input[name=id]").eq(1).focus();
+                            }else {
+                        
+                                if(idCheck.test(id)){
+                                    // 0 : 아이디 길이 / 문자열 검사
+                                    $("#emailCheck").text("");
+                                    $('#emailCheck').css('color', 'var(--main-color)');
+                                    $("#emailCheck").attr("disabled", true);
+                        
+                                } else if(id == ""){
+                                    $('#emailCheck').text('이메일을 입력해주세요');
+                                    $('#emailCheck').css('color', 'red');
+                                    $("#emailCheck").attr("disabled", true);				
+                                    
+                                } else if(id.search(blackCheck) != -1){
+                                    $('#emailCheck').text("공백 없이 작성해 주세요.");
+                                    $('#emailCheck').css('color', 'red');
+                                    $("#emailCheck").attr("disabled", true);
+                                
+                                }	else {	
+                                    $('#emailCheck').text("이메일 형식이 올바르지 않습니다.");
+                                    $('#emailCheck').css('color', 'red');
+                                    $("#emailCheck").attr("disabled", true);
+                                }
+                        
+                            }
+                                
+                        },
+                        error: function() {   
+                            $("#emailCheck").text("이메일 중복 확인 불가");
+                                
+                        }
+                                
+                                            
+                    });
+                  
+        
+                });
+        
+                
+            
+               
+                
+            </script>
+
             <div id="pwd-area" class="area-grid">
                  <div class="titleText">비밀번호</div>
                  <div>비밀번호를 새롭게 발급받아보세요!</div>
@@ -486,7 +542,7 @@
             </div>
             <div id="phone-area" class="area-grid">
                  <div class="titleText">휴대폰 번호</div>
-                 <input type="text" name="phone" placeholder="- 제외한 번호만">
+                 <input type="text" name="phone" placeholder="- 제외한 번호만" value="${loginMember.phone}">
                  <button class="edit-btn">저장하기</button>
             </div>
             <div id="stack-area" class="area-grid">
@@ -515,7 +571,7 @@
                  <div class="titleText">회원 탈퇴</div>
                  <button id="delete-btn">탈퇴하기</button>
             </div>
-         </div>
+        </div>
     </div>
     
   
@@ -609,8 +665,26 @@
     const category = document.querySelector("#my-cate div:nth-child(10) a");
     category.classList.add("main-color");
 </script>
+
+<script>
+			
+    function emailCheck(){
+        if($("#emailCheck").text()!=""){
+
+            Swal.fire({
+					icon: 'error',
+					title: '이메일를 다시 확인해주세요.',
+					text: '이메일 중복 확인이 되지 않았습니다.',
+					confirmButtonColor: '#5ECC80'
+				});
+                $("input[name=id]").eq(1).focus();
+
+            return false
+        }
+
+    }   
+</script>
+
+
 </body>
-
-
-
 </html>
