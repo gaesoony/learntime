@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -130,8 +131,8 @@
         <div class="maintitle">
             <div class="selectbox">
                 <select class="select">
-                    <option value="stac">기술</option>
-                    <option value="career">커리어</option>
+                    <option value="1" name="cateNo">기술</option>
+                    <option value="2" name="cateNo">커리어</option>
                 </select>
             </div>
             </div>
@@ -139,16 +140,16 @@
 
             <div class="content">
                 <div>
-                    <input type="text" id="tag" placeholder="해시태그를 입력하세요" />
+                    <input type="text" id="tag" name="tag" placeholder="해시태그를 입력하세요" />
                 </div>
                 <ul id="tag-list">
                 </ul>
             </div>
 
-            <textarea class="summernote" name="editordata"></textarea>
+            <textarea name="content" class="summernote"></textarea>
 
-            <input type="button" onClick="history.back();" class="cancle" style='cursor:pointer;' value="취소"></input>
-            <input type="submit" onclick="location.href='/app/qna/list'" class="write" style='cursor:pointer;' value="등록"></input>
+            <input type="button" onClick="history.back();" class="cancle" style='cursor:pointer;' value="취소" />
+            <input type="submit" class="write" style='cursor:pointer;' value="등록" />
             
         </div>
     </div>
@@ -168,7 +169,6 @@
             disableResizeEditor: true,
         });
 
-        
     </script>
 
     <script>

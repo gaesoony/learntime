@@ -3,6 +3,7 @@ package com.learntime.app.makegrass.service;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.learntime.app.makegrass.dao.MakegrassDao;
 import com.learntime.app.makegrass.vo.MakegrassVo;
@@ -18,9 +19,32 @@ public class MakegrassServiceImpl implements MakegrassService {
 	
 	//게시글 작성
 	@Override
+	@Transactional
 	public int write(MakegrassVo vo) {
 		
-		return dao.write(sst, vo);
+		int result1 = 0;
+		int result2 = 0;
+		int result3 = 0;
+		
+		result1 = dao.insertMakegrass(sst, vo);
+		
+		if(result1 >= 1) {
+			if(vo.getTag() == null) {
+				result2 = 1;
+			}else {
+				result2 = dao.insertTag(sst, vo.getTag());
+			}
+		}
+		
+		if(result2 >= 1) {
+			if(vo.getTag() == null) {
+				result3 = 1;
+			}else {
+				result3 = dao.insertKnowledgeTag(sst, vo.getTag());
+			}
+		}
+		
+		return result1 * result2 * result3;
 	}
 
 }

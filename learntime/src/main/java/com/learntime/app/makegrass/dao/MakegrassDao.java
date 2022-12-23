@@ -7,7 +7,13 @@ import com.learntime.app.makegrass.vo.MakegrassVo;
 
 @Repository
 public interface MakegrassDao {
+	
+	int insertMakegrass(SqlSessionTemplate sst, MakegrassVo vo);
 
-	int write(SqlSessionTemplate sst, MakegrassVo vo);
+	int insertTag(SqlSessionTemplate sst, String[] tag);
+
+	int insertKnowledgeTag(SqlSessionTemplate sst, String[] tag);
+
+	
 
 }
