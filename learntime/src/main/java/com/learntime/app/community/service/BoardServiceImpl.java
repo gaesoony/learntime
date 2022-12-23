@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.learntime.app.community.dao.BoardDao;
 import com.learntime.app.community.vo.BoardVo;
+import com.learntime.app.community.vo.CmtVo;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -38,6 +39,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public BoardVo selectOne(String bno) {
 		
+		//조회수 증가
 		dao.updateHit(sst, bno);
 		
 		return dao.selectBoardDetail(sst, bno);
@@ -48,6 +50,12 @@ public class BoardServiceImpl implements BoardService{
 	public int write(String bno) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	//자유게시판 댓글 조회
+	@Override
+	public List<CmtVo> selectCmtList(String bno) {
+		return dao.selectCmtList(sst, bno);
 	}
 	
 	

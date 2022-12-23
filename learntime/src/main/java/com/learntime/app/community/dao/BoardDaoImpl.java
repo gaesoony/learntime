@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.learntime.app.community.vo.BoardVo;
+import com.learntime.app.community.vo.CmtVo;
 
 @Repository
 public class BoardDaoImpl implements BoardDao{
@@ -38,6 +39,13 @@ public class BoardDaoImpl implements BoardDao{
 	@Override
 	public int updateHit(SqlSessionTemplate sst, String bno) {
 		return sst.update("freeBoardMapper.updateHit", bno);
+	}
+
+	//댓글 조회
+	@Override
+	public List<CmtVo> selectCmtList(SqlSessionTemplate sst, String bno) {
+		return sst.selectList("freeBoardMapper.selectCmtList", bno);
+		
 	}
 	
 	

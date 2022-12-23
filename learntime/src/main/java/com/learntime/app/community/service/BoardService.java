@@ -3,6 +3,7 @@ package com.learntime.app.community.service;
 import java.util.List;
 
 import com.learntime.app.community.vo.BoardVo;
+import com.learntime.app.community.vo.CmtVo;
 
 public interface BoardService {
 
@@ -17,8 +18,12 @@ public interface BoardService {
 	public BoardVo selectOne(String bno);
 	
 	
+	//select comment list
+	public List<CmtVo> selectCmtList(String bno);
+
 	//insert comment
 	public int write(String bno);
+
 
 	
 }

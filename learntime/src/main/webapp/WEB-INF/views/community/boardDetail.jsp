@@ -48,11 +48,11 @@
 		<div id="content-btns-box">
 			<div></div>
 			<div id="like-hate-box">
-				<div id="like">
+				<div id="like" class="like">
 					<span class="material-symbols-rounded lh-icon">thumb_up</span>
 				</div>
-				<div id="lh-number-box" class="red">29</div>
-				<div id="hate">
+				<div id="lh-number-box" class="lh-number-box">29</div>
+				<div id="hate" class="hate">
 					<span class="material-symbols-rounded lh-icon">thumb_down</span>
 				</div>
 			</div>
@@ -65,7 +65,7 @@
 		</div>
 
 		<div id="comment-wrap">
-			<form action="">
+			<form action="" method="post">
 				<div id="comment-write-box">
 					<div id="comment-writer-box">
 						<div id="comment-writer-profile">
@@ -81,8 +81,37 @@
 			<input type="submit" id="comment-write-btn" value="댓글 쓰기"></input>
 			</form>
 		<div id="comment-list">
-			<!-- jstl 반복문 나중에 써라..-->
-			
+			<!-- 댓글 반복문 -->
+			<div class="comment-box">
+				<div class="comment-main">
+					<div class="comment-writer-box">
+						<div class="comment-writer-profile">
+							<img src="/app/resources/img/profile01.png" alt="">
+						</div>
+						<span class="comment-writer">망치맨</span>
+						<span class="comment-write-time">2 시간 전</span>
+						<span class="modi-dele">수정</span>
+						<span class="modi-dele">삭제</span>
+					</div>
+					<div class="comment-content">
+						<p>좀더 받고 싶은데...</p>
+					</div>
+				</div>
+				
+				<div class="comment-lh-box">
+					<div class="like-hate-box">
+						<div class="like">
+							<span class="material-symbols-rounded lh-icon">thumb_up</span>
+						</div>
+						<div class="lh-number-box red">20</div>
+						<div class="hate">
+							<span class="material-symbols-rounded lh-icon">thumb_down</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 댓글 반복문 끝 -->
 			<div class="comment-box">
 				<div class="comment-main">
 					<div class="comment-writer-box">
@@ -133,7 +162,7 @@
 						<div class="like">
 							<span class="material-symbols-rounded lh-icon">thumb_up</span>
 						</div>
-						<div class="lh-number-box red">20</div>
+						<div class="lh-number-box">0</div>
 						<div class="hate">
 							<span class="material-symbols-rounded lh-icon">thumb_down</span>
 						</div>
@@ -162,7 +191,7 @@
 						<div class="like">
 							<span class="material-symbols-rounded lh-icon">thumb_up</span>
 						</div>
-						<div class="lh-number-box red">20</div>
+						<div class="lh-number-box">-1</div>
 						<div class="hate">
 							<span class="material-symbols-rounded lh-icon">thumb_down</span>
 						</div>
@@ -188,5 +217,56 @@
             lang: "ko-KR"
         });
     </script>
+
+	<script>
+		$('.like').click(function(){
+			$(this).children('span').toggleClass('red-filled')
+			$(this).siblings('.hate').children('span').removeClass('blue-filled');
+
+			//좋아요 숫자 변경 ajax 함수
+			// $('.like').click(function() {
+			// 	$.ajax({
+			// 		url: '/board/like', 
+			// 		type: 'POST', 
+			// 		data: { id: $(this).data('id') }, 
+			// 		success: function(response) { 
+			// 			$('.lh-number-box').text(response.likeCount); 
+			// 		}
+			// 	});
+			// });
+
+
+
+
+
+
+			//좋아요 숫자 색상 변경
+			calcLike();
+
+		});
+
+		$('.hate').click(function(){
+			$(this).children('span').toggleClass('blue-filled')
+			$(this).siblings('.like').children('span').removeClass('red-filled');
+		});
+
+
+		
+		function calcLike() {
+		$('.lh-number-box').each(function(){
+			if($(this).text() > 0){
+			$(this).addClass('red');
+			}else if($(this).text() < 0){
+			$(this).addClass('blue');
+			}else{
+			$(this).removeClass('red');
+			$(this).removeClass('blue');
+			}
+		});
+		}
+
+
+
+	</script>
 </body>
 </html>

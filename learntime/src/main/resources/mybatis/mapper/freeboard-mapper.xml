@@ -53,5 +53,9 @@
 		SET HIT = HIT + 1
 		WHERE NO = #{bno}
 	</update>
+	
+	<select id="selectCmtList" resultType = "CmtVo">
+		
+	</select>
 
 </mapper>

@@ -17,160 +17,9 @@
 <script src="https://kit.fontawesome.com/939838bb27.js"crossorigin="anonymous"></script>
 <title>Insert title here</title>
 </head>
-<style>
-    /* 모달 시작 */
-	  .blackBG {
-        background: rgba(0, 0, 0, 0.5);
-        width: 100vw;
-        height: 100vh;
-        position: fixed;
-        visibility: hidden;
-        opacity: 0;
-
-        display: flex;
-        z-index:10000;
-      }
-      .show {
-        visibility: visible;
-        opacity: 1;
-      }
-      #modal-whiteBG {
-        text-align: center;
-        width: 320px; 
-        margin: auto;
-        background: white;
-        border-radius: 8px;
-        padding: 20px;
-        display: grid;
-        grid-template-rows: 30px 70px 190px 45px 30px 45px;
-        z-index:10001;
-      }
-
-      #login-btn,#modal-closed,.inputbox, .modal-login-btn{
-        background: inherit ; 
-        border:none; 
-        box-shadow:none; 
-        border-radius:0; 
-        padding:0; 
-        overflow:visible; 
-        cursor:pointer;
-      }
-
-
-      .material-symbols-outlined {
-        display: flex;
-        justify-content: flex-end;
-        font-variation-settings:
-        'FILL' 0,
-        'wght' 200,
-        'GRAD' 0,
-        'opsz' 48
-      }
-
-      .inputbox{
-        width: 292px;
-        height: 20px;
-        margin:14px; 
-        border-radius:4px;
-        border:1px solid #D9D9D9;
-      }
-
-      .modal-login-btn{
-        width: 320px;
-        height: 48px;
-        border-radius:4px;
-        background-color: var(--main-color);
-        color: #FFFFFF;
-      }
-
-      #line {
-        display: flex;
-        flex-basis: 100%;
-        align-items: center;
-        color: rgba(0, 0, 0, 0.35);
-        font-size: 12px;
-        margin: 8px 0px;
-      }
-      #line::before,
-      #line::after {
-        content: "";
-        flex-grow: 1;
-        background: rgba(0, 0, 0, 0.35);
-        height: 1px;
-        font-size: 0px;
-        line-height: 0px;
-        margin: 0px 16px;
-      }
-
-
-      #account_find{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      #account_find *{
-        margin: 5px;
-        font-size: 12px;
-        color: #535353;
-      }
-
-
-      #loginApi{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      #loginApi div{
-        width: 35px;
-        height: 35px;
-        background-color: #535353;
-        margin: 2px;
-      }
-
- 	/* 모달 끗 */
-</style>
 
 <body>
-
-    <!-- 로그인 모달 -->
-	<div class="blackBG">
-        <div id="modal-whiteBG">
-            <button type="button" id="modal-closed">
-                <span class="material-symbols-outlined">close</span>
-            </button>
-  
-            <div id="logo"><a href="${pageContext.request.contextPath}/main" ><img src="${pageContext.request.contextPath}/resources/img/logo_green2.png" alt="런타임로고"></a></div>
-              
-            <form action="${pageContext.request.contextPath}/member/login" method="POST">
-                <div>
-                    <input class="inputbox" type="text" name="id" placeholder="이메일">
-                </div>
-                <br>
-                <div>
-                    <input class="inputbox" type="password" name="pwd" autocomplete="off" placeholder="비밀번호">
-                </div>
-                <br>
-                  
-                <button type="submit" class="modal-login-btn" >로그인</button>
-            </form>
-              
-            <div id="account_find">
-                <a href="${pageContext.request.contextPath}/member/findId">아이디(이메일) 찾기</a>
-                <span>|</span>
-                <a href="${pageContext.request.contextPath}/member/findPwd">비밀번호 찾기</a>
-                <span>|</span>
-                <a href="${pageContext.request.contextPath}/member/join">회원가입</a>
-            </div>
-            <div id="line">간편 로그인</div>
-            <div id="loginApi">
-                <div id="google"></div>
-                <div id="kakao"></div>
-            </div>
-        </div>
-    </div>
-    <!-- 모달 끝 -->
-
+    
 <%@include file ="/WEB-INF/views/common/header.jsp" %>
 
     <div id="main-wrap">
@@ -183,7 +32,7 @@
                 <span>작성하기</span> 
             </div>
             <div id="category" class="height-40">
-                <input type="radio" name="freeboard-cate" id="freeboard-cate1" checked>
+                <input type="radio" name="freeboard-cate" id="freeboard-cate1">
                 <label for="freeboard-cate1">전체</label>
                 <input type="radio" name="freeboard-cate" id="freeboard-cate2">
                 <label for="freeboard-cate2">자유</label>
@@ -192,13 +41,43 @@
                 <input type="radio" name="freeboard-cate" id="freeboard-cate4">
                 <label for="freeboard-cate4">커리어</label>
                 <input type="radio" name="freeboard-cate" id="freeboard-cate5">
-                <label for="freeboard-cate5">temp-category1</label>
+                <label for="freeboard-cate5">추가1</label>
                 <input type="radio" name="freeboard-cate" id="freeboard-cate6">
-                <label for="freeboard-cate6">temp-category2</label>
+                <label for="freeboard-cate6">추가2</label>
                 <input type="radio" name="freeboard-cate" id="freeboard-cate7">
                 <label for="freeboard-cate7">temp-category3</label>
-                <input type="radio" name="freeboard-cate" id="freeboard-cate5">
+                <input type="radio" name="freeboard-cate" id="freeboard-cate8">
+                <label for="freeboard-cate8">temp-category1</label>
+                <input type="radio" name="freeboard-cate" id="freeboard-cate9">
+                <label for="freeboard-cate9">temp-category2</label>
+                <input type="radio" name="freeboard-cate" id="freeboard-cate10">
+                <label for="freeboard-cate10">temp-category3</label>
+                <input type="radio" name="freeboard-cate" id="freeboard-cate11">
+                <label for="freeboard-cate11">temp-category1</label>
                 
+                <!-- jstl 반복문 -->
+                <!-- <c:forEach items = "" var= "cate">
+                    <input type="radio" name="freeboard-cate" id="${cate.no}">
+                    <label for="${cate.no}">${cate.name}</label>
+                </c:forEach> -->
+
+                
+                <script>
+                    // 카테고리가 클릭되면 해당 카테고리의 쿼리스트링을 생성 후 이동
+                    $('#category').click(function(){
+                        var cate = $(this).find('input:checked').attr('id');
+                        location.href = '/app/community/board/list?cate=' + cate;
+                    });
+
+
+                    // 쿼리스트링에 따라 해당 카테고리를 체크
+                    $(document).ready(function(){
+                        var cate = location.search.split('=')[1];
+                        $('#category').find('input[id=' + cate + ']').prop('checked', true);
+                    });
+
+                    // 
+                </script>
               
                 
             </div>
@@ -214,8 +93,10 @@
                     }
                 });
 
-                // + 버튼 카테고리 토글
+               
                 $('#cateDown').click(function(){
+
+                     // + 버튼 카테고리 토글
                     if($('#category').hasClass('height-40')){
                         $('#category').removeClass('height-40');
                         $('#category').addClass('height-auto');
@@ -223,7 +104,17 @@
                         $('#category').removeClass('height-auto');
                         $('#category').addClass('height-40');
                     }
+
+                    //cateDown 버튼 클릭시 +, - 토글
+                    if($(this).text() == '+'){
+                        $(this).text('-');
+                    }else{
+                        $(this).text('+');
+                    }
+
                 });
+
+                
             </script>
 
 
