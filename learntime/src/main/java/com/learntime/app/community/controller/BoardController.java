@@ -2,6 +2,7 @@ package com.learntime.app.community.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.learntime.app.community.service.BoardService;
 import com.learntime.app.community.vo.BoardVo;
+import com.learntime.app.member.service.MemberService;
 import com.learntime.app.member.vo.MemberVo;
 
 @RequestMapping("community")
@@ -22,6 +24,9 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService bs;
+	
+	@Autowired
+	private MemberService memberService;
 
 	
 // 	글 목록 TODO
@@ -45,11 +50,16 @@ public class BoardController {
 	@GetMapping("/board/detail")
 	public String boardDetail(@RequestParam String bno, Model model) {
 		
+		//글 조회
 		BoardVo bv = bs.selectOne(bno);
 		
 		if(bv == null) {
 			return "";
 		}
+		
+		
+		//댓글 조회 TODO
+//		List<CmtVo> cvList = bs.selectCmtList(bno);
 		
 		System.out.println(bv);
 		
@@ -105,5 +115,5 @@ public class BoardController {
 		
 		return "redirect:/community/board/detail";
 	}
-
+	
 }

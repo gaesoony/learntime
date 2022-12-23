@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.learntime.app.community.vo.BoardVo;
+import com.learntime.app.community.vo.CmtVo;
 
 public interface BoardDao {
 
@@ -19,5 +20,8 @@ public interface BoardDao {
 	
 	//조회수증가
 	public int updateHit(SqlSessionTemplate sst, String bno);
+
+	//select cmt list
+	public List<CmtVo> selectCmtList(SqlSessionTemplate sst, String bno);
 	
 }
