@@ -221,15 +221,15 @@ div#content{
 }
 
 #comment-writer-box{
-    width: 150px;
+    width: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
     
 }
-#comment-writer-profile{
-    height: 40px;
-    width: 40px;
+#comment-writer-profile>img{
+    height: 30px;
+    width: 30px;
     border-radius: 40px;
     background-color:#5ecc80;
     margin-left: 10px;
@@ -237,7 +237,7 @@ div#content{
 }
 #comment-writer{
     margin-left: 10px;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 #comment-area,
@@ -310,8 +310,8 @@ div#content{
     cursor: pointer;
 }
 .comment-content{
-    height: 70px;
-    margin : 10px 0;
+    height: auto;
+    margin : 20px 0;
     padding: 0 10px;
     font-size: 16px;
 }
@@ -406,4 +406,17 @@ div#content{
     'opsz' 48;
 
     color: #2c32a7;
+}
+
+#null-cmt{
+    text-align: center;
+    color: #717171;
+    padding: 20px 0;
+}
+
+#login-info-txt{
+    width: 990px;
+    text-align: center;
+    color: #717171;
+    padding: 70px 0 20px 0;
 }

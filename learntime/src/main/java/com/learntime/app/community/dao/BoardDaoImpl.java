@@ -14,9 +14,7 @@ public class BoardDaoImpl implements BoardDao{
 	//글쓰기
 	@Override
 	public int write(SqlSessionTemplate sst, BoardVo vo) {
-		
 		System.out.println("Vo from Dao : " + vo);
-		
 		return sst.insert("freeBoardMapper.write", vo);
 	}
 	
@@ -46,6 +44,12 @@ public class BoardDaoImpl implements BoardDao{
 	public List<CmtVo> selectCmtList(SqlSessionTemplate sst, String bno) {
 		return sst.selectList("freeBoardMapper.selectCmtList", bno);
 		
+	}
+
+	//댓글 작성
+	@Override
+	public int insertCmt(SqlSessionTemplate sst, CmtVo cv) {
+		return sst.insert("freeBoardMapper.insertCmt", cv);
 	}
 	
 	

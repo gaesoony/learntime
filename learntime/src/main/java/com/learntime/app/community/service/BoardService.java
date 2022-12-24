@@ -21,8 +21,9 @@ public interface BoardService {
 	//select comment list
 	public List<CmtVo> selectCmtList(String bno);
 
+
 	//insert comment
-	public int write(String bno);
+	public int insertCmt(CmtVo cv);
 
 
 	

@@ -45,17 +45,20 @@ public class BoardServiceImpl implements BoardService{
 		return dao.selectBoardDetail(sst, bno);
 	}
 
-	//자유게시판 댓글 쓰기
-	@Override
-	public int write(String bno) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	//자유게시판 댓글 조회
 	@Override
 	public List<CmtVo> selectCmtList(String bno) {
 		return dao.selectCmtList(sst, bno);
+	}
+
+	
+	//자유게시판 댓글쓰기
+	@Transactional
+	@Override
+	public int insertCmt(CmtVo cv) {
+		
+		return dao.insertCmt(sst, cv);
+		
 	}
 	
 	

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +16,6 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
-
 	
 	<div id="board-banner">
 		<img src="/app/resources/img/freeBoardBanner.png" alt="자유게시판 배너">
@@ -64,140 +65,108 @@
 
 		</div>
 
+		
 		<div id="comment-wrap">
-			<form action="" method="post">
-				<div id="comment-write-box">
-					<div id="comment-writer-box">
-						<div id="comment-writer-profile">
-							<img src="" alt="">
-						</div>
-						<span id="comment-writer">망치맨</span>
-					</div>
-					<div id="comment-area">
-						<textarea class="summernote" name="editordata"></textarea>
-					</div>
-				</div>
-			</div>
-			<input type="submit" id="comment-write-btn" value="댓글 쓰기"></input>
-			</form>
-		<div id="comment-list">
-			<!-- 댓글 반복문 -->
-			<div class="comment-box">
-				<div class="comment-main">
-					<div class="comment-writer-box">
-						<div class="comment-writer-profile">
-							<img src="/app/resources/img/profile01.png" alt="">
-						</div>
-						<span class="comment-writer">망치맨</span>
-						<span class="comment-write-time">2 시간 전</span>
-						<span class="modi-dele">수정</span>
-						<span class="modi-dele">삭제</span>
-					</div>
-					<div class="comment-content">
-						<p>좀더 받고 싶은데...</p>
-					</div>
-				</div>
+			<!-- 로그인이 되어 있지 않을때 댓글 작성 -->
+			<c:if test="${sessionScope.loginMember == null}">
+				<div id="login-info-txt">로그인 후에 댓글작성이 가능합니다 :)</div>
+			</c:if>
+
+			<!-- 로그인이 되있을 때 댓글 작성-->
+			<c:if test="${sessionScope.loginMember != null}">
 				
-				<div class="comment-lh-box">
-					<div class="like-hate-box">
-						<div class="like">
-							<span class="material-symbols-rounded lh-icon">thumb_up</span>
+					<form action="/app/community/comment/write" method="post">
+						<div id="comment-write-box">
+							<div id="comment-writer-box">
+								<div id="comment-writer-profile">
+									<img src="" alt="" onerror="this.src='/app/resources/img/profile_default.png'">
+								</div>
+								<span id="comment-writer">${loginMember.nick}</span>
+							</div>
+							<div id="comment-area">
+								<textarea class="summernote" name="editordata"></textarea>
+							</div>
 						</div>
-						<div class="lh-number-box red">20</div>
-						<div class="hate">
-							<span class="material-symbols-rounded lh-icon">thumb_down</span>
+					<input type="submit" id="comment-write-btn" value="댓글 쓰기"></input>
+					</form>
+
+					<!-- 댓글 등록 할건데 loginMember.nick, loginMember.id, editordata를 날려주는 ajax 함수  -->
+					<script>
+						$(document).ready(function() {
+							$('#comment-write-btn').click(function() {
+								$.ajax({
+									url : '/app/community/comment/write',
+									type : 'post',
+									data : {
+										'writer' : '${loginMember.no}',
+										'boardNo' : '${bv.no}',
+										'content' : $('.summernote').summernote('code')
+									},
+									success : function(data) {
+										alert('댓글 등록 성공');
+										location.reload();
+									},
+									error : function() {
+										alert('댓글 등록 실패');
+									}
+								});
+							});
+						});
+					</script>
+				
+			</c:if>
+		</div>
+
+
+		<div id="comment-list">
+			<!-- cvList 의 첫번째 인덱스에 데이터가 없다면 실행되는 코드-->
+			<c:if test = "${cvList[0] == null}">
+				<div class="comment-box">
+					<div class="comment-main">
+						<div class="comment-content" id="null-cmt">
+							작성 된 댓글이 없습니다.
 						</div>
 					</div>
 				</div>
-			</div>
+			</c:if>
+		
+			<!-- 댓글 반복문 -->
+			<c:if test = "${cvList != null}">
+				<c:forEach var="cv" items="${cvList}">
+					<div class="comment-box">
+						<div class="comment-main">
+							<div class="comment-writer-box">
+								<div class="comment-writer-profile">
+									<img src="/app/${cv.writerImg}" alt="resources" onerror="this.src='/app/resources/img/profile_default.png'">
+								</div>
+								<span class="comment-writer">${cv.writerNick}</span>
+								<span class="comment-write-time">${cv.enrollDate}</span>
+								<span class="modi-dele">수정</span>
+								<span class="modi-dele">삭제</span>
+							</div>
+							<div class="comment-content">
+								<p>${cv.content}</p>
+							</div>
+						</div>
+
+						<div class="comment-lh-box">
+							<div class="like-hate-box">
+								<div class="like">
+									<span class="material-symbols-rounded lh-icon">thumb_up</span>
+								</div>
+								<div class="lh-number-box red">${cv.likes}</div>
+								<div class="hate">
+									<span class="material-symbols-rounded lh-icon">thumb_down</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</c:if>
+
+		
 
 			<!-- 댓글 반복문 끝 -->
-			<div class="comment-box">
-				<div class="comment-main">
-					<div class="comment-writer-box">
-						<div class="comment-writer-profile">
-							<img src="/app/resources/img/profile01.png" alt="">
-						</div>
-						<span class="comment-writer">망치맨</span>
-						<span class="comment-write-time">2 시간 전</span>
-						<span class="modi-dele">수정</span>
-						<span class="modi-dele">삭제</span>
-					</div>
-					<div class="comment-content">
-						<p>좀더 받고 싶은데...</p>
-					</div>
-				</div>
-				
-				<div class="comment-lh-box">
-					<div class="like-hate-box">
-						<div class="like">
-							<span class="material-symbols-rounded lh-icon">thumb_up</span>
-						</div>
-						<div class="lh-number-box red">20</div>
-						<div class="hate">
-							<span class="material-symbols-rounded lh-icon">thumb_down</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="comment-box">
-				<div class="comment-main">
-					<div class="comment-writer-box">
-						<div class="comment-writer-profile">
-							<img src="/app/resources/img/profile01.png" alt="">
-						</div>
-						<span class="comment-writer">망치맨</span>
-						<span class="comment-write-time">2 시간 전</span>
-						<span class="modi-dele">수정</span>
-						<span class="modi-dele">삭제</span>
-					</div>
-					<div class="comment-content">
-						<p>좀더 받고 싶은데...</p>
-					</div>
-				</div>
-				
-				<div class="comment-lh-box">
-					<div class="like-hate-box">
-						<div class="like">
-							<span class="material-symbols-rounded lh-icon">thumb_up</span>
-						</div>
-						<div class="lh-number-box">0</div>
-						<div class="hate">
-							<span class="material-symbols-rounded lh-icon">thumb_down</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="comment-box">
-				<div class="comment-main">
-					<div class="comment-writer-box">
-						<div class="comment-writer-profile">
-							<img src="/app/resources/img/profile01.png" alt="">
-						</div>
-						<span class="comment-writer">망치맨</span>
-						<span class="comment-write-time">2 시간 전</span>
-						<span class="modi-dele">수정</span>
-						<span class="modi-dele">삭제</span>
-					</div>
-					<div class="comment-content">
-						<p>좀더 받고 싶은데...</p>
-					</div>
-				</div>
-				
-				<div class="comment-lh-box">
-					<div class="like-hate-box">
-						<div class="like">
-							<span class="material-symbols-rounded lh-icon">thumb_up</span>
-						</div>
-						<div class="lh-number-box">-1</div>
-						<div class="hate">
-							<span class="material-symbols-rounded lh-icon">thumb_down</span>
-						</div>
-					</div>
-				</div>
-			</div>
 			
 		</div>
 
@@ -212,10 +181,17 @@
     <script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
     <script>
         $('.summernote').summernote({
-            height: 150,
+            height: 130,
             placeholder: '내용을 작성하세요',
-            lang: "ko-KR"
+            lang: "ko-KR",
+			disableResizeEditor: true,
+			focus: false
         });
+
+
+
+
+		
     </script>
 
 	<script>
@@ -223,24 +199,9 @@
 			$(this).children('span').toggleClass('red-filled')
 			$(this).siblings('.hate').children('span').removeClass('blue-filled');
 
-			//좋아요 숫자 변경 ajax 함수
-			// $('.like').click(function() {
-			// 	$.ajax({
-			// 		url: '/board/like', 
-			// 		type: 'POST', 
-			// 		data: { id: $(this).data('id') }, 
-			// 		success: function(response) { 
-			// 			$('.lh-number-box').text(response.likeCount); 
-			// 		}
-			// 	});
-			// });
 
-
-
-
-
-
-			//좋아요 숫자 색상 변경
+			//.. 좋아요... 숫자.. 색깔..
+		
 			calcLike();
 
 		});
