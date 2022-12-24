@@ -335,13 +335,55 @@
                         <!-- 본문 리스트 -->
                         <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
                             <div class="titleb">
+                                <div class="title" name="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
+                                <div class="contentbox">
+                                    <div class="content" name="content">
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+                                    </div>
+
+                                    <!-- 동그라미 답변 갯수 -->
+                                    <div class="circle">
+                                        <div class="replytitle">0</div>
+                                        <div class="replycontent">답변</div>
+                                    </div>
+
+                                    <!-- 본문 속 해시태그 -->
+                                    <div class="hashtagbox">
+                                        <ul class="hashtag">
+                                            <li class="hash" name="tag">#JAVA</li>
+                                            <li class="hash" name="tag">#자바</li>
+                                            <li class="hash" name="tag">#CSS</li>
+                                        </ul>
+                                    </div>
+                                    <div class="etcbox">
+                                        <ul class="etc">
+                                            <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                                            <li name="writer">nick02</li>
+                                            <li><i class="fa-regular fa-eye"></i> 56</li>
+                                            <li><i class="fa-regular fa-comment"></i> 13</li>
+                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
+                                            <li>2022.12.09.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="line3"></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- 본문 리스트 -->
+                        <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
+                            <div class="titleb">
                                 <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="contentbox">
                                     <div class="content">
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
                                     </div>
 
                                     <!-- 동그라미 답변 갯수 -->
@@ -380,10 +422,10 @@
                                 <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="contentbox">
                                     <div class="content">
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
                                     </div>
 
                                     <!-- 동그라미 답변 갯수 -->
@@ -422,10 +464,10 @@
                                 <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="contentbox">
                                     <div class="content">
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
                                     </div>
 
                                     <!-- 동그라미 답변 갯수 -->
@@ -464,10 +506,10 @@
                                 <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="contentbox">
                                     <div class="content">
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
                                     </div>
 
                                     <!-- 동그라미 답변 갯수 -->
@@ -506,10 +548,10 @@
                                 <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="contentbox">
                                     <div class="content">
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
                                     </div>
 
                                     <!-- 동그라미 답변 갯수 -->
@@ -548,10 +590,10 @@
                                 <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="contentbox">
                                     <div class="content">
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
                                     </div>
 
                                     <!-- 동그라미 답변 갯수 -->
@@ -590,10 +632,10 @@
                                 <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="contentbox">
                                     <div class="content">
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
                                     </div>
 
                                     <!-- 동그라미 답변 갯수 -->
@@ -632,10 +674,10 @@
                                 <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="contentbox">
                                     <div class="content">
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
                                     </div>
 
                                     <!-- 동그라미 답변 갯수 -->
@@ -674,52 +716,10 @@
                                 <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="contentbox">
                                     <div class="content">
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                    </div>
-
-                                    <!-- 동그라미 답변 갯수 -->
-                                    <div class="circle">
-                                        <div class="replytitle">0</div>
-                                        <div class="replycontent">답변</div>
-                                    </div>
-
-                                    <!-- 본문 속 해시태그 -->
-                                    <div class="hashtagbox">
-                                        <ul class="hashtag">
-                                            <li class="hash">#JAVA</li>
-                                            <li class="hash">#자바</li>
-                                            <li class="hash">#CSS</li>
-                                        </ul>
-                                    </div>
-                                    <div class="etcbox">
-                                        <ul class="etc">
-                                            <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                                            <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i> 56</li>
-                                            <li><i class="fa-regular fa-comment"></i> 13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
-                                            <li>2022.12.09.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="line3"></div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- 본문 리스트 -->
-                        <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
-                            <div class="titleb">
-                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
-                                <div class="contentbox">
-                                    <div class="content">
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                        학습하는 분들께 도움이 되고,
-                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+					                                        학습하는 분들께 도움이 되고,
+					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
                                     </div>
 
                                     <!-- 동그라미 답변 갯수 -->

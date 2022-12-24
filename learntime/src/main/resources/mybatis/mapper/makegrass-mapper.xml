@@ -14,8 +14,8 @@
 		INSERT INTO TAG (NO, NAME)
 	    SELECT SEQ_TAG_NO.NEXTVAL, A FROM
         (
-        <foreach collection="array" item="arr" separator="UNION ALL">
-        	SELECT #{arr} AS A FROM DUAL WHERE NOT EXISTS (SELECT NAME FROM TAG WHERE NAME = #{arr})
+        <foreach collection="array" item="tag" separator="UNION ALL">
+        	SELECT #{tag} AS A FROM DUAL WHERE NOT EXISTS (SELECT NAME FROM TAG WHERE NAME = #{tag})
         </foreach>
         )
 	</insert>
@@ -24,8 +24,8 @@
 		INSERT INTO MG_TAG (MG_NO, TAG_NO)
 		SELECT (SELECT NO FROM MAKE_GRASS ORDER BY NO DESC OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY), A FROM
 		(
-		<foreach collection="array" item="arr" separator="UNION ALL">
-		    SELECT (SELECT NO FROM TAG WHERE NAME = #{arr}) AS A FROM DUAL
+		<foreach collection="array" item="tag" separator="UNION ALL">
+		    SELECT (SELECT NO FROM TAG WHERE NAME = #{tag}) AS A FROM DUAL
     	</foreach>
 		)
 	</insert>

@@ -76,6 +76,7 @@
         margin-bottom: 55px;
      }
      #tagNo{
+        width: 500px;
         border: none;
         font-size: 16px;
         height: 5vh;
@@ -125,23 +126,25 @@
     <div class="banner"></div>
 
     <div class="mainbox">
-        <div class="maintitle">
-            <input type="text" name="title" class="title" placeholder="제목을 입력하세요">
-            <input type="text" name="learnTime" class="worktime" placeholder="공부한 시간 | ex) 120분">
-            <div class="content">
-                <div>
-                    <input type="text" id="tagNo" placeholder="해시태그를 입력하세요" />
-                </div>
-                <ul id="tag-list" name="tag">
-                </ul>
-            </div>
-
-            <textarea class="summernote" name="content"></textarea>
-
-            <input type="button" onClick="history.back();" class="cancle" style='cursor:pointer;' value="취소">
-            <input type="submit" class="write" style='cursor:pointer;' value="등록">
-            
-        </div>
+	    <form action="${pageContext.request.contextPath}/makegrass/write" method="post">
+	    	<div class="maintitle">
+	            <input type="text" name="title" class="title" placeholder="제목을 입력하세요">
+	            <input type="text" name="learnTime" class="worktime" placeholder="공부한 시간 | ex) 120분">
+	            <div class="content">
+	                <div>
+	                    <input type="text" id="tagNo" name="str" placeholder="스페이스바를 통해 해시태그를 입력하세요" />
+	                </div>
+	                <ul id="tag-list">
+	                </ul>
+	            </div>
+	
+	            <textarea class="summernote" name="content"></textarea>
+	
+	            <input type="button" onClick="history.back();" class="cancle" style='cursor:pointer;' value="취소">
+	            <input type="submit" class="write" style='cursor:pointer;' value="등록">
+	            
+	        </div>
+	    </form>
     </div>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
@@ -226,6 +229,9 @@
                 .remove();
             });
         })
+
+        const tagList = document.querySelector("#tag-list");
+        tagList.innerHTML += str;
     </script>
 
 </body>

@@ -10,9 +10,9 @@ public interface MakegrassDao {
 	
 	int insertMakegrass(SqlSessionTemplate sst, MakegrassVo vo);
 
-	int insertTag(SqlSessionTemplate sst, String[] tag);
+	int insertTag(SqlSessionTemplate sst, String[] str);
 
-	int insertKnowledgeTag(SqlSessionTemplate sst, String[] tag);
+	int insertKnowledgeTag(SqlSessionTemplate sst, String[] str);
 
 	
 

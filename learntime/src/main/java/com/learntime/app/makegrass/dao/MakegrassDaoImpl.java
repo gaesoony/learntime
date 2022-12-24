@@ -11,18 +11,18 @@ public class MakegrassDaoImpl implements MakegrassDao {
 	//게시글 작성
 	@Override
 	public int insertMakegrass(SqlSessionTemplate sst, MakegrassVo vo) {
-		return sst.insert("qnaMapper.insertMakegrass", vo);
+		return sst.insert("makegrassMapper.insertMakegrass", vo);
 	}
 
 	@Override
-	public int insertTag(SqlSessionTemplate sst, String[] tag) {
-		return sst.insert("makegrassMapper.insertTag", tag);
+	public int insertTag(SqlSessionTemplate sst, String[] str) {
+		return sst.insert("makegrassMapper.insertTag", str);
 	}
 	
 
 	@Override
-	public int insertKnowledgeTag(SqlSessionTemplate sst, String[] tag) {
-		return sst.insert("makegrassMapper.insertKnowledgeTag", tag);
+	public int insertKnowledgeTag(SqlSessionTemplate sst, String[] str) {
+		return sst.insert("makegrassMapper.insertKnowledgeTag", str);
 	}
 
 }

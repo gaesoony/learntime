@@ -44,6 +44,10 @@ public class MakegrassServiceImpl implements MakegrassService {
 			}
 		}
 		
+		System.out.println("result1 : " + result1);
+		System.out.println("result2 : " + result2);
+		System.out.println("result3 : " + result3);
+		
 		return result1 * result2 * result3;
 	}
 
