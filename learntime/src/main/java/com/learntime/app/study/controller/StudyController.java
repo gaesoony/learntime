@@ -1,5 +1,6 @@
 package com.learntime.app.study.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.learntime.app.member.vo.MemberVo;
+
 import com.learntime.app.study.service.StudyService;
 import com.learntime.app.study.vo.GroupVo;
 
@@ -25,7 +27,7 @@ public class StudyController {
 	@Autowired
 	private StudyService service;
 	
-	//스터디/프로젝트 목록 조회 (화면 + DB)
+	//스터디/프로젝트 디폴트 목록 조회 (화면 + DB)
 	@GetMapping("/list")
 	public String list(Model model, HttpSession session) {
 		
@@ -63,16 +65,21 @@ public class StudyController {
 		map.put("type", type);
 		
 		//전체 모임 정보 select (디폴트 : 최신순 + 전체 스터디/프로젝트 + 모집중만 조회)
-//		List<Map<String, String>> groupList = service.selectGroupList(map);
-//		model.addAttribute("groupList", groupList);
-		
+		List<Map<String, Object>> groupList = service.selectGroupList(map);
+
+		model.addAttribute("groupList", groupList);
 		
 		return "study/list";
 	}
 	
-	//스터디/프로젝트 검색 (ajax)
-//	@GetMapping("/getSearchList")
-//	@ResponseBody
+	//스터디/프로젝트 검색 목록 조회 (DB)
+//	@PostMapping("/list")
+//	public String list(Model model, HttpSession session) {
+//		
+//		//받아야하는 값 : 검색어 + 태그리스트 + 기술스택리스트 + 스터디or프로젝트 + 모집중or모집완료 + 정렬
+//		
+//		return "";
+//	}
 	
 
 	//스터디/프로젝트 상세 조회 (화면)
@@ -98,7 +105,7 @@ public class StudyController {
 		model.addAttribute("techStackList", techStackList);
 
 		
-		
+		System.out.println("그룹타입리스트:"+groupTypeList);
 		return "study/recruit";
 	}
 	

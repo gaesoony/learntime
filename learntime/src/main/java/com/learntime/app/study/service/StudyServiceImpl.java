@@ -1,7 +1,10 @@
 package com.learntime.app.study.service;
 
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.learntime.app.study.dao.StudyDao;
 import com.learntime.app.study.vo.GroupVo;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class StudyServiceImpl implements StudyService{
 	
 	@Autowired
@@ -101,7 +107,6 @@ public class StudyServiceImpl implements StudyService{
 		return result;
 	}
 
-	
 	//모집 구분 리스트 조회
 	@Override
 	public List<Map<String, String>> selectGroupTypeList() {
@@ -132,8 +137,58 @@ public class StudyServiceImpl implements StudyService{
 
 	//그룹 리스트 조회
 	@Override
-	public List<Map<String, String>> selectGroupList(Map map) {
-		List<Map<String, String>> result = dao.selectGroupList(sst, map);
+	public List<Map<String, Object>> selectGroupList(Map map) {
+		
+		//그룹 리스트 조회
+		List<Map<String, Object>> groupList = dao.selectGroupList(sst, map);
+		log.info("스터디/프로젝트 정보 : "+groupList);
+		
+		//그룹 리스트 결과 
+		for(int i=0; i<groupList.size(); i++) {			
+			String gno = String.valueOf(groupList.get(i).get("NO"));
+			
+			//그룹 번호로 기술스택 리스트 조회
+			List<Map<String, String>> techStackList = dao.selectTechStackListByGno(sst, gno);
+			groupList.get(i).put("techStackList", techStackList);
+			
+			//그룹 번호로 스크랩수 조회
+			List<Map<String, String>> scrapCnt = dao.selectScrapCntByGno(sst, gno);
+			groupList.get(i).put("scrapCnt", scrapCnt);
+			
+			//그룹 번호로 댓글수 조회
+			List<Map<String, String>> cmtCnt = dao.selectCmtCntByGno(sst, gno);
+			groupList.get(i).put("cmtCnt", cmtCnt);
+			
+			//그룹 번호로 좋아요싫어요 조회
+			List<Map<String, String>> likeHateCnt = dao.selectlikeHateCntByGno(sst, gno);
+			groupList.get(i).put("likeHateCnt", likeHateCnt);
+			
+		}
+		
+		return groupList;
+	}
+
+	@Override
+	public List<Map<String, String>> selectTechStackListByGno(String gno) {
+		List<Map<String, String>> result = dao.selectTechStackListByGno(sst, gno);
+		return result;
+	}
+
+	@Override
+	public List<Map<String, String>> selectScrapCntByGno(String gno) {
+		List<Map<String, String>> result = dao.selectScrapCntByGno(sst, gno);
+		return result;
+	}
+
+	@Override
+	public List<Map<String, String>> selectCmtCntByGno(String gno) {
+		List<Map<String, String>> result = dao.selectCmtCntByGno(sst, gno);
+		return result;
+	}
+
+	@Override
+	public List<Map<String, String>> selectlikeHateCntByGno(String gno) {
+		List<Map<String, String>> result = dao.selectlikeHateCntByGno(sst, gno);
 		return result;
 	}
 

@@ -46,6 +46,19 @@ public interface StudyDao {
 	public List<Map<String, String>> selectTechStackListByType(SqlSessionTemplate sst, String type);
 
 	//select group list
-	public List<Map<String, String>> selectGroupList(SqlSessionTemplate sst, Map map);
+	public List<Map<String, Object>> selectGroupList(SqlSessionTemplate sst, Map map);
+
+	//select tech stack list by gno
+	public List<Map<String, String>> selectTechStackListByGno(SqlSessionTemplate sst, String gno);
+
+	//select scrap cnt by gno
+	public List<Map<String, String>> selectScrapCntByGno(SqlSessionTemplate sst, String gno);
+
+	//select cmt cnt by gno
+	public List<Map<String, String>> selectCmtCntByGno(SqlSessionTemplate sst, String gno);
+
+	//select like hate cnt by gno
+	public List<Map<String, String>> selectlikeHateCntByGno(SqlSessionTemplate sst, String gno);
+
 
 }

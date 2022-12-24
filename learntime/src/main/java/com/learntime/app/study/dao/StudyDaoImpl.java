@@ -85,8 +85,33 @@ public class StudyDaoImpl implements StudyDao{
 
 	//그룹 리스트 조회
 	@Override
-	public List<Map<String, String>> selectGroupList(SqlSessionTemplate sst, Map map) {
-		return sst.selectList("studyMapper.selectGroupList", map);
+	public List<Map<String, Object>> selectGroupList(SqlSessionTemplate sst, Map map) {
+		List result = sst.selectList("studyMapper.selectGroupList", map);
+		return result;
+	}
+
+	//그룹번호로 기술스택 리스트 조회
+	@Override
+	public List<Map<String, String>> selectTechStackListByGno(SqlSessionTemplate sst, String gno) {
+		return sst.selectList("studyMapper.selectTechStackListByGno", gno);
+	}
+
+	//그룹번호로 스크랩수 조회
+	@Override
+	public List<Map<String, String>> selectScrapCntByGno(SqlSessionTemplate sst, String gno) {
+		return sst.selectList("studyMapper.selectScrapCntByGno", gno);
+	}
+
+	//그룹번호로 댓글수 조회
+	@Override
+	public List<Map<String, String>> selectCmtCntByGno(SqlSessionTemplate sst, String gno) {
+		return sst.selectList("studyMapper.selectCmtCntByGno", gno);
+	}
+
+	//그룹번호로 좋아요싫어요수 조회
+	@Override
+	public List<Map<String, String>> selectlikeHateCntByGno(SqlSessionTemplate sst, String gno) {
+		return sst.selectList("studyMapper.selectlikeHateCntByGno", gno);
 	}
 
 }

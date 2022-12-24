@@ -23,7 +23,7 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
-    <main>
+    <main id="learntime-main">
       <section class="main-banner">
         <img src="/app/resources/img/study/banner1.png" alt="메인배너" />
       </section>

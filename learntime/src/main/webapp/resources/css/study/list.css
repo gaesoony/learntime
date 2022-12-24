@@ -533,7 +533,7 @@ input[type="reset"] + i {
   height: 250px;
   border: 2px solid #8ed4a4;
   border-radius: 7px;
-  padding: 25px 20px 19px 20px;
+  padding: 25px 18px 19px 18px;
   box-sizing: border-box;
   margin-right: 12px;
 }
@@ -551,6 +551,14 @@ input[type="reset"] + i {
 /* 제목, 해시태그, 기술스택 */
 
 .main-study-detail h1 {
+  width: 182px;
+  height: 50px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 라인수 제한 */
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  text-overflow: ellipsis; /* 넘어가는 글자 ... 처리 */
   font-size: 17px;
   margin: 12px 0px;
   letter-spacing: -1px;
@@ -563,10 +571,15 @@ input[type="reset"] + i {
 }
 
 .study-tech-list {
+  overflow: scroll;
   margin-top: 18px;
   padding-bottom: 10px;
   margin-bottom: 10px;
   border-bottom: 1px solid rgba(174, 174, 174, 0.4);
+}
+
+.study-tech-list::-webkit-scrollbar {
+  display: none;
 }
 
 .study-tech img {
@@ -576,6 +589,10 @@ input[type="reset"] + i {
 
 .study-tech {
   margin-right: 10px;
+}
+
+.study-tech:last-child {
+  margin-right: 0px;
 }
 
 /* 프사, 닉네임, 조회수, 댓글수, 스크랩수 */
@@ -591,6 +608,9 @@ input[type="reset"] + i {
 }
 
 .user-nick {
+  width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 15px;
   margin-bottom: 7px;
 }
