@@ -55,7 +55,32 @@
 	</update>
 	
 	<select id="selectCmtList" resultType = "CmtVo">
-		
+		SELECT fbc.*, NVL(lh.L_COUNT,0) AS LIKES, NVL(lh.H_COUNT,0) AS HATES, m.NICK as WRITER_NICK, m.IMG_PATH as WRITER_IMG
+		FROM FREE_BOARD_CMT fbc
+		LEFT JOIN (
+		  SELECT CMT_NO,
+		         SUM(CASE WHEN STATUS = 'L' THEN 1 ELSE 0 END) AS L_COUNT,
+		         SUM(CASE WHEN STATUS = 'H' THEN 1 ELSE 0 END) AS H_COUNT
+		  FROM FREE_BOARD_CMT_LIKE_HATE
+		--  WHERE DELETE_YN = 'N'
+		  GROUP BY CMT_NO
+		) lh ON fbc.NO = lh.CMT_NO
+		JOIN MEMBER m ON fbc.WRITER = m.NO
+		WHERE fbc.BOARD_NO = #{bno}
 	</select>
+	
+	<insert id="">
+		INSERT INTO FREE_BOARD_CMT VALUES (
+			SEQ_FREEBOARD_CMT_NO.NEXTVAL,
+			#{boardNo},
+			#{writer},
+			#{content},
+			SYSDATE,
+			'N',
+			SYSDATE,
+			0,
+			0
+		);
+	</insert>
 
 </mapper>

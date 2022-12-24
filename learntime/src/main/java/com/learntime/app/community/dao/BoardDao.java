@@ -15,13 +15,16 @@ public interface BoardDao {
 	//select boardList
 	public List<BoardVo> selectBoardList(SqlSessionTemplate sst);
 
-	//selelct boardDetail
+	//select boardDetail
 	public BoardVo selectBoardDetail(SqlSessionTemplate sst, String bno);
 	
 	//조회수증가
 	public int updateHit(SqlSessionTemplate sst, String bno);
 
-	//select cmt list
+	//select comment list
 	public List<CmtVo> selectCmtList(SqlSessionTemplate sst, String bno);
+	
+	//insert comment
+	public int insertCmt(SqlSessionTemplate sst, CmtVo cv);
 	
 }
