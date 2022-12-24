@@ -10,7 +10,12 @@
 		VALUES(SEQ_NOTICE_NO.NEXTVAL,#{category},#{writer},#{title-notice},
 		#{contentData}, SYSDATE,'N',SYSDATE,#{pin})
   </insert>
-  
-  
+  <select id="noticeList">
+  	SELECT C.NAME,N.TITLE,N.ENROLL_DATE N.HIT, M.NICK FROM NOTICE N 
+  	JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER
+  </select>
+  <select id="selectCount">
+  	SELECT COUNT(*)FROM NOTICE
+  </select>
 	
 </mapper>

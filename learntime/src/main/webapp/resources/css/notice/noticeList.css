@@ -104,13 +104,22 @@
     text-align: center;
     margin-left: 5px;
 }
-input{
+.submitBtn{
     background-color: #5ECC80;
     border: none;
     font-size: large;
     font-weight: 900;
     line-height: 50px;
     color: white;
+
+}
+
+.search-box{
+    border: none;
+    outline: none;
+    font-size: medium;
+    line-height: 50px;
+    height: 40px;
 
 }
 /* 카테고리 */

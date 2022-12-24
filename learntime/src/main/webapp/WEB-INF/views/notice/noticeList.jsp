@@ -11,8 +11,8 @@
 </head>
 <body>
     <%@ include file = "/WEB-INF/views/common/header.jsp" %>
-
-    <div class="main-notice">
+<form action="">
+	<div class="main-notice">
         <div class="banner-notice">
             <div class="banner-dark">
                 <div class="phrases-banner">
@@ -28,19 +28,19 @@
                         <option value="title-select">제목</option>
                         <option value="content-select">내용</option>
                     </select></div>
-                    <div class="search-box-notice"></div>
-                    <div class="notice-input"><input type="submit" value="검색" ></div>
+                    <div class="search-box-notice"><input type="text" name= "searchBox" class="search-box" size="30"> </div>
+                    <div class="notice-input"><input type="submit" value="검색" class="submitBtn"></div>
                 </div>
             </div>
             <div class="notice-list">
                 <div class="cate-box">
-                    <div class="cate-pick">전체</div>
-                    <div class="cate-pick">스터디</div>
-                    <div class="cate-pick">공부인증</div>
-                    <div class="cate-pick">Q&A</div>
-                    <div class="cate-pick">멘토링</div>
-                    <div class="cate-pick">커뮤니티</div>
-                    <div class="cate-pick">스킨샵</div>
+                    <a><div class="cate-pick" value="1">전체</div></a>
+                    <a><div class="cate-pick" value="2">스터디</div></a>
+                    <a><div class="cate-pick" value="3">공부인증</div></a>
+                    <a><div class="cate-pick" value="4">Q&A</div></a>
+                    <a><div class="cate-pick" value="5">멘토링</div></a>
+                    <a><div class="cate-pick" value="6">커뮤니티</div></a>
+                    <a><div class="cate-pick" value="7">스킨샵</div></a>
                 </div>
                 <div class="notice-list-twoColored">
                     <div class="notice-group">
@@ -81,10 +81,9 @@
             </div>
             <div class="page-notice"></div>
         </div>
-        
     </div>
-
-
+</form>
+    
 
 
 
