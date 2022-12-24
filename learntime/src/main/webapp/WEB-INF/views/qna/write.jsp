@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,14 +49,14 @@
         border: #5ECC80;
         border-radius: 10px;
      }
-     .selectbox{
+     /* .selectbox{
         position: relative;
         width: 110px;
         height: 35px;
         border-radius: 4px;
         border: 1px solid #5ECC80;
-     }
-     .selectbox .select{
+     } */
+     /* .selectbox .select{
         width: inherit;
         height: inherit;
         background: transparent;
@@ -75,7 +74,7 @@
         color: white;
         padding: 3px 0;
         font-size: 16px;
-     }
+     } */
 
      /* 해시태그 */
      .content{
@@ -84,7 +83,8 @@
         border: none;
         margin-bottom: 55px;
      }
-     #tag{
+     #tagNo{
+        width: 500px;
         border: none;
         font-size: 16px;
         height: 5vh;
@@ -118,6 +118,33 @@
         cursor: pointer;
         margin-left: 8px;
     }
+
+    /* 상단 라디오 버튼 */
+    .select {
+        padding: 15px 10px;
+    }
+    .select input[type=radio]{
+        display: none;
+    }
+    .select input[type=radio]+label{
+        display: inline-block;
+        cursor: pointer;
+        height: 24px;
+        width: 90px;
+        border: 1px solid #5ECC80;
+        line-height: 24px;
+        text-align: center;
+        font-weight:bold;
+        font-size:13px;
+    }
+    .select input[type=radio]+label{
+        background-color: #fff;
+        color: #37774A;
+    }
+    .select input[type=radio]:checked+label{
+        background-color: #5ECC80;
+        color: #fff;
+    }
 </style>
 </head>
 <body>
@@ -126,33 +153,33 @@
 
     <!-- 상단 초록색 바-->
     <div class="banner"></div>
-
-    <div class="mainbox">
-        <div class="maintitle">
-            <div class="selectbox">
-                <select class="select">
-                    <option value="1" name="cateNo">기술</option>
-                    <option value="2" name="cateNo">커리어</option>
-                </select>
-            </div>
-            </div>
-            <input type="text" name="title" class="title" placeholder="제목을 입력하세요">
-
-            <div class="content">
-                <div>
-                    <input type="text" id="tag" name="tag" placeholder="해시태그를 입력하세요" />
-                </div>
-                <ul id="tag-list">
-                </ul>
-            </div>
-
-            <textarea name="content" class="summernote"></textarea>
-
-            <input type="button" onClick="history.back();" class="cancle" style='cursor:pointer;' value="취소" />
-            <input type="submit" class="write" style='cursor:pointer;' value="등록" />
-            
+		<div class="mainbox">
+		
+		<form action="${pageContext.request.contextPath}/qna/write" method="post">
+			<div class="maintitle">
+	            <div class="selectbox">
+	                <select class="select">
+	                    <input type="radio" value="1" id="select" name="cateNo"><label for="select">기술</label>
+	                    <input type="radio" value="2" id="select2" name="cateNo"><label for="select2">커리어</label>
+	                </select>
+	            </div>
+	        </div>
+	            <input type="text" name="title" class="title" placeholder="제목을 입력하세요">
+	
+	            <div class="content">
+	                <div>
+	                    <input type="text" id="tagNo" name="tag" placeholder="스페이스바를 통해 해시태그를 입력하세요" />
+	                </div>
+	                <ul id="tag-list">
+	                </ul>
+	            </div>
+	
+	            <textarea name="content" class="summernote"></textarea>
+	
+	            <input type="button" onClick="history.back();" class="cancle" style='cursor:pointer;' value="취소" />
+	            <input type="submit" class="write" style='cursor:pointer;' value="등록" />
         </div>
-    </div>
+		</form>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
@@ -192,7 +219,7 @@
                 });
             }
 
-            $("#tag")
+            $("#tagNo")
             .on("keyup", function (e) {
                 var self = $(this);
                 console.log("keypress");

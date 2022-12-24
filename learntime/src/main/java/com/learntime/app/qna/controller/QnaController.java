@@ -54,17 +54,15 @@ public class QnaController {
 	@PostMapping("/write")
 	public String write(QnaVo vo, HttpSession session) {
 		
-		System.out.println("Controller : " + vo );
-		
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 		vo.setWriter(loginMember.getNo());
 		
 		int result = service.write(vo);
 		
-		System.out.println(result);
+		System.out.println("컨트롤러에서 : " + result);
 		
 		if(result >= 1) {
-			return "qna/list";
+			return "redirect:/qna/list";
 		}else {
 			return "common/errorPage";
 		}
