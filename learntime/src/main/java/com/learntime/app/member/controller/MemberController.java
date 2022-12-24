@@ -36,7 +36,10 @@ public class MemberController {
 			return"common/errorPage";
 		}
 		session.setAttribute("loginMember", loginMember);
-		return "main/main";
+		//로그인 성공시 이전 페이지로 감.
+		String referer = request.getHeader("Referer");
+		request.getSession().setAttribute("redirectURI", referer);
+		return "redirect:" + referer;
 	}	
 	
 	
@@ -158,8 +161,8 @@ public class MemberController {
 	
 //  비밀번호 찾기(서버)
 	@PostMapping("/member/findPwd")
-	public String findPwd(String id,HttpSession session) {
-		MemberVo findPwd=memberService.findPwd(id);
+	public String findPwd(MemberVo vo,HttpSession session)throws Exception {
+		MemberVo findPwd=memberService.findPwd(vo);
 		if(findPwd==null) {
 			session.invalidate();
 			return "redirect:/member/resultPwd";
@@ -291,7 +294,7 @@ public class MemberController {
 		
 //  마이페이지-계정 정보 수정 (이메일)
 		@PostMapping("/member/mypage/edit/email")
-		public String mypageEditEmail(MemberVo vo, HttpSession session) {
+		public String mypageEditEmail(MemberVo vo, HttpSession session)throws Exception {
 			
 			MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
 			vo.setNo(loginMember.getNo());
@@ -301,11 +304,11 @@ public class MemberController {
 				return"common/errorPage";
 			}
 			session.setAttribute("loginMember", vo);
-			return "redirect:/member/mypage/edit";
+			return "member/editCertification";
 		}			
 		
 
-//  마이페이지-탈퇴
+//  	마이페이지-탈퇴
 		@PostMapping("/member/delete")
 		public String memberDeletePwd(MemberVo vo,HttpSession session) {
 			MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
@@ -317,7 +320,12 @@ public class MemberController {
 			session.invalidate();
 			return "redirect:/main";
 		}
-	
+		
+//		마이페이지-계정 정보 수정 (이메일)-인증 메일 발송 (화면)
+		@GetMapping("/member/edit/certification")
+		public String certificationEditMail() {
+			return "/member/editCertification";
+		}	
 
 	
 }

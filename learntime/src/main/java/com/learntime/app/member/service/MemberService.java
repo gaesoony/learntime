@@ -14,7 +14,7 @@ public interface MemberService {
 	//아이디 찾기 (번호로 조회)
 	public MemberVo findId(String phone);
 	//비밀번호 찾기 (아이디로 조회)
-	public MemberVo findPwd(String id);
+	public MemberVo findPwd(MemberVo vo)throws Exception;
 	
 	// 이메일 인증 메일 링크 클릭 할 경우
 	public int emailAuth(String email);
@@ -26,7 +26,7 @@ public interface MemberService {
 	//프로필,닉네임,자기소개
 	public int mypageEditProfile(MemberVo vo);
 	//이메일
-	public int mypageEditEmail(MemberVo vo);
+	public int mypageEditEmail(MemberVo vo)throws Exception;
 	
 	
 }
