@@ -90,9 +90,21 @@ public class MemberServiceImpl implements MemberService {
 	}
 	//비밀번호 찾기 (아이디로 조회)
 	@Override
-	public MemberVo findPwd(String id) {
+	public MemberVo findPwd(MemberVo vo) throws Exception {
 		
-		return memberDao.findPwd(sst,id);
+		MailHandler sendMail=new MailHandler(mailSender);
+		sendMail.setSubject("[LEARN TIME]비밀번호 재설정 메일입니다.");
+		sendMail.setText(
+				"<h1>LEARN TIME 비밀번호 재설정</h1>"
+				+"<br>비밀번호를 변경하시려면"
+				+"<br>아래의 링크를 눌러주세요"
+				+"<br>http://127.0.0.1:8888/app/member/emailAuth?email="+vo.getId()
+				);
+		sendMail.setFrom("learntime.test@gmail.com", "LEARN TIME");
+		sendMail.setTo(vo.getId());
+		sendMail.send();
+		
+		return memberDao.findPwd(sst,vo);
 	}
 
 	// 이메일 인증 메일 링크 클릭 할 경우
@@ -101,6 +113,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.updateEmailAuth(sst,email);
 		
 	}
+	
 	// 탈퇴(비밀번호로)
 	@Override
 	public int memberDeletePwd(MemberVo vo) {
@@ -126,8 +139,20 @@ public class MemberServiceImpl implements MemberService {
 	}
 	//이메일
 	@Override
-	public int mypageEditEmail(MemberVo vo) {
-		// TODO Auto-generated method stub
+	public int mypageEditEmail(MemberVo vo) throws Exception {
+
+		MailHandler sendMail=new MailHandler(mailSender);
+		sendMail.setSubject("[LEARN TIME]이메일 변경 인증 메일입니다.");
+		sendMail.setText(
+				"<h1>LEARN TIME 메일 인증</h1>"
+				+"<br>이메일 변경을 하셨다면"
+				+"<br>아래의 링크를 눌러주세요"
+				+"<br>http://127.0.0.1:8888/app/member/emailAuth?email="+vo.getId()
+				);
+		sendMail.setFrom("learntime.test@gmail.com", "LEARN TIME");
+		sendMail.setTo(vo.getId());
+		sendMail.send();
+		
 		return memberDao.mypageEditEmail(sst,vo);
 	}
 

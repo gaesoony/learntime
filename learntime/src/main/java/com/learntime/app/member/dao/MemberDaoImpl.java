@@ -41,9 +41,9 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	//비밀번호 찾기 (아이디로 조회)
 	@Override
-	public MemberVo findPwd(SqlSessionTemplate sst, String id) {
+	public MemberVo findPwd(SqlSessionTemplate sst, MemberVo vo) {
 		
-		return sst.selectOne("memberMapper.findPwd",id);
+		return sst.selectOne("memberMapper.findPwd",vo);
 	}
 	//이메일 인증 완료
 	@Override

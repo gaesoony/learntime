@@ -85,7 +85,8 @@
 	<!--계정정보 이메일 수정  -->
 	<update id="mypageEditEmail">
 		UPDATE MEMBER 
-		SET ID=#{id}
+		SET ID=#{id},
+			EMAIL_AUTH='0'
 		WHERE NO=#{no}
 	</update>
 
