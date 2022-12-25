@@ -10,7 +10,7 @@ public interface NoticeService {
 	
 	public int noticeWrite(NoticeVo vo);
 
-	public List<NoticeVo> selectQuestionList(Map<String, String> map,PageVo pv);
+	public List<NoticeVo> selectNoticeList(Map<String, String> map,PageVo pv);
 
 	public int selectCount();
 

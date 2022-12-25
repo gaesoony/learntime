@@ -7,8 +7,8 @@
 	<insert id="noticeWrite">
   		INSERT INTO NOTICE (NO, CATE_NO,WRITER,TITLE,CONTENT,ENROLL_DATE,
   		DELETE_YN,MODIFY_DATE,STATUS) 
-		VALUES(SEQ_NOTICE_NO.NEXTVAL,#{category},#{writer},#{title-notice},
-		#{contentData}, SYSDATE,'N',SYSDATE,#{pin})
+		VALUES(SEQ_NOTICE_NO.NEXTVAL,#{cateNo},1,#{title},
+		#{content}, SYSDATE,'N',SYSDATE,#{status})
   </insert>
   <select id="noticeList">
   	SELECT C.NAME,N.TITLE,N.ENROLL_DATE N.HIT, M.NICK FROM NOTICE N 
