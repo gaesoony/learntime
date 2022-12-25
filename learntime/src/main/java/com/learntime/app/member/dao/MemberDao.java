@@ -18,6 +18,8 @@ public interface MemberDao {
 	public MemberVo findId(SqlSessionTemplate sst, String phone);
 	//비밀번호 찾기 (아이디로 조회)
 	public MemberVo findPwd(SqlSessionTemplate sst, MemberVo vo);
+	//비밀번호 재설정
+	public int editPwd(SqlSessionTemplate sst, MemberVo vo);
 	
 	// 이메일 인증 메일 링크 클릭 할 경우
 	public int updateEmailAuth(SqlSessionTemplate sst, String email);
@@ -30,6 +32,14 @@ public interface MemberDao {
 	public int mypageEditProfile(SqlSessionTemplate sst, MemberVo vo);
 	//이메일
 	public int mypageEditEmail(SqlSessionTemplate sst, MemberVo vo);
+	//전화번호
+	public int mypageEditPhone(SqlSessionTemplate sst, MemberVo vo);
+	
+	
+	//-------------유저 찾기------------
+	//회원번호로 조회
+	public MemberVo selectNo(SqlSessionTemplate sst, String no);
+	
 	
 	
 

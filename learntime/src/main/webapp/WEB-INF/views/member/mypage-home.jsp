@@ -138,8 +138,11 @@
             <div id="intro-area">
                 <div id="intro">소개글</div>
                 <div id="intro-btn">
-                    <button id="edit" class="btn btn-primary" onclick="edit()" type="button">편집</button>
-                    <button id="save" class="btn btn-primary" onclick="save()" type="button">저장</button>    
+                <c:if test="${userNo eq loginMember.no}">
+                   <button id="edit" class="btn btn-primary" onclick="edit()" type="button">편집</button>
+                    <button id="save" class="btn btn-primary" onclick="save()" type="button">저장</button> 
+                </c:if>
+                    
                 </div>
                 <div id="intro-editor">
                     <div class="click2edit"></div>

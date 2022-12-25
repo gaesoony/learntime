@@ -129,7 +129,7 @@
         
     }
 
-    #edit-area>form{
+    #edit-area>form,#edit-area #delete-area{
         border: 1px solid #D9D9D9;
         padding: 40px;
         margin-bottom: 10px;
@@ -535,16 +535,23 @@
                 
             </script>
 
-            <div id="pwd-area" class="area-grid">
-                 <div class="titleText">비밀번호</div>
-                 <div>비밀번호를 새롭게 발급받아보세요!</div>
-                 <button class="edit-btn">발급받기</button>
-            </div>
-            <div id="phone-area" class="area-grid">
-                 <div class="titleText">휴대폰 번호</div>
-                 <input type="text" name="phone" placeholder="- 제외한 번호만" value="${loginMember.phone}">
-                 <button class="edit-btn">저장하기</button>
-            </div>
+            <form action="${pageContext.request.contextPath}/member/mypage/edit/pwd" method="post">
+                <div id="pwd-area" class="area-grid">
+                    <div class="titleText">비밀번호</div>
+                    <div>비밀번호를 새롭게 발급받아보세요!</div>
+                    <button class="edit-btn">발급받기</button>
+               </div>
+            </form>
+            
+            <form action="${pageContext.request.contextPath}/member/mypage/edit/phone" method="post">
+                 <div id="phone-area" class="area-grid">
+                     <div class="titleText">휴대폰 번호</div>
+                     <input type="text" name="phone" placeholder="- 제외한 번호만" value="${loginMember.phone}">
+                     <button class="edit-btn">저장하기</button>
+                 </div>
+
+            </form>
+           
             <div id="stack-area" class="area-grid">
                  <div class="titleText">관심 기술 스택</div>
                  <div class="row d-flex justify-content-center">

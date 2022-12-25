@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,11 +46,12 @@ public class MemberController {
 	
 //	로그인 (서버)
 	@PostMapping("/member/login")
-	public String login(MemberVo vo,HttpSession session, HttpServletRequest request) {
+	public String login(MemberVo vo,HttpSession session, HttpServletRequest request,Model model) {
 		MemberVo loginMember=memberService.login(vo);
 		if(loginMember==null) {
 			return"common/errorPage";
 		}
+		
 		session.setAttribute("loginMember", loginMember);
 		//로그인 성공시 이전 페이지로 감.
 		String referer = request.getHeader("Referer");
@@ -176,6 +178,28 @@ public class MemberController {
 	public String resultPwd() {
 		return "/member/resultPwd";
 	}
+	
+//  비밀번호 변경 링크(화면)
+	@GetMapping("/member/editPwd")
+	public String editPwd(@RequestParam("email") String email,MemberVo vo,HttpSession session) {
+		vo.setId(email);
+		session.setAttribute("editPwd", vo);
+		return "/member/editPwd";
+	}
+//  비밀번호 변경 링크(서버)
+	@PostMapping("/member/editPwd")
+	public String editPwd(MemberVo vo,HttpSession session) {
+		MemberVo editPwd=(MemberVo)session.getAttribute("editPwd");
+		vo.setId(editPwd.getId());
+		int editPwdResult=memberService.editPwd(vo);
+		if(editPwdResult==0) {
+			session.invalidate();
+			return"common/errorPage";
+		}
+		session.invalidate();
+		return "main/main";
+	}	
+	
 
 //	마이페이지-팔로잉(화면)
 	@GetMapping("/member/mypage/following")
@@ -191,8 +215,10 @@ public class MemberController {
 	
 //	마이페이지-홈(화면)
 	@GetMapping("/member/mypage/home")
-	public String mypage() {
-		return "/member/mypage-home";
+	public String mypage(@RequestParam("no") String no,HttpSession session,Model model) {
+			//로그인 한 유저와 해당 페이지 유저가 동일 하지 않을경우 사이드 바가 달리 보임
+			model.addAttribute("userNo",no);
+			return "/member/mypage-home";
 	}
 	
 	  
@@ -272,9 +298,12 @@ public class MemberController {
 	
 //	마이페이지-계정 정보(화면)
 		@GetMapping("/member/mypage/edit")
-		public String mypageEdit() {
-			
-			return "/member/mypage-edit";
+		public String mypageEdit(@RequestParam("no") String no, MemberVo vo,HttpSession session,Model model) {
+			MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
+			vo.setNo(loginMember.getNo());
+			session.setAttribute("loginMember", loginMember);
+			model.addAttribute("userNo",no);
+			return "member/mypage-edit";
 		}
 		
 //  마이페이지-계정 정보 수정 (사진, 닉네임, 자기소개)
@@ -288,8 +317,8 @@ public class MemberController {
 			if(result==0) {
 				return"common/errorPage";
 			}
-			session.setAttribute("loginMember", vo);
-			return "redirect:/member/mypage/edit";
+			
+			return "member/mypage-edit";
 		}
 		
 //  마이페이지-계정 정보 수정 (이메일)
@@ -303,10 +332,34 @@ public class MemberController {
 			if(result==0) {
 				return"common/errorPage";
 			}
-			session.setAttribute("loginMember", vo);
+			
 			return "member/editCertification";
 		}			
+
+//  마이페이지-계정 정보 수정 (비밀번호)
+		@PostMapping("/member/mypage/edit/pwd")
+		public String mypageEditPwd(MemberVo vo, HttpSession session)throws Exception {
+			
+			MemberVo edit=(MemberVo) session.getAttribute("loginMember");
+			session.setAttribute("findPwd", edit);
+			
+			memberService.findPwd(edit);
+			return "/member/resultPwd";
+		}
 		
+//  마이페이지-계정 정보 수정 (전화번호)
+		@PostMapping("/member/mypage/edit/phone")
+		public String mypageEditPhone(MemberVo vo, HttpSession session) {
+			MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
+			vo.setNo(loginMember.getNo());
+			
+			int result=memberService.mypageEditPhone(vo);
+			if(result==0) {
+				return"common/errorPage";
+			}
+			
+			return "member/mypage-edit";
+		}
 
 //  	마이페이지-탈퇴
 		@PostMapping("/member/delete")
@@ -327,5 +380,13 @@ public class MemberController {
 			return "/member/editCertification";
 		}	
 
+		
+//---------------팔로우 팔로잉------------------------
+		
+		@PostMapping("/member/follow")
+		public String memberFollow(@RequestParam("no") String no,MemberVo vo,HttpSession session) {
+			
+			return "member/mypage-home";
+		}
 	
 }
