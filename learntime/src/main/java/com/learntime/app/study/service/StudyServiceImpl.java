@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.learntime.app.study.dao.StudyDao;
 import com.learntime.app.study.vo.GroupVo;
+import com.learntime.app.study.vo.SearchVo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -137,11 +138,11 @@ public class StudyServiceImpl implements StudyService{
 
 	//그룹 리스트 조회
 	@Override
-	public List<Map<String, Object>> selectGroupList(Map map) {
+	public List<Map<String, Object>> selectGroupList(SearchVo vo) {
 		
 		//그룹 리스트 조회
-		List<Map<String, Object>> groupList = dao.selectGroupList(sst, map);
-		log.info("스터디/프로젝트 정보 : "+groupList);
+		List<Map<String, Object>> groupList = dao.selectGroupList(sst, vo);
+		//log.info("스터디/프로젝트 정보 : "+groupList);
 		
 		//그룹 리스트 결과 
 		for(int i=0; i<groupList.size(); i++) {			
@@ -150,18 +151,6 @@ public class StudyServiceImpl implements StudyService{
 			//그룹 번호로 기술스택 리스트 조회
 			List<Map<String, String>> techStackList = dao.selectTechStackListByGno(sst, gno);
 			groupList.get(i).put("techStackList", techStackList);
-			
-			//그룹 번호로 스크랩수 조회
-			List<Map<String, String>> scrapCnt = dao.selectScrapCntByGno(sst, gno);
-			groupList.get(i).put("scrapCnt", scrapCnt);
-			
-			//그룹 번호로 댓글수 조회
-			List<Map<String, String>> cmtCnt = dao.selectCmtCntByGno(sst, gno);
-			groupList.get(i).put("cmtCnt", cmtCnt);
-			
-			//그룹 번호로 좋아요싫어요 조회
-			List<Map<String, String>> likeHateCnt = dao.selectlikeHateCntByGno(sst, gno);
-			groupList.get(i).put("likeHateCnt", likeHateCnt);
 			
 		}
 		

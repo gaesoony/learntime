@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.learntime.app.study.vo.GroupVo;
+import com.learntime.app.study.vo.SearchVo;
 
 @Repository
 public class StudyDaoImpl implements StudyDao{
@@ -85,8 +86,8 @@ public class StudyDaoImpl implements StudyDao{
 
 	//그룹 리스트 조회
 	@Override
-	public List<Map<String, Object>> selectGroupList(SqlSessionTemplate sst, Map map) {
-		List result = sst.selectList("studyMapper.selectGroupList", map);
+	public List<Map<String, Object>> selectGroupList(SqlSessionTemplate sst, SearchVo vo) {
+		List result = sst.selectList("studyMapper.selectGroupList", vo);
 		return result;
 	}
 

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.learntime.app.study.vo.GroupVo;
+import com.learntime.app.study.vo.SearchVo;
 
 public interface StudyDao {
 	
@@ -46,7 +47,7 @@ public interface StudyDao {
 	public List<Map<String, String>> selectTechStackListByType(SqlSessionTemplate sst, String type);
 
 	//select group list
-	public List<Map<String, Object>> selectGroupList(SqlSessionTemplate sst, Map map);
+	public List<Map<String, Object>> selectGroupList(SqlSessionTemplate sst, SearchVo vo);
 
 	//select tech stack list by gno
 	public List<Map<String, String>> selectTechStackListByGno(SqlSessionTemplate sst, String gno);

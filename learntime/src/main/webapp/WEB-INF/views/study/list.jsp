@@ -2,22 +2,14 @@
 pageEncoding="UTF-8"%> <%@taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib
 uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
-    <link
-      rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/css/study/list.css?ver=7"
-    />
-
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-      rel="stylesheet"
-    /> -->
+    <link rel="stylesheet" href="${path}/resources/css/study/list.css?ver=7" />
   </head>
   <body>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -26,516 +18,391 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
         <div class="bold700">스터디와 사이드 프로젝트를 찾는</div>
         <div class="bold700">가장 쉬운 방법</div>
         <div class="flex">
-          <img
-            src="${pageContext.request.contextPath}/resources/img/study/study-banner-logo.png"
-            alt=""
-          />
+          <img src="${path}/resources/img/study/study-banner-logo.png" alt="" />
           <span>에서 함께할 개발자를 찾으세요</span>
         </div>
       </div>
     </section>
-    <div class="middle">
-      <main class="study-main">
-        <aside class="my-study-aside">
-          <div class="my-study">
-            <h1>
-              <i class="fa-solid fa-users gray1"></i>
-              <span class="bold700 gray1">내가 가입한 모임</span>
-            </h1>
-            <ul class="my-study-list">
-              <c:if test="${myGroupList.size() == 0 or myGroupList == null}">
-                <span>아직 가입된 모임이 없습니다</span>
-              </c:if>
-              <c:forEach items="${myGroupList}" var="map">
-                <li class="my-study-list-detail flex">
-                  <img
-                    src="${pageContext.request.contextPath}/resources/img/study/${map.IMG_PATH}"
-                    alt=""
-                  />
-                  <a
-                    href="${pageContext.request.contextPath}/mystudy/main?no=${map.NO}"
-                    class="my-study-title gray1"
-                    >${map.NAME}</a
-                  >
-                </li>
-              </c:forEach>
-            </ul>
-          </div>
-        </aside>
-        <article class="study-article">
-          <section class="study-search-area">
-            <div class="relative">
-              <i class="fa-solid fa-magnifying-glass gray1"></i>
-              <input
-                class="study-search-name"
-                type="text"
-                placeholder="관심 스터디/프로젝트를 검색해보세요!"
-              />
-              <input type="submit" value="검색" />
-            </div>
-            <div class="relative">
-              <div class="study-search-tag-div">
-                <i class="fa-solid fa-hashtag gray1"></i>
-                <div class="tag-list"></div>
-                <input
-                  class="study-search-tag"
-                  type="text"
-                  placeholder="태그로 검색해보세요!"
-                  onkeyup="if(window.event.keyCode==13){makeTag(event)} if(window.event.keyCode==8){deleteBeforeTag()}"
-                />
-              </div>
-              <input
-                type="reset"
-                value="초기화"
-                class="reset-btn"
-                onclick="resetTag()"
-              /><i
-                class="fa-solid fa-rotate-left cursor"
-                onclick="resetTag()"
-              ></i>
-            </div>
-          </section>
-          <script>
-            function makeTag(e) {
-              const value = e.target.value;
-              const str =
-                '<div class="relative cursor tag-div" onclick="deleteTag(event)">' +
-                '<input onclick="deleteTag2(event)" type="button" value="' +
-                value +
-                '" class="tag-btn cursor" /> ' +
-                '<i class="fa-solid fa-xmark" onclick="deleteTag2(event)"></i>' +
-                "</div>";
-
-              const tagList = document.querySelector(".tag-list");
-              tagList.innerHTML += str;
-
-              e.target.value = "";
-            }
-
-            function resetTag() {
-              const tagList = document.querySelector(".tag-list");
-              tagList.textContent = "";
-            }
-
-            function deleteTag(e) {
-              e.target.remove();
-            }
-
-            function deleteTag2(e) {
-              e.target.parentNode.remove();
-            }
-
-            function deleteBeforeTag() {
-              const lastTag = document.querySelector(
-                ".tag-list div:last-child"
-              );
-              lastTag.remove();
-            }
-          </script>
-          <section class="study-tech-area">
-            <ul class="tech-category-list flex bold700">
-              <li class="tech-category tech-clicked relative">
-                <span>인기</span>
-                <div class="bar1"></div>
-              </li>
-
-              <li class="tech-category tech-unClicked relative">
-                <span>프론트엔드</span>
-                <div class="bar2 hidden"></div>
-              </li>
-              <li class="tech-category tech-unClicked relative">
-                <span>백엔드</span>
-                <div class="bar3 hidden"></div>
-              </li>
-              <li class="tech-category tech-unClicked relative">
-                <span>모바일</span>
-                <div class="bar4 hidden"></div>
-              </li>
-              <li class="tech-category tech-unClicked relative">
-                <span>기타</span>
-                <div class="bar5 hidden"></div>
-              </li>
-              <li class="tech-category tech-unClicked relative">
-                <span>모두보기</span>
-                <div class="bar6 hidden"></div>
-              </li>
-            </ul>
-            <ul class="tech-list">
-              <c:forEach items="${popularTechStackList}" var="map">
-                <li>
-                  <div class="flex">
+    <form action="${path}/study/list" method="post" name="form">
+      <div class="middle">
+        <main class="study-main">
+          <aside class="my-study-aside">
+            <div class="my-study">
+              <h1>
+                <i class="fa-solid fa-users gray1"></i>
+                <span class="bold700 gray1">내가 가입한 모임</span>
+              </h1>
+              <ul class="my-study-list">
+                <c:if test="${myGroupList.size() == 0 or myGroupList == null}">
+                  <span>아직 가입된 모임이 없습니다</span>
+                </c:if>
+                <c:forEach items="${myGroupList}" var="map">
+                  <li class="my-study-list-detail flex">
                     <img
-                      src="${pageContext.request.contextPath}/resources/upload/techStack/${map.IMG_PATH}"
+                      src="${path}/resources/img/study/${map.IMG_PATH}"
                       alt=""
                     />
-                    <span>${map.NAME}</span>
-                  </div>
-                </li>
-              </c:forEach>
-            </ul>
-          </section>
-          <section class="study-area">
-            <div class="space-between">
-              <ul class="study-type-list bold700 flex">
-                <li class="study-type type-clicked relative">
-                  전체
-                  <div class="study-type-bar1"></div>
-                </li>
-                <li class="study-type relative">
-                  스터디
-                  <div class="study-type-bar2 hidden"></div>
-                </li>
-                <li class="study-type relative">
-                  프로젝트
-                  <div class="study-type-bar3 hidden"></div>
-                </li>
+                    <a
+                      href="${path}/mystudy/main?no=${map.NO}"
+                      class="my-study-title gray1"
+                      >${map.NAME}</a
+                    >
+                  </li>
+                </c:forEach>
               </ul>
-              <div class="flex on-off-btn-area">
-                <span class="bold700 on-off-btn-text">모집 중만 보기</span>
-                <input type="checkbox" id="toggle-slider" checked />
-                <label id="toggle-slider-label" for="toggle-slider"
-                  >On/Off</label
-                >
-              </div>
             </div>
-            <div class="study-order-area">
-              <ul class="study-order-list">
-                <a href="">관심언어</a>
-                <a href="">최신순</a>
-                <a href="">좋아요순</a>
-                <a href="">댓글순</a>
-                <a href="">스크랩순</a>
-                <a href="">조회순</a>
-                <a href="">정확도순</a>
-              </ul>
-              <div class="write-btn">
-                <c:if test="${loginMember != null}">
+          </aside>
+          <article class="study-article">
+            <section class="study-search-area">
+              <div class="relative">
+                <i class="fa-solid fa-magnifying-glass gray1"></i>
+                <c:if test="${keyword == null}">
                   <input
-                    type="button"
-                    value="글쓰기"
-                    onClick="location.href='/app/study/recruit'"
+                    class="study-search-name"
+                    type="text"
+                    placeholder="관심 스터디/프로젝트를 검색해보세요!"
+                    name="keyword"
+                    onkeypress="press(this.form)"
                   />
                 </c:if>
-                <c:if test="${loginMember == null}">
-                  <input type="button" value="글쓰기" onClick="login();" />
+                <c:if test="${keyword != null}">
+                  <input
+                    class="study-search-name"
+                    type="text"
+                    value="${keyword}"
+                    name="keyword"
+                    onkeypress="press(this.form)"
+                  />
                 </c:if>
+                <input type="submit" value="검색" />
               </div>
-              <script>
-                function login() {
-                  //모달 띄우기
-                  $(".blackBG").addClass("show");
-                }
-              </script>
-            </div>
-            <ul class="main-study-detail-list">
-              <c:forEach items="${groupList}" var="map">
-                <a href="/app/study/detail" class="main-study-detail">
-                  <div class="main-study-detail__date-like space-between">
-                    <div class="soft-gray">시작 예정일 | ${map.START_DATE}</div>
-                    <div>
-                      <i class="fa-solid fa-heart like-icon main-color"></i
-                      ><span class="soft-gray">${map.likeHateCnt[0].CNT}</span>
-                    </div>
+              <div class="relative">
+                <div class="study-search-tag-div">
+                  <i class="fa-solid fa-hashtag gray1"></i>
+                  <div class="tag-list">
+                    <c:forEach items="${tagList}" var="item">
+                      <div
+                        class="relative cursor tag-div"
+                        onclick="deleteTag(event)"
+                      >
+                        <input
+                          onclick="deleteTag2(event)"
+                          name="tag"
+                          type="text"
+                          readonly
+                          style="width:${(fn:length(item) + 2) * 9}px;"
+                          value="${item}"
+                          class="tag-btn cursor"
+                        />
+                        <i
+                          class="fa-solid fa-xmark"
+                          onclick="deleteTag2(event)"
+                        ></i>
+                      </div>
+                    </c:forEach>
                   </div>
-                  <h1 class="bold700">${map.TITLE}</h1>
-                  <ul class="study-tag-list flex soft-gray">
-                    <li class="study-tag">#${map.TYPE}</li>
-                    <li class="study-tag">#${map.WAY}</li>
-                    <li class="study-tag">#${map.NUMBER_PEOPLE}명</li>
-                    <li class="study-tag">#${map.PERIOD}</li>
-                  </ul>
-                  <ul class="study-tech-list flex">
-                    <c:forEach items="${map.techStackList}" var="ts">
-                      <li class="study-tech">
+                  <input
+                    class="study-search-tag"
+                    type="text"
+                    placeholder="태그로 검색해보세요!"
+                  />
+                </div>
+                <input
+                  type="reset"
+                  value="초기화"
+                  class="reset-btn"
+                  onclick="resetTag()"
+                /><i
+                  class="fa-solid fa-rotate-left cursor"
+                  onclick="resetTag()"
+                ></i>
+              </div>
+            </section>
+
+            <section class="study-tech-area">
+              <ul class="tech-category-list flex bold700">
+                <li class="tech-category relative">
+                  <label>
+                    <input type="radio" name="techType" value="인기" checked />
+                    <div>인기</div>
+                    <div class="bar"></div>
+                  </label>
+                </li>
+                <li class="tech-category tech-unClicked relative">
+                  <label>
+                    <input type="radio" name="techType" value="프론트엔드" />
+                    <div>프론트엔드</div>
+                    <div class="bar"></div>
+                  </label>
+                </li>
+                <li class="tech-category tech-unClicked relative">
+                  <label>
+                    <input type="radio" name="techType" />
+                    <div>백엔드</div>
+                    <div class="bar"></div>
+                  </label>
+                </li>
+                <li class="tech-category tech-unClicked relative">
+                  <label>
+                    <input type="radio" name="techType" value="모바일" />
+                    <div>모바일</div>
+                    <div class="bar"></div>
+                  </label>
+                </li>
+                <li class="tech-category tech-unClicked relative">
+                  <label>
+                    <input type="radio" name="techType" value="기타" />
+                    <div>기타</div>
+                    <div class="bar"></div>
+                  </label>
+                </li>
+                <li class="tech-category tech-unClicked relative">
+                  <label>
+                    <input type="radio" name="techType" value="모두보기" />
+                    <div>모두보기</div>
+                    <div class="bar"></div>
+                  </label>
+                </li>
+              </ul>
+              <ul class="tech-list">
+                <c:forEach items="${popularTechStackList}" var="map">
+                  <li>
+                    <div class="flex">
+                      <img
+                        src="${pageContext.request.contextPath}/resources/upload/techStack/${map.IMG_PATH}"
+                        alt=""
+                      />
+                      <span>${map.NAME}</span>
+                    </div>
+                  </li>
+                </c:forEach>
+              </ul>
+              <ul class="selected-tech-list">
+                <c:forEach items="${techStackList}" var="item">
+                  <div
+                    class="relative cursor tag-div"
+                    onclick="deleteTag(event)"
+                  >
+                    <input
+                      onclick="deleteTag2(event)"
+                      name="techStack"
+                      type="text"
+                      readonly
+                      style="width:${(fn:length(item) + 2 )* 6}px;"
+                      value="${item}"
+                      class="tag-btn cursor"
+                    />
+                    <i
+                      class="fa-solid fa-xmark"
+                      onclick="deleteTag2(event)"
+                    ></i>
+                  </div>
+                </c:forEach>
+              </ul>
+            </section>
+            <section class="study-area">
+              <div class="space-between">
+                <ul class="study-type-list bold700 flex">
+                  <li class="study-type relative">
+                    <label onclick="form.submit();">
+                      <input type="radio" name="type" checked value="전체" />
+                      <div>전체</div>
+                      <div class="bar"></div>
+                    </label>
+                  </li>
+                  <li class="study-type relative">
+                    <label onclick="form.submit();">
+                      <input type="radio" name="type" value="스터디" />
+                      <div>스터디</div>
+                      <div class="bar"></div>
+                    </label>
+                  </li>
+                  <li class="study-type relative">
+                    <label onclick="form.submit();">
+                      <input type="radio" name="type" value="프로젝트" />
+                      <div>프로젝트</div>
+                      <div class="bar"></div>
+                    </label>
+                  </li>
+                </ul>
+                <div class="flex on-off-btn-area">
+                  <span class="bold700 on-off-btn-text">모집 중만 보기</span>
+                  <input
+                    type="checkbox"
+                    id="toggle-slider"
+                    checked
+                    name="status"
+                    value="recruited"
+                  />
+                  <label id="toggle-slider-label" for="toggle-slider"
+                    >On/Off</label
+                  >
+                </div>
+              </div>
+              <div class="study-order-area">
+                <ul class="study-order-list">
+                  <label onclick="form.submit()">
+                    <input type="radio" name="order" value="recent" checked />
+                    <span>최신순</span>
+                  </label>
+                  <!-- <label>
+                    <input type="radio" name="order" value="score" />
+                    <span>정확도순</span>
+                  </label> -->
+                  <label onclick="form.submit()">
+                    <input type="radio" name="order" value="comment" />
+                    <span>댓글순</span>
+                  </label>
+                  <label onclick="form.submit()">
+                    <input type="radio" name="order" value="recommend" />
+                    <span>좋아요순</span>
+                  </label>
+                  <label onclick="form.submit()">
+                    <input type="radio" name="order" value="scrap" />
+                    <span>스크랩순</span>
+                  </label>
+                  <label onclick="form.submit()">
+                    <input type="radio" name="order" value="hit" />
+                    <span>조회순</span>
+                  </label>
+                  <!-- <label>
+                    <input type="radio" name="order" value="interest" />
+                    <span>관심언어</span>
+                  </label> -->
+                </ul>
+                <div class="write-btn">
+                  <c:if test="${loginMember != null}">
+                    <input
+                      type="button"
+                      value="글쓰기"
+                      onClick="location.href='${path}/study/recruit'"
+                    />
+                  </c:if>
+                  <c:if test="${loginMember == null}">
+                    <input type="button" value="글쓰기" onClick="login();" />
+                  </c:if>
+                </div>
+              </div>
+              <ul class="main-study-detail-list">
+                <c:forEach items="${groupList}" var="map">
+                  <a href="${path}/study/detail" class="main-study-detail">
+                    <div class="main-study-detail__date-like space-between">
+                      <div class="soft-gray">
+                        시작 예정일 | ${map.START_DATE}
+                      </div>
+                      <div>
+                        <i class="fa-solid fa-heart like-icon main-color"></i
+                        ><span class="soft-gray">${map.LIKE_CNT}</span>
+                      </div>
+                    </div>
+                    <h1 class="bold700">${map.TITLE}</h1>
+                    <ul class="study-tag-list flex soft-gray">
+                      <li class="study-tag">#${map.TYPE}</li>
+                      <li class="study-tag">#${map.WAY}</li>
+                      <li class="study-tag">#${map.NUMBER_PEOPLE}명</li>
+                      <li class="study-tag">#${map.PERIOD}</li>
+                    </ul>
+                    <ul class="study-tech-list flex">
+                      <c:forEach items="${map.techStackList}" var="ts">
+                        <li class="study-tech">
+                          <img
+                            src="${path}/resources/upload/techStack/${ts.IMG_PATH}"
+                            alt=""
+                          />
+                        </li>
+                      </c:forEach>
+                    </ul>
+                    <section class="flex">
+                      <div class="user-profile">
                         <img
-                          src="/app/resources/upload/techStack/${ts.IMG_PATH}"
+                          src="${path}/resources/img/study/profile.png"
                           alt=""
                         />
-                      </li>
-                    </c:forEach>
-                  </ul>
-                  <section class="flex">
-                    <div class="user-profile">
-                      <img src="/app/resources/img/study/profile.png" alt="" />
-                    </div>
-                    <div class="main-study-detail__profile-hit-cmt-scrap">
-                      <div class="user-nick bold700">${map.NICK }</div>
-                      <ul class="view-cmt-scrap-list flex soft-gray">
-                        <li>
-                          <i class="fa-regular fa-eye"></i
-                          ><span>${map.HIT }</span>
-                        </li>
-                        <li>
-                          <i class="fa-regular fa-comment-dots"></i
-                          ><span>${map.cmtCnt[0].CNT}</span>
-                        </li>
-                        <li>
-                          <i class="fa-regular fa-bookmark"></i
-                          ><span>${map.scrapCnt[0].CNT}</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </section>
-                </a>
-              </c:forEach>
-            </ul>
-          </section>
-        </article>
-        <aside class="popular-tag-aside">
-          <div class="popular-tag">
-            <h1 class="popular-tag-title">
-              <i class="fa-solid fa-hashtag gray1"></i>
-              <span class="bold700 gray1">인기 태그</span>
-            </h1>
-            <ul class="popular-tag-list">
-              <c:forEach items="${popularTagList}" var="map">
-                <li class="popular-tag-list-detail">
-                  <i class="fa-solid fa-hashtag gray1"></i>
-                  <span>${map.NAME}</span>
-                </li>
-              </c:forEach>
-            </ul>
-          </div>
-        </aside>
-      </main>
-    </div>
+                      </div>
+                      <div class="main-study-detail__profile-hit-cmt-scrap">
+                        <div class="user-nick bold700">${map.NICK }</div>
+                        <ul class="view-cmt-scrap-list flex soft-gray">
+                          <li>
+                            <i class="fa-regular fa-eye"></i
+                            ><span>${map.HIT }</span>
+                          </li>
+                          <li>
+                            <i class="fa-regular fa-comment-dots"></i
+                            ><span>${map.CMT_CNT}</span>
+                          </li>
+                          <li>
+                            <i class="fa-regular fa-bookmark"></i
+                            ><span>${map.SCRAP_CNT}</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </section>
+                  </a>
+                </c:forEach>
+                <c:if test="${groupList.size()==0}">
+                  <div class="not-found">검색 결과가 없습니다.</div>
+                </c:if>
+              </ul>
+            </section>
+          </article>
+          <aside class="popular-tag-aside">
+            <div class="popular-tag">
+              <h1 class="popular-tag-title">
+                <i class="fa-solid fa-hashtag gray1"></i>
+                <span class="bold700 gray1">인기 태그</span>
+              </h1>
+              <ul class="popular-tag-list">
+                <c:forEach items="${popularTagList}" var="map">
+                  <li class="popular-tag-list-detail">
+                    <i class="fa-solid fa-hashtag gray1"></i>
+                    <span>${map.NAME}</span>
+                  </li>
+                </c:forEach>
+              </ul>
+            </div>
+          </aside>
+        </main>
+      </div>
+    </form>
     <script>
-      const techCategory = document.querySelectorAll(".tech-category");
-      const techCate1 = document.querySelector(".tech-category:nth-child(1)");
-      const techCate2 = document.querySelector(".tech-category:nth-child(2)");
-      const techCate3 = document.querySelector(".tech-category:nth-child(3)");
-      const techCate4 = document.querySelector(".tech-category:nth-child(4)");
-      const techCate5 = document.querySelector(".tech-category:nth-child(5)");
-      const techCate6 = document.querySelector(".tech-category:nth-child(6)");
+      const typeArr = document.querySelectorAll("input[name=type]");
+      const typeStr = "${type}";
 
-      const studyType1 = document.querySelector(".study-type:nth-child(1)");
-      const studyType2 = document.querySelector(".study-type:nth-child(2)");
-      const studyType3 = document.querySelector(".study-type:nth-child(3)");
+      for (let i = 0; i < typeArr.length; i++) {
+        const v = typeArr[i].value;
+        let result = typeStr.search(v);
+        if (result >= 0) {
+          typeArr[i].checked = true;
+        }
+      }
 
-      const bar1 = techCate1.querySelector("div");
-      const bar2 = techCate2.querySelector("div");
-      const bar3 = techCate3.querySelector("div");
-      const bar4 = techCate4.querySelector("div");
-      const bar5 = techCate5.querySelector("div");
-      const bar6 = techCate6.querySelector("div");
+      const techTypeArr = document.querySelectorAll("input[name=techType]");
+      const techTypeStr = "${techType}";
 
-      const studyTypeBar1 = studyType1.querySelector("div");
-      const studyTypeBar2 = studyType2.querySelector("div");
-      const studyTypeBar3 = studyType3.querySelector("div");
+      for (let i = 0; i < techTypeArr.length; i++) {
+        const v = techTypeArr[i].value;
+        let result = techTypeStr.search(v);
+        if (result >= 0) {
+          techTypeArr[i].checked = true;
+        }
+      }
 
-      techCategory.forEach((o) => {
-        o.addEventListener("click", () => {
-          const techList = document.querySelector(".tech-list");
+      const orderArr = document.querySelectorAll("input[name=order]");
+      const orderStr = "${order}";
 
-          $.ajax({
-            url: "${pageContext.request.contextPath}/study/techStack",
-            type: "get",
-            data: {
-              type: o.querySelector("span").innerHTML.trim(),
-            },
-            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-            success: function (data) {
-              var obj = JSON.parse(data);
-
-              let str = "";
-              for (let i = 0; i < obj.result.length; i++) {
-                str =
-                  str +
-                  "<li><div class='flex'>" +
-                  "<img src='${pageContext.request.contextPath}/resources/upload/techStack/" +
-                  obj.result[i].IMG_PATH +
-                  "' alt=''/>" +
-                  "<span>" +
-                  obj.result[i].NAME +
-                  "</span>" +
-                  "</div></li>";
-              }
-              console.log(str);
-              techList.innerHTML = str;
-            },
-          });
-        });
-      });
-
-      techCate1.addEventListener("click", function () {
-        this.classList.add("tech-clicked");
-
-        bar1.classList.remove("hidden");
-
-        techCate2.classList.remove("tech-clicked");
-        techCate3.classList.remove("tech-clicked");
-        techCate4.classList.remove("tech-clicked");
-        techCate5.classList.remove("tech-clicked");
-        techCate6.classList.remove("tech-clicked");
-
-        bar2.classList.add("hidden");
-        bar3.classList.add("hidden");
-        bar4.classList.add("hidden");
-        bar5.classList.add("hidden");
-        bar6.classList.add("hidden");
-      });
-
-      techCate2.addEventListener("click", function () {
-        this.classList.add("tech-clicked");
-
-        bar2.classList.remove("hidden");
-
-        techCate1.classList.remove("tech-clicked");
-        techCate3.classList.remove("tech-clicked");
-        techCate4.classList.remove("tech-clicked");
-        techCate5.classList.remove("tech-clicked");
-        techCate6.classList.remove("tech-clicked");
-
-        bar1.classList.add("hidden");
-        bar3.classList.add("hidden");
-        bar4.classList.add("hidden");
-        bar5.classList.add("hidden");
-        bar6.classList.add("hidden");
-
-        const techList = document.querySelector(".tech-list");
-
-        $.ajax({
-          url: "${pageContext.request.contextPath}/study/techStack",
-          type: "get",
-          data: {
-            type: this.querySelector("span").innerHTML.trim(),
-          },
-          success: function (data) {
-            var obj = JSON.parse(data);
-            console.log(obj.result[0].NAME);
-            console.log(obj.result);
-
-            let str = "";
-            for (let i = 0; i < obj.result.length; i++) {
-              str =
-                str +
-                "<li><div class='flex'>" +
-                "<img src='${pageContext.request.contextPath}/resources/upload/techStack/" +
-                obj.result[i].IMG_PATH +
-                "' alt=''/>" +
-                "<span>" +
-                obj.result[i].NAME +
-                "</span>" +
-                "</div></li>";
-            }
-            console.log(str);
-            techList.innerHTML = str;
-          },
-        });
-      });
-
-      techCate3.addEventListener("click", function () {
-        this.classList.add("tech-clicked");
-
-        bar3.classList.remove("hidden");
-
-        techCate1.classList.remove("tech-clicked");
-        techCate2.classList.remove("tech-clicked");
-        techCate4.classList.remove("tech-clicked");
-        techCate5.classList.remove("tech-clicked");
-        techCate6.classList.remove("tech-clicked");
-
-        bar1.classList.add("hidden");
-        bar2.classList.add("hidden");
-        bar4.classList.add("hidden");
-        bar5.classList.add("hidden");
-        bar6.classList.add("hidden");
-      });
-
-      techCate4.addEventListener("click", function () {
-        this.classList.add("tech-clicked");
-
-        bar4.classList.remove("hidden");
-
-        techCate1.classList.remove("tech-clicked");
-        techCate2.classList.remove("tech-clicked");
-        techCate3.classList.remove("tech-clicked");
-        techCate5.classList.remove("tech-clicked");
-        techCate6.classList.remove("tech-clicked");
-
-        bar1.classList.add("hidden");
-        bar2.classList.add("hidden");
-        bar3.classList.add("hidden");
-        bar5.classList.add("hidden");
-        bar6.classList.add("hidden");
-      });
-
-      techCate5.addEventListener("click", function () {
-        this.classList.add("tech-clicked");
-
-        bar5.classList.remove("hidden");
-
-        techCate1.classList.remove("tech-clicked");
-        techCate2.classList.remove("tech-clicked");
-        techCate3.classList.remove("tech-clicked");
-        techCate4.classList.remove("tech-clicked");
-        techCate6.classList.remove("tech-clicked");
-
-        bar1.classList.add("hidden");
-        bar2.classList.add("hidden");
-        bar3.classList.add("hidden");
-        bar4.classList.add("hidden");
-        bar6.classList.add("hidden");
-      });
-
-      techCate6.addEventListener("click", function () {
-        this.classList.add("tech-clicked");
-
-        bar6.classList.remove("hidden");
-
-        techCate1.classList.remove("tech-clicked");
-        techCate2.classList.remove("tech-clicked");
-        techCate3.classList.remove("tech-clicked");
-        techCate4.classList.remove("tech-clicked");
-        techCate5.classList.remove("tech-clicked");
-
-        bar1.classList.add("hidden");
-        bar2.classList.add("hidden");
-        bar3.classList.add("hidden");
-        bar4.classList.add("hidden");
-        bar5.classList.add("hidden");
-      });
-
-      studyType1.addEventListener("click", function () {
-        this.classList.add("type-clicked");
-
-        studyTypeBar1.classList.remove("hidden");
-
-        studyType2.classList.remove("type-clicked");
-        studyType3.classList.remove("type-clicked");
-
-        studyTypeBar2.classList.add("hidden");
-        studyTypeBar3.classList.add("hidden");
-      });
-
-      studyType2.addEventListener("click", function () {
-        this.classList.add("type-clicked");
-
-        studyTypeBar2.classList.remove("hidden");
-
-        studyType1.classList.remove("type-clicked");
-        studyType3.classList.remove("type-clicked");
-
-        studyTypeBar1.classList.add("hidden");
-        studyTypeBar3.classList.add("hidden");
-      });
-
-      studyType3.addEventListener("click", function () {
-        this.classList.add("type-clicked");
-
-        studyTypeBar3.classList.remove("hidden");
-
-        studyType1.classList.remove("type-clicked");
-        studyType2.classList.remove("type-clicked");
-
-        studyTypeBar1.classList.add("hidden");
-        studyTypeBar2.classList.add("hidden");
-      });
+      for (let i = 0; i < orderArr.length; i++) {
+        const v = orderArr[i].value;
+        let result = orderStr.search(v);
+        if (result >= 0) {
+          orderArr[i].checked = true;
+        }
+      }
     </script>
-    <script
-      src="https://kit.fontawesome.com/939838bb27.js"
-      crossorigin="anonymous"
-    ></script>
+    <script>
+      history.scrollRestoration = "auto";
+    </script>
+
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+    <script defer src="${path}/resources/js/study/list.js"></script>
   </body>
 </html>

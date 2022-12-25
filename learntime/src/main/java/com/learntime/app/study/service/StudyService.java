@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.learntime.app.study.vo.GroupVo;
+import com.learntime.app.study.vo.SearchVo;
 
 public interface StudyService {
 	
@@ -38,7 +39,7 @@ public interface StudyService {
 	public List<Map<String, String>> selectTechStackListByType(String type);
 
 	//그룹 리스트 조회
-	public List<Map<String, Object>> selectGroupList(Map map);
+	public List<Map<String, Object>> selectGroupList(SearchVo vo);
 
 	//그룹 번호로 기술스택 리스트 조회
 	public List<Map<String, String>> selectTechStackListByGno(String gno);

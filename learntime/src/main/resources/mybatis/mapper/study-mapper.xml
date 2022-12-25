@@ -158,15 +158,50 @@
 	</select>
 	
 	<select id="selectGroupList" resultType="map">
-		SELECT G.NO, TO_CHAR(CAST(START_DATE as DATE),'YYYY.MM.DD') START_DATE, TITLE, HIT, T.NAME TYPE, W.NAME WAY, NUMBER_PEOPLE, P.NAME PERIOD, M.NICK, M.IMG_PATH, G.ENROLL_DATE
+		SELECT DISTINCT(G.NO), TO_CHAR(CAST(START_DATE as DATE),'YYYY.MM.DD') START_DATE, TITLE, TO_CHAR(G.INTRO), HIT, T.NAME TYPE, W.NAME WAY, NUMBER_PEOPLE, P.NAME PERIOD, M.NICK, M.IMG_PATH, G.ENROLL_DATE, G.CLOSING_YN, NVL(CMT_CNT,0) CMT_CNT , SCRAP_CNT, LIKES-HATES LIKE_CNT
 		FROM RECRUIT_GROUP G
 		JOIN GROUP_TYPE T ON G.G_TYPE_NO = T.NO
 		JOIN GROUP_WAY W ON G.G_WAY_NO = W.NO
 		JOIN GROUP_PERIOD P ON G.G_PERIOD_NO = P.NO
 		JOIN MEMBER M ON G.WRITER = M.NO
+		JOIN GROUP_SCRAP S ON G.NO = S.G_NO
+		LEFT JOIN (SELECT G_NO, COUNT(*) CMT_CNT FROM GROUP_CMT WHERE DELETE_YN = 'N' GROUP BY G_NO) C ON C.G_NO = G.NO
+		LEFT JOIN (SELECT G_NO, COUNT(*) SCRAP_CNT FROM GROUP_SCRAP GROUP BY G_NO) S ON S.G_NO = G.NO
+		LEFT JOIN ( SELECT  G_NO, SUM(CASE WHEN STATUS = 'L' THEN 1 ELSE 0 END) AS LIKES, SUM(CASE WHEN STATUS = 'H' THEN 1 ELSE 0 END) AS HATES
+		        FROM GROUP_LIKE_HATE
+		        GROUP BY G_NO) L ON L.G_NO = G.NO
 		WHERE G.DELETE_YN = 'N' 
 		AND G.CLOSING_YN = 'N'
-		ORDER BY ENROLL_DATE
+		<if test="keyword != null">AND G.TITLE LIKE ('%${keyword}%') AND G.INTRO LIKE ('%${keyword}%')</if>
+		<if test="type != '전체'">AND T.NAME = #{type}</if>
+		<if test="status != null">AND G.CLOSING_YN IN ('N')</if>
+		<if test="tag != null">
+			AND G.NO IN (SELECT GROUP_NO
+			FROM GROUP_TAG G
+			JOIN TAG T ON G.TAG_NO = T.NO
+			WHERE T.NAME IN 
+			<foreach item="item" index="index" collection="tag"
+			    open="(" separator="," close=")">
+			      #{item}
+			</foreach>
+			)
+		</if>
+		<if test="techStack != null">
+			AND G.NO IN (SELECT G_NO
+			FROM GROUP_TECH_STACK G
+			JOIN TECH_STACK T ON G.TECH_STACK_NO = T.NO
+			WHERE T.NAME IN 
+				<foreach item="item" index="index" collection="techStack"
+			    	open="(" separator="," close=")">
+			      	#{item}
+				</foreach>
+			)
+		</if>
+		<if test="'recent'.equals(order)">ORDER BY ENROLL_DATE</if>
+		<if test="'hit'.equals(order)">ORDER BY G.HIT DESC</if>
+		<if test="'recommend'.equals(order)">ORDER BY LIKE_CNT DESC</if>
+		<if test="'scrap'.equals(order)">ORDER BY SCRAP_CNT DESC</if>
+		<if test="'comment'.equals(order)">ORDER BY CMT_CNT DESC</if>
 	</select>
 	
 	<select id="selectTechStackListByGno" resultType="map">
