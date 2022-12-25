@@ -75,43 +75,78 @@
 			<!-- 로그인이 되있을 때 댓글 작성-->
 			<c:if test="${sessionScope.loginMember != null}">
 				
-					<form action="/app/community/comment/write" method="post">
-						<div id="comment-write-box">
-							<div id="comment-writer-box">
-								<div id="comment-writer-profile">
-									<img src="" alt="" onerror="this.src='/app/resources/img/profile_default.png'">
-								</div>
-								<span id="comment-writer">${loginMember.nick}</span>
+					<div id="comment-write-box">
+						<div id="comment-writer-box">
+							<div id="comment-writer-profile">
+								<img src="" alt="" onerror="this.src='/app/resources/img/profile_default.png'">
 							</div>
-							<div id="comment-area">
-								<textarea class="summernote" name="editordata"></textarea>
-							</div>
+							<span id="comment-writer">${loginMember.nick}</span>
 						</div>
+						<div id="comment-area">
+							<textarea class="summernote" name="editordata"></textarea>
+						</div>
+					</div>
 					<input type="submit" id="comment-write-btn" value="댓글 쓰기"></input>
-					</form>
-
-					<!-- 댓글 등록 할건데 loginMember.nick, loginMember.id, editordata를 날려주는 ajax 함수  -->
+					
 					<script>
+
 						$(document).ready(function() {
 							$('#comment-write-btn').click(function() {
-								$.ajax({
-									url : '/app/community/comment/write',
-									type : 'post',
-									data : {
+							$.ajax({
+								url: '/app/community/comment/write',
+								type : 'post',
+								data : {
 										'writer' : '${loginMember.no}',
 										'boardNo' : '${bv.no}',
 										'content' : $('.summernote').summernote('code')
-									},
-									success : function(data) {
-										alert('댓글 등록 성공');
-										location.reload();
-									},
-									error : function() {
-										alert('댓글 등록 실패');
-									}
+										},
+								contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+								success: function(data) {
+
+									//서머노트에 작성한 내용을 비우기
+									$('.summernote').summernote('code', '');
+									//댓글 목록을 비우기
+									$("#comment-list").html("");
+									//댓글 목록을 가져오기
+									console.log(data);
+									var jsonData = $.parseJSON(data);
+									
+									$.each(jsonData.cvList, function(index, cvList) {
+									var commentHtml = 
+										'<div class="comment-box">' +
+										'<div class="comment-main">' +
+											'<div class="comment-writer-box">' +
+											'<div class="comment-writer-profile">' +
+												'<img src="/app/' + cvList.writerImg + '" alt="resources" onerror="this.src=\'/app/resources/img/profile_default.png\'">' +
+											'</div>' +
+											'<span class="comment-writer">' + cvList.writerNick + '</span>' +
+											'<span class="comment-write-time">' + cvList.enrollDate + '</span>' +
+											'<span class="modi-dele">수정</span>' +
+											'<span class="modi-dele">삭제</span>' +
+											'</div>' +
+											'<div class="comment-content">' +
+											'<p>' + cvList.content + '</p>' +
+											'</div>' +
+										'</div>' +
+										'<div class="comment-lh-box">' +
+											'<div class="like-hate-box">' +
+											'<div class="like">' +
+												'<span class="material-symbols-rounded lh-icon">thumb_up</span>' +
+											'</div>' +
+											'<div class="lh-number-box red">' + cvList.likes + '</div>' +
+											'<div class="hate">' +
+												'<span class="material-symbols-rounded lh-icon">thumb_down</span>' +
+											'</div>' +
+											'</div>' +
+										'</div>' +
+										'</div>';
+									$("#comment-list").append(commentHtml);
+									});
+								}
 								});
 							});
 						});
+
 					</script>
 				
 			</c:if>
@@ -119,7 +154,7 @@
 
 
 		<div id="comment-list">
-			<!-- cvList 의 첫번째 인덱스에 데이터가 없다면 실행되는 코드-->
+			<!-- cvList 의 첫번째 인덱스에 데이터가 없다면 실행-->
 			<c:if test = "${cvList[0] == null}">
 				<div class="comment-box">
 					<div class="comment-main">
@@ -141,8 +176,8 @@
 								</div>
 								<span class="comment-writer">${cv.writerNick}</span>
 								<span class="comment-write-time">${cv.enrollDate}</span>
-								<span class="modi-dele">수정</span>
-								<span class="modi-dele">삭제</span>
+								<span class="modi-dele modi">수정</span>
+								<span class="modi-dele dele">삭제</span>
 							</div>
 							<div class="comment-content">
 								<p>${cv.content}</p>
@@ -164,8 +199,7 @@
 				</c:forEach>
 			</c:if>
 
-		
-
+			
 			<!-- 댓글 반복문 끝 -->
 			
 		</div>
@@ -186,22 +220,16 @@
             lang: "ko-KR",
 			disableResizeEditor: true,
 			focus: false
-        });
-
-
-
-
-		
+        });	
     </script>
 
+	<!-- 좋아요 & 싫어요 -->
 	<script>
 		$('.like').click(function(){
 			$(this).children('span').toggleClass('red-filled')
 			$(this).siblings('.hate').children('span').removeClass('blue-filled');
 
-
 			//.. 좋아요... 숫자.. 색깔..
-		
 			calcLike();
 
 		});
@@ -216,18 +244,15 @@
 		function calcLike() {
 		$('.lh-number-box').each(function(){
 			if($(this).text() > 0){
-			$(this).addClass('red');
+				$(this).addClass('red');
 			}else if($(this).text() < 0){
-			$(this).addClass('blue');
+				$(this).addClass('blue');
 			}else{
-			$(this).removeClass('red');
-			$(this).removeClass('blue');
+				$(this).removeClass('red');
+				$(this).removeClass('blue');
 			}
 		});
 		}
-
-
-
 	</script>
 </body>
 </html>

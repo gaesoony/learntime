@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.learntime.app.community.dao.BoardDao;
 import com.learntime.app.community.vo.BoardVo;
+import com.learntime.app.community.vo.CateVo;
 import com.learntime.app.community.vo.CmtVo;
 
 @Service
@@ -59,6 +60,19 @@ public class BoardServiceImpl implements BoardService{
 		
 		return dao.insertCmt(sst, cv);
 		
+	}
+
+	//자유게시판 카테고리 불러오기
+	@Override
+	public List<CateVo> selectCate() {
+		return dao.selectCateList(sst);
+	}
+
+	//자유게시판 카테고리 추가하기
+	@Transactional
+	@Override
+	public int insertCate(String cateName) {
+		return dao.insertCategory(sst, cateName);
 	}
 	
 	

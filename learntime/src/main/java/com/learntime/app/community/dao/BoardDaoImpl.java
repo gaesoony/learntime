@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.learntime.app.community.vo.BoardVo;
+import com.learntime.app.community.vo.CateVo;
 import com.learntime.app.community.vo.CmtVo;
 
 @Repository
@@ -50,6 +52,19 @@ public class BoardDaoImpl implements BoardDao{
 	@Override
 	public int insertCmt(SqlSessionTemplate sst, CmtVo cv) {
 		return sst.insert("freeBoardMapper.insertCmt", cv);
+	}
+
+
+	//카테고리 불러오기
+	@Override
+	public List<CateVo> selectCateList(SqlSessionTemplate sst) {
+		return sst.selectList("freeBoardMapper.selectCateList");
+	}
+
+	//카테고리 추가하기
+	@Override
+	public int insertCategory(SqlSessionTemplate sst, String cateName) {
+		return sst.insert("freeBoardMapper.insertCategory", cateName);
 	}
 	
 	

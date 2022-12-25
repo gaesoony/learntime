@@ -62,14 +62,14 @@
 		         SUM(CASE WHEN STATUS = 'L' THEN 1 ELSE 0 END) AS L_COUNT,
 		         SUM(CASE WHEN STATUS = 'H' THEN 1 ELSE 0 END) AS H_COUNT
 		  FROM FREE_BOARD_CMT_LIKE_HATE
-		--  WHERE DELETE_YN = 'N'
 		  GROUP BY CMT_NO
 		) lh ON fbc.NO = lh.CMT_NO
 		JOIN MEMBER m ON fbc.WRITER = m.NO
 		WHERE fbc.BOARD_NO = #{bno}
+		ORDER BY fbc.NO DESC
 	</select>
 	
-	<insert id="">
+	<insert id="insertCmt">
 		INSERT INTO FREE_BOARD_CMT VALUES (
 			SEQ_FREEBOARD_CMT_NO.NEXTVAL,
 			#{boardNo},
@@ -80,7 +80,15 @@
 			SYSDATE,
 			0,
 			0
-		);
+		)
+	</insert>
+	
+	<select id="selectCateList" resultType = "com.learntime.app.community.vo.CateVo">
+		SELECT * FROM FREE_BOARD_CATEGORY
+	</select>
+	
+	<insert id="insertCategory">
+		INSERT INTO FREE_BOARD_CATEGORY VALUES (SEQ_FREE_BOARD_CATEGORY_NO, #{cateName})
 	</insert>
 
 </mapper>
