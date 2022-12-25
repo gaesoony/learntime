@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,29 +19,14 @@
             <div id="main-side" class="shadow-light">
                 <div id="board-category-box">
                 <!-- 카테고리 반복문 -->
+                <c:forEach var="cate" items="${cateList}">
                     <div class="board-category">
-                        <span> 카테고리1</span>
-                        <a href="" class="modi-btn txt-sm">수정</a>
-                        <a href="" class="dele-btn txt-sm">삭제</a>
-                        
-                    </div>
-                    <div class="board-category">
-                        <span> 카테고리2</span>
-                        <a href="" class="modi-btn txt-sm">수정</a>
-                        <a href="" class="dele-btn txt-sm">삭제</a>
-                        
-                    </div>
-                    <div class="board-category">
-                        <span> 카테고리3</span>
+                        <span>${cate.name}</span>
                         <a href="" class="modi-btn txt-sm">수정</a>
                         <a href="" class="dele-btn txt-sm">삭제</a>
                     </div>
-                    <div class="board-category">
-                        <span> 카테고리4</span>
-                        <a href="" class="modi-btn txt-sm">수정</a>
-                        <a href="" class="dele-btn txt-sm">삭제</a>
-                    </div>
-
+                </c:forEach>
+                <!-- 카테고리 반복 끝-->
                     <div id="add-category-box">
                         <span class="material-symbols-rounded">settings</span>
                         <span>카테고리 추가하기</span>

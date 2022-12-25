@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.learntime.app.community.vo.BoardVo;
+import com.learntime.app.community.vo.CateVo;
 import com.learntime.app.community.vo.CmtVo;
 
 public interface BoardDao {
@@ -26,5 +27,11 @@ public interface BoardDao {
 	
 	//insert comment
 	public int insertCmt(SqlSessionTemplate sst, CmtVo cv);
+
+	//select category list
+	public List<CateVo> selectCateList(SqlSessionTemplate sst);
+
+	//insert category
+	public int insertCategory(SqlSessionTemplate sst, String cateName);
 	
 }

@@ -3,6 +3,7 @@ package com.learntime.app.community.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.learntime.app.community.service.BoardService;
 import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.community.vo.CmtVo;
@@ -21,6 +24,7 @@ import com.learntime.app.member.vo.MemberVo;
 @RequestMapping("community")
 @Controller
 public class BoardController {
+	
 
 	@Autowired
 	private BoardService bs;
@@ -104,19 +108,43 @@ public class BoardController {
 	}
 
 // 댓글 쓰기 TODO
-	@PostMapping("comment/write")
-	public String cmtWrite(CmtVo cv) {
+	@PostMapping(value="comment/write", produces="application/text;charset=utf8")
+	@ResponseBody
+	public String cmtWrite(@RequestParam("content") String content,
+						   @RequestParam("boardNo") String boardNo,
+						   @RequestParam("writer") String writer,
+						   HttpServletResponse response) {
 		
-		// 댓글쓰기
+		//인코딩
+		response.setContentType("text/html;charset=UTF-8");
+		
+		// 댓글 작성
+		
+		CmtVo cv = new CmtVo();
+		
+		cv.setBoardNo(boardNo);
+		cv.setContent(content);
+		cv.setWriter(writer);
+		
+		System.out.println("컨트롤러 " + cv);
+		
 		int result = bs.insertCmt(cv);
-		//
+		
 		if(result != 1) {
 			return "error";
 		}
 		
-		return "redirect:/community/board/detail";
+		// 댓글 조회
+		List<CmtVo> cvList = bs.selectCmtList(boardNo);
+		
+		Gson gson = new Gson();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("cvList", cvList);
+		String jsonString = gson.toJson(map);
 		
 		
+		return jsonString;
 		
 	}
 
