@@ -55,7 +55,7 @@ public class NoticeController {
 			
 
 			
-			List<QuestionVo> list= ns.selectQuestionList(map,pv);
+			List<NoticeVo> list= ns.selectNoticeList(map,pv);
 
 			mv.addObject("list",list);
 			

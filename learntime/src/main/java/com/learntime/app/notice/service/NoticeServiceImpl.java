@@ -27,7 +27,7 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public List<NoticeVo> selectQuestionList(Map<String, String> map, PageVo pv) {
+	public List<NoticeVo> selectNoticeList(Map<String, String> map, PageVo pv) {
 		return dao.selectNoticeList(sst,map,pv);
 	}
 
