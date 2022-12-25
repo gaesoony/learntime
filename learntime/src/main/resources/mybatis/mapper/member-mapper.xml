@@ -65,6 +65,14 @@
 		  WHERE ID = #{id}
 	</select>
 	
+	<!--비밀번호 재설정  -->
+	<update id="editPwd">
+		UPDATE MEMBER 
+		SET PWD=#{pwd},
+			MODIFY_DATE=SYSDATE	
+		WHERE ID=#{id}
+	</update>
+	
 	
 	<!--탈퇴  -->
 	<update id="memberDeletePwd">
@@ -78,7 +86,8 @@
 		UPDATE MEMBER 
 		SET NICK=#{nick},
 			INTRO=#{intro},
-			IMG_PATH=#{imgPath}
+			IMG_PATH=#{imgPath},
+			MODIFY_DATE=SYSDATE
 		WHERE NO=#{no}
 	</update>
 	
@@ -86,7 +95,16 @@
 	<update id="mypageEditEmail">
 		UPDATE MEMBER 
 		SET ID=#{id},
-			EMAIL_AUTH='0'
+			EMAIL_AUTH='0',
+			MODIFY_DATE=SYSDATE
+		WHERE NO=#{no}
+	</update>
+	
+	<!--전화번호 -->
+	<update id="mypageEditPhone">
+		UPDATE MEMBER 
+		SET PHONE=#{phone},
+			MODIFY_DATE=SYSDATE
 		WHERE NO=#{no}
 	</update>
 

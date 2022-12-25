@@ -45,6 +45,12 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return sst.selectOne("memberMapper.findPwd",vo);
 	}
+	//비밀번호 재설정
+	@Override
+	public int editPwd(SqlSessionTemplate sst, MemberVo vo) {
+		
+		return sst.update("memberMapper.editPwd", vo);
+	}
 	//이메일 인증 완료
 	@Override
 	public int updateEmailAuth(SqlSessionTemplate sst, String email) {
@@ -70,6 +76,21 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return sst.update("memberMapper.mypageEditEmail", vo);
 	}
+	//전화번호
+	@Override
+	public int mypageEditPhone(SqlSessionTemplate sst, MemberVo vo) {
+		
+		return sst.update("memberMapper.mypageEditPhone", vo);
+	}
+	
+	//-------------유저 찾기------------
+	//회원번호로 조회
+	@Override
+	public MemberVo selectNo(SqlSessionTemplate sst, String no) {
+		
+		return sst.selectOne("memberMapper.selectNo",no);
+	}
+	
 	
 
 }

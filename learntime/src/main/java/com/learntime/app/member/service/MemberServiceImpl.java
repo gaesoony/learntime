@@ -1,17 +1,11 @@
 package com.learntime.app.member.service;
 
-import java.io.UnsupportedEncodingException;
-
-import javax.mail.MessagingException;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.learntime.app.member.dao.MemberDao;
 import com.learntime.app.member.mail.MailHandler;
@@ -98,7 +92,7 @@ public class MemberServiceImpl implements MemberService {
 				"<h1>LEARN TIME 비밀번호 재설정</h1>"
 				+"<br>비밀번호를 변경하시려면"
 				+"<br>아래의 링크를 눌러주세요"
-				+"<br>http://127.0.0.1:8888/app/member/emailAuth?email="+vo.getId()
+				+"<br>http://127.0.0.1:8888/app/member/editPwd?email="+vo.getId()
 				);
 		sendMail.setFrom("learntime.test@gmail.com", "LEARN TIME");
 		sendMail.setTo(vo.getId());
@@ -106,6 +100,14 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberDao.findPwd(sst,vo);
 	}
+	//비밀번호 재설정 (아이디로 조회)
+	@Override
+	public int editPwd(MemberVo vo) {
+		String newPwd=enc.encode(vo.getPwd());
+		vo.setPwd(newPwd);
+		return memberDao.editPwd(sst,vo);
+	}
+
 
 	// 이메일 인증 메일 링크 클릭 할 경우
 	@Override
@@ -155,7 +157,24 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberDao.mypageEditEmail(sst,vo);
 	}
+	//전화번호
+	@Override
+	public int mypageEditPhone(MemberVo vo) {
+		
+		return memberDao.mypageEditPhone(sst,vo);
+	}
+	
+	
+	
+	//-------------유저 찾기------------
+	//회원번호로 조회
+	@Override
+	public MemberVo selectNo(String no) {
+		
+		return memberDao.selectNo(sst,no);
+	}
 
+	
 
 
 }

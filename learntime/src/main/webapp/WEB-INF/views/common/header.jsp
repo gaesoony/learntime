@@ -17,6 +17,9 @@
 <!-- 스윗 알람2 -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="path" value="${pageContext.request.contextPath}" /> 
 
 <style>
 
@@ -250,7 +253,7 @@
       <div id="login"><button id="login-btn">LOGIN</button></div>
       <%}else{%>
         <div id="alarm"><span class="material-symbols-outlined">notifications</span></div>
-        <div id="mypage"><a href="${pageContext.request.contextPath}/member/mypage/home"><span class="material-symbols-outlined">account_circle</span></a></div>
+        <div id="mypage"><a href="${pageContext.request.contextPath}/member/mypage/home?no=${loginMember.getNo()}"><span class="material-symbols-outlined">account_circle</span></a></div>
         <div id="mypage"><a href="${pageContext.request.contextPath}/member/logout"><span class="material-symbols-outlined">logout</span></a></div>
       <%}%>
   </div>
