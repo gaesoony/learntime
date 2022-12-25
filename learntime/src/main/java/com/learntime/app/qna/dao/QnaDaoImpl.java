@@ -23,14 +23,14 @@ public class QnaDaoImpl implements QnaDao {
 	@Override
 	public int insertTag(SqlSessionTemplate sst, String[] tag) {
 		
-		System.out.println("dao에서 vo : " + tag);
+		System.out.println("dao 브이오 : " + tag);
 		return sst.insert("qnaMapper.insertTag", tag);
 	}
 	
 	@Override
 	public int insertKnowledgeTag(SqlSessionTemplate sst, String[] tag) {
 		
-		System.out.println("dao에서 vo : " + tag);
+		System.out.println("dao 브이오 : " + tag);
 		return sst.insert("qnaMapper.insertKnowledgeTag", tag);
 	}
 
@@ -40,13 +40,4 @@ public class QnaDaoImpl implements QnaDao {
 		return sst.selectList("qnaMapper.selectList", writer);
 	}
 
-	
-
-	
-
-	
-
-
-	
-	
 }
