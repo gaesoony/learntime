@@ -26,10 +26,10 @@ public class TechStackController {
 	@ResponseBody
 	public String selectTechStackListByType(String type) {
 		
-		log.info("타입 : " + type);
+		//log.info("타입 : " + type);
 		
 		List<Map<String, String>> result = service.selectTechStackListByType(type);
-		log.info("결과 : " + result);
+		//log.info("결과 : " + result);
 		
 		Gson gson = new Gson();
 	    HashMap<String, Object> map = new HashMap<String, Object>();

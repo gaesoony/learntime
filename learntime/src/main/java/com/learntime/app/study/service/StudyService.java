@@ -44,14 +44,8 @@ public interface StudyService {
 	//그룹 번호로 기술스택 리스트 조회
 	public List<Map<String, String>> selectTechStackListByGno(String gno);
 
-	//그룹 번호로 스크랩수 조회
-	public List<Map<String, String>> selectScrapCntByGno(String gno);
-
-	//그룹 번호로 댓글수 조회
-	public List<Map<String, String>> selectCmtCntByGno(String gno);
-
-	//그룹 번호로 좋아요싫어요수 조회
-	public List<Map<String, String>> selectlikeHateCntByGno(String gno);
+	//그룹 한 개 조회
+	public Map<String, Object> selectGroupOne(String gno);
 	
 	
 	//추후 추가 예정..

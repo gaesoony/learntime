@@ -108,11 +108,7 @@ public class StudyController {
 			vo.setOrder("recent");
 		}
 		
-		if(vo.getStatus() == null) {
-			vo.setStatus("recruited");
-		}
-		
-		
+
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 		log.info("로그인멤버2 : " + loginMember);
 		//내가 가입한 모임 select (모임번호, 이름, 프사)
@@ -140,7 +136,7 @@ public class StudyController {
 		//전체 모임 정보 select
 		List<Map<String, Object>> groupList = service.selectGroupList(vo);
 		
-		log.info("그룹정보 : " + groupList);
+		//log.info("그룹정보 : " + groupList);
 		
 		if(vo.getKeyword().trim().equals("")) {
 			model.addAttribute("keyword", null);
@@ -148,22 +144,53 @@ public class StudyController {
 			model.addAttribute("keyword", vo.getKeyword());
 		}
 		
+		model.addAttribute("techStack", vo.getTechStack());
+		model.addAttribute("status", vo.getStatus());
 		model.addAttribute("type", vo.getType());
 		model.addAttribute("techType", vo.getTechType());
 		model.addAttribute("order", vo.getOrder());
 		model.addAttribute("groupList", groupList);
 		model.addAttribute("tagList", vo.getTag());
 		model.addAttribute("techStackList", vo.getTechStack());
-		
+
 		return "study/list";
 	}
 	
 
 	//스터디/프로젝트 상세 조회 (화면)
 	@GetMapping("/detail")
-	public String detail() {
+	public String detail(SearchVo vo, Model model) {
+		
+		System.out.println(vo);
+		
+		//그룹번호로 정보 select
+		Map<String, Object> groupOne = service.selectGroupOne(vo.getGno());
+
+		model.addAttribute("groupOne", groupOne);
+		
+		
 		return "study/detail";
 	}
+	
+//	@GetMapping("/closingYn")
+//	public String closingYn(SearchVo vo, Model model) {
+//
+//	}
+//	
+//	@GetMapping("/Like")
+//	public String Like(SearchVo vo, Model model) {
+//
+//	}
+//	
+//	@GetMapping("/Hate")
+//	public String Hate(SearchVo vo, Model model) {
+//
+//	}
+//	
+//	@GetMapping("/scrap")
+//	public String scrap(SearchVo vo, Model model) {
+//
+//	}
 	
 	//스터디/프로젝트 모집 (화면 + DB select)
 	@GetMapping("/recruit")
