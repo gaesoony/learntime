@@ -97,22 +97,42 @@ public class StudyDaoImpl implements StudyDao{
 		return sst.selectList("studyMapper.selectTechStackListByGno", gno);
 	}
 
-	//그룹번호로 스크랩수 조회
+	//그룹 한 개 조회
 	@Override
-	public List<Map<String, String>> selectScrapCntByGno(SqlSessionTemplate sst, String gno) {
-		return sst.selectList("studyMapper.selectScrapCntByGno", gno);
+	public Map<String, Object> selectGroupOne(SqlSessionTemplate sst, String gno) {
+		return sst.selectOne("studyMapper.selectGroupOneByGno", gno);
 	}
 
-	//그룹번호로 댓글수 조회
+	//그룹번호로 가입질문리스트 조회
 	@Override
-	public List<Map<String, String>> selectCmtCntByGno(SqlSessionTemplate sst, String gno) {
-		return sst.selectList("studyMapper.selectCmtCntByGno", gno);
+	public List<Map<String, String>> selectQuestionListByGno(SqlSessionTemplate sst, String gno) {
+		return sst.selectList("studyMapper.selectQuestionListByGno", gno);
 	}
 
-	//그룹번호로 좋아요싫어요수 조회
+	//그룹번호로 태그리스트 조회
 	@Override
-	public List<Map<String, String>> selectlikeHateCntByGno(SqlSessionTemplate sst, String gno) {
-		return sst.selectList("studyMapper.selectlikeHateCntByGno", gno);
+	public List<Map<String, String>> selectTagListByGno(SqlSessionTemplate sst, String gno) {
+		return sst.selectList("studyMapper.selectTagListByGno", gno);
 	}
+
+	//그룹번호로 멤버리스트 조회
+	@Override
+	public List<Map<String, String>> selectMemberListByGno(SqlSessionTemplate sst, String gno) {
+		return sst.selectList("studyMapper.selectMemberListByGno", gno);
+	}
+
+	//조회수 1 증가
+	@Override
+	public int updateHit(SqlSessionTemplate sst, String gno) {
+		return sst.update("studyMapper.updateHit", gno);
+	}
+
+	//가입내역 테이블에 작성자 insert
+	@Override
+	public int insertWriter(SqlSessionTemplate sst, GroupVo vo) {
+		return sst.insert("studyMapper.insertWriter", vo);
+	}
+
+
 
 }

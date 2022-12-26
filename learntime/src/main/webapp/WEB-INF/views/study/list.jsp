@@ -230,9 +230,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
                   <input
                     type="checkbox"
                     id="toggle-slider"
-                    checked
                     name="status"
                     value="recruited"
+                    onclick="form.submit()"
                   />
                   <label id="toggle-slider-label" for="toggle-slider"
                     >On/Off</label
@@ -285,7 +285,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
               </div>
               <ul class="main-study-detail-list">
                 <c:forEach items="${groupList}" var="map">
-                  <a href="${path}/study/detail" class="main-study-detail">
+                  <a
+                    href="${path}/study/detail?gno=${map.NO}&keyword=${keyword}&tag=${fn:join(tagList,',')}&techType=${techType}&techStack=${fn:join(techStack,',')}&type=${type}&order=${order}&status=${status}"
+                    class="main-study-detail"
+                  >
                     <div class="main-study-detail__date-like space-between">
                       <div class="soft-gray">
                         시작 예정일 | ${map.START_DATE}
@@ -396,6 +399,15 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
         if (result >= 0) {
           orderArr[i].checked = true;
         }
+      }
+
+      const status = document.querySelector("input[name=status]");
+      const statusStr = "${status}";
+
+      if (statusStr == "recruited") {
+        status.checked = true;
+      } else {
+        status.checked = false;
       }
     </script>
     <script>

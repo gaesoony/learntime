@@ -5,6 +5,9 @@ import lombok.Data;
 @Data
 public class SearchVo {
 	
+	//그룹번호
+	private String gno;
+	
 	//검색어
 	private String keyword;
 	

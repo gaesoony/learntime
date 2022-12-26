@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%> <%@taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
-    <link rel="stylesheet" href="/app/resources/css/study/detail.css?ver=3" />
+    <link
+      rel="stylesheet"
+      href="${path}/resources/css/study/detail.css?ver=3"
+    />
 
     <link
       href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
@@ -17,44 +22,44 @@ pageEncoding="UTF-8"%>
       href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
       rel="stylesheet"
     />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
     <div class="middle">
       <main class="main-study-detail">
         <aside class="study-detail-aside-left">
-          <button class="back-btn" onclick="location.href='/app/study/list'">
+          <button class="back-btn" onclick="location.href='${path}/study/list'">
             <i class="fa-solid fa-arrow-left"></i>
           </button>
         </aside>
         <article class="study-detail">
           <section class="study-detail-title-area">
-            <h1 class="bold700">토이 프로젝트 앱 개발자 구합니다!</h1>
+            <h1 class="bold700">${groupOne.TITLE}</h1>
             <div class="space-between study-detail-title-bottom">
               <div class="flex">
                 <div class="user-profile">
-                  <img src="/app/resources/img/study/profile.png" alt="" />
+                  <img src="${path}/resources/upload/common/profile_default.png" alt="" />
                 </div>
                 <div class="user-nick flex">
-                  <div>한혜원</div>
+                  <div>${groupOne.NICK}</div>
                   <img src="/app/resources/img/study/flower.png" alt="" />
                 </div>
                 <div class="soft-gray study-detail-title__date">
-                  | 2022.11.06 |
+                  | ${groupOne.ENROLL_DATE} |
                 </div>
                 <ul class="flex soft-gray hit-cmt-scrap">
-                  <li><i class="fa-regular fa-eye"></i><span>60</span></li>
                   <li>
-                    <i class="fa-regular fa-comment-dots"></i><span>5</span>
+                    <i class="fa-regular fa-eye"></i
+                    ><span>${groupOne.HIT}</span>
                   </li>
-                  <li><i class="fa-regular fa-bookmark"></i><span>10</span></li>
+                  <li>
+                    <i class="fa-regular fa-comment-dots"></i
+                    ><span>${groupOne.CMT_CNT}</span>
+                  </li>
+                  <li>
+                    <i class="fa-regular fa-bookmark"></i
+                    ><span>${groupOne.SCRAP_CNT}</span>
+                  </li>
                 </ul>
               </div>
               <div>
@@ -67,47 +72,50 @@ pageEncoding="UTF-8"%>
             <ul class="study-detail-summary-list">
               <li class="flex">
                 <div>모집구분</div>
-                <div>프로젝트</div>
+                <div>${groupOne.TYPE}</div>
               </li>
               <li class="flex">
                 <div>진행방식</div>
-                <div>오프라인</div>
+                <div>${groupOne.WAY}</div>
               </li>
               <li class="flex">
                 <div>모집인원</div>
-                <div>5명 (3/5)</div>
+                <div>
+                  ${groupOne.NUMBER_PEOPLE}명 (${groupOne.memberList.size()}/${groupOne.NUMBER_PEOPLE})
+                </div>
               </li>
               <li class="flex">
                 <div>시작예정</div>
-                <div>2022.11.10</div>
+                <div>${groupOne.START_DATE}</div>
               </li>
               <li class="flex">
                 <div>예상기간</div>
-                <div>3개월</div>
+                <div>${groupOne.PERIOD}</div>
               </li>
               <li class="flex">
                 <div>진행시간</div>
-                <div>14:00 ~ 16:00</div>
+                <div>${groupOne.START_TIME} ~ ${groupOne.END_TIME}</div>
               </li>
               <li class="flex">
                 <div>진행장소</div>
-                <div>강남 KH정보교육원</div>
+                <c:if test="${groupOne.PLACE != null }">
+	                <div>${groupOne.PLACE} (${groupOne.ADDRESS})</div>                
+                </c:if>
+                <c:if test="${groupOne.PLACE == null }">
+	                <div>온라인에서 만나요</div>                
+                </c:if>
               </li>
               <li class="flex">
                 <div>기술스택</div>
                 <ul class="flex tech-list">
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/aws.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/docker.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/java.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/spring.svg" alt="" />
-                  </li>
+                  <c:forEach items="${groupOne.techStackList}" var="ts">
+                    <li class="study-tech">
+                      <img
+                        src="${path}/resources/upload/techStack/${ts.IMG_PATH}"
+                        alt=""
+                      />
+                    </li>
+                  </c:forEach>
                 </ul>
               </li>
             </ul>
@@ -118,50 +126,14 @@ pageEncoding="UTF-8"%>
               <li class="study-tab">진행 장소</li>
             </ul>
             <div class="study-info-content">
-              <div class="study-detail-info-content">
-                <p>토이프로젝트 앱개발 같이 하실분 구합니다.</p>
-                <br />
-                <p>사용 기술스택</p>
-                <p>App: Flutter (Android, Mobile)</p>
-                <p>Backend: nestjs (Typescript) Apollo client</p>
-                <p>Frontend react (typescript) (view only)</p>
-                <p>git: Github</p>
-                <p>CI: github actions</p>
-                <p>CD: GCP</p>
-                <br />
-                <p>
-                  앱은 각정도만 잡혀 있는 상태이고 플루터 잘하시는분 환영합니다!
-                </p>
-                <p>
-                  지금 인원은 앱 개발자:1분 PM: 1분 Devops, Backend 1분 입니다
-                </p>
-                <br />
-                <p>
-                  기존에 없던 앱을 만드는 것이라 나중에 포트폴리오 쓰실때 좋을듯
-                  합니다 :)
-                </p>
-              </div>
+              <div class="study-detail-info-content">${groupOne.INTRO}</div>
               <ul class="tag-list">
-                <li class="tag-list-detail">
-                  <i class="fa-solid fa-hashtag gray1"></i>
-                  <span>자바</span>
-                </li>
-                <li class="tag-list-detail">
-                  <i class="fa-solid fa-hashtag gray1"></i>
-                  <span>포트폴리오</span>
-                </li>
-                <li class="tag-list-detail">
-                  <i class="fa-solid fa-hashtag gray1"></i>
-                  <span>프로젝트</span>
-                </li>
-                <li class="tag-list-detail">
-                  <i class="fa-solid fa-hashtag gray1"></i>
-                  <span>자바스크립트</span>
-                </li>
-                <li class="tag-list-detail">
-                  <i class="fa-solid fa-hashtag gray1"></i>
-                  <span>앱개발</span>
-                </li>
+	              <c:forEach items="${groupOne.tagList}" var="item">
+	                <li class="tag-list-detail">
+	                  <i class="fa-solid fa-hashtag gray1"></i>
+	                  <span>${item.NAME}</span>
+	                </li>
+	              </c:forEach>
               </ul>
             </div>
             <div class="study-location-content hidden">
@@ -219,24 +191,21 @@ pageEncoding="UTF-8"%>
             </div>
           </section>
           <section class="study-detail-member-area">
-            <h1>참여 멤버(3명)</h1>
+            <h1>참여 멤버(${groupOne.memberList.size()}명)</h1>
 
             <ul class="study-member-list">
-              <li>
-                <img src="/app/resources/img/study/profile.png" alt="" />
-                <div>한혜원</div>
-                <div>모임장</div>
-              </li>
-              <li>
-                <img src="/app/resources/img/study/profile.png" alt="" />
-                <div>한혜원</div>
-                <div>멤버</div>
-              </li>
-              <li>
-                <img src="/app/resources/img/study/profile.png" alt="" />
-                <div>한혜원</div>
-                <div>멤버</div>
-              </li>
+            	<c:forEach items="${groupOne.memberList}" var="item">
+	              <li>
+	                <img src="${path}/resources/upload/common/profile_default.png" alt="" />
+	                <div>${item.NICK}</div>
+	                <c:if test="${item.STATUS == 'B'}">
+		                <div>모임장</div>
+	                </c:if>
+	                <c:if test="${item.STATUS == 'C'}">
+		                <div>멤버</div>
+	                </c:if>
+	              </li>
+            	</c:forEach>
             </ul>
           </section>
           <section class="center">
@@ -253,33 +222,25 @@ pageEncoding="UTF-8"%>
                   <div>가입 신청을 위한 정보를 입력해주세요</div>
                 </div>
                 <div class="study-popup-body">
-                  <div class="study-body-content">
-                    <div class="study-body-titlebox">
-                      <div>질문1</div>
-                      <div>지원동기 알려주세요</div>
-                    </div>
-                    <div class="study-body-contentbox">
-                      <input type="text" />
-                    </div>
-                  </div>
-                  <div class="study-body-content">
-                    <div class="study-body-titlebox">
-                      <div>질문2</div>
-                      <div>사용 가능한 언어 알려주세요</div>
-                    </div>
-                    <div class="study-body-contentbox">
-                      <input type="text" />
-                    </div>
-                  </div>
-                  <div class="study-body-content">
-                    <div class="study-body-titlebox">
-                      <div>질문3</div>
-                      <div>공지사항 꼭 읽어주세요</div>
-                    </div>
-                    <div class="study-body-contentbox">
-                      <input type="text" />
-                    </div>
-                  </div>
+                	<c:if test="${groupOne.questionList.size()==0}">
+                		<div >가입 신청 하시겠습니까?</div>
+                	</c:if>
+                	<c:if test="${groupOne.questionList.size()>0}">
+		                <c:forEach items="${groupOne.questionList}" var="item" varStatus="status">
+		                  <div class="study-body-content">
+		                    <div class="study-body-titlebox">
+		                      <div>질문${status.index + 1}</div>
+		                      <div>${item.QUESTION}</div>
+		                    </div>
+		                    <div class="study-body-contentbox">
+		                      <input type="text" />
+		                    </div>
+		                  </div>
+		                
+		                </c:forEach>
+                	
+                	</c:if>
+                 
                 </div>
                 <div class="study-popup-foot">
                   <div class="study-pop-btn study-confirm" id="study-confirm">
@@ -315,13 +276,21 @@ pageEncoding="UTF-8"%>
         </article>
         <aside class="study-detail-aside-right">
           <div class="study-detail-aside-right-btns">
+          <c:if test="${groupOne.CLOSING_YN == 'N'}">
             <div>모집중</div>
+          </c:if>
+          <c:if test="${groupOne.CLOSING_YN == 'Y'}">
+            <div>모집완료</div>
+          </c:if>
             <div class="like-hate-btn">
               <div><i class="fa-solid fa-chevron-down"></i></div>
-              <div>-5</div>
+              <div>${groupOne.LIKE_CNT}</div>
               <div><i class="fa-solid fa-chevron-up"></i></div>
             </div>
-            <div><i class="fa-regular fa-bookmark"></i><span>5</span></div>
+            <div>
+              <i class="fa-regular fa-bookmark"></i
+              ><span>${groupOne.SCRAP_CNT}</span>
+            </div>
           </div>
         </aside>
       </main>
@@ -332,7 +301,7 @@ pageEncoding="UTF-8"%>
           <div class="cmt-input">
             <div class="cmt-input-top flex">
               <img src="/app/resources/img/study/profile.png" alt="" />
-              <div class="bold700">한혜원님, 답글을 남겨보세요!</div>
+              <div class="bold700">한혜원님, 댓글을 남겨보세요!</div>
             </div>
             <div class="cmt-area">
               <textarea name="editordata" id="summernote"></textarea>
@@ -352,9 +321,10 @@ pageEncoding="UTF-8"%>
               height: 120, // 에디터 높이
               minHeight: null, // 최소 높이
               maxHeight: null, // 최대 높이
-              focus: true, // 에디터 로딩후 포커스를 맞출지 여부
+              focus: false, // 에디터 로딩후 포커스를 맞출지 여부
               lang: "ko-KR", // 한글 설정
-              placeholder: "최대 2048자까지 쓸 수 있습니다", //placeholder 설정
+              placeholder: "", //placeholder 설정
+              disableResizeEditor: true,
             });
           });
         </script>
@@ -387,16 +357,8 @@ pageEncoding="UTF-8"%>
         }, 0);
       });
     </script>
-    <script>
-      // 상세페이지로 들어갔을때 초기위치가 댓글쪽이어서 최상단으로 올려줌
-      setTimeout(function () {
-        scrollTo(0, 0);
-      }, 25);
-    </script>
-    <script
-      src="https://kit.fontawesome.com/939838bb27.js"
-      crossorigin="anonymous"
-    ></script>
+
+
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
   </body>
 </html>

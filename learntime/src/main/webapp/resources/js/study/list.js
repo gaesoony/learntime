@@ -186,7 +186,7 @@ techList.forEach((o) => {
     selectedTechList.innerHTML +=
       '<div class="relative cursor tag-div" onclick="deleteTag(event)">' +
       '<input onclick="deleteTag2(event)" name="techStack" type="text" readonly style="width:' +
-      (value.length + 2) * 6 +
+      (value.length + 3) * 50 +
       "px" +
       ';" value="' +
       value +
@@ -199,18 +199,18 @@ techList.forEach((o) => {
 });
 
 function appendList(e) {
-  console.log(e.currentTarget);
   const value = e.currentTarget.querySelector("span").innerHTML;
   selectedTechList.innerHTML +=
     '<div class="relative cursor tag-div" onclick="deleteTag(event)">' +
     '<input onclick="deleteTag2(event)" name="techStack" type="text" readonly style="width:' +
-    (value.length + 2) * 7 +
+    (value.length + 2) * 6 +
     "px" +
     ';" value="' +
     value +
     '" class="tag-btn cursor" /> ' +
     '<i class="fa-solid fa-xmark" onclick="deleteTag2(event)"></i>' +
     "</div>";
+  form.submit();
 }
 
 function press(f) {

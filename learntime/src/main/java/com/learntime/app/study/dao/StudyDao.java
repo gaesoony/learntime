@@ -52,14 +52,24 @@ public interface StudyDao {
 	//select tech stack list by gno
 	public List<Map<String, String>> selectTechStackListByGno(SqlSessionTemplate sst, String gno);
 
-	//select scrap cnt by gno
-	public List<Map<String, String>> selectScrapCntByGno(SqlSessionTemplate sst, String gno);
+	//select group one
+	public Map<String, Object> selectGroupOne(SqlSessionTemplate sst, String gno);
 
-	//select cmt cnt by gno
-	public List<Map<String, String>> selectCmtCntByGno(SqlSessionTemplate sst, String gno);
+	//select question list by gno
+	public List<Map<String, String>> selectQuestionListByGno(SqlSessionTemplate sst, String gno);
 
-	//select like hate cnt by gno
-	public List<Map<String, String>> selectlikeHateCntByGno(SqlSessionTemplate sst, String gno);
+	//select tag list by gno
+	public List<Map<String, String>> selectTagListByGno(SqlSessionTemplate sst, String gno);
+
+	//select member list by gno
+	public List<Map<String, String>> selectMemberListByGno(SqlSessionTemplate sst, String gno);
+
+	//update hit
+	public int updateHit(SqlSessionTemplate sst, String gno);
+
+	//insert writer
+	public int insertWriter(SqlSessionTemplate sst, GroupVo vo);
+
 
 
 }

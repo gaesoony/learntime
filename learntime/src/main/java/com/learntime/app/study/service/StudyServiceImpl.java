@@ -41,11 +41,14 @@ public class StudyServiceImpl implements StudyService{
 		
 		// 태그도 선택사항 -> TAG 테이블에 있으면 넘어가고 없으면 INSERT -> GROUP_TAG 테이블에 태그 개수만큼 여러행 INSERT (+그룹번호 SELECT)
 		
+		// 그룹 가입내역 테이블에 작성자 insert
+		
 		int result1 = 0;
 		int result2 = 0;
 		int result3 = 0;
 		int result4 = 0;
 		int result5 = 0;
+		int result6 = 0;
 		
 		result1 = dao.insertGroupInfo(sst, vo);
 		
@@ -75,6 +78,10 @@ public class StudyServiceImpl implements StudyService{
 			}else {
 				result5 = dao.insertGroupTag(sst, vo.getTag());
 			}
+		}
+		
+		if(result5 >= 1) {
+			result6 = dao.insertWriter(sst, vo);
 		}
 		
 		System.out.println("result1 :" + result1);
@@ -157,28 +164,49 @@ public class StudyServiceImpl implements StudyService{
 		return groupList;
 	}
 
+	//그룹 번호로 기술스택 리스트 조회
 	@Override
 	public List<Map<String, String>> selectTechStackListByGno(String gno) {
 		List<Map<String, String>> result = dao.selectTechStackListByGno(sst, gno);
 		return result;
 	}
 
+	//그룹 한 개 조회
 	@Override
-	public List<Map<String, String>> selectScrapCntByGno(String gno) {
-		List<Map<String, String>> result = dao.selectScrapCntByGno(sst, gno);
-		return result;
-	}
+	public Map<String, Object> selectGroupOne(String gno) {
+		
+		//조회수 증가 update
+		int result = dao.updateHit(sst, gno);
+		
+		Map<String, Object> groupOne = null;
+		
+		if(result == 1) {
+			//그룹 한 개 조회
+			groupOne = dao.selectGroupOne(sst, gno);
+			
+			//그룹 번호호 기술스택 리스트 조회
+			List<Map<String, String>> techStackList = dao.selectTechStackListByGno(sst, gno);
+			
+			//그룹 번호로 가입질문 리스트 조회
+			List<Map<String, String>> questionList = dao.selectQuestionListByGno(sst, gno);
+			
+			//그룹 번호로 태그 리스트 조회
+			List<Map<String, String>> tagList = dao.selectTagListByGno(sst, gno);
+			
+			//그룹 번호로 멤버 리스트 조회
+			List<Map<String, String>> memberList = dao.selectMemberListByGno(sst, gno);
+			
+			
+			groupOne.put("techStackList", techStackList);
+			groupOne.put("questionList", questionList);
+			groupOne.put("tagList", tagList);
+			groupOne.put("memberList", memberList);
+			
+		}
+		
 
-	@Override
-	public List<Map<String, String>> selectCmtCntByGno(String gno) {
-		List<Map<String, String>> result = dao.selectCmtCntByGno(sst, gno);
-		return result;
-	}
-
-	@Override
-	public List<Map<String, String>> selectlikeHateCntByGno(String gno) {
-		List<Map<String, String>> result = dao.selectlikeHateCntByGno(sst, gno);
-		return result;
+		
+		return groupOne;
 	}
 
 }
