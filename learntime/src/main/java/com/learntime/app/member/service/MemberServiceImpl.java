@@ -1,5 +1,7 @@
 package com.learntime.app.member.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.learntime.app.member.dao.MemberDao;
 import com.learntime.app.member.mail.MailHandler;
+import com.learntime.app.member.vo.FollowVo;
 import com.learntime.app.member.vo.MemberVo;
 
 @Service
@@ -172,6 +175,43 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVo selectNo(String no) {
 		
 		return memberDao.selectNo(sst,no);
+	}
+	
+	
+	//---------팔로우--------------------
+	//팔로우 하기
+	@Override
+	public int follow(FollowVo follow) {
+		return memberDao.follow(sst,follow);
+		
+	}
+	//언팔로우 하기
+	@Override
+	public int unfollow(FollowVo follow) {
+		return memberDao.unfollow(sst,follow);
+		
+	}
+	// 나를 팔로우 하는 사람 수 구하기
+	@Override
+	public int followerCnt(String no) {
+		return memberDao.followerCnt(sst,no);
+	}
+	// 내가 팔로우 하는 사람 수 구하기
+	@Override
+	public int followingCnt(String no) {
+		return memberDao.followingCnt(sst,no);
+	}
+	//나를 팔로우 하는 사람 리스트 구하기
+	@Override
+	public List<MemberVo> followerList(String no) {
+		return memberDao.followerList(sst,no);
+		
+	}
+	//내가 팔로우 하는 사람 리스트 구하기
+	@Override
+	public List<MemberVo> followingList(String no) {
+		return memberDao.followingList(sst,no);
+		
 	}
 
 	

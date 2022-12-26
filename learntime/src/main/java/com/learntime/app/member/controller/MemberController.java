@@ -1,5 +1,9 @@
 package com.learntime.app.member.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,8 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.learntime.app.member.service.MemberService;
+import com.learntime.app.member.vo.FollowVo;
 import com.learntime.app.member.vo.MemberVo;
+
 
 
 @Controller
@@ -199,28 +206,48 @@ public class MemberController {
 		session.invalidate();
 		return "main/main";
 	}	
-	
-
-//	마이페이지-팔로잉(화면)
-	@GetMapping("/member/mypage/following")
-	public String mypageFollowing() {
-		return "/member/mypage-following";
-	}
-	
-//	마이페이지-팔로우(화면)
-	@GetMapping("/member/mypage/follow")
-	public String mypageFollow() {
-		return "/member/mypage-follow";
-	}
-	
 //	마이페이지-홈(화면)
 	@GetMapping("/member/mypage/home")
 	public String mypage(@RequestParam("no") String no,HttpSession session,Model model) {
 			//로그인 한 유저와 해당 페이지 유저가 동일 하지 않을경우 사이드 바가 달리 보임
-			model.addAttribute("userNo",no);
+			MemberVo user=memberService.selectNo(no);
+			model.addAttribute("userNo",user);
+			
+//			나를 팔로우 하는 사람 수 구하기
+			int followerCnt =memberService.followerCnt(no);
+//			내가 팔로우 하는 사람 수 구하기
+			int followingCnt =memberService.followingCnt(no);
+			
+			session.setAttribute("followerCnt", followerCnt);
+			session.setAttribute("followingCnt", followingCnt);
+			
 			return "/member/mypage-home";
+	}	
+
+//	마이페이지-팔로잉(화면)
+	@GetMapping("/member/mypage/following")
+	public String mypageFollowing(@RequestParam("no") String no,HttpSession session,Model model) {
+		MemberVo user=memberService.selectNo(no);
+		model.addAttribute("userNo",user);
+		List<MemberVo>list=memberService.followingList(no);
+		model.addAttribute("list",list);
+		System.out.println(list);
+		return "/member/mypage-following";
 	}
 	
+
+	
+//	마이페이지-팔로우(화면)
+	@GetMapping("/member/mypage/follow")
+	public String mypageFollow(@RequestParam("no") String no,HttpSession session,Model model) {
+		MemberVo user=memberService.selectNo(no);
+		model.addAttribute("userNo",user);
+		List<MemberVo>list=memberService.followerList(no);
+		model.addAttribute("list",list);
+		
+		return "/member/mypage-follow";
+	}
+		
 	  
 //  마이페이지-makegrass list(화면)
     @GetMapping("/member/mypage/makegrassList")
@@ -292,17 +319,17 @@ public class MemberController {
 	
 //	마이페이지-dm 리스트(화면)
 		@GetMapping("/member/mypage/dm/list")
-		public String dmList() {
+		public String dmList(@RequestParam("no") String no, MemberVo vo,HttpSession session,Model model) {
+			MemberVo user=memberService.selectNo(no);
+			model.addAttribute("userNo",user);
 			return "/member/mypage-dmList";
 		}	
 	
 //	마이페이지-계정 정보(화면)
 		@GetMapping("/member/mypage/edit")
 		public String mypageEdit(@RequestParam("no") String no, MemberVo vo,HttpSession session,Model model) {
-			MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
-			vo.setNo(loginMember.getNo());
-			session.setAttribute("loginMember", loginMember);
-			model.addAttribute("userNo",no);
+			MemberVo user=memberService.selectNo(no);
+			model.addAttribute("userNo",user);
 			return "member/mypage-edit";
 		}
 		
@@ -381,12 +408,66 @@ public class MemberController {
 		}	
 
 		
-//---------------팔로우 팔로잉------------------------
+//---------------팔로우 기능 구현------------------------
 		
-		@PostMapping("/member/follow")
-		public String memberFollow(@RequestParam("no") String no,MemberVo vo,HttpSession session) {
+//		팔로우 요청(AJAX)
+		@ResponseBody
+		@GetMapping("/member/follow")
+		public String memberFollow(@RequestParam("no") String no,HttpSession session) {
+			MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
+			MemberVo followingMember=loginMember;
+			MemberVo followerMember=memberService.selectNo(no);
 			
-			return "member/mypage-home";
+			FollowVo follow=new FollowVo();
+			follow.setFollowingNo(followingMember.getNo());
+			follow.setFollowerNo(followerMember.getNo());
+			memberService.follow(follow);
+			
+//			나를 팔로우 하는 사람 수 구하기
+			int followerCnt =memberService.followerCnt(no);
+//			내가 팔로우 하는 사람 수 구하기
+			int followingCnt =memberService.followingCnt(no);
+			
+			Gson gson = new Gson();
+			Map<String, Object> followMap=new HashMap<String, Object>();
+			
+			followMap.put("result", "FollowOk");
+			followMap.put("followerCnt",followerCnt);
+			followMap.put("followingCnt",followingCnt);
+			
+			String followJson = gson.toJson(followMap);
+			return followJson;
+
+		}
+		
+//		언팔로우 요청(AJAX)
+		@ResponseBody
+		@GetMapping("/member/unfollow")
+		public String memberUnFollow(@RequestParam("no") String no,HttpSession session) {
+			MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
+			MemberVo unFollowingMember=loginMember;
+			MemberVo unFollowerMember=memberService.selectNo(no);
+			
+			FollowVo follow=new FollowVo();
+			follow.setFollowingNo(unFollowingMember.getNo());
+			follow.setFollowerNo(unFollowerMember.getNo());
+			memberService.unfollow(follow);
+			
+//			나를 팔로우 하는 사람 수 구하기
+			int followerCnt =memberService.followerCnt(no);
+//			내가 팔로우 하는 사람 수 구하기
+			int followingCnt =memberService.followingCnt(no);
+			
+			Gson gson = new Gson();
+			Map<String, Object> followMap=new HashMap<String, Object>();
+			
+			followMap.put("result", "FollowOk");
+			followMap.put("followerCnt",followerCnt);
+			followMap.put("followingCnt",followingCnt);
+			
+			String followJson = gson.toJson(followMap);
+			return followJson;
+
 		}
 	
 }

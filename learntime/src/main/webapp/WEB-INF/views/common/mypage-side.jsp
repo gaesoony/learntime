@@ -62,7 +62,7 @@ body{
     justify-content: space-between;
 }
 
-#follow-btn,#dm-btn{
+#fb,#ufb,#dm-btn{
 	background: inherit ; 
     border:none; 
     box-shadow:none; 
@@ -80,32 +80,39 @@ body{
    
 }
 
+#ufb{
+    display: none;
+}
+
 #dm-btn span{
  display: flex;
  justify-content: center;
 }
 
 
-#follow-btn::before{
+.follow-btn::before{
     content:"팔로잉 하기"
    }
-   
-   
-#follow-btn:hover{
-    border: 1px solid #ff0000;
-    background-color: lightpink;
+
+.following-btn::before{
+    content:"팔로잉 중"
    }
 
-#follow-btn:hover{
+.follow-btn:hover,.following-btn:hover{
     border: 1px solid #ff0000;
     background-color: #ffcfcf;
-   }
+}
+.follow-btn:hover::before{
 
-#follow-btn:hover::before{
     content:"언팔로잉";
     color:#ff0000;
    }
 
+.following-btn:hover::before{
+    
+    content:"언팔로잉";
+    color:#ff0000;
+   }
 
 </style>
 <div id="mypageSide-area">
@@ -114,17 +121,17 @@ body{
                 <img src="/app/resources/img/profile_default.png" alt="기본프로필이미지">
          </div>
 
-            <div id="profile-nick">닉네임</div>
+            <div id="profile-nick">${userNo.nick}</div>
             <div id="profile-follow">
-                <a href="${pageContext.request.contextPath}/member/mypage/follow">100 팔로우 중</a>
+                <a id="followCnt" href="${pageContext.request.contextPath}/member/mypage/follow?no=${userNo.no}">${followingCnt} 팔로우중</a>
                 <span>|</span>
-                <a href="${pageContext.request.contextPath}/member/mypage/following"> 100 팔로잉</a>
+                <a id="followingCnt" href="${pageContext.request.contextPath}/member/mypage/following?no=${userNo.no}">${followerCnt} 팔로잉</a>
             </div>
     </div>
      
 	<div id="my-cate">
 		    <c:choose>
-		    	<c:when test="${userNo eq loginMember.no}">
+		    	<c:when test="${userNo.no eq loginMember.no}">
 
     			 <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/home?no=${loginMember.getNo()}">홈</a></div>
 		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/makegrassList">MAKE GRASS</a></div>
@@ -132,43 +139,69 @@ body{
 		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/qnaList">LEARNING</a></div>
 		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/mentoring">MENTORING</a></div>
 		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/community">COMMUNITY</a></div>
-		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/skin">보유한 스킨</a></div>
-		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/badge">보유한 뱃지</a></div>
-		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/dm/list">DM</a></div>
+		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/skin?no=${loginMember.getNo()}">보유한 스킨</a></div>
+		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/badge?no=${loginMember.getNo()}">보유한 뱃지</a></div>
+		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/dm/list?no=${loginMember.getNo()}">DM</a></div>
 		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/edit?no=${loginMember.getNo()}">계정정보</a></div>
     	</c:when>
     	<c:otherwise>
     	    <div id="mypage-btn">
-	    	<button id="follow-btn"></button>
+	    	<button id="fb"class="follow-btn"></button>
+            <button id="ufb"class="following-btn"></button>
 	    	<button id="dm-btn"><span class="material-symbols-outlined">mail</span></button>
 	   	 	</div>
-    	 		<div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/home?no=${loginMember.getNo()}">홈</a></div>
+    	 		<div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/home?no=${userNo.no}">홈</a></div>
     	 		<div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/makegrassList">MAKE GRASS</a></div>
-    	 		 <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/badge">보유한 뱃지</a></div>
+    	 		 <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/badge?no=${userNo.no}">보유한 뱃지</a></div>
     	</c:otherwise>
     	</c:choose>
     	
     	<script>
-            $('#follow-btn').on('click',function(){
+            $('#fb').on('click',function(){
                 follow(true);
             });
+
+            $('#ufb').on('click',function(){
+                follow(false);
+            });
+
 
             function follow(check){
                 if(check){
                     $.ajax({
-                        type:"POST",
-                        url:"/member/follow?no=${no}",
+                        type:"get",
+                        url:"${pageContext.request.contextPath}/member/follow?no=${userNo.no}",
                         success:function(result){
-                            console.log("result:"+result)
-                            if(result === "FollowOk"){
-                                $
+                            var obj = JSON.parse(result);
+                
+                            if(obj.result === "FollowOk"){
+                                $('#fb').css('display','none');
+                                $('#ufb').css('display','block');
+                                $('#followCnt').text(obj.followerCnt+" 팔로우 중");
+                                $('#followingCnt').text(obj.followingCnt+" 팔로잉");
                             }
                         },
                         error: function(result) {
-                            
+                            alert("통신실패");
                         }
                     
                     });
+                }else{
+                    $.ajax({
+                            type:"get",
+                            url:"${pageContext.request.contextPath}/member/unfollow?no=${userNo.no}",
+                            success:function(result){
+                                console.log("result:"+result);
+                                if(result === "UnFollowOk"){
+                                    $('#ufb').css('display','none');
+                                    $('#fb').css('display','block');
+                                    $('#followCnt').text(obj.followerCnt+" 팔로우 중");
+                                    $('#followingCnt').text(obj.followingCnt+" 팔로잉");
+                                }
+                            }
+                        
+                        });
+                
                 }
             }
     	

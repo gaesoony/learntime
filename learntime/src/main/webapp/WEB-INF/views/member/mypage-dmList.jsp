@@ -188,10 +188,16 @@
      $('#modal-closed2').on('click',function(){
          $('.blackBG2').removeClass('show');
      })
+     
+      //검은 배경 클릭시 모달 닫기
+ 	 $(document).mouseup(function (e){
+    //배경이 클릭 될 경우 리턴 0이 됨
+	if($('.blackBG2').has(e.target).length === 0){
+		$('.blackBG2').removeClass('show');
+	}
+  });
 
-     $('.blackBG').on('click',function(){
-    $('.blackBG').removeClass('show');
-    })
+   
 </script>
 
 
