@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -177,7 +179,7 @@
     }
     .mainbox{
         width: 850px;
-        height: 1382px;
+        height: 100%;
         margin: 0 auto;
         margin-top: 30px;
     }
@@ -295,6 +297,11 @@
         font-weight: 550;
         border: none;
         border-bottom: 1px solid #5ECC80;
+    }
+
+    .bottom{
+        width: 100%;
+        height: 30vh;
     }
 </style>
 </head>
@@ -713,346 +720,206 @@
         </div>
     </div>
 
-    <div class="listtitle">공부인증 게시판</div>
-    <div class="writebtn">
-        <button class="wbtn" onclick="location.href='/app/makegrass/write'" style='cursor:pointer;'>글쓰기✏️</button>
-    </div>
-
-    <!-- 왼쪽 사이드바 -->
-    <div class="leftsidebox">
-        <div class="leftside">
-
-            <!-- 랭킹 타이틀 -->
-            <ul class="leftsidetitle">
-                <li class="crown"><img class="crownimg" src="/app/resources/img/qna/crown.png" alt="왕관">공부 인증 랭킹</li>
-            </ul>
-
-            <!-- user 랭킹 순위 -->
-            <div class="userbox">
-                <ul class="leftsidecontent">
-                    <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="usernick">nick02</li>
-                    <li class="usernum">25</li>
-                </ul>
-            </div>
-
-            <div class="userbox">
-                <ul class="leftsidecontent">
-                    <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="usernick">nick02</li>
-                    <li class="usernum">25</li>
-                </ul>
-            </div>
-
-            <div class="userbox">
-                <ul class="leftsidecontent">
-                    <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="usernick">nick02</li>
-                    <li class="usernum">25</li>
-                </ul>
-            </div>
-
-            <div class="userbox">
-                <ul class="leftsidecontent">
-                    <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="usernick">nick02</li>
-                    <li class="usernum">25</li>
-                </ul>
-            </div>
-
-            <div class="userbox">
-                <ul class="leftsidecontent">
-                    <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="usernick">nick02</li>
-                    <li class="usernum">25</li>
-                </ul>
-            </div>
-
-            <div class="userbox">
-                <ul class="leftsidecontent">
-                    <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="usernick">nick02</li>
-                    <li class="usernum">25</li>
-                </ul>
-            </div>
-
-            <div class="userbox">
-                <ul class="leftsidecontent">
-                    <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="usernick">nick02</li>
-                    <li class="usernum">25</li>
-                </ul>
-            </div>
-            
-        </div> 
-    </div>
-
-    <!-- 메인 리스트 부분 -->
-    <div class="mainbox">
-        <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-            <div class="thumbnail"></div>
-            <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
-            <div class="bookimg"><i class="fa-solid fa-book"></i></div>
-            <div class="content">
-                백앤드로 JAVA Script와 화면
-                구현을 위한 CSS, 추가로 AJAX에
-                대한 부분도 함께 공부함.
-                백앤드로 JAVA Script와 화면.
-            </div>
-            <div class="contentline"></div>
-            <div class="info">
-                <ul class="infoetc">
-                    <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="contentnick">nick01</li>
-                    <li class="hit"><i class="fa-regular fa-eye"></i> 150</li>
-                    <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
-                </ul>
-                <ul>
-                    <li class="contentDate">2202-12-09</li>
-                </ul>
-            </div>
+    <form action="${path}/makegrass/list" method="post">
+        <div class="listtitle">공부인증 게시판</div>
+        <div class="writebtn">
+            <button class="wbtn" onclick="location.href='/app/makegrass/write'" style='cursor:pointer;'>글쓰기✏️</button>
         </div>
 
-        <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-            <div class="thumbnail"></div>
-            <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
-            <div class="bookimg"><i class="fa-solid fa-book"></i></div>
-            <div class="content">
-                백앤드로 JAVA Script와 화면
-                구현을 위한 CSS, 추가로 AJAX에
-                대한 부분도 함께 공부함.
-                백앤드로 JAVA Script와 화면.
-            </div>
-            <div class="contentline"></div>
-            <div class="info">
-                <ul class="infoetc">
-                    <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="contentnick">nick01</li>
-                    <li class="hit"><i class="fa-regular fa-eye"></i> 150</li>
-                    <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
-                </ul>
-                <ul>
-                    <li class="contentDate">2202-12-09</li>
-                </ul>
-            </div>
-        </div>
+        <!-- 왼쪽 사이드바 -->
+        <div class="leftsidebox">
+            <div class="leftside">
 
-        <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-            <div class="thumbnail"></div>
-            <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
-            <div class="bookimg"><i class="fa-solid fa-book"></i></div>
-            <div class="content">
-                백앤드로 JAVA Script와 화면
-                구현을 위한 CSS, 추가로 AJAX에
-                대한 부분도 함께 공부함.
-                백앤드로 JAVA Script와 화면.
-            </div>
-            <div class="contentline"></div>
-            <div class="info">
-                <ul class="infoetc">
-                    <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="contentnick">nick01</li>
-                    <li class="hit"><i class="fa-regular fa-eye"></i> 150</li>
-                    <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
-                </ul>
-                <ul>
-                    <li class="contentDate">2202-12-09</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-            <div class="thumbnail"></div>
-            <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
-            <div class="bookimg"><i class="fa-solid fa-book"></i></div>
-            <div class="content">
-                백앤드로 JAVA Script와 화면
-                구현을 위한 CSS, 추가로 AJAX에
-                대한 부분도 함께 공부함.
-                백앤드로 JAVA Script와 화면.
-            </div>
-            <div class="contentline"></div>
-            <div class="info">
-                <ul class="infoetc">
-                    <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="contentnick">nick01</li>
-                    <li class="hit"><i class="fa-regular fa-eye"></i> 150</li>
-                    <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
-                </ul>
-                <ul>
-                    <li class="contentDate">2202-12-09</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-            <div class="thumbnail"></div>
-            <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
-            <div class="bookimg"><i class="fa-solid fa-book"></i></div>
-            <div class="content">
-                백앤드로 JAVA Script와 화면
-                구현을 위한 CSS, 추가로 AJAX에
-                대한 부분도 함께 공부함.
-                백앤드로 JAVA Script와 화면.
-            </div>
-            <div class="contentline"></div>
-            <div class="info">
-                <ul class="infoetc">
-                    <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="contentnick">nick01</li>
-                    <li class="hit"><i class="fa-regular fa-eye"></i> 150</li>
-                    <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
-                </ul>
-                <ul>
-                    <li class="contentDate">2202-12-09</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-            <div class="thumbnail"></div>
-            <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
-            <div class="bookimg"><i class="fa-solid fa-book"></i></div>
-            <div class="content">
-                백앤드로 JAVA Script와 화면
-                구현을 위한 CSS, 추가로 AJAX에
-                대한 부분도 함께 공부함.
-                백앤드로 JAVA Script와 화면.
-            </div>
-            <div class="contentline"></div>
-            <div class="info">
-                <ul class="infoetc">
-                    <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="contentnick">nick01</li>
-                    <li class="hit"><i class="fa-regular fa-eye"></i> 150</li>
-                    <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
-                </ul>
-                <ul>
-                    <li class="contentDate">2202-12-09</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-            <div class="thumbnail"></div>
-            <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
-            <div class="bookimg"><i class="fa-solid fa-book"></i></div>
-            <div class="content">
-                백앤드로 JAVA Script와 화면
-                구현을 위한 CSS, 추가로 AJAX에
-                대한 부분도 함께 공부함.
-                백앤드로 JAVA Script와 화면.
-            </div>
-            <div class="contentline"></div>
-            <div class="info">
-                <ul class="infoetc">
-                    <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="contentnick">nick01</li>
-                    <li class="hit"><i class="fa-regular fa-eye"></i> 150</li>
-                    <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
-                </ul>
-                <ul>
-                    <li class="contentDate">2202-12-09</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-            <div class="thumbnail"></div>
-            <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
-            <div class="bookimg"><i class="fa-solid fa-book"></i></div>
-            <div class="content">
-                백앤드로 JAVA Script와 화면
-                구현을 위한 CSS, 추가로 AJAX에
-                대한 부분도 함께 공부함.
-                백앤드로 JAVA Script와 화면.
-            </div>
-            <div class="contentline"></div>
-            <div class="info">
-                <ul class="infoetc">
-                    <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="contentnick">nick01</li>
-                    <li class="hit"><i class="fa-regular fa-eye"></i> 150</li>
-                    <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
-                </ul>
-                <ul>
-                    <li class="contentDate">2202-12-09</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-            <div class="thumbnail"></div>
-            <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
-            <div class="bookimg"><i class="fa-solid fa-book"></i></div>
-            <div class="content">
-                백앤드로 JAVA Script와 화면
-                구현을 위한 CSS, 추가로 AJAX에
-                대한 부분도 함께 공부함.
-                백앤드로 JAVA Script와 화면.
-            </div>
-            <div class="contentline"></div>
-            <div class="info">
-                <ul class="infoetc">
-                    <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="contentnick">nick01</li>
-                    <li class="hit"><i class="fa-regular fa-eye"></i> 150</li>
-                    <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
-                </ul>
-                <ul>
-                    <li class="contentDate">2202-12-09</li>
-                </ul>
-            </div>
-        </div>
-        <!-- 끝 -->
-
-        <!-- 오른쪽 사이드바 -->
-        <aside class="rightsidebox">
-            <div class="rightsidelist">
-                <ul class="rightsidetitle">
-                    <li class="righttitle">FOLLOWING LIST</li>
+                <!-- 랭킹 타이틀 -->
+                <ul class="leftsidetitle">
+                    <li class="crown"><img class="crownimg" src="/app/resources/img/qna/crown.png" alt="왕관">공부 인증 랭킹</li>
                 </ul>
 
-                <!-- 팔로잉 리스트 유저 -->
-                <div>
-                    <ul class="rightsidecontent">
-                        <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                        <li class="rightnick">nick02</li>
+                <!-- user 랭킹 순위 -->
+                <div class="userbox">
+                    <ul class="leftsidecontent">
+                        <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                        <li class="usernick">nick02</li>
+                        <li class="usernum">25</li>
                     </ul>
                 </div>
 
-                <div>
-                    <ul class="rightsidecontent">
-                        <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                        <li class="rightnick">nick02</li>
+                <div class="userbox">
+                    <ul class="leftsidecontent">
+                        <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                        <li class="usernick">nick02</li>
+                        <li class="usernum">25</li>
                     </ul>
                 </div>
 
-                <div>
-                    <ul class="rightsidecontent">
-                        <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                        <li class="rightnick">nick02</li>
+                <div class="userbox">
+                    <ul class="leftsidecontent">
+                        <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                        <li class="usernick">nick02</li>
+                        <li class="usernum">25</li>
                     </ul>
                 </div>
 
-                <div>
-                    <ul class="rightsidecontent">
-                        <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                        <li class="rightnick">nick02</li>
+                <div class="userbox">
+                    <ul class="leftsidecontent">
+                        <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                        <li class="usernick">nick02</li>
+                        <li class="usernum">25</li>
                     </ul>
                 </div>
 
-                <div>
-                    <ul class="rightsidecontent">
-                        <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                        <li class="rightnick">nick02</li>
+                <div class="userbox">
+                    <ul class="leftsidecontent">
+                        <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                        <li class="usernick">nick02</li>
+                        <li class="usernum">25</li>
                     </ul>
                 </div>
 
+                <div class="userbox">
+                    <ul class="leftsidecontent">
+                        <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                        <li class="usernick">nick02</li>
+                        <li class="usernum">25</li>
+                    </ul>
+                </div>
+
+                <div class="userbox">
+                    <ul class="leftsidecontent">
+                        <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                        <li class="usernick">nick02</li>
+                        <li class="usernum">25</li>
+                    </ul>
+                </div>
+                
+            </div> 
+        </div>
+
+        <!-- 메인 리스트 부분 -->
+        <div class="mainbox">
+            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
+                <div class="thumbnail"></div>
+                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
+                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
+                <div class="content">
+                    백앤드로 JAVA Script와 화면
+                    구현을 위한 CSS, 추가로 AJAX에
+                    대한 부분도 함께 공부함.
+                    백앤드로 JAVA Script와 화면.
+                </div>
+                <div class="contentline"></div>
+                <div class="info">
+                    <ul class="infoetc">
+                        <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                        <li class="contentnick">nick01</li>
+                        <li class="hit"><i class="fa-regular fa-eye"></i> 150</li>
+                        <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
+                    </ul>
+                    <ul>
+                        <li class="contentDate">2202-12-09</li>
+                    </ul>
+                </div>
             </div>
-        </aside>
 
-    </div>
+            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
+                <div class="thumbnail"></div>
+                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
+                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
+                <div class="content">
+                    백앤드로 JAVA Script와 화면
+                    구현을 위한 CSS, 추가로 AJAX에
+                    대한 부분도 함께 공부함.
+                    백앤드로 JAVA Script와 화면.
+                </div>
+                <div class="contentline"></div>
+                <div class="info">
+                    <ul class="infoetc">
+                        <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                        <li class="contentnick">nick01</li>
+                        <li class="hit"><i class="fa-regular fa-eye"></i> 150</li>
+                        <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
+                    </ul>
+                    <ul>
+                        <li class="contentDate">2202-12-09</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
+                <div class="thumbnail"></div>
+                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
+                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
+                <div class="content">
+                    백앤드로 JAVA Script와 화면
+                    구현을 위한 CSS, 추가로 AJAX에
+                    대한 부분도 함께 공부함.
+                    백앤드로 JAVA Script와 화면.
+                </div>
+                <div class="contentline"></div>
+                <div class="info">
+                    <ul class="infoetc">
+                        <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                        <li class="contentnick">nick01</li>
+                        <li class="hit"><i class="fa-regular fa-eye"></i> 150</li>
+                        <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
+                    </ul>
+                    <ul>
+                        <li class="contentDate">2202-12-09</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 오른쪽 사이드바 -->
+            <aside class="rightsidebox">
+                <div class="rightsidelist">
+                    <ul class="rightsidetitle">
+                        <li class="righttitle">FOLLOWING LIST</li>
+                    </ul>
+
+                    <!-- 팔로잉 리스트 유저 -->
+                    <div>
+                        <ul class="rightsidecontent">
+                            <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                            <li class="rightnick">nick02</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <ul class="rightsidecontent">
+                            <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                            <li class="rightnick">nick02</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <ul class="rightsidecontent">
+                            <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                            <li class="rightnick">nick02</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <ul class="rightsidecontent">
+                            <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                            <li class="rightnick">nick02</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <ul class="rightsidecontent">
+                            <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                            <li class="rightnick">nick02</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </aside>
+
+        </div>
+    </form>
+    
+
+    <div class="bottom"></div>
 
     <script>
         function navToDetail(){

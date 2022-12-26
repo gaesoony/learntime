@@ -1,5 +1,7 @@
 package com.learntime.app.makegrass.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +51,12 @@ public class MakegrassServiceImpl implements MakegrassService {
 		System.out.println("result3 : " + result3);
 		
 		return result1 * result2 * result3;
+	}
+
+	//게시글 목록 조회
+	@Override
+	public List<MakegrassVo> selectList() {
+		return dao.selectList(sst);
 	}
 
 }

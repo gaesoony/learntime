@@ -1,5 +1,7 @@
 package com.learntime.app.makegrass.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.learntime.app.makegrass.vo.MakegrassVo;
@@ -9,5 +11,7 @@ public interface MakegrassService {
 
 	//게시글 작성
 	public int write(MakegrassVo vo);
+
+	public List<MakegrassVo> selectList();
 
 }

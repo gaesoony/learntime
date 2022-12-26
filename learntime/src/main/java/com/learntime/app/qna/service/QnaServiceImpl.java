@@ -51,8 +51,8 @@ public class QnaServiceImpl implements QnaService {
 
 	//게시글 목록 
 	@Override
-	public List<QnaVo> selectList(String writer) {
-		return dao.selectList(sst, writer);
+	public List<QnaVo> selectList() {
+		return dao.selectList(sst);
 	}
 
 }

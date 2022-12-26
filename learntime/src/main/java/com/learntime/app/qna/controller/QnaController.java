@@ -30,11 +30,11 @@ public class QnaController {
 	
 	//게시글 목록 조회 (DB)
 	@PostMapping("/list")
-	public String list(Model model, String writer) {
+	public String list(Model model) {
 		
-		List<QnaVo> voList = service.selectList(writer);
-		model.addAttribute("voList", voList);
-		return "/qna/list";
+		List<QnaVo> qnaList = service.selectList();
+		model.addAttribute("qnaList", qnaList);
+		return "qna/list";
 
 	}
 	

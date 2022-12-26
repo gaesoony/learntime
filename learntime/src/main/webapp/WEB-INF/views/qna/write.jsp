@@ -49,32 +49,6 @@
         border: #5ECC80;
         border-radius: 10px;
      }
-     /* .selectbox{
-        position: relative;
-        width: 110px;
-        height: 35px;
-        border-radius: 4px;
-        border: 1px solid #5ECC80;
-     } */
-     /* .selectbox .select{
-        width: inherit;
-        height: inherit;
-        background: transparent;
-        border: 0 none;
-        outline: 0 none;
-        padding: 0 5px;
-        position: relative;
-        z-index: 3;
-        font-size: 16px;
-        color: #5ECC80;
-        font-weight: 550;
-     }
-     .selectbox .select option{
-        background: #5ECC80;
-        color: white;
-        padding: 3px 0;
-        font-size: 16px;
-     } */
 
      /* 해시태그 */
      .content{
@@ -120,31 +94,29 @@
     }
 
     /* 상단 라디오 버튼 */
-    .select {
-        padding: 15px 10px;
-    }
-    .select input[type=radio]{
+    .radio-box input[type=radio]{
         display: none;
     }
-    .select input[type=radio]+label{
+    .radio-box input[type=radio]+label{
         display: inline-block;
         cursor: pointer;
         height: 24px;
-        width: 90px;
+        width: 100px;
         border: 1px solid #5ECC80;
         line-height: 24px;
         text-align: center;
         font-weight:bold;
-        font-size:13px;
+        font-size:14px;
     }
-    .select input[type=radio]+label{
+    .radio-box input[type=radio]+label{
         background-color: #fff;
         color: #37774A;
     }
-    .select input[type=radio]:checked+label{
+    .radio-box input[type=radio]:checked+label{
         background-color: #5ECC80;
         color: #fff;
     }
+    
 </style>
 </head>
 <body>
@@ -155,20 +127,19 @@
     <div class="banner"></div>
 		<div class="mainbox">
 		
-		<form action="${pageContext.request.contextPath}/qna/write" method="post">
-			<div class="maintitle">
-	            <div class="selectbox">
-	                <select class="select">
-	                    <input type="radio" value="1" id="select" name="cateNo"><label for="select">기술</label>
-	                    <input type="radio" value="2" id="select2" name="cateNo"><label for="select2">커리어</label>
-	                </select>
-	            </div>
-	        </div>
+		<form action="${pageContext.request.contextPath}/qna/write" method="post" name="myform" onkeydown="return event.key != 'Enter';">
+
+
+                <div class="radio-box">
+                    <input type="radio" value="1" id="cateNo1" name="cateNo" checked><label for="cateNo1">기술</label>
+                    <input type="radio" value="2" id="cateNo2" name="cateNo"><label for="cateNo2">커리어</label>
+                </div>
+
 	            <input type="text" name="title" class="title" placeholder="제목을 입력하세요">
 	
 	            <div class="content">
 	                <div>
-	                    <input type="text" id="tagNo" name="tag" placeholder="스페이스바를 통해 해시태그를 입력하세요" />
+	                    <input type="text" id="tagNo" name="tag" placeholder="해시태그를 입력하세요" />
 	                </div>
 	                <ul id="tag-list">
 	                </ul>
@@ -264,6 +235,13 @@
                 .remove();
             });
         })
+    </script>
+
+    <!-- 폼 Enter 비활성화 -->
+    <script>
+        document.myform.addEventListener("keydown", evt =>{
+            if(evt.code === "Enter") evt.preventDefault();
+        });
     </script>
 
 </body>

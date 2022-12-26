@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +22,7 @@
     }
     .main{
         width: 100%;
-        height: 3100px;
+        height: 100%;
     }
     .bannertitle1{
         margin-top: 40px;
@@ -64,7 +66,6 @@
     }
     .mainbody{
         width: 1002px;
-        height: 120vh;
         margin: 0 auto;
         margin-top: 20px;
     }
@@ -246,7 +247,7 @@
     }
     .bottom{
         width: 100%;
-        height: 20vh;
+        height: 30vh;
     }
 
 </style>
@@ -260,502 +261,128 @@
         <div class="bannertitle2">미래 개발자들의 커뮤니티!! 함께 토론해보아요:)</div>
     </div>
 
-        <div class="main">
-            <div class="sidelist">
-                <div class="sidebar">
-                    <div class="sidetitle"><img class="crown" src="/app/resources/img/qna/crown.png" alt="왕관"> 답변 채택 랭킹</div>
-                    <table>
-                        <tr>
-                            <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
-                            <td class="sideid">nick01</td>
-                            <td class="sidenum">25</td>
-                        </tr>
-                        <tr>
-                            <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
-                            <td class="sideid">nick01</td>
-                            <td class="sidenum">25</td>
-                        </tr>
-                        <tr>
-                            <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
-                            <td class="sideid">nick01</td>
-                            <td class="sidenum">25</td>
-                        </tr>
-                        <tr>
-                            <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
-                            <td class="sideid">nick01</td>
-                            <td class="sidenum">25</td>
-                        </tr>
-                        <tr>
-                            <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
-                            <td class="sideid">nick01</td>
-                            <td class="sidenum">25</td>
-                        </tr>
-                        <tr>
-                            <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
-                            <td class="sideid">nick01</td>
-                            <td class="sidenum">25</td>
-                        </tr>
-                        <tr>
-                            <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
-                            <td class="sideid">nick01</td>
-                            <td class="sidenum">25</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="mainbody">
-                    <div class="mainside">
-                        <button href="#none" class="side-category" style='cursor:pointer;'>전체</button>
-                        <button href="#none" class="side-category" style='cursor:pointer;'>해결</button>
-                        <button href="#none" class="side-category" style='cursor:pointer;'>미해결</button>
-                        <div class="line1"></div>
-
-                        <!-- 검색 -->
-                        <div class="searchbar">
-                            <div class="search">
-                                <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-                                <input type="text" class="searchblank" placeholder="궁금한 질문을 검색해보세요!"> 
-                            </div>
-                            <input type="submit" class="searchbtn" value="검색" style='cursor:pointer;'>
-                        </div>
-
-                        <!-- 카테고리 & 글쓰기 -->
-                        <div class="category">
-                            <div class="catelist">
-                                <ul class="cate">
-                                    <li><a href="" class="ca">· 최신순</a></li>
-                                    <li><a href="" class="ca">· 정확도순</a></li>
-                                    <li><a href="" class="ca">· 답변 많은순</a></li>
-                                    <li><a href="" class="ca">· 좋아요순</a></li>
-                                </ul>
-                                <input type="button" onclick="location.href='/app/qna/write'" class="writebtn" value="글쓰기✏️" style='cursor:pointer;'>
-                            </div>
-                            <div class="line2"></div>
-                        </div>
-
-                        <!-- 본문 리스트 -->
-                        <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
-                            <div class="titleb">
-                                <div class="title" name="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
-                                <div class="contentbox">
-                                    <div class="content" name="content">
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                    </div>
-
-                                    <!-- 동그라미 답변 갯수 -->
-                                    <div class="circle">
-                                        <div class="replytitle">0</div>
-                                        <div class="replycontent">답변</div>
-                                    </div>
-
-                                    <!-- 본문 속 해시태그 -->
-                                    <div class="hashtagbox">
-                                        <ul class="hashtag">
-                                            <li class="hash" name="tag">#JAVA</li>
-                                            <li class="hash" name="tag">#자바</li>
-                                            <li class="hash" name="tag">#CSS</li>
-                                        </ul>
-                                    </div>
-                                    <div class="etcbox">
-                                        <ul class="etc">
-                                            <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                                            <li name="writer">nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i> 56</li>
-                                            <li><i class="fa-regular fa-comment"></i> 13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
-                                            <li>2022.12.09.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="line3"></div>
+        <form action="${path}/qna/list" method="post">
+            <div class="main">
+                <div class="sidelist">
+                    <div class="sidebar">
+                        <div class="sidetitle"><img class="crown" src="/app/resources/img/qna/crown.png" alt="왕관"> 답변 채택 랭킹</div>
+                        <table>
+                            <tr>
+                                <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
+                                <td class="sideid">nick01</td>
+                                <td class="sidenum">25</td>
+                            </tr>
+                            <tr>
+                                <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
+                                <td class="sideid">nick01</td>
+                                <td class="sidenum">25</td>
+                            </tr>
+                            <tr>
+                                <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
+                                <td class="sideid">nick01</td>
+                                <td class="sidenum">25</td>
+                            </tr>
+                            <tr>
+                                <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
+                                <td class="sideid">nick01</td>
+                                <td class="sidenum">25</td>
+                            </tr>
+                            <tr>
+                                <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
+                                <td class="sideid">nick01</td>
+                                <td class="sidenum">25</td>
+                            </tr>
+                            <tr>
+                                <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
+                                <td class="sideid">nick01</td>
+                                <td class="sidenum">25</td>
+                            </tr>
+                            <tr>
+                                <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
+                                <td class="sideid">nick01</td>
+                                <td class="sidenum">25</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="mainbody">
+                        <div class="mainside">
+                            <button href="#none" class="side-category" style='cursor:pointer;'>전체</button>
+                            <button href="#none" class="side-category" style='cursor:pointer;'>해결</button>
+                            <button href="#none" class="side-category" style='cursor:pointer;'>미해결</button>
+                            <div class="line1"></div>
+    
+                            <!-- 검색 -->
+                            <div class="searchbar">
+                                <div class="search">
+                                    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+                                    <input type="text" class="searchblank" placeholder="궁금한 질문을 검색해보세요!"> 
                                 </div>
-
+                                <input type="submit" class="searchbtn" value="검색" style='cursor:pointer;'>
                             </div>
-                        </div>
-
-                        <!-- 본문 리스트 -->
-                        <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
-                            <div class="titleb">
-                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
-                                <div class="contentbox">
-                                    <div class="content">
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                    </div>
-
-                                    <!-- 동그라미 답변 갯수 -->
-                                    <div class="circle">
-                                        <div class="replytitle">0</div>
-                                        <div class="replycontent">답변</div>
-                                    </div>
-
-                                    <!-- 본문 속 해시태그 -->
-                                    <div class="hashtagbox">
-                                        <ul class="hashtag">
-                                            <li class="hash">#JAVA</li>
-                                            <li class="hash">#자바</li>
-                                            <li class="hash">#CSS</li>
-                                        </ul>
-                                    </div>
-                                    <div class="etcbox">
-                                        <ul class="etc">
-                                            <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                                            <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i> 56</li>
-                                            <li><i class="fa-regular fa-comment"></i> 13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
-                                            <li>2022.12.09.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="line3"></div>
+    
+                            <!-- 카테고리 & 글쓰기 -->
+                            <div class="category">
+                                <div class="catelist">
+                                    <ul class="cate">
+                                        <li><a href="" class="ca">· 최신순</a></li>
+                                        <li><a href="" class="ca">· 정확도순</a></li>
+                                        <li><a href="" class="ca">· 답변 많은순</a></li>
+                                        <li><a href="" class="ca">· 좋아요순</a></li>
+                                    </ul>
+                                    <input type="button" onclick="location.href='/app/qna/write'" class="writebtn" value="글쓰기✏️" style='cursor:pointer;'>
                                 </div>
-
+                                <div class="line2"></div>
                             </div>
-                        </div>
-
-                        <!-- 본문 리스트 -->
-                        <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
-                            <div class="titleb">
-                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
-                                <div class="contentbox">
-                                    <div class="content">
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+    
+                            <!-- 본문 리스트 -->
+                            <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
+                                <div class="titleb">
+                                    <div class="title" name="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
+                                    <div class="contentbox">
+                                        <div class="content" name="content">
+                                                                학습하는 분들께 도움이 되고,
+                                                                더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+                                                                학습하는 분들께 도움이 되고,
+                                                                더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
+                                        </div>
+    
+                                        <!-- 동그라미 답변 갯수 -->
+                                        <div class="circle">
+                                            <div class="replytitle">0</div>
+                                            <div class="replycontent">답변</div>
+                                        </div>
+    
+                                        <!-- 본문 속 해시태그 -->
+                                        <div class="hashtagbox">
+                                            <ul class="hashtag">
+                                                <li class="hash" name="tag">#JAVA</li>
+                                                <li class="hash" name="tag">#자바</li>
+                                                <li class="hash" name="tag">#CSS</li>
+                                            </ul>
+                                        </div>
+                                        <div class="etcbox">
+                                            <ul class="etc">
+                                                <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                                                <li name="writer">nick02</li>
+                                                <li><i class="fa-regular fa-eye"></i> 56</li>
+                                                <li><i class="fa-regular fa-comment"></i> 13</li>
+                                                <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
+                                                <li>2022.12.09.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="line3"></div>
                                     </div>
-
-                                    <!-- 동그라미 답변 갯수 -->
-                                    <div class="circle">
-                                        <div class="replytitle">0</div>
-                                        <div class="replycontent">답변</div>
-                                    </div>
-
-                                    <!-- 본문 속 해시태그 -->
-                                    <div class="hashtagbox">
-                                        <ul class="hashtag">
-                                            <li class="hash">#JAVA</li>
-                                            <li class="hash">#자바</li>
-                                            <li class="hash">#CSS</li>
-                                        </ul>
-                                    </div>
-                                    <div class="etcbox">
-                                        <ul class="etc">
-                                            <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                                            <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i> 56</li>
-                                            <li><i class="fa-regular fa-comment"></i> 13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
-                                            <li>2022.12.09.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="line3"></div>
+    
                                 </div>
-
                             </div>
+    
                         </div>
-
-                        <!-- 본문 리스트 -->
-                        <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
-                            <div class="titleb">
-                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
-                                <div class="contentbox">
-                                    <div class="content">
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                    </div>
-
-                                    <!-- 동그라미 답변 갯수 -->
-                                    <div class="circle">
-                                        <div class="replytitle">0</div>
-                                        <div class="replycontent">답변</div>
-                                    </div>
-
-                                    <!-- 본문 속 해시태그 -->
-                                    <div class="hashtagbox">
-                                        <ul class="hashtag">
-                                            <li class="hash">#JAVA</li>
-                                            <li class="hash">#자바</li>
-                                            <li class="hash">#CSS</li>
-                                        </ul>
-                                    </div>
-                                    <div class="etcbox">
-                                        <ul class="etc">
-                                            <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                                            <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i> 56</li>
-                                            <li><i class="fa-regular fa-comment"></i> 13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
-                                            <li>2022.12.09.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="line3"></div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- 본문 리스트 -->
-                        <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
-                            <div class="titleb">
-                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
-                                <div class="contentbox">
-                                    <div class="content">
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                    </div>
-
-                                    <!-- 동그라미 답변 갯수 -->
-                                    <div class="circle">
-                                        <div class="replytitle">0</div>
-                                        <div class="replycontent">답변</div>
-                                    </div>
-
-                                    <!-- 본문 속 해시태그 -->
-                                    <div class="hashtagbox">
-                                        <ul class="hashtag">
-                                            <li class="hash">#JAVA</li>
-                                            <li class="hash">#자바</li>
-                                            <li class="hash">#CSS</li>
-                                        </ul>
-                                    </div>
-                                    <div class="etcbox">
-                                        <ul class="etc">
-                                            <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                                            <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i> 56</li>
-                                            <li><i class="fa-regular fa-comment"></i> 13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
-                                            <li>2022.12.09.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="line3"></div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- 본문 리스트 -->
-                        <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
-                            <div class="titleb">
-                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
-                                <div class="contentbox">
-                                    <div class="content">
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                    </div>
-
-                                    <!-- 동그라미 답변 갯수 -->
-                                    <div class="circle">
-                                        <div class="replytitle">0</div>
-                                        <div class="replycontent">답변</div>
-                                    </div>
-
-                                    <!-- 본문 속 해시태그 -->
-                                    <div class="hashtagbox">
-                                        <ul class="hashtag">
-                                            <li class="hash">#JAVA</li>
-                                            <li class="hash">#자바</li>
-                                            <li class="hash">#CSS</li>
-                                        </ul>
-                                    </div>
-                                    <div class="etcbox">
-                                        <ul class="etc">
-                                            <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                                            <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i> 56</li>
-                                            <li><i class="fa-regular fa-comment"></i> 13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
-                                            <li>2022.12.09.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="line3"></div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- 본문 리스트 -->
-                        <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
-                            <div class="titleb">
-                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
-                                <div class="contentbox">
-                                    <div class="content">
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                    </div>
-
-                                    <!-- 동그라미 답변 갯수 -->
-                                    <div class="circle">
-                                        <div class="replytitle">0</div>
-                                        <div class="replycontent">답변</div>
-                                    </div>
-
-                                    <!-- 본문 속 해시태그 -->
-                                    <div class="hashtagbox">
-                                        <ul class="hashtag">
-                                            <li class="hash">#JAVA</li>
-                                            <li class="hash">#자바</li>
-                                            <li class="hash">#CSS</li>
-                                        </ul>
-                                    </div>
-                                    <div class="etcbox">
-                                        <ul class="etc">
-                                            <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                                            <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i> 56</li>
-                                            <li><i class="fa-regular fa-comment"></i> 13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
-                                            <li>2022.12.09.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="line3"></div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- 본문 리스트 -->
-                        <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
-                            <div class="titleb">
-                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
-                                <div class="contentbox">
-                                    <div class="content">
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                    </div>
-
-                                    <!-- 동그라미 답변 갯수 -->
-                                    <div class="circle">
-                                        <div class="replytitle">0</div>
-                                        <div class="replycontent">답변</div>
-                                    </div>
-
-                                    <!-- 본문 속 해시태그 -->
-                                    <div class="hashtagbox">
-                                        <ul class="hashtag">
-                                            <li class="hash">#JAVA</li>
-                                            <li class="hash">#자바</li>
-                                            <li class="hash">#CSS</li>
-                                        </ul>
-                                    </div>
-                                    <div class="etcbox">
-                                        <ul class="etc">
-                                            <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                                            <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i> 56</li>
-                                            <li><i class="fa-regular fa-comment"></i> 13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
-                                            <li>2022.12.09.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="line3"></div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- 본문 리스트 -->
-                        <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
-                            <div class="titleb">
-                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
-                                <div class="contentbox">
-                                    <div class="content">
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                    </div>
-
-                                    <!-- 동그라미 답변 갯수 -->
-                                    <div class="circle">
-                                        <div class="replytitle">0</div>
-                                        <div class="replycontent">답변</div>
-                                    </div>
-
-                                    <!-- 본문 속 해시태그 -->
-                                    <div class="hashtagbox">
-                                        <ul class="hashtag">
-                                            <li class="hash">#JAVA</li>
-                                            <li class="hash">#자바</li>
-                                            <li class="hash">#CSS</li>
-                                        </ul>
-                                    </div>
-                                    <div class="etcbox">
-                                        <ul class="etc">
-                                            <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                                            <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i> 56</li>
-                                            <li><i class="fa-regular fa-comment"></i> 13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
-                                            <li>2022.12.09.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="line3"></div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- 본문 리스트 -->
-                        <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
-                            <div class="titleb">
-                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.</div>
-                                <div class="contentbox">
-                                    <div class="content">
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-					                                        학습하는 분들께 도움이 되고,
-					                                        더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.
-                                    </div>
-
-                                    <!-- 동그라미 답변 갯수 -->
-                                    <div class="circle">
-                                        <div class="replytitle">0</div>
-                                        <div class="replycontent">답변</div>
-                                    </div>
-
-                                    <!-- 본문 속 해시태그 -->
-                                    <div class="hashtagbox">
-                                        <ul class="hashtag">
-                                            <li class="hash">#JAVA</li>
-                                            <li class="hash">#자바</li>
-                                            <li class="hash">#CSS</li>
-                                        </ul>
-                                    </div>
-                                    <div class="etcbox">
-                                        <ul class="etc">
-                                            <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                                            <li>nick02</li>
-                                            <li><i class="fa-regular fa-eye"></i> 56</li>
-                                            <li><i class="fa-regular fa-comment"></i> 13</li>
-                                            <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
-                                            <li>2022.12.09.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="line3"></div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!-- 본문 리스트 여기까지 -->
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+
+        
     </div>
 
     <div class="bottom"></div>

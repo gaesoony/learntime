@@ -1,5 +1,7 @@
 package com.learntime.app.makegrass.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -23,6 +25,11 @@ public class MakegrassDaoImpl implements MakegrassDao {
 	@Override
 	public int insertKnowledgeTag(SqlSessionTemplate sst, String[] str) {
 		return sst.insert("makegrassMapper.insertKnowledgeTag", str);
+	}
+
+	@Override
+	public List<MakegrassVo> selectList(SqlSessionTemplate sst) {
+		return sst.selectList("makegrassMapper.selectList");
 	}
 
 }

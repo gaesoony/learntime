@@ -30,4 +30,10 @@
 		)
 	</insert>
 	
+	<select id="selectList">
+		SELECT G.NO, G.TITLE, G.CONTENT, G.LEARN_TIME, G.ENROLL_DATE, G.HIT, M.NICK AS WRITER FROM MAKE_GRASS G
+		JOIN MEMBER M ON G.WRITER = M.NO
+		WHERE G.DELETE_YN = 'N'
+	</select>
+	
 </mapper>
