@@ -1,5 +1,8 @@
 package com.learntime.app.member.service;
 
+import java.util.List;
+
+import com.learntime.app.member.vo.FollowVo;
 import com.learntime.app.member.vo.MemberVo;
 
 public interface MemberService {
@@ -35,6 +38,20 @@ public interface MemberService {
 	//-------------유저 찾기------------
 	//회원번호로 조회
 	public MemberVo selectNo(String no);
+	
+	//---------팔로우--------------------
+	//팔로우 하기
+	public int follow(FollowVo follow);
+	//언팔로우
+	public int unfollow(FollowVo follow);
+	//나를 팔로잉 하는 사람 수 구하기
+	public int followerCnt(String no);
+	//내가 팔로잉 하는 사람 수 구하기
+	public int followingCnt(String no);
+	//나를 팔로잉 하는 사람 리스트 구하기
+	public List<MemberVo> followerList(String no);
+	//내가 팔로잉 하는 사람 리스트 구하기
+	public List<MemberVo> followingList(String no);
 	
 	
 }

@@ -1,8 +1,11 @@
 package com.learntime.app.member.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.learntime.app.member.vo.FollowVo;
 import com.learntime.app.member.vo.MemberVo;
 
 @Repository
@@ -90,6 +93,41 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return sst.selectOne("memberMapper.selectNo",no);
 	}
+	
+	//---------팔로우--------------------
+	//팔로우 하기
+	@Override
+	public int follow(SqlSessionTemplate sst, FollowVo follow) {
+		
+		return sst.insert("memberMapper.follow",follow);
+	}
+	//언팔로우하기
+	@Override
+	public int unfollow(SqlSessionTemplate sst, FollowVo follow) {
+		return sst.delete("memberMapper.unfollow",follow);
+	}
+	//나를 팔로우 하는 사람의 수
+	@Override
+	public int followerCnt(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("memberMapper.followerCnt",no);
+	}
+	//내가 팔로우 하는 사람의 수
+	@Override
+	public int followingCnt(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("memberMapper.followingCnt",no);
+	}
+	//나를 팔로우 하는 사람 리스트
+	@Override
+	public List<MemberVo> followerList(SqlSessionTemplate sst, String no) {
+		return sst.selectList("memberMapper.followerList",no);
+	}
+	//내가 팔로우 하는 사람 리스트
+	@Override
+	public List<MemberVo> followingList(SqlSessionTemplate sst, String no) {
+		return sst.selectList("memberMapper.followingList",no);
+	}
+	
+	
 	
 	
 

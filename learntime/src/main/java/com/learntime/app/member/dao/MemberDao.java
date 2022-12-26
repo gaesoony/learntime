@@ -1,7 +1,10 @@
 package com.learntime.app.member.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.learntime.app.member.vo.FollowVo;
 import com.learntime.app.member.vo.MemberVo;
 
 public interface MemberDao {
@@ -39,6 +42,20 @@ public interface MemberDao {
 	//-------------유저 찾기------------
 	//회원번호로 조회
 	public MemberVo selectNo(SqlSessionTemplate sst, String no);
+	
+	//---------팔로우--------------------
+	//팔로우 하기
+	public int follow(SqlSessionTemplate sst, FollowVo follow);
+	//언팔로우 하기
+	public int unfollow(SqlSessionTemplate sst, FollowVo follow);
+	//나를 팔로우 하는 사람 수 구하기
+	public int followerCnt(SqlSessionTemplate sst, String no);
+	//내가 팔로우 하는 사람 수 구하기
+	public int followingCnt(SqlSessionTemplate sst, String no);
+	//나를 팔로우 하는 사람 리스트 구하기
+	public List<MemberVo> followerList(SqlSessionTemplate sst, String no);
+	//내가 팔로우 하는 사람 리스트 구하기
+	public List<MemberVo> followingList(SqlSessionTemplate sst, String no);
 	
 	
 	

@@ -92,10 +92,6 @@
     content:"팔로잉"
    }
 
-   .following:hover{
-    border: 1px solid #ff0000;
-    background-color: lightpink;
-   }
 
    .following:hover{
     border: 1px solid #ff0000;
@@ -131,21 +127,21 @@
             <div id="home-area">
                 <div id="cate">
                     <div id="cate-follow">
-                        <a href="${pageContext.request.contextPath}/member/mypage/follow">팔로워</a>
+                        <a href="${pageContext.request.contextPath}/member/mypage/follow?no=${userNo.no}">팔로워</a>
                     </div>
         
                     <div id="cate-following">
-                        <a href="${pageContext.request.contextPath}/member/mypage/following">팔로잉</a>
+                        <a href="${pageContext.request.contextPath}/member/mypage/following?no=${userNo.no}">팔로잉</a>
                     </div>
                 </div>
     
                 <div class="list">
-                    <div class="f-img"></div>
-                    <div class="f-nick">닉네임</div>
-                    
-                    <div class="following">
-                       
-                    </div>
+	                <c:forEach var="list" items="${list}" >
+						<div class="f-img"></div>
+						<div class="f-nick">${list.nick}</div>
+						<div class="following">
+					</c:forEach>
+                  </div>
                
             </div>
         </div>

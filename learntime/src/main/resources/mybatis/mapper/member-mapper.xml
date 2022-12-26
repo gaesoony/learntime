@@ -107,5 +107,61 @@
 			MODIFY_DATE=SYSDATE
 		WHERE NO=#{no}
 	</update>
+	
+	<!--회원 조회(회원 번호로)  -->
+	<select id="selectNo" resultType = "MemberVo">
+		 SELECT *
+		  FROM MEMBER
+		  WHERE NO = #{no}
+		  AND EMAIL_AUTH='1'
+	
+	</select>
+	
+	
+	<!--팔로우하기  -->
+	<insert id="follow">
+	INSERT INTO FOLLOW(NO,FOLLOWING_NO,FOLLOWER_NO)
+	VALUES(SEQ_FALLOW_NO.NEXTVAL,#{followingNo},#{followerNo})
+	</insert>
+	
+	<!--언팔로우하기  -->
+	<delete id="unfollow">
+	DELETE FROM FOLLOW
+	WHERE FOLLOWING_NO=#{followingNo}
+	AND FOLLOWER_NO=#{followerNo}
+	</delete>
+	
+	
+	<!--나를 팔로우 하는 사람 수  -->
+	<select id="followerCnt" resultType = "Int">
+		 SELECT COUNT(*)
+		 FROM FOLLOW
+		 WHERE FOLLOWER_NO = #{no}
+	</select>
+	
+	<!--내가 팔로우 하는 사람 수  -->
+	<select id="followingCnt" resultType = "Int">
+		 SELECT COUNT(*)
+		 FROM FOLLOW
+		 WHERE FOLLOWING_NO = #{no}
+	</select>
+	
+	
+	<!--나를 팔로우 하는 사람 리스트  -->
+	<select id="followerList" resultType = "MemberVo">
+		 SELECT M.NICK,M.IMG_PATH
+		FROM FOLLOW F
+		JOIN MEMBER M ON M.NO=F.FOLLOWING_NO
+		WHERE F.FOLLOWER_NO = #{no}
+	</select>
+	
+	<!--내가 팔로우 하는 사람 리스트  -->
+	<select id="followingList" resultType = "MemberVo">
+		SELECT M.NICK,M.IMG_PATH
+		FROM FOLLOW F
+		JOIN MEMBER M ON M.NO=F.FOLLOWER_NO
+		WHERE F.FOLLOWING_NO = #{no}
+	</select>
+	
 
 </mapper>
