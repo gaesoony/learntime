@@ -70,6 +70,10 @@ public interface StudyDao {
 	//insert writer
 	public int insertWriter(SqlSessionTemplate sst, GroupVo vo);
 
+	public String selectLikeHateByMno(SqlSessionTemplate sst, Map map);
+
+	public String selectScrapYn(SqlSessionTemplate sst, Map map);
+
 
 
 }

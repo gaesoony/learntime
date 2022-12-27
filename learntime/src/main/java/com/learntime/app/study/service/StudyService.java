@@ -46,6 +46,9 @@ public interface StudyService {
 
 	//그룹 한 개 조회
 	public Map<String, Object> selectGroupOne(String gno);
+
+	//로그인멤버가 그룹에게 좋아요 싫어요 스크랩한 정보 조회
+	public Map<String, Object> selectLikeScrap(Map map);
 	
 	
 	//추후 추가 예정..

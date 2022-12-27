@@ -209,4 +209,18 @@ public class StudyServiceImpl implements StudyService{
 		return groupOne;
 	}
 
+	//로그인멤버가 그룹에게 좋아요 싫어요 스크랩한 정보 조회
+	@Override
+	public Map<String, Object> selectLikeScrap(Map map) {
+		String likeHateStatus = dao.selectLikeHateByMno(sst, map);
+		String scrap_yn = dao.selectScrapYn(sst, map);
+		
+		Map result = new HashMap();
+		result.put("likeHateStatus", likeHateStatus);
+		result.put("scrap_yn", scrap_yn);
+		
+
+		return result;
+	}
+
 }

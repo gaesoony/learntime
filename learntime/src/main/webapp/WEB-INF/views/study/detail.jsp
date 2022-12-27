@@ -9,7 +9,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <title>Insert title here</title>
     <link
       rel="stylesheet"
-      href="${path}/resources/css/study/detail.css?ver=3"
+      href="${path}/resources/css/study/detail.css?ver=4"
     />
 
     <link
@@ -38,7 +38,10 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="space-between study-detail-title-bottom">
               <div class="flex">
                 <div class="user-profile">
-                  <img src="${path}/resources/upload/common/profile_default.png" alt="" />
+                  <img
+                    src="${path}/resources/upload/common/profile_default.png"
+                    alt=""
+                  />
                 </div>
                 <div class="user-nick flex">
                   <div>${groupOne.NICK}</div>
@@ -63,8 +66,25 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 </ul>
               </div>
               <div>
-                <a href="${pageContext.request.contextPath}/study/edit">수정</a>
-                <a href="">삭제</a>
+                <c:if test="${loginMember.no != groupOne.WRITER_NO}">
+                  <a href="" class="no-cursor">수정</a>
+                </c:if>
+                <c:if test="${loginMember.no == groupOne.WRITER_NO}">
+                  <a
+                    href="${pageContext.request.contextPath}/study/edit?gno=${groupOne.NO}"
+                    >수정</a
+                  >
+                </c:if>
+
+                <c:if test="${loginMember.no != groupOne.WRITER_NO}">
+                  <a href="" class="no-cursor">삭제</a>
+                </c:if>
+                <c:if test="${loginMember.no == groupOne.WRITER_NO}">
+                  <a
+                    href="${pageContext.request.contextPath}/study/delete?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}"
+                    >삭제</a
+                  >
+                </c:if>
               </div>
             </div>
           </section>
@@ -81,7 +101,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               <li class="flex">
                 <div>모집인원</div>
                 <div>
-                  ${groupOne.NUMBER_PEOPLE}명 (${groupOne.memberList.size()}/${groupOne.NUMBER_PEOPLE})
+                  ${groupOne.NUMBER_PEOPLE}명
+                  (${groupOne.memberList.size()}/${groupOne.NUMBER_PEOPLE})
                 </div>
               </li>
               <li class="flex">
@@ -99,10 +120,10 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               <li class="flex">
                 <div>진행장소</div>
                 <c:if test="${groupOne.PLACE != null }">
-	                <div>${groupOne.PLACE} (${groupOne.ADDRESS})</div>                
+                  <div>${groupOne.PLACE} (${groupOne.ADDRESS})</div>
                 </c:if>
                 <c:if test="${groupOne.PLACE == null }">
-	                <div>온라인에서 만나요</div>                
+                  <div>온라인에서 만나요</div>
                 </c:if>
               </li>
               <li class="flex">
@@ -128,12 +149,12 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="study-info-content">
               <div class="study-detail-info-content">${groupOne.INTRO}</div>
               <ul class="tag-list">
-	              <c:forEach items="${groupOne.tagList}" var="item">
-	                <li class="tag-list-detail">
-	                  <i class="fa-solid fa-hashtag gray1"></i>
-	                  <span>${item.NAME}</span>
-	                </li>
-	              </c:forEach>
+                <c:forEach items="${groupOne.tagList}" var="item">
+                  <li class="tag-list-detail">
+                    <i class="fa-solid fa-hashtag gray1"></i>
+                    <span>${item.NAME}</span>
+                  </li>
+                </c:forEach>
               </ul>
             </div>
             <div class="study-location-content hidden">
@@ -194,18 +215,21 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <h1>참여 멤버(${groupOne.memberList.size()}명)</h1>
 
             <ul class="study-member-list">
-            	<c:forEach items="${groupOne.memberList}" var="item">
-	              <li>
-	                <img src="${path}/resources/upload/common/profile_default.png" alt="" />
-	                <div>${item.NICK}</div>
-	                <c:if test="${item.STATUS == 'B'}">
-		                <div>모임장</div>
-	                </c:if>
-	                <c:if test="${item.STATUS == 'C'}">
-		                <div>멤버</div>
-	                </c:if>
-	              </li>
-            	</c:forEach>
+              <c:forEach items="${groupOne.memberList}" var="item">
+                <li>
+                  <img
+                    src="${path}/resources/upload/common/profile_default.png"
+                    alt=""
+                  />
+                  <div>${item.NICK}</div>
+                  <c:if test="${item.STATUS == 'B'}">
+                    <div>모임장</div>
+                  </c:if>
+                  <c:if test="${item.STATUS == 'C'}">
+                    <div>멤버</div>
+                  </c:if>
+                </li>
+              </c:forEach>
             </ul>
           </section>
           <section class="center">
@@ -222,25 +246,26 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   <div>가입 신청을 위한 정보를 입력해주세요</div>
                 </div>
                 <div class="study-popup-body">
-                	<c:if test="${groupOne.questionList.size()==0}">
-                		<div >가입 신청 하시겠습니까?</div>
-                	</c:if>
-                	<c:if test="${groupOne.questionList.size()>0}">
-		                <c:forEach items="${groupOne.questionList}" var="item" varStatus="status">
-		                  <div class="study-body-content">
-		                    <div class="study-body-titlebox">
-		                      <div>질문${status.index + 1}</div>
-		                      <div>${item.QUESTION}</div>
-		                    </div>
-		                    <div class="study-body-contentbox">
-		                      <input type="text" />
-		                    </div>
-		                  </div>
-		                
-		                </c:forEach>
-                	
-                	</c:if>
-                 
+                  <c:if test="${groupOne.questionList.size()==0}">
+                    <div>가입 신청 하시겠습니까?</div>
+                  </c:if>
+                  <c:if test="${groupOne.questionList.size()>0}">
+                    <c:forEach
+                      items="${groupOne.questionList}"
+                      var="item"
+                      varStatus="status"
+                    >
+                      <div class="study-body-content">
+                        <div class="study-body-titlebox">
+                          <div>질문${status.index + 1}</div>
+                          <div>${item.QUESTION}</div>
+                        </div>
+                        <div class="study-body-contentbox">
+                          <input type="text" />
+                        </div>
+                      </div>
+                    </c:forEach>
+                  </c:if>
                 </div>
                 <div class="study-popup-foot">
                   <div class="study-pop-btn study-confirm" id="study-confirm">
@@ -276,20 +301,44 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         </article>
         <aside class="study-detail-aside-right">
           <div class="study-detail-aside-right-btns">
-          <c:if test="${groupOne.CLOSING_YN == 'N'}">
-            <div>모집중</div>
-          </c:if>
-          <c:if test="${groupOne.CLOSING_YN == 'Y'}">
-            <div>모집완료</div>
-          </c:if>
+            <c:if test="${groupOne.CLOSING_YN == 'N'}">
+              <c:if test="${loginMember.no == groupOne.WRITER_NO}">
+                <div>모집중</div>
+              </c:if>
+              <c:if test="${loginMember.no != groupOne.WRITER_NO}">
+                <div class="no-cursor">모집중</div>
+              </c:if>
+            </c:if>
+            <c:if test="${groupOne.CLOSING_YN == 'Y'}">
+              <c:if test="${loginMember.no == groupOne.WRITER_NO}">
+                <div>모집완료</div>
+              </c:if>
+              <c:if test="${loginMember.no != groupOne.WRITER_NO}">
+                <div class="no-cursor">모집완료</div>
+              </c:if>
+            </c:if>
             <div class="like-hate-btn">
               <div><i class="fa-solid fa-chevron-down"></i></div>
-              <div>${groupOne.LIKE_CNT}</div>
+              <c:if test="${likeScarp.likeHateStatus == 'Y'}">
+                <div class="main-color">${groupOne.LIKE_CNT}</div>
+              </c:if>
+              <c:if test="${likeScarp.likeHateStatus == 'N'}">
+                <div class="red">${groupOne.LIKE_CNT}</div>
+              </c:if>
+              <c:if test="${likeScarp.likeHateStatus == null}">
+                <div>${groupOne.LIKE_CNT}</div>
+              </c:if>
               <div><i class="fa-solid fa-chevron-up"></i></div>
             </div>
             <div>
-              <i class="fa-regular fa-bookmark"></i
-              ><span>${groupOne.SCRAP_CNT}</span>
+              <c:if test="${likeScarp.scrap_yn != null}">
+                <i class="fa-regular fa-bookmark main-color"></i
+                ><span class="main-color">${groupOne.SCRAP_CNT}</span>
+              </c:if>
+              <c:if test="${likeScarp.scrap_yn == null}">
+                <i class="fa-regular fa-bookmark"></i
+                ><span>${groupOne.SCRAP_CNT}</span>
+              </c:if>
             </div>
           </div>
         </aside>
@@ -357,7 +406,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         }, 0);
       });
     </script>
-
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
   </body>

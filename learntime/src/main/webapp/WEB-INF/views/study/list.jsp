@@ -23,7 +23,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
         </div>
       </div>
     </section>
-    <form action="${path}/study/list" method="post" name="form">
+    <form action="${path}/study/list" method="get" name="form">
       <div class="middle">
         <main class="study-main">
           <aside class="my-study-aside">
@@ -34,6 +34,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
               </h1>
               <ul class="my-study-list">
                 <c:if test="${myGroupList.size() == 0 or myGroupList == null}">
+                  <a href=""></a>
                   <span>아직 가입된 모임이 없습니다</span>
                 </c:if>
                 <c:forEach items="${myGroupList}" var="map">
@@ -231,7 +232,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
                     type="checkbox"
                     id="toggle-slider"
                     name="status"
-                    value="recruited"
+                    value="open"
                     onclick="form.submit()"
                   />
                   <label id="toggle-slider-label" for="toggle-slider"
@@ -404,7 +405,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
       const status = document.querySelector("input[name=status]");
       const statusStr = "${status}";
 
-      if (statusStr == "recruited") {
+      if (statusStr == "open") {
         status.checked = true;
       } else {
         status.checked = false;

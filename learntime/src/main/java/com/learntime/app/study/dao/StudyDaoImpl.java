@@ -133,6 +133,16 @@ public class StudyDaoImpl implements StudyDao{
 		return sst.insert("studyMapper.insertWriter", vo);
 	}
 
+	@Override
+	public String selectLikeHateByMno(SqlSessionTemplate sst, Map map) {
+		return sst.selectOne("studyMapper.selectLikeHateByMno", map);
+	}
+
+	@Override
+	public String selectScrapYn(SqlSessionTemplate sst, Map map) {
+		return sst.selectOne("studyMapper.selectScrapYn", map);
+	}
+
 
 
 }
