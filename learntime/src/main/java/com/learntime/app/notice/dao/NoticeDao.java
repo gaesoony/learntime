@@ -18,17 +18,44 @@ public class NoticeDao {
 	}
 
 	
-	public List<NoticeVo> selectNoticeList(SqlSessionTemplate sst, Map<String, String> map, PageVo pv) {
+	public List<NoticeVo> selectNoticeList(SqlSessionTemplate sst,NoticeVo vo, PageVo pv) {
 		int offset = (pv.getCurrentPage() -1)* pv.getBoardLimit();
 		int limit = pv.getBoardLimit();
 		RowBounds rb = new RowBounds(offset, limit);
 
-		return sst.selectList("noticeMapper.noticeList",map,rb);
+		return sst.selectList("noticeMapper.noticeList",vo,rb);
 	}
 
 
 	public int selectCount(SqlSessionTemplate sst) {
 		return sst.selectOne("noticeMapper.selectCount");
+	}
+
+
+	public int cmtCnt(SqlSessionTemplate sst) {
+		
+		return sst.selectOne("noticeMapper.selectCmtCnt");
+	}
+
+
+	public int updateHit(SqlSessionTemplate sst, NoticeVo vo) {
+		
+		return sst.update("noticeMapper.updateHit",vo);
+	}
+
+
+	public NoticeVo selectOne(SqlSessionTemplate sst, NoticeVo vo) {
+		
+		return sst.selectOne("noticeMapper.selectOne",vo);
+	}
+
+
+	public List<NoticeVo> selectNoticeListAll(SqlSessionTemplate sst, NoticeVo vo, PageVo pv) {
+		int offset = (pv.getCurrentPage() -1)* pv.getBoardLimit();
+		int limit = pv.getBoardLimit();
+		RowBounds rb = new RowBounds(offset, limit);
+
+		return sst.selectList("noticeMapper.noticeListAll",vo,rb);
 	}
 
 }

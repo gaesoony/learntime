@@ -18,6 +18,10 @@ public class QuestionVo {
 	private Timestamp enrollDate;
 	private String deleteYn;
 	private Timestamp modifyDate;
+	private String category;
+	private String keyword;
+	private int cmt;
+	private String cateName;
 	
 	
 

@@ -27,13 +27,37 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public List<NoticeVo> selectNoticeList(Map<String, String> map, PageVo pv) {
-		return dao.selectNoticeList(sst,map,pv);
+	public List<NoticeVo> selectNoticeList( NoticeVo vo, PageVo pv) {
+		return dao.selectNoticeList(sst,vo,pv);
 	}
 
 	@Override
 	public int selectCount() {
 		return dao.selectCount(sst);
+	}
+
+	@Override
+	public int cmtCnt() {
+		
+		return dao.cmtCnt(sst);
+	}
+
+	@Override
+	public int updateHit(NoticeVo vo) {
+		
+		return dao.updateHit(sst,vo);
+	}
+
+	@Override
+	public NoticeVo selectOne(NoticeVo vo) {
+		
+		return dao.selectOne(sst,vo);
+	}
+
+	@Override
+	public List<NoticeVo> selectNoticeListAll(NoticeVo vo, PageVo pv) {
+		
+		return dao.selectNoticeListAll(sst,vo,pv);
 	}
 
 }

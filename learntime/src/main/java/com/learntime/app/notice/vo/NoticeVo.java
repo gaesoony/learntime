@@ -16,6 +16,10 @@ public class NoticeVo {
 	private Timestamp modifyDate;
 	private int hit;
 	private int status;
+	private String category;
+	private String keyword;
+	private int cmt;
+	private String cateName;
 	
 
 }

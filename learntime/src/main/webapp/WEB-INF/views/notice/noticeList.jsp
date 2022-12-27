@@ -11,7 +11,7 @@
 </head>
 <body>
     <%@ include file = "/WEB-INF/views/common/header.jsp" %>
-<form action="">
+<form action="/app/notice/noticeList" method="get">
 	<div class="main-notice">
         <div class="banner-notice">
             <div class="banner-dark">
@@ -28,49 +28,49 @@
                         <option value="title-select">제목</option>
                         <option value="content-select">내용</option>
                     </select></div>
-                    <div class="search-box-notice"><input type="text" name= "searchBox" class="search-box" size="30"> </div>
+                    <div class="search-box-notice"><input type="text" name= "searchBox" class="search-box" size="30"></div>
                     <div class="notice-input"><input type="submit" value="검색" class="submitBtn"></div>
                 </div>
             </div>
             <div class="notice-list">
                 <div class="cate-box">
-                    <a><div class="cate-pick" value="1">전체</div></a>
-                    <a><div class="cate-pick" value="2">스터디</div></a>
-                    <a><div class="cate-pick" value="3">공부인증</div></a>
-                    <a><div class="cate-pick" value="4">Q&A</div></a>
-                    <a><div class="cate-pick" value="5">멘토링</div></a>
-                    <a><div class="cate-pick" value="6">커뮤니티</div></a>
-                    <a><div class="cate-pick" value="7">스킨샵</div></a>
+                    <a href="/app/notice/noticeList?p=1&cateNo=1"class="cateBtn"><div class="cate-pick" name="cateNo" value="1">전체</div></a> 
+                    <a href="/app/notice/noticeList?p=1&cateNo=2"class="cateBtn"><div class="cate-pick" name="cateNo" value="2">스터디</div></a> 
+                    <a href="/app/notice/noticeList?p=1&cateNo=3"class="cateBtn"><div class="cate-pick" name="cateNo" value="3">공부인증</div></a> 
+                    <a href="/app/notice/noticeList?p=1&cateNo=4"class="cateBtn"><div class="cate-pick" name="cateNo" value="4">Q&A</div></a>
+                    <a href="/app/notice/noticeList?p=1&cateNo=5"class="cateBtn"><div class="cate-pick" name="cateNo" value="5">멘토링</div></a> 
+                    <a href="/app/notice/noticeList?p=1&cateNo=6"class="cateBtn"><div class="cate-pick" name="cateNo" value="6">커뮤니티</div></a> 
+                    <a href="/app/notice/noticeList?p=1&cateNo=7"class="cateBtn"><div class="cate-pick" name="cateNo" value="7">스킨샵</div></a> 
                 </div>
                 <div class="notice-list-twoColored">
                     <div class="notice-group">
-                        <c:forEach var="notice-green" begin="1" end="3" >
-                            <div class="notice-green">
+                        <c:forEach var="list" begin="1" end="3"  items="${list}">
+                            <div class="notice-green"></a>
                                 <div class="admin-id-etc">
-                                    <div class="admin-id">관리자</div>
-                                    <div class="enroll-date">2022.11.28</div>
+                                    <div class="admin-id" name="nick">${list.writer}</div>
+                                    <div class="enroll-date" name="enrollDate">${list.enrollDate}</div>
                                 </div>
                                 <div class="written-notice">
-                                    <div class="cate-notice">[전체]</div>
-                                    <div class="posted-notice">스팸 단어로 인한 글 등록 불가 문제 관련 공지사항</div>
+                                    <div class="cate-notice" name="name">${list.cateName}</div>
+                                    <div class="posted-notice" name="title">${list.title}<a href="/app/notice/noticeDetail?no=${list.no}"></div>
                                     <div class="views-etc">
-                                        <div class="views"><img width="15px" height="15px" class="view" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">17k</div>
-                                        <div class="replies"><img width="15px" height="15px"class="message" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">8</div>
+                                        <div class="views" name="hit"><img width="15px" height="15px" class="view" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">${list.hit}</div>
+                                        <div class="replies" name="cmt"><img width="15px" height="15px"class="message" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">${list.cmt}</div>
                                     </div>
                                 </div>
                             </div>
                         </c:forEach>
-                        <c:forEach var="notice-white" begin="1" end="3" >
+                        <c:forEach var="list" begin="1" end="3" items="${list}"> 
                             <div class="notice-white">
                                 <div class="admin-id-etc">
-                                    <div class="admin-id">관리자</div>
-                                    <div class="enroll-date">2022.11.28</div>
+                                    <div class="admin-id" name="nick">${list.writer}</div>
+                                    <div class="enroll-date" name="enrollDate">${list.enrollDate}</div>
                                 </div>
                                 <div class="written-notice">
-                                    <div class="cate-notice">[전체]</div>
-                                    <div class="posted-notice">스팸 단어로 인한 글 등록 불가 문제 관련 공지사항</div>
+                                    <div class="cate-notice" name="name">${list.cateName }</div>
+                                    <div class="posted-notice" name="title">${list.title}<a href="/app/notice/noticeDetail?no=${list.no}"></div>
                                     <div class="views-etc">
-                                        <div class="views"><img width="15px" height="15px" class="view" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">17k</div>
+                                        <div class="views" name="hit"><img width="15px" height="15px" class="view" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">${list.hit}</div>
                                         <div class="replies"><img width="15px" height="15px" class="message" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">8</div>
                                     </div>
                                 </div>

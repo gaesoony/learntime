@@ -92,7 +92,7 @@
         <div id="footer">
            <div id="top">
             
-            <a href="${pageContext.request.contextPath}/notice/noticeList">공지사항</a>
+            <a href="${pageContext.request.contextPath}/notice/noticeList?p=1&cateNo=0">공지사항</a>
             <span>|</span>
             <a href="${pageContext.request.contextPath}/faq/faqList">FAQ</a>
             <span>|</span>
