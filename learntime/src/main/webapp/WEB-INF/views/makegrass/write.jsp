@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,6 +113,18 @@
         margin-left: 8px;
     }
 
+    #tag{
+        text-align: center;
+        border: none;
+        background-color: white;
+        color: #37774A;
+        outline: none;
+    }
+    #tag:hover{
+        background-color: #5ECC80;
+        color: white;
+    }
+
 </style>
 
 <link
@@ -127,14 +141,14 @@
     <div class="banner"></div>
 
     <div class="mainbox">
-	    <form action="${pageContext.request.contextPath}/makegrass/write" method="post" name="myform" onkeydown="return event.key != 'Enter';">
+	    <form action="${path}/makegrass/write" method="post" name="myform" onkeydown="return event.key != 'Enter';">
 	    	<div class="maintitle">
 	            <input type="text" name="title" class="title" placeholder="제목을 입력하세요">
 	            <input type="text" name="learnTime" class="worktime" placeholder="공부한 시간 | ex) 120분">
 
 	            <div class="content">
 	                <div>
-	                    <input type="text" id="tagNo" name="tag" placeholder="해시태그를 입력하세요" />
+	                    <input type="text" id="tagNo" placeholder="해시태그를 입력하세요" />
 	                </div>
 	                <ul id="tag-list">
 	                </ul>
@@ -208,7 +222,7 @@
                     // 태그 중복 검사
                     if (result.length == 0) {
                     $("#tag-list")
-                        .append("<li class='tag-item'>" + tagValue + "<span class='del-btn' idx='" + counter + "'>x</span></li>");
+                        .append("<li class='tag-item'><input type='text' id='tag' name='tag' value='" + tagValue + "'' />" + "<span class='del-btn' idx='" + counter + "'>x</span></li>");
                     addTag(tagValue);
                     self.val("");
                     } else {

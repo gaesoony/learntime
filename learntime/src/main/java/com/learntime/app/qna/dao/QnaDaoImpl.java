@@ -36,8 +36,8 @@ public class QnaDaoImpl implements QnaDao {
 
 	//게시글 목록
 	@Override
-	public List<QnaVo> selectList(SqlSessionTemplate sst) {
-		return sst.selectList("qnaMapper.selectList");
+	public List<QnaVo> selectList(SqlSessionTemplate sst, QnaVo vo) {
+		return sst.selectList("qnaMapper.selectList", vo);
 	}
 
 }

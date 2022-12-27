@@ -136,7 +136,6 @@
         border: 1px solid #9D9D9D;
         background-color: white;
         margin-left: 55px;
-        margin-top: 30px;
     }
     .leftsidebox{
         float: left;
@@ -180,8 +179,10 @@
     .mainbox{
         width: 850px;
         height: 100%;
-        margin: 0 auto;
         margin-top: 30px;
+        padding-left: 50px;
+        display: grid;
+        grid-template-columns: 280px 280px 280px;
     }
     .mainlist{
         width: 253px;
@@ -189,7 +190,7 @@
         border: 2px solid #5ECC80;
         border-radius: 20px;
         background-color: white;
-        float: left;
+        /* float: left; */
         margin-right: 10px;
         margin-bottom: 25px;
         margin-left: 15px;
@@ -262,7 +263,7 @@
     }
     .rightsidebox{
         width: 200px;
-        margin-left: 900px;
+        margin-left: 350px;
     }
     .rightsidelist{
         border: 1px solid #9D9D9D;
@@ -720,12 +721,18 @@
         </div>
     </div>
 
-    <form action="${path}/makegrass/list" method="post">
+    
         <div class="listtitle">공부인증 게시판</div>
         <div class="writebtn">
-            <button class="wbtn" onclick="location.href='/app/makegrass/write'" style='cursor:pointer;'>글쓰기✏️</button>
+            <c:if test="${loginMember == null}">
+                <button class="wbtn" onclick="login();" style='cursor:pointer;'>글쓰기✏️</button>
+            </c:if>
+            <c:if test="${loginMember != null}">
+                <button class="wbtn" onclick="location.href='${path}/makegrass/write'" style='cursor:pointer;'>글쓰기✏️</button>
+            </c:if>
         </div>
-
+    
+    <form action="${path}/makegrass/list" method="post">
         <!-- 왼쪽 사이드바 -->
         <div class="leftsidebox">
             <div class="leftside">
@@ -844,30 +851,29 @@
                     </ul>
                 </div>
             </div>
-
-            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-                <div class="thumbnail"></div>
-                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
-                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
-                <div class="content">
-                    백앤드로 JAVA Script와 화면
-                    구현을 위한 CSS, 추가로 AJAX에
-                    대한 부분도 함께 공부함.
-                    백앤드로 JAVA Script와 화면.
+            <c:forEach items="${makegrassList}" var="list">
+                <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
+                    <div class="thumbnail"></div>
+                    <div class="clockimg"><i class="fa-regular fa-clock"></i> ${list.learnTime}</div>
+                    <div class="bookimg"><i class="fa-solid fa-book"></i></div>
+                    <div class="content">
+                        ${list.content}
+                    </div>
+                    <div class="contentline"></div>
+                    <div class="info">
+                        <ul class="infoetc">
+                            <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                            <li class="contentnick">${list.writer}</li>
+                            <li class="hit"><i class="fa-regular fa-eye"></i>  ${list.hit}</li>
+                            <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
+                        </ul>
+                        <ul>
+                            <li class="contentDate">${list.enrollDate}</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="contentline"></div>
-                <div class="info">
-                    <ul class="infoetc">
-                        <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                        <li class="contentnick">nick01</li>
-                        <li class="hit"><i class="fa-regular fa-eye"></i> 150</li>
-                        <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
-                    </ul>
-                    <ul>
-                        <li class="contentDate">2202-12-09</li>
-                    </ul>
-                </div>
-            </div>
+            </c:forEach>
+            
 
             <!-- 오른쪽 사이드바 -->
             <aside class="rightsidebox">
@@ -924,6 +930,63 @@
     <script>
         function navToDetail(){
             window.location.href="/app/makegrass/detail";
+        }
+
+        function login() {
+        $(".blackBG").addClass("show");
+        }
+
+        const searchTag = document.querySelector(".study-search-tag");
+
+        searchTag.addEventListener("keydown", function () {
+        if (window.event.keyCode == 13) {
+            makeTag(event);
+        }
+
+        if (window.event.keyCode == 8) {
+            deleteBeforeTag();
+        }
+        });
+
+        function makeTag(event) {
+        const value = event.target.value;
+        const str =
+            '<div class="relative cursor tag-div" onclick="deleteTag(event)">' +
+            '<input onclick="deleteTag2(event)" name="tag" type="text" readonly style="width:' +
+            (value.length + 2) * 9 +
+            "px" +
+            ';" value="' +
+            value +
+            '" class="tag-btn cursor" /> ' +
+            '<i class="fa-solid fa-xmark" onclick="deleteTag2(event)"></i>' +
+            "</div>";
+
+        const tagList = document.querySelector(".tag-list");
+        tagList.innerHTML += str;
+
+        event.target.value = "";
+        }
+
+        function resetTag() {
+        const tagList = document.querySelector(".tag-list");
+        tagList.textContent = "";
+        form.submit();
+        }
+
+        function deleteTag(e) {
+        e.target.remove();
+        form.submit();
+        }
+
+        function deleteTag2(e) {
+        e.target.parentNode.remove();
+        form.submit();
+        }
+
+        function deleteBeforeTag() {
+        const lastTag = document.querySelector(".tag-list div:last-child");
+        lastTag.remove();
+        form.submit();
         }
     </script>
 

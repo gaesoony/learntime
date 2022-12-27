@@ -28,8 +28,8 @@ public class MakegrassDaoImpl implements MakegrassDao {
 	}
 
 	@Override
-	public List<MakegrassVo> selectList(SqlSessionTemplate sst) {
-		return sst.selectList("makegrassMapper.selectList");
+	public List<MakegrassVo> selectList(SqlSessionTemplate sst, MakegrassVo vo) {
+		return sst.selectList("makegrassMapper.selectList", vo);
 	}
 
 }

@@ -329,11 +329,16 @@
                                         <li><a href="" class="ca">· 답변 많은순</a></li>
                                         <li><a href="" class="ca">· 좋아요순</a></li>
                                     </ul>
-                                    <input type="button" onclick="location.href='/app/qna/write'" class="writebtn" value="글쓰기✏️" style='cursor:pointer;'>
+                                    <c:if test="${loginMember != null}">
+                                        <input type="button" onclick="location.href='${path}/qna/write'" class="writebtn" value="글쓰기✏️" style='cursor:pointer;'>
+                                    </c:if>
+                                    <c:if test="${loginMember == null}">
+                                        <input type="button" onclick="login();" class="writebtn" value="글쓰기✏️" style='cursor:pointer;'>
+                                    </c:if>
                                 </div>
                                 <div class="line2"></div>
                             </div>
-    
+
                             <!-- 본문 리스트 -->
                             <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
                                 <div class="titleb">
@@ -376,6 +381,47 @@
                                 </div>
                             </div>
     
+                            <!-- 본문 리스트 -->
+                            <c:forEach items="${qnaList}" var="list">
+                                <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
+                                    <div class="titleb">
+                                        <div class="title" name="title">${list.title}</div>
+                                        <div class="contentbox">
+                                            <div class="content" name="content">
+                                                ${list.content}
+                                            </div>
+        
+                                            <!-- 동그라미 답변 갯수 -->
+                                            <div class="circle">
+                                                <div class="replytitle">0</div>
+                                                <div class="replycontent">답변</div>
+                                            </div>
+        
+                                            <!-- 본문 속 해시태그 -->
+                                            <div class="hashtagbox">
+                                                <ul class="hashtag">
+                                                    <li class="hash" name="tag">#JAVA</li>
+                                                    <li class="hash" name="tag">#자바</li>
+                                                    <li class="hash" name="tag">#CSS</li>
+                                                </ul>
+                                            </div>
+                                            <div class="etcbox">
+                                                <ul class="etc">
+                                                    <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                                                    <li name="writer">${list.writer}</li>
+                                                    <li><i class="fa-regular fa-eye"></i> ${list.hit}</li>
+                                                    <li><i class="fa-regular fa-comment"></i> 13</li>
+                                                    <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
+                                                    <li>${list.enrollDate}</li>
+                                                </ul>
+                                            </div>
+                                            <div class="line3"></div>
+                                        </div>
+        
+                                    </div>
+                                </div>
+                            </c:forEach>
+    
                         </div>
                     </div>
                 </div>
@@ -396,6 +442,64 @@
 
         function navToDetail(){
             window.location.href="/app/qna/detail";
+        }
+
+
+        function login() {
+        $(".blackBG").addClass("show");
+        }
+
+        const searchTag = document.querySelector(".study-search-tag");
+
+        searchTag.addEventListener("keydown", function () {
+        if (window.event.keyCode == 13) {
+            makeTag(event);
+        }
+
+        if (window.event.keyCode == 8) {
+            deleteBeforeTag();
+        }
+        });
+
+        function makeTag(event) {
+        const value = event.target.value;
+        const str =
+            '<div class="relative cursor tag-div" onclick="deleteTag(event)">' +
+            '<input onclick="deleteTag2(event)" name="tag" type="text" readonly style="width:' +
+            (value.length + 2) * 9 +
+            "px" +
+            ';" value="' +
+            value +
+            '" class="tag-btn cursor" /> ' +
+            '<i class="fa-solid fa-xmark" onclick="deleteTag2(event)"></i>' +
+            "</div>";
+
+        const tagList = document.querySelector(".tag-list");
+        tagList.innerHTML += str;
+
+        event.target.value = "";
+        }
+
+        function resetTag() {
+        const tagList = document.querySelector(".tag-list");
+        tagList.textContent = "";
+        form.submit();
+        }
+
+        function deleteTag(e) {
+        e.target.remove();
+        form.submit();
+        }
+
+        function deleteTag2(e) {
+        e.target.parentNode.remove();
+        form.submit();
+        }
+
+        function deleteBeforeTag() {
+        const lastTag = document.querySelector(".tag-list div:last-child");
+        lastTag.remove();
+        form.submit();
         }
     </script>
 
