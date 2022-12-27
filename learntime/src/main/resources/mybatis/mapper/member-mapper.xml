@@ -149,7 +149,7 @@
 	
 	<!--나를 팔로우 하는 사람 리스트  -->
 	<select id="followerList" resultType = "MemberVo">
-		 SELECT M.NICK,M.IMG_PATH
+		 SELECT M.NICK,M.IMG_PATH,M.NO
 		FROM FOLLOW F
 		JOIN MEMBER M ON M.NO=F.FOLLOWING_NO
 		WHERE F.FOLLOWER_NO = #{no}
@@ -157,10 +157,18 @@
 	
 	<!--내가 팔로우 하는 사람 리스트  -->
 	<select id="followingList" resultType = "MemberVo">
-		SELECT M.NICK,M.IMG_PATH
+		SELECT M.NICK,M.IMG_PATH,M.NO
 		FROM FOLLOW F
 		JOIN MEMBER M ON M.NO=F.FOLLOWER_NO
 		WHERE F.FOLLOWING_NO = #{no}
+	</select>
+	
+	<!-- 팔로우 유무  -->
+	<select id="followCheck" resultType = "Int">
+		 SELECT COUNT(*)
+		 FROM FOLLOW
+		 WHERE FOLLOWING_NO=#{followingNo}
+	     AND FOLLOWER_NO=#{followerNo}
 	</select>
 	
 

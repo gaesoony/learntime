@@ -213,6 +213,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.followingList(sst,no);
 		
 	}
+	//팔로우 유무체크
+	@Override
+	public int followCheck(FollowVo follow) {
+		
+		return memberDao.followCheck(sst,follow);
+	}
 
 	
 

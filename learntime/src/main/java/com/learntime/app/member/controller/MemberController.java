@@ -218,11 +218,43 @@ public class MemberController {
 //			내가 팔로우 하는 사람 수 구하기
 			int followingCnt =memberService.followingCnt(no);
 			
+			
+			MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
+			System.out.println(loginMember.getNo());
+			String followingMember=loginMember.getNo();
+			MemberVo followerMember=memberService.selectNo(no);
+			
+			FollowVo follow=new FollowVo();
+			follow.setFollowingNo(followingMember);
+			follow.setFollowerNo(followerMember.getNo());
+			
+//			팔로우 유무체크
+			int followCheck=memberService.followCheck(follow);
+			session.setAttribute("followCheck", followCheck);
+			
+			System.out.println("followCheck:"+followCheck);
+			
 			session.setAttribute("followerCnt", followerCnt);
 			session.setAttribute("followingCnt", followingCnt);
 			
 			return "/member/mypage-home";
-	}	
+	}
+	
+//	마이페이지-홈(소개글 AJAX)
+	@ResponseBody
+	@PostMapping("/member/mypage/home")
+	public String mypage(MemberVo vo,HttpSession session) {
+		MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
+		vo.setNo(loginMember.getNo());
+		vo.setNick(loginMember.getNick());
+		int result=memberService.mypageEditProfile(vo);
+		if(result==0) {
+			return"0";
+		}
+		
+		return "1";
+			
+	}
 
 //	마이페이지-팔로잉(화면)
 	@GetMapping("/member/mypage/following")
@@ -231,7 +263,20 @@ public class MemberController {
 		model.addAttribute("userNo",user);
 		List<MemberVo>list=memberService.followingList(no);
 		model.addAttribute("list",list);
-		System.out.println(list);
+		
+
+		MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
+		String followingMember=loginMember.getNo();
+		MemberVo followerMember=memberService.selectNo(no);
+		
+		FollowVo follow=new FollowVo();
+		follow.setFollowingNo(followingMember);
+		follow.setFollowerNo(followerMember.getNo());
+		
+//		팔로우 유무체크
+		int followCheck=memberService.followCheck(follow);
+		session.setAttribute("followCheck", followCheck);
+		
 		return "/member/mypage-following";
 	}
 	
@@ -244,6 +289,18 @@ public class MemberController {
 		model.addAttribute("userNo",user);
 		List<MemberVo>list=memberService.followerList(no);
 		model.addAttribute("list",list);
+		
+		MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
+		String followingMember=loginMember.getNo();
+		MemberVo followerMember=memberService.selectNo(no);
+		
+		FollowVo follow=new FollowVo();
+		follow.setFollowingNo(followingMember);
+		follow.setFollowerNo(followerMember.getNo());
+		
+//		팔로우 유무체크
+		int followCheck=memberService.followCheck(follow);
+		session.setAttribute("followCheck", followCheck);
 		
 		return "/member/mypage-follow";
 	}
@@ -423,6 +480,8 @@ public class MemberController {
 			follow.setFollowerNo(followerMember.getNo());
 			memberService.follow(follow);
 			
+
+			
 //			나를 팔로우 하는 사람 수 구하기
 			int followerCnt =memberService.followerCnt(no);
 //			내가 팔로우 하는 사람 수 구하기
@@ -434,6 +493,10 @@ public class MemberController {
 			followMap.put("result", "FollowOk");
 			followMap.put("followerCnt",followerCnt);
 			followMap.put("followingCnt",followingCnt);
+			
+//			팔로우 유무체크
+			int followCheck=memberService.followCheck(follow);
+			session.setAttribute("followCheck", followCheck);
 			
 			String followJson = gson.toJson(followMap);
 			return followJson;
@@ -451,19 +514,29 @@ public class MemberController {
 			FollowVo follow=new FollowVo();
 			follow.setFollowingNo(unFollowingMember.getNo());
 			follow.setFollowerNo(unFollowerMember.getNo());
-			memberService.unfollow(follow);
+			
+			int result=memberService.unfollow(follow);
+			
 			
 //			나를 팔로우 하는 사람 수 구하기
 			int followerCnt =memberService.followerCnt(no);
 //			내가 팔로우 하는 사람 수 구하기
 			int followingCnt =memberService.followingCnt(no);
 			
+			
+			
 			Gson gson = new Gson();
 			Map<String, Object> followMap=new HashMap<String, Object>();
 			
-			followMap.put("result", "FollowOk");
+			followMap.put("result", "UnFollowOk");
 			followMap.put("followerCnt",followerCnt);
 			followMap.put("followingCnt",followingCnt);
+			
+			
+//			팔로우 유무체크
+
+			session.setAttribute("followCheck", 0);
+			
 			
 			String followJson = gson.toJson(followMap);
 			return followJson;

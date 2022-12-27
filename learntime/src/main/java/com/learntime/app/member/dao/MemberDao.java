@@ -56,6 +56,8 @@ public interface MemberDao {
 	public List<MemberVo> followerList(SqlSessionTemplate sst, String no);
 	//내가 팔로우 하는 사람 리스트 구하기
 	public List<MemberVo> followingList(SqlSessionTemplate sst, String no);
+	//팔로우 유무체크
+	public int followCheck(SqlSessionTemplate sst, FollowVo follow);
 	
 	
 	

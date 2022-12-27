@@ -121,6 +121,7 @@
       }
 
    
+   
 </style>
 </head>
 <body>
@@ -138,14 +139,14 @@
             <div id="intro-area">
                 <div id="intro">소개글</div>
                 <div id="intro-btn">
-                <c:if test="${userNo eq loginMember.no}">
+                <c:if test="${userNo.no eq loginMember.no}">
                    <button id="edit" class="btn btn-primary" onclick="edit()" type="button">편집</button>
                     <button id="save" class="btn btn-primary" onclick="save()" type="button">저장</button> 
                 </c:if>
                     
                 </div>
                 <div id="intro-editor">
-                    <div class="click2edit"></div>
+                     <div class="click2edit">${loginMember.intro}</div>
                 </div>
                 
            </div>
@@ -214,8 +215,31 @@
     };
 
     var save = function() {
-    var markup = $('.click2edit').summernote('code');
-    $('.click2edit').summernote('destroy');
+        var markup = $('.click2edit').summernote('code');
+        $('.click2edit').summernote('destroy');
+
+        $.ajax({
+            type: "post",
+            url: "${pageContext.request.contextPath}/member/mypage/home",
+            data:{
+                intro:markup
+            },
+            success: function(data) {
+                if(data==="O"){
+                    $('.click2edit').html("");
+                    $('.click2edit').html(markup);
+                }
+            },
+            error: function() {   
+                alert("수정실패");
+                    
+            }
+						
+        });
+
+        
+
+        
     };
     
 </script>
