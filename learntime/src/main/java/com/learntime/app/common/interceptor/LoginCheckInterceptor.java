@@ -20,6 +20,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor{
 			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 			if(loginMember == null) {
 				request.getRequestDispatcher("/wrong").forward(request, response);
+				System.out.println("interceptor~~~");
 				return false;
 			}
 		}

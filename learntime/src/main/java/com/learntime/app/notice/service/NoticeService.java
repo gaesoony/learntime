@@ -10,8 +10,16 @@ public interface NoticeService {
 	
 	public int noticeWrite(NoticeVo vo);
 
-	public List<NoticeVo> selectNoticeList(Map<String, String> map,PageVo pv);
+	public List<NoticeVo> selectNoticeList(NoticeVo vo, PageVo pv);
 
 	public int selectCount();
+
+	public int cmtCnt();
+
+	public int updateHit(NoticeVo vo);
+
+	public NoticeVo selectOne(NoticeVo vo);
+
+	public List<NoticeVo> selectNoticeListAll(NoticeVo vo, PageVo pv);
 
 }

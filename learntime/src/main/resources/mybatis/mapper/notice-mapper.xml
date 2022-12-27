@@ -4,18 +4,52 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="noticeMapper">
 
-	<insert id="noticeWrite">
-  		INSERT INTO NOTICE (NO, CATE_NO,WRITER,TITLE,CONTENT,ENROLL_DATE,
-  		DELETE_YN,MODIFY_DATE,STATUS) 
-		VALUES(SEQ_NOTICE_NO.NEXTVAL,#{cateNo},1,#{title},
-		#{content}, SYSDATE,'N',SYSDATE,#{status})
+    <insert id="noticeWrite">
+          INSERT INTO NOTICE (NO, CATE_NO,WRITER,TITLE,CONTENT,ENROLL_DATE,
+          DELETE_YN,MODIFY_DATE,HIT,STATUS) 
+        VALUES(SEQ_NOTICE_NO.NEXTVAL,#{cateNo},#{writer},#{title},
+        #{content}, SYSDATE,'N',SYSDATE,0,#{status})
   </insert>
-  <select id="noticeList">
-  	SELECT C.NAME,N.TITLE,N.ENROLL_DATE N.HIT, M.NICK FROM NOTICE N 
-  	JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER
+  <select id="noticeList" resultType="com.learntime.app.notice.vo.NoticeVo">
+      SELECT * FROM
+ 	 (SELECT N.NO,C.NAME as CATE_NAME,N.TITLE,N.ENROLL_DATE, N.HIT, M.NICK AS WRITER FROM NOTICE N 
+      JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER
+      WHERE STATUS = 2 and CATE_NO = #{cateNo} ORDER BY N.ENROLL_DATE DESC) WHERE ROWNUM <![CDATA[<= ]]>3
+        
+      UNION ALL 
+      SELECT N.NO,C.NAME as CATE_NAME,N.TITLE,N.ENROLL_DATE, N.HIT, M.NICK AS WRITER FROM NOTICE N 
+      JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER
+      WHERE CATE_NO = #{cateNo}
   </select>
-  <select id="selectCount">
-  	SELECT COUNT(*)FROM NOTICE
+  <select id="noticeListAll" resultType="com.learntime.app.notice.vo.NoticeVo">
+      SELECT * FROM
+ 	 (SELECT N.NO,C.NAME as CATE_NAME,N.TITLE,N.ENROLL_DATE, N.HIT, M.NICK AS WRITER FROM NOTICE N 
+      JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER
+      WHERE STATUS = 2 ORDER BY N.ENROLL_DATE DESC) WHERE ROWNUM <![CDATA[<= ]]>3
+        
+      UNION ALL 
+      SELECT N.NO,C.NAME as CATE_NAME,N.TITLE,N.ENROLL_DATE, N.HIT, M.NICK AS WRITER FROM NOTICE N 
+      JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER
+     
   </select>
-	
+  <select id="selectCount" resultType="int">
+      SELECT COUNT(*) FROM NOTICE
+  </select>
+  <select id="selectCmtCnt" resultType="int">
+  	SELECT COUNT(*) FROM NOTICE_CMT
+  
+  </select>
+  <update id="updateHit">
+		UPDATE NOTICE
+		SET HIT = HIT + 1
+		WHERE NO = #{no}
+	</update>
+
+	<select id="selectOne" resultType="com.learntime.app.notice.vo.NoticeVo">
+  	SELECT M.NICK AS WRITER ,N.ENROLL_DATE,N.HIT,C.NAME as CATE_NAME,N.TITLE,N.CONTENT 
+  	FROM NOTICE N 
+    JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER WHERE
+    N.NO = #{no}
+  
+  </select>
 </mapper>

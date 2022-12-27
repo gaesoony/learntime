@@ -29,15 +29,15 @@
         </div>
         <div class="notice-title">
             <div class="profile-info-etc">
-                <div class="admin-info">관리자</div>
+                <div class="admin-info">${vo.writer}</div>
                 <div class="info-etc">
-                    <div class="enroll-date-a">2022.12.12</div>
-                    <div class="views-a"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">17k</div>
-                    <div class="reply-no"><img width="15px" height="15px" class="messages-notice" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">8</div>
+                    <div class="enroll-date-a">${vo.enrollDate }</div>
+                    <div class="views-a"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">${vo.hit }</div>
+                    <div class="reply-no"><img width="15px" height="15px" class="messages-notice" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">${vo.cmt}</div>
                 </div>
                 <div class="title-cate-etc">
-                    <div class="cate-notice-a">[전체]</div>
-                    <div class="title-info">스팸 단어로 인한 글 등록 불가 문제 관련 공지사항</div>
+                    <div class="cate-notice-a">${vo.cateName }</div>
+                    <div class="title-info">${vo.title}</div>
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
     </div>
     <div class="notice-comments">
         <div class="reply-section">
-            <div class="reply-num">6개의 댓글</div>
+            <div class="reply-num">${vo.cmt}개의 댓글</div>
             <div class="leave-comment">
                 <div class="div-box-a">
                     <div class="div-box-b">
@@ -63,13 +63,6 @@
                         <div class="profile-etc">
                             <div class="profile-pic"><img width="70px" height="70px" src="/app/resources/img/faq/image 127.png"></div>
                             <div class="profile-id"><img width="200px" height="70px" src="/app/resources/img/faq/image 91.png"></div>
-                            <div class="good-or-bad">
-                                <div class="btn-good-or-bad">
-                                    <div class="downBtn"><img width="20px" height="20px" src="https://cdn-icons-png.flaticon.com/128/32/32195.png"></div>
-                                    <div class="middleBtn">3</div>
-                                    <div class="upBtn"><img width="20px" height="20px" src="https://cdn-icons-png.flaticon.com/128/271/271239.png"></div>
-                                </div>
-                            </div>
                         </div>
                         <div class="leaved-comment">접속이 잘 안되네요</div>
                         <div class="hide-write-reply">
@@ -96,14 +89,7 @@
                         <div class="reply-reply">
                             <div class="profile-etc-re">
                                 <div class="profile-pic-re"><img width="70px" height="70px" src="/app/resources/img/faq/image 130.png"></div>
-                                <div class="profile-id-re"><img width="200px" height="70px" src="/app/resources/img/faq/image 129.png"></div>
-                                <div class="good-or-bad-re">
-                                    <div class="btn-good-or-bad-re">
-                                        <div class="downBtn"><img width="20px" height="20px" src="https://cdn-icons-png.flaticon.com/128/32/32195.png"></div>
-                                        <div class="middleBtn">3</div>
-                                        <div class="upBtn"><img width="20px" height="20px" src="https://cdn-icons-png.flaticon.com/128/271/271239.png"></div>
-                                    </div>
-                                </div> 
+                                <div class="profile-id-re"><img width="200px" height="70px" src="/app/resources/img/faq/image 129.png"></div> 
                             </div>
                             <div class="leaved-comment-re">@겨울의속삭임님<br>해당이슈는 수정하여 반영하였습니다. 감사합니다.</div>
                             <div class="hide-comment-re"><span>댓글쓰기</span></div>
