@@ -55,8 +55,8 @@ public class MakegrassServiceImpl implements MakegrassService {
 
 	//게시글 목록 조회
 	@Override
-	public List<MakegrassVo> selectList() {
-		return dao.selectList(sst);
+	public List<MakegrassVo> selectList(MakegrassVo vo) {
+		return dao.selectList(sst, vo);
 	}
 
 }

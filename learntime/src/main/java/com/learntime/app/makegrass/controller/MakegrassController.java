@@ -22,17 +22,11 @@ public class MakegrassController {
 	@Autowired
 	private MakegrassService service;
 	
-	//잔디심기 목록 조회 (화면)
+	//잔디심기 목록 조회 (화면+DB)
 	@GetMapping("/list")
-	public String list() {
-		return "makegrass/list";
-	}
-	
-	//잔디심기 목록 조회 (DB)
-	@PostMapping("/list")
-	public String list(Model model) {
+	public String list(Model model, MakegrassVo vo) {
 		
-		List<MakegrassVo> makegrassList = service.selectList();
+		List<MakegrassVo> makegrassList = service.selectList(vo);
 		model.addAttribute("makegrassList", makegrassList);
 		return "makegrass/list";
 	}

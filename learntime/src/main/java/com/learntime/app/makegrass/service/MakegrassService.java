@@ -12,6 +12,6 @@ public interface MakegrassService {
 	//게시글 작성
 	public int write(MakegrassVo vo);
 
-	public List<MakegrassVo> selectList();
+	public List<MakegrassVo> selectList(MakegrassVo vo);
 
 }

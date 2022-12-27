@@ -18,7 +18,7 @@ public interface QnaDao {
 	int insertKnowledgeTag(SqlSessionTemplate sst, String[] tag);
 
 	//게시글 목록
-	List<QnaVo> selectList(SqlSessionTemplate sst);
+	List<QnaVo> selectList(SqlSessionTemplate sst, QnaVo vo);
 
 	
 

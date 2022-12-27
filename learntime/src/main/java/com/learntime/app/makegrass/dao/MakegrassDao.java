@@ -16,7 +16,7 @@ public interface MakegrassDao {
 
 	int insertKnowledgeTag(SqlSessionTemplate sst, String[] str);
 
-	List<MakegrassVo> selectList(SqlSessionTemplate sst);
+	List<MakegrassVo> selectList(SqlSessionTemplate sst, MakegrassVo vo);
 
 	
 

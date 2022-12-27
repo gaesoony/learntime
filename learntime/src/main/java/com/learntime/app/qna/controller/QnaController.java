@@ -22,20 +22,13 @@ public class QnaController {
 	@Autowired
 	private QnaService service;
 
-	//목록 조회 (화면)
+	//목록 조회 (화면+DB)
 	@GetMapping("/list")
-	public String list() {
-		return "qna/list";
-	}
-	
-	//게시글 목록 조회 (DB)
-	@PostMapping("/list")
-	public String list(Model model) {
+	public String list(Model model, QnaVo vo) {
 		
-		List<QnaVo> qnaList = service.selectList();
+		List<QnaVo> qnaList = service.selectList(vo);
 		model.addAttribute("qnaList", qnaList);
 		return "qna/list";
-
 	}
 	
 	//게시글 상세조회 (화면)

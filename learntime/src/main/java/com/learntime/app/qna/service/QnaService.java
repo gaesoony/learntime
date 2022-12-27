@@ -15,7 +15,7 @@ public interface QnaService {
 	public int write(QnaVo vo);
 
 	//게시글 목록
-	public List<QnaVo> selectList();
+	public List<QnaVo> selectList(QnaVo vo);
 	
 	
 }
