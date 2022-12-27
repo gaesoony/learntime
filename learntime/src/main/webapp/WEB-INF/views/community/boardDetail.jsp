@@ -38,6 +38,72 @@
 				<span id="comment-number">댓글수 3</span>
 				<span id="scrap">스크랩하기</span>
 				<span class="material-symbols-rounded bookmark-icon">bookmark</span>
+
+				<script>
+					//로그인멤버가 없을시 스크랩하기 버튼 비활성화
+					$(document).ready(function() {
+						if("${loginMember}" == "") {
+							$("#scrap").next().attr("disabled", true);
+						}
+					});
+					
+					$(document).ready(function() {
+						if("${lhs.scrap}" == "true") {
+							$("#scrap").next().addClass("main-green-filled");
+						}
+					});
+
+
+					// 스크랩하기 버튼클릭시 안내문구
+					$(document).ready(function() {
+						$("#scrap").next().click(function() {
+							if($("#scrap").next().hasClass("main-green-filled") == false) {
+								$("#scrap").next().after("<span id='scrap-alert'>스크랩되었습니다. 마이페이지에서 확인하세요.</span>");
+								$("#scrap-alert").delay(2000).fadeOut();
+							}
+						});
+					});
+
+					
+					// 스크랩 클릭시 채워짐..
+					$(document).ready(function() {
+						$("#scrap").next().click(function() {
+						$(".bookmark-icon").toggleClass("main-green-filled");
+						});
+					});	
+
+
+					//스크랩하기 서버
+					$(document).ready(function() {
+						$("#scrap").next().click(function() {
+							$.ajax({
+								url: "/app/community/scrap",
+								type: "post",
+								data: {
+									"boardNo": "${bv.no}",
+									"userNo": "${loginMember.no}",
+									"scrap": "${lhsList[0].scrap}"
+								},
+								success: function(data) {
+									console.log("성공"+ data);
+
+								}
+								
+								,
+								error: function() {
+									console.log("실패" + data);
+								}
+							});
+						});
+					});
+					
+					
+					
+				</script>
+
+
+
+
 			</div>
 		</div>
 
@@ -60,7 +126,7 @@
 
 			<div id="btns-box">
 				<div id="modify-btn" onclick="location.href='/app/community/board/modify?bno=${bv.no}'">수정</div>
-				<div id="delete-btn" onclick="location.href=''">삭제</div>
+				<div id="delete-btn" onclick="location.href='/app/community/board/delete?bno=${bv.no}'">삭제</div>
 			</div>
 
 		</div>
@@ -253,6 +319,16 @@
 			}
 		});
 		}
+	</script>
+
+	<script>
+		// 로그인이 되어있지 않거나 로그인한 회원이 작성자가 아닐때 버튼 hide
+		$(document).ready(function() {
+			if("${loginMember.no}" !== "${bv.writer}" || "${loginMember.no}" === "null") {
+				$("#modify-btn").hide();
+				$("#delete-btn").hide();
+			}
+		});
 	</script>
 </body>
 </html>

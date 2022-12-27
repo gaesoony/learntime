@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.community.vo.CateVo;
 import com.learntime.app.community.vo.CmtVo;
+import com.learntime.app.community.vo.LHSVo;
 
 public interface BoardDao {
 
@@ -33,5 +34,20 @@ public interface BoardDao {
 
 	//insert category
 	public int insertCategory(SqlSessionTemplate sst, String cateName);
+
+	//유저 스크랩 조회
+	public List<LHSVo> selectLHS(SqlSessionTemplate sst, LHSVo lhs);
+
+	//스크랩 추가
+	public int insertScrap(SqlSessionTemplate sst, LHSVo lhs);
+	
+	//스크랩 삭제
+	public int deleteScrap(SqlSessionTemplate sst, LHSVo lhs);
+
+	//나의 글 조회
+	public List<BoardVo> selectMyList(SqlSessionTemplate sst, String userNo);
+
+	//스크랩 글 조회
+	public List<BoardVo> selectScrapList(SqlSessionTemplate sst, String userNo);
 	
 }

@@ -5,19 +5,38 @@
 <mapper namespace="freeBoardMapper">
 
 	<insert id="write">
-		INSERT INTO FREE_BOARD VALUES 
-		(	SEQ_FREEBOARD_NO.NEXTVAL,
+		INSERT INTO FREE_BOARD VALUES (
+			SEQ_FREEBOARD_NO.NEXTVAL,
 			#{cateNo},
-			1,
+			#{writer},
 			#{title},
 			#{content},
 			SYSDATE,
 			'N',
 			SYSDATE,
-			0)
+			0
+		)
 	</insert>
 	
 	<select id="selectList" resultType = "BoardVo">
+		SELECT FB.*, FLH.*, M.*, FBC.*, CMT.count AS CMT_COUNT
+		FROM FREE_BOARD FB
+		LEFT JOIN (  SELECT  BOARD_NO,
+		                SUM(CASE WHEN STATUS = 'L' THEN 1 ELSE 0 END) AS LIKES,
+		                SUM(CASE WHEN STATUS = 'H' THEN 1 ELSE 0 END) AS HATES
+		        FROM FREE_BOARD_LIKE_HATE
+		        GROUP BY BOARD_NO) FLH
+		ON FB.NO = FLH.BOARD_NO
+		JOIN (SELECT  NO, ID, NICK WRITER_NICK, IMG_PATH WRITER_IMG FROM MEMBER) M
+		ON FB.WRITER = M.NO
+		JOIN (SELECT NO, NAME CATE FROM FREE_BOARD_CATEGORY) FBC
+		ON FBC.NO = FB.CATE_NO
+		LEFT JOIN (SELECT BOARD_NO, COUNT(*) as COUNT FROM FREE_BOARD_CMT GROUP BY BOARD_NO) CMT
+		ON FB.NO = CMT.BOARD_NO
+		ORDER BY FB.NO DESC
+	</select>
+	
+	<select id="selectMyList" resultType = "BoardVo">
 		SELECT * FROM FREE_BOARD FB
 		LEFT JOIN (  SELECT  BOARD_NO,
 		                SUM(CASE WHEN STATUS = 'L' THEN 1 ELSE 0 END) AS LIKES,
@@ -29,8 +48,10 @@
 		ON FB.WRITER = M.NO
 		JOIN (SELECT NO, NAME CATE FROM FREE_BOARD_CATEGORY) FBC
 		ON FBC.NO = FB.CATE_NO
+		WHERE WRITER = #{userNo}
 		ORDER BY FB.NO DESC
 	</select>
+	
 	
 	<select id="selectOne" resultType = "BoardVo">
 		SELECT * FROM FREE_BOARD FB
@@ -90,5 +111,70 @@
 	<insert id="insertCategory">
 		INSERT INTO FREE_BOARD_CATEGORY VALUES (SEQ_FREE_BOARD_CATEGORY_NO, #{cateName})
 	</insert>
+	
+	<select id="selectLHS" resultType = "com.learntime.app.community.vo.LHSVo">
+		SELECT lh.M_NO, s.M_NO, COALESCE(lh.BOARD_NO, s.BOARD_NO) as BOARD_NO, COALESCE(lh.STATUS, 'null') as STATUS,
+		       CASE WHEN s.BOARD_NO IS NOT NULL THEN 'true' ELSE 'false' END as SCRAP
+		FROM FREE_BOARD_LIKE_HATE lh
+		FULL OUTER JOIN FREE_BOARD_SCRAP s
+		ON lh.BOARD_NO = s.BOARD_NO
+		WHERE lh.M_NO = #{userNo} OR s.M_NO = #{userNo}
+		<if test ="boardNo != null">AND s.BOARD_NO = #{boardNo} OR lh.BOARD_NO = #{boardNo}</if>
+	</select>
+	
+	<insert id="insertScrap">
+		INSERT INTO FREE_BOARD_SCRAP VALUES (#{userNo}, #{boardNo})
+	</insert>
+	
+	<delete id="">
+		DELETE FROM FREE_BOARD_SCRAP WHERE USER_NO = #{userNo} AND BOARD_NO = #{boardNo}
+	</delete>
+	
+	
+	<select id="selectScrapList" resultType = "BoardVo">
+		SELECT *
+		FROM FREE_BOARD FB
+		LEFT JOIN (  SELECT  BOARD_NO,
+		                    SUM(CASE WHEN STATUS = 'L' THEN 1 ELSE 0 END) AS LIKES,
+		                    SUM(CASE WHEN STATUS = 'H' THEN 1 ELSE 0 END) AS HATES
+		            FROM FREE_BOARD_LIKE_HATE
+		            GROUP BY BOARD_NO) FLH
+		ON FB.NO = FLH.BOARD_NO
+		JOIN (SELECT  NO, ID, NICK WRITER_NICK, IMG_PATH WRITER_IMG FROM MEMBER) M
+		ON FB.WRITER = M.NO
+		JOIN (SELECT NO, NAME CATE FROM FREE_BOARD_CATEGORY) FBC
+		ON FBC.NO = FB.CATE_NO
+		LEFT JOIN (SELECT BOARD_NO SCRAP FROM FREE_BOARD_SCRAP WHERE M_NO = #{userNo}) FBS
+		ON FB.NO = FBS.SCRAP
+		WHERE FBS.SCRAP IS NOT NULL
+		ORDER BY FB.NO DESC
+	
+	</select>
+	
 
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

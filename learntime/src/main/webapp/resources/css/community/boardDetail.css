@@ -72,6 +72,7 @@
 }
 
 #hit-comment{
+    position: relative;;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -80,6 +81,7 @@
 #hit-comment>span{
     margin-right: 10px;
 }
+
 span.bookmark-icon{
     font-size: 40px;
 }
@@ -91,7 +93,15 @@ span.bookmark-icon:hover{
     'wght' 400,
     'GRAD' 0,
     'opsz' 48;
-
+}
+.main-green-filled{
+    color: #5ecc80;
+    cursor: pointer;
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
 }
 
 div#content{
@@ -421,3 +431,20 @@ div#content{
     padding: 70px 0 20px 0;
 }
 
+/* 스크랩 */
+#scrap-alert {
+    color: green;
+    font-size: 12px;
+    position: absolute;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    bottom: 40px;
+    right: 10px;
+  }
+
+#btns-box{
+    width: 225px;
+}
+  

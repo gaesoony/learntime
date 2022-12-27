@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -116,7 +117,6 @@ pageEncoding="UTF-8"%>
                 <div class="community-content-head">
                     <select name="" id="">
                       <option value="">글제목</option>
-                      <option value="">작성자</option>
                     </select>
                     <div class="search-box">
                       <span class="material-symbols-rounded search-icon">search</span>
@@ -135,42 +135,45 @@ pageEncoding="UTF-8"%>
                 </div>
 
                 <!-- 컨텐츠 반복 -->
-                <a href="/app/community/board/detail" class="community-content content">
-                  <div class="text-number">777</div>
-                  <div class="text-title">취직 시켜줘어어 취직 시켜줘어어 취직 시켜줘어어 취직 시켜줘어어 취직 시켜줘어어 취직 시켜줘어어 </div>
-                  <div class="text-enroll">2012.02.10 10:00</div>
-                  <div class="text-like">77</div>
-                </a>
-                <a href="/app/community/board/detail" class="community-content content">
-                  <div class="text-number">777</div>
-                  <div class="text-title">일하고 싶다</div>
-                  <div class="text-enroll">2012.02.10 10:00</div>
-                  <div class="text-like">77</div>
-                </a>
-                <a href="/app/community/board/detail" class="community-content content">
-                  <div class="text-number">777</div>
-                  <div class="text-title">취직 시켜줘어어 </div>
-                  <div class="text-enroll">2012.02.10 10:00</div>
-                  <div class="text-like">77</div>
-                </a>
+
+                <!-- myList 비어있으면 -->
+                <c:if test="${myList.size() == 0}">
+                  <div id="no-application" class="m-notice">내가 작성한 글이 없어요 :(</div>
+                </c:if>
+
+                <!-- 있으면 반복-->
+                <c:forEach var="myList" items="${myList}">
+                  <a href="/app/community/board/detail?bno=${myList.no}" class="community-content content">
+                    <div class="text-number">${myList.no}</div>
+                    <div class="text-title">${myList.title}</div>
+                    <div class="text-enroll">
+                      <c:out value="${myList.enrollDate.substring(0, myList.enrollDate.length()-3)}"/>
+                    </div>
+                    <div class="text-like">
+                      <c:if test="${myList.likes == null}">0</c:if>
+                      ${myList.likes}</div>
+                  </a>
+                </c:forEach>
 
                 <!-- 페이징 -->
-                <div id="paging">
-                    <div class="paging-btn">1</div>
-                    <div class="paging-btn">2</div>
-                    <div class="paging-btn">3</div>
-                    <div class="paging-btn">4</div>
-                    <div class="paging-btn">5</div>
-                    <div class="paging-btn">6</div>
-                    <div class="paging-btn">7</div>
-                    <div class="paging-btn">8</div>
-                    <div class="paging-btn">9</div>
-                    <div class="paging-btn">10</div>
-                    <div class="paging-btn" id="next-btn">다음</div>
-                </div>
+                <c:if test="${myList.size() != 0}">
+                  <div id="paging">
+                      <div class="paging-btn">1</div>
+                      <div class="paging-btn">2</div>
+                      <div class="paging-btn">3</div>
+                      <div class="paging-btn">4</div>
+                      <div class="paging-btn">5</div>
+                      <div class="paging-btn">6</div>
+                      <div class="paging-btn">7</div>
+                      <div class="paging-btn">8</div>
+                      <div class="paging-btn">9</div>
+                      <div class="paging-btn">10</div>
+                      <div class="paging-btn" id="next-btn">다음</div>
+                  </div>
+                </c:if>
 
                 <!-- 글 없을때.. -->
-                <div id="no-application" class="m-notice">내가 작성한 글이 없어요 :(</div>
+                
             </div>
 
             <!-- 나의 스크랩 카테고리 -->
@@ -199,27 +202,36 @@ pageEncoding="UTF-8"%>
                 </div>
 
                 <!-- 컨텐츠 반복 -->
-                <a href="/app/community/board/detail" class="scrap-content content">
-                    <div class="text-number">777</div>
-                    <div class="text-title">취직 시켜줘어어 취직 시켜줘어어 취직 시켜줘어어 취직 시켜줘어어 취직 시켜줘어어 취직 시켜줘어어 </div>
-                    <div class="text-writer">망치맨</div>
-                    <div class="text-enroll">2012.02.10 10:00</div>
-                    <div class="text-like">77</div>
-                </a>
-                <a href="/app/community/board/detail" class="scrap-content content">
-                    <div class="text-number">777</div>
-                    <div class="text-title">일하고 싶다</div>
-                    <div class="text-writer">망치맨</div>
-                    <div class="text-enroll">2012.02.10 10:00</div>
-                    <div class="text-like">77</div>
-                </a>
-                <a href="/app/community/board/detail" class="scrap-content content">
-                    <div class="text-number">777</div>
-                    <div class="text-title">취직 시켜줘어어 </div>
-                    <div class="text-writer">망치맨</div>
-                    <div class="text-enroll">2012.02.10 10:00</div>
-                    <div class="text-like">77</div>
-                </a>
+                <!-- scrapList 에서 글 나열하기 -->
+                <c:if test="${scrapList.size() == 0}">
+                  <div id="no-application" class="m-notice">스크랩한 글이 없어요 :(</div>
+                </c:if>
+
+                <c:forEach var="scrapList" items="${scrapList}">
+                  <a href="/app/community/board/detail?bno=${scrapList.no}" class="scrap-content content">
+                    <div class="text-number">${scrapList.no}</div>
+                    <div class="text-title">${scrapList.title}</div>
+                    <div class="text-writer">${scrapList.writerNick}</div>
+                    <div class="text-enroll">
+                      <c:out value="${scrapList.enrollDate.substring(0, scrapList.enrollDate.length()-3)}"/>
+                    </div>
+                    <div class="text-like">
+                      <c:if test="${scrapList.likes == null}">0</c:if>
+                      ${scrapList.likes}</div>
+                  </a>
+                </c:forEach>
+
+
+                <!-- 이전, 1부터 10, 다음 버튼이 있는 페이징 -->
+                
+
+
+
+
+
+
+
+
 
                 <!-- 페이징 -->
                 <div id="paging">

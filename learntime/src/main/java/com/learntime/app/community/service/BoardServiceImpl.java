@@ -11,6 +11,8 @@ import com.learntime.app.community.dao.BoardDao;
 import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.community.vo.CateVo;
 import com.learntime.app.community.vo.CmtVo;
+import com.learntime.app.community.vo.LHSVo;
+import com.learntime.app.member.vo.MemberVo;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -73,6 +75,39 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int insertCate(String cateName) {
 		return dao.insertCategory(sst, cateName);
+	}
+
+	//스크랩, 좋아요 조회
+	@Override
+	public List<LHSVo> selectLHS(LHSVo lhs) {
+		return dao.selectLHS(sst, lhs);
+		
+	}
+
+	//스크랩 넣기
+	@Transactional
+	@Override
+	public int insertScrap(LHSVo lhs) {
+		return dao.insertScrap(sst, lhs);
+	}
+
+	//스크랩 삭제
+	@Transactional
+	@Override
+	public int deleteScrap(LHSVo lhs) {
+		return dao.deleteScrap(sst, lhs);
+	}
+	
+	//나의 글조회
+	@Override
+	public List<BoardVo> selecMyList(String userNo) {
+		return dao.selectMyList(sst, userNo);
+	}
+
+	//스크랩 글조회
+	@Override
+	public List<BoardVo> selectScrapList(String userNo) {
+		return dao.selectScrapList(sst, userNo);
 	}
 	
 	
