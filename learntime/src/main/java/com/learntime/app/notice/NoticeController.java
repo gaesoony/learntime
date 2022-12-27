@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.learntime.app.member.vo.MemberVo;
@@ -33,8 +34,9 @@ public class NoticeController {
 	
 	// 공지사항 리스트 화면
 		@GetMapping("notice/noticeList")
-		public String noticeList(@RequestParam ("cateNo")int cateNo ,NoticeVo vo,HttpServletRequest req, Model mv) {
+		public String noticeList(int cateNo ,NoticeVo vo,HttpServletRequest req, Model mv) {
 			System.out.println(cateNo);
+			
 			String category = req.getParameter("notice");
 			String keyword = req.getParameter("search-input");
 			String p = req.getParameter("p");
@@ -68,7 +70,7 @@ public class NoticeController {
 
 			mv.addAttribute("list",list);
 			
-			System.out.println(list);
+			System.out.println("...........");
 			
 			return "notice/noticeList";
 			

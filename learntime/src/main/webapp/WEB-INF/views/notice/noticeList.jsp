@@ -12,6 +12,8 @@
 <body>
     <%@ include file = "/WEB-INF/views/common/header.jsp" %>
 <form action="/app/notice/noticeList" method="get">
+	<input type="hidden" value="1" name="cateNo">
+	<input type="hidden" value="${list.p}" name="p">
 	<div class="main-notice">
         <div class="banner-notice">
             <div class="banner-dark">
