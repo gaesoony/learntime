@@ -331,3 +331,12 @@ input[type="submit"]#search-submit{
 
 
 
+
+
+
+#cmt-count{
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #878787;
+}

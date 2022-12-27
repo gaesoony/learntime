@@ -34,9 +34,10 @@
         <div id="cate-select-box">
             <select name="cateNo" id="" required>
                 <option value="" disabled selected>카테고리를 선택해주세요</option>
-                <option value="1">카테고리1</option>
-                <option value="2">카테고리2</option>
-                <option value="3">카테고리3</option>
+                <!-- 카테고리 받아오기 -->
+                <c:forEach var="cate" items="${cateList}">
+                <option value="1">${cate.name}</option>
+                </c:forEach>
             </select>
         </div>
         <div id="title-txt">제목</div>

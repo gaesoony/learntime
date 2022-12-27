@@ -5,6 +5,8 @@ import java.util.List;
 import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.community.vo.CateVo;
 import com.learntime.app.community.vo.CmtVo;
+import com.learntime.app.community.vo.LHSVo;
+import com.learntime.app.member.vo.MemberVo;
 
 public interface BoardService {
 
@@ -32,6 +34,19 @@ public interface BoardService {
 	//insert category
 	public int insertCate(String cateName);
 
+	//스크랩 조회(멤버) 
+	public List<LHSVo> selectLHS(LHSVo lhs);
 
+	//스크랩 하기
+	public int insertScrap(LHSVo lhs);
+	
+	//스크랩 삭제
+	public int deleteScrap(LHSVo lhs);
+
+	//나의 글 조회
+	public List<BoardVo> selecMyList(String userNo);
+
+	//스크랩 글조회
+	public List<BoardVo> selectScrapList(String userNo);
 	
 }

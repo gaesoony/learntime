@@ -32,36 +32,13 @@
                 <span>작성하기</span> 
             </div>
             <div id="category" class="height-40">
-                <input type="radio" name="freeboard-cate" id="freeboard-cate1">
-                <label for="freeboard-cate1">전체</label>
-                <input type="radio" name="freeboard-cate" id="freeboard-cate2">
-                <label for="freeboard-cate2">자유</label>
-                <input type="radio" name="freeboard-cate" id="freeboard-cate3">
-                <label for="freeboard-cate3">개발</label>
-                <input type="radio" name="freeboard-cate" id="freeboard-cate4">
-                <label for="freeboard-cate4">커리어</label>
-                <input type="radio" name="freeboard-cate" id="freeboard-cate5">
-                <label for="freeboard-cate5">추가1</label>
-                <input type="radio" name="freeboard-cate" id="freeboard-cate6">
-                <label for="freeboard-cate6">추가2</label>
-                <input type="radio" name="freeboard-cate" id="freeboard-cate7">
-                <label for="freeboard-cate7">temp-category3</label>
-                <input type="radio" name="freeboard-cate" id="freeboard-cate8">
-                <label for="freeboard-cate8">temp-category1</label>
-                <input type="radio" name="freeboard-cate" id="freeboard-cate9">
-                <label for="freeboard-cate9">temp-category2</label>
-                <input type="radio" name="freeboard-cate" id="freeboard-cate10">
-                <label for="freeboard-cate10">temp-category3</label>
-                <input type="radio" name="freeboard-cate" id="freeboard-cate11">
-                <label for="freeboard-cate11">temp-category1</label>
-                
-                <!-- jstl 반복문 -->
-                <!-- <c:forEach items = "" var= "cate">
-                    <input type="radio" name="freeboard-cate" id="${cate.no}">
-                    <label for="${cate.no}">${cate.name}</label>
-                </c:forEach> -->
-
-                
+                <input type="radio" name="freeboard-cate" id="c0">
+                <label for="c0">전체</label>
+                <c:forEach items = "${cateList}" var= "cate">
+                    <input type="radio" name="freeboard-cate" id="c${cate.no}">
+                    <label for="c${cate.no}">${cate.name}</label>
+                </c:forEach>
+               
                 <script>
                     // 카테고리가 클릭되면 해당 카테고리의 쿼리스트링을 생성 후 이동
                     $('#category').click(function(){
@@ -173,7 +150,12 @@
 
                 <div class="board-content" onclick="location.href='/app/community/board/detail?bno=${list.no}'">
                     <div class="title-box">
-                        <span>${list.title}</span>
+                        <span>${list.title} 
+                            <!-- ${list.cmtCount} 가 있을때 출력-->
+                            <c:if test="${list.cmtCount != null}">
+                                <span id="cmt-count">[${list.cmtCount}]</span>
+                            </c:if>
+                        </span>
                     </div>
                     <div class="content-info-box">
                         <div class="writer-info">
@@ -216,7 +198,7 @@
     
     <%@include file ="/WEB-INF/views/common/footer.jsp" %>
     <script>
-        // 1. #write-btn 을 누르면 작동하는 함수
+        // 글쓰기 함수
         $('#write-btn').on('click',function(){
            
             if(${loginMember == null}){
