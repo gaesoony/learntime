@@ -22,7 +22,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}" /> 
 
 <style>
-
+   
  
 
 
@@ -33,15 +33,20 @@
         height: 100vh;
         position: fixed;
         visibility: hidden;
-        opacity: 0;
+        --opacity: 0;
 
         display: flex;
         z-index:10000;
       }
-      .show {
-        visibility: visible;
-        opacity: 1;
-      }
+
+      .hidden{
+      visibility: hidden;
+    }
+    .show {
+      visibility: visible;
+      
+    }
+     
       #modal-whiteBG {
         text-align: center;
         width: 320px; 
@@ -164,7 +169,7 @@
         --grid-column: span 3;
     }
 
-    #header div{
+    #header div:not(#alarm-area,#alarm-area div){
         width: 100%;
         height: 100%;
         margin: auto;
@@ -193,9 +198,33 @@
       font-size:16px;
     } 
 
+    #alarm{
+      position: relative;
+    }
+
+    #alarm #alarm-area{
+      width: 400px;
+      height: 600px;
+      border: 1px solid #D9D9D9;
+      background-color: #FFFFFF;
+      position:absolute;
+      right: 0;
+      top: 75px;
+      padding: 10px;
+    
+      display: grid;
+      grid-template-columns: 30px 370px;
+      grid-template-rows: repeat(20, 30px);
+    }
+
+    #alarm-cate{
+      font-size: 10px;
+      font-weight: 700;
+      color:var(--main-color);
+    }
+
     /* 헤더 CSS 끗 */
-
-
+   
 
 </style>
 
@@ -252,8 +281,15 @@
       <div id="join"><a href="${pageContext.request.contextPath}/member/join">JOIN</a></div>
       <div id="login"><button id="login-btn">LOGIN</button></div>
       <%}else{%>
-        <div id="alarm"><span class="material-symbols-outlined">notifications</span></div>
+        <div id="alarm"><span class="material-symbols-outlined">notifications</span>
+          <div id="alarm-area" class="hidden">
+            <div id="alarm-cate">[공지]</div>
+            <div id="alarm-content">알람내용입니다</div>
+          </div>
+        </div>
+        
         <div id="mypage"><a href="${pageContext.request.contextPath}/member/mypage/home?no=${loginMember.getNo()}"><span class="material-symbols-outlined">account_circle</span></a></div>
+       
         <div id="mypage"><a href="${pageContext.request.contextPath}/member/logout"><span class="material-symbols-outlined">logout</span></a></div>
       <%}%>
   </div>
@@ -262,6 +298,7 @@
     
     
   <script>
+
   //모달 띄우기
   $('#login-btn').on('click',function(){
     $('.blackBG').addClass('show');
@@ -279,6 +316,25 @@
 		$('.blackBG').removeClass('show');
 	}
   });
+
+
+     //알람창 띄우기
+     $('#alarm').on('click',function(){
+
+            
+      if($('#alarm-area').hasClass('hidden')){
+        $('#alarm-area').removeClass('hidden');
+        $('#alarm-area').addClass('show');
+      }else{
+        $('#alarm-area').removeClass('show');
+        $('#alarm-area').addClass('hidden');
+      }
+
+
+
+
+
+});
   
   
   $("form").on("submit", function (e) {

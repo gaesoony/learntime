@@ -52,6 +52,8 @@ public interface MemberService {
 	public List<MemberVo> followerList(String no);
 	//내가 팔로잉 하는 사람 리스트 구하기
 	public List<MemberVo> followingList(String no);
+	//팔로우 유무체크
+	public int followCheck(FollowVo follow);
 	
 	
 }

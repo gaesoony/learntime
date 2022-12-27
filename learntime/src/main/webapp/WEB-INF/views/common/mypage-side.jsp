@@ -80,9 +80,7 @@ body{
    
 }
 
-#ufb{
-    display: none;
-}
+
 
 #dm-btn span{
  display: flex;
@@ -98,15 +96,11 @@ body{
     content:"팔로잉 중"
    }
 
-.follow-btn:hover,.following-btn:hover{
+.following-btn:hover{
     border: 1px solid #ff0000;
     background-color: #ffcfcf;
 }
-.follow-btn:hover::before{
 
-    content:"언팔로잉";
-    color:#ff0000;
-   }
 
 .following-btn:hover::before{
     
@@ -123,9 +117,9 @@ body{
 
             <div id="profile-nick">${userNo.nick}</div>
             <div id="profile-follow">
-                <a id="followCnt" href="${pageContext.request.contextPath}/member/mypage/follow?no=${userNo.no}">${followingCnt} 팔로우중</a>
+                <a id="followCnt" href="${pageContext.request.contextPath}/member/mypage/following?no=${userNo.no}">${followingCnt} 팔로우중</a>
                 <span>|</span>
-                <a id="followingCnt" href="${pageContext.request.contextPath}/member/mypage/following?no=${userNo.no}">${followerCnt} 팔로잉</a>
+                <a id="followingCnt" href="${pageContext.request.contextPath}/member/mypage/follow?no=${userNo.no}">${followerCnt} 팔로워</a>
             </div>
     </div>
      
@@ -146,8 +140,14 @@ body{
     	</c:when>
     	<c:otherwise>
     	    <div id="mypage-btn">
-	    	<button id="fb"class="follow-btn"></button>
-            <button id="ufb"class="following-btn"></button>
+                
+            <c:if test="${followCheck  eq '0'}">
+                <button id="fb"class="follow-btn"></button>
+            </c:if>  
+            <c:if test="${followCheck ne '0'}">
+                <button id="ufb"class="following-btn"></button>
+            </c:if>   
+            
 	    	<button id="dm-btn"><span class="material-symbols-outlined">mail</span></button>
 	   	 	</div>
     	 		<div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/home?no=${userNo.no}">홈</a></div>
@@ -162,23 +162,21 @@ body{
             });
 
             $('#ufb').on('click',function(){
-                follow(false);
+                unfollow(true);
             });
 
 
             function follow(check){
-                if(check){
-                    $.ajax({
+                $.ajax({
                         type:"get",
                         url:"${pageContext.request.contextPath}/member/follow?no=${userNo.no}",
                         success:function(result){
                             var obj = JSON.parse(result);
                 
                             if(obj.result === "FollowOk"){
-                                $('#fb').css('display','none');
-                                $('#ufb').css('display','block');
-                                $('#followCnt').text(obj.followerCnt+" 팔로우 중");
-                                $('#followingCnt').text(obj.followingCnt+" 팔로잉");
+                                
+                                $('#followCnt').text(obj.followingCnt+" 팔로우 중");
+                                $('#followingCnt').text(obj.followerCnt+" 팔로워");
                             }
                         },
                         error: function(result) {
@@ -186,24 +184,32 @@ body{
                         }
                     
                     });
-                }else{
-                    $.ajax({
+            }
+
+            function unfollow(check){
+                $.ajax({
                             type:"get",
                             url:"${pageContext.request.contextPath}/member/unfollow?no=${userNo.no}",
                             success:function(result){
                                 console.log("result:"+result);
                                 if(result === "UnFollowOk"){
-                                    $('#ufb').css('display','none');
-                                    $('#fb').css('display','block');
-                                    $('#followCnt').text(obj.followerCnt+" 팔로우 중");
-                                    $('#followingCnt').text(obj.followingCnt+" 팔로잉");
+                                    
+                                    $('#followCnt').text(obj.followingCnt+" 팔로우 중");
+                                    $('#followingCnt').text(obj.followerCnt+" 팔로워");
                                 }
-                            }
+                            },
+                            error: function(result) {
+                            alert("통신실패");
+                        }
                         
                         });
                 
-                }
             }
+
+
+
+
+            
     	
     	</script>	 	
         

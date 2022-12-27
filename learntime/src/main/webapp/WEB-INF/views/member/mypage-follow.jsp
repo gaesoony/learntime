@@ -75,34 +75,6 @@
     align-items: center;
    }
 
-   
-   .following{
-    width: 80px;
-    height: 30px;
-    border: 1px solid #d9d9d9;
-    border-radius: 15px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-   }
-
-   .following::before{
-    content:"팔로잉"
-   }
-
-
-   .following:hover{
-    border: 1px solid #ff0000;
-    background-color: #ffcfcf;
-   }
-
-   .following:hover::before{
-    content:"언팔로잉";
-    color:#ff0000;
-   }
-
    .f-img{
     width: 30px;
     height: 30px;
@@ -110,6 +82,47 @@
     background-color: #d9d9d9;
    }
 
+   #fb,#ufb{
+	background: inherit ; 
+    border:none; 
+    box-shadow:none; 
+    border-radius:0; 
+    padding:0; 
+    overflow:visible; 
+    cursor:pointer;
+	
+	width:100%;
+	height:40px;
+	
+    border: 1px solid #5ECC80;
+    color: #5ECC80;
+    border-radius: 4px;
+   
+}
+
+#ufb{
+    display: none;
+}
+
+.follow-btn::before{
+    content:"팔로잉 하기"
+   }
+
+.following-btn::before{
+    content:"팔로잉 중"
+   }
+
+.following-btn:hover{
+    border: 1px solid #ff0000;
+    background-color: #ffcfcf;
+}
+
+
+.following-btn:hover::before{
+    
+    content:"언팔로잉";
+    color:#ff0000;
+   }
  
    
 </style>
@@ -136,10 +149,18 @@
                 </div>
     
                 <div class="list">
-	                <c:forEach var="list" items="${list}" >
+                    <c:forEach var="list" items="${list}" >
 						<div class="f-img"></div>
-						<div class="f-nick">${list.nick}</div>
-						<div class="following">
+						<div class="f-nick"><a href="${pageContext.request.contextPath}/member/mypage/home?no=${list.no}">${list.nick}</a></div>
+
+                        <c:if test="${userNo.no eq loginMember.no}">
+                            <button id="fb"class="following-btn"></button>
+                            <button id="ufb"class="following-btn"></button>
+                        </c:if>
+
+                        <c:if test="${userNo.no ne loginMember.no}">
+                            <div></div>
+                        </c:if>
 					</c:forEach>
                   </div>
                
@@ -149,6 +170,8 @@
       
     </div>
 </div>
+
+	
 
 
 <%@include file="/WEB-INF/views/common/footer2.jsp" %>
