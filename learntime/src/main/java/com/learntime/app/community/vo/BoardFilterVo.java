@@ -4,9 +4,8 @@ import lombok.Data;
 
 @Data
 public class BoardFilterVo {
-	
 	private String cate;
-	private String searchTxt;
+	private String search;
 	private String page;
-
+	private String sort;
 }

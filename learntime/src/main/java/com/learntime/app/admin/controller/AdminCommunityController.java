@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.learntime.app.community.service.BoardService;
+import com.learntime.app.community.vo.BoardFilterVo;
+import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.community.vo.CateVo;
 
 @Controller
@@ -25,16 +27,15 @@ public class AdminCommunityController {
 	
 	
 	@GetMapping("/list")
-	public String adminCommunity(Model model) {
+	public String adminCommunity(Model model, BoardFilterVo bfv) {
 		
 		//카테고리 조회
 		List<CateVo> cateList =  bs.selectCate();
-		
-		//카테고리 담아주기
 		model.addAttribute("cateList", cateList);
 		
 		//게시글 조회
-		
+		List<BoardVo> boardList = bs.select(bfv);
+		model.addAttribute("boardList", boardList);
 		
 		return "/admin/community/adminCommunity";
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.learntime.app.community.vo.BoardFilterVo;
 import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.community.vo.CateVo;
 import com.learntime.app.community.vo.CmtVo;
@@ -15,7 +16,7 @@ public interface BoardDao {
 	public int write(SqlSessionTemplate sst, BoardVo vo);
 	
 	//select boardList
-	public List<BoardVo> selectBoardList(SqlSessionTemplate sst);
+	public List<BoardVo> selectBoardList(SqlSessionTemplate sst, BoardFilterVo bfv);
 
 	//select boardDetail
 	public BoardVo selectBoardDetail(SqlSessionTemplate sst, String bno);
@@ -52,5 +53,8 @@ public interface BoardDao {
 
 	//유저 스크랩 조회
 	public LHSVo selectScrapList(SqlSessionTemplate sst, LHSVo lhs);
+
+	//커뮤니티 글 수정
+	public int update(SqlSessionTemplate sst, BoardVo vo);
 	
 }

@@ -25,7 +25,7 @@
         <form action="${pageContext.request.contextPath}/community/board/write" method="post">
 
         <div id="main-title">
-            <span id="nickname">NickName</span>
+            <span id="nickname">${loginMember.nick}</span>
             <span>님의</span>
             <span id="think">생각</span>
             <span>을 자유롭게 공유해주세요</span>

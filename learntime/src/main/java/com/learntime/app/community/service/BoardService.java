@@ -2,11 +2,11 @@ package com.learntime.app.community.service;
 
 import java.util.List;
 
+import com.learntime.app.community.vo.BoardFilterVo;
 import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.community.vo.CateVo;
 import com.learntime.app.community.vo.CmtVo;
 import com.learntime.app.community.vo.LHSVo;
-import com.learntime.app.member.vo.MemberVo;
 
 public interface BoardService {
 
@@ -15,7 +15,8 @@ public interface BoardService {
 	
 	
 	//select list
-	public List<BoardVo> select();
+	public List<BoardVo> select(BoardFilterVo bfv);
+	
 	
 	//select one
 	public BoardVo selectOne(String bno);
@@ -51,5 +52,11 @@ public interface BoardService {
 
 	//유저 스크랩 조회
 	public LHSVo selectScrap(LHSVo lhs);
+
+	//글 수정
+	public int modify(BoardVo vo);
+
+
+	
 	
 }

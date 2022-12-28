@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.learntime.app.community.service.BoardService;
+import com.learntime.app.community.vo.BoardFilterVo;
 import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.community.vo.CateVo;
 import com.learntime.app.community.vo.CmtVo;
@@ -36,27 +37,14 @@ public class BoardController {
 
 // 	글 목록 (카테고리 있을때)
 	@GetMapping("/board/list")
-	public String boardList(Model model) {
+	public String boardList(Model model, BoardFilterVo bfv) {
 
-		List<BoardVo> boardList = bs.select();
-
-		if (boardList == null) {
-			return "";
-		}
-
-		// 카테고리 받아오기
-		List<CateVo> cateList = bs.selectCate();
-
-		model.addAttribute("cateList", cateList);
-		model.addAttribute("boardList", boardList);
-
-		return "/community/boardList";
-	}
-// 	글 목록 (카테고리 있을때)
-	@GetMapping("/board/listc")
-	public String boardList(Model model, @RequestParam("cate") String cateNo) {
-
-		List<BoardVo> boardList = bs.select();
+		System.out.println(bfv.getCate());
+		System.out.println(bfv.getPage());
+		System.out.println(bfv.getSort());
+		System.out.println(bfv.getSearch());
+		
+		List<BoardVo> boardList = bs.select(bfv);
 
 		if (boardList == null) {
 			return "";
@@ -70,7 +58,6 @@ public class BoardController {
 
 		return "/community/boardList";
 	}
-
 	
 //	글 상세조회	
 	@GetMapping("/board/detail")
@@ -78,7 +65,6 @@ public class BoardController {
 
 		// 글 조회
 		BoardVo bv = bs.selectOne(bno);
-		System.out.println("글번호는:"+bno);
 
 		if (bv == null) {
 			return "";
@@ -103,7 +89,7 @@ public class BoardController {
 			lhs.setStatus("false");
 			lhsList.add(lhs);
 		}
-		System.out.println(lhsList);
+		
 		model.addAttribute("lhsList", lhsList);
 
 		// 댓글조회
@@ -112,12 +98,10 @@ public class BoardController {
 		model.addAttribute("bv", bv);
 		model.addAttribute("cvList", cvList);
 		
-		System.out.println(bv);
-
 		return "/community/boardDetail";
 	}
 
-//	글쓰기 
+//	글쓰기 화면
 	@GetMapping("board/write")
 	public String boardWrite(HttpSession session, Model model) {
 
@@ -135,23 +119,47 @@ public class BoardController {
 		return "/community/boardWrite";
 	}
 
+//  글쓰기 서버
 	@PostMapping("board/write")
 	public String boardWrtie(HttpSession session, BoardVo vo) {
 		
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 		vo.setWriter(loginMember.getNo());
 		
-
 		int result = bs.write(vo);
-		System.out.println(result);
-
+		
+		if(result != 1) {
+			return "error";
+		}
 		return "redirect:/community/board/list";
 	}
 
-// 글수정
+// 글수정 화면
 	@GetMapping("board/modify")
-	public String boardModify() {
+	public String boardModify(@RequestParam("bno") String boardNo, Model model) {
+		
+		// 카테고리 받아오기
+		List<CateVo> cateList = bs.selectCate();
+		model.addAttribute("cateList", cateList);
+		
+		//글번호 받아와서 글 정보조회
+		BoardVo bv = bs.selectOne(boardNo);
+		model.addAttribute("bv", bv);
+		
 		return "/community/boardModify";
+	}
+	
+// 글수정 서버
+	@PostMapping("board/modify")
+	public String boardModify(BoardVo vo) {
+		
+		int result = bs.modify(vo);
+		
+		if(result != 1) {
+			return "error";
+		}
+		
+		return "redirect:/community/board/detail?bno="+vo.getNo();
 	}
 
 	
@@ -161,22 +169,13 @@ public class BoardController {
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 		String userNo = loginMember.getNo();
 		
-		
-		System.out.println("유저넘버"+userNo);
 		//나의 글 조회
 		List<BoardVo> myList = bs.selecMyList(userNo);
 		model.addAttribute("myList", myList);
-	
-		System.out.println("받아온 글 리스트");
-		System.out.println(myList);
 		
 		//나의 스크랩 글 조회
 		List<BoardVo> scrapList = bs.selectScrapList(userNo);
 		model.addAttribute("scrapList", scrapList);
-		
-		System.out.println("스크랩리스트 ->");
-		System.out.println(scrapList);
-	
 		
 		return "/member/mypage-community";
 	}
@@ -200,8 +199,6 @@ public class BoardController {
 		if(group != null) {
 			cv.setGroup(group);
 		}
-
-		System.out.println("컨트롤러 " + cv);
 
 		int result = bs.insertCmt(cv);
 
@@ -236,7 +233,6 @@ public class BoardController {
 		//스크랩 조회
 		int result = 0;
 		LHSVo scrap = bs.selectScrap(lhs);
-		System.out.println(scrap);
 		
 		if(scrap == null) {
 			result = bs.insertScrap(lhs);

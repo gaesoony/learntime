@@ -18,6 +18,15 @@
 		)
 	</insert>
 	
+	<update id="update">
+		UPDATE FREE_BOARD SET 
+		CATE_NO = #{cateNo}
+		, TITLE = #{title}
+		, CONTENT = #{content}
+		, MODIFY_DATE = SYSDATE 
+		WHERE NO = #{no}
+	</update>
+	
 	<select id="selectList" resultType = "BoardVo">
 		SELECT FB.*, FLH.*, (COALESCE(FLH.LIKES, 0) - COALESCE(FLH.HATES, 0)) AS LH_COUNT, M.*, FBC.*, CMT.count AS CMT_COUNT
 		FROM FREE_BOARD FB
@@ -33,10 +42,30 @@
 		ON FBC.NO = FB.CATE_NO
 		LEFT JOIN (SELECT BOARD_NO, COUNT(*) as COUNT FROM FREE_BOARD_CMT GROUP BY BOARD_NO) CMT
 		ON FB.NO = CMT.BOARD_NO
+		<!-- 
+		<if test = "cate != null and !cate.equals('')">
+		WHERE FB.CATE_NO = #{cate}
+		</if>
+		<if test = "search != null and !search.equals('') and cate.equals('')">
+		WHERE WRITER_NICK LIKE '%#{search}%'
+		</if>
+		<if test = "search != null and !search.equals('') and cate != null and !cate.equals('')">
+		WHERE FB.CATE_NO = #{cate}
+		AND WRITER_NICK LIKE '%#{search}%'
+		</if>
+		<if test = "sort != null and !sort.equals('')">
+		ORDER BY #{sort} DESC
+		</if>
+		<if test = "sort.equals('')">
 		ORDER BY FB.NO DESC
+		</if>
+		-->
+		ORDER BY FB.NO DESC
+		
 	</select>
 	
-	<select id="selectMyList" resultType = "BoardVo">
+	
+	  <select id="selectMyList" resultType = "BoardVo">
 		SELECT FB.*, FLH.*, (COALESCE(FLH.LIKES, 0) - COALESCE(FLH.HATES, 0)) AS LH_COUNT, M.*, FBC.*
 		FROM FREE_BOARD FB
 		LEFT JOIN (  SELECT  BOARD_NO,
@@ -52,6 +81,7 @@
 		WHERE WRITER = #{userNo}
 		ORDER BY FB.NO DESC
 	</select>
+	
 	
 	
 	<select id="selectOne" resultType = "BoardVo">
