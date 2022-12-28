@@ -42,10 +42,11 @@
 		ON FBC.NO = FB.CATE_NO
 		LEFT JOIN (SELECT BOARD_NO, COUNT(*) as COUNT FROM FREE_BOARD_CMT GROUP BY BOARD_NO) CMT
 		ON FB.NO = CMT.BOARD_NO
-		<!-- 
+		
 		<if test = "cate != null and !cate.equals('')">
 		WHERE FB.CATE_NO = #{cate}
 		</if>
+		<!-- 
 		<if test = "search != null and !search.equals('') and cate.equals('')">
 		WHERE WRITER_NICK LIKE '%#{search}%'
 		</if>
