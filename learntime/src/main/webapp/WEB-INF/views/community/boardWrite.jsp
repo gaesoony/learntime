@@ -36,7 +36,7 @@
                 <option value="" disabled selected>카테고리를 선택해주세요</option>
                 <!-- 카테고리 받아오기 -->
                 <c:forEach var="cate" items="${cateList}">
-                <option value="1">${cate.name}</option>
+                <option value="${cate.no}">${cate.name}</option>
                 </c:forEach>
             </select>
         </div>

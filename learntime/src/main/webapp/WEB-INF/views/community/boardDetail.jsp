@@ -38,72 +38,6 @@
 				<span id="comment-number">댓글수 3</span>
 				<span id="scrap">스크랩하기</span>
 				<span class="material-symbols-rounded bookmark-icon">bookmark</span>
-
-				<script>
-					//로그인멤버가 없을시 스크랩하기 버튼 비활성화
-					$(document).ready(function() {
-						if("${loginMember}" == "") {
-							$("#scrap").next().attr("disabled", true);
-						}
-					});
-					
-					$(document).ready(function() {
-						if("${lhs.scrap}" == "true") {
-							$("#scrap").next().addClass("main-green-filled");
-						}
-					});
-
-
-					// 스크랩하기 버튼클릭시 안내문구
-					$(document).ready(function() {
-						$("#scrap").next().click(function() {
-							if($("#scrap").next().hasClass("main-green-filled") == false) {
-								$("#scrap").next().after("<span id='scrap-alert'>스크랩되었습니다. 마이페이지에서 확인하세요.</span>");
-								$("#scrap-alert").delay(2000).fadeOut();
-							}
-						});
-					});
-
-					
-					// 스크랩 클릭시 채워짐..
-					$(document).ready(function() {
-						$("#scrap").next().click(function() {
-						$(".bookmark-icon").toggleClass("main-green-filled");
-						});
-					});	
-
-
-					//스크랩하기 서버
-					$(document).ready(function() {
-						$("#scrap").next().click(function() {
-							$.ajax({
-								url: "/app/community/scrap",
-								type: "post",
-								data: {
-									"boardNo": "${bv.no}",
-									"userNo": "${loginMember.no}",
-									"scrap": "${lhsList[0].scrap}"
-								},
-								success: function(data) {
-									console.log("성공"+ data);
-
-								}
-								
-								,
-								error: function() {
-									console.log("실패" + data);
-								}
-							});
-						});
-					});
-					
-					
-					
-				</script>
-
-
-
-
 			</div>
 		</div>
 
@@ -157,61 +91,107 @@
 					<script>
 
 						$(document).ready(function() {
-							$('#comment-write-btn').click(function() {
-							$.ajax({
-								url: '/app/community/comment/write',
-								type : 'post',
-								data : {
-										'writer' : '${loginMember.no}',
-										'boardNo' : '${bv.no}',
-										'content' : $('.summernote').summernote('code')
-										},
-								contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-								success: function(data) {
+							$(document).on('click', '#comment-write-btn', function(){
+								$.ajax({
+									url: '/app/community/comment/write',
+									type : 'post',
+									data : {
+											'writer' : '${loginMember.no}',
+											'boardNo' : '${bv.no}',
+											'content' : $('.summernote').summernote('code'),
+											'group' : null
+											},
+									contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+									success: function(data) {
 
-									//서머노트에 작성한 내용을 비우기
-									$('.summernote').summernote('code', '');
-									//댓글 목록을 비우기
-									$("#comment-list").html("");
-									//댓글 목록을 가져오기
-									console.log(data);
-									var jsonData = $.parseJSON(data);
-									
-									$.each(jsonData.cvList, function(index, cvList) {
-									var commentHtml = 
-										'<div class="comment-box">' +
-										'<div class="comment-main">' +
-											'<div class="comment-writer-box">' +
-											'<div class="comment-writer-profile">' +
-												'<img src="/app/' + cvList.writerImg + '" alt="resources" onerror="this.src=\'/app/resources/img/profile_default.png\'">' +
+										//서머노트에 작성한 내용을 비우기
+										$('.summernote').summernote('code', '');
+										//댓글 목록을 비우기
+										$("#comment-list").html("");
+										//댓글 목록을 가져오기
+										
+										var jsonData = $.parseJSON(data);
+										
+										$.each(jsonData.cvList, function(index, cvList) {
+											var commentMain = '';
+											if(cvList.depth == 0 || cvList.depth == null) {
+												commentMain = '<div class=\"comment-main\">';
+											} else if(cvList.depth == 1) {
+												commentMain = '<div class=\"comment2-main\">';
+											}
+											console.log(commentMain);
+											var commentHtml = 
+											'<div class="comment-box">' +
+												commentMain +
+													'<div class="comment-writer-box">' +
+														'<div class="comment-writer-profile">' +
+															'<img src="/app/' + cvList.writerImg + '" alt="resources" onerror="this.src=\'/app/resources/img/profile_default.png\'">' +
+														'</div>' +
+														'<span class="comment-writer">' + cvList.writerNick + '</span>' +
+														'<span class="comment-write-time">' + cvList.enrollDate + '</span>' +
+														'<span class="modi-dele modi">수정</span>' +
+														'<span class="modi-dele dele">삭제</span>' +
+													'</div>' +
+													'<div class="comment-content">' +
+														'<p>' + cvList.content + '</p><br>' +
+														'<div class="cmt2-btn">' +
+															'<span class="material-symbols-outlined reply-icon"> reply </span>' +
+															'<span>댓글 쓰기</span>' +
+														'</div>' +
+													'</div>' +
+												'</div>' +
+
+												'<div class="comment-lh-box">' +
+													'<div class="like-hate-box">' +
+														'<div class="like">' +
+															'<span class="material-symbols-rounded lh-icon">thumb_up</span>' +
+														'</div>' +
+														'<div class="lh-number-box red">' + cvList.likes + '</div>' +
+														'<div class="hate">' +
+															'<span class="material-symbols-rounded lh-icon">thumb_down</span>' +
+														'</div>' +
+													'</div>' +
+												'</div>' +
 											'</div>' +
-											'<span class="comment-writer">' + cvList.writerNick + '</span>' +
-											'<span class="comment-write-time">' + cvList.enrollDate + '</span>' +
-											'<span class="modi-dele">수정</span>' +
-											'<span class="modi-dele">삭제</span>' +
-											'</div>' +
-											'<div class="comment-content">' +
-											'<p>' + cvList.content + '</p>' +
-											'</div>' +
-										'</div>' +
-										'<div class="comment-lh-box">' +
-											'<div class="like-hate-box">' +
-											'<div class="like">' +
-												'<span class="material-symbols-rounded lh-icon">thumb_up</span>' +
-											'</div>' +
-											'<div class="lh-number-box red">' + cvList.likes + '</div>' +
-											'<div class="hate">' +
-												'<span class="material-symbols-rounded lh-icon">thumb_down</span>' +
-											'</div>' +
-											'</div>' +
-										'</div>' +
-										'</div>';
-									$("#comment-list").append(commentHtml);
+
+											
+											'<div class="comment-write-box2">'+
+												'<div class="comment-writer-box2">'+
+													'<div class="comment-writer-profile2">'+
+														'<img src="" alt="" onerror="this.src=\'/app/resources/img/profile_default.png\'">'+
+													'</div>'+
+													'<span class="comment-writer2">${loginMember.nick}</span>'+
+												'</div>'+
+												'<div class="comment-area2">'+
+													'<textarea class="comment-txt-area" name="editordata2"></textarea>'+
+												'</div>'+
+											'</div>'+
+											'<input type="submit" class="comment-write-btn2" value="댓글 쓰기"></input>'+
+											'<input type="hidden" class="group-no" name="group" value="' + cvList.group + '">'
+										
+
+											$("#comment-list").append(commentHtml);
+											});
+											// 대댓글 창 임시 숨기기
+											$('.comment-write-box2').hide();
+											$('.comment-write-box2').next().hide();
+											//.cmt2-btn 클릭시 대댓글 창 토글로 보이기
+											$('.cmt2-btn').click(function() {
+
+												//로그인 여부 확인
+												if('${loginMember}' == '') {
+													alert('로그인이 필요한 서비스입니다.');
+													return;
+												}
+
+												$(this).parent().parent().parent().next().toggle();
+												$(this).parent().parent().parent().next().next().toggle();
+											});
+										
+										}//success
 									});
-								}
 								});
 							});
-						});
 
 					</script>
 				
@@ -234,8 +214,14 @@
 			<!-- 댓글 반복문 -->
 			<c:if test = "${cvList != null}">
 				<c:forEach var="cv" items="${cvList}">
+					<!-- depth에 따른 댓글, 대댓글 구분 -->
 					<div class="comment-box">
-						<div class="comment-main">
+						<c:if test = "${cv.depth == 0 || cv.depth == null}">
+							<div class="comment-main">
+						</c:if>
+						<c:if test = "${cv.depth == 1}">
+							<div class="comment2-main">
+						</c:if>
 							<div class="comment-writer-box">
 								<div class="comment-writer-profile">
 									<img src="/app/${cv.writerImg}" alt="resources" onerror="this.src='/app/resources/img/profile_default.png'">
@@ -246,7 +232,11 @@
 								<span class="modi-dele dele">삭제</span>
 							</div>
 							<div class="comment-content">
-								<p>${cv.content}</p>
+								<p>${cv.content}</p><br>
+								<div class="cmt2-btn">
+									<span class="material-symbols-outlined reply-icon"> reply </span>
+									<span>댓글 쓰기</span>
+								</div>
 							</div>
 						</div>
 
@@ -262,9 +252,24 @@
 							</div>
 						</div>
 					</div>
+
+					<!-- 숨긴 대댓글 창 -->
+					<div class="comment-write-box2">
+						<div class="comment-writer-box2">
+							<div class="comment-writer-profile2">
+								<img src="" alt="" onerror="this.src='/app/resources/img/profile_default.png'">
+							</div>
+							<span class="comment-writer2">${loginMember.nick}</span>
+						</div>
+						<div class="comment-area2">
+							<textarea class="comment-txt-area" name="editordata2"></textarea>
+						</div>
+					</div>
+					<input type="submit" class="comment-write-btn2" value="댓글 쓰기"></input>
+					<input type="hidden" class="group-no" name="group" value="${cv.group}">
+
 				</c:forEach>
 			</c:if>
-
 			
 			<!-- 댓글 반복문 끝 -->
 			
@@ -272,6 +277,138 @@
 
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
+
+	<script defer>
+		// 대댓글 창 임시 숨기기
+		$('.comment-write-box2').hide();
+		$('.comment-write-box2').next().hide();
+		//.cmt2-btn 클릭시 대댓글 창 토글로 보이기
+		$('.cmt2-btn').click(function() {
+
+			//로그인 여부 확인
+			if('${loginMember}' == '') {
+				alert('로그인이 필요한 서비스입니다.');
+				return;
+			}
+
+			$(this).parent().parent().parent().next().toggle();
+			$(this).parent().parent().parent().next().next().toggle();
+
+		});
+
+		//대댓글 작성
+		$(document).on('click', '.comment-write-btn2', function() {
+			var content = $(this).prev().find('.comment-area2').find('.comment-txt-area').val();
+			var group = $(this).next().val();
+
+			//댓글 내용이 없을 경우
+			if(content == '') {
+				alert('댓글 내용을 입력해주세요.');
+				return;
+			}
+
+			//댓글 작성
+			$.ajax({
+				url: '/app/community/comment/write',
+				type: 'post',
+				data: {
+					'boardNo': '${bv.no}',
+					'writer': '${loginMember.no}',
+					'content': content,
+					'group': group
+				},
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+				success: 
+				function(data) {
+
+					//댓글 목록을 비우기
+					$("#comment-list").html("");
+					//댓글 목록을 가져오기
+					var jsonData = $.parseJSON(data);
+					$.each(jsonData.cvList, function(index, cvList) {
+					
+					var commentMain = '';
+					if(cvList.depth == 0 || cvList.depth == null) {
+						commentMain = '<div class=\"comment-main\">';
+					} else if(cvList.depth == 1) {
+						commentMain = '<div class=\"comment2-main\">';
+					}
+					
+					var commentHtml = 
+					'<div class="comment-box">' +
+						commentMain +
+							'<div class="comment-writer-box">' +
+								'<div class="comment-writer-profile">' +
+									'<img src="/app/' + cvList.writerImg + '" alt="resources" onerror="this.src=\'/app/resources/img/profile_default.png\'">' +
+								'</div>' +
+								'<span class="comment-writer">' + cvList.writerNick + '</span>' +
+								'<span class="comment-write-time">' + cvList.enrollDate + '</span>' +
+								'<span class="modi-dele modi">수정</span>' +
+								'<span class="modi-dele dele">삭제</span>' +
+							'</div>' +
+							'<div class="comment-content">' +
+								'<p>' + cvList.content + '</p><br>' +
+								'<div class="cmt2-btn">' +
+									'<span class="material-symbols-outlined reply-icon"> reply </span>' +
+									'<span>댓글 쓰기</span>' +
+								'</div>' +
+							'</div>' +
+						'</div>' +
+
+						'<div class="comment-lh-box">' +
+							'<div class="like-hate-box">' +
+								'<div class="like">' +
+									'<span class="material-symbols-rounded lh-icon">thumb_up</span>' +
+								'</div>' +
+								'<div class="lh-number-box red">' + cvList.likes + '</div>' +
+								'<div class="hate">' +
+									'<span class="material-symbols-rounded lh-icon">thumb_down</span>' +
+								'</div>' +
+							'</div>' +
+						'</div>' +
+					'</div>' +
+
+					
+					'<div class="comment-write-box2">'+
+						'<div class="comment-writer-box2">'+
+							'<div class="comment-writer-profile2">'+
+								'<img src="" alt="" onerror="this.src=\'/app/resources/img/profile_default.png\'">'+
+							'</div>'+
+							'<span class="comment-writer2">${loginMember.nick}</span>'+
+						'</div>'+
+						'<div class="comment-area2">'+
+							'<textarea class="comment-txt-area" name="editordata2"></textarea>'+
+						'</div>'+
+					'</div>'+
+					'<input type="submit" class="comment-write-btn2" value="댓글 쓰기"></input>'+
+					'<input type="hidden" class="group-no" name="group" value="' + cvList.group + '">'
+
+
+					$("#comment-list").append(commentHtml);
+					});
+					// 대댓글 창 임시 숨기기
+					$('.comment-write-box2').hide();
+					$('.comment-write-box2').next().hide();
+					//.cmt2-btn 클릭시 대댓글 창 토글로 보이기
+					$('.cmt2-btn').click(function() {
+
+						//로그인 여부 확인
+						if('${loginMember}' == '') {
+							alert('로그인이 필요한 서비스입니다.');
+							return;
+						}
+
+						$(this).parent().parent().parent().next().toggle();
+						$(this).parent().parent().parent().next().next().toggle();
+					});
+
+				},//success
+				error: function() {
+					alert('댓글 작성 실패');
+				}
+			});
+		});
+	</script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -289,8 +426,73 @@
         });	
     </script>
 
-	<!-- 좋아요 & 싫어요 -->
 	<script>
+		//로그인멤버가 없을시 스크랩하기에 있는 모든 function 비활성화
+		$(document).ready(function() {
+			if("${loginMember}" == "") {
+				$("#scrap").next().click(function() {
+					alert("로그인이 필요한 서비스입니다.");
+				});
+			}
+		});
+
+		$(document).ready(function() {
+			if("${lhs.scrap}" == "true" && "${loginMember}" != "") {
+				$("#scrap").next().addClass("main-green-filled");
+			}
+		});
+		// 스크랩 미리 채워놓기
+		$(document).ready(function() {
+			if("${lhsList[0].scrap}" === "true" && "${loginMember}" != "") {
+				$("#scrap").next().addClass("main-green-filled");
+			}
+		});
+
+
+		// 스크랩하기 버튼클릭시 안내문구
+		$(document).ready(function() {
+			$("#scrap").next().click(function() {
+				if($("#scrap").next().hasClass("main-green-filled") == false && "${loginMember}" != "") {
+					$("#scrap").next().after("<span id='scrap-alert'>스크랩되었습니다. 마이페이지에서 확인하세요.</span>");
+					$("#scrap-alert").delay(2000).fadeOut();
+				}
+			});
+		});
+
+		
+		$(document).ready(function() {
+			if("${loginMember}" != ""){
+
+				//스크랩 채우기
+				$("#scrap").next().click(function() {
+					$(".bookmark-icon").toggleClass("main-green-filled");
+				
+					//스크랩 서버
+					$.ajax({
+						url: "/app/community/scrap",
+						type: "post",
+						data: {
+							"boardNo": "${bv.no}",
+							"userNo": "${loginMember.no}"
+						},
+						success: function(data) {
+							console.log(data);
+							
+
+						},
+						error: function() {
+							console.log(data);
+						}
+					});
+				});
+			}
+		});
+
+	</script>
+
+		
+	<script>
+		// 좋아요 & 싫어요
 		$('.like').click(function(){
 			$(this).children('span').toggleClass('red-filled')
 			$(this).siblings('.hate').children('span').removeClass('blue-filled');
@@ -305,8 +507,6 @@
 			$(this).siblings('.like').children('span').removeClass('red-filled');
 		});
 
-
-		
 		function calcLike() {
 		$('.lh-number-box').each(function(){
 			if($(this).text() > 0){
@@ -319,9 +519,7 @@
 			}
 		});
 		}
-	</script>
 
-	<script>
 		// 로그인이 되어있지 않거나 로그인한 회원이 작성자가 아닐때 버튼 hide
 		$(document).ready(function() {
 			if("${loginMember.no}" !== "${bv.writer}" || "${loginMember.no}" === "null") {

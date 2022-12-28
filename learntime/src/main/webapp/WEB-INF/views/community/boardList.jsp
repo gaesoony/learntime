@@ -32,18 +32,18 @@
                 <span>작성하기</span> 
             </div>
             <div id="category" class="height-40">
-                <input type="radio" name="freeboard-cate" id="c0">
-                <label for="c0">전체</label>
+                <input type="radio" name="freeboard-cate" id="0">
+                <label for="0">전체</label>
                 <c:forEach items = "${cateList}" var= "cate">
-                    <input type="radio" name="freeboard-cate" id="c${cate.no}">
-                    <label for="c${cate.no}">${cate.name}</label>
+                    <input type="radio" name="freeboard-cate" id="${cate.no}">
+                    <label for="${cate.no}">${cate.name}</label>
                 </c:forEach>
                
                 <script>
                     // 카테고리가 클릭되면 해당 카테고리의 쿼리스트링을 생성 후 이동
                     $('#category').click(function(){
                         var cate = $(this).find('input:checked').attr('id');
-                        location.href = '/app/community/board/list?cate=' + cate;
+                        location.href = '/app/community/board/listc?cate=' + cate;
                     });
 
 
@@ -131,7 +131,7 @@
                     <div class="writer-info">
                         <div class="writer-profile"></div>
                         <span class="writer-nick">LearnTime</span>
-                        <div class="writer-date">1일 전</div>
+                        <div class="writer-date">2020.12.12 12:20:42</div>
                     </div>
                     <div class="content-info">
                         <span class="hit-number">조회수 1,150</span>
@@ -147,7 +147,6 @@
 
             <!-- 반복시작 -->
             <c:forEach var="list" items="${boardList}">
-
                 <div class="board-content" onclick="location.href='/app/community/board/detail?bno=${list.no}'">
                     <div class="title-box">
                         <span>${list.title} 
@@ -161,20 +160,33 @@
                         <div class="writer-info">
                             <div class="writer-profile"></div>
                             <span class="writer-nick">${list.writerNick}</span>
-                            <div class="writer-date">1일 전</div>
+                            <div class="writer-date">
+                                ${list.enrollDate}
+                            </div>
                         </div>
                         <div class="content-info">
                             <span class="hit-number">조회수 ${list.hit}</span>
                             <span class="material-symbols-rounded comment-icon">comment</span>
-                            <span class="comment-number">3</span>
+                            <span class="comment-number">
+                                <c:if test="${list.cmtCount == null}">
+                                    0
+                                </c:if>
+                                <c:if test="${list.cmtCount != null}">
+                                    <span>${list.cmtCount}</span>
+                                </c:if>
+                            </span>
                             <span class="material-symbols-rounded thumbup-icon">thumb_up</span>
                             <span class="like-number">
-                      
+                                <c:if test="${list.likes == null}">
+                                    0
+                                </c:if>
+                                <c:if test="${list.likes != null}">
+                                    <span>${list.lhCount}</span>
+                                </c:if>
                             </span>
                         </div>
                     </div>
                 </div>
-
             </c:forEach>
             <!-- 반복 끝 -->
 
@@ -199,15 +211,45 @@
     <%@include file ="/WEB-INF/views/common/footer.jsp" %>
     <script>
         // 글쓰기 함수
-        $('#write-btn').on('click',function(){
-           
-            if(${loginMember == null}){
+        $('#write-btn').on('click', function() {
+            if ("${loginMember}" == "") {
                 $('.blackBG').addClass('show');
-            }else{
-                location.href='/app/community/board/write';
+            } else {
+                location.href = '/app/community/board/write';
+            }
+            });
+
+        // 시간계산
+            
+        function timeForToday(value) {
+            var today = new Date();
+            var timeValue = new Date(value);
+
+            var betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+            if (betweenTime < 1) return '방금전';
+            if (betweenTime < 60) {
+                return `${betweenTime}분전`;
             }
 
+            var betweenTimeHour = Math.floor(betweenTime / 60);
+            if (betweenTimeHour < 24) {
+                return '${betweenTimeHour}시간전';
+            }
+
+            var betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+            if (betweenTimeDay < 365) {
+                return `${betweenTimeDay}일전`;
+            }
+
+            return `${Math.floor(betweenTimeDay / 365)}년전`;
+        }
+
+        //writer-date클래스 에있는 시간을 하나씩 가져와서 timeForToday 함수에 넣어주고 그 값을 다시 넣어준다.
+        $('.writer-date').each(function(index, item) {
+            $(this).html(timeForToday($(this).html()));
         });
+
+                
     </script>
     
 </body>

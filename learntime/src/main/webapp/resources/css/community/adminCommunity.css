@@ -2,6 +2,7 @@
     background-color: #efefef;
 }
 
+
 #admin-category-title{
     padding: 0 20px;
     color: black;
@@ -10,8 +11,7 @@
 
     height: 55px;
     line-height: 55px;
-    font-size: 18px;
-    
+    font-size: 18px; 
 }
 
 #content-main-wrap{
@@ -85,8 +85,8 @@
     height: 25px;
     padding: 0 5px ;
 }
-.board-category>span{
-    font-size: 14px;
+.board-category>a{
+    font-size: 13px;
     font-weight: 800px;
 }
 
@@ -97,9 +97,20 @@
     width: 100%;
 }
 
-.modi-btn{
-    margin-left: 90px;
+#category-txt{
+    margin-bottom: 10px;
+    margin-left: 5px;
+    font-weight: 600;
 }
+
+.modi-dele-box{
+    width: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 
 .txt-sm{
     font-size: 10px;

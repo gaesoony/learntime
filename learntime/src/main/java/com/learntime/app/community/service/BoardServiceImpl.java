@@ -110,6 +110,12 @@ public class BoardServiceImpl implements BoardService{
 		return dao.selectScrapList(sst, userNo);
 	}
 	
+	//유저 스크랩 조회
+	@Override
+	public LHSVo selectScrap(LHSVo lhs) {
+		return dao.selectScrapList(sst, lhs);
+	}
+	
 	
 	
 
