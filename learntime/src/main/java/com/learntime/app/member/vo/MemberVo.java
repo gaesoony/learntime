@@ -1,5 +1,7 @@
 package com.learntime.app.member.vo;
 
+import java.io.File;
+
 import lombok.Data;
 
 @Data
@@ -13,13 +15,19 @@ public class MemberVo {
 	private String enrollDate;
 	private String quitYn;
 	private String modifyDate;
-	private String imgPath;
+	private File imgPath;
 	private String intro;
 	private String accumToken;
 	private String holdToken;
 	private String[] teckStackNo;
 	private String adminYn;
 	private String emailAuth;
+	
+	
+	public boolean isEmpty() {
+			if(imgPath==null){return true;}
+			return false;
+	}
 	
 
 }

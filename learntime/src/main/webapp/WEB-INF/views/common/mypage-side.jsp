@@ -111,13 +111,20 @@ body{
 </style>
 <div id="mypageSide-area">
     <div id="my-info">
+    	
          <div id="profile-img">
-                <img src="/app/resources/img/profile_default.png" alt="기본프로필이미지">
+               <c:if test="${userNo.imgPath == null}">
+		    	 <img src="/app/resources/img/profile_default.png" alt="기본프로필이미지">
+		    	</c:if>
+		    	
+		    	 <c:if test="${userNo.imgPath != null}">
+		    	 <img src="/app${userNo.imgPath}" alt="기본프로필이미지">
+		    	</c:if>
          </div>
 
             <div id="profile-nick">${userNo.nick}</div>
             <div id="profile-follow">
-                <a id="followCnt" href="${pageContext.request.contextPath}/member/mypage/following?no=${userNo.no}">${followingCnt} 팔로우중</a>
+                <a id="followCnt" href="${pageContext.request.contextPath}/member/mypage/following?no=${userNo.no}">${followingCnt} 팔로우 중</a>
                 <span>|</span>
                 <a id="followingCnt" href="${pageContext.request.contextPath}/member/mypage/follow?no=${userNo.no}">${followerCnt} 팔로워</a>
             </div>
@@ -139,12 +146,11 @@ body{
 		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/edit?no=${loginMember.getNo()}">계정정보</a></div>
     	</c:when>
     	<c:otherwise>
-    	    <div id="mypage-btn">
-                
-            <c:if test="${followCheck  eq '0'}">
+    	    <div id="mypage-btn">   
+            <c:if test="${followCheck  == 0}">
                 <button id="fb"class="follow-btn"></button>
             </c:if>  
-            <c:if test="${followCheck ne '0'}">
+            <c:if test="${followCheck != 0}">
                 <button id="ufb"class="following-btn"></button>
             </c:if>   
             
@@ -174,9 +180,12 @@ body{
                             var obj = JSON.parse(result);
                 
                             if(obj.result === "FollowOk"){
-                                
+                               
                                 $('#followCnt').text(obj.followingCnt+" 팔로우 중");
                                 $('#followingCnt').text(obj.followerCnt+" 팔로워");
+
+                                location.reload(true);
+                               
                             }
                         },
                         error: function(result) {
@@ -191,11 +200,15 @@ body{
                             type:"get",
                             url:"${pageContext.request.contextPath}/member/unfollow?no=${userNo.no}",
                             success:function(result){
-                                console.log("result:"+result);
-                                if(result === "UnFollowOk"){
+                                var obj2 =JSON.parse(result);
+                                
+                                if(obj2.result === "UnFollowOk"){
+                                   
+                                    $('#followCnt').text(obj2.followingCnt+" 팔로우 중");
+                                    $('#followingCnt').text(obj2.followerCnt+" 팔로워");
+
+                                    location.reload(true);
                                     
-                                    $('#followCnt').text(obj.followingCnt+" 팔로우 중");
-                                    $('#followingCnt').text(obj.followerCnt+" 팔로워");
                                 }
                             },
                             error: function(result) {

@@ -100,10 +100,6 @@
    
 }
 
-#ufb{
-    display: none;
-}
-
 .follow-btn::before{
     content:"팔로잉 하기"
    }
@@ -152,12 +148,14 @@
                     <c:forEach var="list" items="${list}" >
 						<div class="f-img"></div>
 						<div class="f-nick"><a href="${pageContext.request.contextPath}/member/mypage/home?no=${list.no}">${list.nick}</a></div>
-
                         <c:if test="${userNo.no eq loginMember.no}">
-                            <button id="fb"class="following-btn"></button>
-                            <button id="ufb"class="following-btn"></button>
+                            <c:if test="${followCheck  == 0}">
+                                <button id="fb"class="follow-btn"></button>
+                            </c:if>  
+                            <c:if test="${followCheck != 0}">
+                                <button id="ufb"class="following-btn"></button>
+                            </c:if>   
                         </c:if>
-
                         <c:if test="${userNo.no ne loginMember.no}">
                             <div></div>
                         </c:if>
@@ -170,16 +168,15 @@
       
     </div>
 </div>
+<script>
+    const cate = document.querySelector("#cate div:nth-child(1) a");
+    cate.classList.add("main-color2");
+</script>
 
 	
 
 
 <%@include file="/WEB-INF/views/common/footer2.jsp" %>
-
-<script>
-    const cate = document.querySelector("#cate div:nth-child(1) a");
-    cate.classList.add("main-color2");
-</script>
 
 </body>
 </html>

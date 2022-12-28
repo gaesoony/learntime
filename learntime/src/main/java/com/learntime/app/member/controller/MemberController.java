@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.learntime.app.common.file.FileUploader;
+import com.learntime.app.community.service.BoardService;
+import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.member.service.MemberService;
 import com.learntime.app.member.vo.FollowVo;
 import com.learntime.app.member.vo.MemberVo;
@@ -28,6 +31,10 @@ public class MemberController {
 	@Autowired
 	@Qualifier("memberServiceImpl")
 	private MemberService memberService;
+	
+	@Autowired
+    @Qualifier("boardServiceImpl")
+    private BoardService bs;
 	
 	
 //	잘못된 경로-로그인(화면)
@@ -232,7 +239,6 @@ public class MemberController {
 			int followCheck=memberService.followCheck(follow);
 			session.setAttribute("followCheck", followCheck);
 			
-			System.out.println("followCheck:"+followCheck);
 			
 			session.setAttribute("followerCnt", followerCnt);
 			session.setAttribute("followingCnt", followingCnt);
@@ -263,7 +269,7 @@ public class MemberController {
 		model.addAttribute("userNo",user);
 		List<MemberVo>list=memberService.followingList(no);
 		model.addAttribute("list",list);
-		
+
 
 		MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
 		String followingMember=loginMember.getNo();
@@ -297,8 +303,8 @@ public class MemberController {
 		FollowVo follow=new FollowVo();
 		follow.setFollowingNo(followingMember);
 		follow.setFollowerNo(followerMember.getNo());
-		
-//		팔로우 유무체크
+
+//		팔로우 유무체크 (내 페이지에선 내번호가 두개 들어가서 판단이 안됨 보완해야댐)
 		int followCheck=memberService.followCheck(follow);
 		session.setAttribute("followCheck", followCheck);
 		
@@ -357,9 +363,29 @@ public class MemberController {
 	   
 //   마이페이지-커뮤니티(화면)	
 	   @GetMapping("/member/mypage/community")
-	   public String myCommunity() {
-	      return "member/mypage-community";
-	   }
+	      public String myCommunity(HttpSession session, Model model) {
+	         MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+	         String userNo = loginMember.getNo();
+	         
+	         
+	         System.out.println("유저넘버"+userNo);
+	         //나의 글 조회
+	         List<BoardVo> myList = bs.selecMyList(userNo);
+	         model.addAttribute("myList", myList);
+	      
+	         System.out.println("받아온 글 리스트");
+	         System.out.println(myList);
+	         
+	         //나의 스크랩 글 조회
+	         List<BoardVo> scrapList = bs.selectScrapList(userNo);
+	         model.addAttribute("scrapList", scrapList);
+	         
+	         System.out.println("스크랩리스트 ->");
+	         System.out.println(scrapList);
+	      
+	         
+	         return "/member/mypage-community";
+	      }
 	   
 //	마이페이지-보유한 스킨(화면)
 		@GetMapping("/member/mypage/skin")
@@ -392,11 +418,14 @@ public class MemberController {
 		
 //  마이페이지-계정 정보 수정 (사진, 닉네임, 자기소개)
 		@PostMapping("/member/mypage/edit/profile")
-		public String mypageEditProfile(MemberVo vo, HttpSession session) {
+		public String mypageEditProfile(MemberVo vo, HttpSession session,HttpServletRequest request) {
 			
 			MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
 			vo.setNo(loginMember.getNo());
-			
+		      // 파일 저장
+		      if (!vo.isEmpty()) {
+		    	  FileUploader.uploadMemberProfile(request, vo);
+		      }
 			int result=memberService.mypageEditProfile(vo);
 			if(result==0) {
 				return"common/errorPage";
@@ -522,8 +551,6 @@ public class MemberController {
 			int followerCnt =memberService.followerCnt(no);
 //			내가 팔로우 하는 사람 수 구하기
 			int followingCnt =memberService.followingCnt(no);
-			
-			
 			
 			Gson gson = new Gson();
 			Map<String, Object> followMap=new HashMap<String, Object>();
