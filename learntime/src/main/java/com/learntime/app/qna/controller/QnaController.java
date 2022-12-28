@@ -34,9 +34,9 @@ public class QnaController {
 	
 	//게시글 상세조회 (화면+DB)
 	@GetMapping("/detail")
-	public String detail(Model model, int no) {
+	public String detail(Model model, QnaVo vo) {
 		
-		QnaVo vo = service.selectOne(no);
+		vo = service.selectOne(vo);
 		
 		System.out.println(vo);
 		model.addAttribute("vo", vo);
@@ -45,7 +45,7 @@ public class QnaController {
 			return "common/errorPage";
 		}
 		
-		return "qna/detail";
+		return "redirect:/qna/detail";
 		
 	}
 	

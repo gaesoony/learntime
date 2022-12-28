@@ -573,131 +573,134 @@
     </div>
 
     <!-- 상세조회 메인 부분 -->
-    <div class="main">
+    <form action="${path}/qna/detail" method="post">
+        <div class="main">
         
-        <div class="maintitle">
-            <div class="title">
-                <div class="title-start">Q.</div>
-                <h2 class="title-end">${vo.title}</h2>
+            <div class="maintitle">
+                <div class="title">
+                    <div class="title-start">Q.</div>
+                    <h2 class="title-end">${vo.title}</h2>
+                </div>
             </div>
-        </div>
-        <div class="middletitle">
-            <table>
-                <tr>
-                    <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필"></td>
-                    <td class="nick">${vo.writer}</td>
-                    <td class="enrollDate">${vo.enrollDate}</td>
-                    <td class="heart"><i class="fa-solid fa-thumbs-up"></i> 25</td>
-                    <td class="thumbsup" id="thumbsup" onclick="changeColor5()"><i class="fa-regular fa-thumbs-up"></i></td>
-                    <td class="thumbsdown" id="thumbsdown" onclick="changeColor6()"><i class="fa-regular fa-thumbs-down"></i></td>
-                    <td class="bookmark" id="bookmark" onclick="changeColor7()"><i class="fa-regular fa-bookmark"></i></td>
-                    <td class="edit"><button type="button" class="edit-btn" onclick="location.href='/app/qna/edit'">수정</button></td>
-                    <td class="slash">/</td>
-                    <td class="delete">
-                        <button type="button" class="delete-btn">삭제</button>
-                        <div class="modal hidden">
-                            <div class="bg"></div>
-                            <div class="modalBox">
-                                <button class="closeBtn"><i class="fa-solid fa-xmark"></i></button>
-                                <p class="modalTitle">게시물을 삭제하시겠습니까?</p>
-                                <div class="modalBtn">
-                                    <button class="cancleBtn">취소</button>
-                                    <button class="saveBtn" onclick="location.href='/app/qna/list'">삭제</button>
+            <div class="middletitle">
+                <table>
+                    <tr>
+                        <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필"></td>
+                        <td class="nick">${vo.writer}</td>
+                        <td class="enrollDate">${vo.enrollDate}</td>
+                        <td class="heart"><i class="fa-solid fa-thumbs-up"></i> 25</td>
+                        <td class="thumbsup" id="thumbsup" onclick="changeColor5()"><i class="fa-regular fa-thumbs-up"></i></td>
+                        <td class="thumbsdown" id="thumbsdown" onclick="changeColor6()"><i class="fa-regular fa-thumbs-down"></i></td>
+                        <td class="bookmark" id="bookmark" onclick="changeColor7()"><i class="fa-regular fa-bookmark"></i></td>
+                        <td class="edit"><button type="button" class="edit-btn" onclick="location.href='/app/qna/edit'">수정</button></td>
+                        <td class="slash">/</td>
+                        <td class="delete">
+                            <button type="button" class="delete-btn">삭제</button>
+                            <div class="modal hidden">
+                                <div class="bg"></div>
+                                <div class="modalBox">
+                                    <button class="closeBtn"><i class="fa-solid fa-xmark"></i></button>
+                                    <p class="modalTitle">게시물을 삭제하시겠습니까?</p>
+                                    <div class="modalBtn">
+                                        <button class="cancleBtn">취소</button>
+                                        <button class="saveBtn" onclick="location.href='/app/qna/list'">삭제</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <div class="line1"></div>
-            <table class="two">
-                <tr>
-                    <td class="content">
-                        ${vo.content}
-                    </td>
-                </tr>
-            </table>
-            <div class="three">
-                <ul class="hash">
-                    <li class="ha">#JAVA</li>
-                    <li class="ha">#자바</li>
-                    <li class="ha">#CSS</li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
-    <div class="middle">
-        <div class="middlemain">
-            <div><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
-            <div class="replyplz">nick01님, 답변해주세요!</div>
-            <div class="replyplz-1">모두에게 도움이 되는 답변의 주인공이 되어주세요:)</div>
-            <div class="input">
-                <textarea class="summernote" name="editordata"></textarea>
-            </div>
-            <button type="button" class="replybtn" style='cursor:pointer;'>답변 등록</button>
-        </div>
-
-        <div class="end">
-            <i class="fa-regular fa-comment"></i>
-            <div class="endword">총 1개의 답변이 있습니다</div>
-        </div>
-
-        <div class="jjinend">
-            <div class="choice"><i class="fa-solid fa-medal"></i></div>
-            <div><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
-            <div class="endnick">nick02</div>
-            <div class="endenrollDate">2022.12.08</div>
-            <div class="endheart"><i class="fa-solid fa-thumbs-up"></i> 12</div>
-            <div class="edit1"><input type="button" id="edit1" style='cursor:pointer;' value="답변 수정"></div>
-            <div class="edit2"> / </div>
-            <div class="edit3"><input type="button" id="edit3" style='cursor:pointer;' value="삭제"></div>
-            <div class="endline1"></div>
-            <div class="endreply">
-                안녕하세요. nick02입니다.<br>
-                아래 4개의 클래스 차이는 인터페이스인지/ 클래스인지의 차이를 알 수 없습니다.<br>
-                인터페이스는 객체를 생성할 수 없기 때문에 다른 클래서에서와 같이 추가할 수 없고,<br>
-                대신 스프링 데이터 JPA를 사용할 경우 구현 클래스를 자동으로 생성하여 주입 받아
-                사용가능합니다.
-            </div>
-            <div class="endup" id="endup" onclick="changeColor3()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-up"></i></div>
-            <div class="enddown" id="enddown" onclick="changeColor4()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-down"></i></div>
-
-            <div class="endline2"></div>
-
-            <div class="chat" id="chat" style="cursor: pointer;">댓글 <i class="fa-solid fa-chevron-right"></i></div>
-
-            <!-- 댓글 부분 -->
-            <div id="reply">
-                <div><img class="profile4" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
-                <div class="endend">nick03</div>
-                <div class="endendenrollDate">2202.12.08.</div>
-                <div class="endheart2"><i class="fa-solid fa-thumbs-up"></i> 15</div>
-                <div class="edit4"><input type="button" id="edit4" style='cursor:pointer;' value="댓글 수정"></div>
-                <div class="edit5"> / </div>
-                <div class="edit6"><input type="button" id="edit6" style='cursor:pointer;' value="삭제"></div>
-                <div class="endline3"></div>
-                <div class="endendcontent">
-                    말씀하신 내용 바탕으로 정리해보았는데,<br>
-                    의존관계 자동주입 시점에 스프링컨테이너에 프로토타입빈을 요청하면 스프링컨테이너는<br>
-                    프로토타입빈을 생성해서 반환한다. 반환된 프로토타입빈을 this.prototypeBean =prototypeBean; 에 의해서 내부필드에 주입되어서 보관한다.
+                        </td>
+                    </tr>
+                </table>
+                <div class="line1"></div>
+                <table class="two">
+                    <tr>
+                        <td class="content">
+                            ${vo.content}
+                        </td>
+                    </tr>
+                </table>
+                <div class="three">
+                    <ul class="hash">
+                        <li class="ha">#JAVA</li>
+                        <li class="ha">#자바</li>
+                        <li class="ha">#CSS</li>
+                    </ul>
                 </div>
-                <div class="endup2" id="endup2" onclick="changeColor()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-up"></i></div>
-                <div class="enddown2" id="enddown2" onclick="changeColor2()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-down"></i></div>
-
-                <div class="endline4"></div>
-
-                <div class="pluschat2" id="pluschat2">
-                    <div class="input2">
-                        <textarea class="summernote2" name="editordata2"></textarea>
+            </div>
+    
+        </div>
+        <div class="middle">
+            <div class="middlemain">
+                <div><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
+                <div class="replyplz">nick01님, 답변해주세요!</div>
+                <div class="replyplz-1">모두에게 도움이 되는 답변의 주인공이 되어주세요:)</div>
+                <div class="input">
+                    <textarea class="summernote" name="editordata"></textarea>
+                </div>
+                <button type="button" class="replybtn" style='cursor:pointer;'>답변 등록</button>
+            </div>
+    
+            <div class="end">
+                <i class="fa-regular fa-comment"></i>
+                <div class="endword">총 1개의 답변이 있습니다</div>
+            </div>
+    
+            <div class="jjinend">
+                <div class="choice"><i class="fa-solid fa-medal"></i></div>
+                <div><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
+                <div class="endnick">nick02</div>
+                <div class="endenrollDate">2022.12.08</div>
+                <div class="endheart"><i class="fa-solid fa-thumbs-up"></i> 12</div>
+                <div class="edit1"><input type="button" id="edit1" style='cursor:pointer;' value="답변 수정"></div>
+                <div class="edit2"> / </div>
+                <div class="edit3"><input type="button" id="edit3" style='cursor:pointer;' value="삭제"></div>
+                <div class="endline1"></div>
+                <div class="endreply">
+                    안녕하세요. nick02입니다.<br>
+                    아래 4개의 클래스 차이는 인터페이스인지/ 클래스인지의 차이를 알 수 없습니다.<br>
+                    인터페이스는 객체를 생성할 수 없기 때문에 다른 클래서에서와 같이 추가할 수 없고,<br>
+                    대신 스프링 데이터 JPA를 사용할 경우 구현 클래스를 자동으로 생성하여 주입 받아
+                    사용가능합니다.
+                </div>
+                <div class="endup" id="endup" onclick="changeColor3()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-up"></i></div>
+                <div class="enddown" id="enddown" onclick="changeColor4()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-down"></i></div>
+    
+                <div class="endline2"></div>
+    
+                <div class="chat" id="chat" style="cursor: pointer;">댓글 <i class="fa-solid fa-chevron-right"></i></div>
+    
+                <!-- 댓글 부분 -->
+                <div id="reply">
+                    <div><img class="profile4" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
+                    <div class="endend">nick03</div>
+                    <div class="endendenrollDate">2202.12.08.</div>
+                    <div class="endheart2"><i class="fa-solid fa-thumbs-up"></i> 15</div>
+                    <div class="edit4"><input type="button" id="edit4" style='cursor:pointer;' value="댓글 수정"></div>
+                    <div class="edit5"> / </div>
+                    <div class="edit6"><input type="button" id="edit6" style='cursor:pointer;' value="삭제"></div>
+                    <div class="endline3"></div>
+                    <div class="endendcontent">
+                        말씀하신 내용 바탕으로 정리해보았는데,<br>
+                        의존관계 자동주입 시점에 스프링컨테이너에 프로토타입빈을 요청하면 스프링컨테이너는<br>
+                        프로토타입빈을 생성해서 반환한다. 반환된 프로토타입빈을 this.prototypeBean =prototypeBean; 에 의해서 내부필드에 주입되어서 보관한다.
                     </div>
-                    <button type="button" class="replybtn2" style='cursor:pointer;'>댓글 등록</button>
-                    <div class="endline5"></div>
+                    <div class="endup2" id="endup2" onclick="changeColor()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-up"></i></div>
+                    <div class="enddown2" id="enddown2" onclick="changeColor2()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-down"></i></div>
+    
+                    <div class="endline4"></div>
+    
+                    <div class="pluschat2" id="pluschat2">
+                        <div class="input2">
+                            <textarea class="summernote2" name="editordata2"></textarea>
+                        </div>
+                        <button type="button" class="replybtn2" style='cursor:pointer;'>댓글 등록</button>
+                        <div class="endline5"></div>
+                    </div>
                 </div>
             </div>
+            <div class="endsection"></div>
         </div>
-        <div class="endsection"></div>
-    </div>
+    </form>
+    
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 

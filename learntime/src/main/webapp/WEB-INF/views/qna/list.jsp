@@ -392,6 +392,11 @@
                             <!-- 본문 리스트 -->
                             <c:forEach items="${qnaList}" var="list">
                                 <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
+                                    <script>
+                                        function navToDetail(){
+                                            window.location.href="${path}/qna/detail?no=${list.no}";
+                                        }
+                                    </script>
                                     <div class="titleb">
                                         <div class="title" name="title">${list.title}</div>
                                         <div class="contentbox">
@@ -447,10 +452,6 @@
             $(".mainside .side-category.active").removeClass('active');
             $(this).addClass("active");
         });
-
-        function navToDetail(){
-            window.location.href="${path}/qna/detail?no=${list.no}";
-        }
 
         //글쓰기 버튼 클릭 시, 로그인창
         function login() {

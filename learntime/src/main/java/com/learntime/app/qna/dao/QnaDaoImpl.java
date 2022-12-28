@@ -49,8 +49,8 @@ public class QnaDaoImpl implements QnaDao {
 
 	//게시글 상세조회
 	@Override
-	public QnaVo selectOne(SqlSessionTemplate sst, int no) {
-		return sst.selectOne("qnaMapper.selectOne", no);
+	public QnaVo selectOne(SqlSessionTemplate sst, QnaVo vo) {
+		return sst.selectOne("qnaMapper.selectOne", vo);
 	}
 
 }

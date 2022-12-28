@@ -177,10 +177,10 @@
         padding-top: 20px;
     }
     .mainbox{
-        width: 850px;
         height: 100%;
-        margin-top: 30px;
         padding-left: 50px;
+        padding-right: 50px;
+        margin-top: 30px;
         display: grid;
         grid-template-columns: 280px 280px 280px;
     }
@@ -190,7 +190,7 @@
         border: 2px solid #5ECC80;
         border-radius: 20px;
         background-color: white;
-        /* float: left; */
+        float: left;
         margin-right: 10px;
         margin-bottom: 25px;
         margin-left: 15px;
@@ -214,11 +214,18 @@
     }
     .content{
         width: 14.5vw;
-        height: 17vh;
-        font-size: 13px;
+        height: 120px;
+        font-size: 14px;
         margin-left: 15px;
         margin-top: 10px;
         line-height: 23px;
+        display: -webkit-box;
+        word-wrap: break-word;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
     }
     .contentline{
         width: 90%;
@@ -260,10 +267,15 @@
         margin-left: 20px;
         color: #868686;
         font-size: 13px;
+
+
     }
     .rightsidebox{
         width: 200px;
-        margin-left: 350px;
+        height: 280px;
+        margin-left: 1230px;
+        /* margin-top: -380px; */
+        
     }
     .rightsidelist{
         border: 1px solid #9D9D9D;
@@ -851,6 +863,31 @@
                     </ul>
                 </div>
             </div>
+
+            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
+                <div class="thumbnail"></div>
+                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
+                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
+                <div class="content">
+                    백앤드로 JAVA Script와 화면
+                    구현을 위한 CSS, 추가로 AJAX에
+                    대한 부분도 함께 공부함.
+                    백앤드로 JAVA Script와 화면.
+                </div>
+                <div class="contentline"></div>
+                <div class="info">
+                    <ul class="infoetc">
+                        <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                        <li class="contentnick">nick01</li>
+                        <li class="hit"><i class="fa-regular fa-eye"></i> 150</li>
+                        <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
+                    </ul>
+                    <ul>
+                        <li class="contentDate">2202-12-09</li>
+                    </ul>
+                </div>
+            </div>
+
             <c:forEach items="${makegrassList}" var="list">
                 <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
                     <div class="thumbnail"></div>
@@ -875,57 +912,56 @@
             </c:forEach>
             
 
-            <!-- 오른쪽 사이드바 -->
-            <aside class="rightsidebox">
-                <div class="rightsidelist">
-                    <ul class="rightsidetitle">
-                        <li class="righttitle">FOLLOWING LIST</li>
-                    </ul>
-
-                    <!-- 팔로잉 리스트 유저 -->
-                    <div>
-                        <ul class="rightsidecontent">
-                            <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                            <li class="rightnick">nick02</li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <ul class="rightsidecontent">
-                            <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                            <li class="rightnick">nick02</li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <ul class="rightsidecontent">
-                            <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                            <li class="rightnick">nick02</li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <ul class="rightsidecontent">
-                            <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                            <li class="rightnick">nick02</li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <ul class="rightsidecontent">
-                            <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                            <li class="rightnick">nick02</li>
-                        </ul>
-                    </div>
-
-                </div>
-            </aside>
-
         </div>
+
+        <!-- 오른쪽 사이드바 -->
+        <div class="rightsidebox">
+            <div class="rightsidelist">
+                <ul class="rightsidetitle">
+                    <li class="righttitle">FOLLOWING LIST</li>
+                </ul>
+
+                <!-- 팔로잉 리스트 유저 -->
+                <div>
+                    <ul class="rightsidecontent">
+                        <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                        <li class="rightnick">nick02</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <ul class="rightsidecontent">
+                        <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                        <li class="rightnick">nick02</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <ul class="rightsidecontent">
+                        <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                        <li class="rightnick">nick02</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <ul class="rightsidecontent">
+                        <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                        <li class="rightnick">nick02</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <ul class="rightsidecontent">
+                        <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                        <li class="rightnick">nick02</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom"></div>
     </form>
     
-
-    <div class="bottom"></div>
 
     <script>
         function navToDetail(){

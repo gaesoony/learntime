@@ -47,7 +47,7 @@ public class MakegrassController {
 		int result = service.write(vo);
 		
 		if(result >= 1) {
-			return "makegrass/list";
+			return "redirect:/makegrass/list";
 		}else {
 			return "common/errorPage";
 		}

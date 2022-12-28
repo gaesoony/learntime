@@ -68,6 +68,7 @@
         color: white;
         border: #5ECC80;
         border-radius: 10px;
+        cursor: pointer;
      }
 
      /* 해시태그 */
@@ -157,7 +158,7 @@
 	            <textarea class="summernote" name="content"></textarea>
 	
 	            <input type="button" onClick="history.back();" class="cancle" style='cursor:pointer;' value="취소">
-	            <input type="submit" class="write" style='cursor:pointer;' value="등록">
+	            <input type="submit" class="write" value="등록">
 	            
 	        </div>
 	    </form>

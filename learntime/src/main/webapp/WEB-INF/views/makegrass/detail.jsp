@@ -89,7 +89,6 @@
     .profile3{
         width: 25px;
         margin-right: 5px;
-        padding-bottom: 15px;
     }
     .nick{
         font-size: 18px;
@@ -151,6 +150,7 @@
         cursor: pointer;
         font-weight: 300;
         background-color: white;
+        padding-bottom: 16px;
     }
 
     /* 삭제 모달창 */
@@ -579,6 +579,7 @@
         text-decoration: none;
         border-style: none;
         font-size: 15px;
+        cursor: pointer;
     }
     .replybtn2:hover{
         font-weight: 550;
@@ -709,7 +710,7 @@
                                     <p class="modalTitle">게시물을 삭제하시겠습니까?</p>
                                     <div class="modalBtn">
                                         <button class="cancleBtn">취소</button>
-                                        <button class="saveBtn" onclick="location.href='/app/qna/list'">삭제</button>
+                                        <button class="saveBtn" onclick="location.href='/app/makegrass/list'">삭제</button>
                                     </div>
                                 </div>
                             </div>
@@ -824,7 +825,7 @@
                             <div class="input2">
                                 <textarea class="summernote2" name="editordata2"></textarea>
                             </div>
-                            <button type="button" class="replybtn2" style='cursor:pointer;'>댓글 등록</button>
+                            <button type="button" class="replybtn2">댓글 등록</button>
                             <div class="endline5"></div>
                         </div>
                     </div>
