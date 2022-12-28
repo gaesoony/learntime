@@ -12,8 +12,8 @@
 <body>
     <%@ include file = "/WEB-INF/views/common/header.jsp" %>
 <form action="/app/notice/noticeList" method="get">
-	<input type="hidden" value="1" name="cateNo">
-	<input type="hidden" value="${list.p}" name="p">
+	<input type="hidden" value="${cateNo}" name="cateNo">
+	<input type="hidden" value="${p}" name="p">
 	<div class="main-notice">
         <div class="banner-notice">
             <div class="banner-dark">
@@ -26,14 +26,15 @@
         <div class="cate-list-search">
             <div class="search-notice">
                 <div class="searchBox-etc">
-                    <div class="selection"><select name="notice" id="notice">
-                        <option value="title-select">제목</option>
-                        <option value="content-select">내용</option>
+                    <div class="selection"><select name="category" id="notice">
+                        <option value="title">제목</option>
+                        <option value="content">내용</option>
                     </select></div>
-                    <div class="search-box-notice"><input type="text" name= "searchBox" class="search-box" size="30"></div>
+                    <div class="search-box-notice"><input type="text" name= "keyword" class="search-box" size="30"></div>
                     <div class="notice-input"><input type="submit" value="검색" class="submitBtn"></div>
                 </div>
             </div>
+
             <div class="notice-list">
                 <div class="cate-box">
                     <a href="/app/notice/noticeList?p=1&cateNo=1"class="cateBtn"><div class="cate-pick" name="cateNo" value="1">전체</div></a> 
@@ -46,8 +47,13 @@
                 </div>
                 <div class="notice-list-twoColored">
                     <div class="notice-group">
-                        <c:forEach var="list" begin="1" end="3"  items="${list}">
-                            <div class="notice-green"></a>
+                        <c:forEach var="list" items="${list}" varStatus="status">
+                        	<c:if test="${status.index > 2 }">
+                        	 	<div class="notice-white">
+                        	</c:if>
+                        	<c:if test="${status.index <= 2 }">
+                            	<a href=></a><div class="notice-green"></a>
+                        	</c:if>
                                 <div class="admin-id-etc">
                                     <div class="admin-id" name="nick">${list.writer}</div>
                                     <div class="enroll-date" name="enrollDate">${list.enrollDate}</div>
@@ -62,7 +68,7 @@
                                 </div>
                             </div>
                         </c:forEach>
-                        <c:forEach var="list" begin="1" end="3" items="${list}"> 
+                        <%-- <c:forEach var="list" begin="0" end="2" items="${list}"> 
                             <div class="notice-white">
                                 <div class="admin-id-etc">
                                     <div class="admin-id" name="nick">${list.writer}</div>
@@ -73,15 +79,21 @@
                                     <div class="posted-notice" name="title">${list.title}<a href="/app/notice/noticeDetail?no=${list.no}"></div>
                                     <div class="views-etc">
                                         <div class="views" name="hit"><img width="15px" height="15px" class="view" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">${list.hit}</div>
-                                        <div class="replies"><img width="15px" height="15px" class="message" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">8</div>
+                                        <div class="replies"><img width="15px" height="15px" class="message" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">${list.cmt}</div>
                                     </div>
                                 </div>
                             </div>
-                        </c:forEach>
+                        </c:forEach> --%>
                     </div>
                 </div>
             </div>
-            <div class="page-notice"></div>
+            <div class="page-notice">
+            	<div class="pageBtn" value="${p}">
+            	<c:forEach var="i" begin="1" end="10" > 
+            		<c:out value="${i}"/>
+            	</c:forEach>
+            	</div>
+            </div>
         </div>
     </div>
 </form>

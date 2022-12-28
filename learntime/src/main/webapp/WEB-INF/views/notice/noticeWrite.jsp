@@ -62,7 +62,7 @@ pageEncoding="UTF-8"%>
                     <option value="7">스킨샵</option>
                   </select>
                 </div>
-                <input type="text" name="title" />
+                <input type="text" name="title" class="title-input" size="100"/>
                 <div class="title-notice"></div>
                 <div class="date-notice"></div>
               </div>

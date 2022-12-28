@@ -13,7 +13,7 @@ public class PageVo {
 	private int maxPage;
 	private int startPage;
 	private int endPage;
-
+	private String p;
 
 	
 		

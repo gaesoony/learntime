@@ -28,11 +28,10 @@ public class QuestionServiceImpl implements QuestionService{
 		return dao.questionWrite(sst, vo);
 	}
 
-
 	@Override
-	public List<QuestionVo> selectQuestionList(Map<String, String> map ,PageVo pv) {
+	public List<QuestionVo> selectQuestionList(QuestionVo vo, PageVo pv) {
 		
-		return dao.selectQuestionList(sst,map,pv);
+		return dao.selectQuestionList(sst,vo,pv);
 	}
 
 	@Override
@@ -53,6 +52,9 @@ public class QuestionServiceImpl implements QuestionService{
 		
 		return dao.boardList(sst,cate);
 	}
+
+
+	
 
 
 	

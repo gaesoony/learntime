@@ -12,24 +12,32 @@
   </insert>
   <select id="noticeList" resultType="com.learntime.app.notice.vo.NoticeVo">
       SELECT * FROM
- 	 (SELECT N.NO,C.NAME as CATE_NAME,N.TITLE,N.ENROLL_DATE, N.HIT, M.NICK AS WRITER FROM NOTICE N 
+ 	 (SELECT N.NO,N.CATE_NO, C.NAME as CATE_NAME,N.TITLE,N.ENROLL_DATE, N.HIT, M.NICK AS WRITER,N. CATEGORY,N.keyword FROM NOTICE N 
       JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER
-      WHERE STATUS = 2 and CATE_NO = #{cateNo} ORDER BY N.ENROLL_DATE DESC) WHERE ROWNUM <![CDATA[<= ]]>3
+      WHERE STATUS = 2 and CATE_NO = #{cateNo} ORDER BY N.ENROLL_DATE DESC) WHERE ROWNUM<![CDATA[<=]]>3
         
-      UNION ALL 
-      SELECT N.NO,C.NAME as CATE_NAME,N.TITLE,N.ENROLL_DATE, N.HIT, M.NICK AS WRITER FROM NOTICE N 
+      UNION  
+      SELECT N.NO,N.CATE_NO,C.NAME as CATE_NAME,N.TITLE,N.ENROLL_DATE, N.HIT, M.NICK AS WRITER ,N.CATEGORY,N.keyword FROM NOTICE N 
       JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER
-      WHERE CATE_NO = #{cateNo}
+      WHERE CATE_NO = ${cateNo}
+      <if test="keyword !=null and keyword != ''">
+		and  ${category} LIKE '%${keyword}%' 
+	  </if>
   </select>
   <select id="noticeListAll" resultType="com.learntime.app.notice.vo.NoticeVo">
-      SELECT * FROM
- 	 (SELECT N.NO,C.NAME as CATE_NAME,N.TITLE,N.ENROLL_DATE, N.HIT, M.NICK AS WRITER FROM NOTICE N 
+        SELECT * FROM
+ 	 (SELECT N.NO,N.CATE_NO, C.NAME as CATE_NAME,N.TITLE,N.ENROLL_DATE, N.HIT, M.NICK AS WRITER,N. CATEGORY,N.keyword FROM NOTICE N 
       JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER
-      WHERE STATUS = 2 ORDER BY N.ENROLL_DATE DESC) WHERE ROWNUM <![CDATA[<= ]]>3
+      WHERE STATUS = 2  ORDER BY N.ENROLL_DATE DESC) WHERE ROWNUM <![CDATA[<= ]]>3
         
-      UNION ALL 
-      SELECT N.NO,C.NAME as CATE_NAME,N.TITLE,N.ENROLL_DATE, N.HIT, M.NICK AS WRITER FROM NOTICE N 
+      UNION
+      SELECT N.NO,N.CATE_NO,C.NAME as CATE_NAME,N.TITLE,N.ENROLL_DATE, N.HIT, M.NICK AS WRITER ,N.CATEGORY,N.keyword FROM NOTICE N 
       JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER
+      
+     
+	<if test="keyword !=null and keyword != ''">
+	  WHERE ${category} LIKE '%${keyword}%' 
+	</if>
      
   </select>
   <select id="selectCount" resultType="int">
@@ -50,6 +58,16 @@
   	FROM NOTICE N 
     JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER WHERE
     N.NO = #{no}
-  
   </select>
+  
+  <!-- <select id="selectsearchOne" resultType="com.learntime.app.notice.vo.NoticeVo"> -->
+  	<!-- <select id="searchBoardList" resultType="com.learntime.app.notice.vo.NoticeVo">
+	SELECT * FROM BOARD 
+	<if test="keyword !=null and keyword != ''">
+	WHERE ${category} LIKE '%${keyword}%'
+	</if>
+	
+	</select> -->
+  
+ 
 </mapper>

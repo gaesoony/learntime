@@ -1,8 +1,8 @@
 package com.learntime.app.question;
 
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,11 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
+
 
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.question.service.QuestionService;
-import com.learntime.app.question.service.QuestionServiceImpl;
+
 import com.learntime.app.question.vo.PageVo;
 import com.learntime.app.question.vo.Pagination;
 import com.learntime.app.question.vo.QuestionVo;
@@ -30,18 +30,16 @@ public class QuestionController {
 	private QuestionService qs;
 	
 	// 문의게시판 리스트 화면
-	@GetMapping("question/questionList")
+	@PostMapping("question/questionList")
 	public String questionList() {
 
 		return "question/questionList";
 		
 	}
 	
-	@PostMapping ("question/questionList")
-	public String questionList(QuestionVo vo,HttpServletRequest req,ModelAndView mv) {
+	@GetMapping ("question/questionList")
+	public String questionList(int cateNo, QuestionVo vo,HttpServletRequest req,Model m) {
 
-		String category = req.getParameter("select-title-content");
-		String keyword = req.getParameter("search-input");
 		String p = req.getParameter("p");
 
 		int listCount = qs.selectCount();
@@ -51,17 +49,11 @@ public class QuestionController {
 		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 		
 		
+		List<QuestionVo> list= qs.selectQuestionList(vo,pv);
 
-
-		Map<String,String> map = new HashMap<>();
-		map.put("category",category);
-		map.put("keyword",keyword);
-		
-
-		
-		List<QuestionVo> list= qs.selectQuestionList(map,pv);
-
-		mv.addObject("list",list);
+		m.addAttribute("list",list);
+		m.addAttribute("cateNo",cateNo);
+		m.addAttribute("p",p);
 		
 		return "question/questionList";
 		
@@ -78,9 +70,9 @@ public class QuestionController {
 	
 	//문의게시판 글쓰기
 	@PostMapping("question/questionWrite")
-	public String questionWrite(QuestionVo vo) {
+	public String questionWrite(QuestionVo vo,HttpSession session) {
 		
-		MemberVo loginMember = new MemberVo(); 
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");  
 		String writer = loginMember.getNo();
 		vo.setWriter(writer);
 		int result = qs.questionWrite(vo);
