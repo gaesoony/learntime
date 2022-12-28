@@ -13,7 +13,7 @@
 <body>
     <%@ include file = "/WEB-INF/views/common/header.jsp" %>
 
-	<form action="/app/question/questionList?p=1&cateNo=0" method="post">
+	<form action="/app/question/questionList?p=1&cateNo=0" method="GET">
 		<input type="hidden" value="${cateNo}" name="cateNo">
 		<input type="hidden" value="${p}" name="p">
 		<div class="question-main">
@@ -52,10 +52,10 @@
                 </div>
             </div>
             <div class="list-question">
-                <c:forEach var="list" begin="1" end="10" items="${list}" >
-                    <a href="/app/question/qDetailList"><div class="questionList"></a>
+                <c:forEach var="list" items="${list}" >
+                    <div class="questionList">
                         <div class="pick-cate" name="name">${list.cateName}</div>
-                        <div class="pick-title" name="title">${list.title }</div>
+                        <a href="/app/question/qDetailList?no=${list.no}"><div class="pick-title" name="title">${list.title }</div></a>
                         <div class="pick-date" name="enrollDate">${list.enrollDate}</div>
                     </div>
                 </c:forEach>

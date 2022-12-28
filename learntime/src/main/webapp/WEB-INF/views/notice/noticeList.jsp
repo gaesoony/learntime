@@ -32,9 +32,11 @@
                     </select></div>
                     <div class="search-box-notice"><input type="text" name= "keyword" class="search-box" size="30"></div>
                     <div class="notice-input"><input type="submit" value="검색" class="submitBtn"></div>
+                    <c:if test="${loginMember.adminYn eq 'Y'}">
+                    	<a href="/app/notice/noticeWrite"><div class="write-notice-d" >글쓰기</div></a>
+                    </c:if>
                 </div>
             </div>
-
             <div class="notice-list">
                 <div class="cate-box">
                     <a href="/app/notice/noticeList?p=1&cateNo=1"class="cateBtn"><div class="cate-pick" name="cateNo" value="1">전체</div></a> 
@@ -49,10 +51,10 @@
                     <div class="notice-group">
                         <c:forEach var="list" items="${list}" varStatus="status">
                         	<c:if test="${status.index > 2 }">
-                        	 	<div class="notice-white">
+                        	 	<div class="notice-white"></a>
                         	</c:if>
                         	<c:if test="${status.index <= 2 }">
-                            	<a href=></a><div class="notice-green"></a>
+                            	<div class="notice-green"></a>
                         	</c:if>
                                 <div class="admin-id-etc">
                                     <div class="admin-id" name="nick">${list.writer}</div>
@@ -60,7 +62,7 @@
                                 </div>
                                 <div class="written-notice">
                                     <div class="cate-notice" name="name">${list.cateName}</div>
-                                    <div class="posted-notice" name="title">${list.title}<a href="/app/notice/noticeDetail?no=${list.no}"></div>
+                                    <a href="/app/notice/noticeDetail?no=${list.no}"><div class="posted-notice" name="title">${list.title}</div></a>
                                     <div class="views-etc">
                                         <div class="views" name="hit"><img width="15px" height="15px" class="view" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">${list.hit}</div>
                                         <div class="replies" name="cmt"><img width="15px" height="15px"class="message" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">${list.cmt}</div>
@@ -68,47 +70,37 @@
                                 </div>
                             </div>
                         </c:forEach>
-                        <%-- <c:forEach var="list" begin="0" end="2" items="${list}"> 
-                            <div class="notice-white">
-                                <div class="admin-id-etc">
-                                    <div class="admin-id" name="nick">${list.writer}</div>
-                                    <div class="enroll-date" name="enrollDate">${list.enrollDate}</div>
-                                </div>
-                                <div class="written-notice">
-                                    <div class="cate-notice" name="name">${list.cateName }</div>
-                                    <div class="posted-notice" name="title">${list.title}<a href="/app/notice/noticeDetail?no=${list.no}"></div>
-                                    <div class="views-etc">
-                                        <div class="views" name="hit"><img width="15px" height="15px" class="view" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">${list.hit}</div>
-                                        <div class="replies"><img width="15px" height="15px" class="message" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">${list.cmt}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </c:forEach> --%>
                     </div>
                 </div>
             </div>
-            <div class="page-notice">
-            	<div class="pageBtn" value="${p}">
-            	<c:forEach var="i" begin="1" end="10" > 
-            		<c:out value="${i}"/>
-            	</c:forEach>
-            	</div>
-            </div>
         </div>
+        <div class="page-notice">
+           	<div class="pageBtn" >
+           		<ul class="pagination">
+           			<li><a href="/app/notice/noticeList?p=1&cateNo=0" class="page">1</a></li>
+           			<li><a href="/app/notice/noticeList?p=2&cateNo=0" class="page">2</a></li>
+           			<li><a href="/app/notice/noticeList?p=3&cateNo=0" class="page">3</a></li>
+           			<li><a href="/app/notice/noticeList?p=4&cateNo=0" class="page">4</a></li>
+           			<li><a href="/app/notice/noticeList?p=5&cateNo=0" class="page">5</a></li>
+           		</ul>	
+           	</div>
+         </div>
     </div>
 </form>
+
+<%@ include file = "/WEB-INF/views/common/footer.jsp" %>  
+ 
+
+
+
+
+
+
+
+
+
+
+
     
-
-
-
-
-
-
-
-
-
-
-
-    <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>

@@ -31,7 +31,9 @@ public class QuestionServiceImpl implements QuestionService{
 	@Override
 	public List<QuestionVo> selectQuestionList(QuestionVo vo, PageVo pv) {
 		
-		return dao.selectQuestionList(sst,vo,pv);
+		List<QuestionVo> list = dao.selectQuestionList(sst,vo,pv);
+		
+		return list; 
 	}
 
 	@Override
@@ -46,12 +48,13 @@ public class QuestionServiceImpl implements QuestionService{
 		return dao.selectOne(sst,vo);
 	}
 
+	
 
-	@Override
-	public List<QuestionVo> boardList(int cate) {
-		
-		return dao.boardList(sst,cate);
-	}
+//	@Override
+//	public List<QuestionVo> boardList(int cate) {
+//		
+//		return dao.boardList(sst,cate);
+//	}
 
 
 	

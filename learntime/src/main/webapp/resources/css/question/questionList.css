@@ -164,7 +164,7 @@ select{
     width: 1200px;
     height: 45px;
     display: grid;
-    grid-template-columns: 1fr 5fr 2fr;
+    grid-template-columns: 1fr 5fr 3fr;
     border-bottom:1px solid lightgray;
 }
 .pick-cate{
@@ -179,6 +179,7 @@ select{
     justify-content: flex-start;
     align-items: center;
     font-weight: 600;
+    line-height:50px;
 
 }
 .pick-date{

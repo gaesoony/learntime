@@ -12,8 +12,8 @@
   </insert>
   
   <select id="questionList" resultType="com.learntime.app.question.vo.QuestionVo">
-  	SELECT N.NO,N.CATE_NO,C.NAME as CATE_NAME,N.TITLE,N.ENROLL_DATE ,M.NICK AS WRITER ,N.CATEGORY,N.keyword FROM NOTICE N 
-      JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER
+  	SELECT Q.NO,Q.CATE_NO,C.NAME as CATE_NAME,Q.TITLE,Q.ENROLL_DATE ,M.NICK AS WRITER FROM QUESTION_BOARD Q 
+      JOIN COMMON_CATEGORY C ON Q.CATE_NO= C.NO JOIN MEMBER M ON M.NO = Q.WRITER
       WHERE CATE_NO = ${cateNo}
       <if test="keyword !=null and keyword != ''">
 		and  ${category} LIKE '%${keyword}%' 
@@ -27,9 +27,10 @@
   </select> -->
   
   <select id="selectOne" resultType="com.learntime.app.question.vo.QuestionVo">
-  	SELECT C.NAME,Q.TITLE, M.NICK, Q.ENROLL_DATE
-  	FROM QUESTION_BOARD Q JOIN COMMON_CATEGORY ON Q.CATE_NO = C.NO
-  	JOIN MEMBER M ON M.NO = Q.WRITER 
+  	SELECT M.NICK AS WRITER ,Q.ENROLL_DATE,C.NAME as CATE_NAME,Q.TITLE,Q.CONTENT 
+  	FROM QUESTION_BOARD Q
+    JOIN COMMON_CATEGORY C ON Q.CATE_NO= C.NO JOIN MEMBER M ON M.NO = Q.WRITER WHERE
+    N.NO = #{no}
   </select>
 	
 	

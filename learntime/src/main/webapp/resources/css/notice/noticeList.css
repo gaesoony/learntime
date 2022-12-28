@@ -27,6 +27,9 @@
 .page-notice{
     width: 100%;
     height: 100px;
+    display:flex;
+    justify-content:center;
+    align-items: center;
 
 
 }
@@ -75,9 +78,10 @@
     align-items: flex-end;
 }
 .searchBox-etc{
-    width: 520px;
+    width: 720px;
     height: 100px;
     display: flex;
+    justify-content:flex-end;
     align-items: flex-end;
 }
 #notice{
@@ -113,6 +117,21 @@
     color: white;
 
 }
+
+.write-notice-d{
+	width:100px;
+	height:50px;
+    background-color: white;
+    border: 2px solid lightGray;
+    font-size: large;
+    font-weight: 900;
+    text-align:center;
+    line-height: 50px;
+    color: #5ECC80;
+    margin-left:5px;
+	
+}
+ 
 
 .search-box{
     border: none;
@@ -263,8 +282,49 @@
 	background-color:transparent;
 	border:none;
 	
-	
 }
+
+.pagination{
+	display:flex;
+}
+.page {
+
+    display:block;
+
+    margin:0 3px;
+
+    float:left;
+
+    border:1px solid #e6e6e6;
+
+    width:28px;
+
+    height:28px;
+
+    line-height:28px;
+
+    text-align:center;
+
+    background-color:#fff;
+
+    font-size:13px;
+
+    color:black;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+.pagination a:hover{
+
+    background-color:gray;
+
+    color:white;
+
+}
+
 
 
 
