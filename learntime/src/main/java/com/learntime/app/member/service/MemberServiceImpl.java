@@ -68,9 +68,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 	//닉네임 중복 확인 AJAX
 	@Override
-	public int nickCheck(String nick) {
+	public int nickCheck(MemberVo vo) {
 		
-		return memberDao.nickCheck(sst,nick);
+		return memberDao.nickCheck(sst,vo);
 	}
 	//닉네임 중복 확인 AJAX
 	@Override

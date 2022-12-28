@@ -1,6 +1,6 @@
 package com.learntime.app.member.vo;
 
-import java.io.File;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
@@ -15,13 +15,14 @@ public class MemberVo {
 	private String enrollDate;
 	private String quitYn;
 	private String modifyDate;
-	private File imgPath;
+	private MultipartFile imgPath;
 	private String intro;
 	private String accumToken;
 	private String holdToken;
 	private String[] teckStackNo;
 	private String adminYn;
 	private String emailAuth;
+	private String imgName;
 	
 	
 	public boolean isEmpty() {

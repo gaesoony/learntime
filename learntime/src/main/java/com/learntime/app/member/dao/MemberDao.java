@@ -14,7 +14,7 @@ public interface MemberDao {
 	//회원가입
 	public int join(SqlSessionTemplate sst, MemberVo vo);
 	//닉네임 중복확인
-	public int nickCheck(SqlSessionTemplate sst, String nick);
+	public int nickCheck(SqlSessionTemplate sst, MemberVo vo);
 	//이메일 중복확인
 	public int emailCheck(SqlSessionTemplate sst, MemberVo vo);
 	//아이디 찾기 (번호로 조회)

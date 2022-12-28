@@ -106,8 +106,13 @@ public class MemberController {
 //	닉네임 중복검사 (AJAX)
 	@ResponseBody
 	@GetMapping("/member/nickCheck")
-	public int nickCheck(@RequestParam("nick") String nick){ 
-		return memberService.nickCheck(nick);
+	public int nickCheck(@RequestParam("nick") String nick,MemberVo vo,HttpSession session){
+		MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
+		vo.setNick(nick);
+		if(loginMember!=null) {
+			vo.setNo(loginMember.getNo());
+		}
+		return memberService.nickCheck(vo);
 	}
 	
 	
@@ -419,19 +424,21 @@ public class MemberController {
 //  마이페이지-계정 정보 수정 (사진, 닉네임, 자기소개)
 		@PostMapping("/member/mypage/edit/profile")
 		public String mypageEditProfile(MemberVo vo, HttpSession session,HttpServletRequest request) {
-			
 			MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
 			vo.setNo(loginMember.getNo());
+			System.out.println(vo.toString());
 		      // 파일 저장
 		      if (!vo.isEmpty()) {
-		    	  FileUploader.uploadMemberProfile(request, vo);
+		    	  String rename=FileUploader.uploadMemberProfile(request, vo); 
+		          vo.setImgName(rename);
+
 		      }
 			int result=memberService.mypageEditProfile(vo);
 			if(result==0) {
 				return"common/errorPage";
 			}
 			
-			return "member/mypage-edit";
+			return "redirect:/member/mypage/edit?no="+vo.getNo();
 		}
 		
 //  마이페이지-계정 정보 수정 (이메일)

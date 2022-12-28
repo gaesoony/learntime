@@ -11,7 +11,7 @@ public interface MemberService {
 	//회원가입
 	public int join(MemberVo vo) throws Exception;
 	//닉네임 중복 확인 AJAX
-	public int nickCheck(String nick);
+	public int nickCheck(MemberVo vo);
 	//이메일 중복 확인 AJAX
 	public int emailCheck(MemberVo vo);
 	//아이디 찾기 (번호로 조회)

@@ -113,12 +113,12 @@ body{
     <div id="my-info">
     	
          <div id="profile-img">
-               <c:if test="${userNo.imgPath == null}">
+               <c:if test="${userNo.imgName ==null}">
 		    	 <img src="/app/resources/img/profile_default.png" alt="기본프로필이미지">
 		    	</c:if>
 		    	
-		    	 <c:if test="${userNo.imgPath != null}">
-		    	 <img src="/app${userNo.imgPath}" alt="기본프로필이미지">
+		    	 <c:if test="${userNo.imgName!=null}">
+		    	 <img src="${pageContext.request.contextPath}${userNo.imgName}" alt="기본프로필이미지">
 		    	</c:if>
          </div>
 
