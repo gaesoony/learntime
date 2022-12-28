@@ -72,17 +72,17 @@ public class StudyServiceImpl implements StudyService{
 			}
 		}
 		
-		if(result4 >= 1) {
+		//if(result4 >= 1) {
 			if(vo.getTag() == null) {
 				result5 = 1;
 			}else {
 				result5 = dao.insertGroupTag(sst, vo.getTag());
 			}
-		}
+		//}
 		
-		if(result5 >= 1) {
+		//if(result5 >= 1) {
 			result6 = dao.insertWriter(sst, vo);
-		}
+		//}
 		
 		System.out.println("result1 :" + result1);
 		System.out.println("result2 :" + result2);
@@ -90,7 +90,7 @@ public class StudyServiceImpl implements StudyService{
 		System.out.println("result4 :" + result4);
 		System.out.println("result5 :" + result5);
 
-		return result1 * result2 * result3 * result4 * result5;
+		return result1 * result2 * result3;
 
 	}
 
@@ -220,6 +220,101 @@ public class StudyServiceImpl implements StudyService{
 		result.put("scrap_yn", scrap_yn);
 		
 
+		return result;
+	}
+
+	//그룹 삭제
+	@Override
+	public int deleteGroup(String gno) {
+		int result = dao.deleteGroup(sst, gno);
+		return result;
+	}
+
+	//그룹 정보 수정
+	@Transactional
+	@Override
+	public int updateGroupInfo(GroupVo vo) {
+		// 기본 정보 8개 + 제목 + 내용은 필수사항 + 주소 선택사항 -> RECRUIT_GROUP 테이블에 1행 update
+		
+		// 가입질문은 선택사항 -> DELETE -> RECRUIT_QUESTION 테이블 질문 개수만큼 여러행 INSERT (+그룹번호 SELECT)
+		
+		// 기술스택은 필수사항 -> DELETE -> GROUP_TECH_STACK 테이블에 기술스택 개수만큼 여러행 INSERT (+그룹번호 SELECT)
+		
+		// 태그도 선택사항 -> DELETE -> TAG 테이블에 있으면 넘어가고 없으면 INSERT -> GROUP_TAG 테이블에 태그 개수만큼 여러행 INSERT (+그룹번호 SELECT)
+		
+		vo.strTechStachNoList();
+		
+		int delete1 = 0; //가입질문
+		int delete2 = 0; //기술스택
+		int delete3 = 0; //그룹태그
+		
+		int result1 = 0; //그룹정보
+		int result2 = 0; //가입질문
+		int result3 = 0; //기술스택
+		int result4 = 0; //공통태그
+		int result5 = 0; //그룹태그
+		
+		System.out.println(vo);
+		
+		delete1 = dao.deleteGroupQuestion(sst, vo.getNo());
+		
+		//if(delete1 >= 1) {
+			delete2 = dao.deleteGroupTechStack(sst, vo.getNo());
+		//}
+		
+		//if(delete2 >= 1) {
+			delete3 = dao.deleteGroupTag(sst, vo.getNo());
+		//}
+		
+		//if(delete3 >= 1) {
+			result1 = dao.updateGroupInfo(sst, vo);
+		//}
+
+		if(result1 >= 1) {
+			if(vo.getQuestion() == null) {
+				result2 = 1;
+			}else {
+				result2 = dao.insertGroupQuestion(sst, vo.getQuestion());
+			}
+		}
+		
+		//if(result2 >= 1) {
+			result3 = dao.insertGroupTechStack(sst, vo.getTechStackNo());
+		//}
+		
+		//if(result3 >= 1) {
+			if(vo.getTag() == null) {
+				result4 = 1;
+			}else {
+				result4 = dao.insertCommonTag(sst, vo.getTag());
+			}
+		//}
+		
+		//if(result4 >= 1) {
+			if(vo.getTag() == null) {
+				result5 = 1;
+			}else {
+				result5 = dao.insertGroupTag(sst, vo.getTag());
+			}
+		//}
+		
+		System.out.println("delete1 :" + delete1);
+		System.out.println("delete2 :" + delete2);
+		System.out.println("delete3 :" + delete3);
+		System.out.println("result1 :" + result1);
+		System.out.println("result2 :" + result2);
+		System.out.println("result3 :" + result3);
+		System.out.println("result4 :" + result4);
+		System.out.println("result5 :" + result5);
+
+		//return delete1 * delete2 * delete3 * result1 * result2 * result3 * result4;
+		return result1;
+	}
+
+	//그룹 멤버 추가
+	@Override
+	public int insertGroupMember(Map map) {
+		int result = dao.insertGroupMember(sst, map);
 		return result;
 	}
 

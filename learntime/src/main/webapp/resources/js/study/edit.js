@@ -42,36 +42,6 @@ $(function () {
   $(".datepicker").datepicker();
 });
 
-//timepicker - 시작시간
-$(function () {
-  $("#time1").timepicker({
-    timeFormat: "h:mm p",
-    interval: 30,
-    minTime: "0",
-    maxTime: "11:30pm",
-    defaultTime: "12",
-    startTime: "12:00",
-    dynamic: false,
-    dropdown: true,
-    scrollbar: true,
-  });
-});
-
-//timepicker - 종료시간
-$(function () {
-  $("#time2").timepicker({
-    timeFormat: "h:mm p",
-    interval: 30,
-    minTime: "0",
-    maxTime: "11:30pm",
-    defaultTime: "12",
-    startTime: "12:00",
-    dynamic: false,
-    dropdown: true,
-    scrollbar: true,
-  });
-});
-
 //썸머노트
 $("#summernote").summernote({
   height: 500, // 에디터 높이
@@ -410,6 +380,13 @@ optionsListType.forEach((o) => {
   });
 });
 
+optionsListType.forEach((o) => {
+  if (o.querySelector("input").checked) {
+    selectedType.innerHTML = o.querySelector("label").innerHTML;
+    optionsContainerType.classList.remove("active");
+  }
+});
+
 optionsListWay.forEach((o) => {
   o.addEventListener("click", () => {
     selectedWay.innerHTML = o.querySelector("label").innerHTML;
@@ -417,11 +394,25 @@ optionsListWay.forEach((o) => {
   });
 });
 
+optionsListWay.forEach((o) => {
+  if (o.querySelector("input").checked) {
+    selectedWay.innerHTML = o.querySelector("label").innerHTML;
+    optionsContainerWay.classList.remove("active");
+  }
+});
+
 optionsListPeriod.forEach((o) => {
   o.addEventListener("click", () => {
     selectedPeriod.innerHTML = o.querySelector("label").innerHTML;
     optionsContainerPeriod.classList.remove("active");
   });
+});
+
+optionsListPeriod.forEach((o) => {
+  if (o.querySelector("input").checked) {
+    selectedPeriod.innerHTML = o.querySelector("label").innerHTML;
+    optionsContainerPeriod.classList.remove("active");
+  }
 });
 
 optionsListTech.forEach((o) => {
@@ -438,6 +429,21 @@ optionsListTech.forEach((o) => {
       "<i class='fa-solid fa-xmark' onclick='deleteTech2(event)'></i>" +
       "</div>";
   });
+});
+
+optionsListTech.forEach((o) => {
+  if (o.querySelector("input").checked) {
+    if (selectedTech.innerHTML.trim() == "프로젝트 사용 스택") {
+      selectedTech.innerHTML = "";
+    }
+    selectedTech.innerHTML +=
+      "<div class='tech-btn-div' onclick='deleteTech(event)'>" +
+      "<input onclick='deleteTech2(event)' class='tech-btn' type='button' value='" +
+      o.querySelector("label").innerHTML +
+      "'>" +
+      "<i class='fa-solid fa-xmark' onclick='deleteTech2(event)'></i>" +
+      "</div>";
+  }
 });
 
 optionsListTechLabel.forEach((o) => {
@@ -470,7 +476,7 @@ function deleteTech(e) {
     selectedTech.innerHTML = "프로젝트 사용 스택";
   }
   const input = optionsContainerTech.querySelector("#" + value);
-  console.log("1:" + input);
+
   input.checked = false;
 }
 
@@ -488,7 +494,6 @@ function deleteTech2(e) {
   }
   const input = optionsContainerTech.querySelector("#" + value);
   input.checked = false;
-  console.log("2:" + input);
 }
 
 function hiddenTag(e) {
@@ -502,73 +507,6 @@ function hiddenTag2(e) {
 
 function stop(e) {
   e.stopPropagation();
-}
-
-//가입질문 생성
-let divCnt = 1;
-function create_question(e) {
-  if (divCnt == 5) {
-    return false;
-  }
-
-  const questionBtnOn = document.querySelector(".question-btn-on");
-  if (questionBtnOn.classList.contains("hidden")) {
-    return false;
-  }
-
-  let list = document.querySelector(".recruit-question-list");
-  let new_li = document.createElement("li");
-  let new_div = document.createElement("div");
-  new_div.innerHTML = "Q.";
-
-  new_li.appendChild(new_div);
-  new_li.innerHTML +=
-    "<input type='text' name='question' id='' /><i class='fa-solid fa-square-xmark' onclick='delete_question(event)'></i>";
-  list.appendChild(new_li);
-
-  divCnt++;
-}
-
-//가입질문 버튼 on, off
-const questionBntOn = document.querySelector(".question-btn-on");
-const questionBntOff = document.querySelector(".question-btn-off");
-const recruitQuestionList = document.querySelector(".recruit-question-list");
-const recruitQuestionExplain = document.querySelector(
-  ".recruit-question-explain"
-);
-
-questionBntOn.addEventListener("click", function () {
-  this.classList.add("hidden");
-  questionBntOff.classList.remove("hidden");
-  recruitQuestionList.classList.add("hidden");
-  recruitQuestionList.innerHTML = "";
-  recruitQuestionExplain.classList.add("hidden");
-  divCnt = 1;
-});
-
-questionBntOff.addEventListener("click", function () {
-  this.classList.add("hidden");
-  questionBntOn.classList.remove("hidden");
-  recruitQuestionList.classList.remove("hidden");
-  recruitQuestionList.innerHTML =
-    '<li><div>Q.</div><input type="text" name="question" id="" /><i class="fa-solid fa-square-xmark" onclick="delete_question(event)"></i></li>';
-  recruitQuestionExplain.classList.remove("hidden");
-  divCnt = 1;
-});
-
-//가입질문 삭제
-function delete_question(e) {
-  let li = e.target.parentNode;
-  li.remove();
-  divCnt--;
-  if (divCnt == 0) {
-    const questionBntOn = document.querySelector(".question-btn-on");
-    questionBntOn.classList.add("hidden");
-    questionBntOff.classList.remove("hidden");
-    recruitQuestionList.classList.add("hidden");
-    recruitQuestionList.innerHTML = "";
-    recruitQuestionExplain.classList.add("hidden");
-  }
 }
 
 //장소검색 on, off

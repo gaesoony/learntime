@@ -39,12 +39,21 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
                 </c:if>
                 <c:forEach items="${myGroupList}" var="map">
                   <li class="my-study-list-detail flex">
-                    <img
-                      src="${path}/resources/img/study/${map.IMG_PATH}"
-                      alt=""
-                    />
+                    <c:if test="${map.IMG_PATH == null }">
+                      <img
+                        src="${path}/resources/upload/mystudy/default_profile.png"
+                        alt=""
+                      />
+                    </c:if>
+                    <c:if test="${map.IMG_PATH != null }">
+                      <img
+                        src="${path}/resources/upload/mystudy/${map.IMG_PATH}"
+                        alt=""
+                      />
+                    </c:if>
+
                     <a
-                      href="${path}/mystudy/main?no=${map.NO}"
+                      href="${path}/mystudy/main?gno=${map.NO}"
                       class="my-study-title gray1"
                       >${map.NAME}</a
                     >
@@ -234,6 +243,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
                     name="status"
                     value="open"
                     onclick="form.submit()"
+                    checked
                   />
                   <label id="toggle-slider-label" for="toggle-slider"
                     >On/Off</label

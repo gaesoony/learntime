@@ -49,6 +49,15 @@ public interface StudyService {
 
 	//로그인멤버가 그룹에게 좋아요 싫어요 스크랩한 정보 조회
 	public Map<String, Object> selectLikeScrap(Map map);
+
+	//그룹 삭제
+	public int deleteGroup(String gno);
+
+	//그룹 정보 수정
+	public int updateGroupInfo(GroupVo vo);
+
+	//그룹 멤버 추가
+	public int insertGroupMember(Map map);
 	
 	
 	//추후 추가 예정..

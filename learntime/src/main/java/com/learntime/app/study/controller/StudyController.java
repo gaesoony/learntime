@@ -13,11 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.learntime.app.member.vo.MemberVo;
 
 import com.learntime.app.study.service.StudyService;
+import com.learntime.app.study.vo.ApplyVo;
 import com.learntime.app.study.vo.GroupVo;
 import com.learntime.app.study.vo.SearchVo;
 
@@ -31,70 +33,17 @@ public class StudyController {
 	@Autowired
 	private StudyService service;
 	
-	//스터디/프로젝트 디폴트 목록 조회 (화면 + DB)
-//	@GetMapping("/list")
-//	public String list(Model model, HttpSession session) {
-//		
-//		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
-//		log.info("로그인멤버 : " + loginMember);
-//		//내가 가입한 모임 select (모임번호, 이름, 프사)
-//		if(loginMember != null) {			
-//			List<Map<String, String>> myGroupList = service.selectMyGroupList(loginMember.getNo());
-//			model.addAttribute("myGroupList", myGroupList);		
-//			
-//		}else {
-//			model.addAttribute("myGroupList", null);
-//		}
-//		
-//		//인기 태그 select
-//		List<Map<String, String>> popularTagList = service.selectPopularTagList();
-//		model.addAttribute("popularTagList", popularTagList);
-//		
-//		//인기 기술스택 select
-//		List<Map<String, String>> popularTechStackList = service.selectPopularTechStackList();
-//		model.addAttribute("popularTechStackList", popularTechStackList);
-//		
-//		//keyword : 검색어
-//		String keyword = null;
-//		
-//		//tag : 태그
-//		String[] tag = null;
-//		
-//		//techStack : 기술스택
-//		String[] techStack = null;
-//		
-//		//type : 스터디+프로젝트
-//		String type = "전체";
-//		
-//		//status : 모집중만 보기
-//		String status = "unrecruited";
-//		
-//		//order : 최신순
-//		String order = "recent";
-//		
-//		
-//		Map map = new HashMap<String, String>();
-//		SearchVo vo = new SearchVo();
-//		vo.setKeyword(keyword);
-//		vo.setTag(tag);
-//		vo.setTechStack(techStack);
-//		vo.setType(type);
-//		vo.setStatus(status);
-//		vo.setOrder(order);
-//		
-//		log.info("디폴트값 : " + map);
-//		
-//		//전체 모임 정보 select (디폴트 : 최신순 + 전체 스터디/프로젝트 + 모집중만 조회)
-//		List<Map<String, Object>> groupList = service.selectGroupList(vo);
-//
-//		model.addAttribute("groupList", groupList);
-//		
-//		return "study/list";
-//	}
-	
-	//스터디/프로젝트 검색 목록 조회 (DB)
+	//스터디/프로젝트 목록 조회, 검색 (DB)
 	@GetMapping("/list")
 	public String list(SearchVo vo, Model model, HttpSession session) {
+		
+		if(vo.getTag() != null && vo.getTag().length == 0) {
+			vo.setTag(null);
+		}
+		
+		if(vo.getTechStack() != null && vo.getTechStack().length == 0) {
+			vo.setTechStack(null);
+		}
 		
 		if(vo.getKeyword() == null) {
 			vo.setKeyword("");
@@ -109,17 +58,17 @@ public class StudyController {
 		}
 		
 		if(vo.getStatus() == null) {
-			vo.setStatus("close");
+			vo.setStatus("open");
 		}
 		
-		if(vo.getTechType() == null) {
-			vo.setTechType("popular");
+		if(vo.getTechType() == null ) {
+			vo.setTechType("인기");
 		}	
 		
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 		
 		
-		log.info("로그인멤버 : " + loginMember);
+		//log.info("로그인멤버 : " + loginMember);
 		
 		//내가 가입한 모임 select (모임번호, 이름, 프사)
 		if(loginMember != null) {			
@@ -140,7 +89,7 @@ public class StudyController {
 		
 		//받아야하는 값 : 검색어 + 태그리스트 + 기술스택리스트 + 스터디or프로젝트 + 모집중or모집완료 + 정렬
 		
-		log.info("SearchVo : " + vo);
+		//log.info("SearchVo : " + vo);
 		//log.info("화면으로부터 받은 값 : " + map);
 		
 		//전체 모임 정보 select
@@ -171,9 +120,11 @@ public class StudyController {
 	@GetMapping("/detail")
 	public String detail(SearchVo vo, Model model, HttpSession session) {
 		
-		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
-		System.out.println(vo);
+		//뒤로가기 때문에 SearchVo 받아와야함
 		
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		
+		//map에 gno, mno 넣음
 		Map map = new HashMap();
 		map.put("gno", vo.getGno());
 		
@@ -184,6 +135,7 @@ public class StudyController {
 		//그룹번호로 정보 select
 		Map<String, Object> groupOne = service.selectGroupOne(vo.getGno());
 		
+		//map으로 좋아요싫어요, 스크랩 했는지 정보 받아옴
 		Map<String, Object> likeScrap = null;
 		if(loginMember != null) {
 			likeScrap = service.selectLikeScrap(map);
@@ -194,9 +146,6 @@ public class StudyController {
 		model.addAttribute("groupOne", groupOne);
 		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("likeScrap", likeScrap);
-		System.out.println(groupOne);
-		System.out.println(loginMember);
-		System.out.println(likeScrap);
 		
 		
 		return "study/detail";
@@ -218,8 +167,6 @@ public class StudyController {
 		List<Map<String, String>> techStackList = service.selectTechStackList();
 		model.addAttribute("techStackList", techStackList);
 
-		
-		System.out.println("그룹타입리스트:"+groupTypeList);
 		return "study/recruit";
 	}
 	
@@ -231,7 +178,7 @@ public class StudyController {
 		vo.setWriter(loginMember.getNo());
 		vo.setWriterNick(loginMember.getNick());
 		
-		System.out.println(vo);
+		System.out.println("모집하기 : "+vo);
 		
 		int result = service.recruit(vo);
 		if(result >= 1) {
@@ -242,16 +189,81 @@ public class StudyController {
 
 	}
 	
-	//스터디/프로젝트 수정 (DB)
+	//스터디/프로젝트 수정 (화면 + DB)
 	@GetMapping("/edit")
-	public String edit() {
-		return "redirect:/study/edit";
+	public String edit(SearchVo vo, Model model) {
+		
+		//뒤로가기 때문에 SearchVo 받아와야함
+		model.addAttribute("SearchVo", vo);
+		
+		//모집 구분 select
+		List<Map<String, String>> groupTypeList = service.selectGroupTypeList();
+		model.addAttribute("groupTypeList", groupTypeList);
+		
+		//진행 기간 select
+		List<Map<String, String>> groupPeriodList = service.selectGroupPeriodList();
+		model.addAttribute("groupPeriodList", groupPeriodList);
+		
+		//기술 스택 select
+		List<Map<String, String>> techStackList = service.selectTechStackList();
+		model.addAttribute("techStackList", techStackList);
+		
+		//그룹번호로 정보 select
+		Map<String, Object> groupOne = service.selectGroupOne(vo.getGno());
+		model.addAttribute("groupOne", groupOne);
+		
+		return "study/edit";
+	}
+	
+	//스터디/프로젝트 수정 (DB)
+	@PostMapping("/edit")
+	public String edit(SearchVo sv, GroupVo vo) {
+		
+		vo.setNo(sv.getGno());
+		
+		System.out.println("수정하려고 받은 vo값:" + vo);
+		
+		int result = service.updateGroupInfo(vo);
+		if(result >= 1) {
+			return "redirect:/study/detail?gno="+sv.getGno()+"&keyword="+sv.getKeyword()+"&tag="+ sv.getTagList() +"&techType="+sv.getTechType()+"&techStack="+sv.getTechStackList()+"&type="+sv.getType()+"&order="+sv.getOrder()+"&status="+sv.getStatus();
+		}else {
+			return "common/errorPage";
+		}
+		
 	}
 	
 	//스터디/프로젝트 삭제 (DB)
 	@GetMapping("/delete")
-	public String delete() {
-		return "redirect:/study/detail";
+	public String delete(SearchVo vo) {
+		
+		String gno = vo.getGno();
+		int result = service.deleteGroup(gno);
+		
+		if(result == 1) {
+			return "redirect:/study/list";
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+	//가입신청(DB)
+	@PostMapping("/apply")
+	public String apply(String[] answer, String gno, String mno) {
+		
+		Map map = new HashMap();
+		map.put("answer", answer);
+		map.put("gno", gno);
+		map.put("mno", mno);
+		
+		int result = service.insertGroupMember(map);
+		
+		if(result == 1) {
+			return "redirect:/study/list";
+			
+		}else {
+			return "common/errorPage";
+		}
+
 	}
 	
 //	//모집중 또는 모집완료 업데이트

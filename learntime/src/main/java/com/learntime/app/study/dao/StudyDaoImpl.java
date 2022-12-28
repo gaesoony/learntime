@@ -33,7 +33,11 @@ public class StudyDaoImpl implements StudyDao{
 	//공통 해시태그 insert
 	@Override
 	public int insertCommonTag(SqlSessionTemplate sst, String[] str) {
-		return sst.insert("studyMapper.insertCommonTag", str);
+		System.out.println("커먼태그 들어옴");
+		int result = sst.insert("studyMapper.insertCommonTag", str);
+		System.out.println(result);
+		return result;
+		
 	}
 	
 	//그룹 해시태그 insert
@@ -141,6 +145,43 @@ public class StudyDaoImpl implements StudyDao{
 	@Override
 	public String selectScrapYn(SqlSessionTemplate sst, Map map) {
 		return sst.selectOne("studyMapper.selectScrapYn", map);
+	}
+
+	//그룹 삭제
+	@Override
+	public int deleteGroup(SqlSessionTemplate sst, String gno) {
+		return sst.update("studyMapper.deleteGroup", gno);
+	}
+
+	//그룹 정보 수정
+	@Override
+	public int updateGroupInfo(SqlSessionTemplate sst, GroupVo vo) {
+		return sst.update("studyMapper.editGroup", vo);
+	}
+
+	//가입 질문 삭제
+	@Override
+	public int deleteGroupQuestion(SqlSessionTemplate sst, String no) {
+		return sst.update("studyMapper.deleteGroupQuestion", no);
+	}
+
+	//기술스택 삭제
+	@Override
+	public int deleteGroupTechStack(SqlSessionTemplate sst, String no) {
+		System.out.println("delete2들어옴");
+		return sst.update("studyMapper.deleteGroupTechStack", no);
+	}
+
+	//그룹 태그 삭제
+	@Override
+	public int deleteGroupTag(SqlSessionTemplate sst, String no) {
+		return sst.update("studyMapper.deleteGroupTag", no);
+	}
+
+	//그룹 멤버 추가
+	@Override
+	public int insertGroupMember(SqlSessionTemplate sst, Map map) {
+		return sst.insert("studyMapper.insertGroupMember", map);
 	}
 
 

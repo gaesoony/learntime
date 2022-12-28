@@ -21,47 +21,51 @@ pageEncoding="UTF-8"%>
             <ul class="study-detail-summary-list">
               <li class="flex">
                 <div>모집구분</div>
-                <div>프로젝트</div>
+                <div>${groupOne.TYPE}</div>
               </li>
               <li class="flex">
                 <div>진행방식</div>
-                <div>오프라인</div>
+                <div>${groupOne.WAY}</div>
               </li>
               <li class="flex">
                 <div>모집인원</div>
-                <div>5명 (3/5)</div>
+                <div>
+                  ${groupOne.NUMBER_PEOPLE}명
+                  (${groupOne.memberList.size()}/${groupOne.NUMBER_PEOPLE})
+                </div>
               </li>
               <li class="flex">
                 <div>시작예정</div>
-                <div>2022.11.10</div>
+                <div>${groupOne.START_DATE}</div>
               </li>
               <li class="flex">
                 <div>예상기간</div>
-                <div>3개월</div>
+                <div>${groupOne.PERIOD}</div>
               </li>
               <li class="flex">
                 <div>진행시간</div>
-                <div>14:00 ~ 16:00</div>
+                <div>${groupOne.START_TIME} ~ ${groupOne.END_TIME}</div>
               </li>
               <li class="flex">
                 <div>진행장소</div>
-                <div>강남 KH정보교육원</div>
+                <c:if test="${groupOne.PLACE != null }">
+                  <div>${groupOne.PLACE} (${groupOne.ADDRESS})</div>
+                </c:if>
+                <c:if test="${groupOne.PLACE == null }">
+                  <div>온라인에서 만나요</div>
+                </c:if>
               </li>
               <li class="flex">
                 <div>기술스택</div>
                 <ul class="flex tech-list">
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/aws.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/docker.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/java.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/spring.svg" alt="" />
-                  </li>
+                  <c:forEach items="${groupOne.techStackList}" var="ts">
+                    <li class="study-tech">
+                      <img
+                        src="${path}/resources/upload/techStack/${ts.IMG_PATH}"
+                        alt=""
+                      />
+                    </li>
+                  </c:forEach>
                 </ul>
               </li>
             </ul>
@@ -72,50 +76,14 @@ pageEncoding="UTF-8"%>
               <li class="study-tab">진행 장소</li>
             </ul>
             <div class="study-info-content">
-              <div class="study-detail-info-content">
-                <p>토이프로젝트 앱개발 같이 하실분 구합니다.</p>
-                <br />
-                <p>사용 기술스택</p>
-                <p>App: Flutter (Android, Mobile)</p>
-                <p>Backend: nestjs (Typescript) Apollo client</p>
-                <p>Frontend react (typescript) (view only)</p>
-                <p>git: Github</p>
-                <p>CI: github actions</p>
-                <p>CD: GCP</p>
-                <br />
-                <p>
-                  앱은 각정도만 잡혀 있는 상태이고 플루터 잘하시는분 환영합니다!
-                </p>
-                <p>
-                  지금 인원은 앱 개발자:1분 PM: 1분 Devops, Backend 1분 입니다
-                </p>
-                <br />
-                <p>
-                  기존에 없던 앱을 만드는 것이라 나중에 포트폴리오 쓰실때 좋을듯
-                  합니다 :)
-                </p>
-              </div>
+              <div class="study-detail-info-content">${groupOne.INTRO}</div>
               <ul class="tag-list">
-                <li class="tag-list-detail">
-                  <i class="fa-solid fa-hashtag gray1"></i>
-                  <span>자바</span>
-                </li>
-                <li class="tag-list-detail">
-                  <i class="fa-solid fa-hashtag gray1"></i>
-                  <span>포트폴리오</span>
-                </li>
-                <li class="tag-list-detail">
-                  <i class="fa-solid fa-hashtag gray1"></i>
-                  <span>프로젝트</span>
-                </li>
-                <li class="tag-list-detail">
-                  <i class="fa-solid fa-hashtag gray1"></i>
-                  <span>자바스크립트</span>
-                </li>
-                <li class="tag-list-detail">
-                  <i class="fa-solid fa-hashtag gray1"></i>
-                  <span>앱개발</span>
-                </li>
+                <c:forEach items="${groupOne.tagList}" var="item">
+                  <li class="tag-list-detail">
+                    <i class="fa-solid fa-hashtag gray1"></i>
+                    <span>${item.NAME}</span>
+                  </li>
+                </c:forEach>
               </ul>
             </div>
             <div class="study-location-content hidden">
@@ -140,7 +108,7 @@ pageEncoding="UTF-8"%>
 
                 // 주소로 좌표를 검색합니다
                 geocoder.addressSearch(
-                  "서울 강남구 테헤란로14길 6 남도빌딩 2층, 3층, 4층",
+                  "${groupOne.ADDRESS}",
                   function (result, status) {
                     // 정상적으로 검색이 완료됐으면
                     if (status === kakao.maps.services.Status.OK) {

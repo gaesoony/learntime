@@ -464,6 +464,10 @@ html .ui-button.ui-state-disabled:active {
   font-size: 14px;
 }
 
+.study-search-tag-div::-webkit-scrollbar {
+  display: none;
+}
+
 .study-search-tag {
   outline: none;
   border: none;
@@ -614,6 +618,7 @@ html .ui-button.ui-state-disabled:active {
 
 .tech-btn-div {
   position: relative;
+  margin-bottom: 5px;
 }
 
 .tech-btn {

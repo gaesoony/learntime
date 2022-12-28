@@ -12,23 +12,32 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       href="${path}/resources/css/study/detail.css?ver=4"
     />
 
-    <link
-      href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
-      rel="stylesheet"
-    />
-
     <!-- include summernote css/js-->
-    <link
+    <!-- <link
       href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
       rel="stylesheet"
+    /> -->
+    <!-- <link
+      href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
+      rel="stylesheet"
+    /> -->
+    <link
+      rel="stylesheet"
+      href="/app/resources/css/summernote/summernote-lite.css"
     />
+    <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
   </head>
   <body>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
+
     <div class="middle">
       <main class="main-study-detail">
         <aside class="study-detail-aside-left">
-          <button class="back-btn" onclick="location.href='${path}/study/list'">
+          <button
+            class="back-btn"
+            onclick="location.href='${path}/study/list?keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}'"
+          >
             <i class="fa-solid fa-arrow-left"></i>
           </button>
         </aside>
@@ -66,26 +75,37 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 </ul>
               </div>
               <div>
-                <c:if test="${loginMember.no != groupOne.WRITER_NO}">
-                  <a href="" class="no-cursor">수정</a>
-                </c:if>
                 <c:if test="${loginMember.no == groupOne.WRITER_NO}">
                   <a
-                    href="${pageContext.request.contextPath}/study/edit?gno=${groupOne.NO}"
+                    href="${pageContext.request.contextPath}/study/edit?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}"
+                    class="edit-bnt"
                     >수정</a
                   >
                 </c:if>
 
-                <c:if test="${loginMember.no != groupOne.WRITER_NO}">
-                  <a href="" class="no-cursor">삭제</a>
-                </c:if>
                 <c:if test="${loginMember.no == groupOne.WRITER_NO}">
-                  <a
-                    href="${pageContext.request.contextPath}/study/delete?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}"
-                    >삭제</a
-                  >
+                  <span class="cursor" onclick="deleteAlert();">삭제</span>
                 </c:if>
               </div>
+              <script>
+                function deleteAlert() {
+                  Swal.fire({
+                    title: "글을 삭제하시겠습니까?",
+                    text: "삭제하시면 다시 복구시킬 수 없습니다",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#5ecc80",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "삭제",
+                    cancelButtonText: "취소",
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      location.href =
+                        "${pageContext.request.contextPath}/study/delete?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}";
+                    }
+                  });
+                }
+              </script>
             </div>
           </section>
           <section class="study-detail-summary-area">
@@ -179,7 +199,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
                 // 주소로 좌표를 검색합니다
                 geocoder.addressSearch(
-                  "서울 강남구 테헤란로14길 6 남도빌딩 2층, 3층, 4층",
+                  "${groupOne.ADDRESS}",
                   function (result, status) {
                     // 정상적으로 검색이 완료됐으면
                     if (status === kakao.maps.services.Status.OK) {
@@ -198,7 +218,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                       // 인포윈도우로 장소에 대한 설명을 표시합니다
                       var infowindow = new kakao.maps.InfoWindow({
                         content:
-                          '<div style="width:150px;text-align:center;padding:6px 0;">스터디장소</div>',
+                          '<div style="width:150px;text-align:center;padding:6px 0 10px 0;">${groupOne.PLACE}</div>',
                       });
                       infowindow.open(map, marker);
 
@@ -232,72 +252,87 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               </c:forEach>
             </ul>
           </section>
-          <section class="center">
-            <input
-              class="study-join-btn"
-              type="button"
-              id="study-modal-open"
-              value="가입하기"
-            />
-            <div class="study-popup-wrap" id="study-popup">
-              <div class="study-popup">
-                <div class="study-popup-head">
-                  <div class="study-head-title">가입 신청</div>
-                  <div>가입 신청을 위한 정보를 입력해주세요</div>
-                </div>
-                <div class="study-popup-body">
-                  <c:if test="${groupOne.questionList.size()==0}">
-                    <div>가입 신청 하시겠습니까?</div>
-                  </c:if>
-                  <c:if test="${groupOne.questionList.size()>0}">
-                    <c:forEach
-                      items="${groupOne.questionList}"
-                      var="item"
-                      varStatus="status"
-                    >
-                      <div class="study-body-content">
-                        <div class="study-body-titlebox">
-                          <div>질문${status.index + 1}</div>
-                          <div>${item.QUESTION}</div>
-                        </div>
-                        <div class="study-body-contentbox">
-                          <input type="text" />
-                        </div>
-                      </div>
-                    </c:forEach>
-                  </c:if>
-                </div>
-                <div class="study-popup-foot">
-                  <div class="study-pop-btn study-confirm" id="study-confirm">
-                    신청
-                  </div>
+          <form action="${path}/study/apply" method="post" id="apply">
+            <input type="hidden" name="gno" value="${groupOne.NO}" />
+            <input type="hidden" name="mno" value="${loginMember.no}" />
+            <section class="center">
+              <c:if test="${loginMember != null}">
+                <input
+                  class="study-join-btn"
+                  type="button"
+                  id="study-modal-open"
+                  value="가입하기"
+                />
+              </c:if>
+              <c:if test="${loginMember == null}">
+                <input
+                  class="study-join-btn"
+                  type="button"
+                  value="가입하기"
+                  onclick="login();"
+                />
+              </c:if>
 
-                  <div class="study-pop-btn study-close" id="study-close">
-                    취소
+              <div class="study-popup-wrap" id="study-popup">
+                <div class="study-popup">
+                  <div class="study-popup-head">
+                    <div class="study-head-title">가입 신청</div>
+                    <div>가입 신청을 위한 정보를 입력해주세요</div>
+                  </div>
+                  <div class="study-popup-body">
+                    <c:if test="${groupOne.questionList.size()==0}">
+                      <div>가입 신청 하시겠습니까?</div>
+                    </c:if>
+                    <c:if test="${groupOne.questionList.size()>0}">
+                      <c:forEach
+                        items="${groupOne.questionList}"
+                        var="item"
+                        varStatus="status"
+                      >
+                        <div class="study-body-content">
+                          <div class="study-body-titlebox">
+                            <div>질문${status.index + 1}</div>
+                            <div>${item.QUESTION}</div>
+                          </div>
+                          <div class="study-body-contentbox">
+                            <input type="text" name="answer" />
+                          </div>
+                        </div>
+                      </c:forEach>
+                    </c:if>
+                  </div>
+                  <div class="study-popup-foot">
+                    <div class="study-pop-btn study-confirm" id="study-confirm">
+                      신청
+                    </div>
+
+                    <div class="study-pop-btn study-close" id="study-close">
+                      취소
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <script>
-              $(function () {
-                $("#study-confirm").click(function () {
-                  modalClose(); //모달 닫기 함수 호출
+              <script>
+                $(function () {
+                  $("#study-confirm").click(function () {
+                    document.querySelector("#apply").submit();
 
-                  //컨펌 이벤트 처리
+                    //컨펌 이벤트 처리
+                  });
+                  $("#study-modal-open").click(function () {
+                    $("#study-popup").css("display", "flex").hide().fadeIn();
+                    //팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
+                  });
+                  $("#study-close").click(function () {
+                    modalClose(); //모달 닫기 함수 호출
+                  });
+                  function modalClose() {
+                    $("#study-popup").fadeOut(); //페이드아웃 효과
+                  }
                 });
-                $("#study-modal-open").click(function () {
-                  $("#study-popup").css("display", "flex").hide().fadeIn();
-                  //팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
-                });
-                $("#study-close").click(function () {
-                  modalClose(); //모달 닫기 함수 호출
-                });
-                function modalClose() {
-                  $("#study-popup").fadeOut(); //페이드아웃 효과
-                }
-              });
-            </script>
-          </section>
+              </script>
+            </section>
+          </form>
         </article>
         <aside class="study-detail-aside-right">
           <div class="study-detail-aside-right-btns">
@@ -349,8 +384,22 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <section class="cmt-area">
           <div class="cmt-input">
             <div class="cmt-input-top flex">
-              <img src="/app/resources/img/study/profile.png" alt="" />
-              <div class="bold700">한혜원님, 댓글을 남겨보세요!</div>
+              <c:if test="${loginMember.nick == null}">
+                <img
+                  src="${path}/resources/upload/common/profile_default.png"
+                  alt=""
+                />
+                <div class="bold700">로그인하고 댓글을 남겨보세요!</div>
+              </c:if>
+              <c:if test="${loginMember.nick != null}">
+                <img
+                  src="/app/resources/upload/common/${loginMember.imgPath}"
+                  alt=""
+                />
+                <div class="bold700">
+                  ${loginMember.nick}님, 댓글을 남겨보세요!
+                </div>
+              </c:if>
             </div>
             <div class="cmt-area">
               <textarea name="editordata" id="summernote"></textarea>
@@ -361,13 +410,14 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           </div>
         </section>
 
-        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+
         <script>
           $(document).ready(function () {
             //여기 아래 부분
             $("#summernote").summernote({
-              height: 120, // 에디터 높이
+              height: 150, // 에디터 높이
               minHeight: null, // 최소 높이
               maxHeight: null, // 최대 높이
               focus: false, // 에디터 로딩후 포커스를 맞출지 여부
@@ -376,6 +426,11 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               disableResizeEditor: true,
             });
           });
+
+          //글쓰기 버튼 클릭 시 로그인모달 띄우기
+          function login() {
+            $(".blackBG").addClass("show");
+          }
         </script>
       </main>
     </div>

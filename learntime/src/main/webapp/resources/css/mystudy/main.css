@@ -87,28 +87,48 @@
 
 .study-detail-summary-area {
   padding: 40px 25px;
-  margin-bottom: 200px;
 }
 
 .study-detail-summary-list {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: repeat(4, 20px);
+  grid-template-rows: repeat(5, 20px);
   row-gap: 24px;
   font-weight: 700;
   font-size: 17px;
   margin-left: 10px;
 }
 
+.study-detail-summary-list li:nth-child(7) {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+.study-detail-summary-list li:nth-child(8) {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
 .study-detail-summary-list li div:first-child {
   color: gray;
   margin-right: 20px;
+  width: 80px;
 }
 
 .tech-list img {
   width: 35px;
   height: 35px;
   margin-right: 7px;
+}
+
+.tech-list {
+  width: 695px;
+  flex-wrap: wrap;
+  height: 24px;
 }
 
 /* 스터디 상세 - 소개부분 */

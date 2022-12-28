@@ -14,8 +14,12 @@ public class SearchVo {
 	//태그 
 	private String[] tag;
 	
+	private String tagList;
+	
 	//기술스택
 	private String[] techStack;
+	
+	private String techStackList;
 	
 	//그룹 유형 : 전체, 스터디, 프로젝트
 	private String type;
