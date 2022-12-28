@@ -85,9 +85,10 @@
     height: 25px;
     padding: 0 5px ;
 }
-.board-category>a{
+.board-category>span{
     font-size: 13px;
     font-weight: 800px;
+    cursor: pointer;
 }
 
 #board-category-box{

@@ -33,6 +33,8 @@ public class AdminCommunityController {
 		List<CateVo> cateList =  bs.selectCate();
 		model.addAttribute("cateList", cateList);
 		
+		System.out.println(bfv);
+		
 		//게시글 조회
 		List<BoardVo> boardList = bs.select(bfv);
 		model.addAttribute("boardList", boardList);

@@ -32,47 +32,20 @@
                 <span>작성하기</span> 
             </div>
             <div id="category" class="height-40">
-                <input type="radio" name="freeboard-cate" id="0">
+                <input type="radio" name="freeboard-cate" id="0" checked>
                 <label for="0">전체</label>
                 <c:forEach items = "${cateList}" var= "cate">
                     <input type="radio" name="freeboard-cate" id="${cate.no}">
                     <label for="${cate.no}">${cate.name}</label>
                 </c:forEach>
                
-                <script>
-                    // 나중에 바꿀거임....
-                    $('#category').click(function(){
-                        var cate = $(this).find('input:checked').attr('id');
-                        if(cate == '0' || cate == undefined){
-                            location.href = '/app/community/board/list';
-                        }else{
-                            location.href = '/app/community/board/list?cate=' + cate;
-                        }
-                    });
-
-
-                    // 쿼리스트링으로 카테고리 선택
-                    $(document).ready(function(){
-                        var cate = location.search.split('=')[1];
-                        $('#category').find('input[id=' + cate + ']').prop('checked', true);
-                    });
-                    // 쿼리스트링 5이상이면 카테고리 펼치기
-                    $(document).ready(function(){
-                        var cate = location.search.split('=')[1];
-                        if(cate >= 5){
-                            $('#category').removeClass('height-40');
-                            $('#category').addClass('height-auto');
-                            $('#cateDown').text('-');
-                        }
-                    });
-
-                </script>
+            
               
                 
             </div>
             <div id="cateDown">+</div>
 
-            <script defer>
+            <script>
                 //#category 의 자식 input 태그의 개수를 구해서 5개 이상이면 + 버튼 생성
                 $(document).ready(function(){
                     if($('#category').children('input').length > 5){
@@ -81,11 +54,9 @@
                         $('#cateDown').hide();
                     }
                 });
-
                
                 $('#cateDown').click(function(){
-
-                     // + 버튼 카테고리 토글
+                    // + 버튼 카테고리 토글
                     if($('#category').hasClass('height-40')){
                         $('#category').removeClass('height-40');
                         $('#category').addClass('height-auto');
@@ -94,38 +65,32 @@
                         $('#category').addClass('height-40');
                     }
 
-                    //cateDown 버튼 클릭시 +, - 토글
+                    //버튼 클릭시 +, - 토글
                     if($(this).text() == '+'){
                         $(this).text('-');
                     }else{
                         $(this).text('+');
                     }
-
                 });
-
-                
             </script>
-
-
-
             <div>
                 <select class="" name="" id="sorting">
-                    <option value="cate1" value = "enrollDate" selected>최신순</option>
-                    <option value="cate2" value ="cmtCount">댓글수</option>
-                    <option value="cate3" value = "hit">조회수</option>
-                    <option value="cate4" value = "lhCount">좋아요수</option>
+                    <option value = "1" selected>최신순</option>
+                    <option value = "2">댓글수</option>
+                    <option value = "3">조회수</option>
+                    <option value = "4">좋아요수</option>
                 </select>
             </div>
+
+           
 
         </div>
         <div id="explore">
             <span id="refresh-icon" class="material-symbols-rounded">refresh</span>
             <div id="search-box">
                 <span id="search-icon" class="material-symbols-rounded">search</span>
-                <form action="">
-                    <input type="text" id="search">
-                    <input type="submit" id="search-submit">
-                </form>
+                <input type="text" id="search">
+                <input type="submit" id="search-submit">
             </div>
             <div id="mini-paging">
                 <span class="material-symbols-rounded arrow-icon">arrow_back</span>
@@ -133,6 +98,19 @@
                 <span class="material-symbols-rounded arrow-icon">arrow_forward</span>
             </div>
         </div>
+
+        <script>
+            //#search-icon 누르면 검색어 전달
+            $('#search-icon').click(function(){
+                console.log('click');
+                var search = $('#search').val();
+                location.href = '/app/community/board/list?search=' + search;
+            });
+        </script>
+
+
+
+
         <div id="board-list">
             <!-- 공지사항 반복 -->
             <div class="board-content notice">
@@ -154,7 +132,6 @@
                     </div>
                 </div>
             </div>
-            
             <!-- 공지사항 반복 끝 -->
 
             <!-- 반복시작 -->
@@ -229,10 +206,9 @@
             } else {
                 location.href = '/app/community/board/write';
             }
-            });
+        });
 
-        // 시간계산
-            
+        //시간계산
         function timeForToday(value) {
             var today = new Date();
             var timeValue = new Date(value);
@@ -262,7 +238,79 @@
             $(this).html(timeForToday($(this).html()));
         });
 
-                
+
+        
+    $(document).ready(function() {
+        // 카테고리 클릭 시 쿼리 스트링으로 전달
+        $('input[type="radio"]').on('click', function() {
+            var cate = $(this).attr('id');
+            var sort = getQueryString('sort'); // 기존 쿼리 스트링 값 조회
+            location.href = '/app/community/board/list?cate=' + cate;
+        });
+
+        // 정렬 클릭 시 쿼리 스트링으로 전달
+        $('#sorting').on('change', function() {
+            var sort = $(this).val();
+            var cate = getQueryString('cate'); // 기존 쿼리 스트링 값 조회
+            // var page = getQueryString('page'); // 기존 쿼리 스트링 값 조회
+            
+            if(cate == undefined){
+                location.href = '/app/community/board/list?sort=' + sort;
+            } else if(cate != undefined){
+                location.href = '/app/community/board/list?cate=' + cate + '&sort=' + sort;
+            } 
+        });
+
+        // 페이징 클릭 시 쿼리 스트링으로 전달
+        $('.pagination a').on('click', function() {
+            var page = $(this).text();
+            var cate = getQueryString('cate'); // 기존 쿼리 스트링 값 조회
+            var sort = getQueryString('sort'); // 기존 쿼리 스트링 값 조회
+            location.href = '/app/community/board/list?cate=' + cate + '&sort=' + sort + '&page=' + page;
+        });
+
+        // 쿼리 스트링 값 조회 함수
+        function getQueryString(key) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                var pair = vars[i].split("=");
+                if(pair[0] == key){return pair[1];}
+            }
+            return undefined;
+        }
+
+        // 카테고리 쿼리 스트링 값으로 선택
+        var cate = getQueryString('cate');
+        if (cate != undefined) {
+            $('#' + cate).prop('checked', true);
+        }
+
+        // 정렬 쿼리 스트링 값으로 선택
+        var sort = getQueryString('sort');
+        if (sort != undefined) {
+            $('#sorting').val(sort);
+        }
+
+    });
+         
+        
+        
+        // 쿼리스트링 5이상이면 카테고리 펼치기
+        $(document).ready(function(){
+            var cate = location.search.split('=')[1];
+            if(cate >= 5){
+                $('#category').removeClass('height-40');
+                $('#category').addClass('height-auto');
+                $('#cateDown').text('-');
+            }
+        });
+
+
+
+
+       
+           
     </script>
     
 </body>

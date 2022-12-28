@@ -31,8 +31,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardVo> select(BoardFilterVo blf) {
-		return dao.selectBoardList(sst, blf);
+	public List<BoardVo> select(BoardFilterVo bfv) {
+		return dao.selectBoardList(sst, bfv);
 	}
 
 	

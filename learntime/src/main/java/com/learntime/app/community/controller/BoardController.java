@@ -38,14 +38,22 @@ public class BoardController {
 // 	글 목록 (카테고리 있을때)
 	@GetMapping("/board/list")
 	public String boardList(Model model, BoardFilterVo bfv) {
-
-		System.out.println(bfv.getCate());
-		System.out.println(bfv.getPage());
-		System.out.println(bfv.getSort());
-		System.out.println(bfv.getSearch());
+		
+		//나중에 메소드로 분리  TODO
+		System.out.println(bfv);
+		if("1".equals(bfv.getSort())){
+			bfv.setSort("ENROLL_DATE");
+		}else if("2".equals(bfv.getSort())){
+			bfv.setSort("CMT_COUNT");
+			System.out.println(bfv.getSort());
+		}else if("3".equals(bfv.getSort())){
+			bfv.setSort("HIT");
+		}else if("4".equals(bfv.getSort())){
+			bfv.setSort("LH_COUNT");
+		}
 		
 		List<BoardVo> boardList = bs.select(bfv);
-
+		
 		if (boardList == null) {
 			return "";
 		}

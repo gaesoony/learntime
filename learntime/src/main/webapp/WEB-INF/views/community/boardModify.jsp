@@ -51,11 +51,9 @@
 
 
     <%@include file ="/WEB-INF/views/common/footer.jsp" %>
-
+    <!-- 서머노트 로딩-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- 서머노트 로딩-->
     <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
     <script>
@@ -69,7 +67,6 @@
         // 카테고리 선택
         var cateNo = ${bv.cateNo};
         $("#cate-select-box select option:eq("+cateNo+")").attr("selected", "selected");
-
     </script>
 
 </body>

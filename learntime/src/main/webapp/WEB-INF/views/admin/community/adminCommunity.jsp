@@ -28,7 +28,8 @@
                     <!-- 카테고리 반복문 -->
                     <c:forEach var="cate" items="${cateList}">
                         <div class="board-category">
-                            <a href="/app/admin/community/list?cate=${cate.no}">${cate.name}</a>
+                            <span class="cate-name">${cate.name}</span>
+                            <input type="hidden" name="" value="${cate.no}">
                             <div class="modi-dele-box">
                                 <a href="/app/admin/community/modicate?cate=${cate.no}" class="modi-btn txt-sm">수정</a>
                                 <a href="/app/admin/community/delecate?cate=${cate.no}" class="dele-btn txt-sm">삭제</a>
@@ -143,11 +144,12 @@
                 </div>
 
                 <div id="search-box" class="shadow-light">
-                    <form action="">
+                    <form action="" onsubmit="return false;">
                         <span class="material-symbols-rounded">search</span>
                         <input type="text" name="" id="" placeholder="제목, 작성자 검색">
-                        <input type="submit" value="" hidden>
+                        <input id="search-btn" type="submit" value="" hidden>
                     </form>
+
                 </div>
 
                 <div id="board-list" class="shadow-light">
@@ -245,10 +247,66 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
+
+    <script>
+        $(document).ready(function() {
+        // 카테고리 클릭 시 쿼리 스트링으로 전달
+        $('.cate-name').on('click', function() {
+            var cate = $(this).next().val();
+            // var sort = getQueryString('sort'); // 기존 쿼리 스트링 값 조회
+            location.href = '/app/admin/community/list?cate='+cate;
+        });
+
+        // // 정렬 클릭 시 쿼리 스트링으로 전달
+        // $('#sorting').on('change', function() {
+        //     var sort = $(this).val();
+        //     var cate = getQueryString('cate'); // 기존 쿼리 스트링 값 조회
+        //     // var page = getQueryString('page'); // 기존 쿼리 스트링 값 조회
+            
+        //     if(cate == undefined){
+        //         location.href = '/app/community/board/list?sort=' + sort;
+        //     } else if(cate != undefined){
+        //         location.href = '/app/community/board/list?cate=' + cate + '&sort=' + sort;
+        //     } 
+        // });
+
+        // // 페이징 클릭 시 쿼리 스트링으로 전달
+        // $('.pagination a').on('click', function() {
+        //     var page = $(this).text();
+        //     var cate = getQueryString('cate'); // 기존 쿼리 스트링 값 조회
+        //     var sort = getQueryString('sort'); // 기존 쿼리 스트링 값 조회
+        //     location.href = '/app/community/board/list?cate=' + cate + '&sort=' + sort + '&page=' + page;
+        // });
+
+        
+        //검색 시 쿼리 스트링으로 전달
+        $('#search-btn').on('click', function() {
+            var cate = getQueryString('cate'); // 기존 쿼리 스트링 값 조회
+            var search = $(this).prev().val();
+            if(cate == undefined){
+                location.href = '/app/admin/community/list?search=' + search;
+            } else if(cate != undefined){
+                location.href = '/app/admin/community/list?cate=' + cate + '&search=' + search;
+            }
+        });
+            
+
+
+        // 쿼리 스트링 값 조회 함수
+        function getQueryString(key) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                var pair = vars[i].split("=");
+                if(pair[0] == key){return pair[1];}
+            }
+            return undefined;
+        }
+
+    });
+
+    </script>
 	
 </body>
 </html>

@@ -28,7 +28,7 @@
 	</update>
 	
 	<select id="selectList" resultType = "BoardVo">
-		SELECT FB.*, FLH.*, (COALESCE(FLH.LIKES, 0) - COALESCE(FLH.HATES, 0)) AS LH_COUNT, M.*, FBC.*, CMT.count AS CMT_COUNT
+		SELECT FB.*, FLH.*, (COALESCE(FLH.LIKES, 0) - COALESCE(FLH.HATES, 0)) AS LH_COUNT, M.*, FBC.*, COALESCE(CMT.count, 0) AS CMT_COUNT
 		FROM FREE_BOARD FB
 		LEFT JOIN (  SELECT  BOARD_NO,
 		                SUM(CASE WHEN STATUS = 'L' THEN 1 ELSE 0 END) AS LIKES,
@@ -42,26 +42,31 @@
 		ON FBC.NO = FB.CATE_NO
 		LEFT JOIN (SELECT BOARD_NO, COUNT(*) as COUNT FROM FREE_BOARD_CMT GROUP BY BOARD_NO) CMT
 		ON FB.NO = CMT.BOARD_NO
+		WHERE FB.DELETE_YN = 'N'
+		 
+		<if test = "cate != null and !('').equals(cate) and cate != '0'.toString()">
+		AND FB.CATE_NO = #{cate}
+		</if>
 		
-		<if test = "cate != null and !cate.equals('')">
-		WHERE FB.CATE_NO = #{cate}
+		<if test = "search != null and !('').equals(search)">
+		AND (FB.TITLE LIKE '%${search}%' OR M.WRITER_NICK LIKE '%${search}%')
 		</if>
-		<!-- 
-		<if test = "search != null and !search.equals('') and cate.equals('')">
-		WHERE WRITER_NICK LIKE '%#{search}%'
+		
+		<if test = "search != null and !('').equals(search) and cate != null and !('').equals(cate)">
+		AND FB.CATE_NO = #{cate}
+		AND (FB.TITLE LIKE '%${search}%' OR M.WRITER_NICK LIKE '%${search}%')
 		</if>
-		<if test = "search != null and !search.equals('') and cate != null and !cate.equals('')">
-		WHERE FB.CATE_NO = #{cate}
-		AND WRITER_NICK LIKE '%#{search}%'
+		
+		<if test = "sort != null and !('').equals(sort)">
+		ORDER BY ${sort} DESC
 		</if>
-		<if test = "sort != null and !sort.equals('')">
-		ORDER BY #{sort} DESC
-		</if>
-		<if test = "sort.equals('')">
+		
+		<if test = "('').equals(sort) or sort == null">
 		ORDER BY FB.NO DESC
 		</if>
-		-->
-		ORDER BY FB.NO DESC
+		
+	
+		
 		
 	</select>
 	
@@ -132,13 +137,13 @@
 			SYSDATE,
 			'N',
 			SYSDATE,
-			<if test = "group.equals('')">0</if>
-			<if test = "group != null and !group.equals('')">1</if>
+			<if test = "('').equals(group)">0</if>
+			<if test = "group != null and !('').equals(group)">1</if>
 			,
-			<if test= "group.equals('')">
+			<if test= "('').equals(group)">
 			SEQ_FREEBOARD_CMT_NO.NEXTVAL
 			</if>
-			<if test = "group != null and !group.equals('')">
+			<if test = "group != null and !('').equals(group)">
 			#{group}
 			</if>
 		)
