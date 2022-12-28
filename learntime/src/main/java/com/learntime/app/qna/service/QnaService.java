@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.learntime.app.qna.vo.QnaAnswerVo;
 import com.learntime.app.qna.vo.QnaVo;
 
 @Service
@@ -16,6 +17,11 @@ public interface QnaService {
 
 	//게시글 목록
 	public List<QnaVo> selectList(QnaVo vo);
+
+	public int insertEdit(QnaVo vo);
+
+	//게시글 상세조회
+	public QnaVo selectOne(int no);
 	
 	
 }

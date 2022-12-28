@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.learntime.app.qna.vo.QnaAnswerVo;
 import com.learntime.app.qna.vo.QnaVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -38,6 +39,18 @@ public class QnaDaoImpl implements QnaDao {
 	@Override
 	public List<QnaVo> selectList(SqlSessionTemplate sst, QnaVo vo) {
 		return sst.selectList("qnaMapper.selectList", vo);
+	}
+
+	//게시글 수정
+	@Override
+	public int insertEdit(SqlSessionTemplate sst, QnaVo vo) {
+		return sst.update("qnaMapper.insertEdit", vo);
+	}
+
+	//게시글 상세조회
+	@Override
+	public QnaVo selectOne(SqlSessionTemplate sst, int no) {
+		return sst.selectOne("qnaMapper.selectOne", no);
 	}
 
 }

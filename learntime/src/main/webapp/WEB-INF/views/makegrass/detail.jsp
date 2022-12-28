@@ -107,28 +107,134 @@
         font-size: 18px;
         color: #5ECC80;
         vertical-align: middle;
-        padding-right: 580px;
+        padding-right: 500px;
     }
     .thumbsup{
         font-size: 20px;
         padding-top: 10px;
         vertical-align: middle;
+        cursor: pointer;
     }
     .thumbsdown{
         font-size: 20px;
         padding-top: 10px;
         vertical-align: middle;
+        cursor: pointer;
     }
     .bookmark{
         font-size: 20px;
         padding-top: 10px;
         vertical-align: middle;
+        cursor: pointer;
     }
-    .dots{
-        font-size: 20px;
-        padding-top: 10px;
+    .edit{
         vertical-align: middle;
     }
+    .edit-btn{
+        border: none;
+        font-size: 18px;
+        background-color: white;
+        font-weight: 300;
+        cursor: pointer;
+        margin-top: 8px;
+    }
+    .slash{
+        font-size: 18px;
+        padding-top: 10px;
+        vertical-align: middle;
+        font-weight: 300;
+    }
+    .delete-btn{
+        border: none;
+        font-size: 18px;
+        vertical-align: middle;
+        cursor: pointer;
+        font-weight: 300;
+        background-color: white;
+    }
+
+    /* 삭제 모달창 */
+    .modal{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .modal .bg{
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+    .modalBox {
+        position: absolute;
+        background-color: #fff;
+        width: 400px;
+        height: 200px;
+        padding: 15px;
+        border-radius: 10px;
+    }
+    .hidden{
+        display: none;
+    }
+    .modalTitle{
+        font-size: 16px;
+        text-align: center;
+    }
+    .closeBtn{
+        display: block;
+        border: none;
+        color: #444444;
+        background-color: white;
+        font-size: 18px;
+        text-align: right;
+        cursor: pointer;
+        margin-left: 370px;
+        margin-bottom: 30px;
+    }
+    .closeBtn:hover{
+        color: #5ECC80;
+    }
+    .modalBtn{
+        display: grid;
+        grid-template-columns: 150px 150px;
+        column-gap: 30px;
+        justify-content: center;
+        margin-top: 55px;
+    }
+    .cancleBtn{
+        margin: 0 auto;
+        width: 90px;
+        border: 1px solid #5ECC80;
+        color: #5ECC80;
+        background-color: white;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    .cancleBtn:hover{
+        background-color: #5ECC80;
+        color: white;
+        font-weight: 550;
+    }
+    .saveBtn{
+        margin: 0 auto;
+        width: 90px;
+        border: 1px solid #5ECC80;
+        color: #5ECC80;
+        background-color: white;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    .saveBtn:hover{
+        background-color: #5ECC80;
+        color: white;
+        font-weight: 550;
+    }
+
+    /* 상단 라인 */
     .line1{
         border-top: 1px solid #C0C0C0;
         margin-bottom: 30px;
@@ -444,7 +550,6 @@
     .sidebarbox{
         margin-top: 200px;
         margin-left: 50px;
-        position: fixed;
     }
     .side{
         width: 5vw;
@@ -590,10 +695,25 @@
                         <td class="nick">nick01</td>
                         <td class="enrollDate">2202.12.07.</td>
                         <td class="heart"><i class="fa-solid fa-thumbs-up"></i> 25</td>
-                        <td class="thumbsup" style="cursor: pointer;"><i class="fa-regular fa-thumbs-up"></i></td>
-                        <td class="thumbsdown" style="cursor: pointer;"><i class="fa-regular fa-thumbs-down"></i></td>
-                        <td class="bookmark" style="cursor: pointer;"><i class="fa-regular fa-bookmark"></i></td>
-                        <td class="dots" style="cursor: pointer;"><i class="fa-solid fa-ellipsis-vertical"></i></td>
+                        <td class="thumbsup"><i class="fa-regular fa-thumbs-up"></i></td>
+                        <td class="thumbsdown"><i class="fa-regular fa-thumbs-down"></i></td>
+                        <td class="bookmark"><i class="fa-regular fa-bookmark"></i></td>
+                        <td class="edit"><button type="button" class="edit-btn" onclick="location.href='app/makegrass/edit'">수정</button></td>
+                        <td class="slash">/</td>
+                        <td class="delete">
+                            <button type="button" class="delete-btn">삭제</button>
+                            <div class="modal hidden">
+                                <div class="bg"></div>
+                                <div class="modalBox">
+                                    <button class="closeBtn"><i class="fa-solid fa-xmark"></i></button>
+                                    <p class="modalTitle">게시물을 삭제하시겠습니까?</p>
+                                    <div class="modalBtn">
+                                        <button class="cancleBtn">취소</button>
+                                        <button class="saveBtn" onclick="location.href='/app/qna/list'">삭제</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 </table>
                 <div class="line1"></div>
@@ -718,10 +838,25 @@
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
-    <!-- 서머노트 로딩-->
+    <!-- 썸머노트 로딩-->
     <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
     <script>
+
+        // 삭제 모달
+        const open = () => {
+            document.querySelector(".modal").classList.remove("hidden");
+        }
+        const close = () => {
+            document.querySelector(".modal").classList.add("hidden");
+        }
+        document.querySelector(".delete-btn").addEventListener("click", open);
+        document.querySelector(".closeBtn").addEventListener("click", close);
+        document.querySelector(".cancleBtn").addEventListener("click", close);
+        document.querySelector(".bg").addEventListener("click", close);
+
+
+        //썸머노트
         $('.summernote').summernote({
             height: 130,
             lang: "ko-KR"
