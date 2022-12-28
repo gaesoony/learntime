@@ -47,7 +47,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
                     </c:if>
                     <c:if test="${map.IMG_PATH != null }">
                       <img
-                        src="${path}/resources/upload/mystudy/${map.IMG_PATH}"
+                        src="${path}/resources/upload/mystudy/profile/${map.IMG_PATH}"
                         alt=""
                       />
                     </c:if>

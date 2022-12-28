@@ -1,8 +1,7 @@
-/* 스터디모집페이지 css가져옴 */
-
 @charset "utf-8";
 * {
   box-sizing: border-box;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 /* 공통css */
@@ -71,39 +70,35 @@
 /* 스터디모집 1200 */
 
 .study-recruit-main {
-  /* width: 850px; */
-  padding: 30px;
+  width: 850px;
+  margin-left: 50px;
+  margin-top: 45px;
 }
 
 /* 프로젝트 기본정보 */
 
 .study-info {
-  margin-top: 10px;
-}
-
-.study-info-bottom {
-  margin-top: 20px;
-  width: 800px;
-  margin-bottom: 60px;
+  margin-top: 28px;
 }
 
 .study-recruit-num {
-  width: 25px;
-  height: 25px;
-  background-color: #5ecc80;
+  width: 30px;
+  height: 30px;
+  background-color: var(--main-color);
   border-radius: 50%;
   color: white;
   margin-right: 10px;
-  line-height: 25px;
 }
 
 .study-recruit-title h1 {
   font-weight: 700;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .study-recruit-title {
-  padding-bottom: 25px;
+  /* border-bottom: 1px solid rgb(208, 208, 208); */
+  padding-bottom: 18px;
+  margin-bottom: 40px;
 }
 
 /* 셀렉트 박스 */
@@ -139,13 +134,13 @@
 
 .select-box {
   display: flex;
-  width: 330px;
+  width: 396px;
   flex-direction: column;
 }
 
 .box {
-  padding: 10px 17px 12px 17px;
-  width: 330px;
+  padding: 12px 17px 12px 17px;
+  width: 396px;
   background: #ffffff;
   border-radius: 5px;
   margin-bottom: 8px;
@@ -188,6 +183,10 @@
   order: 0;
 }
 
+.options-container > label {
+  width: 100%;
+}
+
 .selected:not(.selected-people):after {
   content: "";
   background: url("../../../img/study/arrow_down.png");
@@ -205,6 +204,7 @@
 }
 
 .box input {
+  height: 25px;
   width: 300px;
   border: none;
   outline: #505050;
@@ -212,10 +212,11 @@
   color: #767676;
   font-weight: 700;
   cursor: pointer;
+  padding-bottom: 9px;
 }
 
 .selected-people input {
-  width: 250px;
+  width: 335px;
   border: none;
   outline: #505050;
   font-size: 15px;
@@ -261,6 +262,18 @@
 .selected {
   padding: 12px 17px 12px 17px;
   cursor: pointer;
+}
+
+.selected-tech {
+  padding: 0px 10px 2px 17px !important;
+}
+
+.option-tech {
+  padding: 0 !important;
+}
+
+.option-tech label {
+  padding: 12px 17px 12px 17px;
 }
 
 .select-box .option:hover {
@@ -332,13 +345,13 @@ html .ui-button.ui-state-disabled:active {
 #time1,
 #time2,
 .datepicker {
-  /* padding-bottom: 10px; */
+  padding-bottom: 10px;
 }
 
 /* 가입 질문 */
 
 .recruit-question-area {
-  margin: 30px 0px;
+  margin: 30px 0px 100px 0px;
   padding-left: 10px;
 }
 
@@ -403,12 +416,8 @@ html .ui-button.ui-state-disabled:active {
 
 /* 프로젝트 소개 */
 
-.text-area {
-  padding: 0px 10px;
-}
-
 .study-introduce-title {
-  margin-left: 10px;
+  /* margin-left: 10px; */
   font-size: 20px;
   font-weight: 700;
   color: gray;
@@ -427,20 +436,95 @@ html .ui-button.ui-state-disabled:active {
 }
 
 .study-introduce-tag {
-  margin-left: 10px;
+  /* margin-left: 10px; */
   margin-bottom: 30px;
 }
 
-.study-introduce-title input {
+/* .study-search-tag {
   padding: 10px;
   border: none;
   width: 800px;
-}
+} */
 
 /* .study-introduce-tag input:focus {
   outline: 2px solid rgba(161, 222, 180, 0.659);
   border-radius: 5px;
 } */
+
+/* 태그 */
+.study-search-tag-div {
+  width: 633px;
+  height: 45px;
+  border: 1px solid rgb(211, 211, 211);
+  padding: 10px 0px;
+  padding-left: 14px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  outline: none;
+  overflow: auto;
+  font-size: 14px;
+}
+
+.study-search-tag-div::-webkit-scrollbar {
+  display: none;
+}
+
+.study-search-tag {
+  outline: none;
+  border: none;
+}
+
+.tag-div {
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.tag-btn {
+  /* width: 55px; */
+  height: 26px;
+  outline: none;
+  border: none;
+  background-color: #e7eef9;
+  border-radius: 3px;
+  padding: 5px 17px 5px 8px;
+  font-size: 13px;
+}
+
+.tag-btn:hover {
+  background-color: #f2f6ff;
+  color: #828282;
+}
+
+.tag-list {
+  display: inline;
+}
+
+.tag-div i {
+  position: absolute;
+  right: 8px;
+  top: 7px;
+  font-size: 5px;
+}
+
+.reset-btn {
+  width: 60px;
+  height: 43px;
+  border: none;
+  background-color: white;
+  border-radius: 3px;
+  position: absolute;
+  top: 0;
+  right: 153px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.fa-rotate-left {
+  position: absolute;
+  top: 14px;
+  right: 143px;
+}
 
 /* 스터디 장소 */
 
@@ -449,8 +533,9 @@ html .ui-button.ui-state-disabled:active {
 }
 
 .myAddress {
-  width: 400px;
-  padding: 5px;
+  width: 340px;
+  padding: 7px;
+  font-size: 14px;
 }
 
 .myAddress-btn {
@@ -505,74 +590,6 @@ html .ui-button.ui-state-disabled:active {
   color: white;
 }
 
-/* 태그 */
-.study-search-tag-div {
-  width: 633px;
-  height: 45px;
-  border: 1px solid rgb(211, 211, 211);
-  padding: 10px 0px;
-  padding-left: 14px;
-  box-sizing: border-box;
-  border-radius: 3px;
-  outline: none;
-  overflow: auto;
-  font-size: 14px;
-}
-
-.study-search-tag {
-  outline: none;
-  border: none;
-}
-
-.tag-div {
-  display: inline-block;
-  margin-right: 5px;
-  margin-bottom: 5px;
-}
-
-.tag-btn {
-  border: none;
-  background-color: #e7eef9;
-  border-radius: 3px;
-  padding: 5px 17px 5px 8px;
-  font-size: 13px;
-}
-
-.tag-list {
-  display: inline;
-}
-
-.tag-div i {
-  position: absolute;
-  right: 8px;
-  top: 7px;
-  font-size: 5px;
-}
-
-.tag-btn:hover {
-  background-color: #f2f6ff;
-  color: #828282;
-}
-
-.reset-btn {
-  width: 60px;
-  height: 43px;
-  border: none;
-  background-color: white;
-  border-radius: 3px;
-  position: absolute;
-  top: 0;
-  left: 637px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.fa-rotate-left {
-  position: absolute;
-  top: 15px;
-  left: 692px;
-}
-
 /* 기술스택 여러개 선택하는 부분 */
 
 .selected-tech {
@@ -606,7 +623,7 @@ html .ui-button.ui-state-disabled:active {
 }
 
 .tech-btn {
-  padding: 5px 17px 8px 9px;
+  padding: 5px 17px 7px 9px;
   background-color: rgb(228, 247, 255);
   border: none;
   border-radius: 3px;
@@ -621,4 +638,28 @@ html .ui-button.ui-state-disabled:active {
   right: 12px;
   top: 6px;
   font-size: 5px;
+}
+
+/* 질문추가버튼 */
+
+.add-btn {
+  width: 60px;
+  height: 25px;
+  border: 1px solid var(--main-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  color: var(--main-color);
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background-color: var(--main-color);
+  color: white;
+}
+
+.fa-square-xmark,
+.fa-square {
+  cursor: pointer;
 }

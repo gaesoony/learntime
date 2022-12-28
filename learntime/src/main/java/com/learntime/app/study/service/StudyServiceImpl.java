@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.learntime.app.mystudy.vo.ProfileVo;
 import com.learntime.app.study.dao.StudyDao;
 import com.learntime.app.study.vo.GroupVo;
 import com.learntime.app.study.vo.SearchVo;
@@ -315,6 +316,20 @@ public class StudyServiceImpl implements StudyService{
 	@Override
 	public int insertGroupMember(Map map) {
 		int result = dao.insertGroupMember(sst, map);
+		return result;
+	}
+
+	//그룹 프사, 이름 수정
+	@Override
+	public int updateProfile(ProfileVo vo) {
+		int result = dao.updateGroupProfile(sst, vo);
+		return result;
+	}
+
+	//상태로 그룹 멤버리스트 조회
+	@Override
+	public List<Map<String, String>> selectGroupMemberListByStatus(Map map) {
+		List<Map<String, String>> result = dao.selectGroupMemberListByStatus(sst, map);
 		return result;
 	}
 

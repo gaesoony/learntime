@@ -338,5 +338,18 @@
 		(NO, G_NO, M_NO, ENROLL_DATE, STATUS)
 		VALUES (SEQ_RECRUIT_LIST_NO.NEXTVAL, #{gno}, #{mno}, SYSDATE, 'A')
 	</insert>
-
+	<update id="updateGroupProfile">
+		UPDATE RECRUIT_GROUP SET
+		NAME = #{name} ,
+		IMG_PATH = #{changeName}
+		WHERE NO = #{no}
+		
+	</update>
+	<select id="selectGroupMemberListByStatus" resultType="map">
+		SELECT R.NO, R.G_NO, R.M_NO, R.ENROLL_DATE, R.STATUS, M.IMG_PATH MEMBER_PROFILE, M.NICK MEMBER_NICK 
+		FROM RECRUIT_LIST R
+		JOIN MEMBER M ON R.M_NO = M.NO
+		WHERE R.G_NO = #{gno}
+		AND R.STATUS = #{status}
+	</select>
 </mapper>

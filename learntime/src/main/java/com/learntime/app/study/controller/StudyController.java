@@ -182,6 +182,7 @@ public class StudyController {
 		
 		int result = service.recruit(vo);
 		if(result >= 1) {
+	
 			return "redirect:/study/list";
 		}else {
 			return "common/errorPage";
@@ -225,6 +226,7 @@ public class StudyController {
 		
 		int result = service.updateGroupInfo(vo);
 		if(result >= 1) {
+	
 			return "redirect:/study/detail?gno="+sv.getGno()+"&keyword="+sv.getKeyword()+"&tag="+ sv.getTagList() +"&techType="+sv.getTechType()+"&techStack="+sv.getTechStackList()+"&type="+sv.getType()+"&order="+sv.getOrder()+"&status="+sv.getStatus();
 		}else {
 			return "common/errorPage";

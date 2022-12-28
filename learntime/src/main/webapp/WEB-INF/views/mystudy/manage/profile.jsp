@@ -35,8 +35,9 @@ pageEncoding="UTF-8"%>
       }
 
       .profile-img img {
-        width: 130px;
-        height: 130px;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
       }
 
       .profile-name div {
@@ -93,60 +94,76 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
-    <main class="space-between">
-      <%@ include file="/WEB-INF/views/mystudy/common/manage-side.jsp" %>
-      <article class="mystudy-article">
-        <div class="mystudy-board-title">프로필 관리</div>
-        <div class="profile-info-area">
-          <section class="flex">
-            <div class="profile-img center relative">
-              <img
-                src="${pageContext.request.contextPath}/resources/img/mystudy/UsersThree2.png"
-                alt=""
-              />
-              <img
-                id="preview"
-                src="${pageContext.request.contextPath}/resources/img/mystudy/transparent.png"
-              />
-              <div class="file-btn-area">
-                <label for="file" class="file-btn center"
-                  ><img
-                    src="${pageContext.request.contextPath}/resources/img/mystudy/image-plus.png"
-                    alt=""
-                /></label>
-                <input
-                  id="file"
-                  type="file"
-                  class="hidden"
-                  onchange="readURL(this);"
+    <form
+      action="${path}/mystudy/manage/profile"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <input type="hidden" name="gno" value="${groupOne.NO}" />
+      <main class="space-between">
+        <%@ include file="/WEB-INF/views/mystudy/common/manage-side.jsp" %>
+        <article class="mystudy-article">
+          <div class="mystudy-board-title">프로필 관리</div>
+          <div class="profile-info-area">
+            <section class="flex">
+              <div class="profile-img center relative">
+              <c:if test="${groupOne.GROUP_IMG_PATH == null}">
+               <img
+                  src="${path}/resources/upload/mystudy/profile/default_profile.png"
+                  alt=""
                 />
+              </c:if>
+                <c:if test="${groupOne.GROUP_IMG_PATH != null}">
+               <img
+                  src="${path}/resources/upload/mystudy/profile/${groupOne.GROUP_IMG_PATH}"
+                  alt=""
+                />
+              </c:if>
+                <img
+                  id="preview"
+                  src="${pageContext.request.contextPath}/resources/img/mystudy/transparent.png"
+                />
+                <div class="file-btn-area">
+                  <label for="file" class="file-btn center"
+                    ><img
+                      src="${pageContext.request.contextPath}/resources/img/mystudy/image-plus.png"
+                      alt=""
+                  /></label>
+                  <input
+                    id="file"
+                    name="profile"
+                    type="file"
+                    class="hidden"
+                    onchange="readURL(this);"
+                  />
 
-                <script>
-                  function readURL(input) {
-                    if (input.files && input.files[0]) {
-                      var reader = new FileReader();
-                      reader.onload = function (e) {
-                        document.getElementById("preview").src =
-                          e.target.result;
-                      };
-                      reader.readAsDataURL(input.files[0]);
-                    } else {
-                      document.getElementById("preview").src = "";
+                  <script>
+                    function readURL(input) {
+                      if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                          document.getElementById("preview").src =
+                            e.target.result;
+                        };
+                        reader.readAsDataURL(input.files[0]);
+                      } else {
+                        document.getElementById("preview").src = "";
+                      }
                     }
-                  }
-                </script>
+                  </script>
+                </div>
               </div>
+              <div class="profile-name">
+                <div>스터디/프로젝트 이름</div>
+                <input type="text" value="${groupOne.GROUP_NAME}" name="name" />
+              </div>
+            </section>
+            <div>
+              <input type="submit" value="저장하기" class="save-btn cursor" />
             </div>
-            <div class="profile-name">
-              <div>스터디/프로젝트 이름</div>
-              <input type="text" value="한혜원님의 스터디" />
-            </div>
-          </section>
-          <div>
-            <input type="button" value="저장하기" class="save-btn" />
           </div>
-        </div>
-      </article>
-    </main>
+        </article>
+      </main>
+    </form>
   </body>
 </html>
