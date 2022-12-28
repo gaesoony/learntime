@@ -59,4 +59,22 @@
 		ORDER BY Q.NO DESC
 	</select>
 	
+	<update id="insertEdit">
+		UPDATE KNOWLEDGE_QUESTION
+		SET CATE_NO = #{cateNo}
+		, TITLE = #{title}
+		, CONTENT = #{content}
+		, MODIFY_DATE = SYSDATE
+		, DELETE_YN = 'N'
+		WHERE WRITER = #{writer}
+		AND NO = #{no}
+	</update>
+	
+	<select id="selectOne" resultType="com.learntime.app.qna.vo.QnaVo">
+		SELECT Q.NO, Q.TITLE, Q.CONTENT, M.NICK AS WRITER, M.IMG_PATH, Q.ENROLL_DATE, Q.HIT
+		FROM KNOWLEDGE_QUESTION Q
+		JOIN MEMBER M ON Q.WRITER = M.NO
+		WHERE Q.NO = #{no}
+	</select>
+	
 </mapper>

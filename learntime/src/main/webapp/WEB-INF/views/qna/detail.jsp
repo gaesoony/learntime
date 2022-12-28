@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- 에디터 -->
+<!-- 썸머노트 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css">
 <style>
 	.banner{
@@ -53,24 +53,131 @@
         font-size: 20px;
         color: #5ECC80;
         vertical-align: middle;
-        padding-right: 600px;
+        padding-right: 510px;
     }
     .thumbsup{
         font-size: 20px;
         vertical-align: middle;
+        cursor: pointer;
     }
     .thumbsdown{
         font-size: 20px;
         vertical-align: middle;
+        cursor: pointer;
     }
     .bookmark{
         font-size: 20px;
         vertical-align: middle;
+        cursor: pointer;
     }
-    .dots{
-        font-size: 20px;
+    .edit{
         vertical-align: middle;
     }
+    .edit-btn{
+        border: none;
+        font-size: 18px;
+        background-color: white;
+        font-weight: 300;
+        cursor: pointer;
+    }
+    .slash{
+        font-size: 18px;
+        vertical-align: middle;
+        font-weight: 300;
+    }
+    .delete-btn{
+        border: none;
+        font-size: 18px;
+        vertical-align: middle;
+        cursor: pointer;
+        font-weight: 300;
+        background-color: white;
+        margin-bottom: 8px;
+    }
+    
+
+    /* 삭제 모달창 */
+    .modal{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .modal .bg{
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+    .modalBox {
+        position: absolute;
+        background-color: #fff;
+        width: 400px;
+        height: 200px;
+        padding: 15px;
+        border-radius: 10px;
+    }
+    .hidden{
+        display: none;
+    }
+    .modalTitle{
+        font-size: 16px;
+        text-align: center;
+    }
+    .closeBtn{
+        display: block;
+        border: none;
+        color: #444444;
+        background-color: white;
+        font-size: 18px;
+        text-align: right;
+        cursor: pointer;
+        margin-left: 370px;
+        margin-bottom: 30px;
+    }
+    .closeBtn:hover{
+        color: #5ECC80;
+    }
+    .modalBtn{
+        display: grid;
+        grid-template-columns: 150px 150px;
+        column-gap: 30px;
+        justify-content: center;
+        margin-top: 55px;
+    }
+    .cancleBtn{
+        margin: 0 auto;
+        width: 90px;
+        border: 1px solid #5ECC80;
+        color: #5ECC80;
+        background-color: white;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    .cancleBtn:hover{
+        background-color: #5ECC80;
+        color: white;
+        font-weight: 550;
+    }
+    .saveBtn{
+        margin: 0 auto;
+        width: 90px;
+        border: 1px solid #5ECC80;
+        color: #5ECC80;
+        background-color: white;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    .saveBtn:hover{
+        background-color: #5ECC80;
+        color: white;
+        font-weight: 550;
+    }
+
+    /* 상단 라인 */
     .line1{
         border-bottom: 1px solid #C0C0C0;
         margin-bottom: 30px;
@@ -389,7 +496,7 @@
         float: left;
         margin-top: 190px;
         margin-left: 80px;
-        position: fixed;
+        /* position: fixed; */
     }
     .side{
         width: 7vw;
@@ -467,36 +574,46 @@
 
     <!-- 상세조회 메인 부분 -->
     <div class="main">
-
+        
         <div class="maintitle">
             <div class="title">
                 <div class="title-start">Q.</div>
-                <h2 class="title-end">Json 형식 데이터 교환과 MVC 구조</h2>
+                <h2 class="title-end">${vo.title}</h2>
             </div>
         </div>
         <div class="middletitle">
             <table>
                 <tr>
                     <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필"></td>
-                    <td class="nick">nick01</td>
-                    <td class="enrollDate">2202.12.07.</td>
+                    <td class="nick">${vo.writer}</td>
+                    <td class="enrollDate">${vo.enrollDate}</td>
                     <td class="heart"><i class="fa-solid fa-thumbs-up"></i> 25</td>
-                    <td class="thumbsup" id="thumbsup" onclick="changeColor5()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-up"></i></td>
-                    <td class="thumbsdown" id="thumbsdown" onclick="changeColor6()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-down"></i></td>
-                    <td class="bookmark" id="bookmark" onclick="changeColor7()" style="cursor: pointer;"><i class="fa-regular fa-bookmark"></i></td>
-                    <td class="dots" style="cursor: pointer;"><i class="fa-solid fa-ellipsis-vertical"></i></td>
+                    <td class="thumbsup" id="thumbsup" onclick="changeColor5()"><i class="fa-regular fa-thumbs-up"></i></td>
+                    <td class="thumbsdown" id="thumbsdown" onclick="changeColor6()"><i class="fa-regular fa-thumbs-down"></i></td>
+                    <td class="bookmark" id="bookmark" onclick="changeColor7()"><i class="fa-regular fa-bookmark"></i></td>
+                    <td class="edit"><button type="button" class="edit-btn" onclick="location.href='/app/qna/edit'">수정</button></td>
+                    <td class="slash">/</td>
+                    <td class="delete">
+                        <button type="button" class="delete-btn">삭제</button>
+                        <div class="modal hidden">
+                            <div class="bg"></div>
+                            <div class="modalBox">
+                                <button class="closeBtn"><i class="fa-solid fa-xmark"></i></button>
+                                <p class="modalTitle">게시물을 삭제하시겠습니까?</p>
+                                <div class="modalBtn">
+                                    <button class="cancleBtn">취소</button>
+                                    <button class="saveBtn" onclick="location.href='/app/qna/list'">삭제</button>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
             </table>
             <div class="line1"></div>
             <table class="two">
                 <tr>
                     <td class="content">
-                        Json 형식으로 데이터를 교환하는 경우도 MVC 구조라고 할 수 있을까요?<br>
-                        안녕하세요. 제로초님<br>
-                        제가 현재 제로초님 강의를 듣고 따로 사용자 프로필 사진을 등록하는 기능을 작업 중인데, 여기서 권한을
-                        설정할 때 permissions 설정 관련해서 질문을 드리려 합니다<br>
-                        우선 저는  앱이 처음 실행될 때 권한을 묻는 게 아니라, 사용자가 프로필 사진을 등록을 할 때 권한 요청을
-                        창을 띄우고 싶어서 클릭시에 permissions 을 불러오도록 했습니다.
+                        ${vo.content}
                     </td>
                 </tr>
             </table>
@@ -584,12 +701,27 @@
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
+    <!-- 폰트어썸 -->
     <script src="https://kit.fontawesome.com/4b219bc5a3.js" crossorigin="anonymous"></script>
 
-    <!-- 서머노트 로딩-->
+    <!-- 썸머노트 로딩-->
     <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
     <script>
+
+        // 삭제 모달
+        const open = () => {
+            document.querySelector(".modal").classList.remove("hidden");
+        }
+        const close = () => {
+            document.querySelector(".modal").classList.add("hidden");
+        }
+        document.querySelector(".delete-btn").addEventListener("click", open);
+        document.querySelector(".closeBtn").addEventListener("click", close);
+        document.querySelector(".cancleBtn").addEventListener("click", close);
+        document.querySelector(".bg").addEventListener("click", close);
+
+        // 썸머노트
         $('.summernote').summernote({
             height: 130,
             lang: "ko-KR"
@@ -600,6 +732,7 @@
             placeholder: '- 댓글을 작성해주세요:)',
             lang: "ko-KR"
         });
+
 
         // 댓글 펼치기
         $('#chat').click(function(){

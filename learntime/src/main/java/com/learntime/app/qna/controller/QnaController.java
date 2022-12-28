@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.qna.service.QnaService;
@@ -31,10 +32,21 @@ public class QnaController {
 		return "qna/list";
 	}
 	
-	//게시글 상세조회 (화면)
+	//게시글 상세조회 (화면+DB)
 	@GetMapping("/detail")
-	public String detail() {
+	public String detail(Model model, int no) {
+		
+		QnaVo vo = service.selectOne(no);
+		
+		System.out.println(vo);
+		model.addAttribute("vo", vo);
+		
+		if(vo == null) {
+			return "common/errorPage";
+		}
+		
 		return "qna/detail";
+		
 	}
 	
 	//게시글 작성 (화면)
@@ -53,6 +65,21 @@ public class QnaController {
 		int result = service.write(vo);
 		
 		System.out.println("컨트롤러에서 : " + result);
+		
+		if(result >= 1) {
+			return "redirect:/qna/list";
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+	@GetMapping("edit")
+	public String edit(QnaVo vo, HttpSession session) {
+		
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		vo.setWriter(loginMember.getNo());
+		
+		int result = service.insertEdit(vo);
 		
 		if(result >= 1) {
 			return "redirect:/qna/list";

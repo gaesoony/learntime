@@ -79,6 +79,7 @@
         font-size: 18px;
         color: gray;
         text-decoration: none;
+        cursor: pointer;
     }
     .active{
         color: black;
@@ -129,6 +130,7 @@
         border-radius: 10px;
         border: none;
         font-size: 18px;
+        cursor: pointer;
     }
     .catelist{
         margin-top: 30px;
@@ -181,11 +183,17 @@
     }
     .content{
         width: 80%;
-        font-size: 16px;
+        height: 60px;
+        font-size: 14px;
         color: #6F6F6F;
-        margin-top: 5px;
         float: left;
         line-height: 20px;
+        display: -webkit-box;
+        word-wrap: break-word;
+        -webkit-line-clamp:3;
+        -webkit-box-orient:vertical;
+        overflow:hidden;
+        text-overflow:ellipsis;
     }
     .circle{
         width: 90px;
@@ -306,9 +314,9 @@
                     </div>
                     <div class="mainbody">
                         <div class="mainside">
-                            <button href="#none" class="side-category" style='cursor:pointer;'>전체</button>
-                            <button href="#none" class="side-category" style='cursor:pointer;'>해결</button>
-                            <button href="#none" class="side-category" style='cursor:pointer;'>미해결</button>
+                            <button href="" class="side-category">전체</button>
+                            <button href="" class="side-category">해결</button>
+                            <button href="" class="side-category">미해결</button>
                             <div class="line1"></div>
     
                             <!-- 검색 -->
@@ -317,7 +325,7 @@
                                     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
                                     <input type="text" class="searchblank" placeholder="궁금한 질문을 검색해보세요!"> 
                                 </div>
-                                <input type="submit" class="searchbtn" value="검색" style='cursor:pointer;'>
+                                <input type="submit" class="searchbtn" value="검색">
                             </div>
     
                             <!-- 카테고리 & 글쓰기 -->
@@ -441,10 +449,10 @@
         });
 
         function navToDetail(){
-            window.location.href="/app/qna/detail";
+            window.location.href="${path}/qna/detail?no=${list.no}";
         }
 
-
+        //글쓰기 버튼 클릭 시, 로그인창
         function login() {
         $(".blackBG").addClass("show");
         }

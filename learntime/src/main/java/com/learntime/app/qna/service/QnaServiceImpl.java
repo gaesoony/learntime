@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.learntime.app.qna.dao.QnaDao;
+import com.learntime.app.qna.vo.QnaAnswerVo;
 import com.learntime.app.qna.vo.QnaVo;
 
 @Service
@@ -55,4 +56,18 @@ public class QnaServiceImpl implements QnaService {
 		return dao.selectList(sst, vo);
 	}
 
+	//게시글 수정
+	@Override
+	public int insertEdit(QnaVo vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	//게시글 상세조회
+	@Override
+	public QnaVo selectOne(int no) {
+		return dao.selectOne(sst, no);
+	}
+	
+	
 }
