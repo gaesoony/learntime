@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.learntime.app.mystudy.vo.ProfileVo;
 import com.learntime.app.study.vo.GroupVo;
 import com.learntime.app.study.vo.SearchVo;
 
@@ -91,6 +92,12 @@ public interface StudyDao {
 
 	//insert group member
 	public int insertGroupMember(SqlSessionTemplate sst, Map map);
+
+	//update group profile
+	public int updateGroupProfile(SqlSessionTemplate sst, ProfileVo vo);
+
+	//select group member list by status
+	public List<Map<String, String>> selectGroupMemberListByStatus(SqlSessionTemplate sst, Map map);
 
 
 

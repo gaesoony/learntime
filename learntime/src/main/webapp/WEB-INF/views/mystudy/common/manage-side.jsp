@@ -2,18 +2,46 @@
 pageEncoding="UTF-8"%>
 
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-      rel="stylesheet"
-    />
+   
 
     <style>
 /* 공통css */
 
 body {
   height: 100vh;
+}
+
+/* 참여멤버 */
+
+.study-detail-member-area h1 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  margin-top: 50px;
+  padding-bottom: 23px;
+  border-bottom: 1px solid rgb(223, 223, 223);
+}
+
+.study-member-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.study-member-list img {
+  width: 30px;
+  height: 30px;
+  margin-right: 7px;
+}
+
+.study-member-list li div:nth-child(2) {
+  font-weight: 700;
+  margin-right: 7px;
+}
+
+.study-member-list li div:nth-child(3) {
+  font-weight: 700;
+  color: gray;
 }
 
 .soft-gray {
@@ -263,44 +291,47 @@ select {
           </div>
           <div>
             <ul class="mystudy-list">
-              <a href=""
-                ><img
-                  src="${pageContext.request.contextPath}/resources/img/study/study-profile.JPG"
-                  alt=""
-              /></a>
-              <a href=""
-                ><img
-                  src="${pageContext.request.contextPath}/resources/img/study/study-profile.JPG"
-                  alt=""
-              /></a>
-              <a href=""
-                ><img
-                  src="${pageContext.request.contextPath}/resources/img/study/study-profile.JPG"
-                  alt=""
-              /></a>
-              <a href=""
-                ><img
-                  src="${pageContext.request.contextPath}/resources/img/study/study-profile.JPG"
-                  alt=""
-              /></a>
-              <a href=""
-                ><img
-                  src="${pageContext.request.contextPath}/resources/img/study/study-profile.JPG"
-                  alt=""
-              /></a>
+              <c:forEach items="${myGroupList}" var="map">
+                <li class="my-study-list-detail flex">
+                  <c:if test="${map.IMG_PATH == null }">
+                    <a href="${path}/mystudy/main?gno=${map.NO}">
+                      <img
+                        src="${path}/resources/upload/mystudy/default_profile.png"
+                        alt="${map.NAME}"
+                        title="${map.NAME}"
+                      />
+                    </a>
+                  </c:if>
+                  <c:if test="${map.IMG_PATH != null }">
+                    <a href="${path}/mystudy/main?gno=${map.NO}">
+                      <img
+                        src="${path}/resources/upload/mystudy/profile/${map.IMG_PATH}"
+                        alt="${map.NAME}"
+                        title="${map.NAME}"
+                      />
+                    </a>
+                  </c:if>
+                  <!-- <a
+                    href="${path}/mystudy/main?gno=${map.NO}"
+                    class="my-study-title gray1"
+                    >${map.NAME}</a
+                  > -->
+                </li>
+              </c:forEach>
             </ul>
           </div>
         </div>
         <div class="mystudy-cate-aside relative">
-          <h1>비전공자 자바스터디<i class="fa-solid fa-seedling"></i></h1>
+          <h1><a href="${path}/mystudy/main?gno=${groupOne.NO}">
+            ${groupOne.GROUP_NAME}<i class="fa-solid fa-seedling"></i></h1>
           <ul class="mystudy-cate-list">
-            <a href="/app/mystudy/manage/info"><i class="fa-solid fa-angle-right"></i>스터디 정보 관리</a>
-            <a href="/app/mystudy/manage/profile"><i class="fa-solid fa-angle-right"></i>프로필 관리</a>
-            <a href="/app/mystudy/manage/member"><i class="fa-solid fa-angle-right"></i>참여 멤버 관리</a>
-            <a href="/app/mystudy/manage/category"><i class="fa-solid fa-angle-right"></i>카테고리 관리</a>
+            <a href="${path}/mystudy/manage/info?gno=${groupOne.NO}"><i class="fa-solid fa-angle-right"></i>스터디 정보 관리</a>
+            <a href="${path}/mystudy/manage/profile?gno=${groupOne.NO}"><i class="fa-solid fa-angle-right"></i>프로필 관리</a>
+            <a href="${path}/mystudy/manage/member?gno=${groupOne.NO}"><i class="fa-solid fa-angle-right"></i>참여 멤버 관리</a>
+            <a href="${path}/mystudy/manage/category?gno=${groupOne.NO}"><i class="fa-solid fa-angle-right"></i>카테고리 관리</a>
           </ul>
           <div class="mystudy-manage-area">
-            <a href="/app/mystudy/manage/info">
+            <a href="${path}/mystudy/manage/info?gno=${groupOne.NO}">
               <i class="fa-solid fa-gear"></i><span>관리</span>
 
             </a>
@@ -309,37 +340,25 @@ select {
       </aside>
 
       <aside class="mystudy-right-aside">
-        <h1>참여 멤버(3명)</h1>
+        <h1>참여 멤버(${groupOne.memberList.size()}명)</h1>
         <ul class="study-member-list">
-          <li>
-            <img
-              class="user-profile"
-              src="${pageContext.request.contextPath}/resources/img/study/profile.png"
-              alt=""
-            />
-            <a href="">한혜원</a>
-            <img
-              class="crown"
-              src="${pageContext.request.contextPath}/resources/img/mystudy/crown.png"
-              alt=""
-            />
-          </li>
-          <li>
-            <img
-              class="user-profile"
-              src="${pageContext.request.contextPath}/resources/img/study/profile.png"
-              alt=""
-            />
-            <a href="">한혜원</a>
-          </li>
-          <li>
-            <img
-              class="user-profile"
-              src="${pageContext.request.contextPath}/resources/img/study/profile.png"
-              alt=""
-            />
-            <a href="">한혜원</a>
-          </li>
+          <c:forEach items="${groupOne.memberList}" var="item">
+                <li>
+                  <img
+                    src="${path}/resources/upload/common/profile_default.png"
+                    alt=""
+                  />
+                  <div>${item.NICK}</div>
+                  <c:if test="${item.STATUS == 'B'}">
+                    <div>모임장</div>
+                  </c:if>
+                  <c:if test="${item.STATUS == 'C'}">
+                    <div>멤버</div>
+                  </c:if>
+                </li>
+              </c:forEach> 
+              <li>
+           
         </ul>
       </aside>
 

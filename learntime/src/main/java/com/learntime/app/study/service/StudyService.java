@@ -3,6 +3,7 @@ package com.learntime.app.study.service;
 import java.util.List;
 import java.util.Map;
 
+import com.learntime.app.mystudy.vo.ProfileVo;
 import com.learntime.app.study.vo.GroupVo;
 import com.learntime.app.study.vo.SearchVo;
 
@@ -58,6 +59,12 @@ public interface StudyService {
 
 	//그룹 멤버 추가
 	public int insertGroupMember(Map map);
+
+	//그룹 프사, 이름 수정
+	public int updateProfile(ProfileVo vo);
+
+	//상태로 그룹멤버 리스트 조회
+	public List<Map<String, String>> selectGroupMemberListByStatus(Map map);
 	
 	
 	//추후 추가 예정..

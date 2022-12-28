@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.learntime.app.mystudy.vo.ProfileVo;
 import com.learntime.app.study.vo.GroupVo;
 import com.learntime.app.study.vo.SearchVo;
 
@@ -182,6 +183,18 @@ public class StudyDaoImpl implements StudyDao{
 	@Override
 	public int insertGroupMember(SqlSessionTemplate sst, Map map) {
 		return sst.insert("studyMapper.insertGroupMember", map);
+	}
+
+	//그룹 프사, 이름 수정
+	@Override
+	public int updateGroupProfile(SqlSessionTemplate sst, ProfileVo vo) {
+		return sst.update("studyMapper.updateGroupProfile", vo);
+	}
+
+	//상태로 그룹 멤버 리스트 조회
+	@Override
+	public List<Map<String, String>> selectGroupMemberListByStatus(SqlSessionTemplate sst, Map map) {
+		return sst.selectList("studyMapper.selectGroupMemberListByStatus", map);
 	}
 
 

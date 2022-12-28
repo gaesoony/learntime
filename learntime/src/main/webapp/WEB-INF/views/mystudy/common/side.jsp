@@ -270,7 +270,7 @@ select {
                   <c:if test="${map.IMG_PATH != null }">
                     <a href="${path}/mystudy/main?gno=${map.NO}">
                       <img
-                        src="${path}/resources/upload/mystudy/${map.IMG_PATH}"
+                        src="${path}/resources/upload/mystudy/profile/${map.IMG_PATH}"
                         alt="${map.NAME}"
                         title="${map.NAME}"
                       />
@@ -300,7 +300,7 @@ select {
             <a href=""><i class="fa-solid fa-angle-right"></i>과제 제출</a>
           </ul>
           <div class="mystudy-manage-area">
-            <a href="/app/mystudy/manage/info?gno=${groupOne.NO}">
+            <a href="${path}/mystudy/manage/info?gno=${groupOne.NO}">
               <i class="fa-solid fa-gear"></i><span>관리</span>
 
             </a>
