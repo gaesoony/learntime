@@ -24,9 +24,9 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	//닉네임 중복확인
 	@Override
-	public int nickCheck(SqlSessionTemplate sst, String nick) {
+	public int nickCheck(SqlSessionTemplate sst, MemberVo vo) {
 
-		return sst.selectOne("memberMapper.nickCheck",nick);
+		return sst.selectOne("memberMapper.nickCheck",vo);
 	}
 	
 	//이메일 중복확인 

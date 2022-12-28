@@ -418,18 +418,27 @@
             <%@include file="/WEB-INF/views/common/mypage-side.jsp"%>
         </div>
         <div id="edit-area">
-            <form action="${pageContext.request.contextPath}/member/mypage/edit/profile" method="post">
+            <form action="${pageContext.request.contextPath}/member/mypage/edit/profile" method="post" enctype="multipart/form-data">
             <div id="profile-area">
-               
+             
+		    	
                 <div class="profile-img">
                     <div class="profile-img center relative">
-                        <img src="${pageContext.request.contextPath}/resources/img/profile_default.png" alt=""/>
-                        <img id="preview" src="${pageContext.request.contextPath}/resources/img/profile_default.png"/>
+                       <c:if test="${userNo.imgName ==null}">
+				    	 <img src="/app/resources/img/profile_default.png" alt="기본프로필이미지">
+				    	  <img id="preview" src="/app/resources/img/profile_default.png"/>
+				    	</c:if>
+				    	
+				    	<c:if test="${userNo.imgName !=null}">
+				    	  <img src="${pageContext.request.contextPath}${userNo.imgName}" alt=""/>
+                        	<img id="preview" src="${pageContext.request.contextPath}${userNo.imgName}"/>
+				    	</c:if>
+                      
                         <div class="file-btn-area">
                             <label for="file" class="file-btn center">
                                     <img src="${pageContext.request.contextPath}/resources/img/mystudy/image-plus.png"alt=""/>
                                 </label>
-                            <input id="file" type="file" class="hidden" onchange="readURL(this);"/>
+                            <input id="file" type="file" class="hidden" name="imgPath" onchange="readURL(this);"/>
             
                             <script>
                                 function readURL(input) {

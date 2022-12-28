@@ -5,6 +5,12 @@
 <%
 	MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 %>
+
+<% String
+alertMsg =(String)session.getAttribute("alertMsg");
+session.removeAttribute("alertMsg"); %>
+
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/variables.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
@@ -344,3 +350,9 @@
 
   
   </script>
+  
+  <script>
+  <%if(alertMsg != null) {%>
+    Swal.fire('<%= alertMsg%>')
+  <%}%>
+</script>

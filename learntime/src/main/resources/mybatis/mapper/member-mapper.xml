@@ -26,7 +26,7 @@
 		 FROM MEMBER
 		 WHERE NICK = #{nick}
 		 <if test="no != null and no != ''">
-		    AND NO NOT IN(#{no})
+		AND NO NOT IN(${no})
 		</if>
 	</select>
 	
@@ -86,7 +86,7 @@
 		UPDATE MEMBER 
 		SET NICK=#{nick},
 			INTRO=#{intro},
-			IMG_PATH=#{imgPath},
+			IMG_PATH=#{imgName},
 			MODIFY_DATE=SYSDATE
 		WHERE NO=#{no}
 	</update>
@@ -110,7 +110,21 @@
 	
 	<!--회원 조회(회원 번호로)  -->
 	<select id="selectNo" resultType = "MemberVo">
-		 SELECT *
+		 SELECT NO
+				,ID
+				,PWD
+				,PHONE
+				,NICK
+				,ENROLL_DATE
+				,QUIT_YN
+				,MODIFY_DATE
+				,IMG_PATH AS IMG_NAME
+				,INTRO
+				,ACCUM_TOKEN
+				,HOLD_TOKEN
+				,TECH_STACK_NO
+				,ADMIN_YN
+				,EMAIL_AUTH
 		  FROM MEMBER
 		  WHERE NO = #{no}
 		  AND EMAIL_AUTH='1'
