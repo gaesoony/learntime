@@ -1,5 +1,6 @@
 package com.learntime.app.admin.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.learntime.app.community.service.BoardService;
 import com.learntime.app.community.vo.CateVo;
 
@@ -37,21 +40,29 @@ public class AdminCommunityController {
 	}
 	
 	//카테고리 추가
-	@PostMapping
+	@PostMapping(value = "/addcate", produces = "application/text;charset=utf8")
 	@ResponseBody
-	public String addCategory(Model model, String cateName) {
+	public String addCategory(Model model, 
+							  @RequestParam("cateName") String cateName) {
+		
+		System.out.println(cateName);
 		
 		//카테고리 추가
 		int result = bs.insertCate(cateName);
-		
-		// 추가가 안되었을때 처리를 해줘야 하나?
+	
+		//실패시 리턴
 		if (result != 1) {
 			return "";
 		}
 		
+		//카테고리 조회
+		List<CateVo> cateList = bs.selectCate();
 		
+		Gson gson = new Gson();
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		
-		String jsonString = "";
+		map.put("cateList", cateList);
+		String jsonString = gson.toJson(map);
 		
 		return jsonString;
 	}

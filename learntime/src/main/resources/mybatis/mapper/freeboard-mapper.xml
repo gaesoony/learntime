@@ -19,7 +19,7 @@
 	</insert>
 	
 	<select id="selectList" resultType = "BoardVo">
-		SELECT FB.*, FLH.*, M.*, FBC.*, CMT.count AS CMT_COUNT
+		SELECT FB.*, FLH.*, (COALESCE(FLH.LIKES, 0) - COALESCE(FLH.HATES, 0)) AS LH_COUNT, M.*, FBC.*, CMT.count AS CMT_COUNT
 		FROM FREE_BOARD FB
 		LEFT JOIN (  SELECT  BOARD_NO,
 		                SUM(CASE WHEN STATUS = 'L' THEN 1 ELSE 0 END) AS LIKES,
@@ -37,7 +37,8 @@
 	</select>
 	
 	<select id="selectMyList" resultType = "BoardVo">
-		SELECT * FROM FREE_BOARD FB
+		SELECT FB.*, FLH.*, (COALESCE(FLH.LIKES, 0) - COALESCE(FLH.HATES, 0)) AS LH_COUNT, M.*, FBC.*
+		FROM FREE_BOARD FB
 		LEFT JOIN (  SELECT  BOARD_NO,
 		                SUM(CASE WHEN STATUS = 'L' THEN 1 ELSE 0 END) AS LIKES,
 		                SUM(CASE WHEN STATUS = 'H' THEN 1 ELSE 0 END) AS HATES
@@ -54,7 +55,8 @@
 	
 	
 	<select id="selectOne" resultType = "BoardVo">
-		SELECT * FROM FREE_BOARD FB
+		SELECT FB.*, FLH.*, (COALESCE(FLH.LIKES, 0) - COALESCE(FLH.HATES, 0)) AS LH_COUNT, M.*, FBC.*
+		FROM FREE_BOARD FB
 		LEFT JOIN (  SELECT  BOARD_NO,
 		                SUM(CASE WHEN STATUS = 'L' THEN 1 ELSE 0 END) AS LIKES,
 		                SUM(CASE WHEN STATUS = 'H' THEN 1 ELSE 0 END) AS HATES
@@ -87,7 +89,7 @@
 		) lh ON fbc.NO = lh.CMT_NO
 		JOIN MEMBER m ON fbc.WRITER = m.NO
 		WHERE fbc.BOARD_NO = #{bno}
-		ORDER BY fbc.NO DESC
+		ORDER BY fbc."GROUP" ASC, fbc.MODIFY_DATE ASC
 	</select>
 	
 	<insert id="insertCmt">
@@ -99,17 +101,25 @@
 			SYSDATE,
 			'N',
 			SYSDATE,
-			0,
-			0
+			<if test = "group.equals('')">0</if>
+			<if test = "group != null and !group.equals('')">1</if>
+			,
+			<if test= "group.equals('')">
+			SEQ_FREEBOARD_CMT_NO.NEXTVAL
+			</if>
+			<if test = "group != null and !group.equals('')">
+			#{group}
+			</if>
 		)
 	</insert>
 	
 	<select id="selectCateList" resultType = "com.learntime.app.community.vo.CateVo">
-		SELECT * FROM FREE_BOARD_CATEGORY
+		SELECT * FROM FREE_BOARD_CATEGORY 
+		ORDER BY NO ASC
 	</select>
 	
 	<insert id="insertCategory">
-		INSERT INTO FREE_BOARD_CATEGORY VALUES (SEQ_FREE_BOARD_CATEGORY_NO, #{cateName})
+		INSERT INTO FREE_BOARD_CATEGORY VALUES (SEQ_FREEBOARD_CATEGORY_NO.NEXTVAL, #{cateName})
 	</insert>
 	
 	<select id="selectLHS" resultType = "com.learntime.app.community.vo.LHSVo">
@@ -126,9 +136,13 @@
 		INSERT INTO FREE_BOARD_SCRAP VALUES (#{userNo}, #{boardNo})
 	</insert>
 	
-	<delete id="">
-		DELETE FROM FREE_BOARD_SCRAP WHERE USER_NO = #{userNo} AND BOARD_NO = #{boardNo}
+	<delete id="deleteScrap">
+		DELETE FROM FREE_BOARD_SCRAP WHERE M_NO = #{userNo} AND BOARD_NO = #{boardNo}
 	</delete>
+	
+	<select id="selectScrap" resultType = "com.learntime.app.community.vo.LHSVo">
+		SELECT * FROM FREE_BOARD_SCRAP WHERE M_NO = #{userNo} AND BOARD_NO = #{boardNo}
+	</select>
 	
 	
 	<select id="selectScrapList" resultType = "BoardVo">
@@ -148,7 +162,6 @@
 		ON FB.NO = FBS.SCRAP
 		WHERE FBS.SCRAP IS NOT NULL
 		ORDER BY FB.NO DESC
-	
 	</select>
 	
 

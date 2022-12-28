@@ -18,20 +18,31 @@
         <div id="content-main-wrap">
             <div id="main-side" class="shadow-light">
                 <div id="board-category-box">
-                <!-- 카테고리 반복문 -->
-                <c:forEach var="cate" items="${cateList}">
+
+                    <span id="category-txt">게시판 카테고리</span>
                     <div class="board-category">
-                        <span>${cate.name}</span>
-                        <a href="" class="modi-btn txt-sm">수정</a>
-                        <a href="" class="dele-btn txt-sm">삭제</a>
+                        <a href="/app/admin/community/list">전체</a>
                     </div>
-                </c:forEach>
-                <!-- 카테고리 반복 끝-->
+
+                    <div id="board-category-title">
+                    <!-- 카테고리 반복문 -->
+                    <c:forEach var="cate" items="${cateList}">
+                        <div class="board-category">
+                            <a href="/app/admin/community/list?cate=${cate.no}">${cate.name}</a>
+                            <div class="modi-dele-box">
+                                <a href="/app/admin/community/modicate?cate=${cate.no}" class="modi-btn txt-sm">수정</a>
+                                <a href="/app/admin/community/delecate?cate=${cate.no}" class="dele-btn txt-sm">삭제</a>
+                            </div>
+                        </div>
+                    </c:forEach>
+                    <!-- 카테고리 반복 끝-->
+                    </div>
+
+
                     <div id="add-category-box">
                         <span class="material-symbols-rounded">settings</span>
                         <span>카테고리 추가하기</span>
                     </div>
-
                     <div id="add-box" class="hidden">
                         <form action="">
                         <input type="text">
@@ -45,9 +56,44 @@
                         $('#add-category-box').click(function(){
                             $('#add-box').show();
                         });
+
+                        //서브밋시 카테고리 추가 ajax
+                        $(document).on('click','#add-box input[type="submit"]',function(){
+                            var name = $('#add-box input[type="text"]').val();
+                            $.ajax({
+                                url: '/app/admin/community/addcate',
+                                type: 'post',
+                                data: {
+                                    'cateName': name
+                                },
+                                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                                success: function(data){
+                                    // 추가하기 창 숨기기
+                                    $('#add-box').hide();
+                                    // input 비우기
+                                    $('#add-box input[type="text"]').val('');
+                                    // 카테고리 목록 초기화
+                                    $('#board-category-title').empty();
+                                    // 카테고리 목록 다시 불러오기
+                                    var jsonData = $.parseJSON(data);
+
+                                    $.each(jsonData.cateList, function(index, cateList){
+                                        var cateListHtml =
+                                        '<div class="board-category">'+
+                                            '<a href="/app/admin/community/list?cate='+cateList.no+'">'+cateList.name+'</a>'+
+                                            '<a href="/app/admin/community/modicate?cate='+cateList.no+'" class="modi-btn txt-sm">수정</a>'+
+                                            '<a href="/app/admin/community/delecate?cate='+cateList.no+'" class="dele-btn txt-sm">삭제</a>'+
+                                        '</div>';
+                                        $('#board-category-title').append(cateListHtml);
+                                        }
+                                    )},
+                                error: function(){
+                                    alert('카테고리 추가 실패');
+
+                                }
+                            });
+                        });
                     </script>
-
-
                 </div>  
                 
 

@@ -49,5 +49,8 @@ public interface BoardDao {
 
 	//스크랩 글 조회
 	public List<BoardVo> selectScrapList(SqlSessionTemplate sst, String userNo);
+
+	//유저 스크랩 조회
+	public LHSVo selectScrapList(SqlSessionTemplate sst, LHSVo lhs);
 	
 }

@@ -34,7 +34,7 @@ public class BoardController {
 	@Autowired
 	private BoardService bs;
 
-// 	글 목록 
+// 	글 목록 (카테고리 있을때)
 	@GetMapping("/board/list")
 	public String boardList(Model model) {
 
@@ -52,13 +52,33 @@ public class BoardController {
 
 		return "/community/boardList";
 	}
+// 	글 목록 (카테고리 있을때)
+	@GetMapping("/board/listc")
+	public String boardList(Model model, @RequestParam("cate") String cateNo) {
 
+		List<BoardVo> boardList = bs.select();
+
+		if (boardList == null) {
+			return "";
+		}
+
+		// 카테고리 받아오기
+		List<CateVo> cateList = bs.selectCate();
+
+		model.addAttribute("cateList", cateList);
+		model.addAttribute("boardList", boardList);
+
+		return "/community/boardList";
+	}
+
+	
 //	글 상세조회	
 	@GetMapping("/board/detail")
 	public String boardDetail(@RequestParam String bno, Model model, HttpSession session) {
 
 		// 글 조회
 		BoardVo bv = bs.selectOne(bno);
+		System.out.println("글번호는:"+bno);
 
 		if (bv == null) {
 			return "";
@@ -91,6 +111,8 @@ public class BoardController {
 
 		model.addAttribute("bv", bv);
 		model.addAttribute("cvList", cvList);
+		
+		System.out.println(bv);
 
 		return "/community/boardDetail";
 	}
@@ -133,7 +155,7 @@ public class BoardController {
 	}
 
 	
-	// 마이페이지 임시
+// 마이페이지 임시
 	@GetMapping("/mypage")
 	public String myCommunity(HttpSession session, Model model) {
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
@@ -163,7 +185,7 @@ public class BoardController {
 	@PostMapping(value = "comment/write", produces = "application/text;charset=utf8")
 	@ResponseBody
 	public String cmtWrite(@RequestParam("content") String content, @RequestParam("boardNo") String boardNo,
-			@RequestParam("writer") String writer, HttpServletResponse response) {
+			@RequestParam("writer") String writer, @RequestParam("group") String group,  HttpServletResponse response) {
 
 		// 인코딩
 		response.setContentType("text/html;charset=UTF-8");
@@ -175,6 +197,9 @@ public class BoardController {
 		cv.setBoardNo(boardNo);
 		cv.setContent(content);
 		cv.setWriter(writer);
+		if(group != null) {
+			cv.setGroup(group);
+		}
 
 		System.out.println("컨트롤러 " + cv);
 
@@ -197,31 +222,39 @@ public class BoardController {
 
 	}
 
-	// 스크랩하기 TODO
+	// 스크랩하기
 	@PostMapping(value = "/scrap")
 	@ResponseBody
 	public String scrap(@RequestParam("boardNo") String boardNo, 
 						@RequestParam("userNo") String userNo,
-						@RequestParam("scrap") String scrap) {
-
+						Model model) {
+		
 		LHSVo lhs = new LHSVo();
 		lhs.setBoardNo(boardNo);
 		lhs.setUserNo(userNo);
 		
+		//스크랩 조회
 		int result = 0;
+		LHSVo scrap = bs.selectScrap(lhs);
+		System.out.println(scrap);
 		
-		if(scrap.equals("false")) {
-			//스크랩 추가하기
+		if(scrap == null) {
 			result = bs.insertScrap(lhs);
-			//스크랩 다시조회
-			return "true";
 		}else {
-			//스크랩 삭제하기
 			result = bs.deleteScrap(lhs);
-			return "false";
-			
 		}
 		
+		if(result != 1) {
+			return "";
+		}
+		
+		//스크랩 다시 조회해서 넣어주기
+		List<LHSVo> lhsList = null;
+		lhsList = bs.selectLHS(lhs);
+		
+		model.addAttribute("lhsList", lhsList);
+		
+		return "";
 	}
 
 

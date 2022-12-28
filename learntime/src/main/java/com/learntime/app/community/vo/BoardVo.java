@@ -1,7 +1,5 @@
 package com.learntime.app.community.vo;
 
-import org.springframework.stereotype.Repository;
-
 import lombok.Data;
 
 @Data
@@ -24,6 +22,9 @@ public class BoardVo {
 	private String writerImg;
 	private String cate;
 	private String cmtCount;
+	private String lhCount;
 	
-
 }
+
+
+

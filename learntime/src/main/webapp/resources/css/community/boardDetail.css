@@ -227,8 +227,18 @@ div#content{
     align-items:flex-start;
     margin-top: 50px;
     height: 200px;
-    
 }
+
+.comment-write-box2{
+    width: 1000px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items:flex-start;
+    margin-top: 20px;
+    height: 200px;
+}
+
 
 #comment-writer-box{
     width: auto;
@@ -257,7 +267,16 @@ div#content{
     height: 160px;
 }
 
-#comment-write-btn{
+.comment-area2,
+.comment-area2>textarea{
+    
+    width: 770px;
+    height: 160px;
+    resize: none;
+}
+
+#comment-write-btn,
+.comment-write-btn2{
     width: 130px;
     height: 50px;
     font-size: 20px;
@@ -269,7 +288,12 @@ div#content{
     line-height: 48px;
     margin-left: 870px;
 }
-#comment-write-btn:hover{
+.comment-write-btn2{
+    margin-bottom: 20px;
+    margin-right: 40px;
+}
+#comment-write-btn:hover,
+.comment-write-btn2:hover{
     background-color: #428c59;
     cursor: pointer;
 }
@@ -293,20 +317,29 @@ div#content{
 .comment-main{
     width: 830px;
 }
+.comment2-main{
+    width: 755px;
+    padding-left: 15px;
+    margin-left: 60px;
+    border-left: 5px solid #c9ebd4;
+}
 .comment-lh-box{
     width: 160px;
 }
-.comment-writer-box{
+.comment-writer-box,
+.comment-writer-box2{
     display: flex;
     flex-direction: row;
     align-items: center;
     height: 50px;
 }
-.comment-writer-profile>img{
+.comment-writer-profile>img,
+.comment-writer-profile2>img{
     width: 25px;
     height: 25px;
 }
-.comment-writer{
+.comment-writer,
+.comment-writer2{
     margin-left: 5px;
     font-size: 16px;
 }
@@ -324,6 +357,23 @@ div#content{
     margin : 20px 0;
     padding: 0 10px;
     font-size: 16px;
+}
+
+.cmt2-btn{
+    display: flex;
+    width: 80px;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+    font-size: 12px;
+    color: #bababa;  
+}
+.cmt2-btn:hover{
+    color: #717171;
+    cursor: pointer;
+}
+.cmt2-btn>span:last-child{
+    margin-left: 5px;
 }
 
 /* 댓글 좋아요 싫어요 */
@@ -418,6 +468,33 @@ div#content{
     color: #2c32a7;
 }
 
+.reply-icon{
+    /* 180도 회전 */
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+
+    transform: rotate(180deg);
+    font-size: 20px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #null-cmt{
     text-align: center;
     color: #717171;
@@ -430,6 +507,21 @@ div#content{
     color: #717171;
     padding: 70px 0 20px 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* 스크랩 */
 #scrap-alert {

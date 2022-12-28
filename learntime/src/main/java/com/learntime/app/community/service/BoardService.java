@@ -48,5 +48,8 @@ public interface BoardService {
 
 	//스크랩 글조회
 	public List<BoardVo> selectScrapList(String userNo);
+
+	//유저 스크랩 조회
+	public LHSVo selectScrap(LHSVo lhs);
 	
 }

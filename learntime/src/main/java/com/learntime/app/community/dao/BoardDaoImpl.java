@@ -91,10 +91,16 @@ public class BoardDaoImpl implements BoardDao{
 	public int deleteScrap(SqlSessionTemplate sst, LHSVo lhs) {
 		return sst.insert("freeBoardMapper.deleteScrap", lhs);
 	}
-
+	//스크랩 글 목록 조회
 	@Override
 	public List<BoardVo> selectScrapList(SqlSessionTemplate sst, String userNo) {
 		return sst.selectList("freeBoardMapper.selectScrapList", userNo);
+	}
+
+	//유저 스크랩 조회
+	@Override
+	public LHSVo selectScrapList(SqlSessionTemplate sst, LHSVo lhs) {
+		return sst.selectOne("freeBoardMapper.selectScrap", lhs);
 	}
 	
 }
