@@ -1,7 +1,7 @@
 package com.learntime.app.question.dao;
 
 import java.util.List;
-import java.util.Map;
+
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -19,12 +19,12 @@ public class QuestionDao {
 		return sst.insert("questionMapper.questionWrite",vo);
 	}
 
-	public List<QuestionVo> selectQuestionList(SqlSessionTemplate sst, Map<String, String> map,PageVo pv) {
+	public List<QuestionVo> selectQuestionList(SqlSessionTemplate sst, QuestionVo vo,PageVo pv) {
 		int offset = (pv.getCurrentPage() -1)* pv.getBoardLimit();
 		int limit = pv.getBoardLimit();
 		RowBounds rb = new RowBounds(offset, limit);
 
-		return sst.selectList("questionMapper.questionList",map,rb);
+		return sst.selectList("questionMapper.questionList",vo,rb);
 	}
 	
 	public int selectCount(SqlSessionTemplate sst) {
@@ -34,9 +34,9 @@ public class QuestionDao {
 		return sst.selectOne("questionMapper.selectOne",vo);
 	}
 
-	public List<QuestionVo> boardList(SqlSessionTemplate sst, int cate) {
-	
-		return sst.selectList("questionMapper.boardList",cate);
-	}
+//	public List<QuestionVo> boardList(SqlSessionTemplate sst, int cate) {
+//	
+//		return sst.selectList("questionMapper.boardList",cate);
+//	}
 
 }

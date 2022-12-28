@@ -34,13 +34,11 @@ public class NoticeController {
 	
 	// 공지사항 리스트 화면
 		@GetMapping("notice/noticeList")
-		public String noticeList(int cateNo ,NoticeVo vo,HttpServletRequest req, Model mv) {
-			System.out.println(cateNo);
+		public String noticeList(int cateNo ,NoticeVo vo,HttpServletRequest req, Model m) {
 			
-			String category = req.getParameter("notice");
-			String keyword = req.getParameter("search-input");
 			String p = req.getParameter("p");
-
+			System.out.println("받아온vo"+vo);
+			
 			int listCount = ns.selectCount();
 			int currentPage = Integer.parseInt(p);
 			int boardLimit = 10;
@@ -50,27 +48,32 @@ public class NoticeController {
 			int cmtCnt = ns.cmtCnt();
 			int hit = ns.updateHit(vo);
 			vo.setHit(hit);
-
+			
 //			Map<String,Object> map = new HashMap<>();
 //			map.put("category",category);
 //			map.put("keyword",keyword);
 //			map.put("cmt", cmtCnt);
 			
+			
 			List<NoticeVo> list= null;
 			if(cateNo==0)  {
 				
 				list= ns.selectNoticeListAll(vo,pv);
+				System.out.println(list);
+				System.out.println(list.size());
 			}else {
 				vo.setCateNo(cateNo);
 				list= ns.selectNoticeList(vo,pv);
 				
+				
 			}
 			
 			
-
-			mv.addAttribute("list",list);
+			m.addAttribute("list",list);
+			m.addAttribute("cateNo",cateNo);
+			m.addAttribute("p",p);
 			
-			System.out.println("...........");
+		
 			
 			return "notice/noticeList";
 			
@@ -124,7 +127,7 @@ public class NoticeController {
 			int result = ns.noticeWrite(vo);
 			log.info("vo:"+vo);
 			if(result == 1) {
-				return "redirect:/notice/noticeList?p=1&cateNo=1";
+				return "redirect:/notice/noticeList?p=1&cateNo=0";
 			}else {
 				return "common/errorPage";
 			}

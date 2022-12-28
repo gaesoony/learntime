@@ -60,4 +60,10 @@ public class NoticeServiceImpl implements NoticeService{
 		return dao.selectNoticeListAll(sst,vo,pv);
 	}
 
+//	@Override
+//	public List<NoticeVo> selectsearchOne(NoticeVo vo, PageVo pv) {
+//		
+//		return dao.selectsearchOne(sst,vo,pv);
+//	}
+
 }

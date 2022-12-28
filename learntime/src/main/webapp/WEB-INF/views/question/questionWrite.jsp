@@ -40,12 +40,12 @@
 	                <option value="6">커뮤니티</option>
 	                <option value="7">스킨샵</option>
 	            </select></div>
-	            <div class="title-q"><input type="text" name="title-q" size= "100" class="title-question"></div>
+	            <div class="title-q"><input type="text" name="title" size= "100" class="title-question"></div>
 	            <div class="date-q"></div>
 	        </div>
 	        <div class="empty1"></div>
 	        <div class="q-content">
-	            <textarea class="summernote" name="contentData"></textarea>
+	            <textarea class="summernote" name="content"></textarea>
 	        </div>
 	        <div class="backBtn">
 	            <div class="btn-to"><input type="submit" class="submit-btn" value="등록"></div>

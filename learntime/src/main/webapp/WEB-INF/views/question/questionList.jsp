@@ -13,7 +13,9 @@
 <body>
     <%@ include file = "/WEB-INF/views/common/header.jsp" %>
 
-	<form action="/app/question/questionList" method="post">
+	<form action="/app/question/questionList?p=1&cateNo=0" method="post">
+		<input type="hidden" value="${cateNo}" name="cateNo">
+		<input type="hidden" value="${p}" name="p">
 		<div class="question-main">
         <div class="banner-question">
             <div class="banner-phrases">
@@ -25,13 +27,13 @@
             <div class="search-question">
                 <div class="gathering-blocks">
                     <div class="select-content">
-                        <select name="select-title-content" >
+                        <select name="category" >
                             <option value="title-option">제목</option>
                             <option value="content-option">내용</option>
                         </select>
                     </div>
                     <div class="search-box2">
-                    	<input type="text" size="100" class="search-input">
+                    	<input type="text" size="100" class="search-input" name="keyword">
                     	<div class="search-line"></div>
                     </div>
                     <div class="search-btn2"><input type="submit" value="검색" class="search-btn-input"></div>
@@ -40,21 +42,21 @@
             <div class="category-question">
                 <div class="cate-list">
                 	<a href="/app/question/questionWrite"><div class="ques">문의하기</div></a>
-                    <a href="/questionList?cate = 1"><div class="cate" value="1">전체</div></a>
-                    <a href="/questionList?cate = 2"><div class="cate" value="2">스터디</div></a>
-                    <a href="/questionList?cate = 3"><div class="cate" value="3">공부인증</div></a>
-                    <a href="/questionList?cate = 4"><div class="cate" value="4">Q&A</div></a>
-                    <a href="/questionList?cate = 5"><div class="cate" value="5">멘토링</div></a>
-                    <a href="/questionList?cate = 6"><div class="cate" value="6">커뮤니티</div></a>
-                    <a href="/questionList?cate = 7"><div class="cate" value="7">스킨샵</div></a>
+                    <a href="/app/question/questionList?p=1&cateNo=1"><div class="cate" value="1" name="cateNo">전체</div></a>
+                    <a href="/app/question/questionList?p=1&cateNo=2"><div class="cate" value="2" name="cateNo">스터디</div></a>
+                    <a href="/app/question/questionList?p=1&cateNo=3"><div class="cate" value="3" name="cateNo">공부인증</div></a>
+                    <a href="/app/question/questionList?p=1&cateNo=4"><div class="cate" value="4" name="cateNo">Q&A</div></a>
+                    <a href="/app/question/questionList?p=1&cateNo=5"><div class="cate" value="5" name="cateNo">멘토링</div></a>
+                    <a href="/app/question/questionList?p=1&cateNo=6"><div class="cate" value="6" name="cateNo">커뮤니티</div></a>
+                    <a href="/app/question/questionList?p=1&cateNo=7"><div class="cate" value="7" name="cateNo">스킨샵</div></a>
                 </div>
             </div>
             <div class="list-question">
-                <c:forEach var="questionList" begin="1" end="10" >
+                <c:forEach var="list" begin="1" end="10" items="${list}" >
                     <a href="/app/question/qDetailList"><div class="questionList"></a>
-                        <div class="pick-cate">${name}</div>
-                        <div class="pick-title">${title }</div>
-                        <div class="pick-date">${enrollDate}</div>
+                        <div class="pick-cate" name="name">${list.cateName}</div>
+                        <div class="pick-title" name="title">${list.title }</div>
+                        <div class="pick-date" name="enrollDate">${list.enrollDate}</div>
                     </div>
                 </c:forEach>
             </div>
@@ -65,25 +67,7 @@
 	
 	<script type="text/javascript">
 	
-	var path = "${pageContext.request.contextPath }";
-	$(function(){
-		$("input:button[name='button']").on('click',function(){
-			var kind = $(this).val();
-			$.ajax({
-				url: path + "",
-				type: "post",
-				data:{id : $(this).val(),
-					"kind":kind},
-				success: function(data){
-					$('body').html(data);
-					
-				},
-				error: function(data){
-					alert('error');
-				}
-			})
-		});
-	});
+	
 	
 	</script>
 

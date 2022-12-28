@@ -96,7 +96,7 @@
             <span>|</span>
             <a href="${pageContext.request.contextPath}/faq/faqList">FAQ</a>
             <span>|</span>
-            <a href="${pageContext.request.contextPath}/question/questionList">1:1 문의하기</a>
+            <a href="${pageContext.request.contextPath}/question/questionList?p=1&cateNo=0">1:1 문의하기</a>
                
            </div>
 
