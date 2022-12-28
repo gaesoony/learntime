@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
+import com.learntime.app.community.vo.BoardFilterVo;
 import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.community.vo.CateVo;
 import com.learntime.app.community.vo.CmtVo;
@@ -23,8 +23,8 @@ public class BoardDaoImpl implements BoardDao{
 	
 	//모든 리스트 조회
 	@Override
-	public List<BoardVo> selectBoardList(SqlSessionTemplate sst) {
-		return sst.selectList("freeBoardMapper.selectList");
+	public List<BoardVo> selectBoardList(SqlSessionTemplate sst, BoardFilterVo bfv) {
+		return sst.selectList("freeBoardMapper.selectList", bfv);
 	}
 	
 	//나의 글 조회
@@ -101,6 +101,12 @@ public class BoardDaoImpl implements BoardDao{
 	@Override
 	public LHSVo selectScrapList(SqlSessionTemplate sst, LHSVo lhs) {
 		return sst.selectOne("freeBoardMapper.selectScrap", lhs);
+	}
+
+	//커뮤니티 글 수정
+	@Override
+	public int update(SqlSessionTemplate sst, BoardVo vo) {
+		return sst.update("freeBoardMapper.update", vo);
 	}
 	
 }

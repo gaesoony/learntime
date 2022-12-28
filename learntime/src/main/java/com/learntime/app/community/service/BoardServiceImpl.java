@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.learntime.app.community.dao.BoardDao;
+import com.learntime.app.community.vo.BoardFilterVo;
 import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.community.vo.CateVo;
 import com.learntime.app.community.vo.CmtVo;
 import com.learntime.app.community.vo.LHSVo;
-import com.learntime.app.member.vo.MemberVo;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -31,9 +31,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardVo> select() {
-		
-		return dao.selectBoardList(sst);
+	public List<BoardVo> select(BoardFilterVo blf) {
+		return dao.selectBoardList(sst, blf);
 	}
 
 	
@@ -114,6 +113,13 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public LHSVo selectScrap(LHSVo lhs) {
 		return dao.selectScrapList(sst, lhs);
+	}
+
+	//글수정
+	@Transactional
+	@Override
+	public int modify(BoardVo vo) {
+		return dao.update(sst, vo);
 	}
 	
 	

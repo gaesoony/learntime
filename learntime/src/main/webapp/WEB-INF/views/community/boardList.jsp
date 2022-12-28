@@ -40,20 +40,32 @@
                 </c:forEach>
                
                 <script>
-                    // 카테고리가 클릭되면 해당 카테고리의 쿼리스트링을 생성 후 이동
+                    // 나중에 바꿀거임....
                     $('#category').click(function(){
                         var cate = $(this).find('input:checked').attr('id');
-                        location.href = '/app/community/board/listc?cate=' + cate;
+                        if(cate == '0' || cate == undefined){
+                            location.href = '/app/community/board/list';
+                        }else{
+                            location.href = '/app/community/board/list?cate=' + cate;
+                        }
                     });
 
 
-                    // 쿼리스트링에 따라 해당 카테고리를 체크
+                    // 쿼리스트링으로 카테고리 선택
                     $(document).ready(function(){
                         var cate = location.search.split('=')[1];
                         $('#category').find('input[id=' + cate + ']').prop('checked', true);
                     });
+                    // 쿼리스트링 5이상이면 카테고리 펼치기
+                    $(document).ready(function(){
+                        var cate = location.search.split('=')[1];
+                        if(cate >= 5){
+                            $('#category').removeClass('height-40');
+                            $('#category').addClass('height-auto');
+                            $('#cateDown').text('-');
+                        }
+                    });
 
-                    // 
                 </script>
               
                 
@@ -98,10 +110,10 @@
 
             <div>
                 <select class="" name="" id="sorting">
-                    <option value="cate1" selected>최신순</option>
-                    <option value="cate2">댓글수</option>
-                    <option value="cate3">조회수</option>
-                    <option value="cate4">좋아요수</option>
+                    <option value="cate1" value = "enrollDate" selected>최신순</option>
+                    <option value="cate2" value ="cmtCount">댓글수</option>
+                    <option value="cate3" value = "hit">조회수</option>
+                    <option value="cate4" value = "lhCount">좋아요수</option>
                 </select>
             </div>
 
@@ -228,23 +240,24 @@
             var betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
             if (betweenTime < 1) return '방금전';
             if (betweenTime < 60) {
-                return `${betweenTime}분전`;
+                return String(betweenTime)+'분전';
             }
 
             var betweenTimeHour = Math.floor(betweenTime / 60);
             if (betweenTimeHour < 24) {
-                return '${betweenTimeHour}시간전';
+                return String(betweenTimeHour)+'시간전';
             }
 
             var betweenTimeDay = Math.floor(betweenTime / 60 / 24);
             if (betweenTimeDay < 365) {
-                return `${betweenTimeDay}일전`;
+                return String(betweenTimeDay)+'일전';
             }
 
-            return `${Math.floor(betweenTimeDay / 365)}년전`;
+            var betweenTimeYear = Math.floor(betweenTime / 60 / 24 / 365);
+            return String(betweenTimeYear)+'년전';
         }
 
-        //writer-date클래스 에있는 시간을 하나씩 가져와서 timeForToday 함수에 넣어주고 그 값을 다시 넣어준다.
+        //시간 계산후 넣어줌
         $('.writer-date').each(function(index, item) {
             $(this).html(timeForToday($(this).html()));
         });

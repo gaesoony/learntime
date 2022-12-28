@@ -151,7 +151,6 @@
                 </div>
 
                 <div id="board-list" class="shadow-light">
-                    <!-- 반복시작 -->
                     <div id="board-title" class="board">
                         <div>글 번호</div>
                         <div>카테고리</div>
@@ -162,6 +161,29 @@
                         <div>추천수</div>
                         <div>처리</div>
                     </div>
+                    <!-- 반복시작 -->
+                    <c:forEach items="${boardList}" var="list">
+                        <div class="board-content board">
+                            <div>${list.no}</div>
+                            <div>${list.cate}</div>
+                            <div>${list.title}
+                                <!-- ${list.cmtCount} 가 있을때 출력-->
+                                <c:if test="${list.cmtCount != null}">
+                                    <span class="cmt-cnt">[${list.cmtCount}]</span>
+                                </c:if>
+                            </div>
+                            <div>${list.writerNick}</div>
+                            <div>${list.enrollDate}</div>
+                            <div>${list.hit}</div>
+                            <div>${list.lhCount}</div>
+                            <div class="board-btn-box">
+                                <div class="detail-btn" onclick="location.href='/app/admin/community/detail?bno=${list.no}'">상세보기</div>
+                                <div class="modify-btn" onclick="location.href='/app/admin/community/modify?bno=${list.no}'">수정</div>
+                                <div class="delete-btn" onclick="location.href='/app/admin/community/delete?bno=${list.no}'">삭제</div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                        <!-- 반복 끝 -->
                     <div class="board-content board">
                         <div>글 번호</div>
                         <div>카테고리</div>

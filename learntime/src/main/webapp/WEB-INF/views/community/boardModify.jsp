@@ -21,26 +21,28 @@
 	</div>
    
     <div id="main-wrap">
-        <form action="">
+        <form action="${pageContext.request.contextPath}/community/board/modify" method="post">
 
         <div id="cate-txt">카테고리</div>
         <div id="cate-select-box">
-            <select name="" id="" disabled>
+            <select name="cateNo" id="">
                 <option value="" disabled selected>카테고리를 선택해주세요</option>
-                <option value="cate1">카테고리1</option>
-                <option value="cate2">카테고리2</option>
-                <option value="cate3">카테고리3</option>
+                <!-- 카테고리 받아오기 -->
+                <c:forEach var="cate" items="${cateList}">
+                <option value="${cate.no}">${cate.name}</option>
+                </c:forEach>
             </select>
         </div>
         <div id="title-txt">제목</div>
         <div id="title-input-box">
-            <input type="text" placeholder="제목을 입력해주세요">
+            <input type="text" name="title" value="${bv.title}">
         </div>
         <div id="content-txt">내용</div>
-        <textarea class="summernote" name="editordata"></textarea>
+        <textarea class="summernote" name="content">${bv.content}</textarea>
 
         <div id="btn-box">
             <div id="cancel-btn">취소</div>
+            <input type="hidden" name="no" value="${bv.no}">
             <input id="write-btn" type="submit" value="등록">
         </div>
         
@@ -59,9 +61,15 @@
     <script>
         $('.summernote').summernote({
             height: 350,
-            placeholder: '내용을 작성하세요',
             lang: "ko-KR"
         });
+    </script>
+
+    <script>
+        // 카테고리 선택
+        var cateNo = ${bv.cateNo};
+        $("#cate-select-box select option:eq("+cateNo+")").attr("selected", "selected");
+
     </script>
 
 </body>
