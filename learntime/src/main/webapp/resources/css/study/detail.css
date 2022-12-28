@@ -180,12 +180,19 @@
 .study-detail-summary-list li div:first-child {
   color: gray;
   margin-right: 20px;
+  width: 80px;
 }
 
 .tech-list img {
   width: 35px;
   height: 35px;
   margin-right: 7px;
+}
+
+.tech-list {
+  width: 695px;
+  flex-wrap: wrap;
+  height: 24px;
 }
 
 /* 스터디 상세 - 소개부분 */
@@ -368,6 +375,7 @@
 .cmt-btn-area {
   display: flex;
   justify-content: flex-end;
+  margin-top: 10px;
 }
 
 .cmt-btn-area input {
@@ -485,4 +493,8 @@
 
   color: rgb(168, 168, 168);
   border: 1px solid rgb(207, 207, 207);
+}
+
+.edit-bnt {
+  margin-right: 8px;
 }

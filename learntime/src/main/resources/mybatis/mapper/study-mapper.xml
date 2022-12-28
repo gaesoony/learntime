@@ -171,9 +171,9 @@
 		        GROUP BY G_NO) L ON L.G_NO = G.NO
 		WHERE G.DELETE_YN = 'N' 	
 		<if test="keyword != null">AND (G.TITLE LIKE '%${keyword}%' OR G.INTRO LIKE '%${keyword}%')</if>
-		<if test="type != '전체'">AND T.NAME = #{type}</if>
+		<if test="!'전체'.equals(type)">AND T.NAME = #{type}</if>
 		<if test="status.equals('open')">AND G.CLOSING_YN IN ('N')</if>
-		<if test="tag != null">
+		<if test="tag != null or ''.equals(tag)">
 			AND G.NO IN (SELECT GROUP_NO
 			FROM GROUP_TAG
 			JOIN TAG ON GROUP_TAG.TAG_NO = TAG.NO
@@ -184,7 +184,7 @@
 			</foreach>
 			)
 		</if>
-		<if test="techStack != null">
+		<if test="techStack != null or ''.equals(techStack)">
 			AND G.NO IN (SELECT G_NO
 			FROM GROUP_TECH_STACK G
 			JOIN TECH_STACK T ON G.TECH_STACK_NO = T.NO
@@ -236,7 +236,7 @@
 		FROM DUAL
 	</select>
 	<select id="selectGroupOneByGno" resultType="map">
-		SELECT DISTINCT(G.NO), START_TIME, END_TIME,PLACE, ADDRESS, TO_CHAR(CAST(START_DATE as DATE),'YYYY.MM.DD') START_DATE, TITLE, TO_CHAR(G.INTRO) INTRO, HIT, T.NAME TYPE, W.NAME WAY, NUMBER_PEOPLE, P.NAME PERIOD, M.NO WRITER_NO, M.NICK, M.IMG_PATH, TO_CHAR(CAST(G.ENROLL_DATE as DATE),'YYYY.MM.DD HH24:MI') ENROLL_DATE, G.CLOSING_YN, NVL(CMT_CNT,0) CMT_CNT , NVL(SCRAP_CNT,0) SCRAP_CNT, NVL(LIKES-HATES,0) LIKE_CNT
+		SELECT DISTINCT(G.NO) NO, G.NAME GROUP_NAME, G.IMG_PATH GROUP_IMG_PATH, START_TIME, END_TIME,PLACE, ADDRESS, TO_CHAR(CAST(START_DATE as DATE),'YYYY.MM.DD') START_DATE, TITLE, TO_CHAR(G.INTRO) INTRO, HIT, T.NAME TYPE, T.NO TYPE_NO, W.NAME WAY, W.NO WAY_NO, NUMBER_PEOPLE, P.NAME PERIOD,P.NO PERIOD_NO, M.NO WRITER_NO, M.NICK, M.IMG_PATH, TO_CHAR(CAST(G.ENROLL_DATE as DATE),'YYYY.MM.DD HH24:MI') ENROLL_DATE, G.CLOSING_YN, NVL(CMT_CNT,0) CMT_CNT , NVL(SCRAP_CNT,0) SCRAP_CNT, NVL(LIKES-HATES,0) LIKE_CNT, G.TECH_STACK_NO
 		FROM RECRUIT_GROUP G
 		JOIN GROUP_TYPE T ON G.G_TYPE_NO = T.NO
 		JOIN GROUP_WAY W ON G.G_WAY_NO = W.NO
@@ -251,14 +251,14 @@
 		AND G.NO = #{gno}
 	</select>
 	<select id="selectQuestionListByGno" resultType="map">
-		SELECT QUESTION
+		SELECT NO, QUESTION
 		FROM RECRUIT_QUESTION
 		WHERE G_NO = #{gno}
 		AND DELETE_YN = 'N'
 		ORDER BY NO
 	</select>
 	<select id="selectTagListByGno" resultType="map">
-		SELECT NAME
+		SELECT NO, NAME
 		FROM GROUP_TAG G
 		JOIN TAG T ON G.TAG_NO = T.NO
 		WHERE G.GROUP_NO = #{gno}
@@ -267,8 +267,8 @@
 		SELECT M.NICK, M.IMG_PATH, L.STATUS
 		FROM RECRUIT_LIST L
 		JOIN MEMBER M ON L.M_NO = M.NO
-		WHERE L.G_NO = 1
-		AND L.M_NO IN ('B','C')
+		WHERE L.G_NO = #{gno}
+		AND L.STATUS IN ('B','C')
 	</select>
 	<update id="updateHit">
 		UPDATE RECRUIT_GROUP
@@ -295,5 +295,48 @@
 		WHERE M_NO = #{mno}
 		AND G_NO = #{gno}
 	</select>
+	
+	<update id="deleteGroup">
+		UPDATE RECRUIT_GROUP 
+		SET DELETE_YN = 'Y'
+		WHERE NO = #{gno}
+	</update>
+	
+	<update id="deleteGroupQuestion">
+		UPDATE RECRUIT_QUESTION
+		SET DELETE_YN = 'Y'
+		WHERE G_NO = #{gno}
+	</update>
+	<update id="deleteGroupTechStack">
+		DELETE FROM GROUP_TECH_STACK
+		WHERE G_NO = #{gno}
+	</update>
+	<update id="deleteGroupTag">
+		DELETE FROM GROUP_TAG
+		WHERE GROUP_NO = #{gno}
+	</update>
+	
+	<update id="editGroup">
+		UPDATE RECRUIT_GROUP
+		SET G_TYPE_NO = #{gTypeNo} ,
+		G_WAY_NO = #{gWayNo} ,
+		G_PERIOD_NO = #{gPeriodNo} ,
+		NUMBER_PEOPLE = #{numberPeople} , 
+		TECH_STACK_NO = #{techStackNoList} ,
+		START_DATE = #{startDate} ,
+		START_TIME = #{startTime} ,
+		END_TIME = #{endTime} ,
+		TITLE = #{title} ,
+		INTRO = #{intro} , 
+		PLACE = #{place} , 
+		ADDRESS = #{address} , 
+		MODIFY_DATE = SYSDATE
+		WHERE NO = #{no}
+	</update>
+	<insert id="insertGroupMember">
+		INSERT INTO RECRUIT_LIST
+		(NO, G_NO, M_NO, ENROLL_DATE, STATUS)
+		VALUES (SEQ_RECRUIT_LIST_NO.NEXTVAL, #{gno}, #{mno}, SYSDATE, 'A')
+	</insert>
 
 </mapper>

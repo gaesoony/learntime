@@ -74,6 +74,24 @@ public interface StudyDao {
 
 	public String selectScrapYn(SqlSessionTemplate sst, Map map);
 
+	//delete group
+	public int deleteGroup(SqlSessionTemplate sst, String gno);
+
+	//edit group
+	public int updateGroupInfo(SqlSessionTemplate sst, GroupVo vo);
+
+	//delete group question
+	public int deleteGroupQuestion(SqlSessionTemplate sst, String no);
+
+	//delete group tech stack
+	public int deleteGroupTechStack(SqlSessionTemplate sst, String no);
+
+	//delete group tag
+	public int deleteGroupTag(SqlSessionTemplate sst, String no);
+
+	//insert group member
+	public int insertGroupMember(SqlSessionTemplate sst, Map map);
+
 
 
 }

@@ -186,13 +186,16 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                               onclick="hiddenTag(event)"
                             >
                               <input
+                                id="${map.NAME}"
                                 type="checkbox"
                                 class="radio"
                                 name="techStackNo"
                                 value="${map.NO}"
                                 onclick="stop(event)"
                               />
-                              <label onclick="hiddenTag2(event)"
+                              <label
+                                onclick="hiddenTag2(event)"
+                                for="${map.NAME}"
                                 >${map.NAME}</label
                               >
                             </div>
@@ -314,7 +317,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                   class="study-search-tag"
                   type="text"
                   placeholder="태그를 입력하세요"
-                  onkeyup="if(window.event.keyCode==13){makeTag(event)} if(window.event.keyCode==8){deleteBeforeTag()}"
+                  onkeydown="if(window.event.keyCode==13){makeTag(event)} if(window.event.keyCode==8){deleteBeforeTag()}"
                 />
               </div>
               <input

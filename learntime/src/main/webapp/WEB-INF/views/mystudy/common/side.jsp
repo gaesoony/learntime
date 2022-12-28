@@ -2,13 +2,6 @@
 pageEncoding="UTF-8"%>
 
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-      rel="stylesheet"
-    />
-
     <style>
 /* 공통css */
 
@@ -263,44 +256,51 @@ select {
           </div>
           <div>
             <ul class="mystudy-list">
-              <a href=""
-                ><img
-                  src="${pageContext.request.contextPath}/resources/img/study/study-profile.JPG"
-                  alt=""
-              /></a>
-              <a href=""
-                ><img
-                  src="${pageContext.request.contextPath}/resources/img/study/study-profile.JPG"
-                  alt=""
-              /></a>
-              <a href=""
-                ><img
-                  src="${pageContext.request.contextPath}/resources/img/study/study-profile.JPG"
-                  alt=""
-              /></a>
-              <a href=""
-                ><img
-                  src="${pageContext.request.contextPath}/resources/img/study/study-profile.JPG"
-                  alt=""
-              /></a>
-              <a href=""
-                ><img
-                  src="${pageContext.request.contextPath}/resources/img/study/study-profile.JPG"
-                  alt=""
-              /></a>
+              <c:forEach items="${myGroupList}" var="map">
+                <li class="my-study-list-detail flex">
+                  <c:if test="${map.IMG_PATH == null }">
+                    <a href="${path}/mystudy/main?gno=${map.NO}">
+                      <img
+                        src="${path}/resources/upload/mystudy/default_profile.png"
+                        alt="${map.NAME}"
+                        title="${map.NAME}"
+                      />
+                    </a>
+                  </c:if>
+                  <c:if test="${map.IMG_PATH != null }">
+                    <a href="${path}/mystudy/main?gno=${map.NO}">
+                      <img
+                        src="${path}/resources/upload/mystudy/${map.IMG_PATH}"
+                        alt="${map.NAME}"
+                        title="${map.NAME}"
+                      />
+                    </a>
+                  </c:if>
+                  <!-- <a
+                    href="${path}/mystudy/main?gno=${map.NO}"
+                    class="my-study-title gray1"
+                    >${map.NAME}</a
+                  > -->
+                </li>
+              </c:forEach>
+            
             </ul>
           </div>
         </div>
         <div class="mystudy-cate-aside relative">
-          <h1>비전공자 자바스터디<i class="fa-solid fa-seedling"></i></h1>
+          <h1>
+            <a href="${path}/mystudy/main?gno=${groupOne.NO}">
+            ${groupOne.GROUP_NAME}<i class="fa-solid fa-seedling"></i>
+            </a>
+           </h1>
           <ul class="mystudy-cate-list">
-            <a href="/app/mystudy/main"><i class="fa-solid fa-angle-right"></i>스터디 정보</a>
-            <a href="/app/mystudy/board/list"><i class="fa-solid fa-angle-right"></i>공지 사항</a>
+            <a href="${path}/mystudy/main?gno=${groupOne.NO}"><i class="fa-solid fa-angle-right"></i>스터디 정보</a>
+            <a href="/app/mystudy/board/list?gno=${groupOne.NO}"><i class="fa-solid fa-angle-right"></i>공지 사항</a>
             <a href=""><i class="fa-solid fa-angle-right"></i>자료 공유</a>
             <a href=""><i class="fa-solid fa-angle-right"></i>과제 제출</a>
           </ul>
           <div class="mystudy-manage-area">
-            <a href="/app/mystudy/manage/info">
+            <a href="/app/mystudy/manage/info?gno=${groupOne.NO}">
               <i class="fa-solid fa-gear"></i><span>관리</span>
 
             </a>
@@ -309,37 +309,23 @@ select {
       </aside>
 
       <aside class="mystudy-right-aside">
-        <h1>참여 멤버(3명)</h1>
+        <h1>참여 멤버(${groupOne.memberList.size()}명)</h1>
         <ul class="study-member-list">
-          <li>
-            <img
-              class="user-profile"
-              src="${pageContext.request.contextPath}/resources/img/study/profile.png"
-              alt=""
-            />
-            <a href="">한혜원</a>
-            <img
-              class="crown"
-              src="${pageContext.request.contextPath}/resources/img/mystudy/crown.png"
-              alt=""
-            />
-          </li>
-          <li>
-            <img
-              class="user-profile"
-              src="${pageContext.request.contextPath}/resources/img/study/profile.png"
-              alt=""
-            />
-            <a href="">한혜원</a>
-          </li>
-          <li>
-            <img
-              class="user-profile"
-              src="${pageContext.request.contextPath}/resources/img/study/profile.png"
-              alt=""
-            />
-            <a href="">한혜원</a>
-          </li>
+          <c:forEach items="${groupOne.memberList}" var="item">
+                <li>
+                  <img
+                    src="${path}/resources/upload/common/profile_default.png"
+                    alt=""
+                  />
+                  <div>${item.NICK}</div>
+                  <c:if test="${item.STATUS == 'B'}">
+                    <div>모임장</div>
+                  </c:if>
+                  <c:if test="${item.STATUS == 'C'}">
+                    <div>멤버</div>
+                  </c:if>
+                </li>
+              </c:forEach>
         </ul>
       </aside>
 

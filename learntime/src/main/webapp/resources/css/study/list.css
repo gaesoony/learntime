@@ -214,6 +214,10 @@
   overflow: auto;
 }
 
+.study-search-tag-div::-webkit-scrollbar {
+  display: none;
+}
+
 .study-search-tag {
   outline: none;
   border: none;
