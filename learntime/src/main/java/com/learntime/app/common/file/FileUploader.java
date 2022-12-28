@@ -5,6 +5,7 @@ import java.io.File;
 import javax.servlet.http.HttpServletRequest;
 
 import com.learntime.app.member.vo.MemberVo;
+import com.learntime.app.mystudy.vo.ProfileVo;
 
 public class FileUploader {
 	
