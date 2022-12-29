@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.learntime.app.mystudy.vo.ProfileVo;
+import com.learntime.app.study.vo.ApplyVo;
 import com.learntime.app.study.vo.GroupVo;
 import com.learntime.app.study.vo.SearchVo;
 
@@ -58,13 +59,16 @@ public interface StudyService {
 	public int updateGroupInfo(GroupVo vo);
 
 	//그룹 멤버 추가
-	public int insertGroupMember(Map map);
+	public int insertGroupMember(ApplyVo vo);
 
 	//그룹 프사, 이름 수정
 	public int updateProfile(ProfileVo vo);
 
 	//상태로 그룹멤버 리스트 조회
 	public List<Map<String, String>> selectGroupMemberListByStatus(Map map);
+
+	//가입내역번호로 답변, 질문, 회원정보 받아옴
+	public List<Map<String, String>> selectAnswerListByNo(String rno);
 	
 	
 	//추후 추가 예정..

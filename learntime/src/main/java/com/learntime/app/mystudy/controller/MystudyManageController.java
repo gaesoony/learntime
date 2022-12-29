@@ -131,7 +131,7 @@ public class MystudyManageController {
 		//그룹번호로 정보 select
 		Map<String, Object> groupOne = service.selectGroupOne(gno);
 		model.addAttribute("groupOne", groupOne);
-		return "mystudy/manage/member";
+		return "mystudy/manage/memberTest";
 	}
 	
 	//게시판 템플릿 관리 참여멤버 상태 선택 에이젝스
@@ -149,6 +149,24 @@ public class MystudyManageController {
 	    HashMap<String, Object> result = new HashMap<String, Object>();
 	    
 	    result.put("result", memberList);
+	    
+	    String jsonString = gson.toJson(result);
+		return jsonString;
+		
+	}
+	
+	//게시판 템플릿 관리 참여멤버 상태 선택 에이젝스
+	@GetMapping(value = "member/answer" , produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String memberAnswer(String rno) {
+		System.out.println("답변 들어옴?");
+		
+		List<Map<String, String>> answerList = service.selectAnswerListByNo(rno);
+		
+		Gson gson = new Gson();
+	    HashMap<String, Object> result = new HashMap<String, Object>();
+	    
+	    result.put("result", answerList);
 	    
 	    String jsonString = gson.toJson(result);
 		return jsonString;
