@@ -30,8 +30,14 @@
   	SELECT M.NICK AS WRITER ,Q.ENROLL_DATE,C.NAME as CATE_NAME,Q.TITLE,Q.CONTENT 
   	FROM QUESTION_BOARD Q
     JOIN COMMON_CATEGORY C ON Q.CATE_NO= C.NO JOIN MEMBER M ON M.NO = Q.WRITER WHERE
-    N.NO = #{no}
+    Q.NO = #{no}
   </select>
-	
+  
+ 
+  
+	<!-- <update id="updateOne">
+		UPDATE QUESTION_BOARD SET CATE_NO = #{cateNo},TITLE=#{title},CONTENT = #{content}
+		WHERE NO=#{no}
+	</update> -->
 	
 </mapper>

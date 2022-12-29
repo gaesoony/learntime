@@ -74,19 +74,19 @@
                 </div>
             </div>
         </div>
-        <div class="page-notice">
-           	<div class="pageBtn" >
-           		<ul class="pagination">
-           			<li><a href="/app/notice/noticeList?p=1&cateNo=0" class="page">1</a></li>
-           			<li><a href="/app/notice/noticeList?p=2&cateNo=0" class="page">2</a></li>
-           			<li><a href="/app/notice/noticeList?p=3&cateNo=0" class="page">3</a></li>
-           			<li><a href="/app/notice/noticeList?p=4&cateNo=0" class="page">4</a></li>
-           			<li><a href="/app/notice/noticeList?p=5&cateNo=0" class="page">5</a></li>
-           		</ul>	
-           	</div>
-         </div>
     </div>
 </form>
+<div class="page-notice">
+   	<div class="pageBtn" >
+   		<ul class="pagination">
+   			<li><a href="/app/notice/noticeList?p=1&cateNo=0" class="page">1</a></li>
+   			<li><a href="/app/notice/noticeList?p=2&cateNo=0" class="page">2</a></li>
+   			<li><a href="/app/notice/noticeList?p=3&cateNo=0" class="page">3</a></li>
+   			<li><a href="/app/notice/noticeList?p=4&cateNo=0" class="page">4</a></li>
+   			<li><a href="/app/notice/noticeList?p=5&cateNo=0" class="page">5</a></li>
+   		</ul>	
+   	</div>
+ </div>
 
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>  
  

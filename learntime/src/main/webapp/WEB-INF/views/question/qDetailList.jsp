@@ -27,27 +27,21 @@
         <div class="q-title-date-m">
             <div class="gathering-divs-d">
                 <div class="q-title-cate">
-                    <div class="category-q-m">[멘토링]</div>
-                    <div class="title-q-m">멘토링 서비스가 궁금해요</div>
+                    <div class="category-q-m" name="name">${vo.cateName}</div>
+                    <div class="title-q-m " name="title">${vo.title}</div>
                 </div>
                 <div class="q-enrollDate-comment">
-                    <div class="q-nick">user11</div>
-                    <div class="date-q-m">2022.12.14</div>
-                    <div class="q-hit">
-                        <div class="q-reply-num-count">댓글수</div>
-                        <div class="q-comment">3</div>
-                    </div>
+                    <div class="q-nick" name="writer">${vo.writer}</div>
+                    <div class="date-q-m" name="enrollDate">${vo.enrollDate}</div>
                 </div>
             </div>
         </div>
         <div class="empty1-m"></div>
-        <div class="q-content-m">
-            <textarea class="summernote" name="editordata"></textarea>
-        </div>
+        <div class="q-content-m" name="content">${vo.content}</div>
         <div class="backBtn-m">
             <a href="/app/question/qDetailListModify"><div class="btn-to-m" id="btn-modify">수정</div></a>
             <input type="button" value="삭제" name="btn-to-m" class="btn-to-m" id="btn-to-m">
-            <a href="/app/question/questionList"><div class="btn-to-m">글목록</div></a>
+            <a href="/app/question/questionList?p=1&cateNo=0"><div class="btn-to-m">글목록</div></a>
         </div>   
     </div>
     </div>
@@ -67,57 +61,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- 서머노트 로딩-->
-    <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script> 
-    <script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
-    <script>
-        $('.summernote').summernote({
-            height: 350,
-            placeholder: '내용을 작성하세요',
-            lang: "ko-KR",
-            disableResizeEditor: true
-        });
-
-
-        // $(document).ready(function(){
-        //     $('.hide-reply').click(function(){
-        //         $('.comment-b-for-a').toggle('slow');
-        //     });
-        // });
-        
-        //대댓글 쓰기
-        $('.write-reply').click(function(){
-            $('.hide-comment').slideToggle();
-        });
-
-
-        
-        
-        // 댓글 펼치기
-        $('.hide-reply').click(function(){
-            $('.comment-b-for-a').slideToggle();
-        });
-
-		//좋아요 싫어요 버튼
-		function count(type){
-            const result = document.getElementsByClassName('.middleBtn');
-            let number = result.innertext;
-
-            if(type === 'plus'){
-                number=parseInt(number) + 1;
-            }else if(type === 'minus'){
-                number = parseInt(number) - 1;
-
-            }
-
-            result.innertext=number;
-            
-			
-		}
-
-
     
-    </script>
-
 </body>
 </html>

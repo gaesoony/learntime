@@ -10,6 +10,7 @@
 .cate-list-search{
     width: 1200px;
     margin: 0 auto;
+    
 }
 .banner-notice{
     width: 100%;
@@ -145,8 +146,8 @@
 
 .notice-list{
     width: 1200px;
-    height: 600px;
     display: flex;
+    height:700px;
     justify-content: space-between;
 
 
@@ -188,7 +189,7 @@
 }
 .notice-group{
     width: 100%;
-    height: 540px;
+    
     border-top:1px solid lightgray; 
 
 }

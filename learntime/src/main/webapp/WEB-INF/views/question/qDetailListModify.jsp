@@ -12,7 +12,8 @@
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/common/header.jsp" %>
-<div class="list-main-m">
+<form action="" method="get">
+	<div class="list-main-m">
     <div class="q-detail-list-m">
         <div class="q-sign-m">
             <div class="line1-m">
@@ -26,16 +27,22 @@
         <div class="q-title-date-m">
             <div class="gathering-divs-d">
                 <div class="q-title-cate">
-                    <div class="category-q-m">[멘토링]</div>
-                    <div class="title-q-m">멘토링 서비스가 궁금해요</div>
+                    <div class="category-q">
+	                    <select name="category" id="categories">
+			                <option value="1">전체</option>
+			                <option value="2">스터디</option>
+			                <option value="3">공부인증</option>
+			                <option value="4">Q&A</option>
+			                <option value="5">멘토링</option>
+			                <option value="6">커뮤니티</option>
+			                <option value="7">스킨샵</option>
+			            </select>
+			            </div>
+                    <div class="title-q-m " name="title">${vo.title}</div>
                 </div>
                 <div class="q-enrollDate-comment">
-                    <div class="q-nick">user11</div>
-                    <div class="date-q-m">2022.12.14</div>
-                    <div class="q-hit">
-                        <div class="q-reply-num-count">댓글수</div>
-                        <div class="q-comment">3</div>
-                    </div>
+                    <div class="q-nick" name="writer">${vo.writer}</div>
+                    <div class="date-q-m" name="enrollDate">${vo.enrollDate}</div>
                 </div>
             </div>
         </div>
@@ -44,81 +51,16 @@
             <textarea class="summernote" name="editordata"></textarea>
         </div>
         <div class="backBtn-m">
-            <div class="btn-to-m">수정</div>
-            <div class="btn-to-m">삭제</div>
-            <div class="btn-to-m">글목록</div>
-        </div>
-        <div class="reply-section">
-            <div class="reply-num">6개의 댓글</div>
-            <div class="leave-comment">
-                <div class="div-box-a">
-                    <div class="div-box-b">
-                        <div class="profile-box"><img width="70px" height="70px" src="/app/resources/img/main/Ellipse 2.png"></div>
-                        <div class="div-box-d"></div>
-                    </div>
-                    <div class="div-box-c">
-                        <div class="input-box"><input type="button" value="댓글쓰기"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="comment-box">
-                <div class="gathering-boxes">
-                    <div class="comment-a">
-                        <div class="profile-etc">
-                            <div class="profile-pic"><img width="70px" height="70px" src="/app/resources/img/faq/image 127.png"></div>
-                            <div class="profile-id"><img width="200px" height="70px" src="/app/resources/img/faq/image 91.png"></div>
-                            <div class="good-or-bad">
-                                <div class="btn-good-or-bad">
-                                    <div class="downBtn"><img width="20px" height="20px" src="https://cdn-icons-png.flaticon.com/128/32/32195.png"></div>
-                                    <div class="middleBtn">3</div>
-                                    <div class="upBtn"><img width="20px" height="20px" src="https://cdn-icons-png.flaticon.com/128/271/271239.png"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="leaved-comment">접속이 잘 안되네요</div>
-                        <div class="hide-write-reply">
-                            <div class="hide-reply">댓글 모두 숨기기</div>
-                            <div class="write-reply">댓글 쓰기 </div>
-                        </div>
-                    </div>
-                    <div class="hide-comment">
-                        <div class="write-reply-reply">
-                            <div class="leave-comment">
-                                <div class="div-box-a">
-                                    <div class="div-box-b">
-                                        <div class="profile-box"><img width="70px" height="70px" src="/app/resources/img/main/Ellipse 2.png"></div>
-                                        <div class="div-box-d"></div>
-                                    </div>
-                                    <div class="div-box-c">
-                                        <div class="input-box"><input type="button" value="댓글쓰기"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>    
-                    <div class="comment-b-for-a" >
-                        <div class="reply-reply">
-                            <div class="profile-etc-re">
-                                <div class="profile-pic-re"><img width="70px" height="70px" src="/app/resources/img/faq/image 130.png"></div>
-                                <div class="profile-id-re"><img width="200px" height="70px" src="/app/resources/img/faq/image 129.png"></div>
-                                <div class="good-or-bad-re">
-                                    <div class="btn-good-or-bad-re">
-                                        <div class="downBtn"><img width="20px" height="20px" src="https://cdn-icons-png.flaticon.com/128/32/32195.png"></div>
-                                        <div class="middleBtn">3</div>
-                                        <div class="upBtn"><img width="20px" height="20px" src="https://cdn-icons-png.flaticon.com/128/271/271239.png"></div>
-                                    </div>
-                                </div> 
-                            </div>
-                            <div class="leaved-comment-re">@겨울의속삭임님<br>해당이슈는 수정하여 반영하였습니다. 감사합니다.</div>
-                            <div class="hide-comment-re"><span>댓글쓰기</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
-        </div>
+            <a href="/app/question/qDetailListModify"><div class="btn-to-m" id="btn-modify">수정</div></a>
+            <input type="button" value="삭제" name="btn-to-m" class="btn-to-m" id="btn-to-m">
+            <a href="/app/question/questionList"><div class="btn-to-m">글목록</div></a>
+        </div>   
+    </div>
     </div>
 </div>
+	
+</form>
+<%@ include file = "/WEB-INF/views/common/footer.jsp" %>
 
 
 
@@ -150,7 +92,7 @@
         // });
         
         //대댓글 쓰기
-        $('.write-reply').click(function(){
+       /*  $('.write-reply').click(function(){
             $('.hide-comment').slideToggle();
         });
 
@@ -161,8 +103,23 @@
         $('.hide-reply').click(function(){
             $('.comment-b-for-a').slideToggle();
         });
+ */
+		//좋아요 싫어요 버튼
+		/* function count(type){
+            const result = document.getElementsByClassName('.middleBtn');
+            let number = result.innertext;
 
+            if(type === 'plus'){
+                number=parseInt(number) + 1;
+            }else if(type === 'minus'){
+                number = parseInt(number) - 1;
 
+            }
+
+            result.innertext=number;
+            
+			
+		} */
 
 
     

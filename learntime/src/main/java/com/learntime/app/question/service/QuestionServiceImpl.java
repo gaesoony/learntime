@@ -51,6 +51,14 @@ public class QuestionServiceImpl implements QuestionService{
 	
 
 //	@Override
+//	public int updateOne(QuestionVo vo) {
+//		
+//		return dao.updateOne(sst,vo);
+//	}
+
+	
+
+//	@Override
 //	public List<QuestionVo> boardList(int cate) {
 //		
 //		return dao.boardList(sst,cate);

@@ -36,6 +36,13 @@ public class QuestionDao {
 		return sst.selectOne("questionMapper.selectOne",vo);
 	}
 
+	
+
+//	public int updateOne(SqlSessionTemplate sst, QuestionVo vo) {
+//		
+//		return sst.update("questionMapper.updateOne",vo);
+//	}
+
 //	public List<QuestionVo> boardList(SqlSessionTemplate sst, int cate) {
 //	
 //		return sst.selectList("questionMapper.boardList",cate);
