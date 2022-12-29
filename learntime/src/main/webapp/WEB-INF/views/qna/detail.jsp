@@ -184,7 +184,7 @@
         margin-top: 15px;
     }
     .content{
-        font-size: 20px;
+        font-size: 15px;
         color: #434343;
         line-height: 28px;
     }
@@ -592,18 +592,18 @@
                         <td class="thumbsup" id="thumbsup" onclick="changeColor5()"><i class="fa-regular fa-thumbs-up"></i></td>
                         <td class="thumbsdown" id="thumbsdown" onclick="changeColor6()"><i class="fa-regular fa-thumbs-down"></i></td>
                         <td class="bookmark" id="bookmark" onclick="changeColor7()"><i class="fa-regular fa-bookmark"></i></td>
-                        <td class="edit"><button type="button" class="edit-btn" onclick="location.href='${path}/qna/detail?no=${vo.no}'">수정</button></td>
+                        <td class="edit"><button type="button" class="edit-btn" onclick="location.href='${path}/qna/list'">수정</button></td>
                         <td class="slash">/</td>
                         <td class="delete">
                             <button type="button" class="delete-btn">삭제</button>
                             <div class="modal hidden">
                                 <div class="bg"></div>
                                 <div class="modalBox">
-                                    <button class="closeBtn"><i class="fa-solid fa-xmark"></i></button>
+                                    <input type="button" class="closeBtn" onClick="location.reload();" value="X"></input>
                                     <p class="modalTitle">게시물을 삭제하시겠습니까?</p>
                                     <div class="modalBtn">
-                                        <button class="cancleBtn">취소</button>
-                                        <button class="saveBtn" onclick="location.href='/app/qna/list'">삭제</button>
+                                        <input type="button" class="cancleBtn" value="취소" onClick="location.reload();"></input>
+                                        <input type="button" class="saveBtn" onclick="location.href='/app/qna/list'" value="삭제"></input>
                                     </div>
                                 </div>
                             </div>
@@ -620,7 +620,6 @@
                 </table>
                 <div class="three">
                     <ul class="hash">
-                        <li class="ha">#JAVA</li>
                         <li class="ha">#자바</li>
                         <li class="ha">#CSS</li>
                     </ul>
@@ -720,9 +719,9 @@
             document.querySelector(".modal").classList.add("hidden");
         }
         document.querySelector(".delete-btn").addEventListener("click", open);
-        document.querySelector(".closeBtn").addEventListener("click", close);
-        document.querySelector(".cancleBtn").addEventListener("click", close);
         document.querySelector(".bg").addEventListener("click", close);
+        document.querySelector(".cancleBtn").addEventListener("click", close);
+        document.querySelector(".closeBtn").addEventListener("click", close);
 
         // 썸머노트
         $('.summernote').summernote({

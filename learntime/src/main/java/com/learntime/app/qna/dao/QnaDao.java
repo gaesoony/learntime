@@ -21,11 +21,8 @@ public interface QnaDao {
 	//게시글 목록
 	List<QnaVo> selectList(SqlSessionTemplate sst, QnaVo vo);
 
-	//게시글 수정
-	int insertEdit(SqlSessionTemplate sst, QnaVo vo);
-
 	//게시글 상세조회
-	QnaVo selectOne(SqlSessionTemplate sst, String no);
+	QnaVo detail(SqlSessionTemplate sst, String no);
 
 	
 

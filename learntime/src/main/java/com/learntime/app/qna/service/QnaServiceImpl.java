@@ -56,16 +56,10 @@ public class QnaServiceImpl implements QnaService {
 		return dao.selectList(sst, vo);
 	}
 
-	//게시글 수정
-	@Override
-	public int insertEdit(QnaVo vo) {
-		return 0;
-	}
-
 	//게시글 상세조회
 	@Override
-	public QnaVo selectOne(String no) {
-		return dao.selectOne(sst, no);
+	public QnaVo detail(String no) {
+		return dao.detail(sst, no);
 	}
 	
 	
