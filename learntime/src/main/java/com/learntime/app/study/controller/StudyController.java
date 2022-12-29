@@ -57,10 +57,10 @@ public class StudyController {
 			vo.setOrder("recent");
 		}
 		
-		if(vo.getStatus() == null) {
-			vo.setStatus("open");
-		}
-		
+//		if(vo.getStatus() == null) {
+//			vo.setStatus("open");
+//		}
+//		
 		if(vo.getTechType() == null ) {
 			vo.setTechType("인기");
 		}	
@@ -182,7 +182,7 @@ public class StudyController {
 		
 		int result = service.recruit(vo);
 		if(result >= 1) {
-	
+			session.setAttribute("alertMsg", "모임이 생성되었습니다");
 			return "redirect:/study/list";
 		}else {
 			return "common/errorPage";
@@ -218,7 +218,7 @@ public class StudyController {
 	
 	//스터디/프로젝트 수정 (DB)
 	@PostMapping("/edit")
-	public String edit(SearchVo sv, GroupVo vo) {
+	public String edit(SearchVo sv, GroupVo vo, HttpSession session) {
 		
 		vo.setNo(sv.getGno());
 		
@@ -226,7 +226,7 @@ public class StudyController {
 		
 		int result = service.updateGroupInfo(vo);
 		if(result >= 1) {
-	
+			session.setAttribute("alertMsg", "글 수정 완료!");
 			return "redirect:/study/detail?gno="+sv.getGno()+"&keyword="+sv.getKeyword()+"&tag="+ sv.getTagList() +"&techType="+sv.getTechType()+"&techStack="+sv.getTechStackList()+"&type="+sv.getType()+"&order="+sv.getOrder()+"&status="+sv.getStatus();
 		}else {
 			return "common/errorPage";
@@ -236,12 +236,13 @@ public class StudyController {
 	
 	//스터디/프로젝트 삭제 (DB)
 	@GetMapping("/delete")
-	public String delete(SearchVo vo) {
+	public String delete(SearchVo vo, HttpSession session) {
 		
 		String gno = vo.getGno();
 		int result = service.deleteGroup(gno);
 		
 		if(result == 1) {
+			session.setAttribute("alertMsg", "글 삭제 완료!");
 			return "redirect:/study/list";
 		}else {
 			return "common/errorPage";
@@ -250,7 +251,7 @@ public class StudyController {
 	
 	//가입신청(DB)
 	@PostMapping("/apply")
-	public String apply(String[] answer, String gno, String mno) {
+	public String apply(String[] answer, String gno, String mno, HttpSession session) {
 		
 		Map map = new HashMap();
 		map.put("answer", answer);
@@ -260,6 +261,7 @@ public class StudyController {
 		int result = service.insertGroupMember(map);
 		
 		if(result == 1) {
+			session.setAttribute("alertMsg", "가입 신청 완료!");
 			return "redirect:/study/list";
 			
 		}else {

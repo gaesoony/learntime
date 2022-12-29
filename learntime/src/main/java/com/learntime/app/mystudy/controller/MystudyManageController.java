@@ -60,7 +60,7 @@ public class MystudyManageController {
 	
 	//스터디/프로젝트 수정 (DB)
 	@PostMapping("/info")
-	public String edit(SearchVo sv, GroupVo vo, String gno) {
+	public String edit(SearchVo sv, GroupVo vo, String gno, HttpSession session) {
 		
 		System.out.println("수정하려고 받은 vo값:" + vo);
 		vo.setNo(gno);
@@ -68,6 +68,7 @@ public class MystudyManageController {
 		int result = service.updateGroupInfo(vo);
 		
 		if(result >= 1) {
+			session.setAttribute("alertMsg", "글 수정 완료!");
 			return "redirect:/mystudy/main?gno="+gno;
 		}else {
 			return "common/errorPage";

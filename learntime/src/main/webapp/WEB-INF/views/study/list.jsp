@@ -13,7 +13,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
   </head>
   <body>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
-    <section class="study-banner middle">
+    <section class="study-banner middle" id="study-section">
       <div>
         <div class="bold700">스터디와 사이드 프로젝트를 찾는</div>
         <div class="bold700">가장 쉬운 방법</div>
@@ -243,7 +243,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
                     name="status"
                     value="open"
                     onclick="form.submit()"
-                    checked
                   />
                   <label id="toggle-slider-label" for="toggle-slider"
                     >On/Off</label
@@ -357,6 +356,12 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
                   <div class="not-found">검색 결과가 없습니다.</div>
                 </c:if>
               </ul>
+              <div class="btn-top">
+                <a href="#study-section">
+                  <i class="fa-solid fa-angle-up"></i>
+                  <h3>맨위로</h3>
+                </a>
+              </div>
             </section>
           </article>
           <aside class="popular-tag-aside">
