@@ -289,6 +289,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                         var="item"
                         varStatus="status"
                       >
+                      <input type="hidden" value="${item.NO}" name="qno">
                         <div class="study-body-content">
                           <div class="study-body-titlebox">
                             <div>질문${status.index + 1}</div>

@@ -352,4 +352,13 @@
 		WHERE R.G_NO = #{gno}
 		AND R.STATUS = #{status}
 	</select>
+	<select id="selectAnswerListByNo">
+		SELECT M.NICK, Q.QUESTION, R.CONTENT
+		FROM RECRUIT_LIST L
+		JOIN RECRUIT_REPLY R ON L.NO = R.RECRUIT_LIST_NO
+		JOIN RECRUIT_QUESTION Q ON Q.NO = R.RECRUIT_QUESION_NO
+		JOIN MEMBER M ON M.NO = L.M_NO
+		WHERE L.NO = #{rno}
+	
+	</select>
 </mapper>

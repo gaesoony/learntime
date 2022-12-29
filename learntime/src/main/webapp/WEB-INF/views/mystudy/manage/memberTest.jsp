@@ -362,12 +362,100 @@ pageEncoding="UTF-8"%>
               // modalClose();
               location.href = "${path}/mystudy/member/confirm?rno=" + x;
             }
+
             function modalOpen(x) {
+              $.ajax({
+                url: getContextPath() + "/mystudy/manage/member/answer",
+                type: "get",
+                data: {
+                  rno: x,
+                },
+
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                success: function (data) {
+                  var obj = JSON.parse(data);
+                  console.log(obj.result[0].MEMBER_NICK);
+                  let str = "";
+                  let str2 = "";
+                  for (let i = 0; i < obj.result.length; i++) {
+                    str =
+                      str +
+                      '<div class="grid-div flex" id="study-modal-open" onclick="modalOpen(' +
+                      obj.result[i].NO +
+                      ')">' +
+                      '<div class="grid-div-left">' +
+                      '<img src="${pageContext.request.contextPath}/resources/upload/profile/' +
+                      obj.result[i].MEMBER_PROFILE +
+                      '" alt=""/></div>' +
+                      '<div class="grid-div-right">' +
+                      "<div>" +
+                      obj.result[i].MEMBER_NICK +
+                      "</div>" +
+                      "<div>" +
+                      obj.result[i].ENROLL_DATE +
+                      "</div></div></div>";
+                  }
+                  grid.innerHTML = str;
+
+                  for (let i = 0; i < obj.result.length; i++) {
+                    str2 =
+                      str2 +
+                      '<div class="study-popup-wrap" id="study-popup' +
+                      obj.result[i].NO +
+                      '"><div class="study-popup">' +
+                      '<div class="study-popup-head">' +
+                      '<div class="study-head-title">가입 신청서</div>' +
+                      "<div>" +
+                      obj.result[i].MEMBER_NICK +
+                      "님이 가입을 신청했습니다.</div>" +
+                      "</div>" +
+                      '<div class="study-popup-body">' +
+                      '<div class="study-body-content">' +
+                      '<div class="study-body-titlebox">' +
+                      "<div>질문1</div>" +
+                      "<div>지원동기 알려주세요</div>" +
+                      "</div>" +
+                      '<div class="study-body-contentbox">' +
+                      '<input type="text" value="같이 스터디 해보고 싶습니다!" readonly/>' +
+                      "</div>" +
+                      "</div>" +
+                      '<div class="study-body-content">' +
+                      '<div class="study-body-titlebox">' +
+                      "<div>질문2</div>" +
+                      "<div>사용 가능한 언어 알려주세요</div>" +
+                      "</div>" +
+                      '<div class="study-body-contentbox">' +
+                      '<input type="text" value="자바, 파이썬, 자바스크립트" readonly />' +
+                      "</div>" +
+                      "</div>" +
+                      '<div class="study-body-content">' +
+                      '<div class="study-body-titlebox">' +
+                      "<div>질문3</div>" +
+                      "<div>공지사항 꼭 읽어주세요</div>" +
+                      "</div>" +
+                      '<div class="study-body-contentbox">' +
+                      '<input type="text" value="넹" readonly />' +
+                      "</div>" +
+                      "</div>" +
+                      "</div>" +
+                      '<div class="study-popup-foot">' +
+                      '<div class="study-pop-btn study-confirm" id="study-confirm" onclick="confirm(' +
+                      obj.result[i].NO +
+                      ');">수락</div>' +
+                      '<div class="study-pop-btn study-close" id="study-close">거절</div>' +
+                      "</div>" +
+                      "</div>" +
+                      "</div>";
+                  }
+
+                  modal.innerHTML = str2;
+                },
+              });
+
               $("#study-popup" + x)
                 .css("display", "flex")
                 .hide()
                 .fadeIn();
-              //팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
             }
 
             $("#study-confirm").click(function () {

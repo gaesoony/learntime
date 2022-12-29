@@ -251,14 +251,11 @@ public class StudyController {
 	
 	//가입신청(DB)
 	@PostMapping("/apply")
-	public String apply(String[] answer, String gno, String mno, HttpSession session) {
+	public String apply(ApplyVo vo, HttpSession session) {
 		
-		Map map = new HashMap();
-		map.put("answer", answer);
-		map.put("gno", gno);
-		map.put("mno", mno);
+		//답변을 했을 경우엔 RECRUIT_REPLY 테이블에도 INSERT 해야함
 		
-		int result = service.insertGroupMember(map);
+		int result = service.insertGroupMember(vo);
 		
 		if(result == 1) {
 			session.setAttribute("alertMsg", "가입 신청 완료!");

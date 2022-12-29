@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.learntime.app.mystudy.vo.ProfileVo;
 import com.learntime.app.study.dao.StudyDao;
+import com.learntime.app.study.vo.ApplyVo;
 import com.learntime.app.study.vo.GroupVo;
 import com.learntime.app.study.vo.SearchVo;
 
@@ -314,8 +315,20 @@ public class StudyServiceImpl implements StudyService{
 
 	//그룹 멤버 추가
 	@Override
-	public int insertGroupMember(Map map) {
-		int result = dao.insertGroupMember(sst, map);
+	public int insertGroupMember(ApplyVo vo) {
+		
+		if(vo.getAnswer() == null) {
+			//RECRUIT_LIST 테이블에만 INSERT
+		}
+		
+		if(vo.getAnswer() != null) {
+			//RECRUIT_LIST, RECRUIT_APPLY 테이블 2개에 INSERT
+		}
+		
+		
+		
+		
+		int result = dao.insertGroupMember(sst, vo);
 		return result;
 	}
 
@@ -330,6 +343,13 @@ public class StudyServiceImpl implements StudyService{
 	@Override
 	public List<Map<String, String>> selectGroupMemberListByStatus(Map map) {
 		List<Map<String, String>> result = dao.selectGroupMemberListByStatus(sst, map);
+		return result;
+	}
+
+	//가입내역 번호로 답변, 질문, 회원정보 받아옴
+	@Override
+	public List<Map<String, String>> selectAnswerListByNo(String rno) {
+		List<Map<String, String>> result = dao.selectAnswerListByNo(sst, rno);
 		return result;
 	}
 
