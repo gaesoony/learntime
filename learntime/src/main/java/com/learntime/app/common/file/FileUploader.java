@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.learntime.app.badge.vo.BadgeVo;
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.mystudy.vo.ProfileVo;
 
@@ -51,6 +52,29 @@ public class FileUploader {
 
         return changeName;
     }
+    
+    
+  //뱃지 이미지 업뎃
+  	public static String uploadBadge(HttpServletRequest req, BadgeVo vo) {
+  		String path = req.getSession().getServletContext().getRealPath("/resources/upload/badge/");
+          String originName = vo.getImgPath().getOriginalFilename();
+          String ext = originName.substring(originName.lastIndexOf("."), originName.length());
+          // xxxxxxx.png (뒤에서부터 3자리. , 파일명 길이)
+
+          String changeName = "profile_" + System.nanoTime() + ext; // profile_현재시간
+          File target = new File(path + changeName);
+          
+          String imgName="/resources/upload/badge/"+changeName;
+          
+          try {
+            	vo.getImgPath().transferTo(target);
+
+           } catch (Exception e) {
+              e.printStackTrace();
+           }
+            
+          return imgName;
+  	}
 
 
 }

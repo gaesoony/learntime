@@ -49,20 +49,6 @@ public class AdminLoginController {
 		return "/admin/skinshop/write";
 	}
 	
-	//관리자 뱃지 리스트
-	@GetMapping("/badge/list")
-	public String badgeList() {
-		return "/admin/badge/list";
-	}
-	//관리자 뱃지 상세조회(수정)
-	@GetMapping("/badge/edit")
-	public String badgeEdit() {
-		return "/admin/badge/edit";
-	}
 	
-	//관리자 뱃지 작성하기
-	@GetMapping("/badge/write")
-	public String badgeWrite() {
-		return "/admin/badge/write";
-	}
+	
 }
