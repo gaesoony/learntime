@@ -76,10 +76,12 @@ public class QuestionController {
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");  
 		String writer = loginMember.getNo();
 		vo.setWriter(writer);
+		
+		System.out.println(writer);
 		int result = qs.questionWrite(vo);
 		log.debug("vo:"+vo);
 		if(result == 1) {
-			return "redirect:question/questionList?p=1&cateNo=0";
+			return "question/questionList";
 		}else {
 			return "common/errorPage";
 		}
