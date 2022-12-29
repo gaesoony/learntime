@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.learntime.app.makegrass.service.MakegrassService;
 import com.learntime.app.makegrass.vo.MakegrassVo;
@@ -53,10 +54,18 @@ public class MakegrassController {
 		}
 	}
 	
-	//잔디심기 상세 조회 (화면)
-	@GetMapping("/detail")
-	public String detail() {
+	//잔디심기 상세 조회 (화면+DB)
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String detail(String no, Model model) {
+		
+		MakegrassVo mvo = service.detail(no);
+		
+		System.out.println(mvo);
+		
+		model.addAttribute("mvo", mvo);
+		
 		return "makegrass/detail";
 	}
+	
 
 }

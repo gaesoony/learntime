@@ -680,67 +680,64 @@
     </div>
 
     <!-- 메인 리스트 타이틀 -->
-    <section class="mainbox">
-        <article class="main">
-            <div class="maintitle">
-                <div class="title">
-                    <h2 class="title-end">자바, 파이썬, C# 에 대해서 공부함.</h2>
+    <form action="${path}/makegrass/detail" method="post">
+        <section class="mainbox">
+            <article class="main">
+                <div class="maintitle">
+                    <div class="title">
+                        <h2 class="title-end">${mvo.title}</h2>
+                    </div>
                 </div>
-            </div>
-
-            <!-- 메인 리스트 내 본문 -->
-            <div class="middletitle">
-                <table>
-                    <tr>
-                        <td><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></td>
-                        <td class="nick">nick01</td>
-                        <td class="enrollDate">2202.12.07.</td>
-                        <td class="heart"><i class="fa-solid fa-thumbs-up"></i> 25</td>
-                        <td class="thumbsup"><i class="fa-regular fa-thumbs-up"></i></td>
-                        <td class="thumbsdown"><i class="fa-regular fa-thumbs-down"></i></td>
-                        <td class="bookmark"><i class="fa-regular fa-bookmark"></i></td>
-                        <td class="edit"><button type="button" class="edit-btn" onclick="location.href='app/makegrass/edit'">수정</button></td>
-                        <td class="slash">/</td>
-                        <td class="delete">
-                            <button type="button" class="delete-btn">삭제</button>
-                            <div class="modal hidden">
-                                <div class="bg"></div>
-                                <div class="modalBox">
-                                    <button class="closeBtn"><i class="fa-solid fa-xmark"></i></button>
-                                    <p class="modalTitle">게시물을 삭제하시겠습니까?</p>
-                                    <div class="modalBtn">
-                                        <button class="cancleBtn">취소</button>
-                                        <button class="saveBtn" onclick="location.href='/app/makegrass/list'">삭제</button>
+    
+                <!-- 메인 리스트 내 본문 -->
+                <div class="middletitle">
+                    <table>
+                        <tr>
+                            <td><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></td>
+                            <td class="nick">${mvo.writer}</td>
+                            <td class="enrollDate">${mvo.enrollDate}</td>
+                            <td class="heart"><i class="fa-solid fa-thumbs-up"></i> 25</td>
+                            <td class="thumbsup"><i class="fa-regular fa-thumbs-up"></i></td>
+                            <td class="thumbsdown"><i class="fa-regular fa-thumbs-down"></i></td>
+                            <td class="bookmark"><i class="fa-regular fa-bookmark"></i></td>
+                            <td class="edit"><button type="button" class="edit-btn" onclick="location.href='app/makegrass/edit'">수정</button></td>
+                            <td class="slash">/</td>
+                            <td class="delete">
+                                <button type="button" class="delete-btn">삭제</button>
+                                <div class="modal hidden">
+                                    <div class="bg"></div>
+                                    <div class="modalBox">
+                                        <button class="closeBtn"><i class="fa-solid fa-xmark"></i></button>
+                                        <p class="modalTitle">게시물을 삭제하시겠습니까?</p>
+                                        <div class="modalBtn">
+                                            <button class="cancleBtn">취소</button>
+                                            <button class="saveBtn" onclick="location.href='/app/makegrass/list'">삭제</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <div class="line1"></div>
-                <table class="two">
-                    <tr>
-                        <td class="content">
-                            자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함.
-                            자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함.
-                            자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함.
-                            자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함.
-                            자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함.
-                            자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함.
-                            자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함. 자바, 파이썬, C# 에 대해서 공부함.
-                        </td>
-                    </tr>
-                </table>
-                <div class="three">
-                    <ul class="hash">
-                        <li class="ha">#JAVA</li>
-                        <li class="ha">#자바</li>
-                        <li class="ha">#파이썬</li>
-                    </ul>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="line1"></div>
+                    <table class="two">
+                        <tr>
+                            <td class="content">
+                                ${mvo.content}
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="three">
+                        <ul class="hash">
+                            <li class="ha">#JAVA</li>
+                            <li class="ha">#자바</li>
+                            <li class="ha">#파이썬</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </article>
-    </section>
+            </article>
+        </section>
+    </form>
+    
 
     <!-- 오른쪽 사이드바 -->
     <aside class="rightsidebox">

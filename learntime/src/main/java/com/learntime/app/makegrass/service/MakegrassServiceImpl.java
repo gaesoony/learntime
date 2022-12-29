@@ -59,4 +59,11 @@ public class MakegrassServiceImpl implements MakegrassService {
 		return dao.selectList(sst, vo);
 	}
 
+	//게시글 상세조회
+	@Override
+	@Transactional
+	public MakegrassVo detail(String no) {
+		return dao.detail(sst, no);
+	}
+
 }

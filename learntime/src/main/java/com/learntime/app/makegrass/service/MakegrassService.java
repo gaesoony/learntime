@@ -14,4 +14,7 @@ public interface MakegrassService {
 
 	public List<MakegrassVo> selectList(MakegrassVo vo);
 
+	//게시글 상세조회
+	public MakegrassVo detail(String no);
+
 }

@@ -18,6 +18,8 @@ public interface MakegrassDao {
 
 	List<MakegrassVo> selectList(SqlSessionTemplate sst, MakegrassVo vo);
 
+	MakegrassVo detail(SqlSessionTemplate sst, String no);
+
 	
 
 }

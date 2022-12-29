@@ -59,14 +59,13 @@ public class QnaServiceImpl implements QnaService {
 	//게시글 수정
 	@Override
 	public int insertEdit(QnaVo vo) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	//게시글 상세조회
 	@Override
-	public QnaVo selectOne(QnaVo vo) {
-		return dao.selectOne(sst, vo);
+	public QnaVo selectOne(String no) {
+		return dao.selectOne(sst, no);
 	}
 	
 	
