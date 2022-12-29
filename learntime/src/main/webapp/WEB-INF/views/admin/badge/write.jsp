@@ -9,7 +9,9 @@ pageEncoding="UTF-8"%>
     <!-- 구글아이콘 -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-
+	<!-- 스윗 알람2 -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	
   </head>
   <style>
     #content-wrap {
@@ -34,7 +36,7 @@ pageEncoding="UTF-8"%>
 
     .content-section{
         width: 445px;
-        height:854px;
+        
         background-color: white;
         border: 1px solid rgb(221, 221, 221);
 
@@ -123,7 +125,7 @@ pageEncoding="UTF-8"%>
         margin-top: 20px;
     }
 
-    label[for="imgPath"] span{
+    label[for="file"] span{
         color: #FFFFFF;
         font-size: 100px;
         cursor: pointer;
@@ -158,6 +160,22 @@ pageEncoding="UTF-8"%>
         color: #5ECC80;
         border: 1px solid #5ECC80;
     }
+    
+    .hidden{
+    display:hidden;
+    }
+    
+    .show{
+    display:block;
+    }
+    
+    
+    #preview{
+    width:100%;
+    
+    }
+    
+
 
     
  
@@ -170,42 +188,62 @@ pageEncoding="UTF-8"%>
           
         <section class="content-section">
           
-            <form action="" method="">
+            <form action="${pageContext.request.contextPath}/admin/badge/write" method="post" enctype="multipart/form-data" onsubmit="return check();">
                 <div id="join-area">
     
                     <div id="name">
                         <div class="text">뱃지 이름</div>
-                        <input type="text" name="name">
+                        <input type="text" name="name" id="inputName">
                     </div>
                     
                     <div id="info">
                         <div class="text">뱃지 정보</div>
-                        <input type="text" name="info">
+                        <input type="text" name="info" id="inputInfo">
                     </div>
                     
                     
                     
-                    <div id="">
+                    <div id="condition">
                         <div class="text">뱃지 발급 조건</div>
-                        <input type="text" name="">
+                        <input type="text" name="condition">
                     </div>
                     
                     
-                    <div id="">
+                    <div id="imgPath">
                         <div class="text">뱃지 이미지</div>
                         <div class="img-area">
-                            <label for="imgPath">
-                                <span class="material-symbols-outlined">
-                                    add_photo_alternate
-                                    </span>
+                         
+                         <img id="preview"  src="" class="hidden"/>
+                            <label for="file">
+                                <span  id="plusPic" class="material-symbols-outlined">add_photo_alternate</span>
                             </label>
+                             <input id="file" type="file" name="imgPath">
                         </div>
-                        
-                        <input type="file" name="imgPath" id="imgPath">
+                       
                     </div>
+                    <script>
+	                    $("#file").on("change", function(event) {
+	
+	                        var file = event.target.files[0];
+	
+	                        var reader = new FileReader(); 
+	                        reader.onload = function(e) {
+	
+	                            $("#preview").attr("src", e.target.result);
+	                            $("#preview").removeClass('hidden');
+	                            $("#plusPic").addClass('hidden');
+	                        }
+	
+	                        reader.readAsDataURL(file);
+	                    });
+	                    
+                    </script>
+                    
+                    
                     
                     <button>저장하기</button>
-                    <button type="button" class="cancle" onclick="location.href='${pageContext.request.contextPath}/admin/badge/list'">취소하기</button>
+                    <button id="before" type="reset" onclick="location.reload();">초기화</button>
+                    <button type="button" class="cancle" onclick="location.href='${pageContext.request.contextPath}/admin/badge/list'">이전으로</button>
                   
                 </div>
             </form>
@@ -213,10 +251,62 @@ pageEncoding="UTF-8"%>
         
         </section>
     </div>
-    <script
-      src="https://kit.fontawesome.com/939838bb27.js"
-      crossorigin="anonymous"
-    ></script>
+    <script>
+    
+    function check(){
+    	var name=$('#inputName');
+    	var info=$('#inputInfo');
+    	var imgPath=$('#file');
+    	
+    	console.log(name);
+    	console.log(info);
+    	console.log(imgPath);
+    	
+        if(!name.val()){
+
+            Swal.fire({
+					icon: 'error',
+					title: '내용을 다시 확인해주세요.',
+					text: '정보를 기입하지 않은 곳이 있습니다.',
+					confirmButtonColor: '#5ECC80'
+				});
+               
+
+            return false
+        }
+    	
+    	 if(!info.val()){
+
+             Swal.fire({
+ 					icon: 'error',
+ 					title: '내용을 다시 확인해주세요.',
+ 					text: '정보를 기입하지 않은 곳이 있습니다.',
+ 					confirmButtonColor: '#5ECC80'
+ 				});
+                
+
+             return false
+         }
+    	 
+    	 
+    	 if(!imgPath.val()){
+
+             Swal.fire({
+ 					icon: 'error',
+ 					title: '내용을 다시 확인해주세요.',
+ 					text: '정보를 기입하지 않은 곳이 있습니다.',
+ 					confirmButtonColor: '#5ECC80'
+ 				});
+                
+
+             return false
+         }
+
+    }   
+    
+    </script>
+    
+    <script src="https://kit.fontawesome.com/939838bb27.js" crossorigin="anonymous"></script>
 
 
   </body>
