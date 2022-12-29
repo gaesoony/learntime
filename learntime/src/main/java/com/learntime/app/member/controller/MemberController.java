@@ -65,6 +65,7 @@ public class MemberController {
 //	로그인 (서버)
 	@PostMapping("/member/login")
 	public String login(MemberVo vo,HttpSession session, HttpServletRequest request,Model model) {
+
 		MemberVo loginMember=memberService.login(vo);
 		if(loginMember==null) {
 			return"common/errorPage";
