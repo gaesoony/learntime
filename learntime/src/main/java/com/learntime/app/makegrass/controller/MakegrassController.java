@@ -59,9 +59,6 @@ public class MakegrassController {
 	public String detail(String no, Model model) {
 		
 		MakegrassVo mvo = service.detail(no);
-		
-		System.out.println(mvo);
-		
 		model.addAttribute("mvo", mvo);
 		
 		return "makegrass/detail";
