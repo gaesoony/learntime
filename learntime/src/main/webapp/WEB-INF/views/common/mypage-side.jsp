@@ -135,11 +135,11 @@ body{
 		    	<c:when test="${userNo.no eq loginMember.no}">
 
     			 <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/home?no=${loginMember.getNo()}">홈</a></div>
-		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/makegrassList">MAKE GRASS</a></div>
-		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/study">STUDY/PROJECT</a></div>
-		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/qnaList">LEARNING</a></div>
-		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/mentoring">MENTORING</a></div>
-		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/community">COMMUNITY</a></div>
+		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/makegrassList?no=${loginMember.getNo()}">MAKE GRASS</a></div>
+		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/study?no=${loginMember.getNo()}">STUDY/PROJECT</a></div>
+		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/qnaList?no=${loginMember.getNo()}">LEARNING</a></div>
+		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/mentoring?no=${loginMember.getNo()}">MENTORING</a></div>
+		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/community?no=${loginMember.getNo()}">COMMUNITY</a></div>
 		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/skin?no=${loginMember.getNo()}">보유한 스킨</a></div>
 		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/badge?no=${loginMember.getNo()}">보유한 뱃지</a></div>
 		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/dm/list?no=${loginMember.getNo()}">DM</a></div>

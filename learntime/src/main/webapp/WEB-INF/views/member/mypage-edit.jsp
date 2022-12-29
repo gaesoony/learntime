@@ -17,7 +17,6 @@
             height: 100vh;
             position: fixed;
             visibility: hidden;
-            opacity: 0;
 
             display: flex;
             z-index:10000;
