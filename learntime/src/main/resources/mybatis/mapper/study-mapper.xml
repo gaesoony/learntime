@@ -172,7 +172,7 @@
 		WHERE G.DELETE_YN = 'N' 	
 		<if test="keyword != null">AND (G.TITLE LIKE '%${keyword}%' OR G.INTRO LIKE '%${keyword}%')</if>
 		<if test="!'전체'.equals(type)">AND T.NAME = #{type}</if>
-		<if test="status.equals('open')">AND G.CLOSING_YN IN ('N')</if>
+		<if test="'open'.equals(status)">AND G.CLOSING_YN = 'N'</if>
 		<if test="tag != null or ''.equals(tag)">
 			AND G.NO IN (SELECT GROUP_NO
 			FROM GROUP_TAG

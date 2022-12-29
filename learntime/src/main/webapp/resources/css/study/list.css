@@ -1,4 +1,37 @@
 /* 공통css */
+
+html {
+  scroll-behavior: smooth;
+  /* 맨위로 버튼 부드럽게 스크롤 */
+}
+
+.btn-top {
+  background-color: rgb(255, 255, 255);
+  border: 2px solid #9edbb0;
+  width: 45px;
+  height: 45px;
+  /* border: 1px solid var(--border); */
+  box-shadow: 0 2px 2px rgb(208, 208, 208);
+  border-radius: 50%;
+  text-align: center;
+  position: fixed;
+  right: calc(50% - 500px);
+  bottom: 70px;
+}
+.btn-top a {
+  display: block;
+  width: 45px;
+  height: 45px;
+  color: gray;
+}
+.btn-top a i {
+  font-size: 14px;
+  margin-top: 5px;
+}
+.btn-top a h3 {
+  font-size: 12px;
+}
+
 .soft-gray {
   color: rgb(164, 164, 164);
 }
