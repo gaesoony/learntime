@@ -917,46 +917,46 @@
         });
 
 
-        // function makeTag(event) {
-        // const value = event.target.value;
-        // const str =
-        //     '<div class="relative cursor tag-div" onclick="deleteTag(event)">' +
-        //     '<input onclick="deleteTag2(event)" name="tag" type="text" readonly style="width:' +
-        //     (value.length + 2) * 9 +
-        //     "px" +
-        //     ';" value="' +
-        //     value +
-        //     '" class="tag-btn cursor" /> ' +
-        //     '<i class="fa-solid fa-xmark" onclick="deleteTag2(event)"></i>' +
-        //     "</div>";
+        function makeTag(event) {
+        const value = event.target.value;
+        const str =
+            '<div class="relative cursor tag-div" onclick="deleteTag(event)">' +
+            '<input onclick="deleteTag2(event)" name="tag" type="text" readonly style="width:' +
+            (value.length + 2) * 9 +
+            "px" +
+            ';" value="' +
+            value +
+            '" class="tag-btn cursor" /> ' +
+            '<i class="fa-solid fa-xmark" onclick="deleteTag2(event)"></i>' +
+            "</div>";
 
-        // const tagList = document.querySelector(".tag-list");
-        // tagList.innerHTML += str;
+        const tagList = document.querySelector(".tag-list");
+        tagList.innerHTML += str;
 
-        // event.target.value = "";
-        // }
+        event.target.value = "";
+        }
 
-        // function resetTag() {
-        // const tagList = document.querySelector(".tag-list");
-        // tagList.textContent = "";
-        // form.submit();
-        // }
+        function resetTag() {
+        const tagList = document.querySelector(".tag-list");
+        tagList.textContent = "";
+        form.submit();
+        }
 
-        // function deleteTag(e) {
-        // e.target.remove();
-        // form.submit();
-        // }
+        function deleteTag(e) {
+        e.target.remove();
+        form.submit();
+        }
 
-        // function deleteTag2(e) {
-        // e.target.parentNode.remove();
-        // form.submit();
-        // }
+        function deleteTag2(e) {
+        e.target.parentNode.remove();
+        form.submit();
+        }
 
-        // function deleteBeforeTag() {
-        // const lastTag = document.querySelector(".tag-list div:last-child");
-        // lastTag.remove();
-        // form.submit();
-        // }
+        function deleteBeforeTag() {
+        const lastTag = document.querySelector(".tag-list div:last-child");
+        lastTag.remove();
+        form.submit();
+        }
     </script>
 
     <script src="https://kit.fontawesome.com/4b219bc5a3.js" crossorigin="anonymous"></script>
