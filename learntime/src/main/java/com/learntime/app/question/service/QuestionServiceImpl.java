@@ -32,7 +32,7 @@ public class QuestionServiceImpl implements QuestionService{
 	public List<QuestionVo> selectQuestionList(QuestionVo vo, PageVo pv) {
 		
 		List<QuestionVo> list = dao.selectQuestionList(sst,vo,pv);
-		
+		System.out.println("serviceCheck:"+list);
 		return list; 
 	}
 

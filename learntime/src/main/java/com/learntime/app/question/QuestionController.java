@@ -37,18 +37,19 @@ public class QuestionController {
 		return "question/questionList";
 		
 	}
-	
+	// 문의게시판 리스트 
 	@GetMapping ("question/questionList")
 	public String questionList(int cateNo, QuestionVo vo,HttpServletRequest req,Model m) {
 
 		String p = req.getParameter("p");
 
 		int listCount = qs.selectCount();
+		System.out.println(listCount);
 		int currentPage = Integer.parseInt(p);
-		int boardLimit = 10;
+		int boardLimit = 7;
 		int pageLimit = 5;
 		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
-		
+		System.out.println(pv.getMaxPage());
 		
 		List<QuestionVo> list= qs.selectQuestionList(vo,pv);
 		System.out.println(list);
