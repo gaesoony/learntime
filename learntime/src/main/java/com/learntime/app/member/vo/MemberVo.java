@@ -20,6 +20,7 @@ public class MemberVo {
 	private String accumToken;
 	private String holdToken;
 	private String[] teckStackNo;
+	private String techStackNoList;
 	private String adminYn;
 	private String emailAuth;
 	private String imgName;
@@ -29,6 +30,11 @@ public class MemberVo {
 			if(imgPath==null){return true;}
 			return false;
 	}
+	
+	public void strTechStachNoList() {
+		this.techStackNoList = String.join(",", teckStackNo); 
+	}
+	
 	
 
 }

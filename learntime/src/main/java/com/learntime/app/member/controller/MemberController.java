@@ -23,11 +23,15 @@ import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.member.service.MemberService;
 import com.learntime.app.member.vo.FollowVo;
 import com.learntime.app.member.vo.MemberVo;
+import com.learntime.app.study.service.StudyService;
 
 
 
 @Controller
 public class MemberController {
+	@Autowired
+	private StudyService service;
+	
 	@Autowired
 	@Qualifier("memberServiceImpl")
 	private MemberService memberService;
@@ -84,7 +88,14 @@ public class MemberController {
 	
 //	회원가입 (화면)
 	@GetMapping("/member/join")
-	public String join() {
+	public String join(Model model) {
+		
+		//기술 스택 select
+				List<Map<String, String>> techStackList = service.selectTechStackList();
+				model.addAttribute("techStackList", techStackList);
+				
+				
+				
 		return "/member/join";
 	}
 	
@@ -93,6 +104,8 @@ public class MemberController {
 	public String join(MemberVo  vo) throws Exception {
 		
 		int result=memberService.join(vo);
+		
+		
 		
 		
 		if(result==1) {
@@ -223,7 +236,7 @@ public class MemberController {
 	public String mypage(@RequestParam("no") String no,HttpSession session,Model model) {
 			//로그인 한 유저와 해당 페이지 유저가 동일 하지 않을경우 사이드 바가 달리 보임
 			MemberVo user=memberService.selectNo(no);
-			model.addAttribute("userNo",user);
+			session.setAttribute("userNo",user);
 			
 //			나를 팔로우 하는 사람 수 구하기
 			int followerCnt =memberService.followerCnt(no);
@@ -478,7 +491,7 @@ public class MemberController {
 				return"common/errorPage";
 			}
 			
-			return "member/mypage-edit";
+			return "redirect:/member/mypage/edit?no="+vo.getNo();
 		}
 
 //  	마이페이지-탈퇴
