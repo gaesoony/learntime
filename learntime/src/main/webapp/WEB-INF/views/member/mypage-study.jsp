@@ -83,10 +83,6 @@ pageEncoding="UTF-8"%>
         color: rgb(49, 137, 252);
       }
 
-      * {
-        font-family: "Noto Sans KR", sans-serif;
-      }
-
       /* 기술스택 메뉴 리스트 */
 
       .study-tech-area {
@@ -95,7 +91,7 @@ pageEncoding="UTF-8"%>
 
       .category-list {
         font-size: 20px;
-        padding-bottom: 12px;
+        padding-bottom: 9px;
         border-bottom: 3px solid rgb(230, 230, 230);
         margin-bottom: 40px;
       }
@@ -175,6 +171,32 @@ pageEncoding="UTF-8"%>
         color: white;
         cursor: pointer;
       }
+
+      .category input:checked + div {
+        color: black;
+        font-weight: 500;
+      }
+
+      input[name="a"] {
+        display: none;
+      }
+
+      input[name="a"]:checked + div {
+        color: black;
+      }
+
+      input[name="a"]:checked ~ .bar {
+        display: block;
+      }
+
+      .bar {
+        display: none;
+        width: 30px;
+        height: 4px;
+        background-color: var(--main-color);
+        position: absolute;
+        bottom: -10px;
+      }
     </style>
   </head>
   <body>
@@ -187,10 +209,34 @@ pageEncoding="UTF-8"%>
         </div>
         <div id="home-area">
           <ul class="category-list flex bold700">
-            <li class="category clicked relative">가입 신청 내역</li>
-            <li class="category unClicked relative">참여중인 모임</li>
-            <li class="category unClicked relative">운영중인 모임</li>
-            <li class="category unClicked relative">스크랩</li>
+            <li class="category relative">
+              <label>
+                <input type="radio" name="a" value="가입신청내역" checked />
+                <div>가입 신청 내역</div>
+                <div class="bar"></div>
+              </label>
+            </li>
+            <li class="category relative">
+              <label>
+                <input type="radio" name="a" value="참여중인모임" checked />
+                <div>참여중인 모임</div>
+                <div class="bar"></div>
+              </label>
+            </li>
+            <li class="category relative">
+              <label>
+                <input type="radio" name="a" value="운영중인모임" checked />
+                <div>운영중인 모임</div>
+                <div class="bar"></div>
+              </label>
+            </li>
+            <li class="category relative">
+              <label>
+                <input type="radio" name="a" value="스크랩" checked />
+                <div>스크랩</div>
+                <div class="bar"></div>
+              </label>
+            </li>
           </ul>
           <section>
             <div class="grid">
@@ -231,7 +277,7 @@ pageEncoding="UTF-8"%>
     </div>
     <%@include file="/WEB-INF/views/common/footer2.jsp" %>
 
-    <script>
+    <!-- <script>
       const cate1 = document.querySelector(".category:nth-child(1)");
       const cate2 = document.querySelector(".category:nth-child(2)");
       const cate3 = document.querySelector(".category:nth-child(3)");
@@ -266,6 +312,27 @@ pageEncoding="UTF-8"%>
         cate1.classList.remove("clicked");
         cate2.classList.remove("clicked");
         cate3.classList.remove("clicked");
+      });
+    </script> -->
+    <script>
+      //인기, 프론트엔드, 백엔드, 모바일, 기타, 모두보기
+      const category = document.querySelectorAll(".category");
+
+      //화면이 로드되었을 때 기본으로 인기 항목이 체크되어있으므로
+      //이미 체크된 항목의 bar 길이 할당
+      category.forEach((o) => {
+        if (o.querySelector("input").checked) {
+          const barWidth = o.querySelector("label").offsetWidth;
+          o.querySelector(".bar").style.width = barWidth + "px";
+        }
+      });
+
+      //항목이 체크되면 bar 길이 할당
+      category.forEach((o) => {
+        o.querySelector("label").addEventListener("click", (e) => {
+          const barWidth = e.currentTarget.offsetWidth;
+          o.querySelector(".bar").style.width = barWidth + "px";
+        });
       });
     </script>
     <script>
