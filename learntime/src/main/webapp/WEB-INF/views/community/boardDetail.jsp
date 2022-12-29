@@ -172,9 +172,11 @@
 
 											$("#comment-list").append(commentHtml);
 											});
+											
 											// 대댓글 창 임시 숨기기
 											$('.comment-write-box2').hide();
 											$('.comment-write-box2').next().hide();
+
 											//.cmt2-btn 클릭시 대댓글 창 토글로 보이기
 											$('.cmt2-btn').click(function() {
 

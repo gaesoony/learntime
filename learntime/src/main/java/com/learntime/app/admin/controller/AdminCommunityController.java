@@ -71,13 +71,33 @@ public class AdminCommunityController {
 	}
 	
 	@GetMapping("/detail")
-	public String adminCommunityDetail() {
+	public String adminCommunityDetail(@RequestParam("bno") String boardNo, Model model) {
+		//글리스트
+		model.addAttribute("bv", bs.selectOne(boardNo));
+		//코멘트 리스트
+		model.addAttribute("cvList", bs.selectCmtList(boardNo));
+		
+		
+		
 		return "/admin/community/adminCommunityDetail";
 	}
 	
 	@GetMapping("/modify")
-	public String adminCommunityModify() {
+	public String adminCommunityModify(@RequestParam("bno") String boardNo, Model model) {
+		//카테고리 받아오기
+		model.addAttribute("cateList", bs.selectCate());
+		System.out.println(bs.selectCate());
+		
+		//글리스트
+		model.addAttribute("bv", bs.selectOne(boardNo));
+		
 		return "/admin/community/adminCommunityModify";
+	}
+	
+	@PostMapping("/modify")
+	public String adminCommunityModify(BoardVo bv) {
+		
+		return "";
 	}
 	
 	

@@ -357,3 +357,57 @@ div#content{
     background-color: white;
     box-shadow: 0 2px 2px #c5c5c5;
 }
+
+.blue{
+    color: #2c32a7;
+}
+
+.red-filled{
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
+
+    color: #a72c2c;
+}
+
+.blue-filled{
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
+
+    color: #2c32a7;
+}
+
+.reply-icon{
+    /* 180도 회전 */
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+
+    transform: rotate(180deg);
+    font-size: 20px;
+
+}
+
+/* 널코멘트.. */
+
+#null-cmt{
+    text-align: center;
+    color: #717171;
+    padding: 20px 0;
+}
+
+#login-info-txt{
+    width: 990px;
+    text-align: center;
+    color: #717171;
+    padding: 70px 0 20px 0;
+}
+
+
