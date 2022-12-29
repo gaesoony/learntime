@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 import com.learntime.app.member.vo.MemberVo;
+import com.learntime.app.notice.vo.NoticeVo;
 import com.learntime.app.question.service.QuestionService;
 
 import com.learntime.app.question.vo.PageVo;
@@ -87,10 +88,18 @@ public class QuestionController {
 	
 	// 문의게시판 상세조회(회원)
 	@GetMapping("question/qDetailList")
-	public String qDetailList(QuestionVo vo) {
+	public String qDetailList(QuestionVo vo,HttpSession session, Model m) {
 		
-		
-		return "question/qDetailList";
+			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember"); 
+			
+			if(loginMember !=null) {
+				vo = qs.selectOne(vo);
+				m.addAttribute("vo",vo);
+				return "question/qDetailList";
+			}else {
+				return "common/errorPage";
+			}
+	
 			
 		}
 	
@@ -101,12 +110,28 @@ public class QuestionController {
 			
 		}
 	
-	// 문의게시판 수정페이지(회원)
-	@GetMapping("question/qDetailListModify")
-	public String qDetailListModify() {
-		return "question/qDetailListModify";
-			
-		}
+//	// 문의게시판 수정페이지(회원)
+//	@GetMapping("question/qDetailListModify")
+//	public String qDetailListModify(QuestionVo vo,HttpSession session, Model m) {
+//		
+//		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember"); 
+//		
+//		
+//		int result = 0;
+//		if(loginMember !=null) {
+//			result = qs.updateOne(vo);
+//			m.addAttribute("vo",vo);
+//			
+//		}
+//		if(result == 1) {
+//			return "question/qDetailList";
+//		}else {
+//			return "common/errorPage";
+//		}
+//		
+//		
+//			
+//	}
 
 
 }

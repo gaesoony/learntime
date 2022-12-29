@@ -29,15 +29,15 @@
         </div>
         <div class="notice-title">
             <div class="profile-info-etc">
-                <div class="admin-info">${vo.writer}</div>
+                <div class="admin-info" name="writer">${vo.writer}</div>
                 <div class="info-etc">
-                    <div class="enroll-date-a">${vo.enrollDate }</div>
+                    <div class="enroll-date-a"name="enrollDate">${vo.enrollDate }</div>
                     <div class="views-a"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png"> &nbsp;${vo.hit }</div>
                     <div class="reply-no"><img width="15px" height="15px" class="messages-notice" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">&nbsp; ${vo.cmt}</div>
                 </div>
                 <div class="title-cate-etc">
-                    <div class="cate-notice-a">${vo.cateName }</div>
-                    <div class="title-info">${vo.title}</div>
+                    <div class="cate-notice-a"name="name">${vo.cateName }</div>
+                    <div class="title-info" name="title">${vo.title}</div>
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
     </div>
     <div class="notice-comments">
         <div class="reply-section">
-            <div class="reply-num">${vo.cmt}개의 댓글</div>
+            <div class="reply-num" name="cmt">${vo.cmt}개의 댓글</div>
             <div class="leave-comment">
                 <div class="div-box-a">
                     <div class="div-box-b">
