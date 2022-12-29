@@ -579,20 +579,20 @@
             <div class="maintitle">
                 <div class="title">
                     <div class="title-start">Q.</div>
-                    <h2 class="title-end">${vo.title}</h2>
+                    <h2 class="title-end">${qvo.title}</h2>
                 </div>
             </div>
             <div class="middletitle">
                 <table>
                     <tr>
                         <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필"></td>
-                        <td class="nick">${vo.writer}</td>
-                        <td class="enrollDate">${vo.enrollDate}</td>
+                        <td class="nick">${qvo.writer}</td>
+                        <td class="enrollDate">${qvo.enrollDate}</td>
                         <td class="heart"><i class="fa-solid fa-thumbs-up"></i> 25</td>
                         <td class="thumbsup" id="thumbsup" onclick="changeColor5()"><i class="fa-regular fa-thumbs-up"></i></td>
                         <td class="thumbsdown" id="thumbsdown" onclick="changeColor6()"><i class="fa-regular fa-thumbs-down"></i></td>
                         <td class="bookmark" id="bookmark" onclick="changeColor7()"><i class="fa-regular fa-bookmark"></i></td>
-                        <td class="edit"><button type="button" class="edit-btn" onclick="location.href='/app/qna/edit'">수정</button></td>
+                        <td class="edit"><button type="button" class="edit-btn" onclick="location.href='${path}/qna/detail?no=${vo.no}'">수정</button></td>
                         <td class="slash">/</td>
                         <td class="delete">
                             <button type="button" class="delete-btn">삭제</button>
@@ -614,7 +614,7 @@
                 <table class="two">
                     <tr>
                         <td class="content">
-                            ${vo.content}
+                            ${qvo.content}
                         </td>
                     </tr>
                 </table>

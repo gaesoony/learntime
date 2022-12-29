@@ -25,7 +25,7 @@ public interface QnaDao {
 	int insertEdit(SqlSessionTemplate sst, QnaVo vo);
 
 	//게시글 상세조회
-	QnaVo selectOne(SqlSessionTemplate sst, QnaVo vo);
+	QnaVo selectOne(SqlSessionTemplate sst, String no);
 
 	
 

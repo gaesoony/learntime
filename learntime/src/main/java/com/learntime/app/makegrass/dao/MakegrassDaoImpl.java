@@ -32,4 +32,10 @@ public class MakegrassDaoImpl implements MakegrassDao {
 		return sst.selectList("makegrassMapper.selectList", vo);
 	}
 
+	//게시글 상세조회
+	@Override
+	public MakegrassVo detail(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("makegrassMapper.detail", no);
+	}
+
 }

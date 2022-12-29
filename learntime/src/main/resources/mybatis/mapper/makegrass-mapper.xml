@@ -36,4 +36,10 @@
 		WHERE G.DELETE_YN = 'N'
 	</select>
 	
+	<select id="detail" resultType="com.learntime.app.makegrass.vo.MakegrassVo">
+		SELECT A.NO, M.NICK AS WRITER, A.TITLE, A.CONTENT, A.ENROLL_DATE, A.HIT FROM MAKE_GRASS A
+		JOIN MEMBER M ON A.WRITER = M.NO
+		WHERE A.NO = #{no}
+	</select>
+	
 </mapper>

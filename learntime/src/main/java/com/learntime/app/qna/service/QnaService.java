@@ -21,7 +21,7 @@ public interface QnaService {
 	public int insertEdit(QnaVo vo);
 
 	//게시글 상세조회
-	public QnaVo selectOne(QnaVo vo);
+	public QnaVo selectOne(String no);
 	
 	
 }

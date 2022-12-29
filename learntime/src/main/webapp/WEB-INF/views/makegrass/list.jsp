@@ -816,96 +816,30 @@
 
         <!-- 메인 리스트 부분 -->
         <div class="mainbox">
-            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-                <div class="thumbnail"></div>
-                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
-                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
-                <div class="content">
-                    백앤드로 JAVA Script와 화면
-                    구현을 위한 CSS, 추가로 AJAX에
-                    대한 부분도 함께 공부함.
-                    백앤드로 JAVA Script와 화면.
-                </div>
-                <div class="contentline"></div>
-                <div class="info">
-                    <ul class="infoetc">
-                        <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                        <li class="contentnick">nick01</li>
-                        <li class="hit"><i class="fa-regular fa-eye"></i> 150</li>
-                        <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
-                    </ul>
-                    <ul>
-                        <li class="contentDate">2202-12-09</li>
-                    </ul>
-                </div>
-            </div>
 
-            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-                <div class="thumbnail"></div>
-                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
-                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
-                <div class="content">
-                    백앤드로 JAVA Script와 화면
-                    구현을 위한 CSS, 추가로 AJAX에
-                    대한 부분도 함께 공부함.
-                    백앤드로 JAVA Script와 화면.
-                </div>
-                <div class="contentline"></div>
-                <div class="info">
-                    <ul class="infoetc">
-                        <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                        <li class="contentnick">nick01</li>
-                        <li class="hit"><i class="fa-regular fa-eye"></i> 150</li>
-                        <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
-                    </ul>
-                    <ul>
-                        <li class="contentDate">2202-12-09</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-                <div class="thumbnail"></div>
-                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
-                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
-                <div class="content">
-                    백앤드로 JAVA Script와 화면
-                    구현을 위한 CSS, 추가로 AJAX에
-                    대한 부분도 함께 공부함.
-                    백앤드로 JAVA Script와 화면.
-                </div>
-                <div class="contentline"></div>
-                <div class="info">
-                    <ul class="infoetc">
-                        <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                        <li class="contentnick">nick01</li>
-                        <li class="hit"><i class="fa-regular fa-eye"></i> 150</li>
-                        <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
-                    </ul>
-                    <ul>
-                        <li class="contentDate">2202-12-09</li>
-                    </ul>
-                </div>
-            </div>
-
-            <c:forEach items="${makegrassList}" var="list">
+            <c:forEach items="${makegrassList}" var="mlist">
                 <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
+                    <SCript>
+                        function navToDetail(){
+                            window.location.href="/app/makegrass/detail?no=${mlist.no}";
+                        }
+                    </SCript>
                     <div class="thumbnail"></div>
-                    <div class="clockimg"><i class="fa-regular fa-clock"></i> ${list.learnTime}</div>
+                    <div class="clockimg"><i class="fa-regular fa-clock"></i> ${mlist.learnTime}</div>
                     <div class="bookimg"><i class="fa-solid fa-book"></i></div>
                     <div class="content">
-                        ${list.content}
+                        ${mlist.content}
                     </div>
                     <div class="contentline"></div>
                     <div class="info">
                         <ul class="infoetc">
                             <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                            <li class="contentnick">${list.writer}</li>
-                            <li class="hit"><i class="fa-regular fa-eye"></i>  ${list.hit}</li>
+                            <li class="contentnick">${mlist.writer}</li>
+                            <li class="hit"><i class="fa-regular fa-eye"></i>  ${mlist.hit}</li>
                             <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
                         </ul>
                         <ul>
-                            <li class="contentDate">${list.enrollDate}</li>
+                            <li class="contentDate">${mlist.enrollDate}</li>
                         </ul>
                     </div>
                 </div>
@@ -964,9 +898,6 @@
     
 
     <script>
-        function navToDetail(){
-            window.location.href="/app/makegrass/detail";
-        }
 
         function login() {
         $(".blackBG").addClass("show");

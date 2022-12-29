@@ -32,22 +32,6 @@ public class QnaController {
 		return "qna/list";
 	}
 	
-	//게시글 상세조회 (화면+DB)
-	@GetMapping("/detail")
-	public String detail(Model model, QnaVo vo) {
-		
-		vo = service.selectOne(vo);
-		
-		System.out.println(vo);
-		model.addAttribute("vo", vo);
-		
-		if(vo == null) {
-			return "common/errorPage";
-		}
-		
-		return "redirect:/qna/detail";
-		
-	}
 	
 	//게시글 작성 (화면)
 	@GetMapping("/write")
@@ -73,18 +57,27 @@ public class QnaController {
 		}
 	}
 	
-	@GetMapping("edit")
-	public String edit(QnaVo vo, HttpSession session) {
+	//게시글 상세조회 (화면+DB)
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String detail(String no, Model model) {
 		
+		QnaVo qvo = service.selectOne(no);
+		model.addAttribute("qvo", qvo);
+		
+		System.out.println(qvo);
+		
+		return "redirect:/qna/detail";
+		
+	}
+
+	@RequestMapping(value = "edit", method = RequestMethod.GET)
+	public String edit(QnaVo vo, HttpSession session) {
+	
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 		vo.setWriter(loginMember.getNo());
 		
 		int result = service.insertEdit(vo);
 		
-		if(result >= 1) {
-			return "redirect:/qna/list";
-		}else {
-			return "common/errorPage";
-		}
+		return "redirect:/qna/edit";
 	}
 }
