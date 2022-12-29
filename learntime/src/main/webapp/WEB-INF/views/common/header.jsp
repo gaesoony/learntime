@@ -232,6 +232,11 @@ session.removeAttribute("alertMsg"); %>
     /* 헤더 CSS 끗 */
    
 
+    .swal2-container.swal2-top, .swal2-container.swal2-center, .swal2-container.swal2-bottom {
+    
+    z-index: 10000;
+    }
+
 </style>
 
     <!-- 로그인 모달 -->
@@ -243,7 +248,7 @@ session.removeAttribute("alertMsg"); %>
 
             <div id="logo"><a href="${pageContext.request.contextPath}/main" ><img src="${pageContext.request.contextPath}/resources/img/logo_green2.png" alt="런타임로고"></a></div>
             
-            <form action="${pageContext.request.contextPath}/member/login" method="POST">
+            <form action="${pageContext.request.contextPath}/member/login" method="POST" onsubmit="return check2();">
                 <div>
                     <input class="inputbox" type="text" name="id" placeholder="이메일">
                 </div>
@@ -305,6 +310,8 @@ session.removeAttribute("alertMsg"); %>
     
   <script>
 
+  
+
   //모달 띄우기
   $('#login-btn').on('click',function(){
     $('.blackBG').addClass('show');
@@ -315,13 +322,7 @@ session.removeAttribute("alertMsg"); %>
     $('.blackBG').removeClass('show');
   })
 
-   //검은 배경 클릭시 모달 닫기
-  $(document).mouseup(function (e){
-    //배경이 클릭 될 경우 리턴 0이 됨
-	if($('.blackBG').has(e.target).length === 0){
-		$('.blackBG').removeClass('show');
-	}
-  });
+
 
 
      //알람창 띄우기
@@ -343,10 +344,45 @@ session.removeAttribute("alertMsg"); %>
 });
   
   
-  $("form").on("submit", function (e) {
-    // 유효성 검사 추가하기
+  
+function check2(){
+			const id=$("input[name=id]").eq(0);
+		
+			const pwd=$("input[name=pwd]").eq(0);
+		
+		
+
+    		if(!id.val()){
+          Swal.fire({
+            icon: 'error',
+            title: '이메일을 다시 확인해주세요!',
+            text: '이메일을 입력하지 않았습니다!',
+            confirmButtonColor: '#5ECC80',
+            
+          });
+          
+          id.focus();
+          return false;
+          
+        }
+
+        if(!pwd.val()){
+          Swal.fire({
+            icon: 'error',
+            title: '비밀번호를 다시 확인해주세요!',
+            text: '비밀번호를 입력하지 않았습니다!',
+            confirmButtonColor: '#5ECC80'
+          });
         
-  });
+          pwd.focus();
+          return false;
+          
+        }
+
+        
+			
+		}
+
 
   
   </script>

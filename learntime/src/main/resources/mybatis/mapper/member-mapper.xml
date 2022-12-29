@@ -6,11 +6,13 @@
 
 	<!--로그인  -->
 	<select id="login" resultType = "MemberVo">
-		 SELECT *
-		  FROM MEMBER
-		  WHERE ID = #{id}
-		  AND EMAIL_AUTH='1'
-	
+		<if test="id != null and !('').equals(id) or pwd != null and !('').equals(pwd)">
+		      SELECT *
+			  FROM MEMBER
+			  WHERE ID = #{id}
+			  AND EMAIL_AUTH='1'
+		</if>
+
 	</select>
 	
 	<!--회원가입  -->
