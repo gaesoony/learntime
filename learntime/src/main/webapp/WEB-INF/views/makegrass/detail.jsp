@@ -240,7 +240,7 @@
         margin-bottom: 30px;
     }
     .content{
-        font-size: 16px;
+        font-size: 15px;
         color: #434343;
         line-height: 28px;
     }
@@ -707,11 +707,11 @@
                                 <div class="modal hidden">
                                     <div class="bg"></div>
                                     <div class="modalBox">
-                                        <button class="closeBtn"><i class="fa-solid fa-xmark"></i></button>
+                                        <input type="button" class="closeBtn" onClick="location.reload();" value="X"></input>
                                         <p class="modalTitle">게시물을 삭제하시겠습니까?</p>
                                         <div class="modalBtn">
-                                            <button class="cancleBtn">취소</button>
-                                            <button class="saveBtn" onclick="location.href='/app/makegrass/list'">삭제</button>
+                                            <input type="button" class="cancleBtn" value="취소" onClick="location.reload();"></input>
+                                            <input type="button" class="saveBtn" onclick="location.href='/app/makegrass/list'" value="삭제"></input>
                                         </div>
                                     </div>
                                 </div>
@@ -849,8 +849,6 @@
             document.querySelector(".modal").classList.add("hidden");
         }
         document.querySelector(".delete-btn").addEventListener("click", open);
-        document.querySelector(".closeBtn").addEventListener("click", close);
-        document.querySelector(".cancleBtn").addEventListener("click", close);
         document.querySelector(".bg").addEventListener("click", close);
 
 

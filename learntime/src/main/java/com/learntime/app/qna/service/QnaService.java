@@ -18,10 +18,8 @@ public interface QnaService {
 	//게시글 목록
 	public List<QnaVo> selectList(QnaVo vo);
 
-	public int insertEdit(QnaVo vo);
-
 	//게시글 상세조회
-	public QnaVo selectOne(String no);
+	public QnaVo detail(String no);
 	
 	
 }

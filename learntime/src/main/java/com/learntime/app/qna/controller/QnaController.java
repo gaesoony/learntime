@@ -28,6 +28,7 @@ public class QnaController {
 	public String list(Model model, QnaVo vo) {
 		
 		List<QnaVo> qnaList = service.selectList(vo);
+		System.out.println(qnaList);
 		model.addAttribute("qnaList", qnaList);
 		return "qna/list";
 	}
@@ -61,23 +62,13 @@ public class QnaController {
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String detail(String no, Model model) {
 		
-		QnaVo qvo = service.selectOne(no);
+		QnaVo qvo = service.detail(no);
 		model.addAttribute("qvo", qvo);
 		
 		System.out.println(qvo);
 		
-		return "redirect:/qna/detail";
+		return "qna/detail";
 		
 	}
 
-	@RequestMapping(value = "edit", method = RequestMethod.GET)
-	public String edit(QnaVo vo, HttpSession session) {
-	
-		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
-		vo.setWriter(loginMember.getNo());
-		
-		int result = service.insertEdit(vo);
-		
-		return "redirect:/qna/edit";
-	}
 }

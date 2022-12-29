@@ -818,34 +818,29 @@
         <div class="mainbox">
 
             <c:forEach items="${makegrassList}" var="mlist">
-                <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-                    <SCript>
-                        function navToDetail(){
-                            window.location.href="/app/makegrass/detail?no=${mlist.no}";
-                        }
-                    </SCript>
-                    <div class="thumbnail"></div>
-                    <div class="clockimg"><i class="fa-regular fa-clock"></i> ${mlist.learnTime}</div>
-                    <div class="bookimg"><i class="fa-solid fa-book"></i></div>
-                    <div class="content">
-                        ${mlist.content}
+                <a href="${path}/makegrass/detail?no=${mlist.no}">
+                    <div class="mainlist">
+                        <div class="thumbnail"></div>
+                        <div class="clockimg"><i class="fa-regular fa-clock"></i> ${mlist.learnTime}</div>
+                        <div class="bookimg"><i class="fa-solid fa-book"></i></div>
+                        <div class="content">
+                            ${mlist.content}
+                        </div>
+                        <div class="contentline"></div>
+                        <div class="info">
+                            <ul class="infoetc">
+                                <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                                <li class="contentnick">${mlist.writer}</li>
+                                <li class="hit"><i class="fa-regular fa-eye"></i>  ${mlist.hit}</li>
+                                <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
+                            </ul>
+                            <ul>
+                                <li class="contentDate">${mlist.enrollDate}</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="contentline"></div>
-                    <div class="info">
-                        <ul class="infoetc">
-                            <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                            <li class="contentnick">${mlist.writer}</li>
-                            <li class="hit"><i class="fa-regular fa-eye"></i>  ${mlist.hit}</li>
-                            <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
-                        </ul>
-                        <ul>
-                            <li class="contentDate">${mlist.enrollDate}</li>
-                        </ul>
-                    </div>
-                </div>
+                </a>
             </c:forEach>
-            
-
         </div>
 
         <!-- 오른쪽 사이드바 -->

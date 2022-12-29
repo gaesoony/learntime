@@ -41,16 +41,10 @@ public class QnaDaoImpl implements QnaDao {
 		return sst.selectList("qnaMapper.selectList", vo);
 	}
 
-	//게시글 수정
-	@Override
-	public int insertEdit(SqlSessionTemplate sst, QnaVo vo) {
-		return sst.update("qnaMapper.insertEdit", vo);
-	}
-
 	//게시글 상세조회
 	@Override
-	public QnaVo selectOne(SqlSessionTemplate sst, String no) {
-		return sst.selectOne("qnaMapper.selectOne", no);
+	public QnaVo detail(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("qnaMapper.detail", no);
 	}
 
 }

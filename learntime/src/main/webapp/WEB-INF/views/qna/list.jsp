@@ -350,48 +350,46 @@
     
                             <!-- 본문 리스트 -->
                             <c:forEach items="${qnaList}" var="qlist">
-                                <div class="titlebox" onclick="navToDetail()" style="cursor: pointer;">
-                                    <script>
-                                        function navToDetail(){
-                                            window.location.href="${path}/qna/detail?no='4''";
-                                        }
-                                    </script>
-                                    <div class="titleb">
-                                        <div class="title" name="title">${qlist.title}</div>
-                                        <div class="contentbox">
-                                            <div class="content" name="content">
-                                                ${qlist.content}
+                                <a href="${path}/qna/detail?no=${qlist.no}">
+                                    <div class="titlebox">
+                                        <div class="titleb">
+                                            <div class="title" name="title">${qlist.title}</div>
+                                            <div class="contentbox">
+                                                <div class="content" name="content">
+                                                    ${qlist.content}
+                                                </div>
+            
+                                                <!-- 동그라미 답변 갯수 -->
+                                                <div class="circle">
+                                                    <div class="replytitle">0</div>
+                                                    <div class="replycontent">답변</div>
+                                                </div>
+            
+                                                <!-- 본문 속 해시태그 -->
+                                                <div class="hashtagbox">
+                                                    <ul class="hashtag">
+                                                        <li class="hash" name="tag">#JAVA</li>
+                                                        <li class="hash" name="tag">#자바</li>
+                                                        <li class="hash" name="tag">#CSS</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="etcbox">
+                                                    <ul class="etc">
+                                                        <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                                                        <li name="writer">${qlist.writer}</li>
+                                                        <li><i class="fa-regular fa-eye"></i> ${qlist.hit}</li>
+                                                        <li><i class="fa-regular fa-comment"></i> 13</li>
+                                                        <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
+                                                        <li>${qlist.enrollDate}</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="line3"></div>
                                             </div>
-        
-                                            <!-- 동그라미 답변 갯수 -->
-                                            <div class="circle">
-                                                <div class="replytitle">0</div>
-                                                <div class="replycontent">답변</div>
-                                            </div>
-        
-                                            <!-- 본문 속 해시태그 -->
-                                            <div class="hashtagbox">
-                                                <ul class="hashtag">
-                                                    <li class="hash" name="tag">#JAVA</li>
-                                                    <li class="hash" name="tag">#자바</li>
-                                                    <li class="hash" name="tag">#CSS</li>
-                                                </ul>
-                                            </div>
-                                            <div class="etcbox">
-                                                <ul class="etc">
-                                                    <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                                                    <li name="writer">${qlist.writer}</li>
-                                                    <li><i class="fa-regular fa-eye"></i> ${qlist.hit}</li>
-                                                    <li><i class="fa-regular fa-comment"></i> 13</li>
-                                                    <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
-                                                    <li>${qlist.enrollDate}</li>
-                                                </ul>
-                                            </div>
-                                            <div class="line3"></div>
+            
                                         </div>
-        
                                     </div>
-                                </div>
+                                </a>
+                                
                             </c:forEach>
     
                         </div>
