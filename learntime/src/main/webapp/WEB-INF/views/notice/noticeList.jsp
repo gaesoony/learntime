@@ -39,6 +39,7 @@
             </div>
             <div class="notice-list">
                 <div class="cate-box">
+                	<a href="/app/notice/noticeList?p=1&cateNo=0"class="cateBtn"><div class="cate-pick" name="cateNo" value="0">글목록</div></a>
                     <a href="/app/notice/noticeList?p=1&cateNo=1"class="cateBtn"><div class="cate-pick" name="cateNo" value="1">전체</div></a> 
                     <a href="/app/notice/noticeList?p=1&cateNo=2"class="cateBtn"><div class="cate-pick" name="cateNo" value="2">스터디</div></a> 
                     <a href="/app/notice/noticeList?p=1&cateNo=3"class="cateBtn"><div class="cate-pick" name="cateNo" value="3">공부인증</div></a> 
@@ -77,30 +78,66 @@
     </div>
 </form>
 <div class="page-notice">
-   	<div class="pageBtn" >
-   		<ul class="pagination">
-   			<li><a href="/app/notice/noticeList?p=1&cateNo=0" class="page">1</a></li>
-   			<li><a href="/app/notice/noticeList?p=2&cateNo=0" class="page">2</a></li>
-   			<li><a href="/app/notice/noticeList?p=3&cateNo=0" class="page">3</a></li>
-   			<li><a href="/app/notice/noticeList?p=4&cateNo=0" class="page">4</a></li>
-   			<li><a href="/app/notice/noticeList?p=5&cateNo=0" class="page">5</a></li>
-   		</ul>	
-   	</div>
+   	<div class="page-question">
+  	<ul id="page-nation">
+		<li><a href="/app/notice/noticeList?p=1&cateNo=0" class="first"><<</a></li>
+		<li><a class="arrow left"><</a></li>
+		<li><a class="num"></a></li>
+		<li><a class="num"></a></li>
+		<li><a class="num"></a></li>
+		<li><a class="num"></a></li>
+		<li><a class="num"></a></li>
+		<li><a class="arrow right">></a></li>
+		<li><a href="/app/notice/noticeList?p=${pv.maxPage}&cateNo=0" class="last">>></a></li>
+	</ul>
+   </div>
  </div>
 
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>  
  
+<script type="text/javascript">
+	const pageNation = document.querySelector('#page-nation');
+	const numArr = pageNation.querySelectorAll('.num');
+	const left = pageNation.querySelector('.arrow.left');
+	const right = pageNation.querySelector('.arrow.right');
+	
+	
+	if(${pv.startPage} > 1){
+		left.href = '/app/notice/noticeList?p=${pv.startPage})-1';
+	}else{
+		left.classList.add('none-select');
+	}
+	
+	if(${pv.currentPage} != ${pv.maxPage}){
+		left.href = '/app/notice/noticeList?p=${pv.currentPage})+1';
+	}else{
+		right.classList.add('none-select');
+	}
+	
+
+	let page = ${pv.startPage};
+
+	for (let i = 0; i < numArr.length; i++) {
+		const num = numArr[i];
+		
+		if(page == ${pv.currentPage}){
+			num.classList.add('current');
+		}
+		
+		if(page<1 || page > ${pv.maxPage}){
+			num.classList.add('p-none');
+		}else{
+			num.href = '/app/notice/noticeList?p='+page;
+		}
+		num.classList.remove('p-none');
+        $(num).attr('onclick','/app/notice/noticeList?p=('+page+')');
+        
+		num.innerHTML = page;
+		page++;
+	}
+	
+	</script>
 
 
-
-
-
-
-
-
-
-
-
-    
 </body>
 </html>

@@ -25,7 +25,6 @@ public class QuestionDao {
 		RowBounds rb = new RowBounds(offset, limit);
 
 		List<QuestionVo> list = sst.selectList("questionMapper.questionList",vo,rb);
-		System.out.println("daoCheck:"+list);
 		return list;
 	}
 	
