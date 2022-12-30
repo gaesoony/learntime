@@ -8,4 +8,9 @@ public class BoardFilterVo {
 	private String search;
 	private String page;
 	private String sort;
+	
+	//검색 타입, 
+	private String searchType;
+	
+	
 }

@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/app/resources/css/community/adminCommunityDetail.css">
 <link rel="stylesheet" href="/app/resources/css/summernote/summernote-lite.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<script src="https://kit.fontawesome.com/939838bb27.js"crossorigin="anonymous"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -58,8 +62,8 @@
                 </div>
     
                 <div id="btns-box">
-                    <div id="modify-btn" onclick="location.href='/app/admin/community/board/modify?bno=${bv.no}'">수정</div>
-                    <div id="delete-btn" onclick="location.href='/app/admin/community/board/delete?bno=${bv.no}'">삭제</div>
+                    <div id="modify-btn" onclick="location.href='/app/admin/community/modify?bno=${bv.no}'">수정</div>
+                    <div id="delete-btn" onclick="location.href='/app/admin/community/delete?bno=${bv.no}'">삭제</div>
                 </div>
             </div>
     
@@ -108,6 +112,7 @@
                             </div>
                         </c:forEach>
                     </c:if>
+
                     <!-- 댓글 반복문 끝 -->
                 </div>
     
