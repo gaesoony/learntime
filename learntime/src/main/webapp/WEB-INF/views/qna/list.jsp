@@ -72,15 +72,6 @@
     .mainside{
         padding: 40px;
     }
-    .side-category{
-        width: 70px;
-        border: none;
-        background-color: white;
-        font-size: 18px;
-        color: gray;
-        text-decoration: none;
-        cursor: pointer;
-    }
     .active{
         color: black;
         font-weight: 550;
@@ -97,6 +88,23 @@
         margin: 0 auto;
         margin-bottom: 20px;
     }
+
+    /* 상단 리스트 타입 라디오 버튼 */
+    .list-type-box input[type=radio]{
+        display: none;
+    }
+    .list-type{
+        margin-left: 14px;
+        margin-right: 20px;
+        font-size: 18px;
+        color: gray;
+    }
+    .active{
+        color: black;
+        font-weight: 550;
+    }
+
+    /* 검색 부분 */
     .searchbar{
         margin-left: 10px;
     }
@@ -314,9 +322,12 @@
                     </div>
                     <div class="mainbody">
                         <div class="mainside">
-                            <button href="" class="side-category">전체</button>
-                            <button href="" class="side-category">해결</button>
-                            <button href="" class="side-category">미해결</button>
+                            <div class="list-type-box">
+                                <input type="radio" href="" class="side-category" value="전체" checked/><a href="javascript:allList();" class="list-type">전체</a>
+                                <input type="radio" href="" class="side-category" value="해결" /><a href="javascript:resolveList();" class="list-type">해결</a>
+                                <input type="radio" href="" class="side-category" value="미해결" /><a href="javascript:unresolveList();" class="list-type">미해결</a>
+                            </div>
+                            
                             <div class="line1"></div>
     
                             <!-- 검색 -->
@@ -368,18 +379,18 @@
                                                 <!-- 본문 속 해시태그 -->
                                                 <div class="hashtagbox">
                                                     <ul class="hashtag">
-                                                        <li class="hash" name="tag">#JAVA</li>
-                                                        <li class="hash" name="tag">#자바</li>
-                                                        <li class="hash" name="tag">#CSS</li>
+                                                        <li class="hash" name="tag"><i class="fa-light fa-hashtag"></i>JAVA</li>
+                                                        <li class="hash" name="tag"><i class="fa-light fa-hashtag"></i>자바</li>
+                                                        <li class="hash" name="tag"><i class="fa-light fa-hashtag"></i>CSS</li>
                                                     </ul>
                                                 </div>
                                                 <div class="etcbox">
                                                     <ul class="etc">
                                                         <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
                                                         <li name="writer">${qlist.writer}</li>
-                                                        <li><i class="fa-regular fa-eye"></i> ${qlist.hit}</li>
-                                                        <li><i class="fa-regular fa-comment"></i> 13</li>
-                                                        <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i> 26</li>
+                                                        <li><i class="fa-regular fa-eye"></i>&nbsp ${qlist.hit}</li>
+                                                        <li><i class="fa-regular fa-comment"></i>&nbsp 13</li>
+                                                        <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i>&nbsp 26</li>
                                                         <li>${qlist.enrollDate}</li>
                                                     </ul>
                                                 </div>
@@ -405,8 +416,14 @@
 
     <script>
         // 상단 카테고리 (전체 | 해결 | 미해결)
-        $('.mainside .side-category').on("click",function(){
-            $(".mainside .side-category.active").removeClass('active');
+        // $('.mainside .side-category').on("click",function(){
+        //     $(".mainside .side-category.active").removeClass('active');
+        //     $(this).addClass("active");
+        // });
+
+        // 상단 List type
+        $('.list-type-box .list-type').on("click", function(){
+            $(".list-type-box .list-type.active").removeClass('active');
             $(this).addClass("active");
         });
 

@@ -28,7 +28,6 @@ public class QnaController {
 	public String list(Model model, QnaVo vo) {
 		
 		List<QnaVo> qnaList = service.selectList(vo);
-		System.out.println(qnaList);
 		model.addAttribute("qnaList", qnaList);
 		return "qna/list";
 	}
@@ -49,8 +48,6 @@ public class QnaController {
 		
 		int result = service.write(vo);
 		
-		System.out.println("컨트롤러에서 : " + result);
-		
 		if(result >= 1) {
 			return "redirect:/qna/list";
 		}else {
@@ -65,10 +62,7 @@ public class QnaController {
 		QnaVo qvo = service.detail(no);
 		model.addAttribute("qvo", qvo);
 		
-		System.out.println(qvo);
-		
 		return "qna/detail";
-		
 	}
 
 }

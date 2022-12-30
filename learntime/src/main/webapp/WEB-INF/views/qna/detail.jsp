@@ -32,10 +32,14 @@
     }
     .title-end{
         padding: 20px;
+        line-height: 30px;
     }
+
+    /* 상단 title 아래 요소들 */
     .profile{
         width: 30px;
-        margin-right: 8px;
+        margin-top: 16px;
+        margin-right: 10px;
     }
     .nick{
         font-size: 20px;
@@ -53,7 +57,7 @@
         font-size: 20px;
         color: #5ECC80;
         vertical-align: middle;
-        padding-right: 510px;
+        padding-right: 500px;
     }
     .thumbsup{
         font-size: 20px;
@@ -80,6 +84,10 @@
         font-weight: 300;
         cursor: pointer;
     }
+    .edit-btn:hover{
+        color: #5ECC80;
+        font-weight: 550;
+    }
     .slash{
         font-size: 18px;
         vertical-align: middle;
@@ -92,7 +100,11 @@
         cursor: pointer;
         font-weight: 300;
         background-color: white;
-        margin-bottom: 8px;
+        padding-bottom: 19px;
+    }
+    .delete-btn:hover{
+        color: #5ECC80;
+        font-weight: 550;
     }
     
 
@@ -181,10 +193,9 @@
     .line1{
         border-bottom: 1px solid #C0C0C0;
         margin-bottom: 30px;
-        margin-top: 15px;
     }
     .content{
-        font-size: 15px;
+        font-size: 16px;
         color: #434343;
         line-height: 28px;
     }
@@ -494,9 +505,8 @@
     .sidebox{
         width: 7vw;
         float: left;
-        margin-top: 190px;
+        margin-top: 200px;
         margin-left: 80px;
-        /* position: fixed; */
     }
     .side{
         width: 7vw;
@@ -620,8 +630,8 @@
                 </table>
                 <div class="three">
                     <ul class="hash">
-                        <li class="ha">#자바</li>
-                        <li class="ha">#CSS</li>
+                        <li class="ha"><i class="fa-light fa-hashtag"></i>자바</li>
+                        <li class="ha"><i class="fa-light fa-hashtag"></i>CSS</li>
                     </ul>
                 </div>
             </div>

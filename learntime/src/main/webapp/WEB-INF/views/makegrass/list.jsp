@@ -831,8 +831,8 @@
                             <ul class="infoetc">
                                 <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
                                 <li class="contentnick">${mlist.writer}</li>
-                                <li class="hit"><i class="fa-regular fa-eye"></i>  ${mlist.hit}</li>
-                                <li class="comment"><i class="fa-regular fa-comment"></i> 20</li>
+                                <li class="hit"><i class="fa-regular fa-eye"></i>&nbsp ${mlist.hit}</li>
+                                <li class="comment"><i class="fa-regular fa-comment"></i>&nbsp 20</li>
                             </ul>
                             <ul>
                                 <li class="contentDate">${mlist.enrollDate}</li>

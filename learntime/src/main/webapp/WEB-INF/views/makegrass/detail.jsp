@@ -137,6 +137,10 @@
         cursor: pointer;
         margin-top: 8px;
     }
+    .edit-btn:hover{
+        color: #5ECC80;
+        font-weight: 550;
+    }
     .slash{
         font-size: 18px;
         padding-top: 10px;
@@ -151,6 +155,10 @@
         font-weight: 300;
         background-color: white;
         padding-bottom: 16px;
+    }
+    .delete-btn:hover{
+        color: #5ECC80;
+        font-weight: 550;
     }
 
     /* 삭제 모달창 */
@@ -240,7 +248,7 @@
         margin-bottom: 30px;
     }
     .content{
-        font-size: 15px;
+        font-size: 16px;
         color: #434343;
         line-height: 28px;
     }
@@ -728,9 +736,9 @@
                     </table>
                     <div class="three">
                         <ul class="hash">
-                            <li class="ha">#JAVA</li>
-                            <li class="ha">#자바</li>
-                            <li class="ha">#파이썬</li>
+                            <li class="ha"><i class="fa-light fa-hashtag"></i>JAVA</li>
+                            <li class="ha"><i class="fa-light fa-hashtag"></i>자바</li>
+                            <li class="ha"><i class="fa-light fa-hashtag"></i>파이썬</li>
                         </ul>
                     </div>
                 </div>
@@ -744,13 +752,13 @@
         <div class="sidebarbox">
             <div class="side">
                 <div class="si">
-                    <div><i class="fa-solid fa-thumbs-up"></i> 25</div>
+                    <div><i class="fa-solid fa-thumbs-up"></i>&nbsp 25</div>
                 </div>
                 <div class="si">
-                    <div><i class="fa-solid fa-thumbs-down"></i> 12</div>
+                    <div><i class="fa-solid fa-thumbs-down"></i>&nbsp 12</div>
                 </div>
                 <div class="si">
-                    <i class="fa-solid fa-comment"></i> 13
+                    <i class="fa-solid fa-comment"></i>&nbsp 13
                 </div>
             </div>
         </div>
@@ -762,7 +770,7 @@
             <div class="middle">
                 <div class="middlemain">
                     <div><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
-                    <div class="replyplz">nick01님, 댓글을 달아보세요!</div>
+                    <div class="replyplz">nick1님, 댓글을 달아보세요!</div>
                     <div class="replyplz-1">서로 예의를 지키는 좋은 말이면 더더욱 좋아요:)</div>
                     <div class="input">
                         <textarea class="summernote" name="editordata"></textarea>
