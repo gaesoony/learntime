@@ -34,14 +34,14 @@ public class NoticeController {
 	
 	// 공지사항 리스트 화면
 		@GetMapping("notice/noticeList")
-		public String noticeList(int cateNo ,NoticeVo vo,HttpServletRequest req, Model m) {
+		public String noticeList(NoticeVo vo,HttpServletRequest req, Model m) {
 			
 			String p = req.getParameter("p");
-			System.out.println("받아온vo"+vo);
+			
 			
 			int listCount = ns.selectCount();
 			int currentPage = Integer.parseInt(p);
-			int boardLimit = 10;
+			int boardLimit = 6;
 			int pageLimit = 5;
 			PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 			
@@ -56,13 +56,12 @@ public class NoticeController {
 			
 			
 			List<NoticeVo> list= null;
-			if(cateNo==0)  {
+			if(vo.getCateNo()==0)  {
 				
 				list= ns.selectNoticeListAll(vo,pv);
-				System.out.println(list);
-				System.out.println(list.size());
+				
 			}else {
-				vo.setCateNo(cateNo);
+				//vo.setCateNo(cateNo);
 				list= ns.selectNoticeList(vo,pv);
 				
 				
@@ -70,7 +69,6 @@ public class NoticeController {
 			
 			
 			m.addAttribute("list",list);
-			m.addAttribute("cateNo",cateNo);
 			m.addAttribute("p",p);
 			
 		
