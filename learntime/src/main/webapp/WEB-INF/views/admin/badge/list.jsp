@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -135,7 +136,7 @@ pageEncoding="UTF-8"%>
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(4, auto);
+      grid-template-columns: repeat(4, 280px);
       justify-items: center;
       align-items: center;
       
@@ -193,6 +194,11 @@ pageEncoding="UTF-8"%>
         height: 200px;
         border-radius:4px;
         border:1px solid #D9D9D9;
+        
+    }
+    
+    .badge-img img{
+    width:100%;
     }
 
     .badge-title{
@@ -219,7 +225,7 @@ pageEncoding="UTF-8"%>
     .badge-content{
         margin-bottom: 20px;
         color:#535353;
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .badge-btn:hover{
@@ -279,12 +285,13 @@ pageEncoding="UTF-8"%>
       <div id="admin-category-title" class="shadow-light">뱃지 관리</div>
       <div class="wrapper">
             <section class="search-section space-between">
-              <div class="relative" id="search">
+            <form action="" method="get">
+            <div class="relative" id="search">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="내용을 입력해주세요" class="search-box"/>
-                    <select name="" id="" class="select-box">
-                      <option value="">이름</option>
-                      <option value="">설명</option>
+                <input type="text" name="keyword" placeholder="내용을 입력해주세요" class="search-box"/>
+                    <select name="category" class="select-box">
+                      <option value="name">이름</option>
+                      <option value="info">설명</option>
                     </select>
                     <select name="" id="" class="select-box">
                       <option value="">뱃지 상태</option>
@@ -292,12 +299,14 @@ pageEncoding="UTF-8"%>
                       <option value="">비활성화</option>
                     </select>
               </div>
+            </form>
+              
             </section>
             <section class="content-section">
               <div class="content-section-top">
                 <div id="skin All">
                       <span>전체 뱃지 수</span>
-                      <span class="main-color">10</span>
+                      <span class="main-color">${badgeCnt}</span>
                       <span>개</span>
                 </div>
 
@@ -308,15 +317,15 @@ pageEncoding="UTF-8"%>
               </div>
               <div class="grid">
                
-                <% for(int i=1; i<=10; i++) {%>
+                 <c:forEach items="${list}" var="list">
                   <div class="badge">
-                    <div class="badge-img">이미지 영역</div>
-                    <div class="badge-title">뱃지 제목</div>
-                    <div class="badge-content">뱃지 설명</div>
-                    <button class="badge-btn" onclick="location.href='${pageContext.request.contextPath}/admin/badge/edit'"> 수정하기</button>
+                    <div class="badge-img"><img src="${pageContext.request.contextPath}/${list.imgName}"/></div>
+                    <div class="badge-title">${list.name}</div>
+                    <div class="badge-content">${list.info}</div>
+                    <button class="badge-btn" onclick="location.href='${pageContext.request.contextPath}/admin/badge/edit?no=${list.no}'"> 수정하기</button>
                     <button class="badge-btn delete"> 비활성화</button>
-                </div>
-                <%}%>
+                 </div>
+                </c:forEach>
               </div>
 
               
