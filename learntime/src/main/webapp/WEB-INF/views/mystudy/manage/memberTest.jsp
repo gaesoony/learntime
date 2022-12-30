@@ -7,7 +7,7 @@ pageEncoding="UTF-8"%>
     <title>Insert title here</title>
     <link
       rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/css/mystudy/manage/info.css"
+      href="${path}/resources/css/mystudy/manage/info.css"
     />
     <style>
       .manage-member-area {
@@ -25,9 +25,6 @@ pageEncoding="UTF-8"%>
         font-size: 19px;
       }
 
-      /* .type-clicked {
-        color: black !important;
-      } */
       input[name="status"] {
         display: none;
       }
@@ -53,43 +50,6 @@ pageEncoding="UTF-8"%>
         bottom: -10px;
       }
 
-      /* .study-type-bar1 {
-        width: 42px;
-        height: 4px;
-        background-color: #5ecc80;
-        position: absolute;
-        bottom: -10px;
-        left: -3px;
-      }
-
-      .study-type-bar2 {
-        width: 42px;
-        height: 4px;
-        background-color: #5ecc80;
-        position: absolute;
-        bottom: -10px;
-        left: -4px;
-      }
-
-      .study-type-bar3 {
-        width: 42px;
-        height: 4px;
-        background-color: #5ecc80;
-        position: absolute;
-        bottom: -10px;
-        left: -3px;
-      }
-
-      .study-type-bar4 {
-        width: 42px;
-        height: 4px;
-        background-color: #5ecc80;
-        position: absolute;
-        bottom: -10px;
-        left: -3px;
-      }
-       */
-
       .search-input {
         width: 300px;
         height: 40px;
@@ -110,7 +70,7 @@ pageEncoding="UTF-8"%>
         height: 80px;
         background-color: #edf9ee;
         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-        padding: 20px;
+        padding: 10px 15px;
         cursor: pointer;
       }
 
@@ -124,13 +84,13 @@ pageEncoding="UTF-8"%>
       }
 
       .grid-div-right div:first-child {
-        font-size: 18px;
+        font-size: 17px;
         font-weight: 400;
         margin-bottom: 10px;
       }
 
       .grid-div-right div:last-child {
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 300;
       }
 
@@ -192,7 +152,15 @@ pageEncoding="UTF-8"%>
       .study-popup-body {
         width: 100%;
         background-color: #ffffff;
+        height: 300px;
+        overflow: scroll;
+        margin-bottom: 10px;
       }
+
+      .study-popup-body::-webkit-scrollbar {
+        display: none;
+      }
+
       .study-body-content {
         width: 100%;
       }
@@ -305,10 +273,10 @@ pageEncoding="UTF-8"%>
               <div class="study-popup">
                 <div class="study-popup-head">
                   <div class="study-head-title">가입 신청서</div>
-                  <div>한혜원님이 가입을 신청했습니다.</div>
+                  <div class="nick-title"></div>
                 </div>
                 <div class="study-popup-body">
-                  <div class="study-body-content">
+                  <!-- <div class="study-body-content">
                     <div class="study-body-titlebox">
                       <div>질문1</div>
                       <div>지원동기 알려주세요</div>
@@ -342,7 +310,7 @@ pageEncoding="UTF-8"%>
                     <div class="study-body-contentbox">
                       <input type="text" value="넹" readonly />
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="study-popup-foot">
                   <div class="study-pop-btn study-confirm" id="study-confirm">
@@ -356,120 +324,6 @@ pageEncoding="UTF-8"%>
               </div>
             </div>
           </section>
-
-          <script>
-            function confirm(x) {
-              // modalClose();
-              location.href = "${path}/mystudy/member/confirm?rno=" + x;
-            }
-
-            function modalOpen(x) {
-              $.ajax({
-                url: getContextPath() + "/mystudy/manage/member/answer",
-                type: "get",
-                data: {
-                  rno: x,
-                },
-
-                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-                success: function (data) {
-                  var obj = JSON.parse(data);
-                  console.log(obj.result[0].MEMBER_NICK);
-                  let str = "";
-                  let str2 = "";
-                  for (let i = 0; i < obj.result.length; i++) {
-                    str =
-                      str +
-                      '<div class="grid-div flex" id="study-modal-open" onclick="modalOpen(' +
-                      obj.result[i].NO +
-                      ')">' +
-                      '<div class="grid-div-left">' +
-                      '<img src="${pageContext.request.contextPath}/resources/upload/profile/' +
-                      obj.result[i].MEMBER_PROFILE +
-                      '" alt=""/></div>' +
-                      '<div class="grid-div-right">' +
-                      "<div>" +
-                      obj.result[i].MEMBER_NICK +
-                      "</div>" +
-                      "<div>" +
-                      obj.result[i].ENROLL_DATE +
-                      "</div></div></div>";
-                  }
-                  grid.innerHTML = str;
-
-                  for (let i = 0; i < obj.result.length; i++) {
-                    str2 =
-                      str2 +
-                      '<div class="study-popup-wrap" id="study-popup' +
-                      obj.result[i].NO +
-                      '"><div class="study-popup">' +
-                      '<div class="study-popup-head">' +
-                      '<div class="study-head-title">가입 신청서</div>' +
-                      "<div>" +
-                      obj.result[i].MEMBER_NICK +
-                      "님이 가입을 신청했습니다.</div>" +
-                      "</div>" +
-                      '<div class="study-popup-body">' +
-                      '<div class="study-body-content">' +
-                      '<div class="study-body-titlebox">' +
-                      "<div>질문1</div>" +
-                      "<div>지원동기 알려주세요</div>" +
-                      "</div>" +
-                      '<div class="study-body-contentbox">' +
-                      '<input type="text" value="같이 스터디 해보고 싶습니다!" readonly/>' +
-                      "</div>" +
-                      "</div>" +
-                      '<div class="study-body-content">' +
-                      '<div class="study-body-titlebox">' +
-                      "<div>질문2</div>" +
-                      "<div>사용 가능한 언어 알려주세요</div>" +
-                      "</div>" +
-                      '<div class="study-body-contentbox">' +
-                      '<input type="text" value="자바, 파이썬, 자바스크립트" readonly />' +
-                      "</div>" +
-                      "</div>" +
-                      '<div class="study-body-content">' +
-                      '<div class="study-body-titlebox">' +
-                      "<div>질문3</div>" +
-                      "<div>공지사항 꼭 읽어주세요</div>" +
-                      "</div>" +
-                      '<div class="study-body-contentbox">' +
-                      '<input type="text" value="넹" readonly />' +
-                      "</div>" +
-                      "</div>" +
-                      "</div>" +
-                      '<div class="study-popup-foot">' +
-                      '<div class="study-pop-btn study-confirm" id="study-confirm" onclick="confirm(' +
-                      obj.result[i].NO +
-                      ');">수락</div>' +
-                      '<div class="study-pop-btn study-close" id="study-close">거절</div>' +
-                      "</div>" +
-                      "</div>" +
-                      "</div>";
-                  }
-
-                  modal.innerHTML = str2;
-                },
-              });
-
-              $("#study-popup" + x)
-                .css("display", "flex")
-                .hide()
-                .fadeIn();
-            }
-
-            $("#study-confirm").click(function () {
-              modalClose(); //모달 닫기 함수 호출
-              //컨펌 이벤트 처리
-            });
-
-            $("#study-close").click(function () {
-              modalClose(); //모달 닫기 함수 호출
-            });
-            function modalClose() {
-              $("#study-popup").fadeOut(); //페이드아웃 효과
-            }
-          </script>
         </div>
       </article>
     </main>
@@ -484,13 +338,11 @@ pageEncoding="UTF-8"%>
       }
 
       let status = document.querySelectorAll(".study-type");
-      console.log(status);
 
       //페이지가 새로고침됐을 때 이미 체크되어있던 항목의 기술스택 불러오기
       status.forEach((o) => {
         if (o.querySelector("input").checked) {
           const grid = document.querySelector(".grid");
-          const modal = document.querySelector(".modal-section");
 
           $.ajax({
             url: getContextPath() + "/mystudy/manage/member/status",
@@ -504,15 +356,19 @@ pageEncoding="UTF-8"%>
               var obj = JSON.parse(data);
               console.log(obj.result[0].MEMBER_NICK);
               let str = "";
-              let str2 = "";
+
               for (let i = 0; i < obj.result.length; i++) {
+                console.log(obj.result[i].MEMBER_PROFILE);
+                if (obj.result[i].MEMBER_PROFILE == undefined) {
+                  obj.result[i].MEMBER_PROFILE = "profile_default.png";
+                }
                 str =
                   str +
                   '<div class="grid-div flex" id="study-modal-open" onclick="modalOpen(' +
                   obj.result[i].NO +
                   ')">' +
                   '<div class="grid-div-left">' +
-                  '<img src="${pageContext.request.contextPath}/resources/upload/profile/' +
+                  '<img src="${pageContext.request.contextPath}/resources/upload/common/' +
                   obj.result[i].MEMBER_PROFILE +
                   '" alt=""/></div>' +
                   '<div class="grid-div-right">' +
@@ -524,59 +380,6 @@ pageEncoding="UTF-8"%>
                   "</div></div></div>";
               }
               grid.innerHTML = str;
-
-              for (let i = 0; i < obj.result.length; i++) {
-                str2 =
-                  str2 +
-                  '<div class="study-popup-wrap" id="study-popup' +
-                  obj.result[i].NO +
-                  '"><div class="study-popup">' +
-                  '<div class="study-popup-head">' +
-                  '<div class="study-head-title">가입 신청서</div>' +
-                  "<div>" +
-                  obj.result[i].MEMBER_NICK +
-                  "님이 가입을 신청했습니다.</div>" +
-                  "</div>" +
-                  '<div class="study-popup-body">' +
-                  '<div class="study-body-content">' +
-                  '<div class="study-body-titlebox">' +
-                  "<div>질문1</div>" +
-                  "<div>지원동기 알려주세요</div>" +
-                  "</div>" +
-                  '<div class="study-body-contentbox">' +
-                  '<input type="text" value="같이 스터디 해보고 싶습니다!" readonly/>' +
-                  "</div>" +
-                  "</div>" +
-                  '<div class="study-body-content">' +
-                  '<div class="study-body-titlebox">' +
-                  "<div>질문2</div>" +
-                  "<div>사용 가능한 언어 알려주세요</div>" +
-                  "</div>" +
-                  '<div class="study-body-contentbox">' +
-                  '<input type="text" value="자바, 파이썬, 자바스크립트" readonly />' +
-                  "</div>" +
-                  "</div>" +
-                  '<div class="study-body-content">' +
-                  '<div class="study-body-titlebox">' +
-                  "<div>질문3</div>" +
-                  "<div>공지사항 꼭 읽어주세요</div>" +
-                  "</div>" +
-                  '<div class="study-body-contentbox">' +
-                  '<input type="text" value="넹" readonly />' +
-                  "</div>" +
-                  "</div>" +
-                  "</div>" +
-                  '<div class="study-popup-foot">' +
-                  '<div class="study-pop-btn study-confirm" id="study-confirm" onclick="confirm(' +
-                  obj.result[i].NO +
-                  ');">수락</div>' +
-                  '<div class="study-pop-btn study-close" id="study-close">거절</div>' +
-                  "</div>" +
-                  "</div>" +
-                  "</div>";
-              }
-
-              modal.innerHTML = str2;
             },
           });
         }
@@ -584,7 +387,6 @@ pageEncoding="UTF-8"%>
 
       status.forEach((o) => {
         o.addEventListener("click", () => {
-          console.log("클릭됨?");
           const grid = document.querySelector(".grid");
 
           $.ajax({
@@ -599,15 +401,22 @@ pageEncoding="UTF-8"%>
               var obj = JSON.parse(data);
 
               let str = "";
-              let str2 = "";
+
+              console.log(obj.result);
+
               for (let i = 0; i < obj.result.length; i++) {
+                console.log("나오는거맞나..?");
+                console.log(obj.result[i].MEMBER_PROFILE);
+                if (obj.result[i].MEMBER_PROFILE == undefined) {
+                  obj.result[i].MEMBER_PROFILE = "profile_default.png";
+                }
                 str =
                   str +
                   '<div class="grid-div flex" id="study-modal-open" onclick="modalOpen(' +
                   obj.result[i].NO +
-                  ')">' +
+                  ');">' +
                   '<div class="grid-div-left">' +
-                  '<img src="${pageContext.request.contextPath}/resources/upload/profile/' +
+                  '<img src="${pageContext.request.contextPath}/resources/upload/common/' +
                   obj.result[i].MEMBER_PROFILE +
                   '" alt=""/></div>' +
                   '<div class="grid-div-right">' +
@@ -619,63 +428,91 @@ pageEncoding="UTF-8"%>
                   "</div></div></div>";
               }
               grid.innerHTML = str;
-
-              for (let i = 0; i < obj.result.length; i++) {
-                str2 =
-                  str2 +
-                  '<div class="study-popup-wrap" id="study-popup' +
-                  obj.result[i].NO +
-                  '"><div class="study-popup">' +
-                  '<div class="study-popup-head">' +
-                  '<div class="study-head-title">가입 신청서</div>' +
-                  "<div>" +
-                  obj.result[i].MEMBER_NICK +
-                  "님이 가입을 신청했습니다.</div>" +
-                  "</div>" +
-                  '<div class="study-popup-body">' +
-                  '<div class="study-body-content">' +
-                  '<div class="study-body-titlebox">' +
-                  "<div>질문1</div>" +
-                  "<div>지원동기 알려주세요</div>" +
-                  "</div>" +
-                  '<div class="study-body-contentbox">' +
-                  '<input type="text" value="같이 스터디 해보고 싶습니다!" readonly/>' +
-                  "</div>" +
-                  "</div>" +
-                  '<div class="study-body-content">' +
-                  '<div class="study-body-titlebox">' +
-                  "<div>질문2</div>" +
-                  "<div>사용 가능한 언어 알려주세요</div>" +
-                  "</div>" +
-                  '<div class="study-body-contentbox">' +
-                  '<input type="text" value="자바, 파이썬, 자바스크립트" readonly />' +
-                  "</div>" +
-                  "</div>" +
-                  '<div class="study-body-content">' +
-                  '<div class="study-body-titlebox">' +
-                  "<div>질문3</div>" +
-                  "<div>공지사항 꼭 읽어주세요</div>" +
-                  "</div>" +
-                  '<div class="study-body-contentbox">' +
-                  '<input type="text" value="넹" readonly />' +
-                  "</div>" +
-                  "</div>" +
-                  "</div>" +
-                  '<div class="study-popup-foot">' +
-                  '<div class="study-pop-btn study-confirm" id="study-confirm" onclick="confirm(' +
-                  obj.result[i].NO +
-                  ');">수락</div>' +
-                  '<div class="study-pop-btn study-close" id="study-close">거절</div>' +
-                  "</div>" +
-                  "</div>" +
-                  "</div>";
-              }
-
-              modal.innerHTML = str2;
             },
           });
         });
       });
+
+      function modalOpen(x) {
+        $.ajax({
+          url: getContextPath() + "/mystudy/manage/member/answer",
+          type: "get",
+          data: {
+            rno: x,
+          },
+          contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+          success: function (data) {
+            var obj = JSON.parse(data);
+            const modal = document.querySelector(".modal-section");
+            const nickTitle = document.querySelector(".nick-title");
+            const studyPopupBody = document.querySelector(".study-popup-body");
+            const studyPopupFoot = document.querySelector(".study-popup-foot");
+
+            nickTitle.innerHTML =
+              obj.result[1].NICK + "님이 가입을 신청했습니다";
+
+            let modalStr = "";
+            let submitStr = "";
+
+            for (let i = 0; i < obj.result.length; i++) {
+              modalStr =
+                modalStr +
+                '<div class="study-body-content">' +
+                '<div class="study-body-titlebox">' +
+                "<div>질문" +
+                (i + 1) +
+                "</div>" +
+                "<div>" +
+                obj.result[i].QUESTION +
+                "</div>" +
+                "</div>" +
+                '<div class="study-body-contentbox">' +
+                '<input type="text" value="' +
+                obj.result[i].CONTENT +
+                '" readonly/>' +
+                "</div>" +
+                "</div>";
+            }
+
+            submitStr =
+              '<div class="study-pop-btn study-confirm" id="study-confirm" onclick="confirm(' +
+              obj.result[0].NO +
+              ');">수락</div>' +
+              '<div class="study-pop-btn study-close" id="study-close" onclick="reject(' +
+              obj.result[0].NO +
+              ')">거절</div>';
+            studyPopupBody.innerHTML = modalStr;
+          },
+          error: function (error) {
+            alert("통신실패!");
+          },
+        });
+
+        $("#study-popup").css("display", "flex").hide().fadeIn();
+      }
+
+      function confirm(x) {
+        // modalClose();
+        location.href =
+          "${path}/mystudy/member/confirm?gno=" + groupOne.NO + "&rno=" + x;
+      }
+
+      function reject(x) {
+        "${path}/mystudy/member/reject?gno=" + groupOne.NO + "&rno=" + x;
+      }
+
+      $("#study-confirm").click(function () {
+        modalClose(); //모달 닫기 함수 호출
+        //컨펌 이벤트 처리
+      });
+
+      $("#study-close").click(function () {
+        modalClose(); //모달 닫기 함수 호출
+      });
+
+      function modalClose() {
+        $("#study-popup").fadeOut(); //페이드아웃 효과
+      }
     </script>
   </body>
 </html>

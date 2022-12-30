@@ -314,22 +314,42 @@ public class StudyServiceImpl implements StudyService{
 	}
 
 	//그룹 멤버 추가
+	@Transactional
 	@Override
 	public int insertGroupMember(ApplyVo vo) {
 		
+		int result1 = 0;
+		int result2 = 0;
+		
 		if(vo.getAnswer() == null) {
 			//RECRUIT_LIST 테이블에만 INSERT
+			result1 = dao.insertGroupMember(sst, vo);
+			result2 = 1;
 		}
 		
 		if(vo.getAnswer() != null) {
 			//RECRUIT_LIST, RECRUIT_APPLY 테이블 2개에 INSERT
+			result1 = dao.insertGroupMember(sst, vo);
+			if(result1 == 1) {
+				
+				for(int i=0; i<vo.getQno().length; i++) {
+					Map map = new HashMap();
+					map.put("qno", vo.getQno()[i]);
+					map.put("answer", vo.getAnswer()[i]);
+					map.put("gno", vo.getGno());
+					map.put("mno", vo.getMno());
+					
+					result2 = dao.insertAnswer(sst, map);
+					
+					if(result2 == 0) {
+						break;
+					}
+				}
+				
+			}
 		}
-		
-		
-		
-		
-		int result = dao.insertGroupMember(sst, vo);
-		return result;
+
+		return result1 * result2;
 	}
 
 	//그룹 프사, 이름 수정
@@ -350,6 +370,21 @@ public class StudyServiceImpl implements StudyService{
 	@Override
 	public List<Map<String, String>> selectAnswerListByNo(String rno) {
 		List<Map<String, String>> result = dao.selectAnswerListByNo(sst, rno);
+		return result;
+	}
+
+	//가입신청 수락하기
+	@Override
+	public int confirm(String rno) {
+		int result = dao.confirm(sst, rno);
+		return result;
+	}
+
+	
+	//가입신청 거절하기
+	@Override
+	public int reject(String rno) {
+		int result = dao.reject(sst, rno);
 		return result;
 	}
 

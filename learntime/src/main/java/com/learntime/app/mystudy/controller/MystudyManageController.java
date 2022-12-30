@@ -173,6 +173,34 @@ public class MystudyManageController {
 		
 	}
 	
+	//가입신청 수락하기
+	@GetMapping("member/confirm")
+	public String memberConfirm(String rno, String gno) {
+		
+		int result = service.confirm(rno);
+		
+		if(result == 1) {
+			return "redirect:/mystudy/manage/member?gno="+gno;
+			
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+	//가입신청 수락하기
+	@GetMapping("member/reject")
+	public String memberReject(String rno, String gno) {
+		
+		int result = service.reject(rno);
+		
+		if(result == 1) {
+			return "redirect:/mystudy/manage/member?gno="+gno;
+			
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
 	
 	
 	//게시판 템플릿 관리 카테고리 수정 화면

@@ -100,7 +100,16 @@ public interface StudyDao {
 	//select group member list by status
 	public List<Map<String, String>> selectGroupMemberListByStatus(SqlSessionTemplate sst, Map map);
 
+	//select answer list by recruit_list no
 	public List<Map<String, String>> selectAnswerListByNo(SqlSessionTemplate sst, String rno);
+
+	//insert answer
+	public int insertAnswer(SqlSessionTemplate sst, Map map);
+
+	//apply confirm 
+	public int confirm(SqlSessionTemplate sst, String rno);
+
+	public int reject(SqlSessionTemplate sst, String rno);
 
 
 
