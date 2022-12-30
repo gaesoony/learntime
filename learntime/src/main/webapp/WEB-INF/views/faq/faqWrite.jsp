@@ -11,7 +11,9 @@
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/common/header.jsp" %>
-<div class="list-main">
+
+<form action="/app/faq/faqWrite" method="post">
+	<div class="list-main">
     <div class="banner-section">
         <div class="banner">
             <div id="banner-title1"><span>FAQ</span></div>
@@ -29,13 +31,26 @@
             </div>
         </div>
         <div class="faq-title-date">
-            <div class="category-faq">멘토링</div>
+            <div class="category-faq">
+            	<div class="category-notice">
+                  <select name="cateNo" id="categories">
+                    <option value="1">전체</option>
+                    <option value="2">스터디</option>
+                    <option value="3">공부인증</option>
+                    <option value="4">Q&A</option>
+                    <option value="5">멘토링</option>
+                    <option value="6">커뮤니티</option>
+                    <option value="7">스킨샵</option>
+                  </select>
+                </div>
+            </div>
+            <input type="text" name="title" class="title-input" size="100"/>
             <div class="title-faq"></div>
             <div class="date-faq"></div>
         </div>
         <div class="empty1"></div>
         <div class="faq-content">
-            <textarea class="summernote" name="editordata"></textarea>
+            <textarea class="summernote" name="content"></textarea>
         </div>
         <div class="backBtn">
             <div class="btn-to">수정</div>
@@ -44,6 +59,8 @@
         </div>
     </div>
 </div>
+	
+</form>
 
 
 

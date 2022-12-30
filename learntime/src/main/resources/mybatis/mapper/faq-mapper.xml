@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="faqMapper">
+
+    <insert id="faqWrite">
+          INSERT INTO FAQ (NO, CATE_NO,WRITER,TITLE,CONTENT,ENROLL_DATE,
+          DELETE_YN,MODIFY_DATE) 
+        VALUES(SEQ_FAQ_NO.NEXTVAL,#{cateNo},#{writer},#{title},
+        #{content}, SYSDATE,'N',SYSDATE)
+  </insert>
+  <select id="faqList" resultType="com.learntime.app.faq.vo.FaqVo">
+      
+ 	  SELECT F.NO,F.CATE_NO, C.NAME as CATE_NAME,F.TITLE,F.ENROLL_DATE, M.NICK AS WRITER FROM FAQ F 
+      JOIN COMMON_CATEGORY C ON F.CATE_NO= C.NO JOIN MEMBER M ON M.NO = F.WRITER
+      WHERE CATE_NO = #{cateNo} ORDER BY F.ENROLL_DATE DESC 
+       
+      <if test="keyword !=null and keyword != ''">
+		and  ${category} LIKE '%${keyword}%' 
+	  </if>
+  </select>
+ 
+  <select id="selectCount" resultType="int">
+      SELECT COUNT(*) FROM FAQ
+  </select>
+  
+	<select id="selectOne" resultType="com.learntime.app.notice.vo.NoticeVo">
+  	SELECT M.NICK AS WRITER ,N.ENROLL_DATE,N.HIT,C.NAME as CATE_NAME,N.TITLE,N.CONTENT 
+  	FROM NOTICE N 
+    JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER WHERE
+    N.NO = #{no}
+  </select>
+  
+ 
+ 
+</mapper>

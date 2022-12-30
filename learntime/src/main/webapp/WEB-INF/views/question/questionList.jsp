@@ -60,22 +60,22 @@
                     </div>
                 </c:forEach>
             </div>
-            <div class="page-question">
-            	<ul id="page-nation">
-					<li><a href="/app/question/questionList?p=1&cateNo=0" class="first"><<</a></li>
-					<li><a class="arrow left"><</a></li>
-					<li><a class="num"></a></li>
-					<li><a class="num"></a></li>
-					<li><a class="num"></a></li>
-					<li><a class="num"></a></li>
-					<li><a class="num"></a></li>
-					<li><a class="arrow right">></a></li>
-					<li><a href="/app/question/questionList?p=${list.maxPage}cateNo=0" class="last">>></a></li>
-				</ul>
-            </div>
         </div>
     </div>
-	</form>
+  <div class="page-question">
+  	<ul id="page-nation">
+		<li><a href="/app/question/questionList?p=1&cateNo=0" class="first"><<</a></li>
+		<li><a class="arrow left"><</a></li>
+		<li><a class="num"></a></li>
+		<li><a class="num"></a></li>
+		<li><a class="num"></a></li>
+		<li><a class="num"></a></li>
+		<li><a class="num"></a></li>
+		<li><a class="arrow right">></a></li>
+		<li><a href="/app/question/questionList?p=${pv.maxPage}&cateNo=0" class="last">>></a></li>
+	</ul>
+   </div>
+</form>
 	
 	<script type="text/javascript">
 	const pageNation = document.querySelector('#page-nation');
@@ -84,29 +84,29 @@
 	const right = pageNation.querySelector('.arrow.right');
 	
 	
-	if(${list.startPage} > 1){
-		left.href = '/app/question/questionList?p=${list.startPage})-1';
+	if(${pv.startPage} > 1){
+		left.href = '/app/question/questionList?p=${pv.startPage})-1';
 	}else{
 		left.classList.add('none-select');
 	}
 	
-	if(${list.currentPage} != ${list.maxPage}){
-		left.href = '/app/question/questionList?p=${list.currentPage})+1';
+	if(${pv.currentPage} != ${pv.maxPage}){
+		left.href = '/app/question/questionList?p=${pv.currentPage})+1';
 	}else{
 		right.classList.add('none-select');
 	}
 	
 
-	let page = ${list.startPage};
+	let page = ${pv.startPage};
 
 	for (let i = 0; i < numArr.length; i++) {
 		const num = numArr[i];
 		
-		if(page == ${list.currentPage}){
+		if(page == ${pv.currentPage}){
 			num.classList.add('current');
 		}
 		
-		if(page<1 || page > ${list.maxPage}){
+		if(page<1 || page > ${pv.maxPage}){
 			num.classList.add('p-none');
 		}else{
 			num.href = '/app/question/questionList?p='+page;
