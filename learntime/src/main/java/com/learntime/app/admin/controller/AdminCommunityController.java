@@ -19,7 +19,7 @@ import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.community.vo.CateVo;
 
 @Controller
-@RequestMapping("/admin/community")
+@RequestMapping("admin/community")
 public class AdminCommunityController {
 	
 	@Autowired
@@ -76,8 +76,7 @@ public class AdminCommunityController {
 		model.addAttribute("bv", bs.selectOne(boardNo));
 		//코멘트 리스트
 		model.addAttribute("cvList", bs.selectCmtList(boardNo));
-		
-		
+		System.out.println(bs.selectCmtList(boardNo));
 		
 		return "/admin/community/adminCommunityDetail";
 	}
@@ -91,13 +90,24 @@ public class AdminCommunityController {
 		//글리스트
 		model.addAttribute("bv", bs.selectOne(boardNo));
 		
+		
 		return "/admin/community/adminCommunityModify";
 	}
 	
+	//글수정
 	@PostMapping("/modify")
 	public String adminCommunityModify(BoardVo bv) {
+		System.out.println("여기왓냐?");
+		System.out.println(bv);
+		int result = bs.modify(bv);
 		
-		return "";
+		if(result != 1) {
+			System.out.println("에러");
+			return "common/errorPage";
+		}
+		
+		return "admin/community/list";
+		
 	}
 	
 	

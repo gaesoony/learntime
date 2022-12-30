@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/app/resources/css/community/adminCommunityModify.css">
 <link rel="stylesheet" href="/app/resources/css/summernote/summernote-lite.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<script src="https://kit.fontawesome.com/939838bb27.js"crossorigin="anonymous"></script>
 <title>Insert title here</title>
 </head>
 <style>
@@ -37,7 +40,8 @@
 
         <div id="content-main-wrap" class="shadow-light">
             <div id="form-wrap">
-                <form action="/app/admin/community/board/modify" method= "post">
+                <form action="${pageContext.request.contextPath}/admin/community/modify" method= "post">
+
                 <div id="cate-txt">카테고리</div>
                 <div id="cate-select-box">
                     <select name="cateNo" id="">
@@ -53,14 +57,16 @@
                     <input type="text" name= "title" value = "${bv.title}">
                 </div>
                 <div id="content-txt">내용</div>
-                <textarea class="summernote" name="editordata">
+                <textarea class="summernote" name="content">
                     ${bv.content}
                 </textarea>
         
                 <div id="btn-box">
                     <div id="cancel-btn">취소</div>
+                    <input type="hidden" name="no" value="${bv.no}">
                     <input id="write-btn" type="submit" value="저장하기">
                 </div>
+
                 </form>
             </div>
         </div>
@@ -77,7 +83,6 @@
     <script>
         $('.summernote').summernote({
             height: 450,
-            placeholder: '내용을 작성하세요',
             lang: "ko-KR"
         });
     </script>
