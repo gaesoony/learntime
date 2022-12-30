@@ -34,7 +34,7 @@ pageEncoding="UTF-8"%>
 
     .content-section{
         width: 445px;
-        height:922px;
+       
         background-color: white;
         border: 1px solid rgb(221, 221, 221);
 
@@ -152,6 +152,13 @@ pageEncoding="UTF-8"%>
         border:1px solid #d90000;
         color: #d90000;
     }
+    
+    #join-area .cancle{
+        background-color: #FFFFFF;
+        border:1px solid #535353;
+        color: #535353;
+    }
+    
 
     #join-area #before{
         background-color: #FFFFFF;
@@ -159,7 +166,19 @@ pageEncoding="UTF-8"%>
         border: 1px solid #5ECC80;
     }
 
+     .hidden{
+    display:hidden;
+    }
     
+    .show{
+    display:block;
+    }
+    
+    
+    #preview{
+    width:100%;
+    
+    }
  
   </style>
   <body>
@@ -169,45 +188,59 @@ pageEncoding="UTF-8"%>
       <div class="wrapper">
           
         <section class="content-section">
-          
-            <form action="" method="POST">
+        <form action="${pageContext.request.contextPath}/admin/badge/edit" method="post" enctype="multipart/form-data" onsubmit="return check();">
                 <div id="join-area">
-    
+    	 			<input type="hidden" name="no" value="${selectOne.no}">
                     <div id="name">
                         <div class="text">뱃지 이름</div>
-                        <input type="text" name="name">
+                        <input type="text" name="name" id="inputName" value="${selectOne.name}">
                     </div>
                     
                     <div id="info">
                         <div class="text">뱃지 정보</div>
-                        <input type="text" name="info">
+                        <input type="text" name="info" id="inputInfo"  value="${selectOne.info}">
                     </div>
                     
                     
                     
-                    <div id="">
+                    <div id="condition">
                         <div class="text">뱃지 발급 조건</div>
-                        <input type="text" name="">
+                        <input type="text" name="condition">
                     </div>
                     
                     
-                    <div id="">
+                    <div id="imgPath">
                         <div class="text">뱃지 이미지</div>
                         <div class="img-area">
-                            <label for="imgPath">
-                                <span class="material-symbols-outlined">
-                                    add_photo_alternate
-                                    </span>
+                            <label for="file">
+                           	  <img id="preview"  src="${pageContext.request.contextPath}/${selectOne.imgName}"/>
+                               <!--  <span  id="plusPic" class="material-symbols-outlined">add_photo_alternate</span> -->
                             </label>
+                             <input id="file" type="file" name="imgPath">
                         </div>
-                        
-                        <input type="file" name="imgPath" id="imgPath">
+                       
                     </div>
-                    
-                    <button>수정하기</button>
-                    <button class="delete">비활성화</button>
-                    <button  type="button" id="before"onclick="location.href='${pageContext.request.contextPath}/admin/badge/list'">이전으로</button>
-    
+                    <script>
+	                    $("#file").on("change", function(event) {
+	
+	                        var file = event.target.files[0];
+	
+	                        var reader = new FileReader(); 
+	                        reader.onload = function(e) {
+	
+	                            $("#preview").attr("src", e.target.result);
+	                          /*   $("#preview").removeClass('hidden'); */
+	                            $("#plusPic").addClass('hidden');
+	                        }
+	
+	                        reader.readAsDataURL(file);
+	                    });
+	                    
+                    </script>
+                    <button>저장하기</button>
+                    <button id="before" type="reset" onclick="location.reload();">초기화</button>
+                    <button class="delete">삭제하기</button>
+                    <button type="button" class="cancle" onclick="location.href='${pageContext.request.contextPath}/admin/badge/list'">이전으로</button>
                   
                 </div>
             </form>
@@ -215,10 +248,51 @@ pageEncoding="UTF-8"%>
         
         </section>
     </div>
-    <script
-      src="https://kit.fontawesome.com/939838bb27.js"
-      crossorigin="anonymous"
-    ></script>
+    <script>
+    
+    function check(){
+    	var name=$('#inputName');
+    	var info=$('#inputInfo');
+    	var imgPath=$('#file');
+    	
+    	console.log(name);
+    	console.log(info);
+    	console.log(imgPath);
+    	
+        if(!name.val()){
+
+            Swal.fire({
+					icon: 'error',
+					title: '내용을 다시 확인해주세요.',
+					text: '정보를 기입하지 않은 곳이 있습니다.',
+					confirmButtonColor: '#5ECC80'
+				});
+               
+
+            return false
+        }
+    	
+    	 if(!info.val()){
+
+             Swal.fire({
+ 					icon: 'error',
+ 					title: '내용을 다시 확인해주세요.',
+ 					text: '정보를 기입하지 않은 곳이 있습니다.',
+ 					confirmButtonColor: '#5ECC80'
+ 				});
+                
+
+             return false
+         }
+    	 
+    	 
+    	 
+
+    }   
+    
+    </script>
+    
+    <script src="https://kit.fontawesome.com/939838bb27.js" crossorigin="anonymous"></script>
 
 
   </body>

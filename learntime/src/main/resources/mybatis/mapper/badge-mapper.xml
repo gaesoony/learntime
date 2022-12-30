@@ -4,10 +4,46 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="badgeMapper">
 	
-	<!--뱃지 작성 -->
-	<insert id="write">
+	<!--뱃지 등록 -->
+	<insert id="write" >
 	INSERT INTO BADGE
 	VALUES(SEQ_BADGE_NO.NEXTVAL,#{name},#{info},#{imgName})
 	</insert>
+	
+	<!--관리자 뱃지 리스트 -->
+	<select id="listSelectAll" resultType="BadgeVo">
+	SELECT NO,NAME,INFO,IMG_PATH AS IMG_NAME
+	FROM BADGE
+	<if test="keyword != null and keyword != ''">
+		WHERE ${category} LIKE '%${keyword}%'
+	</if>
+	</select>
+	
+	<!--관리자 뱃지 상세 조회-->
+	<select id="selectOne" resultType="BadgeVo">
+	SELECT NO,NAME,INFO,IMG_PATH AS IMG_NAME
+	FROM BADGE
+	WHERE NO =${no}
+	</select>
+	
+	
+	<!--관리자 뱃지 수정-->
+	<update id="edit">
+	UPDATE BADGE 
+	SET NAME=#{name}
+		,INFO=#{info}
+		<if test="imgName != null and imgName != ''">
+		,IMG_PATH=#{imgName}
+		</if>
+		
+	WHERE NO=#{no}
+	</update>
+	
+	<!--관리자 뱃지 개수 확인 -->
+	<select id="badgeCnt" resultType="Int">
+	SELECT COUNT(*)
+	FROM BADGE
+	</select>
+	
 	
 </mapper>

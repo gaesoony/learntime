@@ -61,7 +61,7 @@ public class FileUploader {
           String ext = originName.substring(originName.lastIndexOf("."), originName.length());
           // xxxxxxx.png (뒤에서부터 3자리. , 파일명 길이)
 
-          String changeName = "profile_" + System.nanoTime() + ext; // profile_현재시간
+          String changeName = "badge" + System.nanoTime() + ext; // profile_현재시간
           File target = new File(path + changeName);
           
           String imgName="/resources/upload/badge/"+changeName;

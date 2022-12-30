@@ -14,7 +14,8 @@ public class BadgeVo {
 	private String imgName;
 	
 	public boolean isEmpty() {
-		if(imgPath==null){return true;}
+	
+		if(imgPath.isEmpty()){return true;}
 		return false;
 	}
 	

@@ -15,6 +15,8 @@
 		<typeAlias type="com.learntime.app.community.vo.CmtVo" alias="CmtVo"/>
 		<typeAlias type="com.learntime.app.member.vo.MemberVo" alias="MemberVo"/>
 		<typeAlias type="com.learntime.app.member.vo.FollowVo" alias="FollowVo"/>
+		<typeAlias type="com.learntime.app.badge.vo.BadgeVo" alias="BadgeVo"/>
+		<typeAlias type="com.learntime.app.badge.vo.SearchVo" alias="SearchVo"/>
 	</typeAliases>
 
 	
