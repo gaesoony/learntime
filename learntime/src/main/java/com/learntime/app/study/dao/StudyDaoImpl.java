@@ -204,6 +204,23 @@ public class StudyDaoImpl implements StudyDao{
 		return sst.selectList("studyMapper.selectAnswerListByNo", rno);
 	}
 
+	//가입 답변 insert
+	@Override
+	public int insertAnswer(SqlSessionTemplate sst, Map map) {
+		return sst.insert("studyMapper.insertAnswer", map);
+	}
+
+	//가입신청 수락하기
+	@Override
+	public int confirm(SqlSessionTemplate sst, String rno) {
+		return sst.insert("studyMapper.confirm", rno);
+	}
+
+	@Override
+	public int reject(SqlSessionTemplate sst, String rno) {
+		return sst.insert("studyMapper.reject", rno);
+	}
+
 
 
 }

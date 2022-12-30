@@ -69,6 +69,12 @@ public interface StudyService {
 
 	//가입내역번호로 답변, 질문, 회원정보 받아옴
 	public List<Map<String, String>> selectAnswerListByNo(String rno);
+
+	//가입신청 수락하기
+	public int confirm(String rno);
+
+	//가입신청 거절하기
+	public int reject(String rno);
 	
 	
 	//추후 추가 예정..

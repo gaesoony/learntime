@@ -346,19 +346,32 @@
 		
 	</update>
 	<select id="selectGroupMemberListByStatus" resultType="map">
-		SELECT R.NO, R.G_NO, R.M_NO, R.ENROLL_DATE, R.STATUS, M.IMG_PATH MEMBER_PROFILE, M.NICK MEMBER_NICK 
+		SELECT R.NO, R.G_NO, R.M_NO,  TO_CHAR(CAST(R.ENROLL_DATE as DATE),'YYYY.MM.DD HH24:mm:ss') ENROLL_DATE, R.STATUS, M.IMG_PATH MEMBER_PROFILE, M.NICK MEMBER_NICK 
 		FROM RECRUIT_LIST R
 		JOIN MEMBER M ON R.M_NO = M.NO
 		WHERE R.G_NO = #{gno}
 		AND R.STATUS = #{status}
 	</select>
-	<select id="selectAnswerListByNo">
-		SELECT M.NICK, Q.QUESTION, R.CONTENT
+	<select id="selectAnswerListByNo" resultType="map">
+		SELECT L.NO, M.NICK, Q.QUESTION, R.CONTENT
 		FROM RECRUIT_LIST L
 		JOIN RECRUIT_REPLY R ON L.NO = R.RECRUIT_LIST_NO
-		JOIN RECRUIT_QUESTION Q ON Q.NO = R.RECRUIT_QUESION_NO
+		JOIN RECRUIT_QUESTION Q ON Q.NO = R.RECRUIT_QUESTION_NO
 		JOIN MEMBER M ON M.NO = L.M_NO
 		WHERE L.NO = #{rno}
-	
 	</select>
+	<insert id="insertAnswer">
+		INSERT INTO RECRUIT_REPLY
+		VALUES (SEQ_RECRUIT_REPLY_NO.NEXTVAL, #{qno}, (SELECT NO RECRUIT_LIST_NO FROM RECRUIT_LIST WHERE G_NO = #{gno} AND M_NO = #{mno} AND STATUS = 'A') , #{answer})
+	</insert>
+	<update id="confirm">
+		UPDATE RECRUIT_LIST SET
+		STATUS = 'C'
+		WHERE NO = #{rno}
+	</update>
+		<update id="reject">
+		UPDATE RECRUIT_LIST SET
+		STATUS = 'D'
+		WHERE NO = #{rno}
+	</update>
 </mapper>
