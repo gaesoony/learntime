@@ -1,6 +1,7 @@
 package com.learntime.app.qna.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.qna.service.QnaService;
+import com.learntime.app.qna.vo.QnaAnswerVo;
+import com.learntime.app.qna.vo.QnaTypeVo;
 import com.learntime.app.qna.vo.QnaVo;
 
 @RequestMapping("qna")
@@ -25,10 +28,15 @@ public class QnaController {
 
 	//목록 조회 (화면+DB)
 	@GetMapping("/list")
-	public String list(Model model, QnaVo vo) {
+	public String list(Model model, QnaVo vo, QnaTypeVo qvo, QnaAnswerVo avo) {
 		
 		List<QnaVo> qnaList = service.selectList(vo);
+		
+		System.out.println(qnaList);
+		
 		model.addAttribute("qnaList", qnaList);
+		model.addAttribute("ano", avo.getNo());
+		
 		return "qna/list";
 	}
 	

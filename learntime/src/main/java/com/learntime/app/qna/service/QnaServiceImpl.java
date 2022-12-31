@@ -1,6 +1,7 @@
 package com.learntime.app.qna.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,10 @@ public class QnaServiceImpl implements QnaService {
 	//게시글 목록 
 	@Override
 	public List<QnaVo> selectList(QnaVo vo) {
-		return dao.selectList(sst, vo);
+		
+		List<QnaVo> qnaList = dao.selectList(sst, vo);
+		
+		return qnaList;
 	}
 
 	//게시글 상세조회
