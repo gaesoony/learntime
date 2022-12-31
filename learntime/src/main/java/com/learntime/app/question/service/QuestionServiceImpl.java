@@ -31,8 +31,8 @@ public class QuestionServiceImpl implements QuestionService{
 	@Override
 	public List<QuestionVo> selectQuestionList(QuestionVo vo, PageVo pv) {
 		
-		List<QuestionVo> list = dao.selectQuestionList(sst,vo,pv);
-		return list; 
+		
+		return dao.selectQuestionList(sst,vo,pv);
 	}
 
 	@Override

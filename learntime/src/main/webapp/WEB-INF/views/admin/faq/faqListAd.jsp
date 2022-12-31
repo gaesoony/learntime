@@ -328,63 +328,122 @@ select{
             FAQ
         </div>
         <div class="main-admin-q">
-            <div class="line-on-the-top">
-                <div class="box-for-line-a">
-                    <div class="half-box-a"></div>
-                </div>
-                <div class="title-box">FAQ</div>
-                <div class="box-for-line-b">
-                    <div class="half-box-b"></div>
-                </div>
-            </div>
-            <div class="search-delete-section">
-                <div class="cate-search-ad">
-                    <select name="select-title" >
-                        <option value="title">제목</option>
-                        <option value="content">내용</option>
-                    </select>
-                </div>
-                <div class="search-box-ad"></div>
-                <div class="search-btn-ad">
-                    <input type="submit" value="검색" class="search-green-box">
-                </div>
-                <div class="deleteBtn">
-                    <input type="button" value="삭제" id="erase">
-                </div>
-            </div>
-            <div class="listed-q">
-                <div class="list-faq-ad">
-                    <div class="no-faq-admin">글번호</div>
-                    <div class="cate-faq-admin">카테고리</div>
-                    <div class="title-faq-admin">제목</div>
-                    <div class="comment-faq-admin">댓글수</div>
-                    <div class="nick-faq-admin">닉네임</div>
-                    <div class="enrollDate-faq-admin">작성일시</div>
-                    <div class="delete-yn">삭제</div>
-                </div>
-                <c:forEach var="faqListAd" begin="1" end="15" >
-                    <div class="faqListAd">
-                        <div class="gathering-divs-ad">
-                            <div class="checkBox-Btn"><input type="checkbox" name="faq-ad" id="checkBoxBtn"></div>
-                            <div class="mark-ad">
-                                <div class="green-circle">Q</div>
-                            </div>
-                            <div class="no-faq-ad">1</div>
-                            <div class="category-faq-ad">[멘토링]</div>
-                            <div class="title-faq-ad">멘토링 서비스가 궁금해요</div>
-                            <div class="comment-faq-ad">(3)</div>
-                            <div class="nickname-faq-ad">김곰돌</div>
-                            <div class="enrollDate-faq-ad">2022.12.13</div>
-                            <div class="deleteBtn-faq-ad"><input type="button" value="삭제" id="delete-ad"></div>
-                        </div>
-                    </div>
-                </c:forEach>
-            </div>
-            <div class="page-qList-ad"></div>
+	        <form action="/app/admin/faq/faqListAd?p=1">
+	        	<div class="line-on-the-top">
+	                <div class="box-for-line-a">
+	                    <div class="half-box-a"></div>
+	                </div>
+	                <div class="title-box">FAQ</div>
+	                <div class="box-for-line-b">
+	                    <div class="half-box-b"></div>
+	                </div>
+	            </div>
+	            <div class="search-delete-section">
+	                <div class="cate-search-ad">
+	                    <select name="category" >
+	                        <option value="title">제목</option>
+	                        <option value="content">내용</option>
+	                    </select>
+	                </div>
+	                <div class="search-box-ad"><input type="text" name= "keyword" class="search-box" size="100"></div>
+	                <div class="search-btn-ad">
+	                    <input type="submit" value="검색" class="search-green-box">
+	                </div>
+	                <div class="deleteBtn">
+	                    <input type="submit" value="삭제" id="erase">
+	                </div>
+	            </div>
+	            <div class="listed-q">
+	                <div class="list-faq-ad">
+	                    <div class="no-faq-admin">글번호</div>
+	                    <div class="cate-faq-admin">카테고리</div>
+	                    <div class="title-faq-admin">제목</div>
+	                    <div class="comment-faq-admin">댓글수</div>
+	                    <div class="nick-faq-admin">닉네임</div>
+	                    <div class="enrollDate-faq-admin">작성일시</div>
+	                    <div class="delete-yn">삭제</div>
+	                </div>
+	                <c:forEach var="list" items="${list}" >
+	                    <div class="faqListAd">
+	                        <div class="gathering-divs-ad">
+	                            <div class="checkBox-Btn"><input type="checkbox" name="faq-ad" id="checkBoxBtn"></div>
+	                            <div class="mark-ad">
+	                                <div class="green-circle">Q</div>
+	                            </div>
+	                            <div class="no-faq-ad" name="no">${list.no}</div>
+	                            <div class="category-faq-ad" name="name">${list.cateName}</div>
+	                            <div class="title-faq-ad" name="title">${list.title}</div>
+	                            <div class="nickname-faq-ad" name="writer">${list.writer}</div>
+	                            <div class="enrollDate-faq-ad" name="enrollDate">${list.enrollDate}</div>
+	                            <div class="deleteBtn-faq-ad"><input type="button" value="삭제" id="delete-ad"></div>
+	                        </div>
+	                    </div>
+	                </c:forEach>
+	            </div>
+	            <div class="page-qList-ad">
+	            	<div class="page-faq">
+					  	<ul id="page-nation">
+							<li><a href="/app/admin/faq/faqListAd?p=1" class="first"><<</a></li>
+							<li><a class="arrow left"><</a></li>
+							<li><a class="num"></a></li>
+							<li><a class="num"></a></li>
+							<li><a class="num"></a></li>
+							<li><a class="num"></a></li>
+							<li><a class="num"></a></li>
+							<li><a class="arrow right">></a></li>
+							<li><a href="/app/admin/faq/faqListAd?p=${pv.maxPage}" class="last">>></a></li>
+						</ul>
+				   </div>
+	            </div>
+	        </form>
         </div>
     </div>
 
+<%@ include file = "/WEB-INF/views/common/footer.jsp" %>
 
+ 
+<script type="text/javascript">
+	const pageNation = document.querySelector('#page-nation');
+	const numArr = pageNation.querySelectorAll('.num');
+	const left = pageNation.querySelector('.arrow.left');
+	const right = pageNation.querySelector('.arrow.right');
+	
+	
+	if(${pv.startPage} > 1){
+		left.href = '/app/faq/faqList?p=${pv.startPage})-1';
+	}else{
+		left.classList.add('none-select');
+	}
+	
+	if(${pv.currentPage} != ${pv.maxPage}){
+		left.href = '/app/faq/faqList?p=${pv.currentPage})+1';
+	}else{
+		right.classList.add('none-select');
+	}
+	
+
+	let page = ${pv.startPage};
+
+	for (let i = 0; i < numArr.length; i++) {
+		const num = numArr[i];
+		
+		if(page == ${pv.currentPage}){
+			num.classList.add('current');
+		}
+		
+		if(page<1 || page > ${pv.maxPage}){
+			num.classList.add('p-none');
+		}else{
+			num.href = '/app/faq/faqList?p='+page;
+		}
+		num.classList.remove('p-none');
+        $(num).attr('onclick','/app/faq/faqList?p=('+page+')');
+        
+		num.innerHTML = page;
+		page++;
+	}
+	
+	</script>
         
 </body>
 </html>

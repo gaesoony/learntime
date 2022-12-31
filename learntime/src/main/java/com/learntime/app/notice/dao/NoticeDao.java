@@ -59,12 +59,5 @@ public class NoticeDao {
 	}
 
 
-//	public List<NoticeVo> selectsearchOne(SqlSessionTemplate sst, NoticeVo vo, PageVo pv) {
-//		int offset = (pv.getCurrentPage() -1)* pv.getBoardLimit();
-//		int limit = pv.getBoardLimit();
-//		RowBounds rb = new RowBounds(offset, limit);
-//
-//		return sst.selectList("noticeMapper.noticeList",vo,rb);
-//	}
 
 }

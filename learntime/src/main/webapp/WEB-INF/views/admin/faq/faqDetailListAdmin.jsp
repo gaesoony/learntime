@@ -179,91 +179,6 @@ textarea{
     
 }
 
-/* 댓글 */
-.reply-section{
-
-    width: 100%;
-    height: 900px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-
-}
-.reply-num{
-    width: 100%;
-    height: 50px;
-    
-}
-.leave-comment{
-    width: 100%;
-    height: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.div-box-a{
-    width: 1000px ;
-    height: 230px;
-    border: 3px solid lightgray;
-    box-shadow: 5px lightgray;
-    border-radius: 1rem;
-    display: flex;
-    flex-direction: column;
-}
-.div-box-b{
-    width: 1000px ;
-    height: 130px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-end;
-    
-}
-.div-box-c{
-    width: 1000px ;
-    height: 100px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    
-   
-}
-.profile-box{
-    width: 70px;
-    height: 70px;
-    margin-bottom: 20px;
-}
-   
-    
-
-.div-box-d{
-    width: 800px ;
-    height: 100px;
-    border: 3px solid lightgray;
-    box-shadow: 5px  lightgray;
-    border-radius: 1rem;
-   
-}
-
-input{
-    border: none;
-    background-color: #5ECC80;
-    font-size: medium;
-    font-weight: 600;
-    width: 90px;
-    color: white;
-    text-align: center;
-    line-height: 45px;
-    border-radius: 1rem;
-    margin-right: 40px;
-
-
-}
-
-
-    
-
-
 
 
 </style>
@@ -287,16 +202,12 @@ input{
                 <div class="making-gap">
                     <div class="q-title-date-m">
                         <div class="q-title-cate">
-                            <div class="category-q-m">[멘토링]</div>
-                            <div class="title-q-m">멘토링 서비스가 궁금해요</div>
+                            <div class="category-q-m" name="name">${vo.cateName}</div>
+                            <div class="title-q-m" name="title">${vo.title}</div>
                         </div>
                         <div class="q-enrollDate-comment">
-                            <div class="q-nick">user11</div>
-                            <div class="date-q-m">2022.12.14</div>
-                            <div class="q-hit">
-                                <div class="q-reply-num-count">댓글수</div>
-                                <div class="q-comment">3</div>
-                            </div>
+                            <div class="q-nick" name="writer">${vo.writer}</div>
+                            <div class="date-q-m" name="enrollDate">${vo.enrollDate}</div>
                         </div>
                     </div>
                     <div class="empty1-m"></div>
@@ -304,10 +215,10 @@ input{
                         <div class="q-content-m"></div>
                         <div class="making-gap-b">
                             <div class="backBtn-m">
-                                <div class="btn-to-m">공개</div>
-                                <div class="btn-to-m">수정</div>
-                                <div class="btn-to-m">삭제</div>
-                                <div class="btn-to-m">글목록</div>
+                                <input type="submit" id=btn-to-expose class="btn-to-m" value="공개">
+			                    <input type="submit" id=btn-to-expose class="btn-to-m" value="수정">
+			                    <input type="submit" id=btn-to-expose class="btn-to-m" value="삭제">
+                                <a><div class="btn-to-m">글목록</div></a>
                             </div>
                         </div>
                     </div>

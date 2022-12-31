@@ -32,8 +32,8 @@
                 <div class="admin-info" name="writer">${vo.writer}</div>
                 <div class="info-etc">
                     <div class="enroll-date-a"name="enrollDate">${vo.enrollDate }</div>
-                    <div class="views-a"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png"> &nbsp;${vo.hit }</div>
-                    <div class="reply-no"><img width="15px" height="15px" class="messages-notice" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">&nbsp; ${vo.cmt}</div>
+                    <div class="views-a" name="hit"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png"> &nbsp;${vo.hit }</div>
+                    <div class="reply-no" name="cmt"><img width="15px" height="15px" class="messages-notice" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">&nbsp; ${vo.cmt}</div>
                 </div>
                 <div class="title-cate-etc">
                     <div class="cate-notice-a"name="name">${vo.cateName }</div>

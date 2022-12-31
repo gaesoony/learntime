@@ -29,22 +29,18 @@
         </div>
         <div class="title-part">
             <div class="faq-title-date">
-                <div class="category-faq">[멘토링]</div>
-                <div class="title-faq">어떻게 이용하면 되는건가요</div>
+                <div class="category-faq" name="name">${vo.cateName}</div>
+                <div class="title-faq" name="title">${vo.title}</div>
             </div>
             <div class="q-enrollDate-comment">
-                <div class="q-nick">user11</div>
-                <div class="date-q-m">2022.12.14</div>
-                <div class="q-hit">
-                    <div class="q-reply-num-count">댓글수</div>
-                    <div class="q-comment">3</div>
-                </div>
+                <div class="q-nick" name="writer">${vo.writer}</div>
+                <div class="date-q-m" name="enrollDate">${vo.enrollDate}</div>
             </div>
         </div>
         <div class="empty1"></div>
-        <div class="faq-content"></div>
+        <div class="faq-content" name="content">${vo.content}</div>
         <div class="backBtn">
-            <div class="btn-to-list">글목록</div>
+            <a href="/app/faq/faqDetailList"></a><div class="btn-to-list">글목록</div>
         </div>
     </div>
 </div>

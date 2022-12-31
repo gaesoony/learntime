@@ -24,8 +24,7 @@ public class QuestionDao {
 		int limit = pv.getBoardLimit();
 		RowBounds rb = new RowBounds(offset, limit);
 
-		List<QuestionVo> list = sst.selectList("questionMapper.questionList",vo,rb);
-		return list;
+		return sst.selectList("questionMapper.questionList",vo,rb);
 	}
 	
 	public int selectCount(SqlSessionTemplate sst) {

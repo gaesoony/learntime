@@ -14,26 +14,24 @@
 
 <form action="/app/faq/faqWrite" method="post">
 	<div class="list-main">
-    <div class="banner-section">
-        <div class="banner">
-            <div id="banner-title1"><span>FAQ</span></div>
-            <div id="banner-title2"><span>무엇을 도와드릴까요?</span></div>
-        </div>
-    </div>
-    <div class="faq-detail-list">
-        <div class="faq-sign">
-            <div class="line1">
-                <div class="line-a"></div>
-            </div>
-            <div class="name-faq">FAQ</div>
-            <div class="line2">
-                <div class="line-b"></div>
-            </div>
-        </div>
-        <div class="faq-title-date">
-            <div class="category-faq">
-            	<div class="category-notice">
-                  <select name="cateNo" id="categories">
+	    <div class="banner-section">
+	        <div class="banner">
+	            <div id="banner-title1"><span>FAQ</span></div>
+	            <div id="banner-title2"><span>무엇을 도와드릴까요?</span></div>
+	        </div>
+	    </div>
+	    <div class="faq-detail-list">
+	        <div class="faq-sign">
+	            <div class="line1">
+	                <div class="line-a"></div>
+	            </div>
+	            <div class="name-faq">FAQ</div>
+	            <div class="line2">
+	                <div class="line-b"></div>
+	            </div>
+	        </div>
+	        <div class="faq-title-date">
+	        	<select name="cateNo" id="categories">
                     <option value="1">전체</option>
                     <option value="2">스터디</option>
                     <option value="3">공부인증</option>
@@ -41,25 +39,24 @@
                     <option value="5">멘토링</option>
                     <option value="6">커뮤니티</option>
                     <option value="7">스킨샵</option>
-                  </select>
-                </div>
-            </div>
-            <input type="text" name="title" class="title-input" size="100"/>
-            <div class="title-faq"></div>
-            <div class="date-faq"></div>
-        </div>
-        <div class="empty1"></div>
-        <div class="faq-content">
-            <textarea class="summernote" name="content"></textarea>
-        </div>
-        <div class="backBtn">
-            <div class="btn-to">수정</div>
-            <div class="btn-to">삭제</div>
-            <div class="btn-to">글목록</div>
-        </div>
-    </div>
-</div>
-	
+                </select>
+	            <div class="category-faq">
+	                 
+	            </div>
+	            <input type="text" name="title" class="title-input" size="100"/>
+	            <div class="title-faq"></div>
+	            <div class="date-faq"></div>
+	        </div>
+	        <div class="empty1"></div>
+	        <div class="faq-content">
+	            <textarea class="summernote" name="content"></textarea>
+	        </div>
+	        <div class="backBtn">
+	            <div class="btn-to"><input type="submit" value="등록" class="faqWrite-input"></div>
+	            <a href="/app/faq/faqList?p=1&cateNo=0"><div class="btn-to">글목록</div></a>
+	        </div>
+	    </div>
+	</div>
 </form>
 
 
