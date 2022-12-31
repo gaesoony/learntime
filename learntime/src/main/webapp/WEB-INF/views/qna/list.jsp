@@ -323,9 +323,9 @@
                     <div class="mainbody">
                         <div class="mainside">
                             <div class="list-type-box">
-                                <input type="radio" href="" class="side-category" value="전체" checked/><a href="javascript:allList();" class="list-type">전체</a>
-                                <input type="radio" href="" class="side-category" value="해결" /><a href="javascript:resolveList();" class="list-type">해결</a>
-                                <input type="radio" href="" class="side-category" value="미해결" /><a href="javascript:unresolveList();" class="list-type">미해결</a>
+                                <input type="radio" href="" class="side-category" value="전체" checked/><a href="javascript:allList();" class="list-type" name="type">전체</a>
+                                <input type="radio" href="" class="side-category" value="해결" /><a href="javascript:resolveList();" class="list-type" name="type">해결</a>
+                                <input type="radio" href="" class="side-category" value="미해결" /><a href="javascript:unresolveList();" class="list-type" name="type">미해결</a>
                             </div>
                             
                             <div class="line1"></div>
@@ -334,7 +334,7 @@
                             <div class="searchbar">
                                 <div class="search">
                                     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-                                    <input type="text" class="searchblank" placeholder="궁금한 질문을 검색해보세요!"> 
+                                    <input type="text" class="searchblank" name="keyword" placeholder="궁금한 질문을 검색해보세요!"> 
                                 </div>
                                 <input type="submit" class="searchbtn" value="검색">
                             </div>
@@ -343,10 +343,10 @@
                             <div class="category">
                                 <div class="catelist">
                                     <ul class="cate">
-                                        <li><a href="" class="ca">· 최신순</a></li>
-                                        <li><a href="" class="ca">· 정확도순</a></li>
-                                        <li><a href="" class="ca">· 답변 많은순</a></li>
-                                        <li><a href="" class="ca">· 좋아요순</a></li>
+                                        <li><a href="" class="ca" name="order">· 최신순</a></li>
+                                        <li><a href="" class="ca" name="order">· 정확도순</a></li>
+                                        <li><a href="" class="ca" name="order">· 답변 많은순</a></li>
+                                        <li><a href="" class="ca" name="order">· 좋아요순</a></li>
                                     </ul>
                                     <c:if test="${loginMember != null}">
                                         <input type="button" onclick="location.href='${path}/qna/write'" class="writebtn" value="글쓰기✏️" style='cursor:pointer;'>
@@ -379,9 +379,7 @@
                                                 <!-- 본문 속 해시태그 -->
                                                 <div class="hashtagbox">
                                                     <ul class="hashtag">
-                                                        <li class="hash" name="tag"><i class="fa-light fa-hashtag"></i>JAVA</li>
-                                                        <li class="hash" name="tag"><i class="fa-light fa-hashtag"></i>자바</li>
-                                                        <li class="hash" name="tag"><i class="fa-light fa-hashtag"></i>CSS</li>
+                                                        <li class="hash" name="tag"><i class="fa-light fa-hashtag"></i>${qlist.tag}</li>
                                                     </ul>
                                                 </div>
                                                 <div class="etcbox">
