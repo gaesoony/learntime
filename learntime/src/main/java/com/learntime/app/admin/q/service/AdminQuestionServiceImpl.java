@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.learntime.app.admin.q.dao.AdminQuestionDao;
 import com.learntime.app.question.dao.QuestionDao;
 import com.learntime.app.question.vo.PageVo;
 import com.learntime.app.question.vo.QuestionVo;
-
+@Service
 public class AdminQuestionServiceImpl implements AdminQuestionService {
 	
 	@Autowired
