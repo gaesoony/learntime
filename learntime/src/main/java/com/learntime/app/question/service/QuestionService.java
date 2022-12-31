@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.learntime.app.notice.vo.NoticeVo;
 import com.learntime.app.question.vo.PageVo;
 import com.learntime.app.question.vo.QuestionVo;
-@Service
+
 public interface QuestionService {
 	
 	public int questionWrite(QuestionVo vo);

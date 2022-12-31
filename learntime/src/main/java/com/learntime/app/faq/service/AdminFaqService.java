@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.learntime.app.faq.vo.FaqVo;
 import com.learntime.app.question.vo.PageVo;
 
-@Service
+
 public interface AdminFaqService {
 
 	public int selectCount();

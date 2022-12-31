@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.learntime.app.question.vo.PageVo;
 import com.learntime.app.question.vo.QuestionVo;
-@Service
+
 public interface AdminQuestionService {
 	
 	public List<QuestionVo> selectQuestionListAd(QuestionVo vo,PageVo pv);
