@@ -388,4 +388,27 @@ public class StudyServiceImpl implements StudyService{
 		return result;
 	}
 
+	//모임장 위임하기
+	@Override
+	public int delegate(String rno) {
+		int result1 = dao.delegate(sst, rno);
+		int result2 = 0;
+		if(result1 == 1) {
+			result2 = dao.leaveRep(sst);
+		}
+		return result1 * result2;
+	}
+
+	@Override
+	public int quit(String rno) {
+		int result = dao.quit(sst, rno);
+		return result;
+	}
+
+	@Override
+	public int kick(String rno) {
+		int result = dao.kick(sst, rno);
+		return result;
+	}
+
 }
