@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,218 +10,8 @@ pageEncoding="UTF-8"%>
     <title>Insert title here</title>
     <link
       rel="stylesheet"
-      href="${path}/resources/css/mystudy/manage/info.css"
+      href="${path}/resources/css/mystudy/manage/member.css"
     />
-    <style>
-      .manage-member-area {
-        padding: 30px 50px;
-      }
-      .study-type-list {
-        font-size: 20px;
-      }
-
-      .study-type {
-        margin-right: 25px;
-
-        color: rgb(158, 158, 158);
-        cursor: pointer;
-        font-size: 19px;
-      }
-
-      input[name="status"] {
-        display: none;
-      }
-
-      input[name="status"]:checked + div {
-        color: black;
-      }
-
-      input[name="status"]:checked ~ .bar {
-        display: block;
-      }
-
-      .study-type label {
-        cursor: pointer;
-      }
-
-      .bar {
-        display: none;
-        height: 4px;
-        width: 36px;
-        background-color: var(--main-color);
-        position: absolute;
-        bottom: -10px;
-      }
-
-      .search-input {
-        width: 300px;
-        height: 40px;
-        padding: 10px 10px 10px 10px;
-
-        outline: none;
-        border: 1px solid rgb(192, 192, 192);
-      }
-
-      .grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        column-gap: 15px;
-        row-gap: 15px;
-      }
-
-      .grid-div {
-        height: 80px;
-        background-color: #edf9ee;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-        padding: 10px 15px;
-        cursor: pointer;
-      }
-
-      .grid-div-left img {
-        width: 45px;
-        height: 45px;
-      }
-
-      .grid-div-right {
-        margin-left: 15px;
-      }
-
-      .grid-div-right div:first-child {
-        font-size: 17px;
-        font-weight: 400;
-        margin-bottom: 10px;
-      }
-
-      .grid-div-right div:last-child {
-        font-size: 13px;
-        font-weight: 300;
-      }
-
-      .manage-member-area-top {
-        margin-bottom: 50px;
-      }
-
-      .fa-magnifying-glass {
-        position: absolute;
-        right: 12px;
-        top: 13px;
-        color: gray;
-      }
-
-      /* 가입신청 팝업창 */
-
-      .study-popup-wrap {
-        background-color: rgba(0, 0, 0, 0.3);
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        display: none;
-        padding: 15px;
-        z-index: 1000;
-      }
-
-      .study-popup {
-        width: 100%;
-        max-width: 450px;
-        border-radius: 10px;
-        overflow: hidden;
-        background-color: #ffffff;
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        padding: 30px;
-      }
-
-      .study-popup-head {
-        width: 100%;
-        height: 50px;
-        margin-bottom: 30px;
-      }
-
-      .study-popup-head div:first-child {
-        color: #5ecc80;
-        font-size: 23px;
-        font-weight: 700;
-        margin-bottom: 20px;
-      }
-
-      .study-popup-head div:last-child {
-        color: gray;
-        font-size: 13px;
-      }
-
-      .study-popup-body {
-        width: 100%;
-        background-color: #ffffff;
-        height: 300px;
-        overflow: scroll;
-        margin-bottom: 10px;
-      }
-
-      .study-popup-body::-webkit-scrollbar {
-        display: none;
-      }
-
-      .study-body-content {
-        width: 100%;
-      }
-      .study-body-titlebox div:first-child {
-        font-weight: 500;
-        margin-bottom: 14px;
-        font-size: 17px;
-      }
-
-      .study-body-titlebox div:last-child {
-        margin-bottom: 5px;
-        font-size: 13px;
-        color: gray;
-      }
-      .study-body-contentbox input {
-        width: 100%;
-        height: 40px;
-        border: 1px solid rgb(218, 218, 218);
-        border-radius: 3px;
-        margin-top: 3px;
-        margin-bottom: 20px;
-        outline: none;
-        padding: 3px 10px;
-        box-sizing: border-box;
-      }
-
-      .study-popup-foot {
-        width: 100%;
-        height: 30px;
-        display: flex;
-        justify-content: flex-end;
-      }
-
-      .study-pop-btn {
-        width: 55px;
-        height: 30px;
-        border-radius: 3px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 12px;
-        cursor: pointer;
-      }
-
-      .study-pop-btn:first-child {
-        background-color: #5ecc80;
-
-        color: white;
-        margin-right: 5px;
-      }
-
-      .study-pop-btn:last-child {
-        background-color: #ffffff;
-
-        color: rgb(168, 168, 168);
-        border: 1px solid rgb(207, 207, 207);
-      }
-    </style>
   </head>
   <body>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -238,7 +31,7 @@ pageEncoding="UTF-8"%>
               </li>
               <li class="study-type relative">
                 <label>
-                  <input type="radio" name="status" value="C" />
+                  <input id="statusC" type="radio" name="status" value="C" />
                   <div>승인</div>
                   <div class="bar"></div>
                 </label>
@@ -313,13 +106,13 @@ pageEncoding="UTF-8"%>
                   </div> -->
                 </div>
                 <div class="study-popup-foot">
-                  <div class="study-pop-btn study-confirm" id="study-confirm">
+                  <!-- <div class="study-pop-btn study-confirm" id="study-confirm">
                     수락
                   </div>
 
                   <div class="study-pop-btn study-close" id="study-close">
                     거절
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -354,30 +147,30 @@ pageEncoding="UTF-8"%>
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
             success: function (data) {
               var obj = JSON.parse(data);
-              console.log(obj.result[0].MEMBER_NICK);
+
               let str = "";
 
               for (let i = 0; i < obj.result.length; i++) {
-                console.log(obj.result[i].MEMBER_PROFILE);
+
                 if (obj.result[i].MEMBER_PROFILE == undefined) {
                   obj.result[i].MEMBER_PROFILE = "profile_default.png";
                 }
                 str =
                   str +
-                  '<div class="grid-div flex" id="study-modal-open" onclick="modalOpen(' +
+                  '<div class="grid-div member'+ obj.result[i].NO +'" id="study-modal-open" onclick="modalOpen(' +
                   obj.result[i].NO +
                   ')">' +
                   '<div class="grid-div-left">' +
                   '<img src="${pageContext.request.contextPath}/resources/upload/common/' +
                   obj.result[i].MEMBER_PROFILE +
                   '" alt=""/></div>' +
-                  '<div class="grid-div-right">' +
-                  "<div>" +
+                  '<div class="grid-div-right relative">' +
+                  '<div class="member-nick">' +
                   obj.result[i].MEMBER_NICK +
                   "</div>" +
-                  "<div>" +
+                  '<div class="enroll-date">' +
                   obj.result[i].ENROLL_DATE +
-                  "</div></div></div>";
+                  '</div><div class="hidden member-control"><div onclick="delegate('+obj.result[i].NO+');">모임장위임</div><div onclick="kick('+obj.result[i].NO+');">강퇴</div></div></div></div>';
               }
               grid.innerHTML = str;
             },
@@ -402,103 +195,140 @@ pageEncoding="UTF-8"%>
 
               let str = "";
 
-              console.log(obj.result);
 
               for (let i = 0; i < obj.result.length; i++) {
-                console.log("나오는거맞나..?");
-                console.log(obj.result[i].MEMBER_PROFILE);
+
                 if (obj.result[i].MEMBER_PROFILE == undefined) {
                   obj.result[i].MEMBER_PROFILE = "profile_default.png";
                 }
                 str =
                   str +
-                  '<div class="grid-div flex" id="study-modal-open" onclick="modalOpen(' +
+                  '<div class="grid-div member'+obj.result[i].NO+'" id="study-modal-open" onclick="modalOpen(' +
                   obj.result[i].NO +
-                  ');">' +
+                  ')">' +
                   '<div class="grid-div-left">' +
                   '<img src="${pageContext.request.contextPath}/resources/upload/common/' +
                   obj.result[i].MEMBER_PROFILE +
                   '" alt=""/></div>' +
-                  '<div class="grid-div-right">' +
-                  "<div>" +
+                  '<div class="grid-div-right relative">' +
+                  '<div class="member-nick">' +
                   obj.result[i].MEMBER_NICK +
                   "</div>" +
-                  "<div>" +
+                  '<div class="enroll-date">' +
                   obj.result[i].ENROLL_DATE +
-                  "</div></div></div>";
+                  '</div><div class="hidden member-control"><div onclick="delegate('+obj.result[i].NO+');">모임장위임</div><div onclick="kick('+obj.result[i].NO+');">강퇴</div></div></div></div>';
               }
               grid.innerHTML = str;
+
+              // let temp = document.querySelector('.study-type-list .study-type:nth-child(2)');
+              // let statusC = temp.querySelector('input');
+
+              // temp.addEventListener('click', function() {
+
+              //   if(statusC.checked) {
+              //     let memberList = document.querySelectorAll('.grid-div');
+
+              //     memberList.forEach((o)=>{
+              //       console.log(o);
+              //     o.addEventListener('mouseover', function() {
+              //       console.log('마우스오버되나?');
+
+
+              //       o.classList.add('main-color');
+              //     })
+              //   })
+              //   }
+
+              // })
             },
           });
         });
       });
 
       function modalOpen(x) {
-        $.ajax({
-          url: getContextPath() + "/mystudy/manage/member/answer",
-          type: "get",
-          data: {
-            rno: x,
-          },
-          contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-          success: function (data) {
-            var obj = JSON.parse(data);
-            const modal = document.querySelector(".modal-section");
-            const nickTitle = document.querySelector(".nick-title");
-            const studyPopupBody = document.querySelector(".study-popup-body");
-            const studyPopupFoot = document.querySelector(".study-popup-foot");
 
-            nickTitle.innerHTML =
-              obj.result[1].NICK + "님이 가입을 신청했습니다";
+        const statusA = document.querySelector('input[value=A]');
+        const statusC = document.querySelector('input[value=C]');
 
-            let modalStr = "";
-            let submitStr = "";
+        if(statusA.checked) {
 
-            for (let i = 0; i < obj.result.length; i++) {
-              modalStr =
-                modalStr +
-                '<div class="study-body-content">' +
-                '<div class="study-body-titlebox">' +
-                "<div>질문" +
-                (i + 1) +
-                "</div>" +
-                "<div>" +
-                obj.result[i].QUESTION +
-                "</div>" +
-                "</div>" +
-                '<div class="study-body-contentbox">' +
-                '<input type="text" value="' +
-                obj.result[i].CONTENT +
-                '" readonly/>' +
-                "</div>" +
-                "</div>";
-            }
+          $.ajax({
+            url: getContextPath() + "/mystudy/manage/member/answer",
+            type: "get",
+            data: {
+              rno: x,
+            },
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            success: function (data) {
+              var obj = JSON.parse(data);
+              const modal = document.querySelector(".modal-section");
+              const nickTitle = document.querySelector(".nick-title");
+              const studyPopupBody = document.querySelector(".study-popup-body");
+              const studyPopupFoot = document.querySelector(".study-popup-foot");
 
-            submitStr =
-              '<div class="study-pop-btn study-confirm" id="study-confirm" onclick="confirm(' +
-              obj.result[0].NO +
-              ');">수락</div>' +
-              '<div class="study-pop-btn study-close" id="study-close" onclick="reject(' +
-              obj.result[0].NO +
-              ')">거절</div>';
-            studyPopupBody.innerHTML = modalStr;
-          },
-          error: function (error) {
-            alert("통신실패!");
-          },
-        });
+              nickTitle.innerHTML =
+                obj.result[1].NICK + "님이 가입을 신청했습니다";
 
-        $("#study-popup").css("display", "flex").hide().fadeIn();
+              let modalStr = "";
+              let submitStr = "";
+
+              for (let i = 0; i < obj.result.length; i++) {
+                modalStr =
+                  modalStr +
+                  '<div class="study-body-content">' +
+                  '<div class="study-body-titlebox">' +
+                  "<div>질문" +
+                  (i + 1) +
+                  "</div>" +
+                  "<div>" +
+                  obj.result[i].QUESTION +
+                  "</div>" +
+                  "</div>" +
+                  '<div class="study-body-contentbox">' +
+                  '<input type="text" value="' +
+                  obj.result[i].CONTENT +
+                  '" readonly/>' +
+                  "</div>" +
+                  "</div>";
+              }
+
+              submitStr =
+                '<div class="study-pop-btn study-confirm" id="study-confirm" onclick="confirm(' +
+                obj.result[0].NO +
+                ');">수락</div>' +
+                '<div class="study-pop-btn study-close" id="study-close" onclick="reject(' +
+                obj.result[0].NO +
+                ');">거절</div>';
+              studyPopupBody.innerHTML = modalStr;
+              studyPopupFoot.innerHTML = submitStr;
+            },
+            error: function (error) {
+              alert("통신실패!");
+            },
+          });
+
+          $("#study-popup").css("display", "flex").hide().fadeIn();
+        }
+
+        if(statusC.checked) {
+
+          const memberDiv = document.querySelector('.member'+ x );
+          const enrollDate = memberDiv.querySelector('.enroll-date');
+          const memberControl = memberDiv.querySelector('.member-control');
+          memberDiv.classList.toggle('main-back');
+          enrollDate.classList.toggle('hidden');
+          memberControl.classList.toggle('hidden');
+        }
       }
 
       function confirm(x) {
         // modalClose();
         location.href =
-          "${path}/mystudy/member/confirm?gno=" + groupOne.NO + "&rno=" + x;
+          "${path}/mystudy/manage/member/confirm?gno=" + ${groupOne.NO} + "&rno=" + x;
       }
 
       function reject(x) {
-        "${path}/mystudy/member/reject?gno=" + groupOne.NO + "&rno=" + x;
+        location.href ="${path}/mystudy/manage/member/reject?gno=" + ${groupOne.NO} + "&rno=" + x;
       }
 
       $("#study-confirm").click(function () {
@@ -513,6 +343,66 @@ pageEncoding="UTF-8"%>
       function modalClose() {
         $("#study-popup").fadeOut(); //페이드아웃 효과
       }
+
+      function delegate(x) {
+        Swal.fire({
+          title: "모임장을 위임하시겠습니까?",
+          text: "",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#5ecc80",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "위임",
+          cancelButtonText: "취소",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            location.href =
+              "${path}/mystudy/manage/member/delegate?gno="+${groupOne.NO}+"&rno="+x;
+          }
+        });
+      }
+
+      function kick(x) {
+        Swal.fire({
+          title: '정말 강퇴시키겠습니까? 재가입 가능 여부를 선택해주세요',
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: '재가입가능',
+          denyButtonText: `재가입불가`,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            location.href =
+              "${path}/mystudy/manage/member/delegate?rejoin=Y&gno="+${groupOne.NO}+"&rno="+x;
+          } else if (result.isDenied) {
+            location.href =
+            "${path}/mystudy/manage/member/delegate?rejoin=N&gno="+${groupOne.NO}+"&rno="+x;
+          }
+        })
+      }
+
+
+
+      // const temp = document.querySelector('.study-type-list .study-type:nth-child(2)');
+      // const statusC = temp.querySelector('input');
+
+      // temp.addEventListener('click', function() {
+
+      //   if(statusC.checked) {
+      //     let memberList = document.querySelectorAll('.grid-div');
+      //     console.log(memberList);
+      //     memberList.forEach((o)=>{
+      //       console.log(o);
+      //     o.addEventListener('mouseover', function() {
+      //       console.log('마우스오버되나?');
+
+
+      //       o.classList.add('main-color');
+      //     })
+      //   })
+      //   }
+
+      // })
     </script>
   </body>
 </html>

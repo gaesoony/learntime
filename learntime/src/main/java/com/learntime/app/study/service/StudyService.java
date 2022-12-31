@@ -75,6 +75,15 @@ public interface StudyService {
 
 	//가입신청 거절하기
 	public int reject(String rno);
+
+	//모임장 위임하기
+	public int delegate(String rno);
+
+	//탈퇴하기
+	public int quit(String rno);
+
+	//강퇴하기
+	public int kick(String rno);
 	
 	
 	//추후 추가 예정..

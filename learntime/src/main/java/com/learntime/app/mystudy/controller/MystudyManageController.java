@@ -176,7 +176,7 @@ public class MystudyManageController {
 	//가입신청 수락하기
 	@GetMapping("member/confirm")
 	public String memberConfirm(String rno, String gno) {
-		
+		System.out.println("가입신청 수락 들어옴!");
 		int result = service.confirm(rno);
 		
 		if(result == 1) {
@@ -187,11 +187,49 @@ public class MystudyManageController {
 		}
 	}
 	
-	//가입신청 수락하기
+	//가입신청 거절하기
 	@GetMapping("member/reject")
 	public String memberReject(String rno, String gno) {
 		
 		int result = service.reject(rno);
+		
+		if(result == 1) {
+			return "redirect:/mystudy/manage/member?gno="+gno;
+			
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+	//모임장 위임하기
+	@GetMapping("member/delegate")
+	public String memberDelegate(String rno, String gno) {
+		System.out.println("모임장 위임 들어옴");
+		int result = service.delegate(rno);
+		
+		if(result == 1) {
+			return "redirect:/mystudy/manage/member?gno="+gno;
+			
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+	//강퇴 또는 탈퇴시키기
+	@GetMapping("member/kick")
+	public String memberKick(String rejoin, String rno, String gno) {
+		System.out.println("강퇴 들어옴");
+		
+		int result = 0;
+		if(rejoin.equals("Y")) {
+			//탈퇴 : 재가입 가능
+			result = service.quit(rno);
+		}
+		
+		if(rejoin.equals("N")) {
+			//강퇴 : 재가입 불가
+			result = service.kick(rno);
+		}
 		
 		if(result == 1) {
 			return "redirect:/mystudy/manage/member?gno="+gno;

@@ -221,6 +221,26 @@ public class StudyDaoImpl implements StudyDao{
 		return sst.insert("studyMapper.reject", rno);
 	}
 
+	@Override
+	public int delegate(SqlSessionTemplate sst, String rno) {
+		return sst.insert("studyMapper.delegate", rno);
+	}
+
+	@Override
+	public int leaveRep(SqlSessionTemplate sst) {
+		return sst.insert("studyMapper.leaveRep");
+	}
+
+	@Override
+	public int quit(SqlSessionTemplate sst, String rno) {
+		return sst.insert("studyMapper.quit");
+	}
+
+	@Override
+	public int kick(SqlSessionTemplate sst, String rno) {
+		return sst.insert("studyMapper.kick");
+	}
+
 
 
 }

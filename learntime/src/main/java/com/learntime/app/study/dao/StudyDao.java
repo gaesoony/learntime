@@ -106,10 +106,21 @@ public interface StudyDao {
 	//insert answer
 	public int insertAnswer(SqlSessionTemplate sst, Map map);
 
-	//apply confirm 
+	//confirm apply 
 	public int confirm(SqlSessionTemplate sst, String rno);
 
+	//reject apply
 	public int reject(SqlSessionTemplate sst, String rno);
+
+	//delegate
+	public int delegate(SqlSessionTemplate sst, String rno);
+
+	//leave Rep
+	public int leaveRep(SqlSessionTemplate sst);
+
+	public int quit(SqlSessionTemplate sst, String rno);
+
+	public int kick(SqlSessionTemplate sst, String rno);
 
 
 

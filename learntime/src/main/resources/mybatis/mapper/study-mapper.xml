@@ -374,4 +374,24 @@
 		STATUS = 'D'
 		WHERE NO = #{rno}
 	</update>
+	<update id="delegate">
+		UPDATE RECRUIT_LIST SET
+		STATUS = 'B'
+		WHERE NO = #{rno}
+	</update>
+	<update id="leaveRep">
+		UPDATE RECRUIT_LIST SET
+		STATUS = 'C'
+		WHERE NO IN (SELECT NO FROM RECRUIT_LIST WHERE STATUS = 'B')
+	</update>
+		<update id="quit">
+		UPDATE RECRUIT_LIST SET
+		STATUS = 'F'
+		WHERE NO = #{rno}
+	</update>
+		<update id="kick">
+		UPDATE RECRUIT_LIST SET
+		STATUS = 'E'
+		WHERE NO = #{rno}
+	</update>
 </mapper>
