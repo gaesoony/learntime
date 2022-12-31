@@ -11,10 +11,10 @@
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/common/header.jsp" %>
-<form action="/app/faq/faqList?p=1&cateNo=0" method="get">
-	<div class="list-main">
+<form action="/app/faq/faqList?p=1&cateNo=0" method="GET">
 	<input type="hidden" value="${cateNo}" name="cateNo">
 	<input type="hidden" value="${p}" name="p">
+	<div class="list-main">
     <div class="banner-section">
          <div class="banner">
             <div id="banner-title1"><span>FAQ</span></div>
@@ -50,7 +50,7 @@
                         <div class="green-circle2">Q</div>
                     </div>
                     <div class="category-faq" name="name">${list.cateName}</div>
-                    <div class="title-faq" name="title">${list.title}</div>
+                    <a href="/app/faq/faqDetailList?no=${list.no}"><div class="title-faq" name="title">${list.title}</div></a>
                     <div class="date-faq" name="enrollDate">${list.enrollDate}</div>
                 </div>
             </c:forEach>

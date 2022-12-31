@@ -39,23 +39,21 @@ public class QuestionController {
 	}
 	// 문의게시판 리스트 
 	@GetMapping ("question/questionList")
-	public String questionList(QuestionVo vo,HttpServletRequest req,Model m) {
+	public String questionList(QuestionVo vo,Model m,PageVo pv) {
 
-		String p = req.getParameter("p");
 
 		int listCount = qs.selectCount();
-		int currentPage = Integer.parseInt(p);
+		int currentPage = (int)pv.getP();
 		int boardLimit = 10;
 		int pageLimit = 5;
-		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
+		pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 		
 		
 		
 		List<QuestionVo> list= qs.selectQuestionList(vo,pv);
 		m.addAttribute("pv",pv);
 		m.addAttribute("list",list);
-//		m.addAttribute("cateNo",cateNo);
-		m.addAttribute("p",p);
+		m.addAttribute("p",pv.getP());
 		
 		return "question/questionList";
 		

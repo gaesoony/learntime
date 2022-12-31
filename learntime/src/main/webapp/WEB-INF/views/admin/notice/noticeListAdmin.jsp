@@ -307,9 +307,12 @@
                     </div>
                 </div>
             </div>
-            <div class="notice-admin-Btns">
+            <form action="/app/admin/notice/noticeListAdmin" method="get">
+            	<input type="hidden" value="${cateNo}" name="cateNo">
+				<input type="hidden" value="${p}" name="p">
+            	<div class="notice-admin-Btns">
                 <div class="noticeBtn-etc">
-                    <div class="setting-Btn"><img src="/app/resources/img/faq/image 116.png"></div>
+                    <a href="#"><div class="setting-Btn"><img src="/app/resources/img/faq/image 116.png"></div></a>
                     <div class="Btns-noticeAd">
                         <div class="activate-Btn"><input class="activate" type="button" value="활성화" name="activate"></div>
                         <div class="deactivate-Btn"><input class="deactivate" type="button" value="비활성화" name="deactivate"></div>
@@ -320,19 +323,19 @@
             <div class="notice-list">
                 <div class="notice-list-twoColored">
                     <div class="notice-group">
-                        <c:forEach var="notice-white" begin="1" end="10" >
+                        <c:forEach var="list" items="${list}">
                             <div class="notice-white">
                                 <div class="admin-id-etc">
-                                    <div class="admin-id">관리자</div>
-                                    <div class="enroll-date">2022.11.28</div>
+                                    <div class="admin-id" name="writer">${list.writer}</div>
+                                    <div class="enroll-date" name=enrollDate>${list.enrollDate}</div>
                                 </div>
                                 <div class="written-notice">
-                                    <div class="checkBoxBtn-notice"><input type="checkbox" name="faq-ad" id="checkBoxBtn"></div>
-                                    <div class="cate-notice">[전체]</div>
-                                    <div class="posted-notice">스팸 단어로 인한 글 등록 불가 문제 관련 공지사항</div>
+                                    <div class="checkBoxBtn-notice"><input type="checkbox"  id="checkBoxBtn"></div>
+                                    <div class="cate-notice" name="name">${list.cateName}</div>
+                                    <div class="posted-notice" name="title">${list.title}</div>
                                     <div class="views-etc">
-                                        <div class="views"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">17k</div>
-                                        <div class="replies"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">8</div>
+                                        <div class="views" name="hit"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">${list.hit }</div>
+                                        <div class="replies" name="cmt"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">${list.cmt}</div>
                                     </div>
                                 </div>
                             </div>
@@ -340,9 +343,67 @@
                     </div>
                 </div>
             </div>
-            <div class="page-notice"></div>
+            <div class="page-notice">
+            	<div class="page-question">
+				  	<ul id="page-nation">
+						<li><a href="/app/notice/noticeList?p=1&cateNo=0" class="first"><<</a></li>
+						<li><a class="arrow left"><</a></li>
+						<li><a class="num"></a></li>
+						<li><a class="num"></a></li>
+						<li><a class="num"></a></li>
+						<li><a class="num"></a></li>
+						<li><a class="num"></a></li>
+						<li><a class="arrow right">></a></li>
+						<li><a href="/app/notice/noticeList?p=${pv.maxPage}&cateNo=0" class="last">>></a></li>
+					</ul>
+			    </div>
+            </div>
+            </form>
         </div>
     </div>
+
+<script type="text/javascript">
+	const pageNation = document.querySelector('#page-nation');
+	const numArr = pageNation.querySelectorAll('.num');
+	const left = pageNation.querySelector('.arrow.left');
+	const right = pageNation.querySelector('.arrow.right');
+	
+	
+	if(${pv.startPage} > 1){
+		left.href = '/app/notice/noticeList?p=${pv.startPage})-1';
+	}else{
+		left.classList.add('none-select');
+	}
+	
+	if(${pv.currentPage} != ${pv.maxPage}){
+		left.href = '/app/notice/noticeList?p=${pv.currentPage})+1';
+	}else{
+		right.classList.add('none-select');
+	}
+	
+
+	let page = ${pv.startPage};
+
+	for (let i = 0; i < numArr.length; i++) {
+		const num = numArr[i];
+		
+		if(page == ${pv.currentPage}){
+			num.classList.add('current');
+		}
+		
+		if(page<1 || page > ${pv.maxPage}){
+			num.classList.add('p-none');
+		}else{
+			num.href = '/app/notice/noticeList?p='+page;
+		}
+		num.classList.remove('p-none');
+        $(num).attr('onclick','/app/notice/noticeList?p=('+page+')');
+        
+		num.innerHTML = page;
+		page++;
+	}
+	
+	</script>
 
 
         

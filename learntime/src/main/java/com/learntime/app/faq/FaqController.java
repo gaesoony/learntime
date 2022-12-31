@@ -31,7 +31,7 @@ public class FaqController {
 	
 	// FAQ 리스트 화면
 	@GetMapping("faq/faqList")
-	public String faqList(FaqVo vo,Model m,HttpServletRequest req,PageVo pv) {
+	public String faqList(FaqVo vo,Model m,PageVo pv) {
 		
 		
 		int listCount = fs.selectCount();
@@ -44,7 +44,7 @@ public class FaqController {
 		List<FaqVo> list= fs.selectFaqList(vo,pv);
 		m.addAttribute("pv",pv);
 		m.addAttribute("list",list);
-		System.out.println(list);
+		
 		m.addAttribute("p",pv.getP());
 		
 		
@@ -63,8 +63,19 @@ public class FaqController {
 	}
 	//FAQ 상세조회
 	@GetMapping("faq/faqDetailList")
-	public String faqDetailList() {
-		return "faq/faqDetailList";
+	public String faqDetailList(FaqVo vo, HttpSession session, Model m) {
+		
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember"); 
+		
+		if(loginMember !=null) {
+			vo = fs.selectOne(vo);
+			m.addAttribute("vo",vo);
+			
+			return "faq/faqDetailList";
+		}else {
+			return "common/errorPage";
+		}
+		
 	}
 	//FAQ 글쓰기(운영자)
 	@GetMapping("faq/faqWrite")

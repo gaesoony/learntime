@@ -2,30 +2,18 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="questionMapper">
+<mapper namespace="adminQuestionMapper">
 
-	<insert id="questionWrite">
-  		INSERT INTO QUESTION_BOARD (NO, CATE_NO,WRITER,TITLE,CONTENT,ENROLL_DATE,
-  		DELETE_YN,MODIFY_DATE) 
-		VALUES(SEQ_QUESTION_BOARD_NO.NEXTVAL,#{category},#{writer},#{title},
-		#{content}, SYSDATE,'N',SYSDATE)
-  </insert>
+	
   
-  <select id="questionList" resultType="com.learntime.app.question.vo.QuestionVo">
+  <select id="adminQuestionList" resultType="com.learntime.app.question.vo.QuestionVo">
   	SELECT Q.NO,Q.CATE_NO,C.NAME as CATE_NAME,Q.TITLE,Q.ENROLL_DATE ,M.NICK AS WRITER FROM QUESTION_BOARD Q 
       JOIN COMMON_CATEGORY C ON Q.CATE_NO= C.NO JOIN MEMBER M ON M.NO = Q.WRITER
-      WHERE CATE_NO = ${cateNo}
-      <if test="keyword !=null and keyword != ''">
-		and  ${category} LIKE '%${keyword}%' 
-	  </if>
 	  ORDER BY Q.ENROLL_DATE DESC 
   </select>
   <select id="selectCount" resultType="int">
   	SELECT COUNT(*)FROM QUESTION_BOARD
   </select>
-  <!-- <select id="boardList" resultType="com.learntime.app.question.vo.QuestionVo">
-  	SELECT * FROM QUESTION_BOARD WHERE CATE_NO = #{cateNo}
-  </select> -->
   
   <select id="selectOne" resultType="com.learntime.app.question.vo.QuestionVo">
   	SELECT M.NICK AS WRITER ,Q.ENROLL_DATE,C.NAME AS CATE_NAME,Q.TITLE,Q.CONTENT 

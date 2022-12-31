@@ -9,19 +9,11 @@ import org.springframework.stereotype.Repository;
 import com.learntime.app.faq.vo.FaqVo;
 import com.learntime.app.question.vo.PageVo;
 
-
 @Repository
-public class FaqDao {
-
-	public int faqWrite(SqlSessionTemplate sst, FaqVo vo) {
-
-		return sst.insert("faqMapper.faqWrite",vo);
-	}
+public class AdminFaqDao {
 
 	public int selectCount(SqlSessionTemplate sst) {
-
-		
-		return sst.selectOne("faqMapper.selectCount");
+		return sst.selectOne("adminFaqMapper.selectCount");
 	}
 
 	public List<FaqVo> selectFaqList(SqlSessionTemplate sst, FaqVo vo, PageVo pv) {
@@ -29,12 +21,11 @@ public class FaqDao {
 		int limit = pv.getBoardLimit();
 		RowBounds rb = new RowBounds(offset, limit);
 		
-		return sst.selectList("faqMapper.faqList",vo,rb);
+		return sst.selectList("adminFaqMapper.faqList",vo,rb);
 	}
 
 	public FaqVo selectOne(SqlSessionTemplate sst, FaqVo vo) {
-		
-		return sst.selectOne("faqMapper.selectOne",vo);
+		return sst.selectOne("adminFaqMapper.selectOne",vo);
 	}
 
 }

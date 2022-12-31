@@ -6,43 +6,32 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.learntime.app.faq.dao.FaqDao;
+import com.learntime.app.faq.dao.AdminFaqDao;
 import com.learntime.app.faq.vo.FaqVo;
 import com.learntime.app.question.vo.PageVo;
 
 @Service
-public class FaqServiceImpl implements FaqService {
+public class AdminFaqServiceImpl implements AdminFaqService{
 	
 	@Autowired
-	private FaqDao dao;
+	private AdminFaqDao adao;
 	
 	@Autowired
 	private SqlSessionTemplate sst;
 
 	@Override
-	public int faqWrite(FaqVo vo) {
-
-		return dao.faqWrite(sst,vo);
-	}
-
-	@Override
 	public int selectCount() {
-
-		return dao.selectCount(sst);
+		return adao.selectCount(sst);
 	}
 
 	@Override
 	public List<FaqVo> selectFaqList(FaqVo vo, PageVo pv) {
-
-		return dao.selectFaqList(sst,vo,pv);
+		return adao.selectFaqList(sst,vo,pv);
 	}
 
 	@Override
 	public FaqVo selectOne(FaqVo vo) {
-		
-		
-		return dao.selectOne(sst,vo);
+		return adao.selectOne(sst,vo);
 	}
-	
 
 }

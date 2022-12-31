@@ -8,9 +8,7 @@ import com.learntime.app.faq.vo.FaqVo;
 import com.learntime.app.question.vo.PageVo;
 
 @Service
-public interface FaqService {
-
-	public int faqWrite(FaqVo vo);
+public interface AdminFaqService {
 
 	public int selectCount();
 
