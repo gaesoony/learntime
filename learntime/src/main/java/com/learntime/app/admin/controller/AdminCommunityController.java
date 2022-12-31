@@ -94,22 +94,14 @@ public class AdminCommunityController {
 		return "/admin/community/adminCommunityModify";
 	}
 	
-	//글수정
+	//글 수정
 	@PostMapping("/modify")
 	public String adminCommunityModify(BoardVo bv) {
-		System.out.println("여기왓냐?");
-		System.out.println(bv);
 		int result = bs.modify(bv);
-		
 		if(result != 1) {
-			System.out.println("에러");
 			return "common/errorPage";
 		}
-		
-		return "admin/community/list";
-		
+		return "redirect:/admin/community/detail?bno="+bv.getNo();
 	}
-	
-	
 
 }
