@@ -1,4 +1,4 @@
-package com.learntime.app.mertoring;
+package com.learntime.app.mertoring.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MentorController {
 
+	
 	@GetMapping("/review/list")
 	public String mentorReview() {
 		return "/mentoring/mentorReview";
