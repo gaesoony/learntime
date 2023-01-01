@@ -24,6 +24,8 @@ public class MemberVo {
 	private String adminYn;
 	private String emailAuth;
 	private String imgName;
+	private String gradeName;
+	private String gradeImgPath;
 	
 	
 	public boolean isEmpty() {

@@ -60,6 +60,11 @@ public interface MemberDao {
 	public int followCheck(SqlSessionTemplate sst, FollowVo follow);
 	
 	
+	//-------------어드민-----------------------
+	//멤버 리스트 
+	public List<MemberVo> memberList(SqlSessionTemplate sst);
+	
+	
 	
 
 }

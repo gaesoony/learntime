@@ -56,4 +56,8 @@ public interface MemberService {
 	public int followCheck(FollowVo follow);
 	
 	
+	//----관리자 멤버 리스트
+	public List<MemberVo> memberList();
+	
+	
 }

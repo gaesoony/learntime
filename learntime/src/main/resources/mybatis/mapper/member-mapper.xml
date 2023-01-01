@@ -7,10 +7,12 @@
 	<!--로그인  -->
 	<select id="login" resultType = "MemberVo">
 		<if test="id != null and !('').equals(id) or pwd != null and !('').equals(pwd)">
-		      SELECT *
-			  FROM MEMBER
-			  WHERE ID = #{id}
-			  AND EMAIL_AUTH='1'
+			SELECT M.NO,M.ID,M.PWD,M.PHONE,M.NICK,M.ENROLL_DATE,M.QUIT_YN,M.MODIFY_DATE,M.IMG_PATH,M.INTRO,M.ACCUM_TOKEN
+			,M.HOLD_TOKEN,M.TECH_STACK_NO,M.ADMIN_YN,M.EMAIL_AUTH,G.NAME AS GRADE_NAME,G.IMG_PATH AS GRADE_IMG_PATH
+			FROM MEMBER M
+			JOIN MEMBER_GRADE G ON M.ACCUM_TOKEN=G.ACCUM_TOKEN
+			WHERE M.ID = #{id}
+			AND M.EMAIL_AUTH='1'
 		</if>
 
 	</select>
@@ -112,24 +114,15 @@
 	
 	<!--회원 조회(회원 번호로)  -->
 	<select id="selectNo" resultType = "MemberVo">
-		 SELECT NO
-				,ID
-				,PWD
-				,PHONE
-				,NICK
-				,ENROLL_DATE
-				,QUIT_YN
-				,MODIFY_DATE
-				,IMG_PATH AS IMG_NAME
-				,INTRO
-				,ACCUM_TOKEN
-				,HOLD_TOKEN
-				,TECH_STACK_NO
-				,ADMIN_YN
-				,EMAIL_AUTH
-		  FROM MEMBER
-		  WHERE NO = #{no}
-		  AND EMAIL_AUTH='1'
+	
+	SELECT M.NO,M.ID,M.PWD,M.PHONE,M.NICK,M.ENROLL_DATE,M.QUIT_YN,M.MODIFY_DATE,M.IMG_PATH,M.INTRO,M.ACCUM_TOKEN
+			,M.HOLD_TOKEN,M.TECH_STACK_NO,M.ADMIN_YN,M.EMAIL_AUTH,G.NAME AS GRADE_NAME,G.IMG_PATH AS GRADE_IMG_PATH
+			FROM MEMBER M
+			JOIN MEMBER_GRADE G ON M.ACCUM_TOKEN=G.ACCUM_TOKEN
+	WHERE M.NO = #{no}
+	AND M.EMAIL_AUTH='1'
+
+		
 	
 	</select>
 	

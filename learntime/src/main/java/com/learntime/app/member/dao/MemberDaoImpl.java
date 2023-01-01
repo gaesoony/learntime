@@ -133,6 +133,14 @@ public class MemberDaoImpl implements MemberDao {
 		return sst.selectOne("memberMapper.followCheck",follow);
 	}
 	
+	//----------어드민--------------------
+	//멤버리스트
+	@Override
+	public List<MemberVo> memberList(SqlSessionTemplate sst) {
+	
+		return sst.selectList("memberMapper.memberList");
+	}
+	
 	
 	
 	
