@@ -170,3 +170,10 @@ border-bottom: 3px solid #58c079;
 color: #000000;
 font-weight: 550;
 }
+
+#intro-alert{
+    color: #58c079;
+    font-size: 14px;
+    margin-left: 10px;
+
+}

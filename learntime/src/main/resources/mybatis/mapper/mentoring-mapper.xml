@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mentorMapper">
+
+	<!-- 멘토 등록 -->
+	<insert id="registerMentor">
+		INSERT INTO MENTOR 
+		(NO, WRITER, CATE_NO, EMAIL, NAME, PHONE_NO, LINK, INTRO, ENROLL_DATE, MODIFY_DATE)
+		VALUES 
+		(
+		SEQ_MENTOR_NO.NEXTVAL
+		, #{writer}
+		, #{cateNo}
+		, #{email}
+		, #{name}
+		, #{phoneNo}
+		, #{link}
+		, #{intro}
+		, SYSDATE
+		, SYSDATE
+		)
+	</insert>
+	
+	<!-- 멘토링 등록 -->
+	<insert id="registerMentoring">
+	
+	</insert>
+
+
+
+
+</mapper>
