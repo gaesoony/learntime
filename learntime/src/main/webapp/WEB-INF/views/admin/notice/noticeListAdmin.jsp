@@ -119,7 +119,6 @@
     width: 100px;
     height: 50px;
     border: 2px solid lightgray;
-    border-radius: 1rem;
     color: #5ECC80;
     background-color: white;
     text-align: center;
@@ -133,7 +132,6 @@
     width: 100px;
     height: 50px;
     border: 2px solid lightgray;
-    border-radius: 1rem;
     color: #5ECC80;
     background-color: white;
     text-align: center;
@@ -146,7 +144,6 @@
 .delete-notice-Btn{
     width: 100px;
     height: 50px;
-    border-radius: 1rem;
     background-color: #5ECC80;
     color: white;
     text-align: center;
@@ -251,14 +248,14 @@
     line-height: 45px;
 }
 .cate-notice{
-    width: 100px;
+    width: 120px;
     height: 100%;
     line-height: 45px;
     font-weight: 600;
     font-size: x-large;
 }
 .posted-notice{
-    width: 1050px;
+    width: 900px;
     height: 100%;
     line-height: 45px;
     font-weight: 600;
@@ -332,7 +329,7 @@
                                 <div class="written-notice">
                                     <div class="checkBoxBtn-notice"><input type="checkbox"  id="checkBoxBtn"></div>
                                     <div class="cate-notice" name="name">${list.cateName}</div>
-                                    <div class="posted-notice" name="title">${list.title}</div>
+                                    <a href = "app/admin/notice/noticeDetailAdmin?no=${list.no}"><div class="posted-notice" name="title">${list.title}</div></a>
                                     <div class="views-etc">
                                         <div class="views" name="hit"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">${list.hit }</div>
                                         <div class="replies" name="cmt"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">${list.cmt}</div>

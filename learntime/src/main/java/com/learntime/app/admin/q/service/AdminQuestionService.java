@@ -15,4 +15,6 @@ public interface AdminQuestionService {
 
 	public QuestionVo selectOne(QuestionVo vo);
 
+	public int delete(QuestionVo vo);
+
 }

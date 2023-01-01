@@ -14,8 +14,8 @@
       
  	  SELECT F.NO,F.CATE_NO, C.NAME as CATE_NAME,F.TITLE,F.ENROLL_DATE, M.NICK AS WRITER FROM FAQ F 
       JOIN COMMON_CATEGORY C ON F.CATE_NO= C.NO JOIN MEMBER M ON M.NO = F.WRITER
-      WHERE CATE_NO = #{cateNo} <if test="keyword !=null and keyword != ''">
-		and  ${category} LIKE '%${keyword}%' 
+      WHERE CATE_NO = #{cateNo} AND DELETE_YN = 'N' <if test="keyword !=null and keyword != ''">
+		AND  ${category} LIKE '%${keyword}%' 
 	  </if>
       
       ORDER BY F.ENROLL_DATE DESC 

@@ -161,7 +161,9 @@
 .page-qList-ad{
     width: 100%;
     height: 200px;
-    border: 1px solid red;
+    display:flex;
+    justify-content:center;
+   
 
 }
 
@@ -190,6 +192,7 @@
     height: 50px;
     border: 2px solid lightgray;
     margin-right: 5px;
+    background-color:transparent;
     
 }
 .search-box-ad{
@@ -213,13 +216,14 @@
     border: 2px solid lightgray;
     margin-right: 5px;
     
+    
 
 }
 #erase{
     
     width: 100px;
     height: 50px;
-    
+    border:none;
     font-size: larger;
     font-weight: 600;
     background-color: white;
@@ -236,7 +240,8 @@
     color: white;
 
 }
-select{
+.categories{
+	background-color:transparent;
     border: none;
     width: 100px;
     height: 50px;
@@ -244,6 +249,13 @@ select{
     font-weight: 600;
     text-align: center;
 
+}
+.search-box{
+	background-color:transparent;
+	border:none;
+	outLine:none;
+	height:40px;
+	font-size:medium;
 }
 /* 글 카테고리 */
 .list-faq-ad{
@@ -317,7 +329,68 @@ select{
     font-weight: 800;
     color: gray;
 }
+/*페이징  */
 
+.page-question{
+	margin:0 auto;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	
+}
+	#page-nation{
+        list-style: none;
+        display: inline-block;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    #page-nation li{
+        display: inline;
+        text-align: center;
+        margin:0 10px;
+      
+    }
+/* 페이지 버튼~ */
+    #page-nation li a{
+        text-decoration: none;
+        color: #999999;
+        font-size: 15px;
+        font-family: var(--sans);
+        
+
+    }
+
+    #page-nation .first:hover,  #page-nation .last:hover,  #page-nation .right:hover,  #page-nation .left:hover{
+        color:#5ECC80;
+    }
+
+
+    #page-nation a:active{
+        cursor: default;
+        color: white;
+    }
+
+    #page-nation .num{
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        border-radius: 100%;
+        line-height: 30px;
+         text-align: center;
+    }
+
+    #page-nation .num:hover{
+        background-color: #5ECC80;
+        color: white;
+       
+    }
+
+    #page-nation .num:active{
+        background-color: #5ECC80;
+        cursor: pointer;
+    }
 
 
 </style>
@@ -340,7 +413,7 @@ select{
 	            </div>
 	            <div class="search-delete-section">
 	                <div class="cate-search-ad">
-	                    <select name="category" >
+	                    <select name="category" class="categories">
 	                        <option value="title">제목</option>
 	                        <option value="content">내용</option>
 	                    </select>
@@ -372,7 +445,7 @@ select{
 	                            </div>
 	                            <div class="no-faq-ad" name="no">${list.no}</div>
 	                            <div class="category-faq-ad" name="name">${list.cateName}</div>
-	                            <div class="title-faq-ad" name="title">${list.title}</div>
+	                            <a href = "app/admin/faq/faqDetailListAdmin?no=${list.no}"><div class="title-faq-ad" name="title">${list.title}</div></a>
 	                            <div class="nickname-faq-ad" name="writer">${list.writer}</div>
 	                            <div class="enrollDate-faq-ad" name="enrollDate">${list.enrollDate}</div>
 	                            <div class="deleteBtn-faq-ad"><input type="button" value="삭제" id="delete-ad"></div>

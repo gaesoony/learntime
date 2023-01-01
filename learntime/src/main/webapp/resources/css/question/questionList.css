@@ -235,7 +235,7 @@ select{
     }
 
     #page-nation .first:hover,  #page-nation .last:hover,  #page-nation .right:hover,  #page-nation .left:hover{
-        color:var(--semi-green)
+        color:#5ECC80;
     }
 
 
@@ -255,13 +255,13 @@ select{
     }
 
     #page-nation .num:hover{
-        background-color: var(--semi-green);
+        background-color: #5ECC80;
         color: white;
        
     }
 
     #page-nation .num:active{
-        background-color: var(--semi-green);
+        background-color: #5ECC80;
         cursor: pointer;
     }
 

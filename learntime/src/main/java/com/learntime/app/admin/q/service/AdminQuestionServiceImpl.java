@@ -38,4 +38,10 @@ public class AdminQuestionServiceImpl implements AdminQuestionService {
 		return adao.selectOne(sst,vo);
 	}
 
+	@Override
+	public int delete(QuestionVo vo) {
+		return adao.delete(sst,vo);
+		
+	}
+
 }

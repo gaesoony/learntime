@@ -44,13 +44,33 @@ public class AdminQuestionController {
 		m.addAttribute("pv",pv);
 		m.addAttribute("list",list);
 		m.addAttribute("p",pv.getP());
+
 		
 		return "admin/question/qListAd";
 	}
-	
+	//게시물 선택삭제
 	@PostMapping("qListAd")
-	public String qListAd() {
-		return "admin/question/qListAd";
+	public String qListAd(HttpServletRequest req,QuestionVo vo) {
+
+		String[] ajaxMsg = req.getParameterValues("valueArr");
+		int size= ajaxMsg.length;
+		int[] newArr = new int[size];
+		int no = 0;
+		int result = 0;
+		for(int i = 0; i<size; i++) {
+			newArr[i] = Integer.parseInt(ajaxMsg[i]);
+			no = i;
+			vo.setNo(no);
+		    result = aqs.delete(vo);
+		}
+		if(result == 1) {
+			return "redirect:admin/question/qListAd";
+			
+		}else {
+			return "common/errorPage";
+		}
+		
+		
 	}
 
 	//신규문의 상세조회(운영자)

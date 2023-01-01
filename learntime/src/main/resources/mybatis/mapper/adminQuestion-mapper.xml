@@ -9,6 +9,7 @@
   <select id="adminQuestionList" resultType="com.learntime.app.question.vo.QuestionVo">
   	SELECT Q.NO,Q.CATE_NO,C.NAME as CATE_NAME,Q.TITLE,Q.ENROLL_DATE ,M.NICK AS WRITER FROM QUESTION_BOARD Q 
       JOIN COMMON_CATEGORY C ON Q.CATE_NO= C.NO JOIN MEMBER M ON M.NO = Q.WRITER
+      	WHERE DELETE_YN = 'N'
 	  ORDER BY Q.ENROLL_DATE DESC 
   </select>
   <select id="selectCount" resultType="int">
@@ -21,6 +22,9 @@
     JOIN COMMON_CATEGORY C ON Q.CATE_NO= C.NO JOIN MEMBER M ON M.NO = Q.WRITER WHERE
     Q.NO = #{no}
   </select>
+  <update id="deleteList">
+  	UPDATE QUESTION_BOARD SET DELETE_YN = 'Y' WHERE NO = ${no};
+  </update>
   
  
   
