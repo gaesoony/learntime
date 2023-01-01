@@ -105,8 +105,8 @@ pageEncoding="UTF-8"%>
                     <input type="radio" name="mentoring-category" id="mentoring-category3">
                     <label for="mentoring-category3">나의 멘토링 관리</label>
                 </div>
-        
-                <form action="">
+
+                <form action="/app/mentor/mymentoring/temp2" method="post" onsubmit="return false;">
                 <div id="basic-info-box">
                     <div id="basic-info-title" class="title">
                         <span>멘토 정보</span>
@@ -118,48 +118,137 @@ pageEncoding="UTF-8"%>
                             <span>이름(실명)</span>
                             <span class="sub-title-plus">*</span>
                         </div>
-                        <input type="text" id="" placeholder="실명을 입력해주세요">
+                        <input type="text" id="name-input" name="name" placeholder="실명을 입력해주세요">
         
                         <div id="email-title" class="sub-title">
                             <span>연락받을 이메일</span>
                             <span class="sub-title-plus">*</span>
                         </div>
-                        <input type="text" id="email-input" placeholder="멘토링에 사용하실 이메일을 입력해주세요">
+                        <input type="text" id="email-input" name="email" placeholder="멘토링에 사용하실 이메일을 입력해주세요">
                         
         
                         <div id="phone-title" class="sub-title">
                             <span>연락처</span>
                             <span class="sub-title-plus">*</span>
                         </div>
-                        <input type="text" id="phone-input" placeholder="01000000000">
+                        <input type="text" id="phone-input" name="phoneNo" placeholder="01000000000">
         
-                        <div id="category-title" class="sub-title">
+                        <div id="category-title" class="sub-title" >
                             <span>희망분야</span>
                             <span class="sub-title-plus">*</span>
                         </div>
-                        <select name="" id="">
-                            <option value="">멘토링과 연관된 분야를 선택해주세요</option>
+                        <select name="job" id="field-input" required>
+                            <option value="" disabled selected>멘토링과 연관된 분야를 선택해주세요</option>
+                            <option value="1">분야1</option>
+                            <option value="2">분야2</option>
+                            <option value="3">분야3</option>
                         </select>
         
                         <div id="link-title" class="sub-title">
                             <span>링크</span>
                         </div>
-                        <input type="text" id="" placeholder="멘토님을 표현할 수 있는 깃허브 주소나 블로그 주소를 입력해주세요">
+                        <input type="text" name="link" id="" placeholder="멘토님을 표현할 수 있는 깃허브 주소나 블로그 주소를 입력해주세요">
         
                         <div id="intro-title" class="sub-title">
                             <span>나의 소개글</span>
                             <span class="sub-title-plus">*</span>
                         </div>
-                        <textarea id="intro-input" name="" id="" cols="30" rows="10" placeholder="멘토님을 상세하게 소개해주세요"></textarea>
+                        <textarea id="intro-input" name="intro" id="" cols="30" rows="10" placeholder="멘토님을 상세하게 소개해주세요"></textarea>
                     </div>
                 </div>
         
                 <div id="btn-box">
                     <div id="cancel-btn">취소하기</div>
+                    <input type="hidden" name="writer" value="${loginMember.no}">
+                    <!-- 자동 submit 방지 input-->
                     <input type="submit" value="저장하기">
                 </div>
                 </form>
               </div>
+
+              <script>
+
+                var check1 = false;
+                var check2 = false;
+                var check3 = false;
+                var check4 = false;
+                var check5 = false;
+
+
+                // 이름 입력
+                $("#name-input").blur(function(){
+                  var name = $("#name-input").val();
+                  var regExp = /^[가-힣]{2,4}$/;
+                  if(!regExp.test(name)){
+                    $("#name-input").css("border", "1px solid red");
+                  }else{
+                    $("#name-input").css("border", "1px solid #58c079");
+                    check1 = true;
+                  }
+                });
+
+                // 이메일 입력
+                $("#email-input").blur(function(){
+                  var email = $("#email-input").val();
+                  var regExp = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/;
+                  if(!regExp.test(email)){
+                    $("#email-input").css("border", "1px solid red");
+                  }else{
+                    $("#email-input").css("border", "1px solid #58c079");
+                    check2 = true;
+                  }
+                });
+
+                // 폰번호 입력
+                $("#phone-input").blur(function(){
+                  var phone = $("#phone-input").val();
+                  var regExp = /^[0-9]{11}$/;
+                  if(!regExp.test(phone)){
+                    $("#phone-input").css("border", "1px solid red");
+                  }else{
+                    $("#phone-input").css("border", "1px solid #58c079");
+                    check3 = true;
+                  }
+                });
+
+                // 분야 선택
+                $("#field-input").change(function(){
+                  var field = $("#field-input").val();
+                  if(field == ""){
+                    $("#field-input").css("border", "1px solid red");
+                  }else{
+                    $("#field-input").css("border", "1px solid #58c079");
+                    check4 = true;
+                  }
+                });
+
+                // 소개글 입력
+                $("#intro-input").blur(function(){
+                  var intro = $("#intro-input").val();
+                  if(intro == ""){
+                    $("#intro-input").css("border", "1px solid red");
+                  }else{
+                    $("#intro-input").css("border", "1px solid #58c079");
+                    check5 = true;
+                  }
+                });
+                
+                // 조건 확인 후 submit true
+
+                $("input[type=\"submit\"]").click(function(){
+                  if(check1 && check2 && check3 && check4 && check5){
+                    //#form에 있는 submit을 실행
+                    $('form').attr('onsubmit', 'return true');
+                    $("form").submit();
+                  }else{
+                    alert("입력 조건을 확인해주세요");
+                    return false;
+                  }
+                });
+
+              </script>
+
+
             </div>
         </div>
     </div>
@@ -168,11 +257,6 @@ pageEncoding="UTF-8"%>
 
 
     <script>
-      // const mentoringCategory2 = document.querySelector('#mentoring-category2');
-      // mentoringCategory2.addEventListener('click', () => {
-      //     location.href = '/app/mentor/mymentoring/temp2';
-      // });
-
       const mentoringCategory3 = document.querySelector('#mentoring-category3');
       mentoringCategory3.addEventListener('click', () => {
           location.href = '/app/mentor/mymentoring/temp3';
@@ -182,7 +266,6 @@ pageEncoding="UTF-8"%>
       mentoringCategory1.addEventListener('click', () => {
           location.href = '/app/mentor/mymentoring/temp';
       });
-
     </script>
     
 
