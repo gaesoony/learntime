@@ -17,10 +17,14 @@ public interface QnaService {
 	public int write(QnaVo vo);
 
 	//게시글 목록
-	public List<QnaVo> selectList(QnaVo vo);
+	List<Map<String, Object>> selectList(QnaVo vo);
 
 	//게시글 상세조회
 	public QnaVo detail(String no);
+
+	public List<Map<String, String>> selectTagList(String qno);
+
+	
 	
 	
 }

@@ -360,36 +360,38 @@
 
     
                             <!-- 본문 리스트 -->
-                            <c:forEach items="${qnaList}" var="qlist">
+                            <c:forEach items="${qnaList}" var="map">
                                 <a href="${path}/qna/detail?no=${qlist.no}">
                                     <div class="titlebox">
                                         <div class="titleb">
-                                            <div class="title" name="title">${qlist.title}</div>
+                                            <div class="title" name="title">${map.TITLE}</div>
                                             <div class="contentbox">
                                                 <div class="content" name="content">
-                                                    ${qlist.content}
+                                                    ${map.CONTENT}
                                                 </div>
             
                                                 <!-- 동그라미 답변 갯수 -->
                                                 <div class="circle">
-                                                    <div class="replytitle">0</div>
+                                                    <div class="replytitle">${map.REPLY_CNT}</div>
                                                     <div class="replycontent">답변</div>
                                                 </div>
             
                                                 <!-- 본문 속 해시태그 -->
                                                 <div class="hashtagbox">
                                                     <ul class="hashtag">
-                                                        <li class="hash" name="tag"><i class="fa-light fa-hashtag"></i>${qlist.tag}</li>
+                                                        <c:forEach items="${qnaList.tagList}" var="map">
+                                                        <li class="hash" name="tag"><i class="fa-light fa-hashtag"></i>${map.NAME}</li>
+                                                        </c:forEach>
                                                     </ul>
                                                 </div>
                                                 <div class="etcbox">
                                                     <ul class="etc">
                                                         <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                                                        <li name="writer">${qlist.writer}</li>
-                                                        <li><i class="fa-regular fa-eye"></i>&nbsp ${qlist.hit}</li>
-                                                        <li><i class="fa-regular fa-comment"></i>&nbsp 13</li>
-                                                        <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i>&nbsp 26</li>
-                                                        <li>${qlist.enrollDate}</li>
+                                                        <li name="writer">${map.WRITER}</li>
+                                                        <li><i class="fa-regular fa-eye"></i>&nbsp ${map.HIT}</li>
+                                                        <li><i class="fa-regular fa-comment"></i>&nbsp ${map.REPLY_CNT}</li>
+                                                        <li class="thumbsup"><i class="fa-solid fa-thumbs-up"></i>&nbsp ${map.LIKES}</li>
+                                                        <li>${map.ENROLL_DATE}</li>
                                                     </ul>
                                                 </div>
                                                 <div class="line3"></div>

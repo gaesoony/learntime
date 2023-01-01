@@ -38,8 +38,17 @@ public class QnaDaoImpl implements QnaDao {
 
 	//게시글 목록
 	@Override
-	public List<QnaVo> selectList(SqlSessionTemplate sst, QnaVo vo) {
-		return sst.selectList("qnaMapper.selectList", vo);
+	public List<Map<String, Object>> selectList(SqlSessionTemplate sst, QnaVo vo) {
+		
+		List list = sst.selectList("qnaMapper.selectList", vo);
+		return list;
+	}
+	
+	//게시글 목록 -> 해시태그
+	@Override
+	public List<Map<String, Object>> selectTagList(SqlSessionTemplate sst, String qno) {
+//		List list = sst.selectList("qnaMapper.selectTagList", qno);
+		return list;
 	}
 
 	//게시글 상세조회
@@ -47,5 +56,7 @@ public class QnaDaoImpl implements QnaDao {
 	public QnaVo detail(SqlSessionTemplate sst, String no) {
 		return sst.selectOne("qnaMapper.detail", no);
 	}
+
+	
 
 }

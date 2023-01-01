@@ -53,9 +53,12 @@ public class QnaServiceImpl implements QnaService {
 
 	//게시글 목록 
 	@Override
-	public List<QnaVo> selectList(QnaVo vo) {
+	public List<Map<String, Object>> selectList(QnaVo vo, String qno) {
 		
-		List<QnaVo> qnaList = dao.selectList(sst, vo);
+		List<Map<String, Object>> qnaList = dao.selectList(sst, vo);
+		
+//		List<Map<String, String>> tagList = dao.selectTagList(sst, qno);
+//		qnaList.put("tagList", tagList);
 		
 		return qnaList;
 	}
@@ -65,6 +68,7 @@ public class QnaServiceImpl implements QnaService {
 	public QnaVo detail(String no) {
 		return dao.detail(sst, no);
 	}
+
 	
 	
 }
