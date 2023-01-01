@@ -251,6 +251,21 @@ public class StudyDaoImpl implements StudyDao{
 		return sst.insert("studyMapper.deleteScrap", sv);
 	}
 
+	@Override
+	public int like(SqlSessionTemplate sst, SearchVo sv) {
+		return sst.insert("studyMapper.like", sv);
+	}
+
+	@Override
+	public int hate(SqlSessionTemplate sst, SearchVo sv) {
+		return sst.insert("studyMapper.hate", sv);
+	}
+
+	@Override
+	public int deleteLikeHate(SqlSessionTemplate sst, SearchVo sv) {
+		return sst.insert("studyMapper.deleteLikeHate", sv);
+	}
+
 
 
 }

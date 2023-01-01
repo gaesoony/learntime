@@ -142,6 +142,7 @@ public class StudyController {
 			model.addAttribute("likeScrap", likeScrap);
 		}
 
+		System.out.println(likeScrap);
 		model.addAttribute("searchVo", vo);
 		model.addAttribute("groupOne", groupOne);
 		model.addAttribute("loginMember", loginMember);
@@ -300,7 +301,43 @@ public class StudyController {
 		}
 	}
 	
-	//싫어요 또는 싫어요 취소
+	//좋아요하기
+	@GetMapping("/detail/like")
+	public String like(SearchVo sv) {
+		
+		int result = service.like(sv);
+		
+		if(result == 1) {
+			return "redirect:/study/detail?gno="+sv.getGno()+"&keyword="+sv.getKeyword()+"&tag="+ sv.getTagList() +"&techType="+sv.getTechType()+"&techStack="+sv.getTechStackList()+"&type="+sv.getType()+"&order="+sv.getOrder()+"&status="+sv.getStatus();
+		}else {
+			return "common/errorPage";
+		}
+	}
 	
-	//좋아요 또는 좋아요 취소
+	//싫어요하기
+	@GetMapping("/detail/hate")
+	public String hate(SearchVo sv) {
+		
+		int result = service.hate(sv);
+		
+		if(result == 1) {
+			return "redirect:/study/detail?gno="+sv.getGno()+"&keyword="+sv.getKeyword()+"&tag="+ sv.getTagList() +"&techType="+sv.getTechType()+"&techStack="+sv.getTechStackList()+"&type="+sv.getType()+"&order="+sv.getOrder()+"&status="+sv.getStatus();
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+	
+	//좋아요 싫어요 삭제하기
+	@GetMapping("/detail/deleteLikeHate")
+	public String deleteLikeHate(SearchVo sv) {
+		
+		int result = service.deleteLikeHate(sv);
+		
+		if(result == 1) {
+			return "redirect:/study/detail?gno="+sv.getGno()+"&keyword="+sv.getKeyword()+"&tag="+ sv.getTagList() +"&techType="+sv.getTechType()+"&techStack="+sv.getTechStackList()+"&type="+sv.getType()+"&order="+sv.getOrder()+"&status="+sv.getStatus();
+		}else {
+			return "common/errorPage";
+		}
+	}
 }

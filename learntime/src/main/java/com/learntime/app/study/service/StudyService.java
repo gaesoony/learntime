@@ -90,6 +90,15 @@ public interface StudyService {
 
 	//스크랩취소하기
 	public int deleteScrap(SearchVo sv);
+
+	//좋아요하기
+	public int like(SearchVo sv);
+
+	//싫어요하기
+	public int hate(SearchVo sv);
+
+	//좋아요싫어요 삭제하기
+	public int deleteLikeHate(SearchVo sv);
 	
 	
 	//추후 추가 예정..

@@ -353,19 +353,35 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <div class="no-cursor">모집완료</div>
               </c:if>
             </c:if>
-            <div class="like-hate-btn">
-              <div><i class="fa-solid fa-chevron-down"></i></div>
-              <c:if test="${likeScarp.likeHateStatus == 'Y'}">
-                <div class="main-color">${groupOne.LIKE_CNT}</div>
-              </c:if>
-              <c:if test="${likeScarp.likeHateStatus == 'N'}">
-                <div class="red">${groupOne.LIKE_CNT}</div>
-              </c:if>
-              <c:if test="${likeScarp.likeHateStatus == null}">
+            <c:if test="${loginMember == null}">
+              <div class="like-hate-btn">
+                <div class="cursor" onclick="login();"><i class="fa-solid fa-chevron-down"></i></div>
                 <div>${groupOne.LIKE_CNT}</div>
-              </c:if>
-              <div><i class="fa-solid fa-chevron-up"></i></div>
-            </div>
+                <div class="cursor" onclick="login();"><i class="fa-solid fa-chevron-up"></i></div>
+              </div>
+            </c:if>
+            <c:if test="${loginMember != null && likeScrap.likeHateStatus == null}">
+              <div class="like-hate-btn">
+                <div class="cursor" onclick="location.href = '${path}/study/detail/hate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'"><i class="fa-solid fa-chevron-down"></i></div>
+                <div>${groupOne.LIKE_CNT}</div>
+                <div class="cursor" onclick="location.href = '${path}/study/detail/like?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'"><i class="fa-solid fa-chevron-up"></i></div>
+              </div>
+            </c:if>
+            <c:if test="${loginMember != null && likeScrap.likeHateStatus == 'L'}">
+              <div class="like-hate-btn">
+                <div class="cursor" ><i class="fa-solid fa-chevron-down"></i></div>
+                <div>${groupOne.LIKE_CNT}</div>
+                <div class="main-color cursor" onclick="location.href = '${path}/study/detail/deleteLikeHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'"><i class="fa-solid fa-chevron-up"></i></div>
+              </div>
+            </c:if>
+            <c:if test="${loginMember != null && likeScrap.likeHateStatus == 'H'}">
+              <div class="like-hate-btn">
+                <div class="red cursor" onclick="location.href = '${path}/study/detail/deleteLikeHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'"><i class="fa-solid fa-chevron-down"></i></div>
+                <div>${groupOne.LIKE_CNT}</div>
+                <div class="cursor"><i class="fa-solid fa-chevron-up"></i></div>
+              </div>
+            </c:if>
+            
             <c:if test="${loginMember == null}">
               <div class="cursor" onclick="login();">
                   <i class="fa-regular fa-bookmark"></i
