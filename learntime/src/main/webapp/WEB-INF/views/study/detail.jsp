@@ -25,8 +25,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       rel="stylesheet"
       href="/app/resources/css/summernote/summernote-lite.css"
     />
-    <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+    <script src="${path}/resources/js/summernote/summernote-lite.js"></script>
+    <script src="${path}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
   </head>
   <body>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -77,7 +77,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               <div>
                 <c:if test="${loginMember.no == groupOne.WRITER_NO}">
                   <a
-                    href="${pageContext.request.contextPath}/study/edit?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}"
+                    href="${path}/study/edit?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}"
                     class="edit-bnt"
                     >수정</a
                   >
@@ -101,7 +101,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   }).then((result) => {
                     if (result.isConfirmed) {
                       location.href =
-                        "${pageContext.request.contextPath}/study/delete?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}";
+                        "${path}/study/delete?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}";
                     }
                   });
                 }
@@ -366,16 +366,25 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               </c:if>
               <div><i class="fa-solid fa-chevron-up"></i></div>
             </div>
-            <div>
-              <c:if test="${likeScarp.scrap_yn != null}">
+            <c:if test="${loginMember == null}">
+              <div class="cursor" onclick="login();">
+                  <i class="fa-regular fa-bookmark"></i
+                  ><span>${groupOne.SCRAP_CNT}</span>
+              </div>    
+            </c:if>
+            <c:if test="${loginMember != null && likeScrap.scrap_yn == null}">
+              <div class="cursor" onclick="location.href = '${path}/study/detail/addScrap?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'">
+                <i class="fa-regular fa-bookmark "></i
+                  ><span>${groupOne.SCRAP_CNT}</span>
+              </div>    
+            </c:if>
+            <c:if test="${loginMember != null && likeScrap.scrap_yn != null}">
+              <div class="cursor" onclick="location.href = '${path}/study/detail/deleteScrap?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'">
                 <i class="fa-regular fa-bookmark main-color"></i
-                ><span class="main-color">${groupOne.SCRAP_CNT}</span>
-              </c:if>
-              <c:if test="${likeScarp.scrap_yn == null}">
-                <i class="fa-regular fa-bookmark"></i
-                ><span>${groupOne.SCRAP_CNT}</span>
-              </c:if>
-            </div>
+                  ><span class="main-color">${groupOne.SCRAP_CNT}</span>
+              </div>    
+            </c:if>
+            
           </div>
         </aside>
       </main>

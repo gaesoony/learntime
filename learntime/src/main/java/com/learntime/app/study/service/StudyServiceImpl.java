@@ -391,10 +391,11 @@ public class StudyServiceImpl implements StudyService{
 	//모임장 위임하기
 	@Override
 	public int delegate(String rno) {
-		int result1 = dao.delegate(sst, rno);
+		
+		int result1 = dao.leaveRep(sst);
 		int result2 = 0;
 		if(result1 == 1) {
-			result2 = dao.leaveRep(sst);
+			result2 = dao.delegate(sst, rno);
 		}
 		return result1 * result2;
 	}
@@ -408,6 +409,20 @@ public class StudyServiceImpl implements StudyService{
 	@Override
 	public int kick(String rno) {
 		int result = dao.kick(sst, rno);
+		return result;
+	}
+
+	//스크랩하기
+	@Override
+	public int addScrap(SearchVo sv) {
+		int result = dao.addScrap(sst, sv);
+		return result;
+	}
+
+	//스크랩 취소하기
+	@Override
+	public int deleteScrap(SearchVo sv) {
+		int result = dao.deleteScrap(sst, sv);
 		return result;
 	}
 

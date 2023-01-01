@@ -364,7 +364,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 
       function kick(x) {
         Swal.fire({
-          title: '정말 강퇴시키겠습니까? 재가입 가능 여부를 선택해주세요',
+          title: '정말 강퇴시키겠습니까?',
+          text: "재가입 가능 여부를 선택해주세요",
           showDenyButton: true,
           showCancelButton: true,
           confirmButtonText: '재가입가능',
@@ -373,10 +374,10 @@ uri="http://java.sun.com/jsp/jstl/core"%>
           /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
             location.href =
-              "${path}/mystudy/manage/member/delegate?rejoin=Y&gno="+${groupOne.NO}+"&rno="+x;
+              "${path}/mystudy/manage/member/kick?rejoin=Y&gno="+${groupOne.NO}+"&rno="+x;
           } else if (result.isDenied) {
             location.href =
-            "${path}/mystudy/manage/member/delegate?rejoin=N&gno="+${groupOne.NO}+"&rno="+x;
+            "${path}/mystudy/manage/member/kick?rejoin=N&gno="+${groupOne.NO}+"&rno="+x;
           }
         })
       }

@@ -8,6 +8,9 @@ public class SearchVo {
 	//그룹번호
 	private String gno;
 	
+	//사용자번호
+	private String mno;
+	
 	//검색어
 	private String keyword;
 	
