@@ -86,7 +86,7 @@
     
 }
 .listed-q{
-    width: 100%;
+    width: 1200px;
     height: 675px;
     border-top: 3px solid lightgray;;
     display: flex;
@@ -99,7 +99,7 @@
     height: 45px;
     border-bottom: 3px solid lightgray;
     display: grid;
-    grid-template-columns:1fr, 1fr, 3fr,10fr,1fr,3fr,3fr,2fr ;
+    grid-template-columns:1fr, 1fr, 10fr,4fr,4fr,2fr;
     justify-items: center;
 
     
@@ -124,32 +124,33 @@
 
 }
 .category-faq-ad{
-    width: 100px;
+    width: 150px;
     height: 45px;
     text-align: center;
     line-height: 45px;
     font-weight: 600;
 }
 .title-faq-ad{
-    width: 200px;
+    width: 550px;
     height: 45px;
     text-align: center;
     line-height: 45px;
     font-weight: 600;
+    display:flex;
 }
-.comment-faq-ad{
+/* .comment-faq-ad{
     width: 510px;
     height: 10px;
     font-weight: 600;
     margin-bottom: 5px;
-}
+} */
 .nickname-faq-ad{
-    width: 100px;
+    width: 200px;
     height: 100%;
     font-weight: 600;
 }
 .enrollDate-faq-ad{
-    width: 160px;
+    width: 400px;
     height: 100%;
     font-weight: 600;
     
@@ -167,9 +168,73 @@
 .page-qList-ad{
     width: 100%;
     height: 200px;
-    border: 1px solid red;
+   
 
 }
+
+/*페이징  */
+
+.page-question{
+	margin:0 auto;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	
+}
+	#page-nation{
+        list-style: none;
+        display: inline-block;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    #page-nation li{
+        display: inline;
+        text-align: center;
+        margin:0 10px;
+      
+    }
+/* 페이지 버튼~ */
+    #page-nation li a{
+        text-decoration: none;
+        color: #999999;
+        font-size: 15px;
+        font-family: var(--sans);
+        
+
+    }
+
+    #page-nation .first:hover,  #page-nation .last:hover,  #page-nation .right:hover,  #page-nation .left:hover{
+        color:#5ECC80;
+    }
+
+
+    #page-nation a:active{
+        cursor: default;
+        color: white;
+    }
+
+    #page-nation .num{
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        border-radius: 100%;
+        line-height: 30px;
+         text-align: center;
+    }
+
+    #page-nation .num:hover{
+        background-color: #5ECC80;
+        color: white;
+       
+    }
+
+    #page-nation .num:active{
+        background-color: #5ECC80;
+        cursor: pointer;
+    }
+
 </style>
 <body>
 	<%@include file="/WEB-INF/views/common/admin-side.jsp"%>
@@ -189,18 +254,18 @@
 	                </div>
 	            </div>
 	            <div class="deleteBtn">
-	                <input type="button" value="삭제" id="erase">
+	                <input type="button" value="삭제" id="erase" onclick="deleteValue();">
 	            </div>
 	            <div class="listed-q">
 	                <c:forEach var="list" items="${list}"  >
 	                    <div class="faqListAd">
 	                        <div class="gathering-divs-ad">
-	                            <div class="check-Btn"><input type="checkbox" id="checkBtn"></div>
+	                            <div class="check-Btn"><input type="checkbox" id="checkBtn" value="${list.no}"></div>
 	                            <div class="category-faq-ad" name="name">${list.cateName}</div>
-	                            <div class="title-faq-ad" name="title">${list.title}</div>
+	                            <a href="app/admin/question/qDetailListAdmin?no=${list.no}"><div class="title-faq-ad" name="title">${list.title}</div></a>
 	                            <div class="nickname-faq-ad" name="writer">${list.writer}</div>
 	                            <div class="enrollDate-faq-ad" name="enrollDate">${list.enrollDate}</div>
-	                            <div class="deleteBtn-faq-ad"><input type="button" value="삭제" id="delete-ad"></div>
+	                            <div class="deleteBtn-faq-ad"><input type="button" value="삭제" id="delete-ad" onclick="deleteValue();"></div>
 	                        </div>
 	                    </div>
 	                </c:forEach>
@@ -261,6 +326,39 @@
         
 		num.innerHTML = page;
 		page++;
+	}
+	
+	/*체크박스 삭제  */
+	 
+	function deleteValue(){
+		var url="qListAd";
+        var valueArr = new Array();
+        var list = $("checkBtn");
+        for(var i = 0; i <list.length; i++){
+            if(list[i].checked){
+                valueArr.push(list[i].value);
+            }
+        }
+
+        var chk = confirm("삭제하시겠습니까?");
+        $.ajax({
+            url: url,
+            type:'post',
+            traditional:true,
+            data:{
+                valueArr:valueArr
+            },
+            success:function(jdata){
+                if(jdata = 1){
+                    alert("삭제되었습니다.");
+
+                }else{
+                    alert("삭제되지 않았습니다.");
+                }
+            }
+        });
+    
+		
 	}
 	
 	</script>

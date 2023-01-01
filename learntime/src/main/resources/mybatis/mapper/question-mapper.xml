@@ -14,7 +14,7 @@
   <select id="questionList" resultType="com.learntime.app.question.vo.QuestionVo">
   	SELECT Q.NO,Q.CATE_NO,C.NAME as CATE_NAME,Q.TITLE,Q.ENROLL_DATE ,M.NICK AS WRITER FROM QUESTION_BOARD Q 
       JOIN COMMON_CATEGORY C ON Q.CATE_NO= C.NO JOIN MEMBER M ON M.NO = Q.WRITER
-      WHERE CATE_NO = ${cateNo}
+      WHERE CATE_NO = ${cateNo} AND DELETE_YN = 'N'
       <if test="keyword !=null and keyword != ''">
 		and  ${category} LIKE '%${keyword}%' 
 	  </if>

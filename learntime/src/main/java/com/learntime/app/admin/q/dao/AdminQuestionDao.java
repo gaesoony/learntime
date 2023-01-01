@@ -28,4 +28,10 @@ public class AdminQuestionDao {
 		return sst.selectOne("adminQuesionMapper.selectOne",vo);
 	}
 
+	public int delete(SqlSessionTemplate sst, QuestionVo vo) {
+		return sst.update("adminQuestionMapper.deleteList",vo);
+	}
+
+	
+
 }
