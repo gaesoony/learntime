@@ -233,12 +233,22 @@ public class StudyDaoImpl implements StudyDao{
 
 	@Override
 	public int quit(SqlSessionTemplate sst, String rno) {
-		return sst.insert("studyMapper.quit");
+		return sst.insert("studyMapper.quit", rno);
 	}
 
 	@Override
 	public int kick(SqlSessionTemplate sst, String rno) {
-		return sst.insert("studyMapper.kick");
+		return sst.insert("studyMapper.kick", rno);
+	}
+
+	@Override
+	public int addScrap(SqlSessionTemplate sst, SearchVo sv) {
+		return sst.insert("studyMapper.addScrap", sv);
+	}
+
+	@Override
+	public int deleteScrap(SqlSessionTemplate sst, SearchVo sv) {
+		return sst.insert("studyMapper.deleteScrap", sv);
 	}
 
 

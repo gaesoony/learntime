@@ -274,12 +274,31 @@ public class StudyController {
 //		
 //	}
 //	
-//	//스크랩 또는 스크랩취소 업데이트
-//	@GetMapping("/scrap")
-//	@ResponseBody
-//	public String scrap(String gno) {
-//		
-//	}
+	//스크랩하기
+	@GetMapping("/detail/addScrap")
+	public String addScrap(SearchVo sv) {
+		
+		int result = service.addScrap(sv);
+		
+		if(result == 1) {
+			return "redirect:/study/detail?gno="+sv.getGno()+"&keyword="+sv.getKeyword()+"&tag="+ sv.getTagList() +"&techType="+sv.getTechType()+"&techStack="+sv.getTechStackList()+"&type="+sv.getType()+"&order="+sv.getOrder()+"&status="+sv.getStatus();
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+	//스크랩 취소하기
+	@GetMapping("/detail/deleteScrap")
+	public String deleteScrap(SearchVo sv) {
+		
+		int result = service.deleteScrap(sv);
+		
+		if(result == 1) {
+			return "redirect:/study/detail?gno="+sv.getGno()+"&keyword="+sv.getKeyword()+"&tag="+ sv.getTagList() +"&techType="+sv.getTechType()+"&techStack="+sv.getTechStackList()+"&type="+sv.getType()+"&order="+sv.getOrder()+"&status="+sv.getStatus();
+		}else {
+			return "common/errorPage";
+		}
+	}
 	
 	//싫어요 또는 싫어요 취소
 	

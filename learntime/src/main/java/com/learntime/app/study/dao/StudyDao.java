@@ -122,6 +122,10 @@ public interface StudyDao {
 
 	public int kick(SqlSessionTemplate sst, String rno);
 
+	public int addScrap(SqlSessionTemplate sst, SearchVo sv);
+
+	public int deleteScrap(SqlSessionTemplate sst, SearchVo sv);
+
 
 
 }

@@ -84,6 +84,12 @@ public interface StudyService {
 
 	//강퇴하기
 	public int kick(String rno);
+
+	//스크랩하기
+	public int addScrap(SearchVo sv);
+
+	//스크랩취소하기
+	public int deleteScrap(SearchVo sv);
 	
 	
 	//추후 추가 예정..

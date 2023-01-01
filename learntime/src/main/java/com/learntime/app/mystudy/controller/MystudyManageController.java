@@ -208,7 +208,7 @@ public class MystudyManageController {
 		int result = service.delegate(rno);
 		
 		if(result == 1) {
-			return "redirect:/mystudy/manage/member?gno="+gno;
+			return "redirect:/mystudy/main?gno="+gno;
 			
 		}else {
 			return "common/errorPage";
