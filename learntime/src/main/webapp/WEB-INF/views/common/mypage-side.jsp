@@ -122,7 +122,7 @@ body{
 		    	</c:if>
          </div>
 
-            <div id="profile-nick">${userNo.nick}</div>
+            <div id="profile-nick">${userNo.nick}<img src="${pageContext.request.contextPath}${userNo.gradeImgPath}"></div>
             <div id="profile-follow">
                 <a id="followCnt" href="${pageContext.request.contextPath}/member/mypage/following?no=${userNo.no}">${followingCnt} 팔로우 중</a>
                 <span>|</span>

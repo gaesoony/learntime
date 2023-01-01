@@ -220,6 +220,14 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.followCheck(sst,follow);
 	}
 
+	//---------어드민------------
+	//멤버리스트
+	@Override
+	public List<MemberVo> memberList() {
+		
+		return memberDao.memberList(sst);
+	}
+
 	
 
 
