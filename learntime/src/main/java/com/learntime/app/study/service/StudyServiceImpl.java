@@ -471,6 +471,7 @@ public class StudyServiceImpl implements StudyService{
 			for(int j=0; j<groupCmtReplyList.size(); j++) {
 				String rcno = String.valueOf(groupCmtReplyList.get(j).get("NO"));
 				map.put("rcno", rcno);
+				
 				String replyLikeHateStatus = dao.selectCmtReplyLikeHate(sst, map);
 				groupCmtReplyList.get(j).put("replyLikeHateStatus", replyLikeHateStatus);
 			}

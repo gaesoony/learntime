@@ -462,7 +462,17 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 	            	<div class="cmt-top">
 	                	<div class="cmt-top-div cmt-profile-img"><img src="${path}/resources/upload/common/profile_default.png" alt=""></div>
 		                <div class="cmt-top-div cmt-info">
-		                  <div class="member-nick">${map.NICK}</div>
+                      <div class="flex">
+                        <c:if test="${map.STATUS == 'B'}">
+                          <div class="group-member">모임장</div>
+                        </c:if>
+                        <c:if test="${map.STATUS == 'C'}">
+                          <div class="group-member">멤버</div>
+                        </c:if>
+                     
+                        <div class="member-nick">${map.NICK}</div>
+
+                      </div>
 		                  <div>
 		                    <span class="enroll-date">${map.ENROLL_DATE}</span>
                         
@@ -524,10 +534,18 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 			                    <div class="cmt-reply-content">
 			                      <div class="cmt-reply-content-top">
 			                        <div class="flex">
-			                          <div class="group-member">모임장</div>
+                                <c:if test="${reply.STATUS == 'B'}">
+                                  <div class="group-member">모임장</div>
+                                </c:if>
+                                <c:if test="${reply.STATUS == 'C'}">
+                                  <div class="group-member">멤버</div>
+                                </c:if>
+			                          
 			                          <div class="cmt-reply-member-nick">${reply.NICK}</div>
+                                <c:if test="${loginMember != null && loginMember.no == reply.WRITER}">
 			                          <a href="" class="cmt-edit">수정</a>
 			                          <a href="" class="cmt-edit">삭제</a>
+                                </c:if>
 			                        </div>
 			                        <div class="cmt-reply-enroll-date">${reply.ENROLL_DATE}</div>
 			                      </div>
