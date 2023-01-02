@@ -169,6 +169,23 @@ public class BoardController {
 		
 		return "redirect:/community/board/detail?bno="+vo.getNo();
 	}
+	
+// 글삭제 서버
+	@PostMapping("board/delete")
+	public String boardDelete(BoardVo vo) {
+		
+		System.out.println(vo);
+		
+		int result = bs.delete(vo);
+		
+		System.out.println(result);
+		if(result != 1) {
+			return "";
+		}
+		
+		return "redirect:/community/board/list";
+		
+	}
 
 	
 // 마이페이지 임시
@@ -226,6 +243,47 @@ public class BoardController {
 		return jsonString;
 
 	}
+	
+	//댓글수정 서버
+	public String cmtUpdate(@RequestParam("content") String content, @RequestParam("boardNo") String boardNo,
+			@RequestParam("writer") String writer, @RequestParam("group") String group,  HttpServletResponse response) {
+		
+		
+		// 댓글 조회
+		List<CmtVo> cvList = bs.selectCmtList(boardNo);
+
+		Gson gson = new Gson();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		map.put("cvList", cvList);
+		String jsonString = gson.toJson(map);
+
+		return jsonString;
+		
+	}
+	
+	
+	
+	//댓글삭제 서버
+	public String cmtDelete(@RequestParam("content") String content, @RequestParam("boardNo") String boardNo,
+			@RequestParam("writer") String writer, @RequestParam("group") String group,  HttpServletResponse response) {
+		
+		
+		// 댓글 조회
+		List<CmtVo> cvList = bs.selectCmtList(boardNo);
+
+		Gson gson = new Gson();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		map.put("cvList", cvList);
+		String jsonString = gson.toJson(map);
+
+		return jsonString;
+	}
+	
+	
+	
+	
 
 	// 스크랩하기
 	@PostMapping(value = "/scrap")
