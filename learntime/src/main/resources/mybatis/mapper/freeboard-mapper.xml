@@ -26,6 +26,12 @@
 		, MODIFY_DATE = SYSDATE 
 		WHERE NO = #{no}
 	</update>
+		
+	<update id="delete">
+		UPDATE FREE_BOARD SET 
+		DELETE_YN = 'N'
+		WHERE NO = #{no}
+	</update>
 	
 	<select id="selectList" resultType = "BoardVo">
 		SELECT FB.*, FLH.*, (COALESCE(FLH.LIKES, 0) - COALESCE(FLH.HATES, 0)) AS LH_COUNT, M.*, FBC.*, COALESCE(CMT.count, 0) AS CMT_COUNT

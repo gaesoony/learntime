@@ -108,6 +108,12 @@ public class BoardDaoImpl implements BoardDao{
 	public int update(SqlSessionTemplate sst, BoardVo vo) {
 		return sst.update("freeBoardMapper.update", vo);
 	}
+
+	//커뮤니티 글 삭제
+	@Override
+	public int delete(SqlSessionTemplate sst, BoardVo vo) {
+		return sst.delete("freeBoardMapper.delete", vo);
+	}
 	
 }
 

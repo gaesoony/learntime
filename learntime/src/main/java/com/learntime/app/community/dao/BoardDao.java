@@ -56,5 +56,8 @@ public interface BoardDao {
 
 	//커뮤니티 글 수정
 	public int update(SqlSessionTemplate sst, BoardVo vo);
+
+	//커뮤니티 글 삭제
+	public int delete(SqlSessionTemplate sst, BoardVo vo);
 	
 }

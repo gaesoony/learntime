@@ -425,7 +425,6 @@ div#content{
     font-weight: 600;
 }
 
-/* 흠여기서부터.. */
 .lh-icon {
   font-variation-settings:
   'FILL' 0,
@@ -439,7 +438,7 @@ div#content{
     cursor: pointer;
 }
 
-/* 클래스으ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+/* 공통 클래스 */
 .red{
     color: #a72c2c;
 }

@@ -56,6 +56,9 @@ public interface BoardService {
 	//글 수정
 	public int modify(BoardVo vo);
 
+	//글 삭제
+	public int delete(BoardVo vo);
+
 
 	
 	

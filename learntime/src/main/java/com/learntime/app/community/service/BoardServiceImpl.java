@@ -121,6 +121,13 @@ public class BoardServiceImpl implements BoardService{
 	public int modify(BoardVo vo) {
 		return dao.update(sst, vo);
 	}
+
+	//글삭제
+	@Transactional
+	@Override
+	public int delete(BoardVo vo) {
+		return dao.delete(sst, vo);
+	}
 	
 	
 	
