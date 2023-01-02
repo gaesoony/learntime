@@ -347,13 +347,12 @@
 
 .cmt-div {
   background-color: #f8f9fa;
-  height: 100vh;
 }
 
 .cmt-input {
   margin-top: 50px;
   width: 800px;
-  height: 320px;
+  /* height: 320px; */
   border: 1px solid rgb(212, 212, 212);
   background-color: white;
   border-radius: 5px;
@@ -361,8 +360,12 @@
 }
 
 .cmt-input-top {
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   font-size: 17px;
+}
+
+.cmt-area {
+  margin-top: 20px;
 }
 
 .cmt-input-top img {
@@ -385,8 +388,7 @@
   width: 75px;
   background-color: #00c471;
   color: white;
-  font-size: 12px;
-  font-weight: 900;
+  font-size: 13px;
 }
 
 /* 가입신청 팝업창 */
@@ -497,4 +499,97 @@
 
 .edit-bnt {
   margin-right: 8px;
+}
+
+/* 댓글부분 */
+
+.cmt-list li {
+  margin-top: 30px;
+
+  border: 1px solid rgb(212, 212, 212);
+  background-color: white;
+  border-radius: 5px;
+}
+
+.cmt-top {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 21px 20px 8px 20px;
+}
+
+.cmt-profile-img img {
+  width: 40px;
+  height: 40px;
+}
+
+.cmt-profile-img {
+  margin-right: 20px;
+}
+
+.enroll-date {
+  font-size: 13px;
+  color: gray;
+  margin-right: 20px;
+}
+
+.member-nick {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cmt-edit {
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.like-hate-btn {
+  width: 100px;
+  height: 33px;
+  border-radius: 5px;
+  color: rgb(143, 143, 143);
+  border: 1px solid rgba(128, 128, 128, 0.174);
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgb(100 100 111 / 20%) 0px 1px 8px 0;
+}
+
+.cmt-top-div:first-child {
+  width: 7%;
+}
+
+.cmt-top-div:nth-child(2) {
+  width: 73%;
+}
+
+.cmt-top-div:last-child {
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cmt-content {
+  border-top: 1px solid var(--lightGray);
+  margin-bottom: 30px;
+  padding: 30px 36px;
+}
+
+.cmt-reply {
+  border-top: 1px solid var(--lightGray);
+  padding: 10px 20px;
+  background-color: #fcfcfc;
+}
+
+.cmt-reply-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+}
+
+.cmt-reply-top div:first-child {
+  font-weight: 600;
+  font-size: 16px;
 }

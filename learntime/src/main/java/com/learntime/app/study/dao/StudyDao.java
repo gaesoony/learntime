@@ -126,6 +126,12 @@ public interface StudyDao {
 
 	public int deleteScrap(SqlSessionTemplate sst, SearchVo sv);
 
+	public int like(SqlSessionTemplate sst, SearchVo sv);
+
+	public int hate(SqlSessionTemplate sst, SearchVo sv);
+
+	public int deleteLikeHate(SqlSessionTemplate sst, SearchVo sv);
+
 
 
 }

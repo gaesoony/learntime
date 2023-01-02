@@ -215,6 +215,7 @@ public class StudyServiceImpl implements StudyService{
 	@Override
 	public Map<String, Object> selectLikeScrap(Map map) {
 		String likeHateStatus = dao.selectLikeHateByMno(sst, map);
+		System.out.println("status:"+likeHateStatus);
 		String scrap_yn = dao.selectScrapYn(sst, map);
 		
 		Map result = new HashMap();
@@ -423,6 +424,27 @@ public class StudyServiceImpl implements StudyService{
 	@Override
 	public int deleteScrap(SearchVo sv) {
 		int result = dao.deleteScrap(sst, sv);
+		return result;
+	}
+
+	//좋아요하기
+	@Override
+	public int like(SearchVo sv) {
+		int result = dao.like(sst, sv);
+		return result;
+	}
+
+	//싫어요하기
+	@Override
+	public int hate(SearchVo sv) {
+		int result = dao.hate(sst, sv);
+		return result;
+	}
+
+	//좋아요싫어요 삭제하기
+	@Override
+	public int deleteLikeHate(SearchVo sv) {
+		int result = dao.deleteLikeHate(sst, sv);
 		return result;
 	}
 

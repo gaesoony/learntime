@@ -353,19 +353,35 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <div class="no-cursor">모집완료</div>
               </c:if>
             </c:if>
-            <div class="like-hate-btn">
-              <div><i class="fa-solid fa-chevron-down"></i></div>
-              <c:if test="${likeScarp.likeHateStatus == 'Y'}">
-                <div class="main-color">${groupOne.LIKE_CNT}</div>
-              </c:if>
-              <c:if test="${likeScarp.likeHateStatus == 'N'}">
-                <div class="red">${groupOne.LIKE_CNT}</div>
-              </c:if>
-              <c:if test="${likeScarp.likeHateStatus == null}">
+            <c:if test="${loginMember == null}">
+              <div class="like-hate-btn">
+                <div class="cursor" onclick="login();"><i class="fa-solid fa-chevron-down"></i></div>
                 <div>${groupOne.LIKE_CNT}</div>
-              </c:if>
-              <div><i class="fa-solid fa-chevron-up"></i></div>
-            </div>
+                <div class="cursor" onclick="login();"><i class="fa-solid fa-chevron-up"></i></div>
+              </div>
+            </c:if>
+            <c:if test="${loginMember != null && likeScrap.likeHateStatus == null}">
+              <div class="like-hate-btn">
+                <div class="cursor" onclick="location.href = '${path}/study/detail/hate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'"><i class="fa-solid fa-chevron-down"></i></div>
+                <div>${groupOne.LIKE_CNT}</div>
+                <div class="cursor" onclick="location.href = '${path}/study/detail/like?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'"><i class="fa-solid fa-chevron-up"></i></div>
+              </div>
+            </c:if>
+            <c:if test="${loginMember != null && likeScrap.likeHateStatus == 'L'}">
+              <div class="like-hate-btn">
+                <div class="cursor" ><i class="fa-solid fa-chevron-down"></i></div>
+                <div>${groupOne.LIKE_CNT}</div>
+                <div class="main-color cursor" onclick="location.href = '${path}/study/detail/deleteLikeHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'"><i class="fa-solid fa-chevron-up"></i></div>
+              </div>
+            </c:if>
+            <c:if test="${loginMember != null && likeScrap.likeHateStatus == 'H'}">
+              <div class="like-hate-btn">
+                <div class="red cursor" onclick="location.href = '${path}/study/detail/deleteLikeHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'"><i class="fa-solid fa-chevron-down"></i></div>
+                <div>${groupOne.LIKE_CNT}</div>
+                <div class="cursor"><i class="fa-solid fa-chevron-up"></i></div>
+              </div>
+            </c:if>
+            
             <c:if test="${loginMember == null}">
               <div class="cursor" onclick="login();">
                   <i class="fa-regular fa-bookmark"></i
@@ -402,22 +418,71 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <div class="bold700">로그인하고 댓글을 남겨보세요!</div>
               </c:if>
               <c:if test="${loginMember.nick != null}">
-                <img
-                  src="/app/resources/upload/common/${loginMember.imgPath}"
-                  alt=""
-                />
+                <c:if test="${loginMember.imgPath == null}">
+                  <img
+                    src="/app/resources/upload/common/profile_default.png"
+                    alt=""
+                  />
+                </c:if>
+                <c:if test="${loginMember.imgPath != null}">
+                  <img
+                    src="/app/resources/upload/common/${loginMember.imgPath}"
+                    alt=""
+                  />
+                </c:if>
                 <div class="bold700">
                   ${loginMember.nick}님, 댓글을 남겨보세요!
                 </div>
               </c:if>
             </div>
-            <div class="cmt-area">
-              <textarea name="editordata" id="summernote"></textarea>
-            </div>
-            <div class="cmt-btn-area relative">
-              <input type="button" value="답변 등록" />
-            </div>
+            <c:if test="${loginMember.nick != null}">
+              <div class="cmt-area">
+                <textarea name="editordata" class="summernote"></textarea>
+              </div>
+              <div class="cmt-btn-area relative">
+                <input type="button" value="답변 등록" onclick="submitCmt();"/>
+              </div>
+
+            </c:if>
           </div>
+          <ul class="cmt-list">
+            <li>
+              <div class="cmt-top">
+                <div class="cmt-top-div cmt-profile-img"><img src="${path}/resources/upload/common/profile_default.png" alt=""></div>
+                <div class="cmt-top-div cmt-info">
+                  <div class="member-nick">terry</div>
+                  <div>
+                    <span class="enroll-date">2022.11.29 11:11</span>
+                    <a href="" class="cmt-edit">수정</a>
+                    <a href="" class="cmt-edit">삭제</a>
+                  </div>
+                </div>
+                <div class="cmt-top-div">
+                  <div class="like-hate-btn">
+                    <div class="cursor" onclick="login();"><i class="fa-solid fa-chevron-down"></i></div>
+                    <div>-5</div>
+                    <div class="cursor" onclick="login();"><i class="fa-solid fa-chevron-up"></i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="cmt-content">
+                지참금 필요한가요?
+              </div>
+              <div class="cmt-reply"> 
+                <div class="cmt-reply-top">
+                  <div>댓글</div>
+                  <div>접기<i class="fa-solid fa-chevron-up"></i></div>
+                </div>
+                <div></div>
+                <div><textarea name="editordata" class="summernote"></textarea>  
+                  
+              </div>
+              <div class="cmt-btn-area relative">
+                <input type="button" value="답변 등록" onclick="submitCmt();"/>
+              </div>
+              </div>
+            </li>
+          </ul>
         </section>
 
         <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
@@ -426,7 +491,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <script>
           $(document).ready(function () {
             //여기 아래 부분
-            $("#summernote").summernote({
+            $(".summernote").summernote({
               height: 150, // 에디터 높이
               minHeight: null, // 최소 높이
               maxHeight: null, // 최대 높이
@@ -470,6 +535,14 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           map.relayout();
         }, 0);
       });
+
+      function checkLogin() {
+        console.log(${loginMember.nick});
+      }
+
+      function submitCmt() {
+
+      }
     </script>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>

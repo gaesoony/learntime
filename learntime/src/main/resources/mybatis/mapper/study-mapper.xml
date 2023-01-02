@@ -282,9 +282,9 @@
 		(SEQ_RECRUIT_LIST_NO.NEXTVAL, (SELECT NO FROM RECRUIT_GROUP ORDER BY NO DESC OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY), #{writer}, SYSDATE, 'B')
 	</insert>
 	
-	<select id="selectLikeHateByMno" resultType="map">
-		SELECT STATUS LH_STATUS 
-		FROM GROUP_LIKE_HATE L
+	<select id="selectLikeHateByMno" resultType="String">
+		SELECT STATUS 
+		FROM GROUP_LIKE_HATE
 		WHERE M_NO = #{mno}
 		AND G_NO = #{gno}
 	</select>
@@ -400,6 +400,18 @@
 	</insert>
 	<delete id="deleteScrap">
 		DELETE FROM GROUP_SCRAP
+		WHERE M_NO = #{mno} AND G_NO = #{gno}
+	</delete>
+	<insert id="like">
+		INSERT INTO GROUP_LIKE_HATE
+		VALUES (#{mno}, #{gno}, 'L')
+	</insert>
+	<insert id="hate">
+		INSERT INTO GROUP_LIKE_HATE
+		VALUES (#{mno}, #{gno}, 'H')
+	</insert>
+	<delete id="deleteLikeHate">
+		DELETE FROM GROUP_LIKE_HATE
 		WHERE M_NO = #{mno} AND G_NO = #{gno}
 	</delete>
 </mapper>
