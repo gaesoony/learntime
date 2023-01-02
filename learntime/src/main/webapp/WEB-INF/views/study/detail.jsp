@@ -25,8 +25,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       rel="stylesheet"
       href="/app/resources/css/summernote/summernote-lite.css"
     />
-    <script src="${path}/resources/js/summernote/summernote-lite.js"></script>
-    <script src="${path}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+  
   </head>
   <body>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -370,14 +369,14 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <c:if test="${loginMember != null && likeScrap.likeHateStatus == 'L'}">
               <div class="like-hate-btn">
                 <div class="cursor" ><i class="fa-solid fa-chevron-down"></i></div>
-                <div>${groupOne.LIKE_CNT}</div>
+                <div class="main-color">${groupOne.LIKE_CNT}</div>
                 <div class="main-color cursor" onclick="location.href = '${path}/study/detail/deleteLikeHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'"><i class="fa-solid fa-chevron-up"></i></div>
               </div>
             </c:if>
             <c:if test="${loginMember != null && likeScrap.likeHateStatus == 'H'}">
               <div class="like-hate-btn">
                 <div class="red cursor" onclick="location.href = '${path}/study/detail/deleteLikeHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'"><i class="fa-solid fa-chevron-down"></i></div>
-                <div>${groupOne.LIKE_CNT}</div>
+                <div class="red">${groupOne.LIKE_CNT}</div>
                 <div class="cursor"><i class="fa-solid fa-chevron-up"></i></div>
               </div>
             </c:if>
@@ -435,59 +434,172 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 </div>
               </c:if>
             </div>
-            <c:if test="${loginMember.nick != null}">
-              <div class="cmt-area">
-                <textarea name="editordata" class="summernote"></textarea>
-              </div>
-              <div class="cmt-btn-area relative">
-                <input type="button" value="답변 등록" onclick="submitCmt();"/>
-              </div>
+            <c:if test="${loginMember != null}">
+              <form action="${path}/study/detail/writeCmt" method="post">
+                <input type="hidden" name="gno" value="${groupOne.NO}">
+                <input type="hidden" name="keyword" value="${searchVo.keyword}">
+                <input type="hidden" name="tag" value="${fn:join(searchVo.tag,',')}">
+                <input type="hidden" name="techType" value="${searchVo.techType}">
+                <input type="hidden" name="techStack" value="${fn:join(searchVo.techStack,',')}">
+                <input type="hidden" name="type" value="${searchVo.type}">
+                <input type="hidden" name="order" value="${searchVo.order}">
+                <input type="hidden" name="status" value="${searchVo.status}">
+                <input type="hidden" name="mno" value="${loginMember.no}">
+                <div class="cmt-area">
+                  <textarea name="cmt" class="summernote"></textarea>
+                </div>
+                <div class="cmt-btn-area relative">
+                  <input type="submit" value="답변 등록"/>
+                </div>
+
+              </form>
 
             </c:if>
           </div>
           <ul class="cmt-list">
-            <li>
-              <div class="cmt-top">
-                <div class="cmt-top-div cmt-profile-img"><img src="${path}/resources/upload/common/profile_default.png" alt=""></div>
-                <div class="cmt-top-div cmt-info">
-                  <div class="member-nick">terry</div>
-                  <div>
-                    <span class="enroll-date">2022.11.29 11:11</span>
-                    <a href="" class="cmt-edit">수정</a>
-                    <a href="" class="cmt-edit">삭제</a>
-                  </div>
-                </div>
-                <div class="cmt-top-div">
-                  <div class="like-hate-btn">
-                    <div class="cursor" onclick="login();"><i class="fa-solid fa-chevron-down"></i></div>
-                    <div>-5</div>
-                    <div class="cursor" onclick="login();"><i class="fa-solid fa-chevron-up"></i></div>
-                  </div>
-                </div>
-              </div>
-              <div class="cmt-content">
-                지참금 필요한가요?
-              </div>
-              <div class="cmt-reply"> 
-                <div class="cmt-reply-top">
-                  <div>댓글</div>
-                  <div>접기<i class="fa-solid fa-chevron-up"></i></div>
-                </div>
-                <div></div>
-                <div><textarea name="editordata" class="summernote"></textarea>  
-                  
-              </div>
-              <div class="cmt-btn-area relative">
-                <input type="button" value="답변 등록" onclick="submitCmt();"/>
-              </div>
-              </div>
-            </li>
+          	<c:forEach items="${groupCmtList}" var="map">
+            	<li>
+	            	<div class="cmt-top">
+	                	<div class="cmt-top-div cmt-profile-img"><img src="${path}/resources/upload/common/profile_default.png" alt=""></div>
+		                <div class="cmt-top-div cmt-info">
+		                  <div class="member-nick">${map.NICK}</div>
+		                  <div>
+		                    <span class="enroll-date">${map.ENROLL_DATE}</span>
+                        
+                        <c:if test="${loginMember != null && loginMember.no == map.WRITER}">
+                          <a href="" class="cmt-edit">수정</a>
+                          <a href="" class="cmt-edit">삭제</a>
+
+                        </c:if>
+		                  </div>
+		                </div>
+		                <div class="cmt-top-div">
+                      <c:if test="${loginMember == null}">
+                        <div class="like-hate-btn">
+                          <div class="cursor" onclick="login();"><i class="fa-solid fa-chevron-down"></i></div>
+                          <div>${map.CMT_LIKE_CNT}</div>
+                          <div class="cursor" onclick="login();"><i class="fa-solid fa-chevron-up"></i></div>
+                        </div>
+                      </c:if>
+                      <c:if test="${loginMember != null && map.likeHateStatus == null}">
+                        <div class="like-hate-btn">
+                          <div class="cursor" onclick="location.href = '${path}/study/detail/cmtHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}&cno=${map.NO}'"><i class="fa-solid fa-chevron-down"></i></div>
+                          <div>${map.CMT_LIKE_CNT}</div>
+                          <div class="cursor" onclick="location.href = '${path}/study/detail/cmtLike?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}&cno=${map.NO}'"><i class="fa-solid fa-chevron-up"></i></div>
+                        </div>
+                      </c:if>
+                      <c:if test="${loginMember != null && map.likeHateStatus == 'L'}">
+                        <div class="like-hate-btn">
+                          <div class="cursor"><i class="fa-solid fa-chevron-down"></i></div>
+                          <div class="main-color">${map.CMT_LIKE_CNT}</div>
+                          <div class="cursor main-color" onclick="location.href = '${path}/study/detail/deleteCmtLikeHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}&cno=${map.NO}'"><i class="fa-solid fa-chevron-up"></i></div>
+                        </div>
+                      </c:if>
+                      <c:if test="${loginMember != null && map.likeHateStatus == 'H'}">
+                        <div class="like-hate-btn">
+                          <div class="cursor red" onclick="location.href = '${path}/study/detail/deleteCmtLikeHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}&cno=${map.NO}'"><i class="fa-solid fa-chevron-down"></i></div>
+                          <div class="red">${map.CMT_LIKE_CNT}</div>
+                          <div class="cursor"><i class="fa-solid fa-chevron-up"></i></div>
+                        </div>
+                      </c:if>     
+		                </div>
+	              	</div>
+		              <div class="cmt-content">
+		               	${map.CMT_CONTENT}
+		              </div>
+		              <div class="cmt-reply"> 
+		                <div class="cmt-reply-top">
+		                  <div>댓글</div>
+		                  <div ><span class="cmt-toggle-btn">더보기</span><i class="fa-solid fa-chevron-down"></i></div>
+		                </div>
+		              </div>
+		              <div class="cmt-reply-detail hidden">
+		                <ul class=cmt-reply-list>
+		                	<c:forEach items="${map.groupCmtReplyList}" var="reply">
+			                	<li>
+			                    <div class="cmt-reply-member-profile">
+			                      <div><img src="${path}/resources/upload/common/profile_default.png" alt=""></div>
+			                      <div></div>
+			                    </div>
+			                    <div class="cmt-reply-content">
+			                      <div class="cmt-reply-content-top">
+			                        <div class="flex">
+			                          <div class="group-member">모임장</div>
+			                          <div class="cmt-reply-member-nick">${reply.NICK}</div>
+			                          <a href="" class="cmt-edit">수정</a>
+			                          <a href="" class="cmt-edit">삭제</a>
+			                        </div>
+			                        <div class="cmt-reply-enroll-date">${reply.ENROLL_DATE}</div>
+			                      </div>
+			                      <div class="cmt-reply-content-bottom">${reply.CMT_CONTENT}</div>
+			                    </div>
+			                    <div >
+                            <c:if test="${loginMember == null}">
+                              <div class="like-hate-btn">
+                              <div class="cursor" onclick="login();"><i class="fa-solid fa-chevron-down"></i></div>
+                              <div>${reply.CMT_LIKE_CNT}</div>
+                              <div class="cursor" onclick="login();"><i class="fa-solid fa-chevron-up"></i></div>
+                              </div>
+                            </c:if>
+                            <c:if test="${loginMember != null && reply.replyLikeHateStatus == null}">
+                              <div class="like-hate-btn">
+                              <div class="cursor" onclick="location.href = '${path}/study/detail/cmtHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}&cno=${reply.NO}'"><i class="fa-solid fa-chevron-down"></i></div>
+                              <div>${reply.CMT_LIKE_CNT}</div>
+                              <div class="cursor" onclick="location.href = '${path}/study/detail/cmtLike?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}&cno=${reply.NO}'"><i class="fa-solid fa-chevron-up"></i></div>
+                              </div>
+                            </c:if>
+                            <c:if test="${loginMember != null && reply.replyLikeHateStatus == 'L'}">
+                              <div class="like-hate-btn">
+                              <div class="cursor"><i class="fa-solid fa-chevron-down"></i></div>
+                              <div class="main-color">${reply.CMT_LIKE_CNT}</div>
+                              <div class="cursor main-color" onclick="location.href = '${path}/study/detail/deleteCmtLikeHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}&cno=${reply.NO}'"><i class="fa-solid fa-chevron-up"></i></div>
+                              </div>
+                            </c:if>
+                            <c:if test="${loginMember != null && reply.replyLikeHateStatus == 'H'}">
+                              <div class="like-hate-btn">
+                              <div class="cursor red" onclick="location.href = '${path}/study/detail/deleteCmtLikeHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}&cno=${reply.NO}'"><i class="fa-solid fa-chevron-down"></i></div>
+                              <div class="red">${reply.CMT_LIKE_CNT}</div>
+                              <div class="cursor"><i class="fa-solid fa-chevron-up"></i></div>
+                              </div>
+                            </c:if>     
+			                  </div>
+			                  </li>
+		                	</c:forEach>
+		                  
+		                </ul>
+		                <div class="cmt-write-btn">
+		                    <span>댓글작성</span>
+		                </div>
+		                <form action="${path}/study/detail/writeCmtReply" method="post">
+                      <input type="hidden" name="gno" value="${groupOne.NO}">
+                      <input type="hidden" name="keyword" value="${searchVo.keyword}">
+                      <input type="hidden" name="tag" value="${fn:join(searchVo.tag,',')}">
+                      <input type="hidden" name="techType" value="${searchVo.techType}">
+                      <input type="hidden" name="techStack" value="${fn:join(searchVo.techStack,',')}">
+                      <input type="hidden" name="type" value="${searchVo.type}">
+                      <input type="hidden" name="order" value="${searchVo.order}">
+                      <input type="hidden" name="status" value="${searchVo.status}">
+                      <input type="hidden" name="mno" value="${loginMember.no}">
+		                  <div class="cmt-reply-btn hidden">
+		                    <div class="cmt-reply-area">
+		                        <textarea name="cmt" class="summernote"></textarea> 
+                            <input type="hidden" name="group" value="${map.GROUP}"> 
+		                    </div>
+		                    <div class="cmt-btn-area relative">
+		                      <input type="submit" value="답변 등록" />
+		                    </div>
+		                  </div>
+		
+		                </form>
+		
+		              </div>
+            	</li>
+            </c:forEach>
+           
           </ul>
         </section>
-
-        <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
-        <script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
-
+        <script src="${path}/resources/js/summernote/summernote-lite.js"></script>
+        <script src="${path}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
         <script>
           $(document).ready(function () {
             //여기 아래 부분
@@ -536,13 +648,45 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         }, 0);
       });
 
-      function checkLogin() {
-        console.log(${loginMember.nick});
-      }
+   
+      const cmtToggleBtn = document.querySelectorAll('.cmt-toggle-btn');
+      cmtToggleBtn.forEach((o)=>{
+        o.addEventListener('click', (event)=>{
+          const span = event.target.innerHTML;
+          if(span == '더보기') {
+            event.target.innerHTML = '접기';
+          }
+          if(span == '접기') {
+            event.target.innerHTML = '더보기';
+          }
+          const icon = event.target.nextSibling;
+          icon.classList.toggle('fa-chevron-down');
+          icon.classList.toggle('fa-chevron-up');
+          const cmtReply = event.target.parentNode.parentNode.parentNode;
+          const cmtReplyDetail = cmtReply.nextSibling.nextSibling;
+          cmtReplyDetail.classList.toggle('hidden');
+        })
+      })
 
-      function submitCmt() {
+      const cmtWriteBtnSpan = document.querySelectorAll('.cmt-write-btn span');
+      cmtWriteBtnSpan.forEach((o)=>{
+        o.addEventListener('click', (event)=>{
+          const cmtWriteBtn = event.target.parentNode;
+          const cmtReplyBtn = cmtWriteBtn.nextSibling.nextSibling.querySelector('.cmt-reply-btn');
+          
+          if("${loginMember}" == "") {
+            login();
+          }else {
+            cmtWriteBtn.classList.add('hidden');
+            cmtReplyBtn.classList.remove('hidden');
 
-      }
+          }
+ 
+        })
+      })
+
+     
+
     </script>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>

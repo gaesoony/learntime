@@ -406,12 +406,61 @@
 		INSERT INTO GROUP_LIKE_HATE
 		VALUES (#{mno}, #{gno}, 'L')
 	</insert>
+	<insert id="cmtLike">
+		INSERT INTO GROUP_CMT_LIKE_HATE
+		VALUES (#{mno}, #{cno}, 'L')
+	</insert>
 	<insert id="hate">
 		INSERT INTO GROUP_LIKE_HATE
 		VALUES (#{mno}, #{gno}, 'H')
+	</insert>
+	<insert id="cmtHate">
+		INSERT INTO GROUP_CMT_LIKE_HATE
+		VALUES (#{mno}, #{cno}, 'H')
 	</insert>
 	<delete id="deleteLikeHate">
 		DELETE FROM GROUP_LIKE_HATE
 		WHERE M_NO = #{mno} AND G_NO = #{gno}
 	</delete>
+	<delete id="deleteCmtLikeHate">
+		DELETE FROM GROUP_CMT_LIKE_HATE
+		WHERE M_NO = #{mno} AND CMT_NO = #{cno}
+	</delete>
+	<insert id="writeCmt">
+		INSERT INTO GROUP_CMT
+		<if test="group == null">VALUES(SEQ_GROUP_CMT_NO.NEXTVAL, #{gno}, #{mno}, #{cmt}, SYSDATE, SYSDATE, 'N', '0', SEQ_GROUP_CMT_NO.NEXTVAL)</if>
+		<if test="group != null">VALUES(SEQ_GROUP_CMT_NO.NEXTVAL, #{gno}, #{mno}, #{cmt}, SYSDATE, SYSDATE, 'N', '1', #{group})</if>
+	</insert>
+	<select id="selectGroupCmtList" resultType="map">
+		SELECT C.*, LH.LIKES, LH.HATES, (NVL(LH.LIKES, 0) - NVL(LH.HATES, 0)) CMT_LIKE_CNT, M.NICK, M.IMG_PATH, TO_CHAR(C.CONTENT) CMT_CONTENT
+		FROM GROUP_CMT C
+		LEFT JOIN MEMBER M ON C.WRITER = M.NO
+		LEFT JOIN ( SELECT  CMT_NO, SUM(CASE WHEN STATUS = 'L' THEN 1 ELSE 0 END) AS LIKES, SUM(CASE WHEN STATUS = 'H' THEN 1 ELSE 0 END) AS HATES
+				        FROM GROUP_CMT_LIKE_HATE
+				        GROUP BY CMT_NO) LH ON LH.CMT_NO = C.NO
+		WHERE C.DELETE_YN = 'N' AND C.DEPTH = '0'
+		ORDER BY C.NO
+	</select>
+	<select id="selectGroupCmtReplyListByCgno" resultType="map">
+		SELECT C.*, LH.LIKES, LH.HATES, (NVL(LH.LIKES, 0) - NVL(LH.HATES, 0)) CMT_LIKE_CNT, M.NICK, M.IMG_PATH, TO_CHAR(C.CONTENT) CMT_CONTENT
+		FROM GROUP_CMT C
+		LEFT JOIN MEMBER M ON C.WRITER = M.NO
+		LEFT JOIN ( SELECT  CMT_NO, SUM(CASE WHEN STATUS = 'L' THEN 1 ELSE 0 END) AS LIKES, SUM(CASE WHEN STATUS = 'H' THEN 1 ELSE 0 END) AS HATES
+				        FROM GROUP_CMT_LIKE_HATE
+				        GROUP BY CMT_NO) LH ON LH.CMT_NO = C.NO
+		WHERE C.DELETE_YN = 'N' AND C.DEPTH = '1' AND C."GROUP" = #{cgno}
+		ORDER BY C.NO
+	</select>
+	<select id="selectCmtLikeHate" resultType="String">
+		SELECT STATUS
+		FROM GROUP_CMT C
+		LEFT JOIN GROUP_CMT_LIKE_HATE LH ON C.NO = LH.CMT_NO
+		WHERE C.DEPTH = '0' AND LH.M_NO = #{mno} AND LH.CMT_NO = #{cno}
+	</select>
+	<select id="selectCmtReplyLikeHate" resultType="String">
+		SELECT STATUS
+		FROM GROUP_CMT C
+		LEFT JOIN GROUP_CMT_LIKE_HATE LH ON C.NO = LH.CMT_NO
+		WHERE C.DEPTH = '1' AND LH.M_NO = #{mno} AND LH.CMT_NO = #{rcno}
+	</select>
 </mapper>

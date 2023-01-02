@@ -132,6 +132,26 @@ public interface StudyDao {
 
 	public int deleteLikeHate(SqlSessionTemplate sst, SearchVo sv);
 
+	//댓글달기
+	public int writeCmt(SqlSessionTemplate sst, Map map);
+
+	//그룹 댓글 리스트 조회
+	public List<Map<String, Object>> selectGroupCmtList(SqlSessionTemplate sst, String gno);
+
+	//그룹 대댓글 리스트 조회
+	public List<Map<String, String>> selectGroupCmtReplyListByCgno(SqlSessionTemplate sst, String cgno);
+
+	//댓글에 좋아요, 싫어요 했는지 조회
+	public String selectCmtLikeHate(SqlSessionTemplate sst, Map map);
+
+	public String selectCmtReplyLikeHate(SqlSessionTemplate sst, Map map);
+
+	public int cmtLike(SqlSessionTemplate sst, SearchVo sv);
+
+	public int cmtHate(SqlSessionTemplate sst, SearchVo sv);
+
+	public int deleteCmtLikeHate(SqlSessionTemplate sst, SearchVo sv);
+
 
 
 }

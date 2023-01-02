@@ -11,6 +11,9 @@ public class SearchVo {
 	//사용자번호
 	private String mno;
 	
+	//댓글번호
+	private String cno;
+	
 	//검색어
 	private String keyword;
 	

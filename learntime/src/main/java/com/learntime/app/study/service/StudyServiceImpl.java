@@ -448,4 +448,60 @@ public class StudyServiceImpl implements StudyService{
 		return result;
 	}
 
+	//댓글달기
+	@Override
+	public int writeCmt(Map map) {
+		int result = dao.writeCmt(sst, map);
+		return result;
+	}
+
+	//그룹 댓글 리스트 select
+	@Override
+	public List<Map<String, Object>> selectGroupCmtList(Map map) {
+		List<Map<String, Object>> result = dao.selectGroupCmtList(sst, (String)map.get("gno"));
+		
+		//그룹 리스트 결과 
+		for(int i=0; i<result.size(); i++) {			
+			String cgno = String.valueOf(result.get(i).get("GROUP"));
+			String cno = String.valueOf(result.get(i).get("NO"));
+			map.put("cno", cno);
+			
+			//댓글 그룹 번호로 대댓글 리스트 조회
+			List<Map<String, String>> groupCmtReplyList = dao.selectGroupCmtReplyListByCgno(sst, cgno);
+			for(int j=0; j<groupCmtReplyList.size(); j++) {
+				String rcno = String.valueOf(groupCmtReplyList.get(j).get("NO"));
+				map.put("rcno", rcno);
+				String replyLikeHateStatus = dao.selectCmtReplyLikeHate(sst, map);
+				groupCmtReplyList.get(j).put("replyLikeHateStatus", replyLikeHateStatus);
+			}
+			result.get(i).put("groupCmtReplyList", groupCmtReplyList);
+			
+			//댓글 번호랑 회원 번호로 로그인한 회원이 댓글에 좋아요, 싫어요 눌렀는지 조회
+			String likeHateStatus = dao.selectCmtLikeHate(sst, map);
+			result.get(i).put("likeHateStatus", likeHateStatus);
+			
+			
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int cmtLike(SearchVo sv) {
+		int result = dao.cmtLike(sst, sv);
+		return result;
+	}
+
+	@Override
+	public int cmtHate(SearchVo sv) {
+		int result = dao.cmtHate(sst, sv);
+		return result;
+	}
+
+	@Override
+	public int deleteCmtLikeHate(SearchVo sv) {
+		int result = dao.deleteCmtLikeHate(sst, sv);
+		return result;
+	}
+
 }

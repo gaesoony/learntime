@@ -135,6 +135,9 @@ public class StudyController {
 		//그룹번호로 정보 select
 		Map<String, Object> groupOne = service.selectGroupOne(vo.getGno());
 		
+		//댓글 정보 select
+		List<Map<String, Object>> groupCmtList = service.selectGroupCmtList(map);
+		
 		//map으로 좋아요싫어요, 스크랩 했는지 정보 받아옴
 		Map<String, Object> likeScrap = null;
 		if(loginMember != null) {
@@ -147,6 +150,7 @@ public class StudyController {
 		model.addAttribute("groupOne", groupOne);
 		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("likeScrap", likeScrap);
+		model.addAttribute("groupCmtList", groupCmtList);
 		
 		
 		return "study/detail";
@@ -314,11 +318,37 @@ public class StudyController {
 		}
 	}
 	
+	//댓글 좋아요하기
+	@GetMapping("/detail/cmtLike")
+	public String cmtLike(SearchVo sv) {
+		
+		int result = service.cmtLike(sv);
+		
+		if(result == 1) {
+			return "redirect:/study/detail?gno="+sv.getGno()+"&keyword="+sv.getKeyword()+"&tag="+ sv.getTagList() +"&techType="+sv.getTechType()+"&techStack="+sv.getTechStackList()+"&type="+sv.getType()+"&order="+sv.getOrder()+"&status="+sv.getStatus();
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
 	//싫어요하기
 	@GetMapping("/detail/hate")
 	public String hate(SearchVo sv) {
 		
 		int result = service.hate(sv);
+		
+		if(result == 1) {
+			return "redirect:/study/detail?gno="+sv.getGno()+"&keyword="+sv.getKeyword()+"&tag="+ sv.getTagList() +"&techType="+sv.getTechType()+"&techStack="+sv.getTechStackList()+"&type="+sv.getType()+"&order="+sv.getOrder()+"&status="+sv.getStatus();
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+	//댓글 싫어요하기
+	@GetMapping("/detail/cmtHate")
+	public String cmtHate(SearchVo sv) {
+		
+		int result = service.cmtHate(sv);
 		
 		if(result == 1) {
 			return "redirect:/study/detail?gno="+sv.getGno()+"&keyword="+sv.getKeyword()+"&tag="+ sv.getTagList() +"&techType="+sv.getTechType()+"&techStack="+sv.getTechStackList()+"&type="+sv.getType()+"&order="+sv.getOrder()+"&status="+sv.getStatus();
@@ -339,5 +369,57 @@ public class StudyController {
 		}else {
 			return "common/errorPage";
 		}
+	}
+	
+	//댓글 좋아요 싫어요 삭제하기
+	@GetMapping("/detail/deleteCmtLikeHate")
+	public String deleteCmtLikeHate(SearchVo sv) {
+		
+		int result = service.deleteCmtLikeHate(sv);
+		
+		if(result == 1) {
+			return "redirect:/study/detail?gno="+sv.getGno()+"&keyword="+sv.getKeyword()+"&tag="+ sv.getTagList() +"&techType="+sv.getTechType()+"&techStack="+sv.getTechStackList()+"&type="+sv.getType()+"&order="+sv.getOrder()+"&status="+sv.getStatus();
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+	//댓글달기
+	@PostMapping("/detail/writeCmt")
+	public String writeCmt(SearchVo sv, String cmt) {
+		
+		Map map = new HashMap();
+		map.put("gno", sv.getGno());
+		map.put("mno", sv.getMno());
+		map.put("cmt", cmt);
+		
+		int result = service.writeCmt(map);
+		
+		if(result == 1) {
+			return "redirect:/study/detail?gno="+sv.getGno()+"&keyword="+sv.getKeyword()+"&tag="+ sv.getTagList() +"&techType="+sv.getTechType()+"&techStack="+sv.getTechStackList()+"&type="+sv.getType()+"&order="+sv.getOrder()+"&status="+sv.getStatus();
+		}else {
+			return "common/errorPage";
+		}
+		
+	}
+	
+	//대댓글달기
+	@PostMapping("/detail/writeCmtReply")
+	public String writeCmt(SearchVo sv, String cmt, String group) {
+		
+		Map map = new HashMap();
+		map.put("gno", sv.getGno());
+		map.put("mno", sv.getMno());
+		map.put("cmt", cmt);
+		map.put("group", group);
+		
+		int result = service.writeCmt(map);
+		
+		if(result == 1) {
+			return "redirect:/study/detail?gno="+sv.getGno()+"&keyword="+sv.getKeyword()+"&tag="+ sv.getTagList() +"&techType="+sv.getTechType()+"&techStack="+sv.getTechStackList()+"&type="+sv.getType()+"&order="+sv.getOrder()+"&status="+sv.getStatus();
+		}else {
+			return "common/errorPage";
+		}
+		
 	}
 }

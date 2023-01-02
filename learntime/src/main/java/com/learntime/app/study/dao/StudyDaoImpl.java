@@ -248,7 +248,7 @@ public class StudyDaoImpl implements StudyDao{
 
 	@Override
 	public int deleteScrap(SqlSessionTemplate sst, SearchVo sv) {
-		return sst.insert("studyMapper.deleteScrap", sv);
+		return sst.delete("studyMapper.deleteScrap", sv);
 	}
 
 	@Override
@@ -263,7 +263,52 @@ public class StudyDaoImpl implements StudyDao{
 
 	@Override
 	public int deleteLikeHate(SqlSessionTemplate sst, SearchVo sv) {
-		return sst.insert("studyMapper.deleteLikeHate", sv);
+		return sst.delete("studyMapper.deleteLikeHate", sv);
+	}
+
+	//댓글달기
+	@Override
+	public int writeCmt(SqlSessionTemplate sst, Map map) {
+		return sst.insert("studyMapper.writeCmt", map);
+	}
+
+	//그룹 댓글 리스트 조회
+	@Override
+	public List<Map<String, Object>> selectGroupCmtList(SqlSessionTemplate sst, String gno) {
+		return sst.selectList("studyMapper.selectGroupCmtList", gno);
+	}
+
+	//그룹 대댓글 리스트 조회
+	@Override
+	public List<Map<String, String>> selectGroupCmtReplyListByCgno(SqlSessionTemplate sst, String cgno) {
+		return sst.selectList("studyMapper.selectGroupCmtReplyListByCgno", cgno);
+	}
+
+	//댓글에 좋아요,싫어요 했는지 조회
+	@Override
+	public String selectCmtLikeHate(SqlSessionTemplate sst, Map map) {
+		return sst.selectOne("studyMapper.selectCmtLikeHate", map);
+	}
+
+	@Override
+	public String selectCmtReplyLikeHate(SqlSessionTemplate sst, Map map) {
+		return sst.selectOne("studyMapper.selectCmtReplyLikeHate", map);
+	}
+
+	@Override
+	public int cmtLike(SqlSessionTemplate sst, SearchVo sv) {
+		return sst.insert("studyMapper.cmtLike", sv);
+	}
+
+	@Override
+	public int cmtHate(SqlSessionTemplate sst, SearchVo sv) {
+		return sst.insert("studyMapper.cmtHate", sv);
+	}
+
+	@Override
+	public int deleteCmtLikeHate(SqlSessionTemplate sst, SearchVo sv) {
+		return sst.delete("studyMapper.deleteCmtLikeHate", sv);
+	
 	}
 
 

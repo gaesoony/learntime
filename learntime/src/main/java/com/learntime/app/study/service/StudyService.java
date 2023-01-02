@@ -99,6 +99,18 @@ public interface StudyService {
 
 	//좋아요싫어요 삭제하기
 	public int deleteLikeHate(SearchVo sv);
+
+	//댓글달기
+	public int writeCmt(Map map);
+
+	//그룹 댓글 정보 select
+	public List<Map<String, Object>> selectGroupCmtList(Map map);
+
+	public int cmtLike(SearchVo sv);
+
+	public int cmtHate(SearchVo sv);
+
+	public int deleteCmtLikeHate(SearchVo sv);
 	
 	
 	//추후 추가 예정..
