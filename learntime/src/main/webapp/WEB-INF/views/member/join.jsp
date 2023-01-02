@@ -483,7 +483,7 @@ label[for="joinAgree-check"] {
                     const id=$("input[name=id]").eq(1).val();
                     console.log(id);
                     var idCheck = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
-                    
+                    var blackCheck=/\s/;
                     $.ajax({    
                         type: "get",
                         url: "${pageContext.request.contextPath}/member/emailCheck?id="+id,

@@ -183,28 +183,25 @@ pageEncoding="UTF-8"%>
     
                     <div id="id">
                         <div class="text">이메일</div>
-                        <input type="text" name="id">
+                        <input type="text" name="id" value="${user.id}">
                     </div>
-                    
-    
-                    <div id="pwd">
-                        <div class="text">비밀번호</div>
-                        <input type="password" name="pwd" autocomplete="off">
-                        <span class="material-symbols-outlined">visibility</span>
-                        <div id="pwdReult"></div>
-                    </div>
-                    
                     
                     <div id="nick">
                         <div class="text">닉네임</div>
-                        <input type="text" name="nick">
+                        <input type="text" name="nick" value="${user.nick}">
                         <div id="nickReult"></div>
+                    </div>
+                    
+                     <div id="pwd">
+                        <div class="text">회원 등급(누적 토큰)</div>
+                        <input type="text" name="accumToken" value="${user.accumToken}">
+                        <div id="pwdReult"></div>
                     </div>
                     
                     
                     <div id="phone">
                         <div class="text">전화번호</div>
-                        <input type="text" name="phone" placeholder="- 제외한 번호만" >
+                        <input type="text" name="phone" placeholder="- 제외한 번호만" value="${user.phone}">
                     </div>
 
                     <div id="stack">
@@ -231,12 +228,16 @@ pageEncoding="UTF-8"%>
 				</div>
                     
                     <button class="edit">수정하기</button>
-                    <button class="delete">삭제하기</button>
-                    <button id="before"onclick="location.href='${pageContext.request.contextPath}/admin/member/manage'">이전으로</button>
+                 </form>    
+                     <form action="/app/admin/member/manage/delete" method="post">
+                      <input type="hidden" name="id" value="${user.id}">
+                      <button class="delete">삭제하기</button>
+                    </form>
+                    <button type="button"id="before"onclick="location.href='${pageContext.request.contextPath}/admin/member/manage'">이전으로</button>
     
                   
                 </div>
-            </form>
+           
          
         
         </section>

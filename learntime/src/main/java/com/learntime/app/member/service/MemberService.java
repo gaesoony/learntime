@@ -2,8 +2,10 @@ package com.learntime.app.member.service;
 
 import java.util.List;
 
+import com.learntime.app.member.vo.AdminMemberVo;
 import com.learntime.app.member.vo.FollowVo;
 import com.learntime.app.member.vo.MemberVo;
+import com.learntime.app.member.vo.SearchVo;
 
 public interface MemberService {
 	//로그인
@@ -56,8 +58,16 @@ public interface MemberService {
 	public int followCheck(FollowVo follow);
 	
 	
-	//----관리자 멤버 리스트
-	public List<MemberVo> memberList();
+	//----관리자 
+	//멤버 리스트
+	public List<AdminMemberVo> memberList(SearchVo vo);
+	//멤버 탈퇴
+	public int memberAdminDelete(String id);
+	//멤버 수정
+	public int adminMemberedit(MemberVo vo);
+	//운영자 생성
+	public int createOperator(MemberVo vo);
+	
 	
 	
 }

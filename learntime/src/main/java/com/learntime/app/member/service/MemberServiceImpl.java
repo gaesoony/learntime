@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.learntime.app.member.dao.MemberDao;
 import com.learntime.app.member.mail.MailHandler;
+import com.learntime.app.member.vo.AdminMemberVo;
 import com.learntime.app.member.vo.FollowVo;
 import com.learntime.app.member.vo.MemberVo;
+import com.learntime.app.member.vo.SearchVo;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -223,9 +225,28 @@ public class MemberServiceImpl implements MemberService {
 	//---------어드민------------
 	//멤버리스트
 	@Override
-	public List<MemberVo> memberList() {
+	public List<AdminMemberVo> memberList(SearchVo vo) {
 		
-		return memberDao.memberList(sst);
+		return memberDao.memberList(sst,vo);
+	}
+	//멤버 탈퇴
+	@Override
+	public int memberAdminDelete(String id) {
+		
+		return memberDao.memberAdminDelete(sst,id);
+	}
+	//멤버 수정
+	@Override
+	public int adminMemberedit(MemberVo vo) {
+		
+		return memberDao.adminMemberedit(sst,vo);
+	}
+	
+	//운영자 생성
+	@Override
+	public int createOperator(MemberVo vo) {
+		
+		return memberDao.createOperator(sst,vo);
 	}
 
 	
