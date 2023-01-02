@@ -9,7 +9,5 @@ public class QnaTypeVo {
 
 	private String keyword;
 	
-	private String type;
-	
 	private String order;
 }

@@ -29,15 +29,20 @@ public class QnaController {
 
 	//목록 조회 (화면+DB)
 	@GetMapping("/list")
-	public String list(Model model, QnaVo vo) {
+	public String list(Model model, QnaVo vo, QnaTypeVo qvo) {
 		
-		List<Map<String, Object>> qnaList = service.selectList(vo);
-//		List<Map<String, String>> tagList = service.selectTagList();
-//		model.addAttribute("tagList", tagList);
+		if(qvo.getKeyword() == null) {
+			qvo.setKeyword("");
+		}
 		
-		System.out.println(qnaList);
+		List<Map<String, Object>> qnaList = service.selectList(vo, qvo);
 		
 		model.addAttribute("qnaList", qnaList);
+		if(qvo.getKeyword().trim().equals("")) {
+			model.addAttribute("keyword", null);
+		}else {
+			model.addAttribute("keyword", qvo.getKeyword());
+		}
 		
 		return "qna/list";
 	}

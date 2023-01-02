@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.learntime.app.qna.vo.QnaAnswerVo;
+import com.learntime.app.qna.vo.QnaTypeVo;
 import com.learntime.app.qna.vo.QnaVo;
 
 @Repository
@@ -20,12 +21,12 @@ public interface QnaDao {
 	int insertKnowledgeTag(SqlSessionTemplate sst, String[] tag);
 
 	//게시글 목록
-	List<Map<String, Object>> selectList(SqlSessionTemplate sst, QnaVo vo);
-
+	List<Map<String, Object>> selectList(SqlSessionTemplate sst, QnaVo vo, QnaTypeVo qvo);
+	
 	//게시글 상세조회
 	QnaVo detail(SqlSessionTemplate sst, String no);
 
-	List<Map<String, String>> selectTagList(SqlSessionTemplate sst, String qno);
+	
 
 	
 

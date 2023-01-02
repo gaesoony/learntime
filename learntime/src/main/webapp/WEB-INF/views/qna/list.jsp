@@ -323,9 +323,9 @@
                     <div class="mainbody">
                         <div class="mainside">
                             <div class="list-type-box">
-                                <input type="radio" href="" class="side-category" value="전체" checked/><a href="javascript:allList();" class="list-type" name="type">전체</a>
-                                <input type="radio" href="" class="side-category" value="해결" /><a href="javascript:resolveList();" class="list-type" name="type">해결</a>
-                                <input type="radio" href="" class="side-category" value="미해결" /><a href="javascript:unresolveList();" class="list-type" name="type">미해결</a>
+                                <input type="radio" href="" class="side-category" value="전체" checked/><a href="" class="list-type" name="type">전체</a>
+                                <input type="radio" href="" class="side-category" value="해결" /><a href="" class="list-type" name="type">해결</a>
+                                <input type="radio" href="" class="side-category" value="미해결" /><a href="" class="list-type" name="type">미해결</a>
                             </div>
                             
                             <div class="line1"></div>
@@ -334,7 +334,9 @@
                             <div class="searchbar">
                                 <div class="search">
                                     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-                                    <input type="text" class="searchblank" name="keyword" placeholder="궁금한 질문을 검색해보세요!"> 
+                                    <c:if test="${keyword != null}">
+                                        <input type="text" class="searchblank" name="keyword" placeholder="궁금한 질문을 검색해보세요!" value="${map.keyword}">
+                                    </c:if>
                                 </div>
                                 <input type="submit" class="searchbtn" value="검색">
                             </div>
@@ -361,7 +363,7 @@
     
                             <!-- 본문 리스트 -->
                             <c:forEach items="${qnaList}" var="map">
-                                <a href="${path}/qna/detail?no=${qlist.no}">
+                                <a href="${path}/qna/detail?no=${map.NO}&keyword=${keyword}">
                                     <div class="titlebox">
                                         <div class="titleb">
                                             <div class="title" name="title">${map.TITLE}</div>
@@ -379,9 +381,8 @@
                                                 <!-- 본문 속 해시태그 -->
                                                 <div class="hashtagbox">
                                                     <ul class="hashtag">
-                                                        <c:forEach items="${qnaList.tagList}" var="map">
-                                                        <li class="hash" name="tag"><i class="fa-light fa-hashtag"></i>${map.NAME}</li>
-                                                        </c:forEach>
+                                                        <li class="hash" name="tag"><i class="fa-light fa-hashtag"></i>자바</li>
+                                                        <li class="hash" name="tag"><i class="fa-light fa-hashtag"></i>CSS</li>
                                                     </ul>
                                                 </div>
                                                 <div class="etcbox">
