@@ -36,7 +36,7 @@ public class FaqController {
 		
 		int listCount = fs.selectCount();
 		int currentPage = (int)pv.getP();
-		int boardLimit = 6;
+		int boardLimit = 10;
 		int pageLimit = 5;
 		pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 		

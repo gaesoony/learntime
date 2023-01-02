@@ -42,6 +42,7 @@
             <div class="category-question">
                 <div class="cate-list">
                 	<a href="/app/question/questionWrite"><div class="ques">문의하기</div></a>
+                	<a href="/app/question/questionList?p=1&cateNo=0"><div class="cate" value="1" name="cateNo">글목록</div></a>
                     <a href="/app/question/questionList?p=1&cateNo=1"><div class="cate" value="1" name="cateNo">전체</div></a>
                     <a href="/app/question/questionList?p=1&cateNo=2"><div class="cate" value="2" name="cateNo">스터디</div></a>
                     <a href="/app/question/questionList?p=1&cateNo=3"><div class="cate" value="3" name="cateNo">공부인증</div></a>

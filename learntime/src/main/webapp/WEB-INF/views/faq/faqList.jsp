@@ -11,7 +11,7 @@
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/common/header.jsp" %>
-<form action="/app/faq/faqList?p=1&cateNo=0" method="GET">
+<form action="/app/faq/faqList" method="get">
 	<input type="hidden" value="${cateNo}" name="cateNo">
 	<input type="hidden" value="${p}" name="p">
 	<div class="list-main">
@@ -44,7 +44,7 @@
         </div>
         
         <div class="list-all">
-            <c:forEach var="faqList" items="${list}" >
+            <c:forEach var="list" items="${list}" >
                 <div class="faqList">
                     <div class="q-mark">
                         <div class="green-circle2">Q</div>

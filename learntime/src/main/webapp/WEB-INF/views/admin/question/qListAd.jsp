@@ -78,7 +78,6 @@
     border: 3px solid lightgray;
     width: 100px;
     height: 50px;
-    border-radius: 1rem;
     font-size: larger;
     font-weight: 600;
     background-color: white;
@@ -168,6 +167,7 @@
 .page-qList-ad{
     width: 100%;
     height: 200px;
+    display:flex;
    
 
 }
@@ -331,7 +331,7 @@
 	/*체크박스 삭제  */
 	 
 	function deleteValue(){
-		var url="qListAd";
+		var url="qListAd?p=${pv.currentPage}";
         var valueArr = new Array();
         var list = $("checkBtn");
         for(var i = 0; i <list.length; i++){
@@ -346,10 +346,10 @@
             type:'post',
             traditional:true,
             data:{
-                valueArr:valueArr
+                "valueArr":valueArr
             },
             success:function(jdata){
-                if(jdata = 1){
+                if(jdata == 1){
                     alert("삭제되었습니다.");
 
                 }else{

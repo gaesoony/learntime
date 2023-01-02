@@ -311,7 +311,7 @@
                 <div class="noticeBtn-etc">
                     <a href="#"><div class="setting-Btn"><img src="/app/resources/img/faq/image 116.png"></div></a>
                     <div class="Btns-noticeAd">
-                        <div class="activate-Btn"><input class="activate" type="button" value="활성화" name="activate"></div>
+                        <div class="activate-Btn"><input class="activate" type="button" value="활성화" name="activate" ></div>
                         <div class="deactivate-Btn"><input class="deactivate" type="button" value="비활성화" name="deactivate"></div>
                         <div class="delete-notice-Btn"><input class="delete-lists" type="button" value="삭제" name="delete"></div>
                     </div>
@@ -399,6 +399,10 @@
 		num.innerHTML = page;
 		page++;
 	}
+	
+	
+	/*상단고정버튼  */
+	
 	
 	</script>
 

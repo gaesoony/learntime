@@ -53,6 +53,7 @@ public class AdminQuestionController {
 	public String qListAd(HttpServletRequest req,QuestionVo vo) {
 
 		String[] ajaxMsg = req.getParameterValues("valueArr");
+		
 		int size= ajaxMsg.length;
 		int[] newArr = new int[size];
 		int no = 0;

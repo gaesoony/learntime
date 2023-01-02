@@ -39,7 +39,7 @@ public class QuestionController {
 	}
 	// 문의게시판 리스트 
 	@GetMapping ("question/questionList")
-	public String questionList(QuestionVo vo,Model m,PageVo pv) {
+	public String questionList(QuestionVo vo,Model m,PageVo pv,HttpSession session) {
 
 
 		int listCount = qs.selectCount();
@@ -48,9 +48,13 @@ public class QuestionController {
 		int pageLimit = 5;
 		pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 		
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember"); 
+		List<QuestionVo> list= null;
+		if(loginMember != null) {
+			list= qs.selectQuestionList(vo,pv);
+			
+		}
 		
-		
-		List<QuestionVo> list= qs.selectQuestionList(vo,pv);
 		m.addAttribute("pv",pv);
 		m.addAttribute("list",list);
 		m.addAttribute("p",pv.getP());
