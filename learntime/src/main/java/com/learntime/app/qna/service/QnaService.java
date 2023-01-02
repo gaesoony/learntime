@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.learntime.app.qna.vo.QnaAnswerVo;
+import com.learntime.app.qna.vo.QnaTypeVo;
 import com.learntime.app.qna.vo.QnaVo;
 
 @Service
@@ -17,13 +18,12 @@ public interface QnaService {
 	public int write(QnaVo vo);
 
 	//게시글 목록
-	List<Map<String, Object>> selectList(QnaVo vo);
-
+	List<Map<String, Object>> selectList(QnaVo vo, QnaTypeVo qvo);
+	
 	//게시글 상세조회
 	public QnaVo detail(String no);
 
-	public List<Map<String, String>> selectTagList(String qno);
-
+	
 	
 	
 	

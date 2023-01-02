@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.learntime.app.qna.dao.QnaDao;
 import com.learntime.app.qna.vo.QnaAnswerVo;
+import com.learntime.app.qna.vo.QnaTypeVo;
 import com.learntime.app.qna.vo.QnaVo;
 
 @Service
@@ -53,12 +54,9 @@ public class QnaServiceImpl implements QnaService {
 
 	//게시글 목록 
 	@Override
-	public List<Map<String, Object>> selectList(QnaVo vo, String qno) {
+	public List<Map<String, Object>> selectList(QnaVo vo, QnaTypeVo qvo) {
 		
-		List<Map<String, Object>> qnaList = dao.selectList(sst, vo);
-		
-//		List<Map<String, String>> tagList = dao.selectTagList(sst, qno);
-//		qnaList.put("tagList", tagList);
+		List<Map<String, Object>> qnaList = dao.selectList(sst, vo, qvo);
 		
 		return qnaList;
 	}
@@ -68,6 +66,8 @@ public class QnaServiceImpl implements QnaService {
 	public QnaVo detail(String no) {
 		return dao.detail(sst, no);
 	}
+
+	
 
 	
 	
