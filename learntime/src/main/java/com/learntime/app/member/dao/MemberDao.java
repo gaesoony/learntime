@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.learntime.app.member.vo.AdminMemberVo;
 import com.learntime.app.member.vo.FollowVo;
 import com.learntime.app.member.vo.MemberVo;
+import com.learntime.app.member.vo.SearchVo;
 
 public interface MemberDao {
 	
@@ -62,7 +64,13 @@ public interface MemberDao {
 	
 	//-------------어드민-----------------------
 	//멤버 리스트 
-	public List<MemberVo> memberList(SqlSessionTemplate sst);
+	public List<AdminMemberVo> memberList(SqlSessionTemplate sst, SearchVo vo);
+	//멤버 탈퇴
+	public int memberAdminDelete(SqlSessionTemplate sst, String id);
+	//멤버 수정
+	public int adminMemberedit(SqlSessionTemplate sst, MemberVo vo);
+	//운영자 추가
+	public int createOperator(SqlSessionTemplate sst, MemberVo vo);
 	
 	
 	

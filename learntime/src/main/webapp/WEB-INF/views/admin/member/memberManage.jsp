@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -220,25 +221,28 @@ pageEncoding="UTF-8"%>
       <div id="admin-category-title" class="shadow-light">회원 관리</div>
       <div class="wrapper">
             <section class="search-section space-between">
-              <div class="relative" id="search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="내용을 입력해주세요" class="search-box"/>
-                    <select name="" id="" class="select-box">
-                      <option value="">닉네임</option>
-                      <option value="">아이디</option>
-                    </select>
-                    <select name="" id="" class="select-box">
-                      <option value="">계정상태</option>
-                      <option value="">활성화</option>
-                      <option value="">삭제</option>
-                    </select>
-              </div>
+           <form action="" method="get">
+				<div class="relative" id="search">
+				     <i class="fa-solid fa-magnifying-glass"></i>
+				     <input type="text" placeholder="내용을 입력해주세요" class="search-box" name="keyword"/>
+				         <select name="category" id="" class="select-box">
+				           <option value="nick">닉네임</option>
+				           <option value="id">아이디</option>
+				         </select>
+				         <select name="quitYn" class="select-box">
+				           <option value="" selected>계정상태</option>
+				           <option value="N">활동</option>
+				           <option value="Y">삭제</option>
+				         </select>
+				</div>
+           </form>
+              
             </section>
             <section class="content-section">
               <div class="content-section-top">
                 <div id="memberAll">
                       <span>전체 관리자 수</span>
-                      <span class="main-color">100</span>
+                      <span class="main-color">${list.size()}</span>
                       <span>명</span>
                 </div>
                 <div id="manage">
@@ -266,26 +270,40 @@ pageEncoding="UTF-8"%>
                 <div class="grid-title">계정상태</div>
                 <div class="grid-title"></div>
 
-                <% for(int i=1; i<=10; i++) {%>
-                    <div><input type="checkbox" /></div>
-                    <div>1</div>
-                    <div>개수니</div>
-                    <div>gaesoony@gmail.com</div>
+                  <c:forEach items="${list}" var="list">
+                   <div><input type="checkbox" /></div>
+                    <div>${list.no}</div>
+                    <div>${list.nick}</div>
+                    <div>${list.id}</div>
+                    <c:if test="${list.adminYn eq 'Y'}">
                     <div>운영자</div>
-                    <div>등급</div>
-                    <div>010-1234-5678</div>
-                    <div>2022-12-13</div>
-                    <div>0</div>
-                    <div>0</div>
-                    <div>0</div>
-                    <div>0</div>
+                    </c:if>
+                     <c:if test="${list.adminYn eq 'N'}">
+                    <div>회원</div>
+                    </c:if>
+                    <div><img src="${pageContext.request.contextPath}${list.gradeImgPath}"></div>
+                    <div>${list.phone}</div>
+                    <div>${list.enrollDate}</div>
+                    <div>${list.holdToken}</div>
+                    <div>${list.board}</div>
+                    <div>${list.cmt}</div>
+                    <div>${list.qna}</div>
+                    <c:if test="${list.quitYn eq 'Y'}">
                     <div>삭제</div>
+                    </c:if>
+                    <c:if test="${list.quitYn eq 'N'}">
+                    <div>활동</div>
+                    </c:if>
                     <div>
-                        <a href="${pageContext.request.contextPath}/admin/member/manage/detail"> <span class="material-symbols-outlined">more_horiz</span></a>
+                        <a href="${pageContext.request.contextPath}/admin/member/manage/detail?no=${list.no}"> <span class="material-symbols-outlined">more_horiz</span></a>
                        
                     </div>
-
-                <%}%>
+                  
+                  
+                  
+                  </c:forEach>
+                   
+               
               </div>
 
               <div class="btn-area">

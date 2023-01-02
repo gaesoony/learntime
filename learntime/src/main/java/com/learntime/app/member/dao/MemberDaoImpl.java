@@ -5,8 +5,10 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.learntime.app.member.vo.AdminMemberVo;
 import com.learntime.app.member.vo.FollowVo;
 import com.learntime.app.member.vo.MemberVo;
+import com.learntime.app.member.vo.SearchVo;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -136,9 +138,27 @@ public class MemberDaoImpl implements MemberDao {
 	//----------어드민--------------------
 	//멤버리스트
 	@Override
-	public List<MemberVo> memberList(SqlSessionTemplate sst) {
+	public List<AdminMemberVo> memberList(SqlSessionTemplate sst,SearchVo vo) {
 	
-		return sst.selectList("memberMapper.memberList");
+		return sst.selectList("memberMapper.memberList",vo);
+	}
+	//멤버 탈퇴
+	@Override
+	public int memberAdminDelete(SqlSessionTemplate sst, String id) {
+		return sst.update("memberMapper.memberDeletePwd", id);
+		
+	}
+	//멤버 수정
+	@Override
+	public int adminMemberedit(SqlSessionTemplate sst, MemberVo vo) {
+		
+		return sst.update("memberMapper.adminMemberedit", vo);
+	}
+	//운영자 추가
+	@Override
+	public int createOperator(SqlSessionTemplate sst, MemberVo vo) {
+		
+		return sst.insert("memberMapper.createOperator", vo);
 	}
 	
 	
