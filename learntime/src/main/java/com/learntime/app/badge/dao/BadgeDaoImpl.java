@@ -44,5 +44,17 @@ public class BadgeDaoImpl implements BadgeDao {
 	public int badgeCnt(SqlSessionTemplate sst) {
 		return sst.selectOne("badgeMapper.badgeCnt");
 	}
+	//뱃지 비활성화
+	@Override
+	public int delete(SqlSessionTemplate sst, BadgeVo vo) {
+		
+		return sst.update("badgeMapper.delete",vo);
+	}
+	//뱃지 활성화
+	@Override
+	public int able(SqlSessionTemplate sst, BadgeVo vo) {
+		
+		return sst.update("badgeMapper.able",vo);
+	}
 
 }

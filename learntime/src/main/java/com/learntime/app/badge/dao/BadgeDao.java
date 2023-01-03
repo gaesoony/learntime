@@ -25,5 +25,11 @@ public interface BadgeDao {
 	
 	//관리자 뱃지 수량
 	int badgeCnt(SqlSessionTemplate sst);
+	
+	//뱃지 비활성화
+	int delete(SqlSessionTemplate sst, BadgeVo vo);
+	
+	//뱃지 활성화
+	int able(SqlSessionTemplate sst, BadgeVo vo);
 
 }

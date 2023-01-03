@@ -238,12 +238,16 @@ pageEncoding="UTF-8"%>
 	                    
                     </script>
                     <button>저장하기</button>
+                </form>     
                     <button id="before" type="reset" onclick="location.reload();">초기화</button>
-                    <button class="delete">삭제하기</button>
+                  <form action="${pageContext.request.contextPath}/admin/badge/delete" method="post">  
+                    <button class="delete">비활성화</button>
+                     <input type="hidden" name="no" value="${selectOne.no}">
+                  </form>
                     <button type="button" class="cancle" onclick="location.href='${pageContext.request.contextPath}/admin/badge/list'">이전으로</button>
                   
                 </div>
-            </form>
+           
          
         
         </section>

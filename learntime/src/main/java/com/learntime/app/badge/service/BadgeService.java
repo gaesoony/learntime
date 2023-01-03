@@ -24,6 +24,10 @@ public interface BadgeService {
 	
 	//관리자 뱃지 개수
 	int badgeCnt();
+	//관리자 뱃지 비활성화
+	int delete(BadgeVo vo);
+	//관리자 뱃지 활성화
+	int able(BadgeVo vo);
 
 	
 

@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%>
 
     <!-- 구글아이콘 -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
   </head>
   <style>
@@ -239,23 +239,28 @@ pageEncoding="UTF-8"%>
               
             </section>
             <section class="content-section">
+             <form id="editDelete" action="${pageContext.request.contextPath}/admin/member/gradeEdit" method="post">
               <div class="content-section-top">
                 <div id="memberAll">
                       <span>전체 관리자 수</span>
                       <span class="main-color">${list.size()}</span>
                       <span>명</span>
                 </div>
+                 
                 <div id="manage">
                       <span>선택한 회원을</span>
-                      <select name="" id="grade">
-                          <option value="">새싹</option>
+                      <select name="accumToken" id="grade">
+                      	  <c:forEach items="${map}" var="map">
+                          	<option value="${map.ACCUM_TOKEN}">${map.NAME}</option>
+                          </c:forEach>
                       </select>
-                      <button id="grade-btn">변경하기</button>
-                      <button id="delete-btn">탈퇴</button>    
+                      <button id="grade-btn">변경하기</button>             
+                      <button id="delete-btn">탈퇴</button>   
+                      
                 </div>
               </div>
               <div class="grid">
-                <div class="grid-title"><input type="checkbox" /></div>
+                <div class="grid-title"><input id="cbx_chkAll"type="checkbox"/></div>
                 <div class="grid-title">번호</div>
                 <div class="grid-title">닉네임</div>
                 <div class="grid-title">계정</div>
@@ -271,7 +276,7 @@ pageEncoding="UTF-8"%>
                 <div class="grid-title"></div>
 
                   <c:forEach items="${list}" var="list">
-                   <div><input type="checkbox" /></div>
+                   <div><input name="checkNo" type="checkbox" value="${list.no}"/></div>
                     <div>${list.no}</div>
                     <div>${list.nick}</div>
                     <div>${list.id}</div>
@@ -296,16 +301,11 @@ pageEncoding="UTF-8"%>
                     </c:if>
                     <div>
                         <a href="${pageContext.request.contextPath}/admin/member/manage/detail?no=${list.no}"> <span class="material-symbols-outlined">more_horiz</span></a>
-                       
                     </div>
-                  
-                  
-                  
                   </c:forEach>
-                   
-               
+                  
               </div>
-
+			
               <div class="btn-area">
                 <input type="button" value="운영자 생성" onclick="location.href='${pageContext.request.contextPath}/admin/member/createOperator'"/>
               </div>
@@ -323,7 +323,7 @@ pageEncoding="UTF-8"%>
                 <div class="paging-btn">10</div>
                 <div class="paging-btn" id="next-btn">다음</div>
               </div>
-            
+            </form>   
             </section>
       
       </div>
@@ -332,5 +332,27 @@ pageEncoding="UTF-8"%>
       src="https://kit.fontawesome.com/939838bb27.js"
       crossorigin="anonymous"
     ></script>
+    
+    <script>
+    $(document).ready(function() {
+    	$('#delete-btn').click(function(){
+    		$('#editDelete').attr("action",'${pageContext.request.contextPath}/admin/member/listDelete');
+    	});
+    	
+	    $("#cbx_chkAll").click(function() {
+			if($("#cbx_chkAll").is(":checked")) $("input[name=checkNo]").prop("checked", true);
+			else $("input[name=checkNo]").prop("checked", false);
+		});
+	
+		$("input[name=checkNo]").click(function() {
+			var total = $("input[name=checkNo]").length;
+			var checked = $("input[name=checkNo]:checked").length;
+	
+			if(total != checked) $("#cbx_chkAll").prop("checked", false);
+			else $("#cbx_chkAll").prop("checked", true); 
+		});
+	});
+    
+    </script>
   </body>
 </html>

@@ -12,9 +12,6 @@ import com.learntime.app.badge.vo.BadgeVo;
 import com.learntime.app.badge.vo.SearchVo;
 
 
-
-
-
 @Service
 public class BadgeServiceImpl implements BadgeService {
 	
@@ -52,11 +49,23 @@ public class BadgeServiceImpl implements BadgeService {
 		
 		return badgeDao.edit(sst,vo);
 	}
-
+	//뱃지 갯수
 	@Override
 	public int badgeCnt() {
 		
 		return badgeDao.badgeCnt(sst);
+	}
+	//뱃지 비활성화
+	@Override
+	public int delete(BadgeVo vo) {
+		
+		return badgeDao.delete(sst,vo);
+	}
+	//뱃지 활성화
+	@Override
+	public int able(BadgeVo vo) {
+		
+		return badgeDao.able(sst,vo);
 	}
 
 }

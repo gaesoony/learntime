@@ -1,8 +1,8 @@
 package com.learntime.app.admin.controller;
 
+import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,7 +29,10 @@ public class AdminMemberController {
 		@GetMapping("/member/manage")
 		public String memberManage(Model model, SearchVo vo) {
 			List<AdminMemberVo> list=memberService.memberList(vo);
+			List<Map<String, String>> map=memberService.memberGrade();
+			
 			model.addAttribute("list",list);
+			model.addAttribute("map",map);
 			
 			return "/admin/member/memberManage";
 		}
@@ -83,8 +86,54 @@ public class AdminMemberController {
 		
 		//관리자 회원등급관리,토큰 조건 관리
 		@GetMapping("/member/grade")
-		public String memberGrade() {
+		public String memberGrade(Model model) {
+			List<Map<String, String>> map=memberService.memberGrade();
+			model.addAttribute("map",map);
+			
 			return "/admin/member/memberGrade";
 		}
+		//관리자 회원등급관리,토큰 조건 관리
+		@PostMapping("/member/grade")
+		public String memberGrade() {
+			
+			
+			
+			return "redirect:/admin/member/memberGrade";
+		}
+		
+		
+		//관리자 회원 리스트에서 등급 수정
+		@PostMapping("/member/gradeEdit")
+		public String memberListGradeEdit(String[] checkNo,String accumToken) {
+			
+			Map<String, Object>map=new HashMap<String, Object>();
+			map.put("no", checkNo);
+			map.put("accumToken", accumToken);
+			
+			int result=memberService.memberListGradeEdit(map);
+			if(result==0) {
+				return "common/errorPage";
+			}
+			
+			return "redirect:/admin/member/manage";
+			
+		}
+		
+		
+		
+		//관리자 회원 리스트에서 탈퇴 
+		@PostMapping("/member/listDelete")
+		public String memberListMemberDelte(String[] checkNo) {
+		
+			
+			int result=memberService.memberListMemberDelte(checkNo);
+			if(result==0) {
+				return "common/errorPage";
+			}
+			
+			return "redirect:/admin/member/manage";
+			
+		}
+
 
 }
