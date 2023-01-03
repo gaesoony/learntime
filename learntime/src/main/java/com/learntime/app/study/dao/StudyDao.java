@@ -157,6 +157,13 @@ public interface StudyDao {
 
 	//마이페이지 게시글 개수 카운트
 	public int selectMypageCnt(SqlSessionTemplate sst, Map map);
+	
+	//모집번호랑 회원번호로 해당 그룹에서의 status 조회
+	public String selectMyStatus(SqlSessionTemplate sst, Map map);
+
+	public int open(SqlSessionTemplate sst, String gno);
+
+	public int close(SqlSessionTemplate sst, String gno);
 
 
 

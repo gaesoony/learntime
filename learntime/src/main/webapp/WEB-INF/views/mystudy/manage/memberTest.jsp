@@ -132,7 +132,6 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 
       let status = document.querySelectorAll(".study-type");
 
-      //페이지가 새로고침됐을 때 이미 체크되어있던 항목의 기술스택 불러오기
       status.forEach((o) => {
         if (o.querySelector("input").checked) {
           const grid = document.querySelector(".grid");
@@ -261,35 +260,40 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
             success: function (data) {
               var obj = JSON.parse(data);
+
               const modal = document.querySelector(".modal-section");
               const nickTitle = document.querySelector(".nick-title");
               const studyPopupBody = document.querySelector(".study-popup-body");
               const studyPopupFoot = document.querySelector(".study-popup-foot");
 
-              nickTitle.innerHTML =
-                obj.result[1].NICK + "님이 가입을 신청했습니다";
+
+                nickTitle.innerHTML =
+                obj.result[0].NICK + "님이 가입을 신청했습니다";
 
               let modalStr = "";
               let submitStr = "";
 
-              for (let i = 0; i < obj.result.length; i++) {
-                modalStr =
-                  modalStr +
-                  '<div class="study-body-content">' +
-                  '<div class="study-body-titlebox">' +
-                  "<div>질문" +
-                  (i + 1) +
-                  "</div>" +
-                  "<div>" +
-                  obj.result[i].QUESTION +
-                  "</div>" +
-                  "</div>" +
-                  '<div class="study-body-contentbox">' +
-                  '<input type="text" value="' +
-                  obj.result[i].CONTENT +
-                  '" readonly/>' +
-                  "</div>" +
-                  "</div>";
+              if(obj.result[0].QUESTION != null) {
+                for (let i = 0; i < obj.result.length; i++) {
+                  modalStr =
+                    modalStr +
+                    '<div class="study-body-content">' +
+                    '<div class="study-body-titlebox">' +
+                    "<div>질문" +
+                    (i + 1) +
+                    "</div>" +
+                    "<div>" +
+                    obj.result[i].QUESTION +
+                    "</div>" +
+                    "</div>" +
+                    '<div class="study-body-contentbox">' +
+                    '<input type="text" value="' +
+                    obj.result[i].CONTENT +
+                    '" readonly/>' +
+                    "</div>" +
+                    "</div>";
+                }
+
               }
 
               submitStr =
@@ -301,6 +305,10 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                 ');">거절</div>';
               studyPopupBody.innerHTML = modalStr;
               studyPopupFoot.innerHTML = submitStr;
+
+
+
+
             },
             error: function (error) {
               alert("통신실패!");

@@ -144,14 +144,18 @@ public class StudyController {
 			likeScrap = service.selectLikeScrap(map);
 			model.addAttribute("likeScrap", likeScrap);
 		}
+		
+		//map으로 해당 모임에서 가입상태 정보 받아옴
+		//가입가능 상태 : null, D(거절), F(탈퇴)
+		//가입불가 상태: A(대기), B(모임장), C(승인), E(강퇴)
+		String myStatus = service.selectMyStatus(map);
 
-		System.out.println(likeScrap);
 		model.addAttribute("searchVo", vo);
 		model.addAttribute("groupOne", groupOne);
 		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("likeScrap", likeScrap);
 		model.addAttribute("groupCmtList", groupCmtList);
-		
+		model.addAttribute("myStatus", myStatus);
 		
 		return "study/detail";
 	}
@@ -421,5 +425,29 @@ public class StudyController {
 			return "common/errorPage";
 		}
 		
+	}
+	
+	//모집완료 -> 모집중
+	@GetMapping("/detail/open")
+	public String open(SearchVo sv, String gno) {
+		int result = service.open(gno);
+		
+		if(result == 1) {
+			return "redirect:/study/detail?gno="+sv.getGno()+"&keyword="+sv.getKeyword()+"&tag="+ sv.getTagList() +"&techType="+sv.getTechType()+"&techStack="+sv.getTechStackList()+"&type="+sv.getType()+"&order="+sv.getOrder()+"&status="+sv.getStatus();
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+	//모집중 -> 모집완료
+	@GetMapping("/detail/close")
+	public String close(SearchVo sv, String gno) {
+		int result = service.close(gno);
+		
+		if(result == 1) {
+			return "redirect:/study/detail?gno="+sv.getGno()+"&keyword="+sv.getKeyword()+"&tag="+ sv.getTagList() +"&techType="+sv.getTechType()+"&techStack="+sv.getTechStackList()+"&type="+sv.getType()+"&order="+sv.getOrder()+"&status="+sv.getStatus();
+		}else {
+			return "common/errorPage";
+		}
 	}
 }

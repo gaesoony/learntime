@@ -299,12 +299,15 @@ select {
             <a href=""><i class="fa-solid fa-angle-right"></i>자료 공유</a>
             <a href=""><i class="fa-solid fa-angle-right"></i>과제 제출</a>
           </ul>
-          <div class="mystudy-manage-area">
-            <a href="${path}/mystudy/manage/info?gno=${groupOne.NO}">
-              <i class="fa-solid fa-gear"></i><span>관리</span>
+          <c:if test="${myStatus == 'B'}">
+            <div class="mystudy-manage-area">
+              <a href="${path}/mystudy/manage/info?gno=${groupOne.NO}">
+                <i class="fa-solid fa-gear"></i><span>관리</span>
+  
+              </a>
+            </div>
 
-            </a>
-          </div>
+          </c:if>
         </div>
       </aside>
 

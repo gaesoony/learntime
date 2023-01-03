@@ -53,43 +53,6 @@ pageEncoding="UTF-8"%>
         bottom: -10px;
       }
 
-      /* .study-type-bar1 {
-        width: 42px;
-        height: 4px;
-        background-color: #5ecc80;
-        position: absolute;
-        bottom: -10px;
-        left: -3px;
-      }
-
-      .study-type-bar2 {
-        width: 42px;
-        height: 4px;
-        background-color: #5ecc80;
-        position: absolute;
-        bottom: -10px;
-        left: -4px;
-      }
-
-      .study-type-bar3 {
-        width: 42px;
-        height: 4px;
-        background-color: #5ecc80;
-        position: absolute;
-        bottom: -10px;
-        left: -3px;
-      }
-
-      .study-type-bar4 {
-        width: 42px;
-        height: 4px;
-        background-color: #5ecc80;
-        position: absolute;
-        bottom: -10px;
-        left: -3px;
-      }
-       */
-
       .search-input {
         width: 300px;
         height: 40px;

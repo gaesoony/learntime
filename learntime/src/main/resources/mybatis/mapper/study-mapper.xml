@@ -355,8 +355,8 @@
 	<select id="selectAnswerListByNo" resultType="map">
 		SELECT L.NO, M.NICK, Q.QUESTION, R.CONTENT
 		FROM RECRUIT_LIST L
-		JOIN RECRUIT_REPLY R ON L.NO = R.RECRUIT_LIST_NO
-		JOIN RECRUIT_QUESTION Q ON Q.NO = R.RECRUIT_QUESTION_NO
+		LEFT JOIN RECRUIT_REPLY R ON L.NO = R.RECRUIT_LIST_NO
+		LEFT JOIN RECRUIT_QUESTION Q ON Q.NO = R.RECRUIT_QUESTION_NO
 		JOIN MEMBER M ON M.NO = L.M_NO
 		WHERE L.NO = #{rno}
 	</select>
@@ -573,4 +573,19 @@
 			</if>
 		</if>
 	</select>
+	<select id="selectMyStatus" resultType="String">
+		SELECT STATUS
+		FROM RECRUIT_LIST
+		WHERE G_NO = #{gno} AND M_NO = #{mno}
+	</select>
+	<update id="open">
+		UPDATE RECRUIT_GROUP SET
+		CLOSING_YN = 'N'
+		WHERE NO = #{gno}
+	</update>
+	<update id="close">
+		UPDATE RECRUIT_GROUP SET
+		CLOSING_YN = 'Y'
+		WHERE NO = #{gno}
+	</update>
 </mapper>

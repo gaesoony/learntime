@@ -329,6 +329,22 @@ public class StudyDaoImpl implements StudyDao{
 		return sst.selectOne("studyMapper.selectMypageCnt", map);
 	}
 
+	//모집번호랑 회원번호로 해당 그룹에서의 status 조회
+	@Override
+	public String selectMyStatus(SqlSessionTemplate sst, Map map) {
+		return sst.selectOne("studyMapper.selectMyStatus", map);
+	}
+
+	@Override
+	public int open(SqlSessionTemplate sst, String gno) {
+		return sst.update("studyMapper.open", gno);
+	}
+
+	@Override
+	public int close(SqlSessionTemplate sst, String gno) {
+		return sst.update("studyMapper.close", gno);
+	}
+
 
 
 }

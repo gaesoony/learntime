@@ -65,6 +65,11 @@
   display: none;
 }
 
+.main-back {
+  background-color: var(--main-color);
+  color: white !important;
+}
+
 /* 스터디 상세 1200 */
 
 .main-study-detail {
@@ -541,7 +546,7 @@
 .member-nick {
   font-size: 16px;
   font-weight: 600;
-  margin-bottom : 5px;
+  margin-bottom: 5px;
 }
 
 .cmt-edit {

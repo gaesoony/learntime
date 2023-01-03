@@ -255,21 +255,22 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <input type="hidden" name="gno" value="${groupOne.NO}" />
             <input type="hidden" name="mno" value="${loginMember.no}" />
             <section class="center">
-              <c:if test="${loginMember != null}">
+              <c:if test="${loginMember != null && (myStatus == null || myStatus == 'D' || myStatus == 'F')}">
                 <input
                   class="study-join-btn"
                   type="button"
                   id="study-modal-open"
-                  value="가입하기"
-                />
+                  value="가입하기"/>
+              </c:if>
+              <c:if test="${loginMember != null && (myStatus == 'A' || myStatus == 'B' || myStatus == 'C' || myStatus == 'E')}">
+                <input class="study-join-btn" type="button" value="가입하기" onclick="alertEnable('${myStatus}');"/>
               </c:if>
               <c:if test="${loginMember == null}">
                 <input
                   class="study-join-btn"
                   type="button"
                   value="가입하기"
-                  onclick="login();"
-                />
+                  onclick="login();"/>
               </c:if>
 
               <div class="study-popup-wrap" id="study-popup">
@@ -330,6 +331,24 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                     $("#study-popup").fadeOut(); //페이드아웃 효과
                   }
                 });
+
+                function alertEnable(x) {
+                  if(x == 'A') {
+                    Swal.fire('이미 가입신청한 모임입니다');
+                  }
+
+                  if(x == 'B') {
+                    Swal.fire('현재 모임장입니다!');
+                  }
+
+                  if(x == 'C') {
+                    Swal.fire('승인완료된 모임입니다');
+                  }
+
+                  if(x == 'E') {
+                    Swal.fire('강퇴회원은 재가입 불가합니다');
+                  }
+                }
               </script>
             </section>
           </form>
@@ -337,19 +356,19 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <aside class="study-detail-aside-right">
           <div class="study-detail-aside-right-btns">
             <c:if test="${groupOne.CLOSING_YN == 'N'}">
-              <c:if test="${loginMember.no == groupOne.WRITER_NO}">
-                <div>모집중</div>
+              <c:if test="${loginMember != null && myStatus == 'B'}">
+                <div class="cursor" onclick="location.href = '${path}/study/detail/close?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'">모집중</div>
               </c:if>
-              <c:if test="${loginMember.no != groupOne.WRITER_NO}">
-                <div class="no-cursor">모집중</div>
+              <c:if test="${loginMember == null or myStatus != 'B'}">
+                <div>모집중</div>
               </c:if>
             </c:if>
             <c:if test="${groupOne.CLOSING_YN == 'Y'}">
-              <c:if test="${loginMember.no == groupOne.WRITER_NO}">
-                <div>모집완료</div>
+              <c:if test="${loginMember != null && myStatus == 'B'}">
+                <div class="cursor main-back" onclick="location.href = '${path}/study/detail/open?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'">모집완료</div>
               </c:if>
-              <c:if test="${loginMember.no != groupOne.WRITER_NO}">
-                <div class="no-cursor">모집완료</div>
+              <c:if test="${loginMember == null or myStatus != 'B'}">
+                <div class="main-back">모집완료</div>
               </c:if>
             </c:if>
             <c:if test="${loginMember == null}">

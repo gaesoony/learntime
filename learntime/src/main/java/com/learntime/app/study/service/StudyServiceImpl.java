@@ -519,4 +519,23 @@ public class StudyServiceImpl implements StudyService{
 		return result;
 	}
 
+	//모집번호랑 회원번호로 해당 그룹에서의 status 조회
+	@Override
+	public String selectMyStatus(Map map) {
+		String result = dao.selectMyStatus(sst, map);
+		return result;
+	}
+
+	@Override
+	public int open(String gno) {
+		int result = dao.open(sst, gno);
+		return result;
+	}
+
+	@Override
+	public int close(String gno) {
+		int result = dao.close(sst, gno);
+		return result;
+	}
+
 }

@@ -147,7 +147,7 @@ input[name="status"]:checked ~ .bar {
 .study-popup-body {
   width: 100%;
   background-color: #ffffff;
-  height: 300px;
+  max-height: 300px;
   overflow: scroll;
   margin-bottom: 10px;
 }
