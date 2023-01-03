@@ -708,7 +708,7 @@
                             <td class="thumbsup"><i class="fa-regular fa-thumbs-up"></i></td>
                             <td class="thumbsdown"><i class="fa-regular fa-thumbs-down"></i></td>
                             <td class="bookmark"><i class="fa-regular fa-bookmark"></i></td>
-                            <td class="edit"><button type="button" class="edit-btn" onclick="location.href='app/makegrass/edit'">수정</button></td>
+                            <td class="edit"><button type="button" class="edit-btn" onclick="location.href='app/makegrass/edit?no=${mvo.no}'">수정</button></td>
                             <td class="slash">/</td>
                             <td class="delete">
                                 <button type="button" class="delete-btn">삭제</button>

@@ -18,22 +18,16 @@ public class QnaDaoImpl implements QnaDao {
 	//게시글 작성
 	@Override
 	public int write(SqlSessionTemplate sst, QnaVo vo) {
-		
-		System.out.println("dao에서 vo : " + vo);
 		return sst.insert("qnaMapper.write", vo);
 	}
 	
 	@Override
 	public int insertTag(SqlSessionTemplate sst, String[] tag) {
-		
-		System.out.println("dao 브이오 : " + tag);
 		return sst.insert("qnaMapper.insertTag", tag);
 	}
 	
 	@Override
 	public int insertKnowledgeTag(SqlSessionTemplate sst, String[] tag) {
-		
-		System.out.println("dao 브이오 : " + tag);
 		return sst.insert("qnaMapper.insertKnowledgeTag", tag);
 	}
 
@@ -49,6 +43,12 @@ public class QnaDaoImpl implements QnaDao {
 	@Override
 	public QnaVo detail(SqlSessionTemplate sst, String no) {
 		return sst.selectOne("qnaMapper.detail", no);
+	}
+
+	//게시글 수정
+	@Override
+	public int edit(SqlSessionTemplate sst, QnaVo vo) {
+		return sst.update("qnaMapper.edit", vo);
 	}
 
 	

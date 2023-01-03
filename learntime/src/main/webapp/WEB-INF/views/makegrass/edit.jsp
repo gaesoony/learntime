@@ -15,9 +15,9 @@
         background-color: #5ECC80;
     }
     .mainbox{
-        width: 1002px;
+        width: 1004px;
         margin: 0 auto;
-        margin-top: 70px;
+        margin-top: 50px;
     }
     .title{
         border: none;
@@ -27,8 +27,26 @@
         font-size: 28px;
         font-weight: 550;
         outline: none;
-        margin-top: 25px;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
+     }
+     .hashtag{
+        border: none;
+        text-decoration: none;
+        width: 100%;
+        height: 5vh;
+        font-size: 18px;
+        color: #AAAAAA;
+        outline: none;
+        margin-bottom: 20px;
+     }
+     .worktime{
+        border: none;
+        text-decoration: none;
+        width: 100%;
+        height: 5vh;
+        font-size: 16px;
+        outline: none;
+        margin-bottom: 20px;
      }
      .cancle{
         width: 5vw;
@@ -41,7 +59,6 @@
         margin-left: 840px;
         margin-top: 30px;
         margin-bottom: 50px;
-        cursor: pointer;
      }
      .write{
         width: 5vw;
@@ -80,7 +97,7 @@
         text-decoration: none;
         font-size: 16px;
         margin-bottom: 20px;
-        padding: 5px;
+        padding: 10px;
         color: #37774A;
         margin-right: 10px;
     }
@@ -96,6 +113,7 @@
         cursor: pointer;
         margin-left: 8px;
     }
+
     #tag{
         text-align: center;
         border: none;
@@ -107,34 +125,14 @@
         background-color: #5ECC80;
         color: white;
     }
-    
 
-    /* 상단 라디오 버튼 */
-    .radio-box input[type=radio]{
-        display: none;
-    }
-    .radio-box input[type=radio]+label{
-        display: inline-block;
-        cursor: pointer;
-        height: 24px;
-        width: 100px;
-        border: 1px solid #5ECC80;
-        line-height: 24px;
-        text-align: center;
-        font-weight:bold;
-        font-size:14px;
-    }
-    .radio-box input[type=radio]+label{
-        background-color: #fff;
-        color: #37774A;
-    }
-    .radio-box input[type=radio]:checked+label{
-        background-color: #5ECC80;
-        color: #fff;
-    }
-
-    
 </style>
+
+<link
+    href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
+    rel="stylesheet"
+/>
+
 </head>
 <body>
 
@@ -142,33 +140,29 @@
 
     <!-- 상단 초록색 바-->
     <div class="banner"></div>
-		<div class="mainbox">
-		
-		<form action="${path}/qna/edit" method="post" name="myform" onkeydown="return event.key != 'Enter';">
 
-            <div class="radio-box">
-                <input type="radio" value="${vo.cateNo}" id="cateNo1" name="cateNo" checked><label for="cateNo1">기술</label>
-                <input type="radio" value="${vo.cateNo}" id="cateNo2" name="cateNo"><label for="cateNo2">커리어</label>
-            </div>
+    <div class="mainbox">
+	    <form action="${path}/makegrass/edit" method="post" name="myform" onkeydown="return event.key != 'Enter';">
+	    	<div class="maintitle">
+	            <input type="text" name="title" class="title" placeholder="제목을 입력하세요">
+	            <input type="text" name="learnTime" class="worktime" placeholder="공부한 시간 | ex) 120분">
 
-            <input type="text" name="title" class="title" value="${vo.title}"/>
-
-            <div class="content">
-                <div>
-                    <input type="text" id="tagNo" placeholder="해시태그를 입력하세요"/>
-                </div>
-                <ul id="tag-list">
-                    
-                </ul>
-            </div>
-
-            <textarea name="content" class="summernote" vlaue="${vo.content}">${vo.content}</textarea>
-
-            <input type="button" onClick="history.back();" class="cancle" value="취소" />
-            <input type="submit" class="write" value="수정" />
-                
-        </div>
-		</form>
+	            <div class="content">
+	                <div>
+	                    <input type="text" id="tagNo" placeholder="해시태그를 입력하세요" />
+	                </div>
+	                <ul id="tag-list">
+	                </ul>
+	            </div>
+	
+	            <textarea class="summernote" name="content"></textarea>
+	
+	            <input type="button" onClick="history.back();" class="cancle" style='cursor:pointer;' value="취소">
+	            <input type="submit" class="write" value="수정">
+	            
+	        </div>
+	    </form>
+    </div>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
@@ -180,15 +174,14 @@
     <script>
         $('.summernote').summernote({
             height: 350,
-            placeholder: '- 학습 관련 질문을 남겨주세요. (상세히 작성하면 더 좋아요!) <br><br> - 먼저 유사한 질문이 있는지 검색해보세요. <br><br> - 싫어요 누적 개수 10개 시, 해당 게시물이 블라인드 처리될 수도 있습니다. <br><br> - 잠깐! 런타임 서비스 운영 관련 문의는 1:1 문의 게시판을 이용해주세요.',
+            placeholder: '- 공부한 내용을 남겨주세요. <br><br> - 잠깐! 런타임 서비스 운영 관련 문의는 1:1 문의 게시판을 이용해주세요.',
             lang: "ko-KR",
             disableResizeEditor: true,
         });
-
     </script>
 
-    <script>
-        $(document)
+<script>
+    $(document)
         .ready(function () {
 
             var tag = {};
@@ -254,6 +247,8 @@
             });
         })
 
+        // const tagList = document.querySelector("#tag-list");
+        // tagList.innerHTML += str;
     </script>
 
     <!-- 폼 Enter 비활성화 -->

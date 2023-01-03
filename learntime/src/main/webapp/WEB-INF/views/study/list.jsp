@@ -72,7 +72,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
                     type="text"
                     placeholder="관심 스터디/프로젝트를 검색해보세요!"
                     name="keyword"
-                    onkeypress="press(this.form)"
                   />
                 </c:if>
                 <c:if test="${keyword != null}">

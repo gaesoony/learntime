@@ -53,7 +53,7 @@
         margin-bottom: 10px;
     }
     .sideid{
-        width: 9vw;
+        width: 8.5vw;
         margin-left: 10px;
         float: left; 
         font-size: 16px; 
@@ -277,7 +277,7 @@
         <div class="bannertitle2">미래 개발자들의 커뮤니티!! 함께 토론해보아요:)</div>
     </div>
 
-        <form action="${path}/qna/list" method="post">
+        <form action="${path}/qna/list" method="get" name="form">
             <div class="main">
                 <div class="sidelist">
                     <div class="sidebar">
@@ -333,10 +333,10 @@
                             <!-- 검색 -->
                             <div class="searchbar">
                                 <div class="search">
-                                    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-                                    <c:if test="${keyword != null}">
-                                        <input type="text" class="searchblank" name="keyword" placeholder="궁금한 질문을 검색해보세요!" value="${map.keyword}">
-                                    </c:if>
+                                    <!-- <c:if test="${keyword != null}"> -->
+                                        <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+                                        <input type="text" class="searchblank" name="keyword" placeholder="궁금한 질문을 검색해보세요!" value="${keyword}" onkeypress="press(this.form)">
+                                    <!-- </c:if> -->
                                 </div>
                                 <input type="submit" class="searchbtn" value="검색">
                             </div>
@@ -366,7 +366,7 @@
                                 <a href="${path}/qna/detail?no=${map.NO}&keyword=${keyword}">
                                     <div class="titlebox">
                                         <div class="titleb">
-                                            <div class="title" name="title">${map.TITLE}</div>
+                                            <div class="title" name="title">[미해결]&nbsp${map.TITLE}</div>
                                             <div class="contentbox">
                                                 <div class="content" name="content">
                                                     ${map.CONTENT}

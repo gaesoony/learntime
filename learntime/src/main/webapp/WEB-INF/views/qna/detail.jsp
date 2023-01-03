@@ -84,6 +84,12 @@
         font-weight: 300;
         cursor: pointer;
     }
+    .edit-btn-null{
+        border: none;
+        font-size: 18px;
+        background-color: white;
+        font-weight: 300;
+    }
     .edit-btn:hover{
         color: #5ECC80;
         font-weight: 550;
@@ -105,6 +111,14 @@
     .delete-btn:hover{
         color: #5ECC80;
         font-weight: 550;
+    }
+    .delete-btn-null{
+        border: none;
+        font-size: 18px;
+        vertical-align: middle;
+        font-weight: 300;
+        background-color: white;
+        padding-bottom: 19px;
     }
     
 
@@ -338,7 +352,18 @@
         font-size: 15px;
         color: #5ECC80;
         float: left;
-        margin-right: 680px;
+        margin-right: 580px;
+    }
+    .reply-select-box{
+        width: 3vw;
+    }
+    #resply-select{
+        width: 4vw;
+        border: none;
+        background-color: white;
+        color: #989898;
+        font-size: 15px;
+        cursor: pointer;
     }
     .edit1{
         float: left;
@@ -350,6 +375,7 @@
         text-decoration: none;
         border: none;
         font-size: 15px;
+        cursor: pointer;
     }
     .edit2{
         float: left;
@@ -362,6 +388,8 @@
         text-decoration: none;
         border: none;
         font-size: 15px;
+        float: left;
+        cursor: pointer;
     }
     .endline1{
         width: 950px;
@@ -382,10 +410,12 @@
         font-size: 20px;
         color: #444444;
         margin-left: 915px;
+        cursor: pointer;
     }
     .enddown{
         font-size: 20px;
         color: #444444;
+        cursor: pointer;
     }
     .endline2{
         width: 950px;
@@ -400,6 +430,7 @@
         margin-top: 30px;
         margin-bottom: 20px;
         font-weight: 550;
+        cursor: pointer;
     }
     .profile4{
         width: 2vw;
@@ -568,16 +599,16 @@
                 <div>미해결</div>
             </div>
             <div class="si">
-                <div><i class="fa-solid fa-thumbs-up"></i> 25</div>
+                <div><i class="fa-solid fa-thumbs-up"></i> 3</div>
             </div>
             <div class="si">
-                <div><i class="fa-solid fa-thumbs-down"></i> 12</div>
+                <div><i class="fa-solid fa-thumbs-down"></i> 1</div>
             </div>
             <div class="si">
-                <i class="fa-solid fa-comment"></i> 13
+                <i class="fa-solid fa-comment"></i> 2
             </div>
             <div class="si">
-                <i class="fa-solid fa-bookmark"></i> 20
+                <i class="fa-solid fa-bookmark"></i> 3
             </div>
         </div>
     </div>
@@ -589,7 +620,7 @@
             <div class="maintitle">
                 <div class="title">
                     <div class="title-start">Q.</div>
-                    <h2 class="title-end">${qvo.title}</h2>
+                    <h2 class="title-end">[미해결]&nbsp${qvo.title}</h2>
                 </div>
             </div>
             <div class="middletitle">
@@ -598,11 +629,12 @@
                         <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필"></td>
                         <td class="nick">${qvo.writer}</td>
                         <td class="enrollDate">${qvo.enrollDate}</td>
-                        <td class="heart"><i class="fa-solid fa-thumbs-up"></i> 25</td>
+                        <td class="heart"><i class="fa-solid fa-thumbs-up"></i> 3</td>
                         <td class="thumbsup" id="thumbsup" onclick="changeColor5()"><i class="fa-regular fa-thumbs-up"></i></td>
                         <td class="thumbsdown" id="thumbsdown" onclick="changeColor6()"><i class="fa-regular fa-thumbs-down"></i></td>
                         <td class="bookmark" id="bookmark" onclick="changeColor7()"><i class="fa-regular fa-bookmark"></i></td>
-                        <td class="edit"><button type="button" class="edit-btn" onclick="location.href='${path}/qna/list'">수정</button></td>
+
+                        <td class="edit"><button type="button" class="edit-btn" onclick="location.href='${path}/qna/edit?no=${qvo.no}'">수정</button></td>
                         <td class="slash">/</td>
                         <td class="delete">
                             <button type="button" class="delete-btn">삭제</button>
@@ -618,6 +650,26 @@
                                 </div>
                             </div>
                         </td>
+
+                        <!-- <c:if test="${loginMember != qvo.writer}">
+                            <td class="edit"><button type="button" class="edit-btn-null" title="해당 글의 작성자만 가능합니다.">수정</button></td>
+                            <td class="slash">/</td>
+                            <td class="delete">
+                                <button type="button" class="delete-btn-null" title="해당 글의 작성자만 가능합니다.">삭제</button>
+                                <div class="modal hidden">
+                                    <div class="bg"></div>
+                                    <div class="modalBox">
+                                        <input type="button" class="closeBtn" onClick="location.reload();" value="X"></input>
+                                        <p class="modalTitle">게시물을 삭제하시겠습니까?</p>
+                                        <div class="modalBtn">
+                                            <input type="button" class="cancleBtn" value="취소" onClick="location.reload();"></input>
+                                            <input type="button" class="saveBtn" value="삭제"></input>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </c:if> -->
+                        
                     </tr>
                 </table>
                 <div class="line1"></div>
@@ -640,7 +692,7 @@
         <div class="middle">
             <div class="middlemain">
                 <div><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
-                <div class="replyplz">nick01님, 답변해주세요!</div>
+                <div class="replyplz">${qvo.writer}님, 답변해주세요!</div>
                 <div class="replyplz-1">모두에게 도움이 되는 답변의 주인공이 되어주세요:)</div>
                 <div class="input">
                     <textarea class="summernote" name="editordata"></textarea>
@@ -658,10 +710,11 @@
                 <div><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
                 <div class="endnick">nick02</div>
                 <div class="endenrollDate">2022.12.08</div>
-                <div class="endheart"><i class="fa-solid fa-thumbs-up"></i> 12</div>
-                <div class="edit1"><input type="button" id="edit1" style='cursor:pointer;' value="답변 수정"></div>
+                <div class="endheart"><i class="fa-solid fa-thumbs-up"></i> 3</div>
+                <div class="edit1"><input type="button" id="edit1" value="답변 수정"></div>
                 <div class="edit2"> / </div>
-                <div class="edit3"><input type="button" id="edit3" style='cursor:pointer;' value="삭제"></div>
+                <div class="edit3"><input type="button" id="edit3" value="삭제"></div>
+                <div class="reply-select-box"><input type="button" id="resply-select" value="/ 채택"></div>
                 <div class="endline1"></div>
                 <div class="endreply">
                     안녕하세요. nick02입니다.<br>
@@ -670,12 +723,12 @@
                     대신 스프링 데이터 JPA를 사용할 경우 구현 클래스를 자동으로 생성하여 주입 받아
                     사용가능합니다.
                 </div>
-                <div class="endup" id="endup" onclick="changeColor3()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-up"></i></div>
-                <div class="enddown" id="enddown" onclick="changeColor4()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-down"></i></div>
+                <div class="endup" id="endup" onclick="changeColor3()"><i class="fa-regular fa-thumbs-up"></i></div>
+                <div class="enddown" id="enddown" onclick="changeColor4()"><i class="fa-regular fa-thumbs-down"></i></div>
     
                 <div class="endline2"></div>
     
-                <div class="chat" id="chat" style="cursor: pointer;">댓글 <i class="fa-solid fa-chevron-right"></i></div>
+                <div class="chat" id="chat">댓글 <i class="fa-solid fa-chevron-right"></i></div>
     
                 <!-- 댓글 부분 -->
                 <div id="reply">

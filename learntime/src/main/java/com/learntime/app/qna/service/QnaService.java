@@ -23,6 +23,8 @@ public interface QnaService {
 	//게시글 상세조회
 	public QnaVo detail(String no);
 
+	public int edit(QnaVo vo);
+
 	
 	
 	
