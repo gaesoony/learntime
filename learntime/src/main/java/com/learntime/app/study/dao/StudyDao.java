@@ -165,6 +165,20 @@ public interface StudyDao {
 
 	public int close(SqlSessionTemplate sst, String gno);
 
+	public int insertGroupBoardCategory(SqlSessionTemplate sst, Map map);
+
+	public List<Map<String, Object>> selectCateList(SqlSessionTemplate sst, Map map);
+
+	public String selectCateName(SqlSessionTemplate sst, Map map);
+
+	public List<Map<String, Object>> selectBoardList(SqlSessionTemplate sst, Map map);
+
+	public int boardWrite(SqlSessionTemplate sst, Map map);
+
+	public Map<String, Object> selectBoardDetail(SqlSessionTemplate sst, String bno);
+
+
+
 
 
 }

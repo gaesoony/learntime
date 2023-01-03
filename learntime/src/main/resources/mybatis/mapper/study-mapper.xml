@@ -588,4 +588,36 @@
 		CLOSING_YN = 'Y'
 		WHERE NO = #{gno}
 	</update>
+	<insert id="insertGroupBoardCategory">
+		INSERT INTO GROUP_BOARD_CATEGORY
+		VALUES (SEQ_GROUP_BOARD_CATEGORY_NO.NEXTVAL, #{gno}, #{cateName}, 'N')
+	</insert>
+	<select id="selectCateList" resultType="map">
+		SELECT NO, G_NO, NAME, DELETE_YN
+		FROM GROUP_BOARD_CATEGORY
+		WHERE G_NO = #{gno} AND DELETE_YN = 'N'
+	</select>
+	<select id="selectCateName" resultType="String">
+		SELECT NAME
+		FROM GROUP_BOARD_CATEGORY
+		WHERE NO = #{ctno}
+	</select>
+	<select id="selectBoardList" resultType="map">
+		SELECT B.NO, B.TITLE, M.NICK,TO_CHAR(CAST(B.ENROLL_DATE as DATE),'YYYY.MM.DD') ENROLL_DATE , B.HIT
+		FROM GROUP_BOARD B
+		JOIN GROUP_BOARD_CATEGORY C ON B.CATE_NO = C.NO
+		JOIN MEMBER M ON M.NO = B.WRITER
+		WHERE B.CATE_NO = #{ctno} AND B.DELETE_YN = 'N'
+		ORDER BY B.NO
+	</select>
+	<insert id="boardWrite">
+		INSERT INTO GROUP_BOARD
+		VALUES (SEQ_GROUP_BOARD_NO.NEXTVAL, #{ctno}, #{mno}, #{title}, #{content}, SYSDATE, 'N', SYSDATE, 0)
+	</insert>
+	<select id="selectBoardDetail" resultType="map">
+		SELECT B.NO, B.CATE_NO, M.NICK, B.TITLE, TO_CHAR(B.CONTENT) CONTENT , TO_CHAR(CAST(B.ENROLL_DATE as DATE),'YYYY.MM.DD') ENROLL_DATE, B.HIT
+		FROM GROUP_BOARD B
+		JOIN MEMBER M ON M.NO = B.WRITER
+		WHERE B.NO = #{bno}
+	</select>
 </mapper>

@@ -187,8 +187,6 @@ public class StudyController {
 		vo.setWriter(loginMember.getNo());
 		vo.setWriterNick(loginMember.getNick());
 		
-		System.out.println("모집하기 : "+vo);
-		
 		int result = service.recruit(vo);
 		if(result >= 1) {
 			session.setAttribute("alertMsg", "모임이 생성되었습니다");

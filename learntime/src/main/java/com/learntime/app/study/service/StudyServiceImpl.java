@@ -45,12 +45,15 @@ public class StudyServiceImpl implements StudyService{
 		
 		// 그룹 가입내역 테이블에 작성자 insert
 		
+		// 그룹 게시판 카테고리에 공지사항카테고리 insert
+		
 		int result1 = 0;
 		int result2 = 0;
 		int result3 = 0;
 		int result4 = 0;
 		int result5 = 0;
 		int result6 = 0;
+		int result7 = 0;
 		
 		result1 = dao.insertGroupInfo(sst, vo);
 		
@@ -85,12 +88,13 @@ public class StudyServiceImpl implements StudyService{
 		//if(result5 >= 1) {
 			result6 = dao.insertWriter(sst, vo);
 		//}
-		
-		System.out.println("result1 :" + result1);
-		System.out.println("result2 :" + result2);
-		System.out.println("result3 :" + result3);
-		System.out.println("result4 :" + result4);
-		System.out.println("result5 :" + result5);
+			
+			String cateName = "공지사항";
+			Map map = new HashMap();
+			map.put("gno", vo.getNo());
+			map.put("cateName", cateName);
+			
+			result7 = dao.insertGroupBoardCategory(sst, map);
 
 		return result1 * result2 * result3;
 
@@ -536,6 +540,34 @@ public class StudyServiceImpl implements StudyService{
 	public int close(String gno) {
 		int result = dao.close(sst, gno);
 		return result;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectCateList(Map map) {
+		List<Map<String, Object>> result = dao.selectCateList(sst, map);
+		return result;
+	}
+
+	@Override
+	public String selectCateName(Map map) {
+		String result = dao.selectCateName(sst, map);
+		return result;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectBoardList(Map map) {
+		List<Map<String, Object>> result = dao.selectBoardList(sst, map);
+		return result;
+	}
+
+	@Override
+	public int boardWrite(Map map) {
+		return dao.boardWrite(sst, map);
+	}
+
+	@Override
+	public Map<String, Object> selectBoardDetail(String bno) {
+		return dao.selectBoardDetail(sst, bno);
 	}
 
 }

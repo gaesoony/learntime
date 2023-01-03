@@ -124,6 +124,16 @@ public interface StudyService {
 	public int open(String gno);
 
 	public int close(String gno);
+
+	public List<Map<String, Object>> selectCateList(Map map);
+
+	public String selectCateName(Map map);
+
+	public List<Map<String, Object>> selectBoardList(Map map);
+
+	public int boardWrite(Map map);
+
+	public Map<String, Object> selectBoardDetail(String bno);
 	
 	
 	//추후 추가 예정..

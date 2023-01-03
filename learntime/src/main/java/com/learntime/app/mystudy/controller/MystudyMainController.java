@@ -42,8 +42,12 @@ public class MystudyMainController {
 		//map으로 그룹에 대해서 status가 뭔지 select
 		String myStatus = service.selectMyStatus(map);
 		
+		//게시판 카테고리 리스트 select
+		List<Map<String, Object>> cateList = service.selectCateList(map);
+		System.out.println(cateList);
 		model.addAttribute("groupOne", groupOne);
 		model.addAttribute("myStatus", myStatus);
+		model.addAttribute("cateList", cateList);
 		
 		return "mystudy/main";
 	}

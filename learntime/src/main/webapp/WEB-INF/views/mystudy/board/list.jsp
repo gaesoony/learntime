@@ -16,7 +16,7 @@ pageEncoding="UTF-8"%>
       <%@ include file="/WEB-INF/views/mystudy/common/side.jsp" %>
 
       <article class="mystudy-article">
-        <div class="mystudy-board-title">공지사항</div>
+        <div class="mystudy-board-title">${cateName}</div>
         <div>
           <section class="search-section space-between">
             <div class="relative">
@@ -36,7 +36,7 @@ pageEncoding="UTF-8"%>
                 type="button"
                 value="게시글 작성"
                 class="write-btn"
-                onclick="location.href='/app/mystudy/board/write'"
+                onclick="location.href='${path}/mystudy/board/write?ctno=${ctno}&gno=${groupOne.NO}'"
               />
             </div>
           </section>
@@ -47,17 +47,25 @@ pageEncoding="UTF-8"%>
               <div class="grid-title">작성자</div>
               <div class="grid-title">작성일시</div>
               <div class="grid-title">조회수</div>
-              <% for(int i=1; i<=10; i++) {%>
-              <div>1</div>
-              <div>
-                <a href="/app/mystudy/board/detail">공지사항입니다</a
-                ><span class="main-color">&nbsp[10]</span>
-              </div>
-              <div>한혜원</div>
-              <div>2022-12-09</div>
-              <div>100</div>
-              <%}%>
+
+              <c:forEach items="${boardList}" var="map" varStatus="status">
+                <div>${status.index + 1}</div>
+                <div>
+                  <a
+                    href="/app/mystudy/board/detail?ctno=${ctno}&gno=${groupOne.NO}&bno=${map.NO}"
+                    >${map.TITLE}</a
+                  ><span class="main-color">&nbsp[10]</span>
+                </div>
+                <div>${map.NICK}</div>
+                <div>${map.ENROLL_DATE}</div>
+                <div>${map.HIT}</div>
+              </c:forEach>
             </div>
+            <c:if test="${boardList.size() == 0}">
+              <div class="content-none">
+                아직 게시글이 없네요. 첫 게시글을 작성해보세요!
+              </div>
+            </c:if>
           </section>
         </div>
       </article>
