@@ -401,7 +401,7 @@
             FAQ
         </div>
         <div class="main-admin-q">
-	        <form action="/app/admin/faq/faqListAd?p=1">
+	        <form action="/app/admin/faq/faqListAd">
 	        	<div class="line-on-the-top">
 	                <div class="box-for-line-a">
 	                    <div class="half-box-a"></div>

@@ -22,4 +22,10 @@ public interface AdminNoticeService {
 
 	public NoticeVo selectOne(NoticeVo vo);
 
+	public int activate(NoticeVo vo);
+
+	public int deactivate(NoticeVo vo);
+
+	public int deleteOne(NoticeVo vo);
+
 }

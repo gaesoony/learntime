@@ -55,12 +55,12 @@ public class AdminQuestionController {
 		String[] ajaxMsg = req.getParameterValues("valueArr");
 		
 		int size= ajaxMsg.length;
-		int[] newArr = new int[size];
 		int no = 0;
 		int result = 0;
+		
 		for(int i = 0; i<size; i++) {
-			newArr[i] = Integer.parseInt(ajaxMsg[i]);
-			no = i;
+			no= Integer.parseInt(ajaxMsg[i]);
+			
 			vo.setNo(no);
 		    result = aqs.delete(vo);
 		}

@@ -45,4 +45,16 @@ public class AdminNoticeDao {
 		return sst.selectOne("adminNoticeMapper.selectOne",vo);
 	}
 
+	public int updateOne(SqlSessionTemplate sst, NoticeVo vo) {
+		return sst.update("adminNoticeMapper.activate",vo);
+	}
+
+	public int updateOne2(SqlSessionTemplate sst, NoticeVo vo) {
+		return sst.update("adminNoticeMapper.deactivate",vo);
+	}
+
+	public int updateOne3(SqlSessionTemplate sst, NoticeVo vo) {
+		return sst.update("adminNoticeMapper.delete",vo);
+	}
+
 }

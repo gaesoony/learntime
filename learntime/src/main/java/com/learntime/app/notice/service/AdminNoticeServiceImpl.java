@@ -51,4 +51,19 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 		return adao.selectOne(sst,vo);
 	}
 
+	@Override
+	public int activate(NoticeVo vo) {
+		return adao.updateOne(sst,vo);
+	}
+
+	@Override
+	public int deactivate(NoticeVo vo) {
+		return adao.updateOne2(sst,vo);
+	}
+
+	@Override
+	public int deleteOne(NoticeVo vo) {
+		return adao.updateOne3(sst,vo);
+	}
+
 }
