@@ -26,6 +26,8 @@ public interface QnaDao {
 	//게시글 상세조회
 	QnaVo detail(SqlSessionTemplate sst, String no);
 
+	int edit(SqlSessionTemplate sst, QnaVo vo);
+
 	
 
 	

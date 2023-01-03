@@ -79,5 +79,27 @@ public class QnaController {
 		
 		return "qna/detail";
 	}
+	
+	//게시글 수정 (화면)
+	@GetMapping("/edit")
+	public String edit() {
+		return "qna/edit";
+	}
+	
+	//게시글 수정 (DB)
+	@PostMapping("/edit")
+	public String edit(QnaVo vo, HttpSession session) {
+		
+		vo.setNo(vo.getNo());
+		
+		int result = service.edit(vo);
+		
+		if(result >= 1) {
+			return "redirect:/qna/list";
+		}else {
+			return "common/errorPage";
+		}
+	}
 
 }
+

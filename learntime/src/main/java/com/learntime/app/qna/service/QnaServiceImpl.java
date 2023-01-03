@@ -58,6 +58,10 @@ public class QnaServiceImpl implements QnaService {
 		
 		List<Map<String, Object>> qnaList = dao.selectList(sst, vo, qvo);
 		
+		for(int i = 0; i<qnaList.size(); i++) {
+			String qno = String.valueOf(qnaList.get(i).get("NO"));
+		}
+		
 		return qnaList;
 	}
 
@@ -65,6 +69,17 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public QnaVo detail(String no) {
 		return dao.detail(sst, no);
+	}
+
+	//게시글 수정
+	@Override
+	public int edit(QnaVo vo) {
+		
+		int result = 0;
+		
+		result = dao.edit(sst, vo);
+		
+		return result;
 	}
 
 	
