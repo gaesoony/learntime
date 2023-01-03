@@ -119,6 +119,7 @@
 		WHERE NO = #{bno}
 	</update>
 	
+	<!-- 
 	<select id="selectCmtList" resultType = "CmtVo">
 		SELECT fbc.*, NVL(lh.L_COUNT,0) AS LIKES, NVL(lh.H_COUNT,0) AS HATES, m.NICK as WRITER_NICK, m.IMG_PATH as WRITER_IMG
 		FROM FREE_BOARD_CMT fbc
@@ -133,6 +134,32 @@
 		WHERE fbc.BOARD_NO = #{bno}
 		ORDER BY fbc."GROUP" ASC, fbc.MODIFY_DATE ASC
 	</select>
+	 -->
+	
+	<select id="selectCmtList" resultType = "CmtVo">
+		SELECT fbc.*, NVL(lh.L_COUNT,0) AS LIKES, NVL(lh.H_COUNT,0) AS HATES, m.NICK as WRITER_NICK, m.IMG_PATH as WRITER_IMG
+		<if test ="mNo != null and !('').equals(mNo)">
+		, fbclh.STATUS as STATUS
+		</if>
+		FROM FREE_BOARD_CMT fbc
+		LEFT JOIN (
+		  SELECT CMT_NO,
+		         SUM(CASE WHEN STATUS = 'L' THEN 1 ELSE 0 END) AS L_COUNT,
+		         SUM(CASE WHEN STATUS = 'H' THEN 1 ELSE 0 END) AS H_COUNT
+		  FROM FREE_BOARD_CMT_LIKE_HATE
+		  GROUP BY CMT_NO
+		) lh ON fbc.NO = lh.CMT_NO
+		JOIN MEMBER m ON fbc.WRITER = m.NO
+		<if test ="mNo != null and !('').equals(mNo)">
+		LEFT JOIN FREE_BOARD_CMT_LIKE_HATE fbclh ON fbc.NO = fbclh.CMT_NO AND fbclh.M_NO = #{mNo}
+		</if>
+		WHERE fbc.BOARD_NO = #{boardNo}
+		ORDER BY fbc."GROUP" ASC, fbc.MODIFY_DATE ASC
+	</select>
+	
+	
+	
+	
 	
 	<insert id="insertCmt">
 		INSERT INTO FREE_BOARD_CMT VALUES (
@@ -170,8 +197,8 @@
 		FROM FREE_BOARD_LIKE_HATE lh
 		FULL OUTER JOIN FREE_BOARD_SCRAP s
 		ON lh.BOARD_NO = s.BOARD_NO
-		WHERE lh.M_NO = #{userNo} OR s.M_NO = #{userNo}
-		<if test ="boardNo != null">AND s.BOARD_NO = #{boardNo} OR lh.BOARD_NO = #{boardNo}</if>
+		WHERE (lh.M_NO = #{userNo} OR s.M_NO = #{userNo})
+		<if test ="boardNo != null">AND (s.BOARD_NO = #{boardNo} OR lh.BOARD_NO = #{boardNo})</if>
 	</select>
 	
 	<insert id="insertScrap">
@@ -205,6 +232,67 @@
 		WHERE FBS.SCRAP IS NOT NULL
 		ORDER BY FB.NO DESC
 	</select>
+	
+	
+	
+	<!-- 유저의 특정글 좋아요 조회 -->
+	<select id="selectUserLike" resultType = "com.learntime.app.community.vo.LHSVo">
+		SELECT * 
+		FROM FREE_BOARD_LIKE_HATE
+		WHERE M_NO = #{userNo} AND BOARD_NO = #{boardNo}
+	</select>
+	
+	<!-- 유저의 특정글 좋아요/싫어요 처리 -->
+	<insert id="insertUserLike">
+		INSERT INTO FREE_BOARD_LIKE_HATE
+		VALUES (#{userNo}, #{boardNo}, 
+		<if test = 'status.equals("L")'>'L'</if>
+		<if test = 'status.equals("H")'>'H'</if>
+		)
+	</insert>
+	
+	<delete id="deleteUserLike">
+		DELETE FROM FREE_BOARD_LIKE_HATE
+		WHERE M_NO = #{userNo} AND BOARD_NO = #{boardNo}	
+	</delete>
+	
+	<update id="updateUserLike">
+		UPDATE FREE_BOARD_LIKE_HATE 
+		SET 
+		<if test = 'status.equals("H")'>STATUS = 'H'</if>
+		<if test = 'status.equals("L")'>STATUS = 'L'</if>
+		WHERE M_NO = #{userNo} AND BOARD_NO = #{boardNo}
+	</update>
+	
+	<!-- 유저의 특정 코멘트 좋아요 조회 -->
+	<select id="selectUserCmtLike">
+		SELECT * 
+		FROM FREE_BOARD_COMMENT_LIKE_HATE
+		WHERE M_NO = #{writer} AND BOARD_NO = #{cmtNo}
+	</select>
+	
+	<!-- 유저의 특정 코멘트 좋아요/싫어요 처리 -->
+	<insert id="insertUserCmtLike">
+		INSERT INTO FREE_BOARD_COMMENT_LIKE_HATE
+		VALUES (#{writer}, #{cmtNo}, 
+		<if test = 'status.equals("L")'>'L'</if>
+		<if test = 'status.equals("H")'>'H'</if>
+		)
+	</insert>
+	
+	<delete id="deleteUserCmtLike">
+		DELETE FROM FREE_BOARD_COMMENT_LIKE_HATE
+		WHERE M_NO = #{writer} AND BOARD_NO = #{cmtNo}	
+	</delete>
+	
+	<update id="updateUserCmtLike">
+		UPDATE FREE_BOARD_COMMENT_LIKE_HATE
+		SET 
+		<if test = 'status.equals("H")'>STATUS = 'H'</if>
+		<if test = 'status.equals("L")'>STATUS = 'L'</if>
+		WHERE M_NO = #{writer} AND BOARD_NO = #{cmtNo}
+	</update>
+	
 	
 
 </mapper>

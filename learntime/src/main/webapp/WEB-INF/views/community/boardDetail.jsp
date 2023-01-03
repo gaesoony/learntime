@@ -52,11 +52,93 @@
 				<div id="like" class="like">
 					<span class="material-symbols-rounded lh-icon">thumb_up</span>
 				</div>
-				<div id="lh-number-box" class="lh-number-box">29</div>
+				<div id="lh-number-box" class="lh-number-box">${bv.lhCount}</div>
 				<div id="hate" class="hate">
 					<span class="material-symbols-rounded lh-icon">thumb_down</span>
-				</div>
+				</div>				
 			</div>
+
+			<script>
+			// 좋아요, 싫어요 요청
+				$(document).ready(function() {
+					//좋아요
+					$('#like').click(function() {
+						console.log("좋아요");
+						likeRequest('L');
+					});
+
+					//싫어요
+					$('#hate').click(function() {
+						likeRequest('H');
+					});
+				});
+
+				// 좋아요, 싫어요 서버로 전송
+				function likeRequest(status) {
+					$.ajax({
+						url: '/app/community/board/like',
+						type: 'post',
+						data: {
+						'boardNo': '${bv.no}',
+						'userNo': '${loginMember.no}',
+						'status': status
+						},
+						success: function(data) {
+						// lh-number-box 안의 내용 비우기
+						$('#lh-number-box').empty();
+						
+						// 들고온 데이터를 lh-number-box 안에 넣기
+						$('#lh-number-box').append(data);
+
+						// 좋아요/싫어요 버튼 색깔 변경 toggle
+						calcLike();
+						}
+					});
+				}
+
+			</script>
+
+			<!-- <script>
+
+				$(document).ready(function() {
+					//좋아요
+					var cmtNo = $(this).siblings('.cmt-no').val();
+					$('.cmt-like').click(function(cmtNo) {
+						likeRequest('L', cmtNo);
+					});
+
+					//싫어요
+					var cmtNo = $(this).siblings('.cmt-no').val();
+					$('.cmt-hate').click(function(cmtNo) {
+						likeRequest('H', cmtNo);
+					});
+				});
+
+				// 좋아요, 싫어요 요청
+				function likeRequest(status, cmtNo) {
+					$.ajax({
+						url: '/app/community/cmt/like',
+						type: 'post',
+						data: {
+						'no': cmtNo,
+						'userNo': '${loginMember.no}',
+						'status': status
+						},
+						success: function(data) {
+						// lh-number-box 안의 내용 비우기
+						$('#lh-number-box').empty();
+						
+						// 들고온 데이터를 lh-number-box 안에 넣기
+						$('#lh-number-box').append(data);
+
+						// 좋아요/싫어요 버튼 색깔 변경 toggle
+						calcLike();
+						}
+					});
+				}
+
+			</script> -->
+			
 
 			<div id="btns-box">
 				<div id="modify-btn" onclick="location.href='/app/community/board/modify?bno=${bv.no}'">수정</div>
@@ -78,7 +160,7 @@
 					<div id="comment-write-box">
 						<div id="comment-writer-box">
 							<div id="comment-writer-profile">
-								<img src="" alt="" onerror="this.src='/app/resources/img/profile_default.png'">
+								<img src="/app/${loginMember.imgName}" alt="" onerror="this.src='/app/resources/img/profile_default.png'">
 							</div>
 							<span id="comment-writer">${loginMember.nick}</span>
 						</div>
@@ -119,7 +201,7 @@
 											} else if(cvList.depth == 1) {
 												commentMain = '<div class=\"comment2-main\">';
 											}
-											console.log(commentMain);
+											
 											var commentHtml = 
 											'<div class="comment-box">' +
 												commentMain +
@@ -244,22 +326,25 @@
 
 						<div class="comment-lh-box">
 							<div class="like-hate-box">
-								<div class="like">
+								<div class="like cmt-like">
 									<span class="material-symbols-rounded lh-icon">thumb_up</span>
 								</div>
 								<div class="lh-number-box red">${cv.likes}</div>
-								<div class="hate">
+								<div class="hate cmt-hate">
 									<span class="material-symbols-rounded lh-icon">thumb_down</span>
 								</div>
+								<input class="cmt-no" type="hidden" name="" value="${cv.no}">
 							</div>
 						</div>
+
+
 					</div>
 
 					<!-- 숨긴 대댓글 창 -->
 					<div class="comment-write-box2">
 						<div class="comment-writer-box2">
 							<div class="comment-writer-profile2">
-								<img src="" alt="" onerror="this.src='/app/resources/img/profile_default.png'">
+								<img src="/app/${loginMember.imgPath}" alt="" onerror="this.src='/app/resources/img/profile_default.png'">
 							</div>
 							<span class="comment-writer2">${loginMember.nick}</span>
 						</div>
@@ -274,6 +359,53 @@
 			</c:if>
 			
 			<!-- 댓글 반복문 끝 -->
+
+			<!-- 댓글 좋아요 -->
+			<script>
+
+				$(document).ready(function() {
+					//좋아요 하는데 해당 댓글 번호 가져오기
+					
+
+
+
+
+					var cmtNo = $(this).siblings('.cmt-no').val();
+					$('.cmt-like').click(function(cmtNo) {
+						likeRequest2('L', cmtNo);
+					});
+
+					//싫어요
+					var cmtNo = $(this).siblings('.cmt-no').val();
+					$('.cmt-hate').click(function(cmtNo) {
+						likeRequest2('H', cmtNo);
+					});
+				});
+
+				// 좋아요, 싫어요 요청
+				function likeRequest2(status, cmtNo) {
+					$.ajax({
+						url: '/app/community/cmt/like',
+						type: 'post',
+						data: {
+						'no': cmtNo,
+						'userNo': '${loginMember.no}',
+						'status': status
+						},
+						success: function(data) {
+						// lh-number-box 안의 내용 비우기
+						$('#lh-number-box').empty();
+						
+						// 들고온 데이터를 lh-number-box 안에 넣기
+						$('#lh-number-box').append(data);
+
+						// 좋아요/싫어요 버튼 색깔 변경 toggle
+						calcLike();
+						}
+					});
+				}
+
+			</script>
 			
 		</div>
 
@@ -295,6 +427,10 @@
 
 			$(this).parent().parent().parent().next().toggle();
 			$(this).parent().parent().parent().next().next().toggle();
+
+			//다른 대댓글창 닫기
+			$('.comment-write-box2').not($(this).parent().parent().parent().next()).hide();
+			$('.comment-write-box2').next().not($(this).parent().parent().parent().next().next()).hide();
 
 		});
 
@@ -494,14 +630,38 @@
 
 		
 	<script>
+		// 좋아요 & 싫어요 미리 채워놓기(red-filled, blue-filled)
+		$(document).ready(function() {
+			console.log("${lhsList[0].status}");
+
+			if(("${lhsList[0].status}" != "L" && "${lhsList[0].status}" != "H") || "${loginMember}" == "") {
+				console.log("좋아요, 싫어요 없음");
+				$("#like").children().removeClass("red-filled");
+				$("#hate").children().removeClass("blue-filled");
+				return;
+			}
+
+			if("${lhsList[0].status}" === "L") {
+				console.log("좋아요");
+				$("#like").children().addClass("red-filled");
+				$("#hate").children().removeClass("blue-filled");
+				return;
+			}
+			
+			if("${lhsList[0].status}" === "H") {
+				console.log("싫어요");
+				$("#hate").children().addClass("blue-filled");
+				$("#like").children().removeClass("red-filled");
+				return;
+			}
+
+		});
+
+
 		// 좋아요 & 싫어요
 		$('.like').click(function(){
 			$(this).children('span').toggleClass('red-filled')
 			$(this).siblings('.hate').children('span').removeClass('blue-filled');
-
-			//.. 좋아요... 숫자.. 색깔..
-			calcLike();
-
 		});
 
 		$('.hate').click(function(){
@@ -509,12 +669,18 @@
 			$(this).siblings('.like').children('span').removeClass('red-filled');
 		});
 
+		// 좋아요 & 싫어요 채워 놓기
+		document.ready(calcLike());
+
+		// 좋아요 & 싫어요 수 에따라 색상 변경
 		function calcLike() {
-		$('.lh-number-box').each(function(){
+		$('#lh-number-box').each(function(){
 			if($(this).text() > 0){
 				$(this).addClass('red');
+				$(this).removeClass('blue');
 			}else if($(this).text() < 0){
 				$(this).addClass('blue');
+				$(this).removeClass('red');
 			}else{
 				$(this).removeClass('red');
 				$(this).removeClass('blue');
@@ -529,6 +695,13 @@
 				$("#delete-btn").hide();
 			}
 		});
+
+		
+		
+
+
+
+
 	</script>
 </body>
 </html>

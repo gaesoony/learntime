@@ -224,6 +224,12 @@ input[type="submit"]#search-submit{
   width: 30px;
   border-radius: 40px;
   background-color: #58c079;
+  overflow: hidden;
+}
+.writer-profile>img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 .writer-nick{
   font-size: 18px;

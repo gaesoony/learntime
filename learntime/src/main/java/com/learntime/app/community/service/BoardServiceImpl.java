@@ -11,6 +11,7 @@ import com.learntime.app.community.dao.BoardDao;
 import com.learntime.app.community.vo.BoardFilterVo;
 import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.community.vo.CateVo;
+import com.learntime.app.community.vo.CmtLHVo;
 import com.learntime.app.community.vo.CmtVo;
 import com.learntime.app.community.vo.LHSVo;
 
@@ -49,8 +50,8 @@ public class BoardServiceImpl implements BoardService{
 
 	//자유게시판 댓글 조회
 	@Override
-	public List<CmtVo> selectCmtList(String bno) {
-		return dao.selectCmtList(sst, bno);
+	public List<CmtVo> selectCmtList(CmtVo cv) {
+		return dao.selectCmtList(sst, cv);
 	}
 
 	
@@ -128,6 +129,55 @@ public class BoardServiceImpl implements BoardService{
 	public int delete(BoardVo vo) {
 		return dao.delete(sst, vo);
 	}
+
+	//유저의 특정글 좋아요 조회
+	@Override
+	public LHSVo selectUserLike(LHSVo lhsVo) {
+		return dao.selectUserLike(sst, lhsVo);
+		
+	}
+
+	//유저의 특정글 좋아요
+	@Override
+	@Transactional
+	public int insertUserLike(LHSVo lhsVo) {
+		return dao.insertUserLike(sst, lhsVo);
+	}
+
+	//유저의 좋아요 지우기
+	@Override
+	@Transactional
+	public int deleteUserLike(LHSVo lhsVo) {
+		return dao.deleteUserLike(sst, lhsVo);
+	}
+	
+	//유저의 좋아요 업데이트
+	@Override
+	public int updateUserLike(LHSVo lhsVo) {
+		return dao.updateUserLike(sst, lhsVo);
+	}
+
+	@Override
+	public CmtLHVo selectUserLike(CmtLHVo cmtLHVo) {
+		return dao.selectUserLike(sst, cmtLHVo);
+	}
+	
+	@Override
+	public int insertUserLike(CmtLHVo cmtLHVo) {
+		return dao.insertUserLike(sst, cmtLHVo);
+	}
+	
+	@Override
+	public int deleteUserLike(CmtLHVo cmtLHVo) {
+		return dao.deleteUserLike(sst, cmtLHVo);
+	}
+
+	@Override
+	public int updateUserLike(CmtLHVo cmtLHVo) {
+		return dao.updateUserLike(sst, cmtLHVo);
+	}
+
+	
 	
 	
 	

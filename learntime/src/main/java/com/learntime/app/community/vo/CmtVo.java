@@ -21,5 +21,8 @@ public class CmtVo {
 	private String writerImg;
 	private String likes;
 	private String hates;
+	
+	//추가 -> 
+	private String mNo;
 
 }
