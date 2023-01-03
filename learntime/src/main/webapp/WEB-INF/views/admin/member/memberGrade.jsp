@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -33,13 +34,13 @@ pageEncoding="UTF-8"%>
 
     .content-section{
         width: 1265px;
-        height:500px;
+        height: 500px;
         background-color: white;
         border: 1px solid rgb(221, 221, 221);
         margin: 30px auto ;
         display: grid;
         grid-template-columns: 250px 1015px;
-        grid-template-rows: 400px;
+        
     }
 
     .grade-title{
@@ -49,11 +50,13 @@ pageEncoding="UTF-8"%>
         font-weight: 600;
     }
 
-    .grade-list{
+    form .grade-list{
         display: grid;
         grid-template-columns: 1fr 1fr 3fr 1fr;
+        grid-auto-rows: 40px;
         margin: 40px;
         border-bottom: 1px solid #000000; 
+        
     }
 
     
@@ -63,18 +66,21 @@ pageEncoding="UTF-8"%>
         display: flex;
         align-items: center;
         justify-content: center;
+       
         
     }
     .list-info{
         grid-column: span 4;
         border-bottom: 1px solid #000000;
         color: #535353;
+        padding-bottom:10px;
     }
 
     .list-content{
         display: flex;
         align-items: center;
         justify-content: center;
+       
     }
 
     .list-btn{
@@ -136,7 +142,8 @@ pageEncoding="UTF-8"%>
         width: 30px;
         height: 30px;
         border-radius: 30px;
-        background-color: #535353;
+       	border:1px solid #efefef;
+        
         margin: auto;
     }
     .grade-btn .save{
@@ -145,6 +152,10 @@ pageEncoding="UTF-8"%>
 
     .grade-btn .cancel{
         background-color:#535353;
+    }
+    
+    .list-content span{
+    margin:0 10px;
     }
  
   </style>
@@ -158,39 +169,41 @@ pageEncoding="UTF-8"%>
           <div class="grade-title">
                 등급 조건 관리
           </div>
-
-          <div class="grade-list">
-            <div class="list-info">각 등급별 아이콘 이미지와 조건을 수정 및 추가 삭제가 가능합니다</div>
-            <div class="list-title ">아이콘</div>
-            <div class="list-title">등급 이름</div>
-            <div class="list-title">등급 조건</div>
-            <div class="list-title"></div>
-
-
-            <% for(int i=1; i<=5; i++) {%>
-                <div class="list-content grade-img">img</div>
-                <div class="list-content">씨앗</div>
-                <div class="list-content">
-                    조건 내용
-                </div>
-                <div class="list-btn">
-                   <button class="plus">추가</button>
-                   <button class="delete">삭제</button>
-                </div>
-            <%}%>
-          </div>
-
-          <div class="grade-btn">
-            <button class="cancel">취소하기</button>
-            <button class="save">저장하기</button>
-          </div>
+		<form action="" method="post">
+	          <div class="grade-list">
+	            <div class="list-info">각 등급별 아이콘 이미지와 조건을 수정 및 추가 삭제가 가능합니다</div>
+	            <div class="list-title ">아이콘</div>
+	            <div class="list-title">등급 이름</div>
+	            <div class="list-title">등급 조건</div>
+	            <div class="list-title"></div>
+			
+		 		<c:forEach items="${map}" var="map">		
+	            	 <div class="list-content grade-img"><img src="${pageContext.request.contextPath}${map.IMG_PATH}"></div>
+	                <div class="list-content">${map.NAME}</div>
+	                <div class="list-content">
+	                   <span>토큰 </span><input type="text" name="accumToken" value="${map.ACCUM_TOKEN}"><span>개</span>
+	                </div>
+	                <div class="list-btn">
+	                   <button class="plus">추가</button>
+	                   <button class="delete">삭제</button>
+	                </div>
+	            </c:forEach>
+	          
+	          </div>
+	
+	          <div class="grade-btn">
+	            <button class="cancel" type="reset">취소하기</button>
+	            <button class="save">저장하기</button>
+	          </div>
+          </form> 
         </section>
 
         <section class="content-section">
+        
             <div class="grade-title">
                 토큰 조건 관리
           </div>
-
+		<form action="" method="post">
           <div class="grade-list">
             <div class="list-info">토큰 부여 조건을 변경 가능합니다</div>
             <div class="list-title">토큰</div>
@@ -217,7 +230,7 @@ pageEncoding="UTF-8"%>
           </div>
 
           
-          
+        </form>  
         </section>
     </div>
     <script

@@ -1,6 +1,7 @@
 package com.learntime.app.member.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.learntime.app.member.vo.AdminMemberVo;
 import com.learntime.app.member.vo.FollowVo;
@@ -67,6 +68,14 @@ public interface MemberService {
 	public int adminMemberedit(MemberVo vo);
 	//운영자 생성
 	public int createOperator(MemberVo vo);
+	
+	//멤버 등급 조회
+	public List<Map<String, String>> memberGrade();
+	
+	//리스트에서 멤버 등급 수정
+	public int memberListGradeEdit(Map<String, Object> map);
+	//리스트에서 멤버 탈퇴
+	public int memberListMemberDelte(String[] checkNo);
 	
 	
 	

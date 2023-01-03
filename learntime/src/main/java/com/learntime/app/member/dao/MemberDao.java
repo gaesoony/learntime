@@ -1,6 +1,7 @@
 package com.learntime.app.member.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -71,6 +72,15 @@ public interface MemberDao {
 	public int adminMemberedit(SqlSessionTemplate sst, MemberVo vo);
 	//운영자 추가
 	public int createOperator(SqlSessionTemplate sst, MemberVo vo);
+	
+	//멤버 등급 조회
+	public List<Map<String, String>> memberGrade(SqlSessionTemplate sst);
+	
+	//멤버 리스트에서 등급 수정
+	public int memberListGradeEdit(SqlSessionTemplate sst,Map<String, Object> map);
+	
+	//멤버 리스트 회원 탈퇴
+	public int memberListMemberDelte(SqlSessionTemplate sst, String[] checkNo);
 	
 	
 	

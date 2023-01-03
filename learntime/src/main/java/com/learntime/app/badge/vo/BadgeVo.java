@@ -12,6 +12,7 @@ public class BadgeVo {
 	private String info;
 	private MultipartFile imgPath;
 	private String imgName;
+	private String status;
 	
 	public boolean isEmpty() {
 	

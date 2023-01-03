@@ -70,6 +70,26 @@ public class BadgeController {
 		return "redirect:/admin/badge/list";
 	}
 	
+	//관리자 뱃지 비활성화
+	@PostMapping("admin/badge/delete")
+	public String badgeDelete(BadgeVo vo) {
+		int result=badgeService.delete(vo);
+		if(result==0) {
+			return"common/errorPage";
+		}
+		return "redirect:/admin/badge/list";
+	}
+	
+	//관리자 뱃지 활성화
+	@PostMapping("admin/badge/able")
+	public String badgeAble(BadgeVo vo) {
+		int result=badgeService.able(vo);
+		if(result==0) {
+			return"common/errorPage";
+		}
+		return "redirect:/admin/badge/list";
+	}
+	
 	//관리자 뱃지 작성하기(화면)
 	@GetMapping("admin/badge/write")
 	public String badgeWrite() {

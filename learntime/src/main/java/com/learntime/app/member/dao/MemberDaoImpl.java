@@ -1,6 +1,7 @@
 package com.learntime.app.member.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -159,6 +160,26 @@ public class MemberDaoImpl implements MemberDao {
 	public int createOperator(SqlSessionTemplate sst, MemberVo vo) {
 		
 		return sst.insert("memberMapper.createOperator", vo);
+	}
+	
+	//멤버 등급 조회
+	@Override
+	public List<Map<String, String>> memberGrade(SqlSessionTemplate sst) {
+		
+		return sst.selectList("memberMapper.memberGrade",null);
+	}
+	
+	//멤버 리스트에서 등급 수정
+	@Override
+	public int memberListGradeEdit(SqlSessionTemplate sst, Map<String, Object> map) {
+		
+		return sst.update("memberMapper.memberListGradeEdit", map);
+	}
+	//멤버 리스트에서 회원 탈퇴
+	@Override
+	public int memberListMemberDelte(SqlSessionTemplate sst, String[] checkNo) {
+		
+		return sst.update("memberMapper.memberListMemberDelte", checkNo);
 	}
 	
 	

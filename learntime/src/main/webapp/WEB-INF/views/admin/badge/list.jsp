@@ -186,6 +186,7 @@ pageEncoding="UTF-8"%>
         --height: 300px;
         margin: 10px 0;
         text-align: left;
+        padding: 10px;
         
     }
 
@@ -221,6 +222,7 @@ pageEncoding="UTF-8"%>
         border: 1px solid #5ECC80;
         color:#5ECC80;
         margin-bottom: 10px;
+        background-color:#FFFFFF;
     }
     .badge-content{
         margin-bottom: 20px;
@@ -241,6 +243,10 @@ pageEncoding="UTF-8"%>
     .delete:hover{
       background-color: #D60000;
       color: #FFFFFF;
+    }
+    
+    .gray{
+    background-color: #D9D9D9;
     }
 
 
@@ -293,10 +299,10 @@ pageEncoding="UTF-8"%>
                       <option value="name">이름</option>
                       <option value="info">설명</option>
                     </select>
-                    <select name="" id="" class="select-box">
-                      <option value="">뱃지 상태</option>
-                      <option value="">활성화</option>
-                      <option value="">비활성화</option>
+                    <select name="status" class="select-box">
+                      <option value="O">뱃지 상태</option>
+                      <option value="O">활성화</option>
+                      <option value="X">비활성화</option>
                     </select>
               </div>
             </form>
@@ -318,13 +324,33 @@ pageEncoding="UTF-8"%>
               <div class="grid">
                
                  <c:forEach items="${list}" var="list">
+                 <c:if test="${list.status eq 'X'}">
+                  <div class="badge">
+                    <div class="badge-img gray"><img src="${pageContext.request.contextPath}/${list.imgName}"/></div>
+                    <div class="badge-title">${list.name}</div>
+                    <div class="badge-content">${list.info}</div>
+                    <button class="badge-btn" onclick="location.href='${pageContext.request.contextPath}/admin/badge/edit?no=${list.no}'"> 수정하기</button>
+                    <form action="${pageContext.request.contextPath}/admin/badge/able" method="post">
+                    	<button class="badge-btn">활성화</button>
+                      	<input type="hidden" name="no" value="${list.no}">
+                    </form>
+                 </div>
+                 </c:if>
+                 
+                 <c:if test="${list.status eq 'O'}">
                   <div class="badge">
                     <div class="badge-img"><img src="${pageContext.request.contextPath}/${list.imgName}"/></div>
                     <div class="badge-title">${list.name}</div>
                     <div class="badge-content">${list.info}</div>
                     <button class="badge-btn" onclick="location.href='${pageContext.request.contextPath}/admin/badge/edit?no=${list.no}'"> 수정하기</button>
-                    <button class="badge-btn delete"> 비활성화</button>
+                    <form action="${pageContext.request.contextPath}/admin/badge/delete" method="post">  
+                     <button class="badge-btn delete">비활성화</button>
+                     <input type="hidden" name="no" value="${list.no}">
+                    </form>
+                  
                  </div>
+                 </c:if>
+                 
                 </c:forEach>
               </div>
 

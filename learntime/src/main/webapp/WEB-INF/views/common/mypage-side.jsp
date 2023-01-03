@@ -136,7 +136,7 @@ body{
 
     			 <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/home?no=${loginMember.getNo()}">홈</a></div>
 		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/makegrassList?no=${loginMember.getNo()}">MAKE GRASS</a></div>
-		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/study?no=${loginMember.getNo()}">STUDY/PROJECT</a></div>
+		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/study?details=apply&pno=1&mno=${loginMember.getNo()}">STUDY/PROJECT</a></div>
 		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/qnaList?no=${loginMember.getNo()}">LEARNING</a></div>
 		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/mentoring?no=${loginMember.getNo()}">MENTORING</a></div>
 		         <div class=".cate"><a href="${pageContext.request.contextPath}/member/mypage/community?no=${loginMember.getNo()}">COMMUNITY</a></div>

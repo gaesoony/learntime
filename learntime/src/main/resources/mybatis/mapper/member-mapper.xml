@@ -24,6 +24,7 @@
 			       END)
 			WHERE M.ID = #{id}
 			AND M.EMAIL_AUTH=1
+			AND M.QUIT_YN='N'
 		</if>
 
 	</select>
@@ -263,6 +264,36 @@
 		INSERT INTO MEMBER(NO,ID,NICK,PWD,PHONE,ADMIN_YN,EMAIL_AUTH)
 		VALUES (SEQ_MEMBER_NO.NEXTVAL,#{id},#{nick},#{pwd},#{phone},#{adminYn},1)
 	</insert>
+	
+	<!--멤버 등급 조회 -->
+	<select id="memberGrade" resultType = "Map">
+		SELECT *
+		FROM MEMBER_GRADE
+	</select>
+	
+	
+	<!--멤버 리스트에서 등급 수정 -->
+	<update id="memberListGradeEdit">
+		UPDATE MEMBER 
+		SET ACCUM_TOKEN=#{accumToken},
+			MODIFY_DATE=SYSDATE
+		WHERE NO IN
+		<foreach collection="no" item="no" open="(" separator="," close=")">
+       	 #{no}
+  		</foreach>
+	</update>
+	
+	
+	<!--멤버 리스트에서 회원 탈퇴 -->
+	<update id="memberListMemberDelte">
+		UPDATE MEMBER 
+		SET QUIT_YN='Y',
+			MODIFY_DATE=SYSDATE
+		<foreach collection="array" item="checkNo" open="WHERE NO IN (" separator="," close=")">
+       	 #{checkNo}
+  		</foreach>
+  		
+	</update>
 	
 
 </mapper>

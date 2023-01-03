@@ -23,14 +23,16 @@ import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.member.service.MemberService;
 import com.learntime.app.member.vo.FollowVo;
 import com.learntime.app.member.vo.MemberVo;
+import com.learntime.app.common.page.PageVo;
+import com.learntime.app.common.page.Pagination;
 import com.learntime.app.study.service.StudyService;
-
 
 
 @Controller
 public class MemberController {
 	@Autowired
-	private StudyService service;
+	@Qualifier("studyServiceImpl")
+	private StudyService studyService;
 	
 	@Autowired
 	@Qualifier("memberServiceImpl")
@@ -92,7 +94,7 @@ public class MemberController {
 	public String join(Model model) {
 		
 		//기술 스택 select
-				List<Map<String, String>> techStackList = service.selectTechStackList();
+				List<Map<String, String>> techStackList = studyService.selectTechStackList();
 				model.addAttribute("techStackList", techStackList);
 				
 				
@@ -350,10 +352,33 @@ public class MemberController {
     }
 	
 //  마이페이지-스터디(화면)
-	  @GetMapping("/member/mypage/study")
-	  public String mypageStudy() {
-	      return "/member/mypage-study";
-	  }
+    @GetMapping("/member/mypage/study")
+    public String mypageStudy(String details, String status, String keyword, String mno, String pno, Model model) {
+       
+       if(details == null) {
+          details = "apply";
+       }
+       Map map = new HashMap();
+       map.put("details", details);
+       map.put("status", status);
+       map.put("keyword", keyword);
+       map.put("mno", mno);
+       
+       int listCount = studyService.selectMypageCnt(map);
+       int currentPage = Integer.parseInt(pno);
+       int pageLimit = 5;
+       int boardLimit = 10;
+       
+       PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
+       map.put("pv", pv);
+       
+       List<Map<String,Object>> myList = studyService.selectMypageList(map);
+       model.addAttribute("myList", myList);   
+       model.addAttribute("details", details);
+       model.addAttribute("pv", pv);
+       
+        return "/member/mypage-study";
+    }
 	  
 //   마이페이지-qna list(화면)
       @GetMapping("/member/mypage/qnaList")

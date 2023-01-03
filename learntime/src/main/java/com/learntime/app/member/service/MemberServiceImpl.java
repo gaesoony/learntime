@@ -1,6 +1,7 @@
 package com.learntime.app.member.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -247,6 +248,25 @@ public class MemberServiceImpl implements MemberService {
 	public int createOperator(MemberVo vo) {
 		
 		return memberDao.createOperator(sst,vo);
+	}
+	//멤버 등급 리스트
+	@Override
+	public List<Map<String, String>> memberGrade() {
+		
+		return memberDao.memberGrade(sst);
+	}
+	//멤버리스트에서 등급 수정
+	@Override
+	public int memberListGradeEdit(Map<String, Object> map) {
+		
+		return memberDao.memberListGradeEdit(sst,map);
+	}
+	
+	//멤버리스트에서 회원탈퇴
+	@Override
+	public int memberListMemberDelte(String[] checkNo) {
+		
+		return memberDao.memberListMemberDelte(sst,checkNo);
 	}
 
 	

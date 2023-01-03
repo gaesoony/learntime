@@ -12,11 +12,17 @@
 	
 	<!--관리자 뱃지 리스트 -->
 	<select id="listSelectAll" resultType="BadgeVo">
-	SELECT NO,NAME,INFO,IMG_PATH AS IMG_NAME
+	SELECT NO,NAME,INFO,IMG_PATH AS IMG_NAME,STATUS
 	FROM BADGE
-	<if test="keyword != null and keyword != ''">
-		WHERE ${category} LIKE '%${keyword}%'
+	<if test="status != null and status != ''">
+		WHERE STATUS = '${status}'
 	</if>
+	
+	<if test="keyword != null and keyword != ''">
+		AND ${category} LIKE '%${keyword}%'
+	</if>
+	
+	
 	</select>
 	
 	<!--관리자 뱃지 상세 조회-->
@@ -44,6 +50,20 @@
 	SELECT COUNT(*)
 	FROM BADGE
 	</select>
+	
+	<!-- 뱃지 비활성화 -->
+	<update id="delete">
+		UPDATE BADGE
+		SET STATUS ='X'
+		WHERE NO=#{no}
+	</update>
+	
+	<!-- 뱃지 비활성화 -->
+	<update id="able">
+		UPDATE BADGE
+		SET STATUS ='O'
+		WHERE NO=#{no}
+	</update>
 	
 	
 </mapper>
