@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.learntime.app.community.vo.BoardFilterVo;
 import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.community.vo.CateVo;
+import com.learntime.app.community.vo.CmtLHVo;
 import com.learntime.app.community.vo.CmtVo;
 import com.learntime.app.community.vo.LHSVo;
 
@@ -49,8 +50,8 @@ public class BoardDaoImpl implements BoardDao{
 
 	//댓글 조회
 	@Override
-	public List<CmtVo> selectCmtList(SqlSessionTemplate sst, String bno) {
-		return sst.selectList("freeBoardMapper.selectCmtList", bno);
+	public List<CmtVo> selectCmtList(SqlSessionTemplate sst, CmtVo cv) {
+		return sst.selectList("freeBoardMapper.selectCmtList", cv);
 		
 	}
 
@@ -114,6 +115,54 @@ public class BoardDaoImpl implements BoardDao{
 	public int delete(SqlSessionTemplate sst, BoardVo vo) {
 		return sst.delete("freeBoardMapper.delete", vo);
 	}
+
+	//유저의 특정글 좋아요 조회
+	@Override
+	public LHSVo selectUserLike(SqlSessionTemplate sst, LHSVo lhsVo) {
+		return sst.selectOne("freeBoardMapper.selectUserLike", lhsVo);
+	}
+
+	//유저의 특정글 좋아요
+	@Override
+	public int insertUserLike(SqlSessionTemplate sst, LHSVo lhsVo) {
+		return sst.insert("freeBoardMapper.insertUserLike", lhsVo);
+	}
+
+	//유저의 특정글 좋아요 지우기
+	@Override
+	public int deleteUserLike(SqlSessionTemplate sst, LHSVo lhsVo) {
+		return sst.delete("freeBoardMapper.deleteUserLike", lhsVo);
+	}
+
+	//유저의 특정글 좋아요 업데이트
+	@Override
+	public int updateUserLike(SqlSessionTemplate sst, LHSVo lhsVo) {
+		return sst.update("freeBoardMapper.updateUserLike", lhsVo);
+	}
+	
+	@Override
+	public CmtLHVo selectUserLike(SqlSessionTemplate sst, CmtLHVo cmtLHVo) {
+		return sst.selectOne("freeBoardMapper.selectUserCmtLike", cmtLHVo);
+	}
+
+	@Override
+	public int insertUserLike(SqlSessionTemplate sst, CmtLHVo cmtLHVo) {
+		return sst.insert("freeBoardMapper.insertUserCmtLike", cmtLHVo);
+	}
+
+	@Override
+	public int deleteUserLike(SqlSessionTemplate sst, CmtLHVo cmtLHVo) {
+		return sst.delete("freeBoardMapper.deleteUserCmtLike", cmtLHVo);
+	}
+
+	@Override
+	public int updateUserLike(SqlSessionTemplate sst, CmtLHVo cmtLHVo) {
+		return sst.update("freeBoardMapper.updateUserCmtLike", cmtLHVo);
+	}
+
+
+	
+	
 	
 }
 

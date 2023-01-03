@@ -21,6 +21,7 @@ import com.learntime.app.community.service.BoardService;
 import com.learntime.app.community.vo.BoardFilterVo;
 import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.community.vo.CateVo;
+import com.learntime.app.community.vo.CmtLHVo;
 import com.learntime.app.community.vo.CmtVo;
 import com.learntime.app.community.vo.LHSVo;
 import com.learntime.app.member.vo.MemberVo;
@@ -98,13 +99,32 @@ public class BoardController {
 			lhsList.add(lhs);
 		}
 		
+		System.out.println(lhsList.get(0));
 		model.addAttribute("lhsList", lhsList);
 
 		// 댓글조회
-		List<CmtVo> cvList = bs.selectCmtList(bno);
-
+		List<CmtVo> cvList = null;
+		
+		if(loginMember != null) {
+			//로그인 되어있을시 댓글 조회
+			CmtVo cv = new CmtVo();
+			cv.setBoardNo(bno);
+			cv.setMNo(loginMember.getNo());
+			
+			cvList = bs.selectCmtList(cv);
+		}else {
+			//로그인이 안되어있을 시
+			CmtVo cv = new CmtVo();
+			cv.setBoardNo(bno);
+			
+			cvList = bs.selectCmtList(cv);
+		}
+		
 		model.addAttribute("bv", bv);
 		model.addAttribute("cvList", cvList);
+		
+		System.out.println(bv);
+		System.out.println(cvList);
 		
 		return "/community/boardDetail";
 	}
@@ -209,7 +229,7 @@ public class BoardController {
 	@PostMapping(value = "comment/write", produces = "application/text;charset=utf8")
 	@ResponseBody
 	public String cmtWrite(@RequestParam("content") String content, @RequestParam("boardNo") String boardNo,
-			@RequestParam("writer") String writer, @RequestParam("group") String group,  HttpServletResponse response) {
+			@RequestParam("writer") String writer, @RequestParam("group") String group,  HttpServletResponse response, HttpSession session) {
 
 		// 인코딩
 		response.setContentType("text/html;charset=UTF-8");
@@ -232,7 +252,12 @@ public class BoardController {
 		}
 
 		// 댓글 조회
-		List<CmtVo> cvList = bs.selectCmtList(boardNo);
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		CmtVo cv1 = new CmtVo();
+		cv.setBoardNo(boardNo);
+		cv.setMNo(loginMember.getNo());
+		
+		List<CmtVo> cvList = bs.selectCmtList(cv1);
 
 		Gson gson = new Gson();
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -250,7 +275,10 @@ public class BoardController {
 		
 		
 		// 댓글 조회
-		List<CmtVo> cvList = bs.selectCmtList(boardNo);
+		CmtVo cv = new CmtVo();
+		cv.setBoardNo(boardNo);
+		
+		List<CmtVo> cvList = bs.selectCmtList(cv);
 
 		Gson gson = new Gson();
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -270,7 +298,10 @@ public class BoardController {
 		
 		
 		// 댓글 조회
-		List<CmtVo> cvList = bs.selectCmtList(boardNo);
+		CmtVo cv = new CmtVo();
+		cv.setBoardNo(boardNo);
+		
+		List<CmtVo> cvList = bs.selectCmtList(cv);
 
 		Gson gson = new Gson();
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -280,7 +311,6 @@ public class BoardController {
 
 		return jsonString;
 	}
-	
 	
 	
 	
@@ -319,5 +349,122 @@ public class BoardController {
 		return "";
 	}
 
+	// 좋아요, 싫어요
+	@PostMapping(value = "/board/like")
+	@ResponseBody
+	public String like( @RequestParam("boardNo") String boardNo,
+						@RequestParam("userNo") String userNo,
+						@RequestParam("status") String status,
+						Model model) {
+	
+		System.out.println("왓나");
+		
+		LHSVo lhsVo = new LHSVo();
+		LHSVo userLHS = new LHSVo();
+		lhsVo.setBoardNo(boardNo);
+		lhsVo.setUserNo(userNo);
+		lhsVo.setStatus(status);
+		
+		System.out.println(lhsVo);
+		
+		// 먼저 조회를 한다... 이 유저의 이 글의 좋아요 싫어요 데이터가 있는지..
+		userLHS = bs.selectUserLike(lhsVo);
+		
+//		if(status.equals("L")) {
+//			// 조회가 null 이면 insert
+//			if(userLHS == null) {
+//				bs.insertUserLike(lhsVo);
+//			}else if("L".equals(userLHS.getStatus())) {
+//				// 조회한 결과중 status 가 L 이면 delete
+//				bs.deleteUserLike(lhsVo);
+//			}else if("H".equals(userLHS.getStatus())){
+//				//조회한 결과중 status 가 H 이면 update
+//				bs.updateUserLike(lhsVo);
+//			}
+//		}
+//		
+//		if(status.equals("H")) {
+//			// 조회가 null 이면 insert
+//			if(userLHS == null) {
+//				bs.insertUserLike(lhsVo);
+//			}else if("H".equals(userLHS.getStatus())) {
+//				// 조회한 결과중 status 가 H 이면 delete
+//				bs.deleteUserLike(lhsVo);
+//			}else if("L".equals(userLHS.getStatus())){
+//				//조회한 결과중 status 가 L 이면 update
+//				bs.updateUserLike(lhsVo);
+//			}
+//		}
+		
+		if (userLHS == null) {
+			System.out.println("좋아요 인서트~");
+	        bs.insertUserLike(lhsVo);
+	    } else if (status.equals(userLHS.getStatus())) {
+	    	System.out.println("좋아요 딜리트~");
+	        bs.deleteUserLike(lhsVo);
+	    } else {
+	    	System.out.println("좋아요 업데이트~");
+	        bs.updateUserLike(lhsVo);
+	    }
+		
+			
+		//넘겨줘야 할것...(조회 해야 할 것) 
+		// 1. 유저의 this.글 좋아요 status 넘겨주기
+		userLHS = bs.selectUserLike(lhsVo);
+		model.addAttribute("userLHS", userLHS);
+		
+		// 2. 이 글의 좋아요 싫어요수 조회해서 넘겨주기
+		BoardVo bv = bs.selectOne(boardNo);
+		String lhCount = bv.getLhCount();
+		
+		//좋아요 숫자 조회해서 넘겨주기
+		return lhCount;
+	}
+	
+	// 좋아요, 싫어요
+		@PostMapping(value = "/cmt/like")
+		@ResponseBody
+		public String cmtLike( @RequestParam("no") String no,
+							@RequestParam("userNo") String writer,
+							@RequestParam("status") String status,
+							Model model) {
+		
+			CmtLHVo cmtLHVo = new CmtLHVo();
+			CmtLHVo userLH = new CmtLHVo();
+			cmtLHVo.setCmtNo(no);
+			cmtLHVo.setWriter(writer);
+			cmtLHVo.setStatus(status);
+			
+			System.out.println(cmtLHVo);
+			
+			// 이 유저의 이글 댓글  좋아요 싫어요 데이터가 있는지 조회
+			userLH = bs.selectUserLike(cmtLHVo);
+
+			if (userLH == null) {
+				System.out.println("좋아요 인서트~");
+		        bs.insertUserLike(cmtLHVo);
+		    } else if (status.equals(userLH.getStatus())) {
+		    	System.out.println("좋아요 딜리트~");
+		        bs.deleteUserLike(cmtLHVo);
+		    } else {
+		    	System.out.println("좋아요 업데이트~");
+		        bs.updateUserLike(cmtLHVo);
+		    }
+			
+				
+			//넘겨줘야 할것...(조회 해야 할 것) 
+			// 1. 유저의 this.글 좋아요 status 넘겨주기
+			userLH = bs.selectUserLike(cmtLHVo);
+			model.addAttribute("userLH", userLH);
+			
+			// 2. 이 글의 좋아요 싫어요수 조회해서 넘겨주기
+			BoardVo bv = bs.selectOne(no);
+			String lhCount = bv.getLhCount();
+			
+			//좋아요 숫자 조회해서 넘겨주기
+			return lhCount;
+		}
+	
+	
 
 }

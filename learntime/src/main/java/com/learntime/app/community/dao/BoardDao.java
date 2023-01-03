@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.learntime.app.community.vo.BoardFilterVo;
 import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.community.vo.CateVo;
+import com.learntime.app.community.vo.CmtLHVo;
 import com.learntime.app.community.vo.CmtVo;
 import com.learntime.app.community.vo.LHSVo;
 
@@ -25,7 +26,7 @@ public interface BoardDao {
 	public int updateHit(SqlSessionTemplate sst, String bno);
 
 	//select comment list
-	public List<CmtVo> selectCmtList(SqlSessionTemplate sst, String bno);
+	public List<CmtVo> selectCmtList(SqlSessionTemplate sst, CmtVo cv);
 	
 	//insert comment
 	public int insertCmt(SqlSessionTemplate sst, CmtVo cv);
@@ -59,5 +60,48 @@ public interface BoardDao {
 
 	//커뮤니티 글 삭제
 	public int delete(SqlSessionTemplate sst, BoardVo vo);
+
+	//유저의 특정글 좋아요 조회
+	public LHSVo selectUserLike(SqlSessionTemplate sst, LHSVo lhsVo);
+
+	//유저의 특정글 좋아요
+	public int insertUserLike(SqlSessionTemplate sst, LHSVo lhsVo);
+
+	//유저의 특정글 좋아요 지우기
+	public int deleteUserLike(SqlSessionTemplate sst, LHSVo lhsVo);
+
+	//유저의 특정글 좋아요 업데이트
+	public int updateUserLike(SqlSessionTemplate sst, LHSVo lhsVo);
+
+	//유저의 특정 댓글 조회
+	public CmtLHVo selectUserLike(SqlSessionTemplate sst, CmtLHVo cmtLHVo);
+	
+	//유저의 특정 댓글 좋아요
+	public int insertUserLike(SqlSessionTemplate sst, CmtLHVo cmtLHVo);
+	
+	//유저의 특정 댓글 좋아요 지우기
+	public int deleteUserLike(SqlSessionTemplate sst, CmtLHVo cmtLHVo);
+
+	//유저의 특정 댓글 좋아요 업데이트
+	public int updateUserLike(SqlSessionTemplate sst, CmtLHVo cmtLHVo);
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

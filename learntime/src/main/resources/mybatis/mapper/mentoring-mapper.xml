@@ -7,7 +7,7 @@
 	<!-- 멘토 등록 -->
 	<insert id="registerMentor">
 		INSERT INTO MENTOR 
-		(NO, WRITER, CATE_NO, EMAIL, NAME, PHONE_NO, LINK, INTRO, ENROLL_DATE, MODIFY_DATE)
+		(NO, WRITER, CATE_NO, EMAIL, NAME, PHONE_NO, LINK, ACCOUNT_BANK, ACCOUNT_NO, INTRO, ENROLL_DATE, MODIFY_DATE)
 		VALUES 
 		(
 		SEQ_MENTOR_NO.NEXTVAL
@@ -17,6 +17,8 @@
 		, #{name}
 		, #{phoneNo}
 		, #{link}
+		, #{accountBank}
+		, #{accountNo}
 		, #{intro}
 		, SYSDATE
 		, SYSDATE

@@ -177,3 +177,17 @@ font-weight: 550;
     margin-left: 10px;
 
 }
+
+#account-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+#account-box>select{
+    width: 30%;
+    margin-right: 5px;
+
+}

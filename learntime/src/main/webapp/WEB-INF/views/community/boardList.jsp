@@ -147,7 +147,9 @@
                     </div>
                     <div class="content-info-box">
                         <div class="writer-info">
-                            <div class="writer-profile"></div>
+                            <div class="writer-profile">
+                                <img src="/app/${list.writerImg}" alt="">
+                            </div>
                             <span class="writer-nick">${list.writerNick}</span>
                             <div class="writer-date">
                                 ${list.enrollDate}

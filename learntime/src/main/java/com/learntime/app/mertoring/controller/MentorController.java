@@ -77,7 +77,7 @@ public class MentorController {
 		if(result != 1) {
  			return "common/error";
 		}
-		return "redirect:/member/mypage-mentoring3";
+		return "redirect:/mentor/mymentoring/temp3";
 	}
 	
 	@GetMapping("/mymentoring/temp")

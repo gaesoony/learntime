@@ -7,9 +7,7 @@ public class MentorVo {
 	//멘토 부분
 	private String no;
 	private String writer;
-		//관심분야
 	private String cateNo;
-	private String job;
 	private String email;
 	private String name;
 	private String phoneNo;
@@ -17,9 +15,11 @@ public class MentorVo {
 	private String link;
 	private String enrollDate;
 	private String modifyDate;
+	private String accountBank;
+	private String accountNo;
 	
 	//멘토링 부분
-	private String accountNo;
+	private String job;
 	private String title;
 	private String career;
 	private String employedYn;
