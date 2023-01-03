@@ -3,9 +3,11 @@ package com.learntime.app.study.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.learntime.app.common.page.PageVo;
 import com.learntime.app.mystudy.vo.ProfileVo;
 import com.learntime.app.study.vo.ApplyVo;
 import com.learntime.app.study.vo.GroupVo;
@@ -309,6 +311,22 @@ public class StudyDaoImpl implements StudyDao{
 	public int deleteCmtLikeHate(SqlSessionTemplate sst, SearchVo sv) {
 		return sst.delete("studyMapper.deleteCmtLikeHate", sv);
 	
+	}
+
+	//마이페이지 게시글 목록 조회
+	@Override
+	public List<Map<String,Object>> selectMypageList(SqlSessionTemplate sst, Map map) {
+		PageVo pv = (PageVo) map.get("pv");
+		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
+		int limit = pv.getBoardLimit();
+		RowBounds rb = new RowBounds(offset, limit);
+		return sst.selectList("studyMapper.selectMypageList", map, rb);
+	}
+
+	//마이페이지 게시글 개수 카운트
+	@Override
+	public int selectMypageCnt(SqlSessionTemplate sst, Map map) {
+		return sst.selectOne("studyMapper.selectMypageCnt", map);
 	}
 
 

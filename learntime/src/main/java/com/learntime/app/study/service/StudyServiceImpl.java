@@ -505,4 +505,18 @@ public class StudyServiceImpl implements StudyService{
 		return result;
 	}
 
+	//마이페이지 게시글 목록 조회
+	@Override
+	public List<Map<String,Object>> selectMypageList(Map map) {
+		List<Map<String,Object>> result = dao.selectMypageList(sst, map);
+		return result;
+	}
+
+	//마이페이지 게시글 개수 카운트
+	@Override
+	public int selectMypageCnt(Map map) {
+		int result = dao.selectMypageCnt(sst, map);
+		return result;
+	}
+
 }

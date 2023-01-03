@@ -111,6 +111,12 @@ public interface StudyService {
 	public int cmtHate(SearchVo sv);
 
 	public int deleteCmtLikeHate(SearchVo sv);
+
+	//마이페이지 게시글 리스트 조회
+	public List<Map<String, Object>> selectMypageList(Map map);
+
+	//마이페이지 게시글 개수 카운트
+	public int selectMypageCnt(Map map);
 	
 	
 	//추후 추가 예정..

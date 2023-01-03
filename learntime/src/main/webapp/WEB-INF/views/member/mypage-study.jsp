@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,339 +12,339 @@ pageEncoding="UTF-8"%>
       rel="stylesheet"
       href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css"
     />
-
-    <style>
-      #mypage-box {
-        width: 1200px;
-        height: 100%;
-        margin: auto;
-      }
-
-      #mypage {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 300px 900px;
-      }
-
-      #home-area {
-        padding: 40px;
-        height: auto;
-      }
-
-      /* 공통css */
-      .soft-gray {
-        color: rgb(164, 164, 164);
-      }
-
-      .gray1 {
-        color: #535353;
-      }
-
-      .gray2 {
-        color: #848484;
-      }
-
-      .relative {
-        position: relative;
-      }
-
-      .middle {
-        display: flex;
-        justify-content: center;
-      }
-
-      .bold700 {
-        font-weight: 700;
-      }
-
-      .main-color {
-        color: #5ecc80;
-      }
-
-      .space-between {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .flex {
-        display: flex;
-        align-items: center;
-      }
-
-      .center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .black {
-        color: rgba(0, 0, 0, 0.9);
-      }
-
-      .blue {
-        color: rgb(49, 137, 252);
-      }
-
-      /* 기술스택 메뉴 리스트 */
-
-      .study-tech-area {
-        margin: 40px 0px;
-      }
-
-      .category-list {
-        font-size: 20px;
-        padding-bottom: 9px;
-        border-bottom: 3px solid rgb(230, 230, 230);
-        margin-bottom: 40px;
-      }
-
-      .category-list li {
-        margin-right: 15px;
-        margin-left: 10px;
-        color: rgb(158, 158, 158);
-        cursor: pointer;
-        font-size: 18px;
-      }
-
-      .clicked {
-        color: #5ecc80 !important;
-      }
-
-      .hidden {
-        display: none;
-      }
-
-      /* 게시판 */
-
-      .grid {
-        display: grid;
-        grid-template-columns: 1fr 5fr 1fr 1fr 1fr;
-      }
-
-      .grid-div {
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-bottom: 1px solid rgb(228, 228, 228);
-        font-size: 14px;
-      }
-
-      /* 검색부분 */
-
-      .search-section {
-        margin: 20px;
-        margin-top: 50px;
-      }
-
-      .search-box {
-        outline: none;
-        background-color: rgba(240, 240, 240, 0.786);
-        color: rgb(42, 42, 42);
-        width: 400px;
-        padding: 10px 10px 10px 30px;
-
-        border: 1px solid rgb(225, 225, 225);
-      }
-
-      .fa-magnifying-glass {
-        position: absolute;
-        top: 13px;
-        left: 10px;
-        color: gray;
-      }
-
-      .select-box {
-        width: 90px;
-        height: 40px;
-        border: 1px solid rgb(206, 206, 206);
-        margin-left: 6px;
-        outline: none;
-        padding: 0px 5px;
-        cursor: pointer;
-      }
-
-      .write-btn {
-        width: 100px;
-        height: 40px;
-        border: none;
-        outline: none;
-        background-color: #5ecc80;
-        color: white;
-        cursor: pointer;
-      }
-
-      .category input:checked + div {
-        color: black;
-        font-weight: 500;
-      }
-
-      input[name="a"] {
-        display: none;
-      }
-
-      input[name="a"]:checked + div {
-        color: black;
-      }
-
-      input[name="a"]:checked ~ .bar {
-        display: block;
-      }
-
-      .bar {
-        display: none;
-        width: 30px;
-        height: 4px;
-        background-color: var(--main-color);
-        position: absolute;
-        bottom: -10px;
-      }
-    </style>
+    <link
+      rel="stylesheet"
+      href="${path}/resources/css/study/mypage-study.css"
+    />
   </head>
   <body>
     <%@include file="/WEB-INF/views/common/header.jsp" %>
+    <form id="mypage-form" action="${path}/member/mypage/study" method="get">
+      <input type="hidden" name="mno" value="${loginMember.no}" />
+      <input type="hidden" name="pno" value="1" />
+      <div id="mypage-box">
+        <div id="mypage">
+          <div id="bin">
+            <%@include file="/WEB-INF/views/common/mypage-side.jsp"%>
+          </div>
+          <div id="home-area">
+            <ul class="category-list flex bold700">
+              <li class="category relative">
+                <label>
+                  <input type="radio" name="details" value="apply" />
+                  <div class="apply cate">가입 신청 내역</div>
+                  <!-- <div class="bar"></div> -->
+                </label>
+              </li>
+              <li class="category relative">
+                <label>
+                  <input type="radio" name="details" value="participate" />
+                  <div class="participate cate">참여중인 모임</div>
+                  <!-- <div class="bar"></div> -->
+                </label>
+              </li>
+              <li class="category relative">
+                <label>
+                  <input type="radio" name="details" value="manage" />
+                  <div class="manage cate">운영중인 모임</div>
+                  <!-- <div class="bar"></div> -->
+                </label>
+              </li>
+              <li class="category relative">
+                <label>
+                  <input type="radio" name="details" value="scrap" />
+                  <div class="scrap cate">스크랩</div>
+                  <!-- <div class="bar"></div> -->
+                </label>
+              </li>
+            </ul>
+            <section>
+              <c:if test="${details == 'apply'}">
+                <div class="grid">
+                  <div class="grid-div bold700">번호</div>
+                  <div class="grid-div bold700">제목</div>
+                  <div class="grid-div bold700">모임장</div>
+                  <div class="grid-div bold700">신청일시</div>
+                  <div class="grid-div bold700">가입상태</div>
+                  <c:forEach items="${myList}" var="map" varStatus="status">
+                    <div class="grid-div">${status.index + 1}</div>
+                    <div class="grid-div">
+                      <a href="${path}/study/detail?gno=${map.G_NO}">
+                        ${map.TITLE}</a
+                      >
+                    </div>
+                    <div class="grid-div">${map.REP}</div>
+                    <div class="grid-div">${map.ENROLL_DATE}</div>
+                    <c:if test="${map.STATUS == 'A'}">
+                      <div class="grid-div">대기</div>
+                    </c:if>
+                    <c:if test="${map.STATUS == 'C'}">
+                      <div class="grid-div">승인</div>
+                    </c:if>
+                    <c:if test="${map.STATUS == 'D'}">
+                      <div class="grid-div">거절</div>
+                    </c:if>
+                    <c:if test="${map.STATUS == 'E'}">
+                      <div class="grid-div">강퇴</div>
+                    </c:if>
+                    <c:if test="${map.STATUS == 'F'}">
+                      <div class="grid-div">탈퇴</div>
+                    </c:if>
+                  </c:forEach>
+                </div>
+                <div id="paging">
+                  <c:if test="${pv.startPage != 1}">
+                    <div class="paging-btn" id="prev-btn">
+                      <a
+                        href="${path}/member/mypage/study?details=${details}&mno=${loginMember.no}&pno=${pv.startPage - 1}"
+                        >이전</a
+                      >
+                    </div>
+                  </c:if>
+                  <c:forEach
+                    var="i"
+                    begin="${pv.startPage}"
+                    end="${pv.endPage}"
+                  >
+                    <div class="paging-btn">
+                      <a
+                        href="${path}/member/mypage/study?details=${details}&mno=${loginMember.no}&pno=${i}"
+                        >${i}</a
+                      >
+                    </div>
+                  </c:forEach>
+                  <c:if test="${pv.startPage != 1}">
+                    <div class="paging-btn" id="next-btn">
+                      <a
+                        href="${path}/member/mypage/study?details=${details}&mno=${loginMember.no}&pno=${pv.startPage + 1}"
+                        >다음</a
+                      >
+                    </div>
+                  </c:if>
+                </div>
+              </c:if>
+              <c:if test="${details == 'participate'}">
+                <div class="grid">
+                  <div class="grid-div bold700">번호</div>
+                  <div class="grid-div bold700">제목</div>
+                  <div class="grid-div bold700">모임장</div>
+                  <div class="grid-div bold700">신청일시</div>
+                  <div class="grid-div bold700">가입상태</div>
+                  <c:forEach items="${myList}" var="map" varStatus="status">
+                    <div class="grid-div">${status.index + 1}</div>
+                    <div class="grid-div">
+                      <a href="${path}/study/detail?gno=${map.G_NO}">
+                        ${map.TITLE}</a
+                      >
+                    </div>
+                    <div class="grid-div">${map.REP}</div>
+                    <div class="grid-div">${map.ENROLL_DATE}</div>
 
-    <div id="mypage-box">
-      <div id="mypage">
-        <div id="bin">
-          <%@include file="/WEB-INF/views/common/mypage-side.jsp"%>
-        </div>
-        <div id="home-area">
-          <ul class="category-list flex bold700">
-            <li class="category relative">
-              <label>
-                <input type="radio" name="a" value="가입신청내역" checked />
-                <div>가입 신청 내역</div>
-                <div class="bar"></div>
-              </label>
-            </li>
-            <li class="category relative">
-              <label>
-                <input type="radio" name="a" value="참여중인모임" checked />
-                <div>참여중인 모임</div>
-                <div class="bar"></div>
-              </label>
-            </li>
-            <li class="category relative">
-              <label>
-                <input type="radio" name="a" value="운영중인모임" checked />
-                <div>운영중인 모임</div>
-                <div class="bar"></div>
-              </label>
-            </li>
-            <li class="category relative">
-              <label>
-                <input type="radio" name="a" value="스크랩" checked />
-                <div>스크랩</div>
-                <div class="bar"></div>
-              </label>
-            </li>
-          </ul>
-          <section>
-            <div class="grid">
-              <div class="grid-div bold700">번호</div>
-              <div class="grid-div bold700">제목</div>
-              <div class="grid-div bold700">작성자</div>
-              <div class="grid-div bold700">신청일시</div>
-              <div class="grid-div bold700">가입상태</div>
-              <% for(int i=0; i<10; i++) {%>
-              <div class="grid-div">1</div>
-              <div class="grid-div">
-                <a href="/app/study/detail">
-                  토이프로젝트 앱 개발자 구합니다!</a
-                >
+                    <c:if test="${map.STATUS == 'C'}">
+                      <div class="grid-div">승인</div>
+                    </c:if>
+                  </c:forEach>
+                </div>
+                <div id="paging">
+                  <c:if test="${pv.startPage != 1}">
+                    <div class="paging-btn" id="prev-btn">
+                      <a
+                        href="${path}/member/mypage/study?details=${details}&mno=${loginMember.no}&pno=${pv.startPage - 1}"
+                        >이전</a
+                      >
+                    </div>
+                  </c:if>
+                  <c:forEach
+                    var="i"
+                    begin="${pv.startPage}"
+                    end="${pv.endPage}"
+                  >
+                    <div class="paging-btn">
+                      <a
+                        href="${path}/member/mypage/study?details=${details}&mno=${loginMember.no}&pno=${i}"
+                        >${i}</a
+                      >
+                    </div>
+                  </c:forEach>
+                  <c:if test="${pv.startPage != 1}">
+                    <div class="paging-btn" id="next-btn">
+                      <a
+                        href="${path}/member/mypage/study?details=${details}&mno=${loginMember.no}&pno=${pv.startPage + 1}"
+                        >다음</a
+                      >
+                    </div>
+                  </c:if>
+                </div>
+              </c:if>
+              <c:if test="${details == 'manage'}">
+                <div class="grid">
+                  <div class="grid-div bold700">번호</div>
+                  <div class="grid-div bold700">제목</div>
+                  <div class="grid-div bold700">모임장</div>
+                  <div class="grid-div bold700">신청일시</div>
+                  <div class="grid-div bold700">가입상태</div>
+                  <c:forEach items="${myList}" var="map" varStatus="status">
+                    <div class="grid-div">${status.index + 1}</div>
+                    <div class="grid-div">
+                      <a href="${path}/study/detail?gno=${map.G_NO}">
+                        ${map.TITLE}</a
+                      >
+                    </div>
+                    <div class="grid-div">${map.REP}</div>
+                    <div class="grid-div">${map.ENROLL_DATE}</div>
+                    <c:if test="${map.STATUS == 'B'}">
+                      <div class="grid-div">모임장</div>
+                    </c:if>
+                  </c:forEach>
+                </div>
+                <div id="paging">
+                  <c:if test="${pv.startPage != 1}">
+                    <div class="paging-btn" id="prev-btn">
+                      <a
+                        href="${path}/member/mypage/study?details=${details}&mno=${loginMember.no}&pno=${pv.startPage - 1}"
+                        >이전</a
+                      >
+                    </div>
+                  </c:if>
+                  <c:forEach
+                    var="i"
+                    begin="${pv.startPage}"
+                    end="${pv.endPage}"
+                  >
+                    <div class="paging-btn">
+                      <a
+                        href="${path}/member/mypage/study?details=${details}&mno=${loginMember.no}&pno=${i}"
+                        >${i}</a
+                      >
+                    </div>
+                  </c:forEach>
+                  <c:if test="${pv.startPage != 1}">
+                    <div class="paging-btn" id="next-btn">
+                      <a
+                        href="${path}/member/mypage/study?details=${details}&mno=${loginMember.no}&pno=${pv.startPage + 1}"
+                        >다음</a
+                      >
+                    </div>
+                  </c:if>
+                </div>
+              </c:if>
+              <c:if test="${details == 'scrap'}">
+                <div class="grid2">
+                  <div class="grid-div bold700">번호</div>
+                  <div class="grid-div bold700">모집구분</div>
+                  <div class="grid-div bold700">모집유형</div>
+                  <div class="grid-div bold700">제목</div>
+                  <div class="grid-div bold700">모임장</div>
+                  <div class="grid-div bold700">마감여부</div>
+
+                  <c:forEach items="${myList}" var="map" varStatus="status">
+                    <div class="grid-div">${status.index + 1}</div>
+                    <div class="grid-div">${map.TYPE}</div>
+                    <div class="grid-div">${map.WAY}</div>
+                    <div class="grid-div">
+                      <a href="${path}/study/detail?gno=${map.NO}">
+                        ${map.TITLE}</a
+                      >
+                    </div>
+                    <div class="grid-div">${map.REP}</div>
+                    <c:if test="${map.CLOSING_YN == 'N'}">
+                      <div class="grid-div">모집중</div>
+                    </c:if>
+                    <c:if test="${map.CLOSING_YN == 'Y'}">
+                      <div class="grid-div">마감</div>
+                    </c:if>
+                  </c:forEach>
+                </div>
+                <div id="paging">
+                  <c:if test="${pv.startPage != 1}">
+                    <div class="paging-btn" id="prev-btn">
+                      <a
+                        href="${path}/member/mypage/study?details=${details}&mno=${loginMember.no}&pno=${pv.startPage - 1}"
+                        >이전</a
+                      >
+                    </div>
+                  </c:if>
+                  <c:forEach
+                    var="i"
+                    begin="${pv.startPage}"
+                    end="${pv.endPage}"
+                  >
+                    <div class="paging-btn">
+                      <a
+                        href="${path}/member/mypage/study?details=${details}&mno=${loginMember.no}&pno=${i}"
+                        >${i}</a
+                      >
+                    </div>
+                  </c:forEach>
+                  <c:if test="${pv.startPage != 1}">
+                    <div class="paging-btn" id="next-btn">
+                      <a
+                        href="${path}/member/mypage/study?details=${details}&mno=${loginMember.no}&pno=${pv.startPage + 1}"
+                        >다음</a
+                      >
+                    </div>
+                  </c:if>
+                </div>
+              </c:if>
+            </section>
+            <section class="search-section center">
+              <div class="relative">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input
+                  type="text"
+                  placeholder="내용을 입력해주세요"
+                  class="search-box"
+                  name="keyword"
+                /><select name="status" id="" class="select-box">
+                  <option value="title">제목</option>
+                  <option value="content">내용</option>
+                </select>
               </div>
-              <div class="grid-div">한혜원</div>
-              <div class="grid-div">2022-12-10</div>
-              <div class="grid-div">대기</div>
-              <%}%>
-            </div>
-          </section>
-          <section class="search-section center">
-            <div class="relative">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <input
-                type="text"
-                placeholder="내용을 입력해주세요"
-                class="search-box"
-              /><select name="" id="" class="select-box">
-                <option value="">제목</option>
-                <option value="">내용</option>
-                <option value="">작성자</option>
-              </select>
-            </div>
-          </section>
+            </section>
+          </div>
         </div>
       </div>
-    </div>
+    </form>
     <%@include file="/WEB-INF/views/common/footer2.jsp" %>
-
-    <!-- <script>
-      const cate1 = document.querySelector(".category:nth-child(1)");
-      const cate2 = document.querySelector(".category:nth-child(2)");
-      const cate3 = document.querySelector(".category:nth-child(3)");
-      const cate4 = document.querySelector(".category:nth-child(4)");
-
-      cate1.addEventListener("click", function () {
-        this.classList.add("clicked");
-
-        cate2.classList.remove("clicked");
-        cate3.classList.remove("clicked");
-        cate4.classList.remove("clicked");
-      });
-
-      cate2.addEventListener("click", function () {
-        this.classList.add("clicked");
-
-        cate1.classList.remove("clicked");
-        cate3.classList.remove("clicked");
-        cate4.classList.remove("clicked");
-      });
-
-      cate3.addEventListener("click", function () {
-        this.classList.add("clicked");
-
-        cate1.classList.remove("clicked");
-        cate2.classList.remove("clicked");
-        cate4.classList.remove("clicked");
-      });
-      cate4.addEventListener("click", function () {
-        this.classList.add("clicked");
-
-        cate1.classList.remove("clicked");
-        cate2.classList.remove("clicked");
-        cate3.classList.remove("clicked");
-      });
-    </script> -->
     <script>
-      //인기, 프론트엔드, 백엔드, 모바일, 기타, 모두보기
       const category = document.querySelectorAll(".category");
 
       //화면이 로드되었을 때 기본으로 인기 항목이 체크되어있으므로
       //이미 체크된 항목의 bar 길이 할당
-      category.forEach((o) => {
-        if (o.querySelector("input").checked) {
-          const barWidth = o.querySelector("label").offsetWidth;
-          o.querySelector(".bar").style.width = barWidth + "px";
-        }
+      // category.forEach((o) => {
+      //   if (o.querySelector("input").checked) {
+      //     const barWidth = o.querySelector("label").offsetWidth;
+      //     o.querySelector(".bar").style.width = barWidth + "px";
+      //   }
+      // });
+
+      // //항목이 체크되면 bar 길이 할당
+      // category.forEach((o) => {
+      //   o.querySelector("label").addEventListener("click", (e) => {
+      //     const barWidth = e.currentTarget.offsetWidth;
+      //     o.querySelector(".bar").style.width = barWidth + "px";
+      //   });
+      // });
+
+      const details = document.querySelectorAll("input[name=details]");
+
+      details.forEach((o) => {
+        o.addEventListener("click", function () {
+          document.querySelector("#mypage-form").submit();
+        });
       });
 
-      //항목이 체크되면 bar 길이 할당
       category.forEach((o) => {
-        o.querySelector("label").addEventListener("click", (e) => {
-          const barWidth = e.currentTarget.offsetWidth;
-          o.querySelector(".bar").style.width = barWidth + "px";
-        });
+        if (o.querySelector("input[name=details]").value == "${details}") {
+          console.log(o.querySelector("input[name=details]"));
+          o.querySelector("input[name=details]").checked = true;
+          o.querySelector(".cate").classList.add("border-bottom");
+        }
       });
     </script>
     <script>
-      const category = document.querySelector("#my-cate div:nth-child(3) a");
-      category.classList.add("main-color");
+      const category1 = document.querySelector("#my-cate div:nth-child(3) a");
+      category1.classList.add("main-color");
     </script>
-    <script
-      src="https://kit.fontawesome.com/939838bb27.js"
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>

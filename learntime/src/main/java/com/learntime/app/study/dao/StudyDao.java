@@ -152,6 +152,12 @@ public interface StudyDao {
 
 	public int deleteCmtLikeHate(SqlSessionTemplate sst, SearchVo sv);
 
+	//마이페이지 게시글 목록 조회
+	public List<Map<String, Object>> selectMypageList(SqlSessionTemplate sst, Map map);
+
+	//마이페이지 게시글 개수 카운트
+	public int selectMypageCnt(SqlSessionTemplate sst, Map map);
+
 
 
 }

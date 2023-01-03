@@ -465,4 +465,112 @@
 		LEFT JOIN GROUP_CMT_LIKE_HATE LH ON C.NO = LH.CMT_NO
 		WHERE C.DEPTH = '1' AND LH.M_NO = #{mno} AND LH.CMT_NO = #{rcno}
 	</select>
+	<select id="selectMypageList" resultType="map">
+		<if test="'apply'.equals(details)">
+			SELECT L.G_NO, L.M_NO, TO_CHAR(CAST(L.ENROLL_DATE as DATE),'YYYY.MM.DD') ENROLL_DATE , L.STATUS, G.TITLE, G.WRITER, (SELECT M.NICK FROM RECRUIT_LIST L1 JOIN MEMBER M ON M.NO = L1.M_NO WHERE G.NO = L1.G_NO AND STATUS = 'B') REP
+			FROM RECRUIT_LIST L    
+			JOIN RECRUIT_GROUP G ON L.G_NO = G.NO
+			WHERE L.M_NO = #{mno} 
+			AND L.STATUS != 'B'
+			<if test="keyword != null and !''.equals(keyword) and 'title'.equals(status)">
+			AND G.TITLE LIKE '%${keyword}%'
+			</if>
+			<if test="keyword != null and !''.equals(keyword) and 'content'.equals(status)">
+			AND G.INTRO LIKE '%${keyword}%'
+			</if>
+		</if>
+		<if test="'participate'.equals(details)">
+			SELECT L.G_NO, L.M_NO, TO_CHAR(CAST(L.ENROLL_DATE as DATE),'YYYY.MM.DD') ENROLL_DATE , L.STATUS, G.TITLE, G.WRITER, (SELECT M.NICK FROM RECRUIT_LIST L1 JOIN MEMBER M ON M.NO = L1.M_NO WHERE G.NO = L1.G_NO AND STATUS = 'B') REP
+			FROM RECRUIT_LIST L    
+			JOIN RECRUIT_GROUP G ON L.G_NO = G.NO
+			WHERE L.M_NO = #{mno} AND L.STATUS = 'C'
+			<if test="keyword != null and !''.equals(keyword) and 'title'.equals(status)">
+			AND G.TITLE LIKE '%${keyword}%'
+			</if>
+			<if test="keyword != null and !''.equals(keyword) and 'content'.equals(status)">
+			AND G.INTRO LIKE '%${keyword}%'
+			</if>
+		</if>
+		<if test="'manage'.equals(details)">
+			SELECT L.G_NO, L.M_NO, TO_CHAR(CAST(L.ENROLL_DATE as DATE),'YYYY.MM.DD') ENROLL_DATE , L.STATUS, G.TITLE, G.WRITER, (SELECT M.NICK FROM RECRUIT_LIST L1 JOIN MEMBER M ON M.NO = L1.M_NO WHERE G.NO = L1.G_NO AND STATUS = 'B') REP
+			FROM RECRUIT_LIST L    
+			JOIN RECRUIT_GROUP G ON L.G_NO = G.NO
+			WHERE L.M_NO = #{mno} AND L.STATUS = 'B'
+			<if test="keyword != null and !''.equals(keyword) and 'title'.equals(status)">
+			AND G.TITLE LIKE '%${keyword}%'
+			</if>
+			<if test="keyword != null and !''.equals(keyword) and 'content'.equals(status)">
+			AND G.INTRO LIKE '%${keyword}%'
+			</if>
+		</if>
+		<if test="'scrap'.equals(details)">
+		SELECT G.NO, T.NAME TYPE, W.NAME WAY, G.TITLE, G.CLOSING_YN, (SELECT M.NICK
+                                                    FROM RECRUIT_LIST L 
+                                                    JOIN MEMBER M ON L.M_NO = M.NO
+                                                    WHERE G.NO = L.G_NO AND STATUS = 'B') REP
+		FROM GROUP_SCRAP S
+		JOIN RECRUIT_GROUP G ON S.G_NO = G.NO
+		JOIN GROUP_TYPE T ON T.NO = G.G_TYPE_NO
+		JOIN GROUP_WAY W ON W.NO = G.G_WAY_NO
+		WHERE S.M_NO = #{mno} AND G.DELETE_YN = 'N'
+		<if test="keyword != null and !''.equals(keyword) and 'title'.equals(status)">
+			AND G.TITLE LIKE '%${keyword}%'
+			</if>
+			<if test="keyword != null and !''.equals(keyword) and 'content'.equals(status)">
+			AND G.INTRO LIKE '%${keyword}%'
+			</if>
+		</if>
+	</select>
+	<select id="selectMypageCnt" resultType="int">
+		<if test="'apply'.equals(details)">
+			SELECT COUNT(*)
+			FROM RECRUIT_LIST L    
+			JOIN RECRUIT_GROUP G ON L.G_NO = G.NO
+			WHERE L.M_NO = #{mno} AND L.STATUS != 'B'
+			<if test="keyword != null and !''.equals(keyword) and 'title'.equals(status)">
+			AND G.TITLE LIKE '%${keyword}%'
+			</if>
+			<if test="keyword != null and !''.equals(keyword) and 'content'.equals(status)">
+			AND G.INTRO LIKE '%${keyword}%'
+			</if>
+		</if>
+		<if test="'participate'.equals(details)">
+			SELECT COUNT(*)
+			FROM RECRUIT_LIST L    
+			JOIN RECRUIT_GROUP G ON L.G_NO = G.NO
+			WHERE L.M_NO = #{mno} AND L.STATUS = 'C'
+			<if test="keyword != null and !''.equals(keyword) and 'title'.equals(status)">
+			AND G.TITLE LIKE '%${keyword}%'
+			</if>
+			<if test="keyword != null and !''.equals(keyword) and 'content'.equals(status)">
+			AND G.INTRO LIKE '%${keyword}%'
+			</if>
+		</if>
+		<if test="'manage'.equals(details)">
+			SELECT COUNT(*)
+			FROM RECRUIT_LIST L    
+			JOIN RECRUIT_GROUP G ON L.G_NO = G.NO
+			WHERE L.M_NO = #{mno} AND L.STATUS = 'B'
+			<if test="keyword != null and !''.equals(keyword) and 'title'.equals(status)">
+			AND G.TITLE LIKE '%${keyword}%'
+			</if>
+			<if test="keyword != null and !''.equals(keyword) and 'content'.equals(status)">
+			AND G.INTRO LIKE '%${keyword}%'
+			</if>
+		</if>
+		<if test="'scrap'.equals(details)">
+		SELECT COUNT(*)
+		FROM GROUP_SCRAP S
+		JOIN RECRUIT_GROUP G ON S.G_NO = G.NO
+		JOIN GROUP_TYPE T ON T.NO = G.G_TYPE_NO
+		JOIN GROUP_WAY W ON W.NO = G.G_WAY_NO
+		WHERE S.M_NO = #{mno} AND G.DELETE_YN = 'N'
+		<if test="keyword != null and !''.equals(keyword) and 'title'.equals(status)">
+			AND G.TITLE LIKE '%${keyword}%'
+			</if>
+			<if test="keyword != null and !''.equals(keyword) and 'content'.equals(status)">
+			AND G.INTRO LIKE '%${keyword}%'
+			</if>
+		</if>
+	</select>
 </mapper>

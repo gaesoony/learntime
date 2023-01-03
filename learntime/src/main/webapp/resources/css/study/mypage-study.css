@@ -1,0 +1,239 @@
+#mypage-box {
+  width: 1200px;
+  height: 100%;
+  margin: auto;
+}
+
+#mypage {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 300px 900px;
+}
+
+#home-area {
+  padding: 40px;
+  height: auto;
+}
+
+/* 공통css */
+.soft-gray {
+  color: rgb(164, 164, 164);
+}
+
+.gray1 {
+  color: #535353;
+}
+
+.gray2 {
+  color: #848484;
+}
+
+.relative {
+  position: relative;
+}
+
+.middle {
+  display: flex;
+  justify-content: center;
+}
+
+.bold700 {
+  font-weight: 700;
+}
+
+.main-color {
+  color: #5ecc80;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.black {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.blue {
+  color: rgb(49, 137, 252);
+}
+
+/* 기술스택 메뉴 리스트 */
+
+.study-tech-area {
+  margin: 40px 0px;
+}
+
+.category-list {
+  font-size: 20px;
+  /* padding-bottom: 9px; */
+  border-bottom: 3px solid rgb(230, 230, 230);
+  margin-bottom: 40px;
+  margin-top: 58px;
+}
+
+.category-list li {
+  margin-right: 15px;
+  margin-left: 10px;
+  color: rgb(158, 158, 158);
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.clicked {
+  color: #5ecc80 !important;
+}
+
+.hidden {
+  display: none;
+}
+
+/* 게시판 */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr 1fr 1fr;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 5fr 1fr 1fr;
+}
+
+.grid-div {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgb(228, 228, 228);
+  font-size: 14px;
+}
+
+/* 검색부분 */
+
+.search-section {
+  margin: 20px;
+  margin-top: 50px;
+}
+
+.search-box {
+  outline: none;
+  background-color: rgba(240, 240, 240, 0.786);
+  color: rgb(42, 42, 42);
+  width: 400px;
+  padding: 10px 10px 10px 30px;
+
+  border: 1px solid rgb(225, 225, 225);
+}
+
+.fa-magnifying-glass {
+  position: absolute;
+  top: 13px;
+  left: 10px;
+  color: gray;
+}
+
+.select-box {
+  width: 90px;
+  height: 40px;
+  border: 1px solid rgb(206, 206, 206);
+  margin-left: 6px;
+  outline: none;
+  padding: 0px 5px;
+  cursor: pointer;
+}
+
+.write-btn {
+  width: 100px;
+  height: 40px;
+  border: none;
+  outline: none;
+  background-color: #5ecc80;
+  color: white;
+  cursor: pointer;
+}
+
+.category label {
+  cursor: pointer;
+}
+
+.category input:checked + div {
+  color: black;
+  font-weight: 500;
+}
+
+input[name="details"] {
+  display: none;
+}
+
+input[name="details"]:checked + div {
+  color: black;
+}
+
+input[name="details"]:checked ~ .bar {
+  display: block;
+}
+
+.bar {
+  display: none;
+  width: 30px;
+  height: 4px;
+  background-color: var(--main-color);
+  position: absolute;
+  bottom: -10px;
+}
+
+input[name="details"] + div {
+  padding-bottom: 8px;
+}
+
+.border-bottom {
+  border-bottom: 4px solid var(--main-color);
+}
+
+/* paging */
+#paging {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 100px;
+}
+
+.paging-btn {
+  height: 25px;
+  width: 25px;
+  border: 1px solid #aeaeae;
+  border-radius: 2px;
+  text-align: center;
+  line-height: 24px;
+  color: #535353;
+  cursor: pointer;
+}
+
+.paging-btn:nth-child(n + 1) {
+  margin-left: 5px;
+}
+
+.paging-btn:hover {
+  background-color: #58c079;
+  color: white;
+}
+
+#next-btn,
+#prev-btn {
+  width: 40px;
+}
