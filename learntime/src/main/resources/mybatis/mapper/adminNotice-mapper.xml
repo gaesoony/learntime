@@ -54,6 +54,21 @@
     JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER WHERE
     N.NO = #{no}
   </select>
+  <update id="activate">
+		UPDATE NOTICE
+		SET STATUS = 2
+		WHERE NO = #{no}
+	</update>
+	<update id="deactivate">
+		UPDATE NOTICE
+		SET STATUS = 3
+		WHERE NO = #{no}
+	</update>
+	<update id="delete">
+		UPDATE NOTICE
+		SET DELETE_YN = 'Y'
+		WHERE NO = #{no}
+	</update>
   
   
  

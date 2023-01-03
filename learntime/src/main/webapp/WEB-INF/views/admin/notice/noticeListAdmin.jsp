@@ -8,6 +8,10 @@
 <!-- <link rel="stylesheet" href="/app/.css"> -->
 <title>Insert title here</title>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <style>
 #content-wrap{
     background-color: #efefef;
@@ -284,7 +288,19 @@
     width: 30px;
     height: 30px;
 }
+.popUp{
+width:300px;
+height: 600px;
 
+
+}
+.empty{
+	height: 30px;
+}
+.title-sec{
+	font-size:large;
+	font-weight:600;
+}
 </style>
 <body>
 	<%@include file="/WEB-INF/views/common/admin-side.jsp"%>
@@ -307,12 +323,13 @@
             <form action="/app/admin/notice/noticeListAdmin" method="get">
             	<input type="hidden" value="${cateNo}" name="cateNo">
 				<input type="hidden" value="${p}" name="p">
+                <input type="hidden" value="${no}" name="no">
             	<div class="notice-admin-Btns">
                 <div class="noticeBtn-etc">
-                    <a href="#"><div class="setting-Btn"><img src="/app/resources/img/faq/image 116.png"></div></a>
+                    <a href="#modal1" rel="modal:open" class="popupArea" id="popup"><div class="setting-Btn"><img src="/app/resources/img/faq/image 116.png"></div></a>
                     <div class="Btns-noticeAd">
-                        <div class="activate-Btn"><input class="activate" type="button" value="활성화" name="activate" ></div>
-                        <div class="deactivate-Btn"><input class="deactivate" type="button" value="비활성화" name="deactivate"></div>
+                        <div class="activate-Btn"><input class="activate" type="button" value="활성화" name="activate" onclick="activate()"></div>
+                        <div class="deactivate-Btn"><input class="deactivate" type="button" value="비활성화" name="deactivate" onclick="deactivate()"></div>
                         <div class="delete-notice-Btn"><input class="delete-lists" type="button" value="삭제" name="delete"></div>
                     </div>
                 </div>
@@ -331,8 +348,8 @@
                                     <div class="cate-notice" name="name">${list.cateName}</div>
                                     <a href = "app/admin/notice/noticeDetailAdmin?no=${list.no}"><div class="posted-notice" name="title">${list.title}</div></a>
                                     <div class="views-etc">
-                                        <div class="views" name="hit"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">${list.hit }</div>
-                                        <div class="replies" name="cmt"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">${list.cmt}</div>
+                                        <div class="views" name="hit"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">&nbsp; ${list.hit }</div>
+                                        <div class="replies" name="cmt"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">&nbsp; ${list.cmt}</div>
                                     </div>
                                 </div>
                             </div>
@@ -358,7 +375,18 @@
             </form>
         </div>
     </div>
-
+    <!-- 세팅 모달 -->
+    <div id="modal1" class="modal">
+	 	<div class="notice-line">
+	 		<div class="line-a"></div>
+	 		<div class="title-sec">카테고리 설정</div>
+	 		<div class="line-b"></div>
+	 	</div>
+	 	<div class="input-section">
+	 		<div class="empty"></div>
+	 		<div>카테고리 추가: <input type="text" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="확인"></div>
+	   </div>
+   </div>
 <script type="text/javascript">
 	const pageNation = document.querySelector('#page-nation');
 	const numArr = pageNation.querySelectorAll('.num');
@@ -403,6 +431,79 @@
 	
 	/*상단고정버튼  */
 	
+
+    function activate(){
+        let activate = $('input[name="activate"]').val();
+        let no = $('input[name="no"]').val();
+        let valueArr = new Array();
+        let list = $("checkBoxBtn");
+        for(let i = 0; i <list.length; i++){
+            if(list[i].checked){
+                valueArr.push(list[i].value);
+            }
+        }
+
+        var chk = confirm("활성화 하시겠습니까?");
+        $.ajax({
+            url:"/app/admin/notice/noticeListAdmin?p=${pv.currentPage}",
+            type:"post",
+            data:{"activate":activate,
+                    "no":no,
+                    "valueArr":valueArr
+        },
+        success:function(){
+            alert('활성화되었습니다.');
+        },
+        error:function(){
+            alert('에러가 발생했습니다.');
+        }
+
+        });
+
+
+    }
+
+    function deactivate(){
+        let deactivate = $('input[name="deactivate"]').val();
+        let no = $('input[name="no"]').val();
+        let valueArr = new Array();
+        let list = $("checkBoxBtn");
+        for(let i = 0; i <list.length; i++){
+            if(list[i].checked){
+                valueArr.push(list[i].value);
+            }
+        }
+
+        var chk = confirm("비활성화 하시겠습니까?");
+        $.ajax({
+            url:"/app/admin/notice/noticeListAdmin",
+            type:"post",
+            data:{"activate":activate,
+                    "no":no,
+                    "valueArr":valueArr
+        },
+        success:function(){
+            alert('비활성화되었습니다.');
+        },
+        error:function(){
+            alert('에러가 발생했습니다.');
+        }
+
+        });
+        
+	
+    }
+ /*  //모달 띄우기
+    $('#popup').on('click',function(){
+      $('.popUp').addClass('show');
+    })
+    
+    // X 버튼으로 모달 닫기
+    $('#modal-closed').on('click',function(){
+      $('.blackBG').removeClass('show');
+    })
+
+ */
 	
 	</script>
 

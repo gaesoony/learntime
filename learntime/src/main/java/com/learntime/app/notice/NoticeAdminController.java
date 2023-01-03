@@ -65,7 +65,28 @@ public class NoticeAdminController {
 		}
 		
 		@PostMapping("noticeListAdmin")
-		public String noticeListAdmin() {
+		public String noticeListAdmin(HttpServletRequest req,NoticeVo vo) {
+			
+			String activate = req.getParameter("activate");
+			String deactivate = req.getParameter("deactivate");
+			String delete = req.getParameter("delete");
+			String[] valueArr = req.getParameterValues("valueArr");
+			int no =0;
+			for(int i = 0; i<valueArr.length; i++) {
+				no= Integer.parseInt(valueArr[i]);
+				
+				vo.setNo(no);
+			}
+			int result = 0;
+			int result2 = 0;
+			int result3 = 0;
+			if("활성화".equals(activate)) {
+				result = ans.activate(vo);
+			}else if("비활성화".equals(deactivate)) {
+				result2 = ans.deactivate(vo);
+			}else if ("삭제".equals(delete)) {
+				result3 = ans.deleteOne(vo);
+			}
 			return "admin/notice/noticeListAdmin";
 			
 		}
@@ -96,6 +117,11 @@ public class NoticeAdminController {
 		public String noticeDetailAdmiModify() {
 			return "admin/notice/noticeDetailAdminModify";
 			
+		}
+		//팝업
+		@GetMapping("noticePopUpAdmin")
+		public String noticePopUpAdmin() {
+			return "admin/notice/noticePopUpAdmin";
 		}
 		
 		

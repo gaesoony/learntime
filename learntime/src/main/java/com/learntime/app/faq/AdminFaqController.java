@@ -36,6 +36,7 @@ public class AdminFaqController {
 		
 		
 		List<FaqVo> list= afs.selectFaqList(vo,pv);
+	System.out.println(list);
 		m.addAttribute("pv",pv);
 		m.addAttribute("list",list);
 		

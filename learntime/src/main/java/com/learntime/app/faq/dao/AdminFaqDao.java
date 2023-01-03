@@ -19,9 +19,11 @@ public class AdminFaqDao {
 	public List<FaqVo> selectFaqList(SqlSessionTemplate sst, FaqVo vo, PageVo pv) {
 		int offset = (pv.getCurrentPage() -1)* pv.getBoardLimit();
 		int limit = pv.getBoardLimit();
-		RowBounds rb = new RowBounds(offset, limit);
-		
-		return sst.selectList("adminFaqMapper.faqList",vo,rb);
+//		RowBounds rb = new RowBounds(offset, limit);
+		List<FaqVo> list = sst.selectList("adminFaqMapper.faqList",vo);
+		System.out.println(list);
+		System.out.println(vo);
+		return list;
 	}
 
 	public FaqVo selectOne(SqlSessionTemplate sst, FaqVo vo) {
