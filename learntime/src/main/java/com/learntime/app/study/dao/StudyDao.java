@@ -189,6 +189,14 @@ public interface StudyDao {
 
 	public int deleteMystudyCategory(SqlSessionTemplate sst, String ctno);
 
+	public int updateMystudyCategory(SqlSessionTemplate sst, Map map);
+
+	public int boardWriteCmt(SqlSessionTemplate sst, Map map);
+
+	public List<Map<String, Object>> selectGroupBoardCmtList(SqlSessionTemplate sst, String string);
+
+	public List<Map<String, String>> selectGroupBoardCmtReplyListByCgno(SqlSessionTemplate sst, String cgno);
+
 
 
 

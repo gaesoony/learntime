@@ -146,6 +146,10 @@ public interface StudyService {
 	public int updateMystudyCategory(String gno, List<Map<String, Object>> cateList, Map updateCateMap,
 			Map insertCateMap);
 
+	public int boardWriteCmt(Map map);
+
+	public List<Map<String, Object>> selectGroupBoardCmtList(Map map);
+
 
 	
 	

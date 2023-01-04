@@ -12,15 +12,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       href="${path}/resources/css/study/detail.css?ver=4"
     />
 
-    <!-- include summernote css/js-->
-    <!-- <link
-      href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
-      rel="stylesheet"
-    /> -->
-    <!-- <link
-      href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
-      rel="stylesheet"
-    /> -->
     <link
       rel="stylesheet"
       href="/app/resources/css/summernote/summernote-lite.css"

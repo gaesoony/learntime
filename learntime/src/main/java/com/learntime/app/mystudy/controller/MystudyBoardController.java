@@ -17,6 +17,7 @@ import com.learntime.app.common.page.PageVo;
 import com.learntime.app.common.page.Pagination;
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.study.service.StudyService;
+import com.learntime.app.study.vo.SearchVo;
 
 @RequestMapping("mystudy/board")
 @Controller
@@ -91,6 +92,9 @@ public class MystudyBoardController {
 		
 		map.put("gno", gno);
 		map.put("ctno", ctno);
+		map.put("bno", bno);
+		
+		System.out.println(map);
 
 		//그룹번호로 정보 select
 		Map<String, Object> groupOne = service.selectGroupOne(gno);
@@ -112,12 +116,55 @@ public class MystudyBoardController {
 		int updateHit = service.updateBoardHit(bno);
 		
 		//댓글 조회
+		List<Map<String, Object>> groupCmtList = service.selectGroupBoardCmtList(map);
+		System.out.println(groupCmtList);
+		model.addAttribute("groupCmtList", groupCmtList);
 		
 		//카테고리 번호
 		model.addAttribute("ctno", ctno);
 		model.addAttribute("bno", bno);
 		
 		return "mystudy/board/detail";
+	}
+	
+	@PostMapping("detail/writeCmt")
+	public String writeCmt(String ctno, String gno, String bno, String mno, String cmt) {
+		
+		Map map = new HashMap();
+		map.put("gno", gno);
+		map.put("mno", mno);
+		map.put("cmt", cmt);
+		map.put("bno", bno);
+		
+		int result = service.boardWriteCmt(map);
+		
+		if(result == 1) {
+			return "redirect:/mystudy/board/detail?ctno="+ctno+"&gno="+gno+"&bno="+bno;
+		}else {
+			return "common/errorPage";
+		}
+		
+	}
+	
+	//대댓글달기
+	@PostMapping("/detail/writeCmtReply")
+	public String writeCmt(String ctno, String gno, String bno, String mno, String cmt, String group) {
+		
+		Map map = new HashMap();
+		map.put("gno", gno);
+		map.put("bno", bno);
+		map.put("mno", mno);
+		map.put("cmt", cmt);
+		map.put("group", group);
+		
+		int result = service.boardWriteCmt(map);
+		
+		if(result == 1) {
+			return "redirect:/mystudy/board/detail?ctno="+ctno+"&gno="+gno+"&bno="+bno;
+		}else {
+			return "common/errorPage";
+		}
+		
 	}
 	
 	//게시판 템플릿 글작성 화면

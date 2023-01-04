@@ -310,14 +310,10 @@ public class MystudyManageController {
 		if(cateNo != null) {
 			for(int i=0; i<cateList.size(); i++) {
 				for(int j=0; j<cateNo.length ; j++) {
-					System.out.println(cateList.get(i).get("NO"));
-					System.out.println(cateNo[j]);
-					if(cateList.get(i).get("NO") == cateNo[j]) {
-						System.out.println("들어옴1");
-					}
 					if(String.valueOf(cateList.get(i).get("NO")).equals(cateNo[j])) {
 						System.out.println("리무브들어옴!");
 						cateList.remove(i);
+						i--;
 						break;
 					}
 				}
@@ -338,12 +334,15 @@ public class MystudyManageController {
 		//들어온 카테고리 번호가 new면 insert해야함
 		Map insertCateMap = new HashMap();
 		
-		for(int i=0; i<cateNo.length; i++) {
-			if(!cateNo[i].equals("new")) {
-				updateCateMap.put(cateNo[i], cateName[i]);	
-			}
-			if(cateNo[i].equals("new")) {
-				insertCateMap.put(i, cateName[i]);	
+		if(cateNo != null) {
+			for(int i=0; i<cateNo.length; i++) {
+				if(!cateNo[i].equals("new")) {
+					updateCateMap.put(cateNo[i], cateName[i]);	
+				}
+				if(cateNo[i].equals("new")) {
+					insertCateMap.put(i, cateName[i]);	
+				}
+				
 			}
 			
 		}

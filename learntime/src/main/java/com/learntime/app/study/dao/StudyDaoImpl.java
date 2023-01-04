@@ -409,6 +409,26 @@ public class StudyDaoImpl implements StudyDao{
 		return sst.insert("studyMapper.insertMystudyCategory", map);
 	}
 
+	@Override
+	public int updateMystudyCategory(SqlSessionTemplate sst, Map map) {
+		return sst.update("studyMapper.updateMystudyCategory", map);
+	}
+
+	@Override
+	public int boardWriteCmt(SqlSessionTemplate sst, Map map) {
+		return sst.insert("studyMapper.boardWriteCmt", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectGroupBoardCmtList(SqlSessionTemplate sst, String bno) {
+		return sst.selectList("studyMapper.selectGroupBoardCmtList", bno);
+	}
+
+	@Override
+	public List<Map<String, String>> selectGroupBoardCmtReplyListByCgno(SqlSessionTemplate sst, String cgno) {
+		return sst.selectList("studyMapper.selectGroupBoardCmtReplyListByCgno", cgno);
+	}
+
 
 
 

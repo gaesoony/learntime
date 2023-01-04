@@ -64,10 +64,6 @@
 .hidden {
   display: none;
 }
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
-* {
-  font-family: "Noto Sans KR", sans-serif;
-}
 
 /* 스터디 상세 1200 */
 
@@ -111,7 +107,7 @@
 
 .study-detail-title-area {
   padding-bottom: 15px;
-
+  min-height: 600px;
   padding-right: 40px;
 }
 
@@ -333,13 +329,12 @@
 
 .cmt-div {
   background-color: #f8f9fa;
-  height: 100vh;
 }
 
 .cmt-input {
   margin-top: 50px;
-  width: 800px;
-  height: 320px;
+  width: 820px;
+  height: 355px;
   border: 1px solid rgb(212, 212, 212);
   background-color: white;
   border-radius: 5px;
@@ -361,6 +356,7 @@
 .cmt-btn-area {
   display: flex;
   justify-content: flex-end;
+  margin-top: 7px;
 }
 
 .cmt-btn-area input {
@@ -478,4 +474,192 @@
 
   color: rgb(168, 168, 168);
   border: 1px solid rgb(207, 207, 207);
+}
+
+/* 댓글부분 */
+
+.cmt-list {
+  margin-bottom: 50px;
+}
+
+.cmt-list > li {
+  margin-top: 30px;
+
+  border: 1px solid rgb(212, 212, 212);
+  background-color: white;
+  border-radius: 5px;
+}
+
+.cmt-top {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 21px 30px 8px 30px;
+}
+
+.cmt-profile-img img {
+  width: 40px;
+  height: 40px;
+}
+
+.cmt-profile-img {
+  margin-right: 20px;
+}
+
+.enroll-date {
+  font-size: 13px;
+  color: rgb(171, 171, 171);
+  margin-right: 20px;
+}
+
+.member-nick {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.cmt-edit {
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.like-hate-btn {
+  width: 100px;
+  height: 33px;
+  border-radius: 5px;
+  color: rgb(143, 143, 143);
+  border: 1px solid rgba(128, 128, 128, 0.174);
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgb(100 100 111 / 20%) 0px 1px 8px 0;
+}
+
+.cmt-top-div:first-child {
+  width: 5%;
+}
+
+.cmt-top-div:nth-child(2) {
+  width: 73%;
+}
+
+.cmt-top-div:last-child {
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cmt-content {
+  min-height: 100px;
+  border-top: 1px solid var(--lightGray);
+  margin-bottom: 30px;
+  padding: 30px 36px;
+}
+
+.cmt-reply {
+  border-top: 1px solid var(--lightGray);
+  padding: 10px 20px;
+  background-color: #fcfcfc;
+}
+
+.cmt-reply-btn {
+  padding: 0px 20px 22px 20px;
+}
+
+.cmt-reply-area {
+  background-color: white;
+}
+
+.cmt-reply-top {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.cmt-reply-top div:first-child {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.cmt-write-btn {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0px 30px 0px;
+  border-top: 1px solid var(--lightGray);
+  background-color: #fcfcfc;
+}
+
+.cmt-write-btn span {
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.cmt-toggle-btn {
+  cursor: pointer;
+  margin-right: 3px;
+}
+
+/* 대댓글 */
+
+.cmt-reply-list li {
+  display: flex;
+  background-color: #fcfcfc;
+  min-height: 130px;
+}
+
+.cmt-reply-member-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px 20px 0px 36px;
+}
+
+.cmt-reply-member-profile div:first-child img {
+  width: 35px;
+  height: 35px;
+}
+
+.cmt-reply-member-profile div:last-child {
+  width: 2px;
+  height: 100%;
+  background-color: rgb(226, 226, 226);
+}
+
+.cmt-reply-content {
+  width: 603px;
+}
+
+.cmt-reply-content-top {
+  /* display: flex; */
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cmt-reply-enroll-date {
+  font-size: 13px;
+  color: rgb(171, 171, 171);
+}
+
+.cmt-reply-content-top > div:first-child {
+  font-size: 14px;
+  margin-bottom: 7px;
+}
+
+.cmt-reply-content-bottom {
+  margin-top: 18px;
+}
+
+.group-member {
+  background-color: white;
+  border: 1px solid var(--lightGray);
+  padding: 3px 5px;
+  margin-right: 10px;
+}
+
+.cmt-reply-member-nick {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0px 15px 0px 0px;
 }

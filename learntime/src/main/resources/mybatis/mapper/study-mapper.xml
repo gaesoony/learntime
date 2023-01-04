@@ -590,7 +590,7 @@
 	</update>
 	<insert id="insertGroupBoardCategory">
 		INSERT INTO GROUP_BOARD_CATEGORY
-		VALUES (SEQ_GROUP_BOARD_CATEGORY_NO.NEXTVAL, #{gno}, #{cateName}, 'N')
+		VALUES (SEQ_GROUP_BOARD_CATEGORY_NO.NEXTVAL, (SELECT NO FROM RECRUIT_GROUP ORDER BY NO DESC OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY), #{cateName}, 'N')
 	</insert>
 	<select id="selectCateList" resultType="map">
 		SELECT NO, G_NO, NAME, DELETE_YN
@@ -675,4 +675,28 @@
 		INSERT INTO GROUP_BOARD_CATEGORY
 		VALUES (SEQ_GROUP_BOARD_CATEGORY_NO.NEXTVAL, #{gno}, #{cateName}, 'N')
 	</insert>
+	<update id="updateMystudyCategory">
+		UPDATE GROUP_BOARD_CATEGORY SET
+		NAME = #{cateName}
+		WHERE NO = #{cateNo}
+	</update>
+	<insert id="boardWriteCmt">
+		INSERT INTO GROUP_BOARD_CMT
+		<if test="group == null">VALUES(SEQ_GROUP_BOARD_CMT_NO.NEXTVAL, #{bno}, #{mno}, #{cmt}, SYSDATE, 'N', SYSDATE, '0', SEQ_GROUP_BOARD_CMT_NO.NEXTVAL)</if>
+		<if test="group != null">VALUES(SEQ_GROUP_BOARD_CMT_NO.NEXTVAL, #{bno}, #{mno}, #{cmt}, SYSDATE, 'N', SYSDATE, '1', #{group})</if>
+	</insert>
+	<select id="selectGroupBoardCmtList" resultType="map">
+		SELECT C.*, M.NICK, M.IMG_PATH, TO_CHAR(C.CONTENT) CMT_CONTENT
+		FROM GROUP_BOARD_CMT C
+		LEFT JOIN MEMBER M ON C.WRITER = M.NO		        
+		WHERE C.DELETE_YN = 'N' AND C.DEPTH = '0' AND C.G_BOARD_NO = #{bno}
+		ORDER BY C.NO
+	</select>
+	<select id="selectGroupBoardCmtReplyListByCgno" resultType="map">
+		SELECT C.*, M.NICK, M.IMG_PATH, TO_CHAR(C.CONTENT) CMT_CONTENT
+		FROM GROUP_BOARD_CMT C
+		LEFT JOIN MEMBER M ON C.WRITER = M.NO 		        
+		WHERE C.DELETE_YN = 'N' AND C.DEPTH = '1' AND C."GROUP" = #{cgno} 
+		ORDER BY C.NO
+	</select>
 </mapper>
