@@ -64,5 +64,19 @@ public class MakegrassController {
 		return "makegrass/detail";
 	}
 	
+	//잔디심기 삭제 (DB)
+	@GetMapping("/delete")
+	public String delete(MakegrassVo vo) {
+		
+		String no = vo.getNo();
+		int result = service.delete(no);
+		
+		if(result == 1) {
+			return "redirect:/makegrass/list";
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
 
 }

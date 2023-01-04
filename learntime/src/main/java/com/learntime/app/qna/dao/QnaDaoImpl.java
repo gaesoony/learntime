@@ -51,6 +51,17 @@ public class QnaDaoImpl implements QnaDao {
 		return sst.update("qnaMapper.edit", vo);
 	}
 
+	//조회수
+	@Override
+	public int updateHit(SqlSessionTemplate sst, String no) {
+		return sst.update("qnaMapper.updateHit", no);
+	}
+
+	@Override
+	public int delete(SqlSessionTemplate sst, String qno) {
+		return sst.update("qnaMapper.delete", qno);
+	}
+
 	
 
 }

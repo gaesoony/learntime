@@ -242,6 +242,21 @@
         font-weight: 550;
     }
 
+    .edit-btn-null{
+        border: none;
+        font-size: 18px;
+        background-color: white;
+        font-weight: 300;
+    }
+    .delete-btn-null{
+        border: none;
+        font-size: 18px;
+        vertical-align: middle;
+        font-weight: 300;
+        background-color: white;
+        padding-bottom: 19px;
+    }
+
     /* 상단 라인 */
     .line1{
         border-top: 1px solid #C0C0C0;
@@ -708,22 +723,43 @@
                             <td class="thumbsup"><i class="fa-regular fa-thumbs-up"></i></td>
                             <td class="thumbsdown"><i class="fa-regular fa-thumbs-down"></i></td>
                             <td class="bookmark"><i class="fa-regular fa-bookmark"></i></td>
-                            <td class="edit"><button type="button" class="edit-btn" onclick="location.href='app/makegrass/edit?no=${mvo.no}'">수정</button></td>
-                            <td class="slash">/</td>
-                            <td class="delete">
-                                <button type="button" class="delete-btn">삭제</button>
-                                <div class="modal hidden">
-                                    <div class="bg"></div>
-                                    <div class="modalBox">
-                                        <input type="button" class="closeBtn" onClick="location.reload();" value="X"></input>
-                                        <p class="modalTitle">게시물을 삭제하시겠습니까?</p>
-                                        <div class="modalBtn">
-                                            <input type="button" class="cancleBtn" value="취소" onClick="location.reload();"></input>
-                                            <input type="button" class="saveBtn" onclick="location.href='/app/makegrass/list'" value="삭제"></input>
+                            <c:if test="${loginMember.nick == mvo.writer}">
+                                <td class="edit"><button type="button" class="edit-btn" onclick="location.href='${path}/makegrass/edit?no=${mvo.no}'">수정</button></td>
+                                <td class="slash">/</td>
+                                <td class="delete">
+                                    <button type="button" class="delete-btn">삭제</button>
+                                    <div class="modal hidden">
+                                        <div class="bg"></div>
+                                        <div class="modalBox">
+                                            <input type="button" class="closeBtn" onClick="location.reload();" value="X"></input>
+                                            <p class="modalTitle">게시물을 삭제하시겠습니까?</p>
+                                            <div class="modalBtn">
+                                                <input type="button" class="cancleBtn" value="취소" onClick="location.reload();"></input>
+                                                <input type="button" class="saveBtn" onclick="location.href='${path}/makegrass/delete?no=${mvo.no}'" value="삭제"></input>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
+                                </td>
+                            </c:if>
+                            <c:if test="${loginMember.nick != mvo.writer}">
+                                <td class="edit"><button type="button" class="edit-btn-null" title="해당 글의 작성자만 가능합니다.">수정</button></td>
+                                <td class="slash">/</td>
+                                <td class="delete">
+                                    <button type="button" class="delete-btn-null" title="해당 글의 작성자만 가능합니다.">삭제</button>
+                                    <div class="modal hidden">
+                                        <div class="bg"></div>
+                                        <div class="modalBox">
+                                            <input type="button" class="closeBtn" onClick="location.reload();" value="X"></input>
+                                            <p class="modalTitle">게시물을 삭제하시겠습니까?</p>
+                                            <div class="modalBtn">
+                                                <input type="button" class="cancleBtn" value="취소" onClick="location.reload();"></input>
+                                                <input type="button" class="saveBtn" onclick="location.href='${path}/makegrass/delete?no=${mvo.no}'" value="삭제"></input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </c:if>
+                            
                         </tr>
                     </table>
                     <div class="line1"></div>

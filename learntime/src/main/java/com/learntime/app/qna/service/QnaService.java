@@ -25,6 +25,8 @@ public interface QnaService {
 
 	public int edit(QnaVo vo);
 
+	public int delete(String qno);
+
 	
 	
 	

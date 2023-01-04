@@ -620,7 +620,7 @@
             <div class="maintitle">
                 <div class="title">
                     <div class="title-start">Q.</div>
-                    <h2 class="title-end">[미해결]&nbsp${qvo.title}</h2>
+                    <h2 class="title-end">[${qvo.cateNo}]&nbsp${qvo.title}</h2>
                 </div>
             </div>
             <div class="middletitle">
@@ -634,24 +634,26 @@
                         <td class="thumbsdown" id="thumbsdown" onclick="changeColor6()"><i class="fa-regular fa-thumbs-down"></i></td>
                         <td class="bookmark" id="bookmark" onclick="changeColor7()"><i class="fa-regular fa-bookmark"></i></td>
 
-                        <td class="edit"><button type="button" class="edit-btn" onclick="location.href='${path}/qna/edit?no=${qvo.no}'">수정</button></td>
-                        <td class="slash">/</td>
-                        <td class="delete">
-                            <button type="button" class="delete-btn">삭제</button>
-                            <div class="modal hidden">
-                                <div class="bg"></div>
-                                <div class="modalBox">
-                                    <input type="button" class="closeBtn" onClick="location.reload();" value="X"></input>
-                                    <p class="modalTitle">게시물을 삭제하시겠습니까?</p>
-                                    <div class="modalBtn">
-                                        <input type="button" class="cancleBtn" value="취소" onClick="location.reload();"></input>
-                                        <input type="button" class="saveBtn" onclick="location.href='/app/qna/list'" value="삭제"></input>
+                        <c:if test="${loginMember.nick == qvo.writer}">
+                            <td class="edit"><button type="button" class="edit-btn" onclick="location.href='${path}/qna/edit?no=${qvo.no}'">수정</button></td>
+                            <td class="slash">/</td>
+                            <td class="delete">
+                                <button type="button" class="delete-btn">삭제</button>
+                                <div class="modal hidden">
+                                    <div class="bg"></div>
+                                    <div class="modalBox">
+                                        <input type="button" class="closeBtn" onClick="location.reload();" value="X"></input>
+                                        <p class="modalTitle">게시물을 삭제하시겠습니까?</p>
+                                        <div class="modalBtn">
+                                            <input type="button" class="cancleBtn" value="취소" onClick="location.reload();"></input>
+                                            <input type="button" class="saveBtn" onclick="location.href='${path}/qna/delete?no=${qvo.no}'" value="삭제"></input>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </td>
+                            </td>
+                        </c:if>
 
-                        <!-- <c:if test="${loginMember != qvo.writer}">
+                        <c:if test="${loginMember.nick != qvo.writer}">
                             <td class="edit"><button type="button" class="edit-btn-null" title="해당 글의 작성자만 가능합니다.">수정</button></td>
                             <td class="slash">/</td>
                             <td class="delete">
@@ -668,7 +670,7 @@
                                     </div>
                                 </div>
                             </td>
-                        </c:if> -->
+                        </c:if>
                         
                     </tr>
                 </table>
@@ -692,7 +694,7 @@
         <div class="middle">
             <div class="middlemain">
                 <div><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
-                <div class="replyplz">${qvo.writer}님, 답변해주세요!</div>
+                <div class="replyplz">${loginMember.nick}님, 답변해주세요!</div>
                 <div class="replyplz-1">모두에게 도움이 되는 답변의 주인공이 되어주세요:)</div>
                 <div class="input">
                     <textarea class="summernote" name="editordata"></textarea>

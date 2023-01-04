@@ -17,4 +17,7 @@ public interface MakegrassService {
 	//게시글 상세조회
 	public MakegrassVo detail(String no);
 
+	//게시글 삭제
+	public int delete(String no);
+
 }

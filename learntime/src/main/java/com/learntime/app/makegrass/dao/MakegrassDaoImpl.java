@@ -38,4 +38,10 @@ public class MakegrassDaoImpl implements MakegrassDao {
 		return sst.selectOne("makegrassMapper.detail", no);
 	}
 
+	//게시글 삭제
+	@Override
+	public int delete(SqlSessionTemplate sst, String no) {
+		return sst.update("makegrassMapper.delete", no);
+	}
+
 }
