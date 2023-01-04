@@ -205,7 +205,7 @@
 	
 	
 	<!--어드민 멤버리스트  -->
-	<select id="memberList" resultType = "AdminMemberVo">
+	<select id="memberList" resultType="map">
 		SELECT 
 		M.NO,M.NICK,M.ID,M.ADMIN_YN,
 		M.ACCUM_TOKEN,G.NAME AS GRADE_NAME,
@@ -234,11 +234,14 @@
 		       WHEN M.ACCUM_TOKEN >= 0 THEN '1'
 		       END)
 		WHERE M.EMAIL_AUTH=1
-		 <if test="keyword != null and keyword != ''">
-		AND ${category} LIKE '%${keyword}%'
+		 <if test="vo.keyword != null and vo.keyword != ''">
+		AND ${vo.category} LIKE '%${vo.keyword}%'
 		</if>
-		<if test="quitYn != null and quitYn != ''">
-			AND M.QUIT_YN = '${quitYn}'
+		<if test="vo.quitYn != null and vo.quitYn != ''">
+			AND M.QUIT_YN = '${vo.quitYn}'
+		</if>
+		<if test="vo.adminYn != null and vo.adminYn != ''">
+			AND M.ADMIN_YN = '${vo.adminYn}'
 		</if>
 		
 		ORDER BY M.NO
@@ -269,6 +272,7 @@
 	<select id="memberGrade" resultType = "Map">
 		SELECT *
 		FROM MEMBER_GRADE
+		ORDER BY ACCUM_TOKEN
 	</select>
 	
 	
@@ -294,6 +298,60 @@
   		</foreach>
   		
 	</update>
+	
+	
+	<!--등급 관리 수정 -->
+	<update id="memberGradeEdit">
+		<foreach collection="list" item="list" open="DECLARE BEGIN" separator=";" close="; END;">
+		UPDATE MEMBER_GRADE SET
+		NAME = #{list.name},
+		ACCUM_TOKEN = #{list.accumToken},
+		IMG_PATH = #{list.imgName}
+       	WHERE NO= #{list.no}
+  		</foreach>
+	</update>
+	
+	
+	
+	<!--등급 관리 추가 -->
+	<insert id="memberGradeinfoEdit">
+		INSERT INTO MEMBER_GRADE(NO,NAME,ACCUM_TOKEN,IMG_PATH)
+		VALUES (SEQ_MEMBER_GRADE_NO.NEXTVAL,#{name},#{accumToken},#{imgName})
+	</insert>
+	
+	<!--등급 관리 삭제 -->
+	<delete id="memberGradeinfoDelete">
+	DELETE MEMBER_GRADE
+	WHERE NO=#{gradeNo}
+	
+	</delete>
+	
+	<!-- 멤버 전체 인원-->
+	<select id="memberCnt" resultType="Int">
+		SELECT COUNT(*)
+		FROM MEMBER M
+		JOIN MEMBER_GRADE G ON G.NO=(CASE
+		       WHEN M.ACCUM_TOKEN >= 50 THEN '6'
+		       WHEN M.ACCUM_TOKEN >= 40 THEN '5'
+		       WHEN M.ACCUM_TOKEN >= 30 THEN '4'
+		       WHEN M.ACCUM_TOKEN >= 20 THEN '3'
+		       WHEN M.ACCUM_TOKEN >= 10 THEN '2'
+		       WHEN M.ACCUM_TOKEN >= 0 THEN '1'
+		       END)
+		WHERE M.EMAIL_AUTH=1
+		 <if test="keyword != null and keyword != ''">
+		AND ${category} LIKE '%${keyword}%'
+		</if>
+		<if test="quitYn != null and quitYn != ''">
+			AND M.QUIT_YN = '${quitYn}'
+		</if>
+		<if test="adminYn != null and adminYn != ''">
+			AND M.ADMIN_YN = '${adminYn}'
+		</if>
+		
+		
+		ORDER BY M.NO
+	</select>
 	
 
 </mapper>

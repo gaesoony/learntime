@@ -4,7 +4,10 @@ import java.io.File;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.learntime.app.badge.vo.BadgeVo;
+import com.learntime.app.member.vo.MemberGradeVo;
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.mystudy.vo.ProfileVo;
 
@@ -75,6 +78,32 @@ public class FileUploader {
             
           return imgName;
   	}
+  	
+  //멤버 등급 수정
+    public static String uploadMemberGrade(HttpServletRequest req, MultipartFile multipartFile) {
+        String path = req.getSession().getServletContext().getRealPath("/resources/upload/grade/");
+        
+        
+        String originName = multipartFile.getOriginalFilename();
+     	 System.out.println(originName);
+     	 String ext = originName.substring(originName.lastIndexOf("."), originName.length());
+
+     	 String changeName = "grade" + System.nanoTime() + ext; //profile현재시간
+          System.out.println(changeName);
+          File target = new File(path + changeName);
+
+          String imgName="/resources/upload/grade/"+changeName;
+          
+          
+          try {
+         	 multipartFile.transferTo(target);
+          } catch (Exception e) {
+              e.printStackTrace();
+          } 
+          
+        return imgName;
+       
+    }
 
 
 }

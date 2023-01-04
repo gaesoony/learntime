@@ -21,7 +21,7 @@
             display: flex;
             z-index:10000;
         }
-        .show2 {
+        .show {
             visibility: visible;
             opacity: 1;
         }

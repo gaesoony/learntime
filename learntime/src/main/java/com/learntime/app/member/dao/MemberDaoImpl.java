@@ -3,11 +3,14 @@ package com.learntime.app.member.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.learntime.app.common.page.PageVo;
 import com.learntime.app.member.vo.AdminMemberVo;
 import com.learntime.app.member.vo.FollowVo;
+import com.learntime.app.member.vo.MemberGradeVo;
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.member.vo.SearchVo;
 
@@ -139,9 +142,12 @@ public class MemberDaoImpl implements MemberDao {
 	//----------어드민--------------------
 	//멤버리스트
 	@Override
-	public List<AdminMemberVo> memberList(SqlSessionTemplate sst,SearchVo vo) {
-	
-		return sst.selectList("memberMapper.memberList",vo);
+	public List<AdminMemberVo> memberList(SqlSessionTemplate sst,Map pageMap) {
+		PageVo pv = (PageVo) pageMap.get("pv");
+		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
+		int limit = pv.getBoardLimit();
+		RowBounds rb = new RowBounds(offset, limit);
+		return sst.selectList("memberMapper.memberList",pageMap,rb);
 	}
 	//멤버 탈퇴
 	@Override
@@ -180,6 +186,34 @@ public class MemberDaoImpl implements MemberDao {
 	public int memberListMemberDelte(SqlSessionTemplate sst, String[] checkNo) {
 		
 		return sst.update("memberMapper.memberListMemberDelte", checkNo);
+	}
+	
+	//멤버 등급 관리 수정
+	@Override
+	public int memberGradeEdit(SqlSessionTemplate sst, List<MemberGradeVo> list) {
+		
+		return sst.update("memberMapper.memberGradeEdit", list);
+	}
+	
+	//멤버 등급 관리 추가
+	@Override
+	public int memberGradeinfoEdit(SqlSessionTemplate sst, MemberGradeVo vo) {
+		
+		return sst.insert("memberMapper.memberGradeinfoEdit", vo);
+	}
+	
+	//멤버 등급 관리 삭제
+	@Override
+	public int memberGradeinfoDelete(SqlSessionTemplate sst, String gradeNo) {
+		
+		return sst.update("memberMapper.memberGradeinfoDelete", gradeNo);
+	}
+	
+	//멤버 전체인원
+	@Override
+	public int memberCnt(SqlSessionTemplate sst, SearchVo vo) {
+		
+		return sst.selectOne("memberMapper.memberCnt",vo);
 	}
 	
 	
