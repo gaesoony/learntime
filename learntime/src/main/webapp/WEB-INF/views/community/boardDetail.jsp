@@ -365,11 +365,6 @@
 
 				$(document).ready(function() {
 					//좋아요 하는데 해당 댓글 번호 가져오기
-					
-
-
-
-
 					var cmtNo = $(this).siblings('.cmt-no').val();
 					$('.cmt-like').click(function(cmtNo) {
 						likeRequest2('L', cmtNo);

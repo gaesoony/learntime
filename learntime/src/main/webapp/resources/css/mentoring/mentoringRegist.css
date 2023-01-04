@@ -215,3 +215,69 @@ background-color: #58c079;
 border: 1px solid #58c079;
 color: white;
 }
+
+
+
+/* 스케줄 */
+#schedule-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/* #schedule-table 높이 지정하고 넘어가는부분은 스크롤바로 */
+#schedule-table {
+    height: 400px;
+    overflow-y: scroll;
+}
+  
+#schedule-table th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    vertical-align: center;
+}
+
+#schedule-table  th {
+background-color: rgb(241, 241, 241);
+text-align: left;
+}
+
+#schedule-table label {
+display: block;
+height: 25px;
+width: 99.5%;
+border: 1px solid rgb(225, 225, 225);
+}
+
+.back-green{
+    background-color: #aedcbd;
+}
+
+#schedule-table input[type="checkbox"]{
+    display: none;
+}
+
+/* th태그 중간정렬 */
+.week{
+    width: 96px;
+    font-size: 13px;
+    color: #6b6b6b;
+    text-align: center;
+}
+
+
+.time-slot{
+    vertical-align: center;
+}
+
+#time-slot>td{
+    text-align: center;
+    
+
+}
+tbody>tr>td:first-child{
+    text-align: center;
+    vertical-align: top;
+    color: #a8a8a8;
+    font-size: 13px;
+}
+
