@@ -329,6 +329,88 @@ public class StudyDaoImpl implements StudyDao{
 		return sst.selectOne("studyMapper.selectMypageCnt", map);
 	}
 
+	//모집번호랑 회원번호로 해당 그룹에서의 status 조회
+	@Override
+	public String selectMyStatus(SqlSessionTemplate sst, Map map) {
+		return sst.selectOne("studyMapper.selectMyStatus", map);
+	}
+
+	@Override
+	public int open(SqlSessionTemplate sst, String gno) {
+		return sst.update("studyMapper.open", gno);
+	}
+
+	@Override
+	public int close(SqlSessionTemplate sst, String gno) {
+		return sst.update("studyMapper.close", gno);
+	}
+
+	@Override
+	public int insertGroupBoardCategory(SqlSessionTemplate sst, Map map) {
+		return sst.insert("studyMapper.insertGroupBoardCategory", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectCateList(SqlSessionTemplate sst, Map map) {
+		return sst.selectList("studyMapper.selectCateList", map);
+	}
+
+	@Override
+	public String selectCateName(SqlSessionTemplate sst, Map map) {
+		return sst.selectOne("studyMapper.selectCateName", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectBoardList(SqlSessionTemplate sst, Map map) {
+		PageVo pv = (PageVo) map.get("pv");
+		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
+		int limit = pv.getBoardLimit();
+		RowBounds rb = new RowBounds(offset, limit);
+		return sst.selectList("studyMapper.selectBoardList", map, rb);
+	}
+
+	@Override
+	public int boardWrite(SqlSessionTemplate sst, Map map) {
+		return sst.insert("studyMapper.boardWrite", map);
+	}
+
+	@Override
+	public Map<String, Object> selectBoardDetail(SqlSessionTemplate sst, String bno) {
+		return sst.selectOne("studyMapper.selectBoardDetail", bno);
+	}
+
+	@Override
+	public int boardEdit(SqlSessionTemplate sst, Map map) {
+		return sst.update("studyMapper.boardEdit", map);
+	}
+
+	@Override
+	public int boardDelete(SqlSessionTemplate sst, String bno) {
+		return sst.update("studyMapper.boardDelete", bno);
+	}
+
+	@Override
+	public int updateBoardHit(SqlSessionTemplate sst, String bno) {
+		return sst.update("studyMapper.updateBoardHit", bno);
+	}
+
+	@Override
+	public int selectBoardCnt(SqlSessionTemplate sst, Map map) {
+		return sst.selectOne("studyMapper.selectBoardCnt", map);
+	}
+
+	@Override
+	public int deleteMystudyCategory(SqlSessionTemplate sst, String ctno) {
+		return sst.update("studyMapper.deleteMystudyCategory", ctno);
+	}
+
+	@Override
+	public int insertMystudyCategory(SqlSessionTemplate sst, Map map) {
+		return sst.insert("studyMapper.insertMystudyCategory", map);
+	}
+
+
+
 
 
 }

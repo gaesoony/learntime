@@ -204,11 +204,15 @@ select {
 }
 
 /* 오른쪽 사이드바 - 참여멤버 */
+/* 참여멤버 */
 
-.mystudy-right-aside h1 {
-  font-size: 17px;
+.study-detail-member-area h1 {
+  font-size: 18px;
   font-weight: 700;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  margin-top: 50px;
+  padding-bottom: 23px;
+  border-bottom: 1px solid rgb(223, 223, 223);
 }
 
 .study-member-list li {
@@ -216,6 +220,31 @@ select {
   align-items: center;
   margin-bottom: 10px;
 }
+
+.study-member-list img {
+  width: 30px;
+  height: 30px;
+  margin-right: 7px;
+}
+
+.study-member-list li div:nth-child(2) {
+  font-weight: 700;
+  margin-right: 7px;
+}
+
+.study-member-list li div:nth-child(3) {
+  font-weight: 700;
+  color: gray;
+}
+
+
+.mystudy-right-aside h1 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+
 
 .user-profile {
   width: 30px;
@@ -295,16 +324,20 @@ select {
            </h1>
           <ul class="mystudy-cate-list">
             <a href="${path}/mystudy/main?gno=${groupOne.NO}"><i class="fa-solid fa-angle-right"></i>스터디 정보</a>
-            <a href="/app/mystudy/board/list?gno=${groupOne.NO}"><i class="fa-solid fa-angle-right"></i>공지 사항</a>
-            <a href=""><i class="fa-solid fa-angle-right"></i>자료 공유</a>
-            <a href=""><i class="fa-solid fa-angle-right"></i>과제 제출</a>
+            <c:forEach items="${cateList}" var="map">
+            	<a href="${path}/mystudy/board/list?pno=1&ctno=${map.NO}&gno=${groupOne.NO}"><i class="fa-solid fa-angle-right"></i>${map.NAME}</a>
+            </c:forEach>
+           
           </ul>
-          <div class="mystudy-manage-area">
-            <a href="${path}/mystudy/manage/info?gno=${groupOne.NO}">
-              <i class="fa-solid fa-gear"></i><span>관리</span>
+          <c:if test="${myStatus == 'B'}">
+            <div class="mystudy-manage-area">
+              <a href="${path}/mystudy/manage/info?gno=${groupOne.NO}">
+                <i class="fa-solid fa-gear"></i><span>관리</span>
+  
+              </a>
+            </div>
 
-            </a>
-          </div>
+          </c:if>
         </div>
       </aside>
 

@@ -157,6 +157,40 @@ public interface StudyDao {
 
 	//마이페이지 게시글 개수 카운트
 	public int selectMypageCnt(SqlSessionTemplate sst, Map map);
+	
+	//모집번호랑 회원번호로 해당 그룹에서의 status 조회
+	public String selectMyStatus(SqlSessionTemplate sst, Map map);
+
+	public int open(SqlSessionTemplate sst, String gno);
+
+	public int close(SqlSessionTemplate sst, String gno);
+
+	public int insertGroupBoardCategory(SqlSessionTemplate sst, Map map);
+
+	public List<Map<String, Object>> selectCateList(SqlSessionTemplate sst, Map map);
+
+	public String selectCateName(SqlSessionTemplate sst, Map map);
+
+	public List<Map<String, Object>> selectBoardList(SqlSessionTemplate sst, Map map);
+
+	public int boardWrite(SqlSessionTemplate sst, Map map);
+
+	public Map<String, Object> selectBoardDetail(SqlSessionTemplate sst, String bno);
+
+	public int boardEdit(SqlSessionTemplate sst, Map map);
+
+	public int boardDelete(SqlSessionTemplate sst, String bno);
+
+	public int updateBoardHit(SqlSessionTemplate sst, String bno);
+
+	public int selectBoardCnt(SqlSessionTemplate sst, Map map);
+
+	public int insertMystudyCategory(SqlSessionTemplate sst, Map m);
+
+	public int deleteMystudyCategory(SqlSessionTemplate sst, String ctno);
+
+
+
 
 
 

@@ -355,8 +355,8 @@
 	<select id="selectAnswerListByNo" resultType="map">
 		SELECT L.NO, M.NICK, Q.QUESTION, R.CONTENT
 		FROM RECRUIT_LIST L
-		JOIN RECRUIT_REPLY R ON L.NO = R.RECRUIT_LIST_NO
-		JOIN RECRUIT_QUESTION Q ON Q.NO = R.RECRUIT_QUESTION_NO
+		LEFT JOIN RECRUIT_REPLY R ON L.NO = R.RECRUIT_LIST_NO
+		LEFT JOIN RECRUIT_QUESTION Q ON Q.NO = R.RECRUIT_QUESTION_NO
 		JOIN MEMBER M ON M.NO = L.M_NO
 		WHERE L.NO = #{rno}
 	</select>
@@ -573,4 +573,106 @@
 			</if>
 		</if>
 	</select>
+	<select id="selectMyStatus" resultType="String">
+		SELECT STATUS
+		FROM RECRUIT_LIST
+		WHERE G_NO = #{gno} AND M_NO = #{mno}
+	</select>
+	<update id="open">
+		UPDATE RECRUIT_GROUP SET
+		CLOSING_YN = 'N'
+		WHERE NO = #{gno}
+	</update>
+	<update id="close">
+		UPDATE RECRUIT_GROUP SET
+		CLOSING_YN = 'Y'
+		WHERE NO = #{gno}
+	</update>
+	<insert id="insertGroupBoardCategory">
+		INSERT INTO GROUP_BOARD_CATEGORY
+		VALUES (SEQ_GROUP_BOARD_CATEGORY_NO.NEXTVAL, #{gno}, #{cateName}, 'N')
+	</insert>
+	<select id="selectCateList" resultType="map">
+		SELECT NO, G_NO, NAME, DELETE_YN
+		FROM GROUP_BOARD_CATEGORY
+		WHERE G_NO = #{gno} AND DELETE_YN = 'N'
+	</select>
+	<select id="selectCateName" resultType="String">
+		SELECT NAME
+		FROM GROUP_BOARD_CATEGORY
+		WHERE NO = #{ctno}
+	</select>
+	<select id="selectBoardList" resultType="map">
+		SELECT ROWNUM, A.* FROM
+		(SELECT B.NO, B.TITLE, M.NICK,TO_CHAR(CAST(B.ENROLL_DATE as DATE),'YYYY.MM.DD') ENROLL_DATE , B.HIT
+		FROM GROUP_BOARD B
+		JOIN GROUP_BOARD_CATEGORY C ON B.CATE_NO = C.NO
+		JOIN MEMBER M ON M.NO = B.WRITER
+		WHERE B.CATE_NO = #{ctno} AND B.DELETE_YN = 'N'
+		<if test="keyword != null and !''.equals(keyword)">
+			<if test="'title'.equals(status)">
+			AND B.TITLE LIKE '%${keyword}%'
+			</if>
+			<if test="'content'.equals(status)">
+			AND B.CONTENT LIKE '%${keyword}%'
+			</if>
+			<if test="'writer'.equals(status)">
+			AND M.NICK LIKE '%${keyword}%'
+			</if>
+		</if>
+		ORDER BY B.NO) A ORDER BY ROWNUM DESC
+	</select>
+	<insert id="boardWrite">
+		INSERT INTO GROUP_BOARD
+		VALUES (SEQ_GROUP_BOARD_NO.NEXTVAL, #{ctno}, #{mno}, #{title}, #{content}, SYSDATE, 'N', SYSDATE, 0)
+	</insert>
+	<select id="selectBoardDetail" resultType="map">
+		SELECT B.NO, B.CATE_NO, M.NICK, B.TITLE, TO_CHAR(B.CONTENT) CONTENT , TO_CHAR(CAST(B.ENROLL_DATE as DATE),'YYYY.MM.DD') ENROLL_DATE, B.HIT
+		FROM GROUP_BOARD B
+		JOIN MEMBER M ON M.NO = B.WRITER
+		WHERE B.NO = #{bno}
+	</select>
+	<update id="boardEdit">
+		UPDATE GROUP_BOARD
+		SET TITLE = #{title} , CONTENT = #{content}
+		WHERE NO = #{bno}
+	</update>
+	<update id="boardDelete">
+		UPDATE GROUP_BOARD
+		SET DELETE_YN = 'Y'
+		WHERE NO = #{bno}
+	</update>
+	<update id="updateBoardHit">
+		UPDATE GROUP_BOARD
+		SET HIT = HIT + 1
+		WHERE NO = #{bno}
+	</update>
+	<select id="selectBoardCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM GROUP_BOARD B
+		JOIN GROUP_BOARD_CATEGORY C ON B.CATE_NO = C.NO
+		JOIN MEMBER M ON M.NO = B.WRITER
+		WHERE B.CATE_NO = #{ctno} AND B.DELETE_YN = 'N'
+		<if test="keyword != null and !''.equals(keyword)">
+			<if test="'title'.equals(status)">
+			AND B.TITLE LIKE '%${keyword}%'
+			</if>
+			<if test="'content'.equals(status)">
+			AND B.CONTENT LIKE '%${keyword}%'
+			</if>
+			<if test="'writer'.equals(status)">
+			AND M.NICK LIKE '%${keyword}%'
+			</if>
+		</if>
+		ORDER BY B.NO
+	</select>
+	<update id="deleteMystudyCategory">
+		UPDATE GROUP_BOARD_CATEGORY SET
+		DELETE_YN = 'Y'
+		WHERE NO = #{ctno}
+	</update>
+	<insert id="insertMystudyCategory">
+		INSERT INTO GROUP_BOARD_CATEGORY
+		VALUES (SEQ_GROUP_BOARD_CATEGORY_NO.NEXTVAL, #{gno}, #{cateName}, 'N')
+	</insert>
 </mapper>

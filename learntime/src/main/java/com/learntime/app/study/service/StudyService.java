@@ -117,6 +117,36 @@ public interface StudyService {
 
 	//마이페이지 게시글 개수 카운트
 	public int selectMypageCnt(Map map);
+
+	//모집번호랑 회원번호로 해당 그룹에서의 status 조회
+	public String selectMyStatus(Map map);
+
+	public int open(String gno);
+
+	public int close(String gno);
+
+	public List<Map<String, Object>> selectCateList(Map map);
+
+	public String selectCateName(Map map);
+
+	public List<Map<String, Object>> selectBoardList(Map map);
+
+	public int boardWrite(Map map);
+
+	public Map<String, Object> selectBoardDetail(String bno);
+
+	public int boardEdit(Map map);
+
+	public int boardDelete(String bno);
+
+	public int updateBoardHit(String bno);
+
+	public int selectBoardCnt(Map map);
+
+	public int updateMystudyCategory(String gno, List<Map<String, Object>> cateList, Map updateCateMap,
+			Map insertCateMap);
+
+
 	
 	
 	//추후 추가 예정..

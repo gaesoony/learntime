@@ -62,3 +62,51 @@
 .grid-title {
   font-weight: 500;
 }
+
+.content-none {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 78px;
+}
+
+/* paging */
+#paging {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 100px;
+}
+
+.paging-btn {
+  height: 25px;
+  width: 25px;
+  border: 1px solid #aeaeae;
+  border-radius: 2px;
+  text-align: center;
+  line-height: 24px;
+  color: #535353;
+  cursor: pointer;
+}
+
+.paging-btn a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 13px;
+}
+
+.paging-btn:nth-child(n + 1) {
+  margin-left: 5px;
+}
+
+.paging-btn:hover {
+  background-color: #58c079;
+  color: white;
+}
+
+#next-btn,
+#prev-btn {
+  width: 40px;
+}
