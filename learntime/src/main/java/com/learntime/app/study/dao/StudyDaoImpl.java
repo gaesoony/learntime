@@ -429,6 +429,11 @@ public class StudyDaoImpl implements StudyDao{
 		return sst.selectList("studyMapper.selectGroupBoardCmtReplyListByCgno", cgno);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectMainGroupList(SqlSessionTemplate sst) {
+		return sst.selectList("studyMapper.selectMainGroupList");
+	}
+
 
 
 

@@ -37,356 +37,65 @@ pageEncoding="UTF-8"%>
               ><span class="bold700">에 가입해보세요🌱</span>
             </div>
             <div class="main-more">
-              <a href=""
+              <a href="${path}/study/list"
                 ><span>더보기</span><i class="fa-solid fa-chevron-right"></i
               ></a>
             </div>
           </div>
           <article class="main-study-detail-area">
             <ul class="main-study-detail-list post-wrapper1">
-              <a href="/app/study/detail" class="main-study-detail">
+            <c:forEach items="${groupList}" var="map">
+               <a
+                    href="${path}/study/detail?gno=${map.NO}&keyword=${keyword}&tag=${fn:join(tagList,',')}&techType=인기&techStack=${fn:join(techStack,',')}&type=전체&order=recent&status=${status}"
+                    class="main-study-detail"
+                  >
                 <div class="main-study-detail__date-like space-between">
-                  <div class="soft-gray">시작 예정일 | 2022.12.03</div>
+                  <div class="soft-gray">시작 예정일 | ${map.START_DATE}</div>
                   <div>
                     <i class="fa-solid fa-heart like-icon main-color"></i
-                    ><span class="soft-gray">50</span>
+                    ><span class="soft-gray">${map.LIKE_CNT}</span>
                   </div>
                 </div>
                 <h1 class="bold700">
-                  클라우드 프로젝트에 함께하실 멤버 한 분 구합니다.
+                  ${map.TITLE}
                 </h1>
                 <ul class="study-tag-list flex soft-gray">
-                  <li class="study-tag">#프로젝트</li>
-                  <li class="study-tag">#온라인</li>
-                  <li class="study-tag">#4명</li>
-                  <li class="study-tag">#6개월</li>
+                  <li class="study-tag">#${map.TYPE}</li>
+                  <li class="study-tag">#${map.WAY}</li>
+                  <li class="study-tag">#${map.NUMBER_PEOPLE}명</li>
+                  <li class="study-tag">#${map.PERIOD}</li>
                 </ul>
                 <ul class="study-tech-list flex">
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/aws.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/docker.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/java.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/spring.svg" alt="" />
-                  </li>
-                </ul>
+                      <c:forEach items="${map.techStackList}" var="ts">
+                        <li class="study-tech">
+                          <img
+                            src="${path}/resources/upload/techStack/${ts.IMG_PATH}"
+                            alt=""
+                          />
+                        </li>
+                      </c:forEach>
+                    </ul>
                 <section class="flex">
                   <div class="user-profile">
                     <img src="/app/resources/img/study/profile.png" alt="" />
                   </div>
                   <div class="main-study-detail__profile-hit-cmt-scrap">
-                    <div class="user-nick bold700">한혜원</div>
+                    <div class="user-nick bold700">${map.NICK }</div>
                     <ul class="view-cmt-scrap-list flex soft-gray">
-                      <li><i class="fa-regular fa-eye"></i><span>60</span></li>
+                      <li><i class="fa-regular fa-eye"></i><span>${map.HIT }</span></li>
                       <li>
-                        <i class="fa-regular fa-comment-dots"></i><span>5</span>
+                        <i class="fa-regular fa-comment-dots"></i><span>${map.CMT_CNT}</span>
                       </li>
                       <li>
-                        <i class="fa-regular fa-bookmark"></i><span>10</span>
+                        <i class="fa-regular fa-bookmark"></i><span>${map.SCRAP_CNT}</span>
                       </li>
                     </ul>
                   </div>
                 </section>
               </a>
-              <a href="/app/study/detail" class="main-study-detail">
-                <div class="main-study-detail__date-like space-between">
-                  <div class="soft-gray">시작 예정일 | 2022.12.03</div>
-                  <div>
-                    <i class="fa-solid fa-heart like-icon main-color"></i
-                    ><span class="soft-gray">50</span>
-                  </div>
-                </div>
-                <h1 class="bold700">
-                  클라우드 프로젝트에 함께하실 멤버 한 분 구합니다.
-                </h1>
-                <ul class="study-tag-list flex soft-gray">
-                  <li class="study-tag">#프로젝트</li>
-                  <li class="study-tag">#온라인</li>
-                  <li class="study-tag">#4명</li>
-                  <li class="study-tag">#6개월</li>
-                </ul>
-                <ul class="study-tech-list flex">
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/aws.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/docker.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/java.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/spring.svg" alt="" />
-                  </li>
-                </ul>
-                <section class="flex">
-                  <div class="user-profile">
-                    <img src="/app/resources/img/study/profile.png" alt="" />
-                  </div>
-                  <div class="main-study-detail__profile-hit-cmt-scrap">
-                    <div class="user-nick bold700">한혜원</div>
-                    <ul class="view-cmt-scrap-list flex soft-gray">
-                      <li><i class="fa-regular fa-eye"></i><span>60</span></li>
-                      <li>
-                        <i class="fa-regular fa-comment-dots"></i><span>5</span>
-                      </li>
-                      <li>
-                        <i class="fa-regular fa-bookmark"></i><span>10</span>
-                      </li>
-                    </ul>
-                  </div>
-                </section>
-              </a>
-              <a href="/app/study/detail" class="main-study-detail">
-                <div class="main-study-detail__date-like space-between">
-                  <div class="soft-gray">시작 예정일 | 2022.12.03</div>
-                  <div>
-                    <i class="fa-solid fa-heart like-icon main-color"></i
-                    ><span class="soft-gray">50</span>
-                  </div>
-                </div>
-                <h1 class="bold700">
-                  클라우드 프로젝트에 함께하실 멤버 한 분 구합니다.
-                </h1>
-                <ul class="study-tag-list flex soft-gray">
-                  <li class="study-tag">#프로젝트</li>
-                  <li class="study-tag">#온라인</li>
-                  <li class="study-tag">#4명</li>
-                  <li class="study-tag">#6개월</li>
-                </ul>
-                <ul class="study-tech-list flex">
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/aws.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/docker.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/java.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/spring.svg" alt="" />
-                  </li>
-                </ul>
-                <section class="flex">
-                  <div class="user-profile">
-                    <img src="/app/resources/img/study/profile.png" alt="" />
-                  </div>
-                  <div class="main-study-detail__profile-hit-cmt-scrap">
-                    <div class="user-nick bold700">한혜원</div>
-                    <ul class="view-cmt-scrap-list flex soft-gray">
-                      <li><i class="fa-regular fa-eye"></i><span>60</span></li>
-                      <li>
-                        <i class="fa-regular fa-comment-dots"></i><span>5</span>
-                      </li>
-                      <li>
-                        <i class="fa-regular fa-bookmark"></i><span>10</span>
-                      </li>
-                    </ul>
-                  </div>
-                </section>
-              </a>
-              <a href="/app/study/detail" class="main-study-detail">
-                <div class="main-study-detail__date-like space-between">
-                  <div class="soft-gray">시작 예정일 | 2022.12.03</div>
-                  <div>
-                    <i class="fa-solid fa-heart like-icon main-color"></i
-                    ><span class="soft-gray">50</span>
-                  </div>
-                </div>
-                <h1 class="bold700">
-                  클라우드 프로젝트에 함께하실 멤버 한 분 구합니다.
-                </h1>
-                <ul class="study-tag-list flex soft-gray">
-                  <li class="study-tag">#프로젝트</li>
-                  <li class="study-tag">#온라인</li>
-                  <li class="study-tag">#4명</li>
-                  <li class="study-tag">#6개월</li>
-                </ul>
-                <ul class="study-tech-list flex">
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/aws.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/docker.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/java.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/spring.svg" alt="" />
-                  </li>
-                </ul>
-                <section class="flex">
-                  <div class="user-profile">
-                    <img src="/app/resources/img/study/profile.png" alt="" />
-                  </div>
-                  <div class="main-study-detail__profile-hit-cmt-scrap">
-                    <div class="user-nick bold700">한혜원</div>
-                    <ul class="view-cmt-scrap-list flex soft-gray">
-                      <li><i class="fa-regular fa-eye"></i><span>60</span></li>
-                      <li>
-                        <i class="fa-regular fa-comment-dots"></i><span>5</span>
-                      </li>
-                      <li>
-                        <i class="fa-regular fa-bookmark"></i><span>10</span>
-                      </li>
-                    </ul>
-                  </div>
-                </section>
-              </a>
-              <a href="/app/study/detail" class="main-study-detail">
-                <div class="main-study-detail__date-like space-between">
-                  <div class="soft-gray">시작 예정일 | 2022.12.03</div>
-                  <div>
-                    <i class="fa-solid fa-heart like-icon main-color"></i
-                    ><span class="soft-gray">50</span>
-                  </div>
-                </div>
-                <h1 class="bold700">
-                  클라우드 프로젝트에 함께하실 멤버 한 분 구합니다.
-                </h1>
-                <ul class="study-tag-list flex soft-gray">
-                  <li class="study-tag">#프로젝트</li>
-                  <li class="study-tag">#온라인</li>
-                  <li class="study-tag">#4명</li>
-                  <li class="study-tag">#6개월</li>
-                </ul>
-                <ul class="study-tech-list flex">
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/aws.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/docker.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/java.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/spring.svg" alt="" />
-                  </li>
-                </ul>
-                <section class="flex">
-                  <div class="user-profile">
-                    <img src="/app/resources/img/study/profile.png" alt="" />
-                  </div>
-                  <div class="main-study-detail__profile-hit-cmt-scrap">
-                    <div class="user-nick bold700">한혜원</div>
-                    <ul class="view-cmt-scrap-list flex soft-gray">
-                      <li><i class="fa-regular fa-eye"></i><span>60</span></li>
-                      <li>
-                        <i class="fa-regular fa-comment-dots"></i><span>5</span>
-                      </li>
-                      <li>
-                        <i class="fa-regular fa-bookmark"></i><span>10</span>
-                      </li>
-                    </ul>
-                  </div>
-                </section>
-              </a>
-              <a href="/app/study/detail" class="main-study-detail">
-                <div class="main-study-detail__date-like space-between">
-                  <div class="soft-gray">시작 예정일 | 2022.12.03</div>
-                  <div>
-                    <i class="fa-solid fa-heart like-icon main-color"></i
-                    ><span class="soft-gray">50</span>
-                  </div>
-                </div>
-                <h1 class="bold700">
-                  클라우드 프로젝트에 함께하실 멤버 한 분 구합니다.
-                </h1>
-                <ul class="study-tag-list flex soft-gray">
-                  <li class="study-tag">#프로젝트</li>
-                  <li class="study-tag">#온라인</li>
-                  <li class="study-tag">#4명</li>
-                  <li class="study-tag">#6개월</li>
-                </ul>
-                <ul class="study-tech-list flex">
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/aws.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/docker.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/java.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/spring.svg" alt="" />
-                  </li>
-                </ul>
-                <section class="flex">
-                  <div class="user-profile">
-                    <img src="/app/resources/img/study/profile.png" alt="" />
-                  </div>
-                  <div class="main-study-detail__profile-hit-cmt-scrap">
-                    <div class="user-nick bold700">한혜원</div>
-                    <ul class="view-cmt-scrap-list flex soft-gray">
-                      <li><i class="fa-regular fa-eye"></i><span>60</span></li>
-                      <li>
-                        <i class="fa-regular fa-comment-dots"></i><span>5</span>
-                      </li>
-                      <li>
-                        <i class="fa-regular fa-bookmark"></i><span>10</span>
-                      </li>
-                    </ul>
-                  </div>
-                </section>
-              </a>
-              <a href="/app/study/detail" class="main-study-detail">
-                <div class="main-study-detail__date-like space-between">
-                  <div class="soft-gray">시작 예정일 | 2022.12.03</div>
-                  <div>
-                    <i class="fa-solid fa-heart like-icon main-color"></i
-                    ><span class="soft-gray">50</span>
-                  </div>
-                </div>
-                <h1 class="bold700">
-                  클라우드 프로젝트에 함께하실 멤버 한 분 구합니다.
-                </h1>
-                <ul class="study-tag-list flex soft-gray">
-                  <li class="study-tag">#프로젝트</li>
-                  <li class="study-tag">#온라인</li>
-                  <li class="study-tag">#4명</li>
-                  <li class="study-tag">#6개월</li>
-                </ul>
-                <ul class="study-tech-list flex">
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/aws.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/docker.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/java.svg" alt="" />
-                  </li>
-                  <li class="study-tech">
-                    <img src="/app/resources/img/study/spring.svg" alt="" />
-                  </li>
-                </ul>
-                <section class="flex">
-                  <div class="user-profile">
-                    <img src="/app/resources/img/study/profile.png" alt="" />
-                  </div>
-                  <div class="main-study-detail__profile-hit-cmt-scrap">
-                    <div class="user-nick bold700">한혜원</div>
-                    <ul class="view-cmt-scrap-list flex soft-gray">
-                      <li><i class="fa-regular fa-eye"></i><span>60</span></li>
-                      <li>
-                        <i class="fa-regular fa-comment-dots"></i><span>5</span>
-                      </li>
-                      <li>
-                        <i class="fa-regular fa-bookmark"></i><span>10</span>
-                      </li>
-                    </ul>
-                  </div>
-                </section>
-              </a>
+            
+            </c:forEach>
+             
             </ul>
           </article>
         </div>
@@ -740,8 +449,11 @@ pageEncoding="UTF-8"%>
                                 <c:forEach var="slide" begin="1" end="12" >
                                     <li class="slide">
                                         <div class="slide-box">
+                                          <div class="mentoring-title2">
                                             <div id="mentoring-ad1">서버개발자 취준생을 위한<br>멘토링/고민상담/이력서 첨삭</div>
                                             <div id="mentoring-ad2">비바리퍼블리카(토스)에서 근무하고<br>있는 4년차 서버개발자입니다.</div>
+
+                                          </div>
                                             <div id="mentoring-ad3">
                                                 <div id="border-box1">
                                                     <div id="inner-box1"></div>
@@ -771,31 +483,54 @@ pageEncoding="UTF-8"%>
             </div>
         </div>
         <div class="the-middle">
-            <div class="studying-title">
-                <div class="empty"></div>
-                <div class="studying-title-icon"><img src="/app/resources/img/main/LEARNER.png"></div>
-                <div class="studying-content-more">더보기<img width="10px" height="10px" src="https://cdn-icons-png.flaticon.com/128/271/271228.png"></div>
-            </div>
+          <div class="mentoring-title">
+            <div class="empty"></div>
+            <div class="mentoring-title-icon"><span class="bold500">이 순간에도</span><span>&nbsp;공부하는</span><span class="main-color">&nbsp;LEARNER&nbsp;</span><img width="30px" height="30px" src="https://cdn-icons-png.flaticon.com/128/7991/7991313.png"></div>
+            <div class="mentoring-content-more">더보기<img width="12px" height="13px" src="https://cdn-icons-png.flaticon.com/128/271/271228.png"></div>
+        </div>
             <div class="studying-content">
-                <div class="slice-as-three-sec">
-                    <div class="prevBtn-sec"></div>
+                <div class="slice-as-three-sec relative">
+                  <button type="button" class="prevBtn prevBtn2 prevBtn-sec"><i class="fa-solid fa-chevron-left"></i></button>
                         <div class="container-sec">
                             <ul class="container-slide-sec">
                                 <c:forEach var="slide-sec" begin="1" end="12" >
-                                    <li class="slide-sec">
-                                        <div class="java-photo"><img width="230px" height="200px" style="border-top-left-radius: 1rem; border-top-right-radius: 1rem;"  src="/app/resources/img/main/java.png"></div>
-                                        <div class="java-content">
-                                            <div class="profile-box">
-                                                <div class="profile-photo"><img width="60px" height="60px" src="/app/resources/img/main/Ellipse 2.png"></div>
-                                                <div class="java-title"><img width="130px" height="60px" src="/app/resources/img/main/Group 22.png"></div>
-                                                <div class="heart"><img width="50px" height="30px" src="/app/resources/img/main/Frame 20.png"></div>
+                                  <li class="slide-sec">
+                                    <div class="slide-box">
+                                        <div class="learning-img"><img src="${path}/resources/img/study/study-profile.JPG" alt=""></div>
+                                        <div class="learning-info">
+                                          <div class="learner-profile"><img src="${path}/resources/upload/common/profile_default.png" alt=""></div>
+                                          <div class="learning-detail">
+                                            <div class="space-between">
+                                              <span class="bold500">JAVA정복기</span>
+                                              <span>120분</span>
                                             </div>
+                                            <div>
+                                              <ul class="view-cmt-scrap-list2 space-between soft-gray">
+                                                <div class="flex">
+                                                  <li><i class="fa-regular fa-eye"></i><span>50</span></li>
+                                                  <li>
+                                                    <i class="fa-regular fa-comment-dots"></i><span>10</span>
+                                                  </li>
+
+                                                </div>
+                                                <div>
+                                                  <li>
+                                                    <i class="fa-solid fa-heart like-icon main-color"></i
+                                                      ><span>30</span>
+                                                  </li>
+
+                                                </div>
+                                              </ul>
+                                            </div>
+                                          </div>
                                         </div>
-                                    </li>
+                                        
+                                    </div>
+                                </li>
                                 </c:forEach>
                             </ul>
                         </div>
-                    <div class="nextBtn-sec"></div>
+                        <button type="button" class="nextBtn nextBtn2 nextBtn-sec"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
@@ -805,13 +540,13 @@ pageEncoding="UTF-8"%>
                     <div class="lists">
                         <div class="list" id="boldline">
                             <div class="notice-title">공지사항</div>
-                            <div class="arrow"><img width="50px" height="50px" src="https://cdn-icons-png.flaticon.com/128/271/271228.png"></div>
+                            <div class="arrow"><i class="fa-solid fa-chevron-right" onclick="location.href='${path}/notice/noticeList?p=1&cateNo=0'"></i></div>
                         </div>
-                        <div class="list" id="list-one">º 런타임에서 알려드립니다.</div>
-                        <div class="list" id="list-two">º 런타임 이용약관 / 개인정보 처리방침 안내</div>
-                        <div class="list" id="list-three">º 멘토링 신청 기능 업데이트 안내</div>
-                        <div class="list" id="list-four">º 스킨샵내 추가기능 업데이트 안내</div>
-                        <div class="list" id="list-five">º 서비스 장애 발생 공지</div>
+                        <div class="list list-one" id="list-one">º 런타임에서 알려드립니다.</div>
+                        <div class="list list-one" id="list-two">º 런타임 이용약관 / 개인정보 처리방침 안내</div>
+                        <div class="list list-one" id="list-three">º 멘토링 신청 기능 업데이트 안내</div>
+                        <div class="list list-one" id="list-four">º 스킨샵내 추가기능 업데이트 안내</div>
+                        <div class="list list-one" id="list-five">º 서비스 장애 발생 공지</div>
                     </div>
                 </div>
                 <div class="faq-per-person">
@@ -872,29 +607,33 @@ pageEncoding="UTF-8"%>
       //변수 지정
       var slides = document.querySelector('.container-slide'),
         slide = document.querySelectorAll('.slide'),
-        currentIdx = 0,
+        currentIdx = 1,
         slideCount = slide.length,
-        slideWidth = 280,
+        slideWidth = 282,
         slideMargin = 20,
         prevBtn = document.querySelector('.prevBtn'),
         nextBtn = document.querySelector('.nextBtn');
             
+        slides.style.left = '-300px';
 
   
       slides.style.width = (slideWidth + slideMargin)* slideCount - slideMargin +'px';
       //slides.style.width = '1200px';
       
       function moveSlide2(num){
-        slides.style.left= -num*298+'px';
+      
+        slides.style.left= -num*300+'px';
+
         currentIdx = num;
       }
       
       nextBtn.addEventListener('click',function(){
-        console.log('다음버튼');
         if(currentIdx < slideCount -4){
+
           moveSlide2(currentIdx + 1);
               
         }else{
+    
           moveSlide2(0);
                 
         }
@@ -913,24 +652,25 @@ pageEncoding="UTF-8"%>
       //변수 지정
       var slidesSec = document.querySelector('.container-slide-sec'),
         slideSec = document.querySelectorAll('.slide-sec'),
-        currentIdxSec = 0,
+        currentIdxSec = 1,
         slideCountSec = slideSec.length,
-        slideWidthSec = 250,
-        slideMarginSec = 13,
+        slideWidthSec = 282,
+        slideMarginSec = 20,
         prevBtnSec = document.querySelector('.prevBtn-sec'),
         nextBtnSec = document.querySelector('.nextBtn-sec');
             
-
+        slidesSec.style.left = '-300px';
     
       slidesSec.style.width = (slideWidthSec + slideMarginSec)* slideCountSec - slideMarginSec +'px';
       
       
       function moveSlide(num){
-        slidesSec.style.left= -num*263+'px';
+        slidesSec.style.left= -num*300+'px';
         currentIdxSec = num;
       }
       
       nextBtnSec.addEventListener('click',function(){
+        console.log('클릭됨?');
         if(currentIdxSec < slideCountSec -4){
           moveSlide(currentIdxSec + 1);
               

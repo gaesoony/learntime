@@ -197,6 +197,8 @@ public interface StudyDao {
 
 	public List<Map<String, String>> selectGroupBoardCmtReplyListByCgno(SqlSessionTemplate sst, String cgno);
 
+	public List<Map<String, Object>> selectMainGroupList(SqlSessionTemplate sst);
+
 
 
 

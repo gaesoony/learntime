@@ -7,6 +7,11 @@
 .middle {
   display: flex;
   justify-content: center;
+  margin-bottom: 10px;
+}
+
+.bold500 {
+  font-weight: 500;
 }
 
 .bold700 {
@@ -130,7 +135,7 @@
   height: 300px;
   border: 2px solid #5ecc80;
   border-radius: 7px;
-  padding: 30px 27px 19px 27px;
+  padding: 30px 23px 22px 24px;
   box-sizing: border-box;
   margin-left: 10px;
   margin-right: 10px;
@@ -157,6 +162,19 @@
   margin: 20px 0px;
   letter-spacing: -1px;
   line-height: 23px;
+
+  width: 234px;
+  height: 49px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+
+  margin: 12px 0px;
+  letter-spacing: -1px;
+  line-height: 23px;
 }
 
 .study-tag {
@@ -169,6 +187,12 @@
   padding-bottom: 20px;
   margin-bottom: 15px;
   border-bottom: 1px solid rgba(174, 174, 174, 0.4);
+
+  overflow: scroll;
+}
+
+.study-tech-list::-webkit-scrollbar {
+  display: none;
 }
 
 .study-tech img {
@@ -206,6 +230,11 @@
   margin-right: 10px;
 }
 
+.view-cmt-scrap-list2 > div:first-child span {
+  margin-left: 4px;
+  margin-right: 10px;
+}
+
 /* 슬라이더 버튼 */
 
 .slick-prev,
@@ -232,7 +261,7 @@
 }
 
 .slick-next {
-  right: -12px;
+  right: -10px;
 }
 
 /* 지식인 */
@@ -521,6 +550,11 @@
   border: 1px solid white;
   font-size: 20px;
 }
+
+.main-mentor-banner a:hover {
+  background-color: rgba(209, 209, 209, 0.103);
+}
+
 .main-mentor-banner a:first-child {
   margin-right: 20px;
 }
@@ -594,9 +628,10 @@
   align-items: center;
 }
 .prevBtn,
-.nextBtn {
+.nextBtn,
+.prevBtn2,
+.nextBtn2 {
   position: absolute;
-
   z-index: 1;
   cursor: pointer;
   width: 40px;
@@ -606,6 +641,7 @@
   border: 1px solid rgba(128, 128, 128, 0.2);
   box-shadow: 0 5px 13px -7px rgb(0 0 0 / 50%);
 }
+
 .container {
   width: 1200px;
   height: 350px;
@@ -617,7 +653,17 @@
 }
 .nextBtn {
   top: 133px;
-  right: -10px;
+  right: -15px;
+}
+
+.prevBtn2 {
+  top: 146px;
+  left: -21px;
+}
+
+.nextBtn2 {
+  top: 146px;
+  right: -5px;
 }
 
 .prevBtn i,
@@ -648,7 +694,7 @@
   align-items: center;
 }
 .slide-box {
-  width: 225px;
+  width: 100%;
   height: 290px;
 }
 
@@ -672,25 +718,28 @@
   white-space: nowrap;
 }
 #mentoring-ad2 {
+  width: 239px;
   margin-top: 20px;
   margin-bottom: 13px;
-  padding-bottom: 20px;
+  padding-bottom: 25px;
   font-size: 14px;
   color: rgb(152, 152, 152);
   display: flex;
   align-items: center;
   /* justify-content: center; */
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid rgb(194, 194, 194);
   line-height: 19px;
 }
 #mentoring-ad3 {
+  padding: 0px 20px;
   display: flex;
   align-items: center;
   margin-left: 5px;
   margin-bottom: 3px;
 }
 #mentoring-ad4 {
-  padding-top: 10px;
+  padding-top: 15px;
+  padding-left: 24px;
   /* display: flex; */
   color: rgb(151, 151, 151);
   font-size: 14px;
@@ -711,7 +760,7 @@
 #border-box2,
 #border-box3,
 #border-box4 {
-  width: 25%;
+  width: 63px;
   height: 100%;
 }
 #border-box1 {
@@ -775,7 +824,7 @@
 }
 .studying-content {
   width: 100%;
-  height: 75%;
+  height: 350px;
 
   display: flex;
   align-items: center;
@@ -803,24 +852,11 @@
   grid-template-columns: 1fr 8fr 1fr;
   align-items: center;
 }
-.prevBtn-sec,
-.nextBtn-sec {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-}
+
 .container-sec {
-  width: 1040px;
+  width: 1200px;
   height: 350px;
   overflow: hidden;
-}
-.prevBtn-sec {
-  background-image: url("/app/resources/img/main/Group\ 28.png");
-  background-size: 80px;
-}
-.nextBtn-sec {
-  background-image: url("/app/resources/img/main/Ellipse\ 108.png");
-  background-size: 80px;
 }
 
 .container-slide-sec {
@@ -834,15 +870,15 @@
   transition: left 0.5s ease-out;
 }
 .slide-sec {
-  width: 230px;
-  height: 300px;
-  margin: 13px;
+  width: 280px;
+  height: 100%;
+  /* margin: 13px; */
   float: left;
-  border: 2px solid gray;
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  border: 2px solid #5ecc80;
+  border-radius: 7px;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
 }
 .java-photo {
   width: 230px;
@@ -890,7 +926,7 @@
 .notice-list {
   width: 598px;
   height: 495px;
-  border: 5px solid #5ecc80;
+  border: 4px solid #5ecc80;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -912,10 +948,10 @@
 .list {
   width: 100%;
   height: 60px;
-  border-bottom: 2px solid gray;
+  border-bottom: 1px solid rgb(202, 202, 202);
 }
 #boldline {
-  border-bottom: 5px solid gray;
+  border-bottom: 1px solid rgb(202, 202, 202);
   display: flex;
 }
 .notice-title {
@@ -924,7 +960,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  font-size: larger;
+  font-size: 25px;
 }
 .arrow {
   width: 30%;
@@ -933,7 +969,13 @@
   justify-content: flex-end;
   align-items: center;
 }
-#list-one,
+
+.arrow i {
+  font-size: 30px;
+  color: rgb(72, 72, 72);
+}
+
+/* #list-one,
 #list-two,
 #list-three,
 #list-four,
@@ -941,6 +983,20 @@
   display: flex;
   align-items: flex-end;
   padding-bottom: 5px;
+} */
+
+.list-one {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 26px;
+  font-size: 19px;
+  box-sizing: border-box;
+  height: 73px;
+  cursor: pointer;
+}
+
+.list-one:hover {
+  background-color: rgb(244, 244, 244);
 }
 
 /* 공지사항 오른쪽 */
@@ -953,13 +1009,14 @@
   width: 100%;
   height: 120px;
   color: white;
-  font-size: xx-large;
-  font-weight: 900;
+  font-size: 38px;
+  font-weight: 700;
   display: flex;
   justify-content: center;
   align-items: flex-end;
   line-height: 40px;
   text-align: center;
+  margin-bottom: 10px;
 }
 .faq-content {
   width: 100%;
@@ -970,12 +1027,19 @@
   justify-content: center;
   align-items: center;
 }
+
+.faq-content u {
+  font-size: 16px;
+}
+
 .faq-box {
+  margin-top: 20px;
   width: 100%;
   height: 125px;
   display: flex;
   justify-content: center;
 }
+
 #personal-faq-box {
   width: 165px;
   height: 65px;
@@ -986,4 +1050,39 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+
+#personal-faq-box:hover {
+  background-color: rgb(244, 244, 244);
+}
+
+.learner-profile img {
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+}
+
+.learning-img img {
+  width: 100%;
+  height: 257px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.learning-info {
+  display: flex;
+  padding: 20px;
+}
+
+.learning-detail {
+  width: 173px;
+}
+
+.learning-detail > div:first-child {
+  margin-bottom: 10px;
+}
+
+.mentoring-title2 {
+  padding-left: 19px;
 }

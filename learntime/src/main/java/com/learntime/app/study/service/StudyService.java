@@ -150,6 +150,8 @@ public interface StudyService {
 
 	public List<Map<String, Object>> selectGroupBoardCmtList(Map map);
 
+	public List<Map<String, Object>> selectMainGroupList();
+
 
 	
 	

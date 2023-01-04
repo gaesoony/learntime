@@ -155,7 +155,7 @@ public class StudyServiceImpl implements StudyService{
 		
 		//그룹 리스트 조회
 		List<Map<String, Object>> groupList = dao.selectGroupList(sst, vo);
-		//log.info("스터디/프로젝트 정보 : "+groupList);
+		log.info("스터디/프로젝트 정보 : "+groupList);
 		
 		//그룹 리스트 결과 
 		for(int i=0; i<groupList.size(); i++) {			
@@ -678,6 +678,25 @@ public class StudyServiceImpl implements StudyService{
 		}
 		
 		return result;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectMainGroupList() {
+		//그룹 리스트 조회
+		List<Map<String, Object>> groupList = dao.selectMainGroupList(sst);
+		//log.info("스터디/프로젝트 정보 : "+groupList);
+		
+		//그룹 리스트 결과 
+		for(int i=0; i<groupList.size(); i++) {			
+			String gno = String.valueOf(groupList.get(i).get("NO"));
+			
+			//그룹 번호로 기술스택 리스트 조회
+			List<Map<String, String>> techStackList = dao.selectTechStackListByGno(sst, gno);
+			groupList.get(i).put("techStackList", techStackList);
+			
+		}
+		
+		return groupList;
 	}
 
 }

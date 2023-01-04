@@ -11,10 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.learntime.app.main.service.MainService;
 import com.learntime.app.main.vo.MainVo;
+import com.learntime.app.study.service.StudyService;
+import com.learntime.app.study.vo.SearchVo;
 
 @Controller
 @RequestMapping("main")
 public class MainController {
+	
+	@Autowired
+	private StudyService studyService;
 	
 	@Autowired
 	private MainService service;
@@ -28,8 +33,8 @@ public class MainController {
 		//팝업
 		
 		//스터디 리스트 select
-//		List<Map<String, String>> groupList = service.selectGroupList();
-//		model.addAttribute("groupList", groupList);
+		List<Map<String, Object>> groupList = studyService.selectMainGroupList();
+		model.addAttribute("groupList", groupList);
 		
 		//지식인
 		
