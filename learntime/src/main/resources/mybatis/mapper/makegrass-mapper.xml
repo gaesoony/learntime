@@ -42,4 +42,10 @@
 		WHERE A.NO = #{no}
 	</select>
 	
+	<update id="delete">
+		UPDATE MAKE_GRASS SET
+		DELETE_YN = 'Y'
+		WHERE NO = #{mno}
+	</update>
+	
 </mapper>

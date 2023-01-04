@@ -31,6 +31,12 @@ public class QnaController {
 	@GetMapping("/list")
 	public String list(Model model, QnaVo vo, QnaTypeVo qvo) {
 		
+		if(qvo.getType() == null) {
+			qvo.setType("전체");
+		}
+		if(qvo.getOrder() == null) {
+			qvo.setOrder("recent");
+		}
 		if(qvo.getKeyword() == null) {
 			qvo.setKeyword("");
 		}
@@ -43,6 +49,9 @@ public class QnaController {
 		}else {
 			model.addAttribute("keyword", qvo.getKeyword());
 		}
+		
+		model.addAttribute("type", qvo.getType());
+		model.addAttribute("order", qvo.getOrder());
 		
 		return "qna/list";
 	}
@@ -82,7 +91,13 @@ public class QnaController {
 	
 	//게시글 수정 (화면)
 	@GetMapping("/edit")
-	public String edit() {
+	public String edit(String no, Model model) {
+		
+		QnaVo qvo = service.detail(no);
+		model.addAttribute("qvo", qvo);
+		
+		System.out.println("컨트롤러에서 화면 : " + qvo);
+		
 		return "qna/edit";
 	}
 	
@@ -90,15 +105,30 @@ public class QnaController {
 	@PostMapping("/edit")
 	public String edit(QnaVo vo, HttpSession session) {
 		
-		vo.setNo(vo.getNo());
-		
 		int result = service.edit(vo);
 		
-		if(result >= 1) {
+		System.out.println("컨트롤러에서 DB 쪽 : " + result);
+		
+		if(result == 1) {
+			return "redirect:/qna/detail?no="+vo.getNo();
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+	//게시글 삭제 (DB)
+	@GetMapping("/delete")
+	public String delete(QnaVo vo) {
+		
+		String qno = vo.getNo();
+		int result = service.delete(qno);
+		
+		if(result == 1) {
 			return "redirect:/qna/list";
 		}else {
 			return "common/errorPage";
 		}
+		
 	}
 
 }

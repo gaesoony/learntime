@@ -5,9 +5,7 @@ import lombok.Data;
 @Data
 public class QnaTypeVo {
 	
-	private String qno;
-
 	private String keyword;
-	
+	private String type;
 	private String order;
 }

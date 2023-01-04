@@ -66,4 +66,10 @@ public class MakegrassServiceImpl implements MakegrassService {
 		return dao.detail(sst, no);
 	}
 
+	//게시글 삭제
+	@Override
+	public int delete(String no) {
+		return dao.delete(sst, no);
+	}
+
 }

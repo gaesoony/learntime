@@ -68,18 +68,23 @@ public class QnaServiceImpl implements QnaService {
 	//게시글 상세조회
 	@Override
 	public QnaVo detail(String no) {
+		
+		int result = dao.updateHit(sst, no);
+		
 		return dao.detail(sst, no);
+		
 	}
 
 	//게시글 수정
 	@Override
 	public int edit(QnaVo vo) {
-		
-		int result = 0;
-		
-		result = dao.edit(sst, vo);
-		
-		return result;
+		return dao.edit(sst, vo);
+	}
+
+	//게시글 삭제
+	@Override
+	public int delete(String qno) {
+		return dao.delete(sst, qno);
 	}
 
 	

@@ -14,11 +14,11 @@ import com.learntime.app.qna.vo.QnaVo;
 public interface QnaDao {
 
 	//게시글 작성
-	int write(SqlSessionTemplate sst, QnaVo vo);
+	public int write(SqlSessionTemplate sst, QnaVo vo);
 	
-	int insertTag(SqlSessionTemplate sst, String[] tag);
+	public int insertTag(SqlSessionTemplate sst, String[] tag);
 
-	int insertKnowledgeTag(SqlSessionTemplate sst, String[] tag);
+	public int insertKnowledgeTag(SqlSessionTemplate sst, String[] tag);
 
 	//게시글 목록
 	List<Map<String, Object>> selectList(SqlSessionTemplate sst, QnaVo vo, QnaTypeVo qvo);
@@ -26,7 +26,11 @@ public interface QnaDao {
 	//게시글 상세조회
 	QnaVo detail(SqlSessionTemplate sst, String no);
 
-	int edit(SqlSessionTemplate sst, QnaVo vo);
+	public int edit(SqlSessionTemplate sst, QnaVo vo);
+
+	public int updateHit(SqlSessionTemplate sst, String no);
+
+	public int delete(SqlSessionTemplate sst, String qno);
 
 	
 

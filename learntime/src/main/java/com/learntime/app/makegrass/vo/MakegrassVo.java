@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class MakegrassVo {
 
-	private int no;
+	private String no;
 	private String writer;
 	private String title;
 	private String content;

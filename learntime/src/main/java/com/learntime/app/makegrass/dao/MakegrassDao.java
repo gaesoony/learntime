@@ -10,15 +10,17 @@ import com.learntime.app.makegrass.vo.MakegrassVo;
 @Repository
 public interface MakegrassDao {
 	
-	int insertMakegrass(SqlSessionTemplate sst, MakegrassVo vo);
+	public int insertMakegrass(SqlSessionTemplate sst, MakegrassVo vo);
 
-	int insertTag(SqlSessionTemplate sst, String[] str);
+	public int insertTag(SqlSessionTemplate sst, String[] str);
 
-	int insertKnowledgeTag(SqlSessionTemplate sst, String[] str);
+	public int insertKnowledgeTag(SqlSessionTemplate sst, String[] str);
 
 	List<MakegrassVo> selectList(SqlSessionTemplate sst, MakegrassVo vo);
 
 	MakegrassVo detail(SqlSessionTemplate sst, String no);
+
+	public int delete(SqlSessionTemplate sst, String no);
 
 	
 

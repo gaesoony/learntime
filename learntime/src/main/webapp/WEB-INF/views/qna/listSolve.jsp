@@ -103,21 +103,22 @@
     }
     
     /* 상단 리스트 타입 라디오 버튼 */
-    .list-type-box{
-        margin-bottom: 30px;
-        margin-left: 10px;
-        font-size: 18px;
-        cursor: pointer;
-        display: grid;
-        grid-template-columns: 80px 80px 80px;
-        /* color: #AAAAAA; */
-    }
-    .list-type-box input[type=radio]{
+    /* .list-type-box input[type=radio]{
         display: none;
     }
-    #type-div{
-        cursor: pointer;
+    .list-type{
+        margin-left: 14px;
+        margin-right: 20px;
+        font-size: 18px;
+        color: gray;
     }
+    .side-category:checked{
+        color: black;
+    }
+    .active{
+        color: black;
+        font-weight: 550;
+    } */
 
     /* 검색 부분 */
     .searchbar{
@@ -160,11 +161,10 @@
         margin-bottom: 15px;
         margin-left: 15px;
         width: 65vw;
-        color: #AAAAAA;
     }
     .cate{
         float: left;
-        margin-right: 508px;
+        margin-right: 462px;
         display: flex;
         padding-top: 20px;
     }
@@ -179,13 +179,11 @@
         border-radius: 10px;
     }
     .ca{
-        display: none;
+        margin-right: 10px;
+        color: #B7B7B7;
     }
-    #order{
-        cursor: pointer;
-    }
-    #order:hover{
-        color: black;
+    .ca:hover{
+        color: #333B3D;
         font-weight: 550;
     }
     .line2{
@@ -284,14 +282,6 @@
         height: 30vh;
     }
 
-    /* 검색 결과 없음 */
-    .null-title{
-        font-size: 18px;
-        margin-top: 50px;
-        margin-left: 620px;
-        color: #666666;
-    }
-
 </style>
 </head>
 <body>
@@ -349,25 +339,33 @@
                     <div class="mainbody">
                         <div class="mainside">
                             <!-- 전체, 해결, 미해결 카테고리 -->
-                            <div class="list-type-box">
-                                <label for="all" ><input type="radio" class="side-category" name="type" id="all" value="전체"  checked/><div id="type-div">전체</div></label>
-                                <label for="solve" ><input type="radio" class="side-category" name="type" id="solve" value="해결"  checked/><div id="type-div">해결</div></label>
-                                <label for="unsolve" ><input type="radio" class="side-category" name="type" id="unsolve" value="미해결"  checked/><div id="type-div">미해결</div></label>
+                            <div id="category-box">
+                                <div>
+                                    <a href="/app/qna/list">전체</a>
+                                </div>
+                                <div id="cate-list">
+                                    <a href="/app/qna/list">해결</a>
+                                </div>
+                                <div>
+                                    <a href="/app/qna/list">미해결</a>
+                                </div>
                             </div>
+
+                            <!-- <div class="list-type-box">
+                                <input type="radio" href="" class="side-category" value="전체" checked/><a href="" class="list-type" name="type">전체</a>
+                                <input type="radio" href="" class="side-category" value="해결" /><a href="" class="list-type" name="type">해결</a>
+                                <input type="radio" href="" class="side-category" value="미해결" /><a href="" class="list-type" name="type">미해결</a>
+                            </div> -->
                             
                             <div class="line1"></div>
     
                             <!-- 검색 -->
                             <div class="searchbar">
                                 <div class="search">
-                                    <c:if test="${keyword == null}">
+                                    <!-- <c:if test="${keyword != null}"> -->
                                         <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-                                        <input type="text" class="searchblank" name="keyword" placeholder="궁금한 질문을 검색해보세요!">
-                                    </c:if>
-                                    <c:if test="${keyword != null}">
-                                        <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-                                        <input type="text" class="searchblank" name="keyword" placeholder="궁금한 질문을 검색해보세요!" value="${keyword}">
-                                    </c:if>
+                                        <input type="text" class="searchblank" name="keyword" placeholder="궁금한 질문을 검색해보세요!" value="${keyword}" onkeypress="press(this.form)">
+                                    <!-- </c:if> -->
                                 </div>
                                 <input type="submit" class="searchbtn" value="검색">
                             </div>
@@ -376,10 +374,10 @@
                             <div class="category">
                                 <div class="catelist">
                                     <ul class="cate">
-                                        <li><input type="radio" class="ca" name="order" id="recent" value="recent" checked /><label for="recent" id="order">· 최신순&nbsp&nbsp</label></li>
-                                        <li><input type="radio" class="ca" name="order" id="hit" value="hit" /><label for="hit" id="order">· 조회수순&nbsp&nbsp</label></li>
-                                        <li><input type="radio" class="ca" name="order" id="reply" value="reply" /><label for="reply" id="order">· 답변순&nbsp&nbsp</label></li>
-                                        <li><input type="radio" class="ca" name="order" id="recommend" value="recommend" /><label for="recommend" id="order">· 좋아요순</label></li>
+                                        <li><a href="" class="ca" name="order">· 최신순</a></li>
+                                        <li><a href="" class="ca" name="order">· 정확도순</a></li>
+                                        <li><a href="" class="ca" name="order">· 답변 많은순</a></li>
+                                        <li><a href="" class="ca" name="order">· 좋아요순</a></li>
                                     </ul>
                                     <c:if test="${loginMember != null}">
                                         <input type="button" onclick="location.href='${path}/qna/write'" class="writebtn" value="글쓰기✏️" style='cursor:pointer;'>
@@ -438,9 +436,6 @@
                         </div>
                     </div>
                 </div>
-                <c:if test="${qnaList.size() == 0}">
-                    <div class="null-title">"검색된 결과가 없습니다🤔"</div>
-                </c:if>
             </div>
         </form>
 

@@ -144,31 +144,31 @@
     <div class="banner"></div>
 		<div class="mainbox">
 		
-		<form action="${path}/qna/edit" method="post" name="myform" onkeydown="return event.key != 'Enter';">
+            <form action="${path}/qna/edit" method="post" name="myform" onkeydown="return event.key != 'Enter';">
 
-            <div class="radio-box">
-                <input type="radio" value="${vo.cateNo}" id="cateNo1" name="cateNo" checked><label for="cateNo1">기술</label>
-                <input type="radio" value="${vo.cateNo}" id="cateNo2" name="cateNo"><label for="cateNo2">커리어</label>
-            </div>
-
-            <input type="text" name="title" class="title" value="${vo.title}"/>
-
-            <div class="content">
-                <div>
-                    <input type="text" id="tagNo" placeholder="해시태그를 입력하세요"/>
+                <div class="radio-box">
+                    <input type="radio" value="${vo.cateNo}" id="cateNo1" name="cateNo" checked><label for="cateNo1">기술</label>
+                    <input type="radio" value="${vo.cateNo}" id="cateNo2" name="cateNo"><label for="cateNo2">커리어</label>
                 </div>
-                <ul id="tag-list">
-                    
-                </ul>
-            </div>
 
-            <textarea name="content" class="summernote" vlaue="${vo.content}">${vo.content}</textarea>
+                <input type="text" name="title" class="title" value="${vo.title}"/>
 
-            <input type="button" onClick="history.back();" class="cancle" value="취소" />
-            <input type="submit" class="write" value="수정" />
-                
+                <div class="content">
+                    <div>
+                        <input type="text" id="tagNo" placeholder="해시태그를 입력하세요"/>
+                    </div>
+                    <ul id="tag-list">
+                        
+                    </ul>
+                </div>
+
+                <textarea name="content" class="summernote">${vo.content}</textarea>
+
+                <input type="button" onClick="history.back();" class="cancle" value="취소" />
+                <input type="submit" class="write" value="수정" />
+            
+            </form>
         </div>
-		</form>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
