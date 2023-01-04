@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.learntime.app.member.vo.AdminMemberVo;
 import com.learntime.app.member.vo.FollowVo;
+import com.learntime.app.member.vo.MemberGradeVo;
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.member.vo.SearchVo;
 
@@ -61,7 +62,7 @@ public interface MemberService {
 	
 	//----관리자 
 	//멤버 리스트
-	public List<AdminMemberVo> memberList(SearchVo vo);
+	public List<AdminMemberVo> memberList(Map pageMap);
 	//멤버 탈퇴
 	public int memberAdminDelete(String id);
 	//멤버 수정
@@ -76,6 +77,19 @@ public interface MemberService {
 	public int memberListGradeEdit(Map<String, Object> map);
 	//리스트에서 멤버 탈퇴
 	public int memberListMemberDelte(String[] checkNo);
+	
+	//멤버 등급 관리 수정
+	public int memberGradeEdit(List<MemberGradeVo> list);
+	
+	//멤버 등급 관리 추가
+	public int memberGradeinfoEdit(MemberGradeVo vo);
+	
+	//멤버 등급 관리 삭제
+	public int memberGradeinfoDelete(String gradeNo);
+	
+	//전체 멤버 조회
+	public int memberCnt(SearchVo vo);
+	
 	
 	
 	

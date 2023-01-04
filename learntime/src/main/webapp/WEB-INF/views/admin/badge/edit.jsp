@@ -213,8 +213,7 @@ pageEncoding="UTF-8"%>
                         <div class="text">뱃지 이미지</div>
                         <div class="img-area">
                             <label for="file">
-                           	  <img id="preview"  src="${pageContext.request.contextPath}/${selectOne.imgName}"/>
-                               <!--  <span  id="plusPic" class="material-symbols-outlined">add_photo_alternate</span> -->
+                           	  <img id="preview"  src="${pageContext.request.contextPath}/${selectOne.imgName}"/>        
                             </label>
                              <input id="file" type="file" name="imgPath">
                         </div>
@@ -229,8 +228,7 @@ pageEncoding="UTF-8"%>
 	                        reader.onload = function(e) {
 	
 	                            $("#preview").attr("src", e.target.result);
-	                          /*   $("#preview").removeClass('hidden'); */
-	                            $("#plusPic").addClass('hidden');
+	                      
 	                        }
 	
 	                        reader.readAsDataURL(file);

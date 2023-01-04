@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.learntime.app.member.vo.AdminMemberVo;
 import com.learntime.app.member.vo.FollowVo;
+import com.learntime.app.member.vo.MemberGradeVo;
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.member.vo.SearchVo;
 
@@ -65,7 +66,7 @@ public interface MemberDao {
 	
 	//-------------어드민-----------------------
 	//멤버 리스트 
-	public List<AdminMemberVo> memberList(SqlSessionTemplate sst, SearchVo vo);
+	public List<AdminMemberVo> memberList(SqlSessionTemplate sst, Map pageMap);
 	//멤버 탈퇴
 	public int memberAdminDelete(SqlSessionTemplate sst, String id);
 	//멤버 수정
@@ -81,6 +82,18 @@ public interface MemberDao {
 	
 	//멤버 리스트 회원 탈퇴
 	public int memberListMemberDelte(SqlSessionTemplate sst, String[] checkNo);
+	
+	//멤버 등급 관리 수정
+	public int memberGradeEdit(SqlSessionTemplate sst, List<MemberGradeVo> list);
+	
+	//멤버 등급 관리 추가
+	public int memberGradeinfoEdit(SqlSessionTemplate sst, MemberGradeVo vo);
+	
+	//멤버 등급 관리 삭제
+	public int memberGradeinfoDelete(SqlSessionTemplate sst, String gradeNo);
+	
+	//멤버 전체 인원 
+	public int memberCnt(SqlSessionTemplate sst, SearchVo vo);
 	
 	
 	

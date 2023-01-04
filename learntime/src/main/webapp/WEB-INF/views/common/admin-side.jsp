@@ -55,7 +55,7 @@ pageEncoding="UTF-8"%>
         <span class="material-symbols-rounded arrow-icon">arrow_drop_down</span>
       </li>
       <ul class="small_menu">
-        <li><a href="${pageContext.request.contextPath}/admin/member/manage">회원 목록</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/member/manage?pno=1&keyword=&category=nick&quitYn=&adminYn=">회원 목록</a></li>
         <li><a href="${pageContext.request.contextPath}/admin/member/grade">회원 등급</a></li>
       </ul>
     </ul>

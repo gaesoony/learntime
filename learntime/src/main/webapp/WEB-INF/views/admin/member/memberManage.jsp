@@ -42,7 +42,7 @@ pageEncoding="UTF-8"%>
 
     #search{
         display: grid;
-        grid-template-columns: 6fr 1fr 1fr;
+        grid-template-columns: 6fr 1fr 1fr 1fr;
     }
 
     .search-box {
@@ -135,7 +135,7 @@ pageEncoding="UTF-8"%>
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(2,0.5fr)2fr 3fr 1fr  0.5fr 2fr 2fr repeat(6,1fr);
+      grid-template-columns: repeat(2,0.5fr)2fr 3fr 1fr  0.5fr 2fr 2fr repeat(5,1fr);
     }
 
     .grid div {
@@ -211,7 +211,7 @@ pageEncoding="UTF-8"%>
         color: white;
     }
     
-    #next-btn{
+    #next-btn,#prev-btn{
         width: 40px;
     }
   </style>
@@ -221,9 +221,10 @@ pageEncoding="UTF-8"%>
       <div id="admin-category-title" class="shadow-light">회원 관리</div>
       <div class="wrapper">
             <section class="search-section space-between">
-           <form action="" method="get">
+           <form action="${pageContext.request.contextPath}/admin/member/manage" method="get">
 				<div class="relative" id="search">
 				     <i class="fa-solid fa-magnifying-glass"></i>
+				     <input type="hidden" name="pno" value="1">
 				     <input type="text" placeholder="내용을 입력해주세요" class="search-box" name="keyword"/>
 				         <select name="category" id="" class="select-box">
 				           <option value="nick">닉네임</option>
@@ -234,6 +235,12 @@ pageEncoding="UTF-8"%>
 				           <option value="N">활동</option>
 				           <option value="Y">삭제</option>
 				         </select>
+				         <select name="adminYn" class="select-box">
+				           <option value="" selected>회원유형</option>
+				           <option value="N">회원</option>
+				           <option value="Y">운영자</option>
+				         </select>
+				         
 				</div>
            </form>
               
@@ -242,8 +249,8 @@ pageEncoding="UTF-8"%>
              <form id="editDelete" action="${pageContext.request.contextPath}/admin/member/gradeEdit" method="post">
               <div class="content-section-top">
                 <div id="memberAll">
-                      <span>전체 관리자 수</span>
-                      <span class="main-color">${list.size()}</span>
+                      <span>조회된 멤버 수</span>
+                      <span class="main-color">${listCount}</span>
                       <span>명</span>
                 </div>
                  
@@ -273,35 +280,36 @@ pageEncoding="UTF-8"%>
                 <div class="grid-title">작성한 댓글</div>
                 <div class="grid-title">작성한 문의</div>
                 <div class="grid-title">계정상태</div>
-                <div class="grid-title"></div>
+                
 
                   <c:forEach items="${list}" var="list">
-                   <div><input name="checkNo" type="checkbox" value="${list.no}"/></div>
-                    <div>${list.no}</div>
-                    <div>${list.nick}</div>
-                    <div>${list.id}</div>
-                    <c:if test="${list.adminYn eq 'Y'}">
+                   <div><input name="checkNo" type="checkbox" value="${list.NO}"/></div>
+                    <div>${list.NO}</div>
+                    <div>${list.NICK}</div>
+                    <div>${list.ID}</div>
+                    <c:if test="${list.QUIT_YN eq 'Y'}">
                     <div>운영자</div>
                     </c:if>
-                     <c:if test="${list.adminYn eq 'N'}">
+                     <c:if test="${list.QUIT_YN eq 'N'}">
                     <div>회원</div>
                     </c:if>
-                    <div><img src="${pageContext.request.contextPath}${list.gradeImgPath}"></div>
-                    <div>${list.phone}</div>
-                    <div>${list.enrollDate}</div>
-                    <div>${list.holdToken}</div>
-                    <div>${list.board}</div>
-                    <div>${list.cmt}</div>
-                    <div>${list.qna}</div>
-                    <c:if test="${list.quitYn eq 'Y'}">
+                    <div><img src="${pageContext.request.contextPath}${list.GRADE_IMG_PATH}"></div>
+                    <div>${list.PHONE}</div>
+                    <div>${list.ENROLL_DATE}</div>
+                    <div>${list.HOLD_TOKEN}</div>
+                    <div>${list.BOARD}</div>
+                    <div>${list.CMT}</div>
+                    <div>${list.QNA}</div>
+                    <c:if test="${list.QUIT_YN eq 'Y'}">
                     <div>삭제</div>
                     </c:if>
-                    <c:if test="${list.quitYn eq 'N'}">
+                    <c:if test="${list.QUIT_YNn eq 'N'}">
                     <div>활동</div>
                     </c:if>
                     <div>
-                        <a href="${pageContext.request.contextPath}/admin/member/manage/detail?no=${list.no}"> <span class="material-symbols-outlined">more_horiz</span></a>
+                        <a href="${pageContext.request.contextPath}/admin/member/manage/detail?no=${list.NO}"> <span class="material-symbols-outlined">more_horiz</span></a>
                     </div>
+                   
                   </c:forEach>
                   
               </div>
@@ -310,20 +318,33 @@ pageEncoding="UTF-8"%>
                 <input type="button" value="운영자 생성" onclick="location.href='${pageContext.request.contextPath}/admin/member/createOperator'"/>
               </div>
 
-              <div id="paging">
-                <div class="paging-btn">1</div>
-                <div class="paging-btn">2</div>
-                <div class="paging-btn">3</div>
-                <div class="paging-btn">4</div>
-                <div class="paging-btn">5</div>
-                <div class="paging-btn">6</div>
-                <div class="paging-btn">7</div>
-                <div class="paging-btn">8</div>
-                <div class="paging-btn">9</div>
-                <div class="paging-btn">10</div>
-                <div class="paging-btn" id="next-btn">다음</div>
-              </div>
             </form>   
+            
+            <div id="paging">
+                 <c:if test="${pv.startPage != 1}">
+                    <div class="paging-btn" id="prev-btn">
+                      <a
+                        href="${pageContext.request.contextPath}/admin/member/manage?pno=${pv.startPage - 1}&keyword=${vo.keyword}&category=${vo.category}&quitYn=${vo.quitYn}&adminYn=${vo.adminYn}"
+                        >이전</a
+                      >
+                    </div>
+                  </c:if>
+                  <c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
+                    <div class="paging-btn">
+                      <a href="${pageContext.request.contextPath}/admin/member/manage?pno=${i}&&keyword=${vo.keyword}&category=${vo.category}&quitYn=${vo.quitYn}&adminYn=${vo.adminYn}">
+                      ${i}
+                      </a>
+                    </div>
+                  </c:forEach>
+                  <c:if test="${pv.endPage < pv.maxPage}">
+                    <div class="paging-btn" id="next-btn">
+                      <a
+                        href="${pageContext.request.contextPath}/admin/member/manage?pno=${pv.endPage + 1}&keyword=${vo.keyword}&category=${vo.category}&quitYn=${vo.quitYn}&adminYn=${vo.adminYn}"
+                        >다음</a
+                      >
+                    </div>
+                  </c:if>
+              </div>
             </section>
       
       </div>

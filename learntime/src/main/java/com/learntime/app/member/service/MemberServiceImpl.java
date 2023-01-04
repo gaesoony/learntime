@@ -14,6 +14,7 @@ import com.learntime.app.member.dao.MemberDao;
 import com.learntime.app.member.mail.MailHandler;
 import com.learntime.app.member.vo.AdminMemberVo;
 import com.learntime.app.member.vo.FollowVo;
+import com.learntime.app.member.vo.MemberGradeVo;
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.member.vo.SearchVo;
 
@@ -226,9 +227,9 @@ public class MemberServiceImpl implements MemberService {
 	//---------어드민------------
 	//멤버리스트
 	@Override
-	public List<AdminMemberVo> memberList(SearchVo vo) {
+	public List<AdminMemberVo> memberList(Map pageMap) {
 		
-		return memberDao.memberList(sst,vo);
+		return memberDao.memberList(sst,pageMap);
 	}
 	//멤버 탈퇴
 	@Override
@@ -267,6 +268,30 @@ public class MemberServiceImpl implements MemberService {
 	public int memberListMemberDelte(String[] checkNo) {
 		
 		return memberDao.memberListMemberDelte(sst,checkNo);
+	}
+	// 회원 등급 관리 수정
+	@Override
+	public int memberGradeEdit(List<MemberGradeVo> list) {
+		
+		return memberDao.memberGradeEdit(sst,list);
+	}
+	// 회원 등급 관리 추가
+	@Override
+	public int memberGradeinfoEdit(MemberGradeVo vo) {
+		
+		return memberDao.memberGradeinfoEdit(sst,vo);
+	}
+	// 회원 등급 관리 삭제
+	@Override
+	public int memberGradeinfoDelete(String gradeNo) {
+		
+		return memberDao.memberGradeinfoDelete(sst,gradeNo);
+	}
+	// 회원 전체 인원 
+	@Override
+	public int memberCnt(SearchVo vo) {
+		
+		return memberDao.memberCnt(sst,vo);
 	}
 
 	
