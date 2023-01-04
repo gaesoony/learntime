@@ -371,7 +371,7 @@
         color: white;
     }
 
-    #page-nation .num{
+`///    #page-nation .num{
         padding: 0;
         width: 30px;
         height: 30px;
@@ -392,7 +392,7 @@
         cursor: pointer;
     }
 
-
+`
 </style>
 <body>
 	<%@include file="/WEB-INF/views/common/admin-side.jsp"%>
@@ -402,6 +402,7 @@
         </div>
         <div class="main-admin-q">
 	        <form action="/app/admin/faq/faqListAd">
+	        	<input type="hidden" value="${cateNo}" name="cateNo">
 	        	<div class="line-on-the-top">
 	                <div class="box-for-line-a">
 	                    <div class="half-box-a"></div>

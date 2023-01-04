@@ -8,7 +8,7 @@
 <!-- <link rel="stylesheet" href="/app/.css"> -->
 <title>Insert title here</title>
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
@@ -288,6 +288,8 @@
     width: 30px;
     height: 30px;
 }
+
+/*모달창  */
 .popUp{
 width:300px;
 height: 600px;
@@ -295,11 +297,73 @@ height: 600px;
 
 }
 .empty{
-	height: 30px;
+	height: 15px;
 }
 .title-sec{
 	font-size:large;
 	font-weight:600;
+	width:170px;
+	height:50px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	
+}
+.line-a{
+	width:50px;
+	height:50px;
+	display:flex;
+	align-items:flex-end;
+
+
+}
+
+.line-a-a{
+
+	border-top:3px solid gray;
+	width:50px;
+	height:25px;
+}
+.line-b{
+	width:250px;
+	height:50px;
+	display:flex;
+	flex-direction:rows;
+	align-items:flex-end;
+	
+	
+
+}
+.line-b-a{
+	border-top:3px solid gray;
+	height:25px;
+	width:250px;
+}
+.notice-line{
+	display:flex;
+	height:50px;
+}
+.cate-btn{
+	width:100px;
+	height:25px;
+	border:none;
+	background-color:#5ECC80;
+	font-weight: 600;
+	color:white;
+}
+.notice-green{
+
+background-color: #e9fde9;
+
+}
+
+.notice-white{
+
+
+}
+.gathering-divs{
+border-bottom:2px solid lightgray;
+
 }
 </style>
 <body>
@@ -328,9 +392,9 @@ height: 600px;
                 <div class="noticeBtn-etc">
                     <a href="#modal1" rel="modal:open" class="popupArea" id="popup"><div class="setting-Btn"><img src="/app/resources/img/faq/image 116.png"></div></a>
                     <div class="Btns-noticeAd">
-                        <div class="activate-Btn"><input class="activate" type="button" value="활성화" name="activate" onclick="activate()"></div>
-                        <div class="deactivate-Btn"><input class="deactivate" type="button" value="비활성화" name="deactivate" onclick="deactivate()"></div>
-                        <div class="delete-notice-Btn"><input class="delete-lists" type="button" value="삭제" name="delete"></div>
+                        <div class="activate-Btn"><input class="activate" type="button" value="활성화" name="activate" ></div>
+                        <div class="deactivate-Btn"><input class="deactivate" type="button" value="비활성화" name="deactivate" ></div>
+                        <div class="delete-notice-Btn"><input class="delete-lists" type="button" value="삭제" name="deleteList"></div>
                     </div>
                 </div>
             </div>
@@ -338,21 +402,27 @@ height: 600px;
                 <div class="notice-list-twoColored">
                     <div class="notice-group">
                         <c:forEach var="list" items="${list}">
-                            <div class="notice-white">
-                                <div class="admin-id-etc">
-                                    <div class="admin-id" name="writer">${list.writer}</div>
-                                    <div class="enroll-date" name=enrollDate>${list.enrollDate}</div>
+                        	<div class="gathering-divs">
+	                        	<c:if test="${status.index > 2 }">
+	                        	 	<div class="notice-white"></a>
+	                        	</c:if>
+	                        	<c:if test="${status.index <= 2 }">
+	                            	<div class="notice-green"></a>
+	                        	</c:if>
+	                                <div class="admin-id-etc">
+	                                    <div class="admin-id" name="writer">${list.writer}</div>
+	                                    <div class="enroll-date" name=enrollDate>${list.enrollDate}</div>
+	                                </div>
+	                                <div class="written-notice">
+	                                    <div class="checkBoxBtn-notice"><input type="checkbox"  id="checkBoxBtn"></div>
+	                                    <div class="cate-notice" name="name">${list.cateName}</div>
+	                                    <a href = "app/admin/notice/noticeDetailAdmin?no=${list.no}"><div class="posted-notice" name="title">${list.title}</div></a>
+	                                    <div class="views-etc">
+	                                        <div class="views" name="hit"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">&nbsp; ${list.hit }</div>
+	                                        <div class="replies" name="cmt"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">&nbsp; ${list.cmt}</div>
+	                                    </div>
+	                                </div>
                                 </div>
-                                <div class="written-notice">
-                                    <div class="checkBoxBtn-notice"><input type="checkbox"  id="checkBoxBtn"></div>
-                                    <div class="cate-notice" name="name">${list.cateName}</div>
-                                    <a href = "app/admin/notice/noticeDetailAdmin?no=${list.no}"><div class="posted-notice" name="title">${list.title}</div></a>
-                                    <div class="views-etc">
-                                        <div class="views" name="hit"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">&nbsp; ${list.hit }</div>
-                                        <div class="replies" name="cmt"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">&nbsp; ${list.cmt}</div>
-                                    </div>
-                                </div>
-                            </div>
                         </c:forEach>
                     </div>
                 </div>
@@ -378,13 +448,17 @@ height: 600px;
     <!-- 세팅 모달 -->
     <div id="modal1" class="modal">
 	 	<div class="notice-line">
-	 		<div class="line-a"></div>
-	 		<div class="title-sec">카테고리 설정</div>
-	 		<div class="line-b"></div>
+	 		<div class="line-a">
+	 			<div class="line-a-a"></div>
+	 		</div>
+	 		<div class="title-sec">&nbsp;&nbsp;카테고리 설정&nbsp;&nbsp;</div>
+	 		<div class="line-b">
+	 			<div class="line-b-a"></div>
+	 		</div>
 	 	</div>
 	 	<div class="input-section">
 	 		<div class="empty"></div>
-	 		<div>카테고리 추가: <input type="text" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="확인"></div>
+	 		<div>카테고리 추가: <input type="text" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="확인" class="cate-btn"></div>
 	   </div>
    </div>
 <script type="text/javascript">
@@ -394,29 +468,29 @@ height: 600px;
 	const right = pageNation.querySelector('.arrow.right');
 	
 	
-	if(${pv.startPage} > 1){
+	if("${pv.startPage}" > 1){
 		left.href = '/app/notice/noticeList?p=${pv.startPage})-1';
 	}else{
 		left.classList.add('none-select');
 	}
 	
-	if(${pv.currentPage} != ${pv.maxPage}){
+	if("${pv.currentPage}" != "${pv.maxPage}"){
 		left.href = '/app/notice/noticeList?p=${pv.currentPage})+1';
 	}else{
 		right.classList.add('none-select');
 	}
 	
 
-	let page = ${pv.startPage};
+	let page = "${pv.startPage}";
 
 	for (let i = 0; i < numArr.length; i++) {
 		const num = numArr[i];
 		
-		if(page == ${pv.currentPage}){
+		if(page == "${pv.currentPage}"){
 			num.classList.add('current');
 		}
 		
-		if(page<1 || page > ${pv.maxPage}){
+		if(page<1 || page > "${pv.maxPage}"){
 			num.classList.add('p-none');
 		}else{
 			num.href = '/app/notice/noticeList?p='+page;
@@ -431,10 +505,73 @@ height: 600px;
 	
 	/*상단고정버튼  */
 	
+   $('input[name=activate]').click(function(){
 
-    function activate(){
-        let activate = $('input[name="activate"]').val();
-        let no = $('input[name="no"]').val();
+    
+
+ 
+       let activate = $('input[name="activate"]').val();
+       let valueArr = new Array();
+       let list = $("checkBoxBtn");
+       for(let i = 0; i <list.length; i++){
+           if(list[i].checked){
+               valueArr.push(list[i].value);
+               console.log(valueArr);
+           }
+       }
+    
+       var chk = confirm("활성화 하시겠습니까?");
+       $.ajax({
+           url:"/app/admin/notice/noticeListAdmin",
+           type:"post",
+           data:{"activate":activate,
+                   "valueArr":valueArr
+       },
+       success:function(){
+           alert('활성화되었습니다.');
+       },
+       error:function(){
+           alert('에러가 발생했습니다.');
+       }
+    
+       });
+   })
+
+   
+
+
+   $('input[name=deactivate]').click(function(){
+
+       let deactivate = $('input[name="deactivate"]').val();
+       let valueArr = new Array();
+       let list = $("checkBoxBtn");
+       for(let i = 0; i <list.length; i++){
+           if(list[i].checked){
+               valueArr.push(list[i].value);
+           }
+       }
+    
+       var chk = confirm("비활성화 하시겠습니까?");
+       $.ajax({
+           url:"/admin/notice/noticeListAdmin",
+           type:"post",
+           data:{"deactivate":deactivate,
+                   "valueArr":valueArr
+       },
+       success:function(){
+           alert('비활성화되었습니다.');
+       },
+       error:function(){
+           alert('에러가 발생했습니다.');
+       }
+    
+       });
+       
+   })
+
+   $('input[name=deleteList]').click(function(){
+
+        let deleteList = $('input[name="deleteList"]').val();
         let valueArr = new Array();
         let list = $("checkBoxBtn");
         for(let i = 0; i <list.length; i++){
@@ -443,16 +580,15 @@ height: 600px;
             }
         }
 
-        var chk = confirm("활성화 하시겠습니까?");
+        var chk = confirm("삭제 하시겠습니까?");
         $.ajax({
-            url:"/app/admin/notice/noticeListAdmin?p=${pv.currentPage}",
+            url:"/admin/notice/noticeListAdmin",
             type:"post",
-            data:{"activate":activate,
-                    "no":no,
+            data:{"deleteList":deleteList,
                     "valueArr":valueArr
         },
         success:function(){
-            alert('활성화되었습니다.');
+            alert('삭제되었습니다.');
         },
         error:function(){
             alert('에러가 발생했습니다.');
@@ -460,50 +596,10 @@ height: 600px;
 
         });
 
-
-    }
-
-    function deactivate(){
-        let deactivate = $('input[name="deactivate"]').val();
-        let no = $('input[name="no"]').val();
-        let valueArr = new Array();
-        let list = $("checkBoxBtn");
-        for(let i = 0; i <list.length; i++){
-            if(list[i].checked){
-                valueArr.push(list[i].value);
-            }
-        }
-
-        var chk = confirm("비활성화 하시겠습니까?");
-        $.ajax({
-            url:"/app/admin/notice/noticeListAdmin",
-            type:"post",
-            data:{"activate":activate,
-                    "no":no,
-                    "valueArr":valueArr
-        },
-        success:function(){
-            alert('비활성화되었습니다.');
-        },
-        error:function(){
-            alert('에러가 발생했습니다.');
-        }
-
-        });
-        
-	
-    }
- /*  //모달 띄우기
-    $('#popup').on('click',function(){
-      $('.popUp').addClass('show');
     })
     
-    // X 버튼으로 모달 닫기
-    $('#modal-closed').on('click',function(){
-      $('.blackBG').removeClass('show');
-    })
 
- */
+   
 	
 	</script>
 

@@ -51,25 +51,27 @@
                 <div class="notice-list-twoColored">
                     <div class="notice-group">
                         <c:forEach var="list" items="${list}" varStatus="status">
-                        	<c:if test="${status.index > 2 }">
-                        	 	<div class="notice-white"></a>
-                        	</c:if>
-                        	<c:if test="${status.index <= 2 }">
-                            	<div class="notice-green"></a>
-                        	</c:if>
-                                <div class="admin-id-etc">
-                                    <div class="admin-id" name="nick">${list.writer}</div>
-                                    <div class="enroll-date" name="enrollDate">${list.enrollDate}</div>
-                                </div>
-                                <div class="written-notice">
-                                    <div class="cate-notice" name="name">${list.cateName}</div>
-                                    <a href="/app/notice/noticeDetail?no=${list.no}"><div class="posted-notice" name="title">${list.title}</div></a>
-                                    <div class="views-etc">
-                                        <div class="views" name="hit"><img width="15px" height="15px" class="view" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">${list.hit}</div>
-                                        <div class="replies" name="cmt"><img width="15px" height="15px"class="message" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">${list.cmt}</div>
-                                    </div>
-                                </div>
-                            </div>
+                        	<div class="gathering-divs">
+	                        	<c:if test="${status.index > 2 }">
+	                        	 	<div class="notice-white"></a>
+	                        	</c:if>
+	                        	<c:if test="${status.index <= 2 }">
+	                            	<div class="notice-green"></a>
+	                        	</c:if>
+	                                <div class="admin-id-etc">
+	                                    <div class="admin-id" name="nick">${list.writer}</div>
+	                                    <div class="enroll-date" name="enrollDate">${list.enrollDate}</div>
+	                                </div>
+	                                <div class="written-notice">
+	                                    <div class="cate-notice" name="name">${list.cateName}</div>
+	                                    <a href="/app/notice/noticeDetail?no=${list.no}"><div class="posted-notice" name="title">${list.title}</div></a>
+	                                    <div class="views-etc">
+	                                        <div class="views" name="hit"><img width="15px" height="15px" class="view" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">${list.hit}</div>
+	                                        <div class="replies" name="cmt"><img width="15px" height="15px"class="message" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">${list.cmt}</div>
+	                                    </div>
+	                                </div>
+	                            </div>
+                        	</div>
                         </c:forEach>
                     </div>
                 </div>

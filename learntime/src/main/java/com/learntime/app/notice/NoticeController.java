@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.notice.service.NoticeService;
+import com.learntime.app.notice.vo.NoticeCmtVo;
 import com.learntime.app.notice.vo.NoticeVo;
 import com.learntime.app.question.vo.PageVo;
 import com.learntime.app.question.vo.Pagination;
@@ -90,6 +91,7 @@ public class NoticeController {
 			int hit = ns.updateHit(vo);
 			vo.setHit(hit);
 			vo.setCmt(cmtCnt);
+			
 			if(loginMember !=null) {
 				vo = ns.selectOne(vo);
 				m.addAttribute("vo",vo);
@@ -100,7 +102,25 @@ public class NoticeController {
 			
 			
 			
+			
 		}
+		@PostMapping("notice/noticeDetail")
+		public String inserCmt(NoticeCmtVo ncv,NoticeVo vo) {
+			
+			int nNo = vo.getNo();
+		    ncv.setNNo(nNo);
+			
+			int result = ns.insertCmt(ncv);
+			
+			if(result == 1) {
+				return "notice/noticeDetail";
+			}else {
+				return "common/errorPage";
+			}
+			
+			
+		}
+			
 		
 		// 공지사항 글쓰기 화면
 		

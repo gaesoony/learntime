@@ -69,7 +69,7 @@ public class NoticeAdminController {
 			
 			String activate = req.getParameter("activate");
 			String deactivate = req.getParameter("deactivate");
-			String delete = req.getParameter("delete");
+			String deleteList = req.getParameter("deleteList");
 			String[] valueArr = req.getParameterValues("valueArr");
 			int no =0;
 			for(int i = 0; i<valueArr.length; i++) {
@@ -84,7 +84,7 @@ public class NoticeAdminController {
 				result = ans.activate(vo);
 			}else if("비활성화".equals(deactivate)) {
 				result2 = ans.deactivate(vo);
-			}else if ("삭제".equals(delete)) {
+			}else if ("삭제".equals(deleteList)) {
 				result3 = ans.deleteOne(vo);
 			}
 			return "admin/notice/noticeListAdmin";

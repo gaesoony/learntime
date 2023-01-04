@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.learntime.app.notice.vo.NoticeCmtVo;
 import com.learntime.app.notice.vo.NoticeVo;
 import com.learntime.app.question.vo.PageVo;
 @Repository
@@ -56,6 +57,11 @@ public class NoticeDao {
 		RowBounds rb = new RowBounds(offset, limit);
 
 		return sst.selectList("noticeMapper.noticeListAll",vo,rb);
+	}
+
+
+	public int insertCmt(SqlSessionTemplate sst, NoticeCmtVo ncv) {
+		return sst.insert("noticeMapper.insertCmt",ncv);
 	}
 
 

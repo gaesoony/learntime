@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.learntime.app.notice.vo.NoticeCmtVo;
 import com.learntime.app.notice.vo.NoticeVo;
 import com.learntime.app.question.vo.PageVo;
 
@@ -24,6 +25,8 @@ public interface NoticeService {
 
 	public List<NoticeVo> selectNoticeListAll(NoticeVo vo, PageVo pv);
 
-	//public List<NoticeVo> selectsearchOne(NoticeVo vo, PageVo pv);
+	public int insertCmt(NoticeCmtVo ncv);
+
+	
 
 }

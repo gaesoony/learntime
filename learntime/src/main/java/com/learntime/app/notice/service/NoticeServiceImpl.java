@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.learntime.app.notice.dao.NoticeDao;
+import com.learntime.app.notice.vo.NoticeCmtVo;
 import com.learntime.app.notice.vo.NoticeVo;
 import com.learntime.app.question.vo.PageVo;
 
@@ -58,6 +59,11 @@ public class NoticeServiceImpl implements NoticeService{
 	public List<NoticeVo> selectNoticeListAll(NoticeVo vo, PageVo pv) {
 		
 		return dao.selectNoticeListAll(sst,vo,pv);
+	}
+
+	@Override
+	public int insertCmt(NoticeCmtVo ncv) {
+		return dao.insertCmt(sst,ncv);
 	}
 
 
