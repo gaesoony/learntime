@@ -603,12 +603,24 @@
 		WHERE NO = #{ctno}
 	</select>
 	<select id="selectBoardList" resultType="map">
-		SELECT B.NO, B.TITLE, M.NICK,TO_CHAR(CAST(B.ENROLL_DATE as DATE),'YYYY.MM.DD') ENROLL_DATE , B.HIT
+		SELECT ROWNUM, A.* FROM
+		(SELECT B.NO, B.TITLE, M.NICK,TO_CHAR(CAST(B.ENROLL_DATE as DATE),'YYYY.MM.DD') ENROLL_DATE , B.HIT
 		FROM GROUP_BOARD B
 		JOIN GROUP_BOARD_CATEGORY C ON B.CATE_NO = C.NO
 		JOIN MEMBER M ON M.NO = B.WRITER
 		WHERE B.CATE_NO = #{ctno} AND B.DELETE_YN = 'N'
-		ORDER BY B.NO
+		<if test="keyword != null and !''.equals(keyword)">
+			<if test="'title'.equals(status)">
+			AND B.TITLE LIKE '%${keyword}%'
+			</if>
+			<if test="'content'.equals(status)">
+			AND B.CONTENT LIKE '%${keyword}%'
+			</if>
+			<if test="'writer'.equals(status)">
+			AND M.NICK LIKE '%${keyword}%'
+			</if>
+		</if>
+		ORDER BY B.NO) A ORDER BY ROWNUM DESC
 	</select>
 	<insert id="boardWrite">
 		INSERT INTO GROUP_BOARD
@@ -620,4 +632,47 @@
 		JOIN MEMBER M ON M.NO = B.WRITER
 		WHERE B.NO = #{bno}
 	</select>
+	<update id="boardEdit">
+		UPDATE GROUP_BOARD
+		SET TITLE = #{title} , CONTENT = #{content}
+		WHERE NO = #{bno}
+	</update>
+	<update id="boardDelete">
+		UPDATE GROUP_BOARD
+		SET DELETE_YN = 'Y'
+		WHERE NO = #{bno}
+	</update>
+	<update id="updateBoardHit">
+		UPDATE GROUP_BOARD
+		SET HIT = HIT + 1
+		WHERE NO = #{bno}
+	</update>
+	<select id="selectBoardCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM GROUP_BOARD B
+		JOIN GROUP_BOARD_CATEGORY C ON B.CATE_NO = C.NO
+		JOIN MEMBER M ON M.NO = B.WRITER
+		WHERE B.CATE_NO = #{ctno} AND B.DELETE_YN = 'N'
+		<if test="keyword != null and !''.equals(keyword)">
+			<if test="'title'.equals(status)">
+			AND B.TITLE LIKE '%${keyword}%'
+			</if>
+			<if test="'content'.equals(status)">
+			AND B.CONTENT LIKE '%${keyword}%'
+			</if>
+			<if test="'writer'.equals(status)">
+			AND M.NICK LIKE '%${keyword}%'
+			</if>
+		</if>
+		ORDER BY B.NO
+	</select>
+	<update id="deleteMystudyCategory">
+		UPDATE GROUP_BOARD_CATEGORY SET
+		DELETE_YN = 'Y'
+		WHERE NO = #{ctno}
+	</update>
+	<insert id="insertMystudyCategory">
+		INSERT INTO GROUP_BOARD_CATEGORY
+		VALUES (SEQ_GROUP_BOARD_CATEGORY_NO.NEXTVAL, #{gno}, #{cateName}, 'N')
+	</insert>
 </mapper>

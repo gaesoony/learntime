@@ -53,8 +53,11 @@ pageEncoding="UTF-8"%>
                 </ul>
               </div>
               <div>
-                <a href="/app/mystudy/board/edit">수정</a>
-                <a href="">삭제</a>
+                <a
+                  href="${path}/mystudy/board/edit?gno=${groupOne.NO}&ctno=${ctno}&bno=${bno}"
+                  >수정</a
+                >
+                <a onclick="deleteBoard();">삭제</a>
               </div>
             </div>
             <div class="study-info-content">
@@ -95,6 +98,24 @@ pageEncoding="UTF-8"%>
                   placeholder: "최대 2048자까지 쓸 수 있습니다", //placeholder 설정
                 });
               });
+
+              function deleteBoard() {
+                Swal.fire({
+                  title: "게시글을 삭제하시겠습니까?",
+
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#3085d6",
+                  cancelButtonColor: "#d33",
+                  confirmButtonText: "삭제",
+                  cancelButtonText: "취소",
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    location.href =
+                      "${path}/mystudy/board/delete?ctno=${ctno}&gno=${groupOne.NO}&bno=${bno}";
+                  }
+                });
+              }
             </script>
           </main>
         </div>

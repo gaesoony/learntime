@@ -32,22 +32,22 @@ public class MystudyMainController {
 		map.put("mno", loginMember.getNo());
 		map.put("gno", gno);
 		
-		//그룹번호로 정보 select
+		//그룹번호로 정보 select (우측 사이드바)
 		Map<String, Object> groupOne = service.selectGroupOne(gno);
+		model.addAttribute("groupOne", groupOne);
 		
-		//내가 가입한 스터디 리스트 select
+		//내가 가입한 스터디 리스트 select (좌측 사이드바)
 		List<Map<String, String>> myGroupList = service.selectMyGroupList(loginMember.getNo());
 		model.addAttribute("myGroupList", myGroupList);	
 		
-		//map으로 그룹에 대해서 status가 뭔지 select
+		//map으로 그룹에 대해서 status가 뭔지 select (좌측 사이드바)
 		String myStatus = service.selectMyStatus(map);
-		
-		//게시판 카테고리 리스트 select
-		List<Map<String, Object>> cateList = service.selectCateList(map);
-		System.out.println(cateList);
-		model.addAttribute("groupOne", groupOne);
 		model.addAttribute("myStatus", myStatus);
+		
+		//게시판 카테고리 리스트 select (좌측 사이드바)
+		List<Map<String, Object>> cateList = service.selectCateList(map);
 		model.addAttribute("cateList", cateList);
+	
 		
 		return "mystudy/main";
 	}

@@ -362,7 +362,11 @@ public class StudyDaoImpl implements StudyDao{
 
 	@Override
 	public List<Map<String, Object>> selectBoardList(SqlSessionTemplate sst, Map map) {
-		return sst.selectList("studyMapper.selectBoardList", map);
+		PageVo pv = (PageVo) map.get("pv");
+		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
+		int limit = pv.getBoardLimit();
+		RowBounds rb = new RowBounds(offset, limit);
+		return sst.selectList("studyMapper.selectBoardList", map, rb);
 	}
 
 	@Override
@@ -374,6 +378,38 @@ public class StudyDaoImpl implements StudyDao{
 	public Map<String, Object> selectBoardDetail(SqlSessionTemplate sst, String bno) {
 		return sst.selectOne("studyMapper.selectBoardDetail", bno);
 	}
+
+	@Override
+	public int boardEdit(SqlSessionTemplate sst, Map map) {
+		return sst.update("studyMapper.boardEdit", map);
+	}
+
+	@Override
+	public int boardDelete(SqlSessionTemplate sst, String bno) {
+		return sst.update("studyMapper.boardDelete", bno);
+	}
+
+	@Override
+	public int updateBoardHit(SqlSessionTemplate sst, String bno) {
+		return sst.update("studyMapper.updateBoardHit", bno);
+	}
+
+	@Override
+	public int selectBoardCnt(SqlSessionTemplate sst, Map map) {
+		return sst.selectOne("studyMapper.selectBoardCnt", map);
+	}
+
+	@Override
+	public int deleteMystudyCategory(SqlSessionTemplate sst, String ctno) {
+		return sst.update("studyMapper.deleteMystudyCategory", ctno);
+	}
+
+	@Override
+	public int insertMystudyCategory(SqlSessionTemplate sst, Map map) {
+		return sst.insert("studyMapper.insertMystudyCategory", map);
+	}
+
+
 
 
 

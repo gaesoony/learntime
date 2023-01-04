@@ -1,5 +1,6 @@
 package com.learntime.app.mystudy.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -127,10 +128,30 @@ public class MystudyManageController {
 	
 	//게시판 템플릿 관리 참여멤버 관리 화면
 	@GetMapping("member")
-	public String member(Model model, String gno) {
+	public String member(Model model, String gno, HttpSession session) {
 		//그룹번호로 정보 select
 		Map<String, Object> groupOne = service.selectGroupOne(gno);
 		model.addAttribute("groupOne", groupOne);
+		
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		
+		Map map = new HashMap();
+		map.put("mno", loginMember.getNo());
+		map.put("gno", gno);
+		
+		
+		//내가 가입한 스터디 리스트 select (좌측 사이드바)
+		List<Map<String, String>> myGroupList = service.selectMyGroupList(loginMember.getNo());
+		model.addAttribute("myGroupList", myGroupList);	
+		
+		//map으로 그룹에 대해서 status가 뭔지 select (좌측 사이드바)
+		String myStatus = service.selectMyStatus(map);
+		model.addAttribute("myStatus", myStatus);
+		
+		//게시판 카테고리 리스트 select (좌측 사이드바)
+		List<Map<String, Object>> cateList = service.selectCateList(map);
+		model.addAttribute("cateList", cateList);
+		
 		return "mystudy/manage/memberTest";
 	}
 	
@@ -175,11 +196,12 @@ public class MystudyManageController {
 	
 	//가입신청 수락하기
 	@GetMapping("member/confirm")
-	public String memberConfirm(String rno, String gno) {
+	public String memberConfirm(String rno, String gno, HttpSession session) {
 		System.out.println("가입신청 수락 들어옴!");
 		int result = service.confirm(rno);
 		
 		if(result == 1) {
+			session.setAttribute("alertMsg", "가입 승인 완료");
 			return "redirect:/mystudy/manage/member?gno="+gno;
 			
 		}else {
@@ -203,11 +225,12 @@ public class MystudyManageController {
 	
 	//모임장 위임하기
 	@GetMapping("member/delegate")
-	public String memberDelegate(String rno, String gno) {
+	public String memberDelegate(String rno, String gno, HttpSession session) {
 		System.out.println("모임장 위임 들어옴");
 		int result = service.delegate(rno);
 		
 		if(result == 1) {
+			session.setAttribute("alertMsg", "모임장 위임 완료");
 			return "redirect:/mystudy/main?gno="+gno;
 			
 		}else {
@@ -217,7 +240,7 @@ public class MystudyManageController {
 	
 	//강퇴 또는 탈퇴시키기
 	@GetMapping("member/kick")
-	public String memberKick(String rejoin, String rno, String gno) {
+	public String memberKick(String rejoin, String rno, String gno, HttpSession session) {
 		System.out.println("강퇴 들어옴");
 		
 		int result = 0;
@@ -232,6 +255,7 @@ public class MystudyManageController {
 		}
 		
 		if(result == 1) {
+			session.setAttribute("alertMsg", "강퇴처리 완료");
 			return "redirect:/mystudy/manage/member?gno="+gno;
 			
 		}else {
@@ -243,11 +267,97 @@ public class MystudyManageController {
 	
 	//게시판 템플릿 관리 카테고리 수정 화면
 	@GetMapping("category")
-	public String category(Model model, String gno) {
+	public String category(Model model, String gno, HttpSession session) {
 		//그룹번호로 정보 select
 		Map<String, Object> groupOne = service.selectGroupOne(gno);
 		model.addAttribute("groupOne", groupOne);
+		
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		
+		Map map = new HashMap();
+		map.put("mno", loginMember.getNo());
+		map.put("gno", gno);
+		
+		
+		//내가 가입한 스터디 리스트 select (좌측 사이드바)
+		List<Map<String, String>> myGroupList = service.selectMyGroupList(loginMember.getNo());
+		model.addAttribute("myGroupList", myGroupList);	
+		
+		//map으로 그룹에 대해서 status가 뭔지 select (좌측 사이드바)
+		String myStatus = service.selectMyStatus(map);
+		model.addAttribute("myStatus", myStatus);
+		
+		//게시판 카테고리 리스트 select (좌측 사이드바)
+		List<Map<String, Object>> cateList = service.selectCateList(map);
+		model.addAttribute("cateList", cateList);		
+		
 		return "mystudy/manage/category";
+	}
+	
+	//게시판 템플릿 관리 카테고리 수정 DB
+	@PostMapping("category")
+	public String category(String gno, HttpSession session, String[] cateName, String[] cateNo) {
+		System.out.println(Arrays.toString(cateName));
+		System.out.println(Arrays.toString(cateNo));
+		
+		Map map = new HashMap();
+		map.put("gno", gno);
+		
+		//원래 카테고리 번호 리스트 
+		List<Map<String, Object>> cateList = service.selectCateList(map);
+		
+		//들어온 카테고리 번호를 원래 카테고리번호에서 삭제한다. -> 들어온 카테고리 번호는 이름만 업데이트하고 안들어온 카테고리번호는 delete
+		if(cateNo != null) {
+			for(int i=0; i<cateList.size(); i++) {
+				for(int j=0; j<cateNo.length ; j++) {
+					System.out.println(cateList.get(i).get("NO"));
+					System.out.println(cateNo[j]);
+					if(cateList.get(i).get("NO") == cateNo[j]) {
+						System.out.println("들어옴1");
+					}
+					if(String.valueOf(cateList.get(i).get("NO")).equals(cateNo[j])) {
+						System.out.println("리무브들어옴!");
+						cateList.remove(i);
+						break;
+					}
+				}
+			}
+		}
+		
+		//기존카테고리 다 삭제하고 추가한 카테고리도 없는 경우 -> cateList 모두 delete
+		if(cateNo == null) {
+			//모든 카테고리 delete 해야함
+		}
+		
+		//cateList 모두 delete
+		System.out.println("지워야됨:"+cateList);
+		
+		//들어온 카테고리 번호는 이름만 update해야함
+		Map updateCateMap = new HashMap();
+		
+		//들어온 카테고리 번호가 new면 insert해야함
+		Map insertCateMap = new HashMap();
+		
+		for(int i=0; i<cateNo.length; i++) {
+			if(!cateNo[i].equals("new")) {
+				updateCateMap.put(cateNo[i], cateName[i]);	
+			}
+			if(cateNo[i].equals("new")) {
+				insertCateMap.put(i, cateName[i]);	
+			}
+			
+		}
+		
+		int result = service.updateMystudyCategory(gno, cateList, updateCateMap, insertCateMap);
+		
+		if(result == 1) {
+			session.setAttribute("alertMsg", "카테고리 수정 완료");
+			return "redirect:/mystudy/manage/category?gno="+gno;
+			
+		}else {
+			return "common/errorPage";
+		}
+	
 	}
 
 }

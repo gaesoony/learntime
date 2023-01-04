@@ -570,4 +570,55 @@ public class StudyServiceImpl implements StudyService{
 		return dao.selectBoardDetail(sst, bno);
 	}
 
+	@Override
+	public int boardEdit(Map map) {
+		return dao.boardEdit(sst, map);
+	}
+
+	@Override
+	public int boardDelete(String bno) {
+		return dao.boardDelete(sst, bno);
+	}
+
+	@Override
+	public int updateBoardHit(String bno) {
+		return dao.updateBoardHit(sst, bno);
+	}
+
+	@Override
+	public int selectBoardCnt(Map map) {
+		return dao.selectBoardCnt(sst, map);
+	}
+
+	@Transactional
+	@Override
+	public int updateMystudyCategory(String gno, List<Map<String, Object>> cateList, Map updateCateMap,
+			Map insertCateMap) {
+		
+		int result1 = 0;
+		int result2 = 0;
+		int result3 = 0;
+		if(cateList.size() != 0) {
+			//delete
+			for(int i=0; i<cateList.size(); i++) {
+				String ctno = (String) cateList.get(i).get("NO");
+				result1 = dao.deleteMystudyCategory(sst, ctno);
+				if(result1 == 0) {
+					break;
+				}
+			}
+			
+			
+		}else {
+			result1 = 1;
+		}
+		
+		if(result1 == 1) {
+			
+			//updateCateMap
+		}
+		
+		return 0;
+	}
+
 }

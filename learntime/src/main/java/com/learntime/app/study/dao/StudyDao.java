@@ -177,6 +177,19 @@ public interface StudyDao {
 
 	public Map<String, Object> selectBoardDetail(SqlSessionTemplate sst, String bno);
 
+	public int boardEdit(SqlSessionTemplate sst, Map map);
+
+	public int boardDelete(SqlSessionTemplate sst, String bno);
+
+	public int updateBoardHit(SqlSessionTemplate sst, String bno);
+
+	public int selectBoardCnt(SqlSessionTemplate sst, Map map);
+
+	public int insertMystudyCategory(SqlSessionTemplate sst, Map m);
+
+	public int deleteMystudyCategory(SqlSessionTemplate sst, String ctno);
+
+
 
 
 

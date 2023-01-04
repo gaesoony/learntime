@@ -134,6 +134,19 @@ public interface StudyService {
 	public int boardWrite(Map map);
 
 	public Map<String, Object> selectBoardDetail(String bno);
+
+	public int boardEdit(Map map);
+
+	public int boardDelete(String bno);
+
+	public int updateBoardHit(String bno);
+
+	public int selectBoardCnt(Map map);
+
+	public int updateMystudyCategory(String gno, List<Map<String, Object>> cateList, Map updateCateMap,
+			Map insertCateMap);
+
+
 	
 	
 	//추후 추가 예정..
