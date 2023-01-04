@@ -254,8 +254,8 @@ public class BoardController {
 		// 댓글 조회
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 		CmtVo cv1 = new CmtVo();
-		cv.setBoardNo(boardNo);
-		cv.setMNo(loginMember.getNo());
+		cv1.setBoardNo(boardNo);
+		cv1.setMNo(loginMember.getNo());
 		
 		List<CmtVo> cvList = bs.selectCmtList(cv1);
 

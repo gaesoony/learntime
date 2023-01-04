@@ -71,19 +71,16 @@
 
                 <div id="mentoring-info2">
                     <div class="mentoring-info2">
-                        <div class="sub-title">멘토 직군</div>
-                        <select name="" id="">
-                            <option value="">선택</option>
-                            <option value=""></option>
-                        </select>
-                    </div>
-                    <div class="mentoring-info2">
                         <div class="sub-title">멘토 직무</div>
+
                         <select name="" id="">
+                            <!-- 직무 반복문 -->
                             <option value="">선택</option>
                             <option value=""></option>
+                            <!-- 직무 반복 끝 -->
                         </select>
                     </div>
+                    
                     <div class="mentoring-info2">
                         <div class="sub-title">멘토 경력</div>
                         <select name="" id="">
@@ -99,25 +96,148 @@
                         <input class="short-input" type="text">
                     </div>
                     <div class="mentoring-info2">
-                        <div class="sub-title">1회당 최대인원</div>
-                        <input class="short-input" type="text">
-                    </div>
-                    <div class="mentoring-info2">
                         <div class="sub-title">1회당 시간</div>
-                        <select name="" id="">
-                            <option value="">30분</option>
-                            <option value=""></option>
+                        <select name="" id="time-select">
+                            <option value="1" selected>30분</option>
+                            <option value="2">1시간</option>
+                            <option value="3">1시간30분</option>
+                            <option value="4">2시간</option>
+                            <option value="5">2시간30분</option>
+                            <option value="6">3시간</option>
+                            <option value="7">3시간30분</option>
+                            <option value="8">4시간</option>
                         </select>
                     </div>
                 </div>
 
                 <div id="schedule-title" class="sub-title">스케줄 설정</div>
-                <input id="schedule-input" type="text">
+               
+                <!-- 스케줄 -->
+                
+                <table id="schedule-table">
+                    <thead>
+                      <tr>
+                        <th id="time-slot"></th> <!-- Blank column for the time slots -->
+                        <th class="week">월요일</th>
+                        <th class="week">화요일</th>
+                        <th class="week">수요일</th>
+                        <th class="week">목요일</th>
+                        <th class="week">금요일</th>
+                        <th class="week">토요일</th>
+                        <th class="week">일요일</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
 
+                <!-- 스케줄 스크립트 -->
+
+                <script>
+                    const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+                    const numSlotsPerDay = 24 * 2; // 24 hours * 2 slots per hour
+        
+                    for (let i = 0; i < numSlotsPerDay; i++) {
+                        //시간표시 30분 단위로 24시간
+                        let timeSlotStart = Math.floor(i / 2) < 10 ? '0' + Math.floor(i / 2) + ':' + (i % 2 === 0 ? '00' : '30') : Math.floor(i / 2) + ':' + (i % 2 === 0 ? '00' : '30');
+                        let timeSlotEnd = Math.floor((i + 1) / 2) < 10 ? '0' + Math.floor((i + 1) / 2) + ':' + ((i + 1) % 2 === 0 ? '00' : '30') : Math.floor((i + 1) / 2) + ':' + ((i + 1) % 2 === 0 ? '00' : '30');
+                        // let timeSlotLabel = timeSlotStart + '-' + timeSlotEnd;
+
+                        let timeSlotLabel = timeSlotStart;
+
+
+            
+                        let row = $('<tr>');
+                        let timeSlotColumn = $('<td>').text(timeSlotLabel);
+                        row.append(timeSlotColumn);
+        
+                        for (let j = 0; j < days.length; j++) {
+                            let timeSlotValue = days[j] + '-' + timeSlotStart + '-' + timeSlotEnd;
+                            let checkboxId = days[j] + '-' + (i + 1);
+                            
+                            let checkbox = $('<input>', {
+                            type: 'checkbox',
+                            name: 'time',
+                            id: checkboxId,
+                            value: timeSlotValue
+                            });
+                            
+                            let label = $('<label>', {
+                            for: checkboxId,
+                            text: ''
+                            });
+            
+                            let cell = $('<td>', {
+                            class: 'time-slot'
+                            });
+                            cell.append(checkbox);
+                            cell.append(label);
+                            row.append(cell);
+                        }
+        
+                    $('#schedule-table tbody').append(row);
+                    }
+
+                    // 체크박스 클릭시 색상변경
+                    $('input[type="checkbox"]').change(function(){
+                        if($(this).is(":checked")){
+                            $(this).next().addClass('back-green');
+                        }else{
+                            $(this).next().removeClass('back-green');
+                        }
+                    });
+
+                    // 스케줄
+                    $(document).ready(function() {
+                        //초기값 1
+                        var selectedTime = 1;
+                    
+                        //선택한 value값 가져오기
+                        $('#time-select').on('change', function() {
+                            selectedTime = $(this).val();
+
+                            // 초기화 알림
+                            if (confirm("스케줄이 초기화 됩니다. 초기화 하시겠습니까?")) {
+                                // 초기화
+                                $('input[type="checkbox"]').prop('checked', false);
+                                $('input[type="checkbox"]').next().removeClass('back-green');
+                            } else {
+                                // 초기화 취소
+                                return false;
+                            }
+
+                        });
+
+                        $('input[type="checkbox"]').change(function() {
+                            // 요일가져오기
+                            var Day = $(this).val().substring(0, 3);
+
+                            // 숫자들고오기
+                            var num = $(this).attr('id').split('-')[1];
+
+                            // 시간 선택값만큼 채워주기
+                            for (var i = 0; i < selectedTime; i++) {
+                                checkboxId = Day + '-' + (Number(num) + i);
+                                $('#' + checkboxId).prop('checked', true);
+                                $('#' + checkboxId).next().addClass('back-green');
+                            }
+                                
+                        });
+
+                        
+
+                    });
+                    
+
+                </script>
+
+
+               
                 <div id="schedule-title" class="sub-title">멘토링 상세 설명</div>
                 <textarea class="summernote" name="editordata"></textarea>
 
             </div>
+
+            <!--  -->
 
             <div id="welcome-title" class="title">
                 <span>환영 공지</span>
