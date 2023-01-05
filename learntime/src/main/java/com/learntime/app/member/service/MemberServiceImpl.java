@@ -45,11 +45,11 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVo login(MemberVo vo) {
 		
 		MemberVo dbMember=memberDao.login(sst,vo);
-		List<BadgeVo> myBadge= badgeDao.listSelectMember(sst, dbMember.getNo());
-		dbMember.setBadges(myBadge);
 		boolean isMatch=enc.matches(vo.getPwd(), dbMember.getPwd());
 		
 		if (isMatch) {
+			List<BadgeVo> myBadge= badgeDao.listSelectMember(sst, dbMember.getNo());
+			dbMember.setBadges(myBadge);
 			return dbMember;
 		}else {
 			return null;
