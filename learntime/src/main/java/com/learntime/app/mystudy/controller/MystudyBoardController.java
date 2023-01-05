@@ -41,7 +41,7 @@ public class MystudyBoardController {
 		
         int listCount = service.selectBoardCnt(map);
         int currentPage = Integer.parseInt(pno);
-        int pageLimit = 5;
+        int pageLimit = 10;
         int boardLimit = 10;
        
         PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);

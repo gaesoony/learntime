@@ -699,4 +699,43 @@ public class StudyServiceImpl implements StudyService{
 		return groupList;
 	}
 
+	@Override
+	public List<Map<String, Object>> selectAdminGroupList(Map map) {
+		
+		//그룹 리스트 조회
+		List<Map<String, Object>> groupList = dao.selectAdminGroupList(sst, map);
+		//log.info("스터디/프로젝트 정보 : "+groupList);
+		
+		//그룹 리스트 결과 
+		for(int i=0; i<groupList.size(); i++) {			
+			String gno = String.valueOf(groupList.get(i).get("NO"));
+			
+			//그룹 번호로 기술스택 리스트 조회
+			List<Map<String, String>> techStackList = dao.selectTechStackListByGno(sst, gno);
+			groupList.get(i).put("techStackList", techStackList);
+			
+		}
+		
+		return groupList;
+	}
+
+	@Override
+	public int selectAdminGroupCnt(Map map) {
+		return dao.selectAdminGroupCnt(sst, map);
+	}
+
+	@Transactional
+	@Override
+	public int deleteGroupList(String[] group) {
+		
+		int result = 0;
+		for(int i=0; i<group.length; i++) {
+			result = dao.deleteGroup(sst, group[i]);	
+			if(result == 0) {
+				break;
+			}
+		}
+		return result;
+	}
+
 }

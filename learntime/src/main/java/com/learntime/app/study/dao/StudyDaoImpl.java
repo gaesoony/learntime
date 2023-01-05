@@ -434,6 +434,20 @@ public class StudyDaoImpl implements StudyDao{
 		return sst.selectList("studyMapper.selectMainGroupList");
 	}
 
+	@Override
+	public List<Map<String, Object>> selectAdminGroupList(SqlSessionTemplate sst, Map map) {
+		PageVo pv = (PageVo) map.get("pv");
+		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
+		int limit = pv.getBoardLimit();
+		RowBounds rb = new RowBounds(offset, limit);
+		return sst.selectList("studyMapper.selectAdminGroupList", map, rb);
+	}
+
+	@Override
+	public int selectAdminGroupCnt(SqlSessionTemplate sst, Map map) {
+		return sst.selectOne("studyMapper.selectAdminGroupCnt", map);
+	}
+
 
 
 

@@ -215,6 +215,54 @@
 		        GROUP BY G_NO) L ON L.G_NO = G.NO
 		WHERE G.DELETE_YN = 'N' ORDER BY G.NO DESC
 	</select>
+	<select id="selectAdminGroupList" resultType="map">
+		SELECT *
+		FROM GROUP_LIST
+		WHERE NO LIKE '%%'
+		<if test="keyword != null and 'title'.equals(category)">
+			AND TITLE LIKE '%${keyword}%'		
+		</if>
+		<if test="keyword != null and 'content'.equals(category)">
+			AND INTRO LIKE '%${keyword}%'		
+		</if>
+		<if test="keyword != null and 'writer'.equals(category)">
+			AND REP_NICK LIKE '%${keyword}%'		
+		</if>
+		<if test="keyword != null and 'delete'.equals(status)">
+			<![CDATA[AND (DELETE_YN = 'Y' AND LIKE_CNT > -10)]]>
+		</if>
+		<if test="keyword != null and 'enable'.equals(status)">
+		<![CDATA[AND (DELETE_YN = 'N' AND LIKE_CNT > -10)]]>
+		</if>
+		<if test="keyword != null and 'disable'.equals(status)">
+			<![CDATA[AND (LIKE_CNT <= -10) ]]>     
+		</if>
+		ORDER BY NO DESC
+	</select>
+	<select id="selectAdminGroupCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM GROUP_LIST
+		WHERE NO LIKE '%%'
+		<if test="keyword != null and 'title'.equals(category)">
+			AND TITLE LIKE '%${keyword}%'		
+		</if>
+		<if test="keyword != null and 'content'.equals(category)">
+			AND INTRO LIKE '%${keyword}%'		
+		</if>
+		<if test="keyword != null and 'writer'.equals(category)">
+			AND REP_NICK LIKE '%${keyword}%'		
+		</if>
+		<if test="keyword != null and 'delete'.equals(status)">
+			<![CDATA[AND (DELETE_YN = 'Y' AND LIKE_CNT > -10)]]>
+		</if>
+		<if test="keyword != null and 'enable'.equals(status)">
+		<![CDATA[AND (DELETE_YN = 'N' AND LIKE_CNT > -10)]]>
+		</if>
+		<if test="keyword != null and 'disable'.equals(status)">
+			<![CDATA[AND (LIKE_CNT <= -10) ]]>     
+		</if>
+		ORDER BY NO DESC
+	</select>
 	<select id="selectTechStackListByGno" resultType="map">
 		SELECT T.NO, T.NAME, T.IMG_PATH
 		FROM GROUP_TECH_STACK G

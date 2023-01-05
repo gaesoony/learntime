@@ -485,7 +485,7 @@ pageEncoding="UTF-8"%>
         <div class="the-middle">
           <div class="mentoring-title">
             <div class="empty"></div>
-            <div class="mentoring-title-icon"><span class="bold500">이 순간에도</span><span>&nbsp;공부하는</span><span class="main-color">&nbsp;LEARNER&nbsp;</span><img width="30px" height="30px" src="https://cdn-icons-png.flaticon.com/128/7991/7991313.png"></div>
+            <div class="mentoring-title-icon"><span class="bold500">🔥&nbsp;이 순간에도</span><span>&nbsp;공부하는</span><span class="main-color">&nbsp;LEARNER&nbsp;🔥</span></div>
             <div class="mentoring-content-more">더보기<img width="12px" height="13px" src="https://cdn-icons-png.flaticon.com/128/271/271228.png"></div>
         </div>
             <div class="studying-content">

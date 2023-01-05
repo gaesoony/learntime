@@ -152,6 +152,12 @@ public interface StudyService {
 
 	public List<Map<String, Object>> selectMainGroupList();
 
+	public List<Map<String, Object>> selectAdminGroupList(Map map);
+
+	public int selectAdminGroupCnt(Map map);
+
+	public int deleteGroupList(String[] group);
+
 
 	
 	

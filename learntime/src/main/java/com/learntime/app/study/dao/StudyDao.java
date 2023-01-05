@@ -199,6 +199,11 @@ public interface StudyDao {
 
 	public List<Map<String, Object>> selectMainGroupList(SqlSessionTemplate sst);
 
+	public List<Map<String, Object>> selectAdminGroupList(SqlSessionTemplate sst, Map map);
+
+	public int selectAdminGroupCnt(SqlSessionTemplate sst, Map map);
+
+
 
 
 
