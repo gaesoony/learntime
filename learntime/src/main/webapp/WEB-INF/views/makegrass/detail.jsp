@@ -719,7 +719,7 @@
                             <td><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></td>
                             <td class="nick">${mvo.writer}</td>
                             <td class="enrollDate">${mvo.enrollDate}</td>
-                            <td class="heart"><i class="fa-solid fa-thumbs-up"></i> 25</td>
+                            <td class="heart"><i class="fa-solid fa-thumbs-up"></i> ${mvo.likes}</td>
                             <td class="thumbsup"><i class="fa-regular fa-thumbs-up"></i></td>
                             <td class="thumbsdown"><i class="fa-regular fa-thumbs-down"></i></td>
                             <td class="bookmark"><i class="fa-regular fa-bookmark"></i></td>
@@ -788,13 +788,13 @@
         <div class="sidebarbox">
             <div class="side">
                 <div class="si">
-                    <div><i class="fa-solid fa-thumbs-up"></i>&nbsp 25</div>
+                    <div><i class="fa-solid fa-thumbs-up"></i>&nbsp ${mvo.likes}</div>
                 </div>
                 <div class="si">
-                    <div><i class="fa-solid fa-thumbs-down"></i>&nbsp 12</div>
+                    <div><i class="fa-solid fa-thumbs-down"></i>&nbsp ${mvo.hates}</div>
                 </div>
                 <div class="si">
-                    <i class="fa-solid fa-comment"></i>&nbsp 13
+                    <i class="fa-solid fa-comment"></i>&nbsp ${mvo.replyCnt}
                 </div>
             </div>
         </div>

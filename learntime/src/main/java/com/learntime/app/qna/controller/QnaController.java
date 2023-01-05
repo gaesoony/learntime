@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.qna.service.QnaService;
@@ -91,9 +92,9 @@ public class QnaController {
 	
 	//게시글 수정 (화면)
 	@GetMapping("/edit")
-	public String edit(String no, Model model) {
+	public String edit(@RequestParam("qno")String qno, Model model) { 
 		
-		QnaVo qvo = service.detail(no);
+		QnaVo qvo = service.detail(qno);
 		model.addAttribute("qvo", qvo);
 		
 		System.out.println("컨트롤러에서 화면 : " + qvo);
@@ -110,7 +111,7 @@ public class QnaController {
 		System.out.println("컨트롤러에서 DB 쪽 : " + result);
 		
 		if(result == 1) {
-			return "redirect:/qna/detail?no="+vo.getNo();
+			return "redirect:/qna/detail?qno="+vo.getNo();
 		}else {
 			return "common/errorPage";
 		}

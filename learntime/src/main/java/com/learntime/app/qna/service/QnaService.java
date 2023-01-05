@@ -23,8 +23,10 @@ public interface QnaService {
 	//게시글 상세조회
 	public QnaVo detail(String no);
 
+	//게시글 수정
 	public int edit(QnaVo vo);
 
+	//게시글 삭제
 	public int delete(String qno);
 
 	
