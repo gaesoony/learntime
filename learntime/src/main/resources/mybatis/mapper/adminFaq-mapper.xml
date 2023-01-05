@@ -14,11 +14,12 @@
       
  	  SELECT F.NO,F.CATE_NO, C.NAME as CATE_NAME,F.TITLE,F.ENROLL_DATE, M.NICK AS WRITER FROM FAQ F 
       JOIN COMMON_CATEGORY C ON F.CATE_NO= C.NO JOIN MEMBER M ON M.NO = F.WRITER
-      WHERE CATE_NO = ${cateNo} AND DELETE_YN = 'N' <if test="keyword !=null and keyword != ''">
+      WHERE DELETE_YN = 'N'<if test = "vo.cateNo != null and vo.cateNo != '' "> AND CATE_NO = ${cateNo}</if> 
+      <if test="keyword !=null and keyword != ''">
 		AND  ${category} LIKE '%${keyword}%' 
 	  </if>
       
-      ORDER BY F.ENROLL_DATE DESC 
+      ORDER BY F.NO DESC 
        
       
   </select>
@@ -33,6 +34,11 @@
     JOIN COMMON_CATEGORY C ON F.CATE_NO= C.NO JOIN MEMBER M ON M.NO = F.WRITER WHERE
     F.NO = #{no}
   </select>
+  <update id="deleteOne">
+		UPDATE FAQ
+		SET DELETE_YN = 'Y'
+		WHERE NO = #{no}
+	</update>
   
  
  

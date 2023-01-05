@@ -1,6 +1,7 @@
 package com.learntime.app.faq.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +33,9 @@ public class FaqServiceImpl implements FaqService {
 	}
 
 	@Override
-	public List<FaqVo> selectFaqList(FaqVo vo, PageVo pv) {
+	public List<FaqVo> selectFaqList(Map map) {
 
-		return dao.selectFaqList(sst,vo,pv);
+		return dao.selectFaqList(sst,map);
 	}
 
 	@Override

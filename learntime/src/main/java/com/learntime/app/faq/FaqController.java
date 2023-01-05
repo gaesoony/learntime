@@ -1,6 +1,8 @@
 package com.learntime.app.faq;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -40,11 +42,18 @@ public class FaqController {
 		int pageLimit = 5;
 		pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 		
+		int cateNo = vo.getCateNo();
 		
-		List<FaqVo> list= fs.selectFaqList(vo,pv);
+		
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("vo",vo );
+		map.put("pv",pv);
+		
+		List<FaqVo> list= fs.selectFaqList(map);
 		m.addAttribute("pv",pv);
 		m.addAttribute("list",list);
-		
+		m.addAttribute("cateNo",vo.getCateNo());
 		m.addAttribute("p",pv.getP());
 		
 		

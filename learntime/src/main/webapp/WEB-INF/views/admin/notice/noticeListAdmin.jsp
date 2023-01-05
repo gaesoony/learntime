@@ -8,7 +8,7 @@
 <!-- <link rel="stylesheet" href="/app/.css"> -->
 <title>Insert title here</title>
 </head>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> -->
+<<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
@@ -357,14 +357,86 @@ background-color: #e9fde9;
 
 }
 
-.notice-white{
+/*페이징  */
 
-
+.page-notice{
+	margin-top: 50px;
 }
-.gathering-divs{
-border-bottom:2px solid lightgray;
 
+.page-question{
+	margin:0 auto;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	
 }
+	#page-nation{
+        list-style: none;
+        display: flex;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    #page-nation li{
+        display: inline;
+        text-align: center;
+        margin:0 10px;
+      
+    }
+/* 페이지 버튼~ */
+    #page-nation li a{
+        text-decoration: none;
+        color: #999999;
+        font-size: 20px;
+        font-weight:900;
+        
+
+    }
+
+    #page-nation .first:hover,  #page-nation .last:hover,  #page-nation .right:hover,  #page-nation .left:hover{
+        color:#5ECC80;
+    }
+
+
+    #page-nation a:active{
+        cursor: default;
+        color: white;
+    }
+
+    #page-nation .num{
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        border-radius: 100%;
+        line-height: 30px;
+         text-align: center;
+    }
+
+    #page-nation .num:hover{
+        background-color: #5ECC80;
+        color: white;
+       
+    }
+
+    #page-nation .num:active{
+    	width:40px;
+    	height:40px;
+    	border-radius:1rem;
+        background-color: #5ECC80;
+        cursor: pointer;
+    }
+    
+     .pageBtn{
+    	width:40px;
+    	height:40px;
+    	border: 3px solid lightgray;
+    	border-radius:1rem;
+    	line-height: 40px;
+    	
+    }
+
+
 </style>
 <body>
 	<%@include file="/WEB-INF/views/common/admin-side.jsp"%>
@@ -401,28 +473,28 @@ border-bottom:2px solid lightgray;
             <div class="notice-list">
                 <div class="notice-list-twoColored">
                     <div class="notice-group">
-                        <c:forEach var="list" items="${list}">
-                        	<div class="gathering-divs">
+                        <c:forEach var="list" items="${list}" varStatus="status">
+                        	<div class="gathering-divs"> 
 	                        	<c:if test="${status.index > 2 }">
 	                        	 	<div class="notice-white"></a>
 	                        	</c:if>
 	                        	<c:if test="${status.index <= 2 }">
 	                            	<div class="notice-green"></a>
 	                        	</c:if>
-	                                <div class="admin-id-etc">
+                            		<div class="admin-id-etc">
 	                                    <div class="admin-id" name="writer">${list.writer}</div>
 	                                    <div class="enroll-date" name=enrollDate>${list.enrollDate}</div>
 	                                </div>
 	                                <div class="written-notice">
-	                                    <div class="checkBoxBtn-notice"><input type="checkbox"  id="checkBoxBtn"></div>
+	                                    <div class="checkBoxBtn-notice"><input type="checkbox"  id="checkBoxBtn" value="${list.no}"></div>
 	                                    <div class="cate-notice" name="name">${list.cateName}</div>
 	                                    <a href = "app/admin/notice/noticeDetailAdmin?no=${list.no}"><div class="posted-notice" name="title">${list.title}</div></a>
 	                                    <div class="views-etc">
 	                                        <div class="views" name="hit"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">&nbsp; ${list.hit }</div>
 	                                        <div class="replies" name="cmt"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">&nbsp; ${list.cmt}</div>
 	                                    </div>
-	                                </div>
-                                </div>
+                                	</div>
+                             </div> 
                         </c:forEach>
                     </div>
                 </div>
@@ -430,15 +502,15 @@ border-bottom:2px solid lightgray;
             <div class="page-notice">
             	<div class="page-question">
 				  	<ul id="page-nation">
-						<li><a href="/app/notice/noticeList?p=1&cateNo=0" class="first"><<</a></li>
-						<li><a class="arrow left"><</a></li>
-						<li><a class="num"></a></li>
-						<li><a class="num"></a></li>
-						<li><a class="num"></a></li>
-						<li><a class="num"></a></li>
-						<li><a class="num"></a></li>
-						<li><a class="arrow right">></a></li>
-						<li><a href="/app/notice/noticeList?p=${pv.maxPage}&cateNo=0" class="last">>></a></li>
+						<li><div class="pageBtn"><a href="/app/notice/noticeList?p=1&cateNo=0" class="first"><<</a></div></li>
+						<li><div class="pageBtn"><a class="arrow left"><</a></div></li>
+						<li><div class="pageBtn"><a class="num"></a></div></li> 
+						<li><div class="pageBtn"><a class="num"></a></div></li>
+						<li><div class="pageBtn"><a class="num"></a></div></li>
+						<li><div class="pageBtn"><a class="num"></a></div></li>
+						<li><div class="pageBtn"><a class="num"></a></div></li>
+						<li><div class="pageBtn"><a class="arrow right">></a></div></li>
+						<li><div class="pageBtn"><a href="/app/notice/noticeList?p=${pv.maxPage}&cateNo=0" class="last">>></a></div></li>
 					</ul>
 			    </div>
             </div>
@@ -461,6 +533,8 @@ border-bottom:2px solid lightgray;
 	 		<div>카테고리 추가: <input type="text" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="확인" class="cate-btn"></div>
 	   </div>
    </div>
+   
+   
 <script type="text/javascript">
 	const pageNation = document.querySelector('#page-nation');
 	const numArr = pageNation.querySelectorAll('.num');
@@ -483,7 +557,7 @@ border-bottom:2px solid lightgray;
 
 	let page = "${pv.startPage}";
 
-	for (let i = 0; i < numArr.length; i++) {
+	for (let i = 0; i <= numArr.length; i++) {
 		const num = numArr[i];
 		
 		if(page == "${pv.currentPage}"){
@@ -491,7 +565,9 @@ border-bottom:2px solid lightgray;
 		}
 		
 		if(page<1 || page > "${pv.maxPage}"){
+			console.log(num);
 			num.classList.add('p-none');
+			
 		}else{
 			num.href = '/app/notice/noticeList?p='+page;
 		}
@@ -507,18 +583,18 @@ border-bottom:2px solid lightgray;
 	
    $('input[name=activate]').click(function(){
 
-    
-
- 
        let activate = $('input[name="activate"]').val();
+       console.log(activate);
        let valueArr = new Array();
-       let list = $("checkBoxBtn");
+       let list = $("#checkBoxBtn:checked");
+       
        for(let i = 0; i <list.length; i++){
            if(list[i].checked){
                valueArr.push(list[i].value);
-               console.log(valueArr);
+               
            }
        }
+       console.log(valueArr);
     
        var chk = confirm("활성화 하시겠습니까?");
        $.ajax({
@@ -527,7 +603,7 @@ border-bottom:2px solid lightgray;
            data:{"activate":activate,
                    "valueArr":valueArr
        },
-       success:function(){
+       success:function(x){
            alert('활성화되었습니다.');
        },
        error:function(){
@@ -544,21 +620,22 @@ border-bottom:2px solid lightgray;
 
        let deactivate = $('input[name="deactivate"]').val();
        let valueArr = new Array();
-       let list = $("checkBoxBtn");
+       let list = $("#checkBoxBtn:checked");
        for(let i = 0; i <list.length; i++){
            if(list[i].checked){
                valueArr.push(list[i].value);
+               console.log(valueArr);
            }
        }
     
        var chk = confirm("비활성화 하시겠습니까?");
        $.ajax({
-           url:"/admin/notice/noticeListAdmin",
+           url:"/app/admin/notice/noticeListAdmin",
            type:"post",
            data:{"deactivate":deactivate,
                    "valueArr":valueArr
        },
-       success:function(){
+       success:function(x){
            alert('비활성화되었습니다.');
        },
        error:function(){
@@ -573,7 +650,7 @@ border-bottom:2px solid lightgray;
 
         let deleteList = $('input[name="deleteList"]').val();
         let valueArr = new Array();
-        let list = $("checkBoxBtn");
+        let list = $("#checkBoxBtn:checked");
         for(let i = 0; i <list.length; i++){
             if(list[i].checked){
                 valueArr.push(list[i].value);
@@ -582,12 +659,12 @@ border-bottom:2px solid lightgray;
 
         var chk = confirm("삭제 하시겠습니까?");
         $.ajax({
-            url:"/admin/notice/noticeListAdmin",
+            url:"/app/admin/notice/noticeListAdmin",
             type:"post",
             data:{"deleteList":deleteList,
                     "valueArr":valueArr
         },
-        success:function(){
+        success:function(x){
             alert('삭제되었습니다.');
         },
         error:function(){

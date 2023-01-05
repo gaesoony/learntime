@@ -86,7 +86,7 @@
                     <div class="lists">
                         <div class="list" id="boldline">
                             <div class="notice-title">공지사항</div>
-                            <div class="arrow"><img width="50px" height="50px" src="https://cdn-icons-png.flaticon.com/128/271/271228.png"></div>
+                            <a href="/app/notice/noticeList?p=1&cateNo=0"><div class="arrow"><img width="50px" height="50px" src="https://cdn-icons-png.flaticon.com/128/271/271228.png"></div></a>
                         </div>
                         <div class="list" id="list-one">º 런타임에서 알려드립니다.</div>
                         <div class="list" id="list-two">º 런타임 이용약관 / 개인정보 처리방침 안내</div>
@@ -100,7 +100,7 @@
                         <div class="faq-title">런타임에게 궁금한 점을<br>문의게시판에 남겨주세요!</div>
                         <div class="faq-content"><u>자주 묻는 질문들은 FAQ에서도 확인이 가능합니다.</u><img width="20px" height="20px" src="https://cdn-icons-png.flaticon.com/128/187/187130.png"></div>
                         <div class="faq-box">
-                            <div id="personal-faq-box">1:1 문의하기</div>
+                            <a href="/app/faq/faqList?p=1&cateNo=0"><div id="personal-faq-box">1:1 문의하기</div></a>
                         </div>
                     </div>
                 </div>

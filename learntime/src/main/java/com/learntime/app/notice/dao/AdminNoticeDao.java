@@ -1,6 +1,7 @@
 package com.learntime.app.notice.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -56,5 +57,7 @@ public class AdminNoticeDao {
 	public int updateOne3(SqlSessionTemplate sst, NoticeVo vo) {
 		return sst.update("adminNoticeMapper.delete",vo);
 	}
+
+	
 
 }

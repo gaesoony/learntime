@@ -1,6 +1,7 @@
 package com.learntime.app.notice.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,5 +66,7 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 	public int deleteOne(NoticeVo vo) {
 		return adao.updateOne3(sst,vo);
 	}
+
+	
 
 }

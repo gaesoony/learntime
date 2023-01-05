@@ -86,29 +86,29 @@
 	const right = pageNation.querySelector('.arrow.right');
 	
 	
-	if(${pv.startPage} > 1){
+	if("${pv.startPage}" > 1){
 		left.href = '/app/faq/faqList?p=${pv.startPage})-1';
 	}else{
 		left.classList.add('none-select');
 	}
 	
-	if(${pv.currentPage} != ${pv.maxPage}){
+	if("${pv.currentPage}" != "${pv.maxPage}"){
 		left.href = '/app/faq/faqList?p=${pv.currentPage})+1';
 	}else{
 		right.classList.add('none-select');
 	}
 	
 
-	let page = ${pv.startPage};
+	let page = "${pv.startPage}";
 
 	for (let i = 0; i < numArr.length; i++) {
 		const num = numArr[i];
 		
-		if(page == ${pv.currentPage}){
+		if(page == "${pv.currentPage}"){
 			num.classList.add('current');
 		}
 		
-		if(page<1 || page > ${pv.maxPage}){
+		if(page<1 || page > "${pv.maxPage}"){
 			num.classList.add('p-none');
 		}else{
 			num.href = '/app/faq/faqList?p='+page;

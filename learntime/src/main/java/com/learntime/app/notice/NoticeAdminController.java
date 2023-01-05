@@ -1,6 +1,9 @@
 package com.learntime.app.notice;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.notice.service.AdminNoticeService;
@@ -42,7 +47,7 @@ public class NoticeAdminController {
 			
 
 			List<NoticeVo> list= null;
-			if(vo.getCateNo()==0)  {
+			if(vo.getCateNo()==0 )  {
 				
 				list= ans.selectNoticeListAll(vo,pv);
 				
@@ -65,18 +70,28 @@ public class NoticeAdminController {
 		}
 		
 		@PostMapping("noticeListAdmin")
-		public String noticeListAdmin(HttpServletRequest req,NoticeVo vo) {
+		@ResponseBody
+		public String noticeListAdmin(HttpServletRequest req,NoticeVo vo,String activate,@RequestParam(value="valueArr[]") List<Integer> valueArr) {
 			
-			String activate = req.getParameter("activate");
+//			String activate = req.getParameter("activate");
 			String deactivate = req.getParameter("deactivate");
 			String deleteList = req.getParameter("deleteList");
-			String[] valueArr = req.getParameterValues("valueArr");
+//			String[] Arr = req.getParameterValues("valueArr");
 			int no =0;
-			for(int i = 0; i<valueArr.length; i++) {
-				no= Integer.parseInt(valueArr[i]);
-				
+			
+			List<NoticeVo> list = new ArrayList<NoticeVo>();
+			for(int i = 0; i<valueArr.size(); i++) {
+				no = valueArr.get(i);
 				vo.setNo(no);
+				
+				
 			}
+//			System.out.println(valueArr);
+			
+//			Map<String,Object> map = new HashMap<String,Object>();
+//			map.put("vo",vo);
+//			map.put("valueArr",valueArr);
+			
 			int result = 0;
 			int result2 = 0;
 			int result3 = 0;
@@ -87,7 +102,10 @@ public class NoticeAdminController {
 			}else if ("삭제".equals(deleteList)) {
 				result3 = ans.deleteOne(vo);
 			}
-			return "admin/notice/noticeListAdmin";
+			
+			
+			
+			return "";
 			
 		}
 		

@@ -1,12 +1,14 @@
 package com.learntime.app.faq.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.learntime.app.faq.vo.FaqVo;
+import com.learntime.app.notice.vo.NoticeVo;
 import com.learntime.app.question.vo.PageVo;
 
 @Repository
@@ -16,18 +18,22 @@ public class AdminFaqDao {
 		return sst.selectOne("adminFaqMapper.selectCount");
 	}
 
-	public List<FaqVo> selectFaqList(SqlSessionTemplate sst, FaqVo vo, PageVo pv) {
+	public List<FaqVo> selectFaqList(SqlSessionTemplate sst, Map map) {
+		
+		PageVo pv = (PageVo)map.get("pv");
 		int offset = (pv.getCurrentPage() -1)* pv.getBoardLimit();
 		int limit = pv.getBoardLimit();
-//		RowBounds rb = new RowBounds(offset, limit);
-		List<FaqVo> list = sst.selectList("adminFaqMapper.faqList",vo);
-		System.out.println(list);
-		System.out.println(vo);
-		return list;
+		RowBounds rb = new RowBounds(offset, limit);
+		
+		return sst.selectList("adminFaqMapper.faqList",map,rb);
 	}
 
 	public FaqVo selectOne(SqlSessionTemplate sst, FaqVo vo) {
 		return sst.selectOne("adminFaqMapper.selectOne",vo);
+	}
+
+	public int deleteOne(SqlSessionTemplate sst, NoticeVo vo) {
+		return sst.update("adminFaqMapper.deleteOne",vo);
 	}
 
 }

@@ -125,18 +125,13 @@
     font-weight: 600;
 }
 .title-faq-ad{
-    width: 250px;
+    width: 650px;
     height: 45px;
     text-align: center;
     line-height: 45px;
     font-weight: 600;
 }
-.comment-faq-ad{
-    width: 410px;
-    height: 10px;
-    font-weight: 600;
-    padding-bottom: 5px;
-}
+
 .nickname-faq-ad{
     width: 100px;
     height: 100%;
@@ -289,25 +284,17 @@
     height: 50px;
     text-align: center;
     line-height: 50px;
-    margin-left:110px ;
+    margin-left:310px ;
     font-weight: 800;
     color: gray;
 }
-.comment-faq-admin{
-   
-    height: 50px;
-    text-align: center;
-    line-height: 50px;
-    margin-left: 100px;
-    font-weight: 800;
-    color: gray;
-}
+
 .nick-faq-admin{
   
     height: 50px;
     text-align: center;
     line-height: 50px;
-    margin-left: 350px;
+    margin-left: 320px;
     font-weight: 800;
     color: gray;
 }
@@ -325,7 +312,7 @@
     height: 50px;
     text-align: center;
     line-height: 50px;
-    margin-left: 85px;
+    margin-left: 87px;
     font-weight: 800;
     color: gray;
 }
@@ -340,7 +327,7 @@
 }
 	#page-nation{
         list-style: none;
-        display: inline-block;
+        display: flex;
         padding: 0;
         margin-top: 20px;
     }
@@ -355,8 +342,8 @@
     #page-nation li a{
         text-decoration: none;
         color: #999999;
-        font-size: 15px;
-        font-family: var(--sans);
+        font-size: 20px;
+        font-weight:900;
         
 
     }
@@ -388,8 +375,20 @@
     }
 
     #page-nation .num:active{
+    	width:40px;
+    	height:40px;
+    	border-radius:1rem;
         background-color: #5ECC80;
         cursor: pointer;
+    }
+    
+     .pageBtn{
+    	width:40px;
+    	height:40px;
+    	border: 3px solid lightgray;
+    	border-radius:1rem;
+    	line-height: 40px;
+    	
     }
 
 `
@@ -432,7 +431,6 @@
 	                    <div class="no-faq-admin">글번호</div>
 	                    <div class="cate-faq-admin">카테고리</div>
 	                    <div class="title-faq-admin">제목</div>
-	                    <div class="comment-faq-admin">댓글수</div>
 	                    <div class="nick-faq-admin">닉네임</div>
 	                    <div class="enrollDate-faq-admin">작성일시</div>
 	                    <div class="delete-yn">삭제</div>
@@ -440,7 +438,7 @@
 	                <c:forEach var="list" items="${list}" >
 	                    <div class="faqListAd">
 	                        <div class="gathering-divs-ad">
-	                            <div class="checkBox-Btn"><input type="checkbox" name="faq-ad" id="checkBoxBtn"></div>
+	                            <div class="checkBox-Btn"><input type="checkbox" name="faq-ad" value="${list.no} id="checkBoxBtn"></div>
 	                            <div class="mark-ad">
 	                                <div class="green-circle">Q</div>
 	                            </div>
@@ -457,15 +455,15 @@
 	            <div class="page-qList-ad">
 	            	<div class="page-faq">
 					  	<ul id="page-nation">
-							<li><a href="/app/admin/faq/faqListAd?p=1" class="first"><<</a></li>
-							<li><a class="arrow left"><</a></li>
-							<li><a class="num"></a></li>
-							<li><a class="num"></a></li>
-							<li><a class="num"></a></li>
-							<li><a class="num"></a></li>
-							<li><a class="num"></a></li>
-							<li><a class="arrow right">></a></li>
-							<li><a href="/app/admin/faq/faqListAd?p=${pv.maxPage}" class="last">>></a></li>
+							<li><div class="pageBtn"><a href="/app/admin/faq/faqListAd?p=1" class="first"><<</a></div></li>
+							<li><div class="pageBtn"><a class="arrow left"><</a></div></li>
+							<li><div class="pageBtn"><a class="num"></a></div></li>
+							<li><div class="pageBtn"><a class="num"></a></div></li>
+							<li><div class="pageBtn"><a class="num"></a></div></li>
+							<li><div class="pageBtn"><a class="num"></a></div></li>
+							<li><div class="pageBtn"><a class="num"></a></div></li>
+							<li><div class="pageBtn"><a class="arrow right">></a></div></li>
+							<li><div class="pageBtn"><a href="/app/admin/faq/faqListAd?p=${pv.maxPage}" class="last">>></a></div></li>
 						</ul>
 				   </div>
 	            </div>
@@ -483,14 +481,14 @@
 	const right = pageNation.querySelector('.arrow.right');
 	
 	
-	if(${pv.startPage} > 1){
-		left.href = '/app/faq/faqList?p=${pv.startPage})-1';
+	if("${pv.startPage}" > 1){
+		left.href = '/app/admin/faq/faqListAd?p=${pv.startPage})-1';
 	}else{
 		left.classList.add('none-select');
 	}
 	
-	if(${pv.currentPage} != ${pv.maxPage}){
-		left.href = '/app/faq/faqList?p=${pv.currentPage})+1';
+	if("${pv.currentPage}" != "${pv.maxPage}"){
+		left.href = '/app/admin/faq/faqListAd?p=${pv.currentPage})+1';
 	}else{
 		right.classList.add('none-select');
 	}
@@ -501,21 +499,50 @@
 	for (let i = 0; i < numArr.length; i++) {
 		const num = numArr[i];
 		
-		if(page == ${pv.currentPage}){
+		if(page == "${pv.currentPage}"){
 			num.classList.add('current');
 		}
 		
-		if(page<1 || page > ${pv.maxPage}){
+		if(page<1 || page > "${pv.maxPage}"){
 			num.classList.add('p-none');
 		}else{
-			num.href = '/app/faq/faqList?p='+page;
+			num.href = '/app/admin/faq/faqListAd?p='+page;
 		}
 		num.classList.remove('p-none');
-        $(num).attr('onclick','/app/faq/faqList?p=('+page+')');
+        $(num).attr('onclick','/app/admin/faq/faqListAd?p=('+page+')');
         
 		num.innerHTML = page;
 		page++;
 	}
+	
+	$('input[name=delete-ad]').click(function(){
+
+        let deleteList = $('input[name="delete-ad"]').val();
+        let valueArr = new Array();
+        let list = $("#checkBoxBtn:checked");
+        for(let i = 0; i <list.length; i++){
+            if(list[i].checked){
+                valueArr.push(list[i].value);
+            }
+        }
+
+        var chk = confirm("삭제 하시겠습니까?");
+        $.ajax({
+            url:"/app/admin/faq/faqListAd",
+            type:"post",
+            data:{"deleteList":deleteList,
+                    "valueArr":valueArr
+        },
+        success:function(x){
+            alert('삭제되었습니다.');
+        },
+        error:function(){
+            alert('에러가 발생했습니다.');
+        }
+
+        });
+
+    })
 	
 	</script>
         

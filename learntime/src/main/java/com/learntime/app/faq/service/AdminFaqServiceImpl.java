@@ -1,6 +1,7 @@
 package com.learntime.app.faq.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.learntime.app.faq.dao.AdminFaqDao;
 import com.learntime.app.faq.vo.FaqVo;
+import com.learntime.app.notice.vo.NoticeVo;
 import com.learntime.app.question.vo.PageVo;
 
 @Service
@@ -25,13 +27,18 @@ public class AdminFaqServiceImpl implements AdminFaqService{
 	}
 
 	@Override
-	public List<FaqVo> selectFaqList(FaqVo vo, PageVo pv) {
-		return adao.selectFaqList(sst,vo,pv);
+	public List<FaqVo> selectFaqList(Map map) {
+		return adao.selectFaqList(sst,map);
 	}
 
 	@Override
 	public FaqVo selectOne(FaqVo vo) {
 		return adao.selectOne(sst,vo);
+	}
+
+	@Override
+	public int deleteOne(NoticeVo vo) {
+		return adao.deleteOne(sst,vo);
 	}
 
 }

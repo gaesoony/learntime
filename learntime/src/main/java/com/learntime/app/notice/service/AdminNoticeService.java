@@ -1,6 +1,7 @@
 package com.learntime.app.notice.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -27,5 +28,7 @@ public interface AdminNoticeService {
 	public int deactivate(NoticeVo vo);
 
 	public int deleteOne(NoticeVo vo);
+
+	
 
 }

@@ -1,6 +1,7 @@
 package com.learntime.app.faq.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -24,12 +25,14 @@ public class FaqDao {
 		return sst.selectOne("faqMapper.selectCount");
 	}
 
-	public List<FaqVo> selectFaqList(SqlSessionTemplate sst, FaqVo vo, PageVo pv) {
+	public List<FaqVo> selectFaqList(SqlSessionTemplate sst, Map map) {
+		
+		PageVo pv = (PageVo)map.get("pv");
 		int offset = (pv.getCurrentPage() -1)* pv.getBoardLimit();
 		int limit = pv.getBoardLimit();
 		RowBounds rb = new RowBounds(offset, limit);
 		
-		return sst.selectList("faqMapper.faqList",vo,rb);
+		return sst.selectList("faqMapper.faqList",map,rb);
 	}
 
 	public FaqVo selectOne(SqlSessionTemplate sst, FaqVo vo) {

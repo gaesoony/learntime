@@ -30,7 +30,7 @@
                         <option value="title">제목</option>
                         <option value="content">내용</option>
                     </select></div>
-                    <div class="search-box-notice"><input type="text" name= "keyword" class="search-box" size="30"></div>
+                    <div class="search-box-notice"><input type="text" name= "keyword" class="search-box" size="25"></div>
                     <div class="notice-input"><input type="submit" value="검색" class="submitBtn"></div>
                     <c:if test="${loginMember.adminYn eq 'Y'}">
                     	<a href="/app/notice/noticeWrite"><div class="write-notice-d" >글쓰기</div></a>
@@ -82,15 +82,15 @@
 <div class="page-notice">
    	<div class="page-question">
   	<ul id="page-nation">
-		<li><a href="/app/notice/noticeList?p=1&cateNo=0" class="first"><<</a></li>
-		<li><a class="arrow left"><</a></li>
-		<li><a class="num"></a></li>
-		<li><a class="num"></a></li>
-		<li><a class="num"></a></li>
-		<li><a class="num"></a></li>
-		<li><a class="num"></a></li>
-		<li><a class="arrow right">></a></li>
-		<li><a href="/app/notice/noticeList?p=${pv.maxPage}&cateNo=0" class="last">>></a></li>
+		<li><div ="pageBtn"><a href="/app/notice/noticeList?p=1&cateNo=0" class="first"><<</a></div></li>
+		<li><div ="pageBtn"><a class="arrow left"><</a></div></li>
+		<li><div ="pageBtn"><a class="num"></a></div></li>
+		<li><div ="pageBtn"><a class="num"></a></div></li>
+		<li><div ="pageBtn"><a class="num"></a></div></li>
+		<li><div ="pageBtn"><a class="num"></a></div></li>
+		<li><div ="pageBtn"><a class="num"></a></div></li>
+		<li><div ="pageBtn"><a class="arrow right">></a></div></li>
+		<li><div ="pageBtn"><a href="/app/notice/noticeList?p=${pv.maxPage}&cateNo=0" class="last">>></a></div></li>
 	</ul>
    </div>
  </div>
@@ -104,29 +104,29 @@
 	const right = pageNation.querySelector('.arrow.right');
 	
 	
-	if(${pv.startPage} > 1){
+	if("${pv.startPage}" > 1){
 		left.href = '/app/notice/noticeList?p=${pv.startPage})-1';
 	}else{
 		left.classList.add('none-select');
 	}
 	
-	if(${pv.currentPage} != ${pv.maxPage}){
+	if("${pv.currentPage}" != "${pv.maxPage}"){
 		left.href = '/app/notice/noticeList?p=${pv.currentPage})+1';
 	}else{
 		right.classList.add('none-select');
 	}
 	
 
-	let page = ${pv.startPage};
+	let page = "${pv.startPage}";
 
 	for (let i = 0; i < numArr.length; i++) {
 		const num = numArr[i];
 		
-		if(page == ${pv.currentPage}){
+		if(page == "${pv.currentPage}"){
 			num.classList.add('current');
 		}
 		
-		if(page<1 || page > ${pv.maxPage}){
+		if(page<1 || page > "${pv.maxPage}"){
 			num.classList.add('p-none');
 		}else{
 			num.href = '/app/notice/noticeList?p='+page;
