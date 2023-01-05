@@ -29,7 +29,7 @@ pageEncoding="UTF-8"%>
         method="post"
       >
         <article class="mystudy-article">
-          <div class="mystudy-board-title">공지 사항</div>
+          <div class="mystudy-board-title">${cateName}</div>
           <div class="mystudy-board-detail">
             <section class="mystudy-board-detail-title-section">
               <input

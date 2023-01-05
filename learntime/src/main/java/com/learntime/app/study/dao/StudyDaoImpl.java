@@ -409,6 +409,45 @@ public class StudyDaoImpl implements StudyDao{
 		return sst.insert("studyMapper.insertMystudyCategory", map);
 	}
 
+	@Override
+	public int updateMystudyCategory(SqlSessionTemplate sst, Map map) {
+		return sst.update("studyMapper.updateMystudyCategory", map);
+	}
+
+	@Override
+	public int boardWriteCmt(SqlSessionTemplate sst, Map map) {
+		return sst.insert("studyMapper.boardWriteCmt", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectGroupBoardCmtList(SqlSessionTemplate sst, String bno) {
+		return sst.selectList("studyMapper.selectGroupBoardCmtList", bno);
+	}
+
+	@Override
+	public List<Map<String, String>> selectGroupBoardCmtReplyListByCgno(SqlSessionTemplate sst, String cgno) {
+		return sst.selectList("studyMapper.selectGroupBoardCmtReplyListByCgno", cgno);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectMainGroupList(SqlSessionTemplate sst) {
+		return sst.selectList("studyMapper.selectMainGroupList");
+	}
+
+	@Override
+	public List<Map<String, Object>> selectAdminGroupList(SqlSessionTemplate sst, Map map) {
+		PageVo pv = (PageVo) map.get("pv");
+		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
+		int limit = pv.getBoardLimit();
+		RowBounds rb = new RowBounds(offset, limit);
+		return sst.selectList("studyMapper.selectAdminGroupList", map, rb);
+	}
+
+	@Override
+	public int selectAdminGroupCnt(SqlSessionTemplate sst, Map map) {
+		return sst.selectOne("studyMapper.selectAdminGroupCnt", map);
+	}
+
 
 
 

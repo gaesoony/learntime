@@ -155,7 +155,7 @@ public class StudyServiceImpl implements StudyService{
 		
 		//그룹 리스트 조회
 		List<Map<String, Object>> groupList = dao.selectGroupList(sst, vo);
-		//log.info("스터디/프로젝트 정보 : "+groupList);
+		log.info("스터디/프로젝트 정보 : "+groupList);
 		
 		//그룹 리스트 결과 
 		for(int i=0; i<groupList.size(); i++) {			
@@ -598,10 +598,15 @@ public class StudyServiceImpl implements StudyService{
 		int result1 = 0;
 		int result2 = 0;
 		int result3 = 0;
+		
+		System.out.println(cateList);
+		System.out.println(updateCateMap);
+		System.out.println(insertCateMap);
+		
 		if(cateList.size() != 0) {
 			//delete
 			for(int i=0; i<cateList.size(); i++) {
-				String ctno = (String) cateList.get(i).get("NO");
+				String ctno = String.valueOf(cateList.get(i).get("NO"));
 				result1 = dao.deleteMystudyCategory(sst, ctno);
 				if(result1 == 0) {
 					break;
@@ -614,11 +619,123 @@ public class StudyServiceImpl implements StudyService{
 		}
 		
 		if(result1 == 1) {
-			
-			//updateCateMap
+			if(updateCateMap.size() != 0) {
+				for ( Object key : updateCateMap.keySet() ) {
+					Map map = new HashMap();
+					map.put("cateNo", key);
+					map.put("cateName", updateCateMap.get(key));
+					result2 = dao.updateMystudyCategory(sst, map);
+					if(result2 == 0) {
+						break;
+					}
+				}
+			}else {
+				result2 = 1;
+			}
 		}
 		
-		return 0;
+		if(result2 == 1) {
+			if(insertCateMap.size() != 0) {
+				for ( Object key : insertCateMap.keySet() ) {
+					Map map = new HashMap();
+					map.put("gno", gno);
+					map.put("cateName", insertCateMap.get(key));
+					result3 = dao.insertMystudyCategory(sst, map);
+					if(result3 == 0) {
+						break;
+					}
+				}
+			}else {
+				result3 = 1;
+			}
+		}
+		System.out.println(result1);
+		System.out.println(result2);
+		System.out.println(result3);
+		
+		return result1 * result2 * result3;
+	}
+
+	@Override
+	public int boardWriteCmt(Map map) {
+		return dao.boardWriteCmt(sst, map);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectGroupBoardCmtList(Map map) {
+		List<Map<String, Object>> result = dao.selectGroupBoardCmtList(sst, (String)map.get("bno"));
+		
+		//그룹 리스트 결과 
+		for(int i=0; i<result.size(); i++) {			
+			String cgno = String.valueOf(result.get(i).get("GROUP"));
+			String cno = String.valueOf(result.get(i).get("NO"));
+			map.put("cno", cno);
+			
+			//댓글 그룹 번호로 대댓글 리스트 조회
+			List<Map<String, String>> groupCmtReplyList = dao.selectGroupBoardCmtReplyListByCgno(sst, cgno);
+			result.get(i).put("groupCmtReplyList", groupCmtReplyList);
+			
+		}
+		
+		return result;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectMainGroupList() {
+		//그룹 리스트 조회
+		List<Map<String, Object>> groupList = dao.selectMainGroupList(sst);
+		//log.info("스터디/프로젝트 정보 : "+groupList);
+		
+		//그룹 리스트 결과 
+		for(int i=0; i<groupList.size(); i++) {			
+			String gno = String.valueOf(groupList.get(i).get("NO"));
+			
+			//그룹 번호로 기술스택 리스트 조회
+			List<Map<String, String>> techStackList = dao.selectTechStackListByGno(sst, gno);
+			groupList.get(i).put("techStackList", techStackList);
+			
+		}
+		
+		return groupList;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectAdminGroupList(Map map) {
+		
+		//그룹 리스트 조회
+		List<Map<String, Object>> groupList = dao.selectAdminGroupList(sst, map);
+		//log.info("스터디/프로젝트 정보 : "+groupList);
+		
+		//그룹 리스트 결과 
+		for(int i=0; i<groupList.size(); i++) {			
+			String gno = String.valueOf(groupList.get(i).get("NO"));
+			
+			//그룹 번호로 기술스택 리스트 조회
+			List<Map<String, String>> techStackList = dao.selectTechStackListByGno(sst, gno);
+			groupList.get(i).put("techStackList", techStackList);
+			
+		}
+		
+		return groupList;
+	}
+
+	@Override
+	public int selectAdminGroupCnt(Map map) {
+		return dao.selectAdminGroupCnt(sst, map);
+	}
+
+	@Transactional
+	@Override
+	public int deleteGroupList(String[] group) {
+		
+		int result = 0;
+		for(int i=0; i<group.length; i++) {
+			result = dao.deleteGroup(sst, group[i]);	
+			if(result == 0) {
+				break;
+			}
+		}
+		return result;
 	}
 
 }

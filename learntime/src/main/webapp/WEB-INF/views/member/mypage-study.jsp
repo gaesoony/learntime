@@ -113,7 +113,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                       >
                     </div>
                   </c:forEach>
-                  <c:if test="${pv.startPage != 1}">
+                  <c:if test="${pv.endPage < pv.maxPage}">
                     <div class="paging-btn" id="next-btn">
                       <a
                         href="${path}/member/mypage/study?details=${details}&mno=${loginMember.no}&pno=${pv.startPage + 1}"
@@ -166,7 +166,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                       >
                     </div>
                   </c:forEach>
-                  <c:if test="${pv.startPage != 1}">
+                  <c:if test="${pv.endPage < pv.maxPage}">
                     <div class="paging-btn" id="next-btn">
                       <a
                         href="${path}/member/mypage/study?details=${details}&mno=${loginMember.no}&pno=${pv.startPage + 1}"
@@ -218,7 +218,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                       >
                     </div>
                   </c:forEach>
-                  <c:if test="${pv.startPage != 1}">
+                  <c:if test="${pv.endPage < pv.maxPage}">
                     <div class="paging-btn" id="next-btn">
                       <a
                         href="${path}/member/mypage/study?details=${details}&mno=${loginMember.no}&pno=${pv.startPage + 1}"
@@ -276,7 +276,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                       >
                     </div>
                   </c:forEach>
-                  <c:if test="${pv.startPage != 1}">
+                  <c:if test="${pv.endPage < pv.maxPage}">
                     <div class="paging-btn" id="next-btn">
                       <a
                         href="${path}/member/mypage/study?details=${details}&mno=${loginMember.no}&pno=${pv.startPage + 1}"

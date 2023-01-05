@@ -88,7 +88,7 @@ pageEncoding="UTF-8"%>
                     >
                   </div>
                 </c:forEach>
-                <c:if test="${pv.startPage != 1}">
+                <c:if test="${pv.endPage < pv.maxPage}">
                   <div class="paging-btn" id="next-btn">
                     <a
                       href="${path}/mystudy/board/list?ctno=${ctno}&gno=${groupOne.NO}&pno=${pv.startPage + 1}&keyword=${keyword}&status=${status}"

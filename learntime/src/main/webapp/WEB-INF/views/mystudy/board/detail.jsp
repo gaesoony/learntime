@@ -16,9 +16,9 @@ pageEncoding="UTF-8"%>
 
     <!-- include summernote css/js-->
     <link
-      href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
-      rel="stylesheet"
-    />
+    rel="stylesheet"
+    href="/app/resources/css/summernote/summernote-lite.css"
+  />
   </head>
   <body>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -70,35 +70,157 @@ pageEncoding="UTF-8"%>
             <section class="cmt-area">
               <div class="cmt-input">
                 <div class="cmt-input-top flex">
-                  <img src="/app/resources/img/study/profile.png" alt="" />
-                  <div class="bold700">
-                    ${loginMember.nick}님, 답글을 남겨보세요!
-                  </div>
+                  <c:if test="${loginMember.nick == null}">
+                    <img
+                      src="${path}/resources/upload/common/profile_default.png"
+                      alt=""
+                    />
+                    <div class="bold700">로그인하고 댓글을 남겨보세요!</div>
+                  </c:if>
+                  <c:if test="${loginMember.nick != null}">
+                    <c:if test="${loginMember.imgPath == null}">
+                      <img
+                        src="/app/resources/upload/common/profile_default.png"
+                        alt=""
+                      />
+                    </c:if>
+                    <c:if test="${loginMember.imgPath != null}">
+                      <img
+                        src="/app/resources/upload/common/${loginMember.imgPath}"
+                        alt=""
+                      />
+                    </c:if>
+                    <div class="bold700">
+                      ${loginMember.nick}님, 댓글을 남겨보세요!
+                    </div>
+                  </c:if>
                 </div>
-                <div class="cmt-area">
-                  <textarea name="editordata" id="summernote"></textarea>
-                </div>
-                <div class="cmt-btn-area relative">
-                  <input type="button" value="답변 등록" />
-                </div>
+                <c:if test="${loginMember != null}">
+                  <form action="${path}/mystudy/board/detail/writeCmt" method="post">
+                    <input type="hidden" name="gno" value="${groupOne.NO}">
+                    <input type="hidden" name="mno" value="${loginMember.no}">
+                    <input type="hidden" name="ctno" value="${ctno}">
+                    <input type="hidden" name="bno" value="${bno}">
+                    <div class="cmt-area">
+                      <textarea name="cmt" class="summernote"></textarea>
+                    </div>
+                    <div class="cmt-btn-area relative">
+                      <input type="submit" value="답변 등록"/>
+                    </div>
+    
+                  </form>
+    
+                </c:if>
               </div>
+              <ul class="cmt-list">
+                <c:forEach items="${groupCmtList}" var="map">
+                  <li>
+                    <div class="cmt-top">
+                        <div class="cmt-top-div cmt-profile-img"><img src="${path}/resources/upload/common/profile_default.png" alt=""></div>
+                        <div class="cmt-top-div cmt-info">
+                          <div class="flex">
+                            
+                         
+                            <div class="member-nick">${map.NICK}</div>
+    
+                          </div>
+                          <div>
+                            <span class="enroll-date">${map.ENROLL_DATE}</span>
+                            
+                            <c:if test="${loginMember != null && loginMember.no == map.WRITER}">
+                              <a href="" class="cmt-edit">수정</a>
+                              <a href="" class="cmt-edit">삭제</a>
+    
+                            </c:if>
+                          </div>
+                        </div>
+                        <div class="cmt-top-div">
+                               
+                        </div>
+                      </div>
+                      <div class="cmt-content">
+                         ${map.CMT_CONTENT}
+                      </div>
+                      <div class="cmt-reply"> 
+                        <div class="cmt-reply-top">
+                          <div>댓글</div>
+                          <div ><span class="cmt-toggle-btn">더보기</span><i class="fa-solid fa-chevron-down"></i></div>
+                        </div>
+                      </div>
+                      <div class="cmt-reply-detail hidden">
+                        <ul class=cmt-reply-list>
+                          <c:forEach items="${map.groupCmtReplyList}" var="reply">
+                            <li>
+                              <div class="cmt-reply-member-profile">
+                                <div><img src="${path}/resources/upload/common/profile_default.png" alt=""></div>
+                                <div></div>
+                              </div>
+                              <div class="cmt-reply-content">
+                                <div class="cmt-reply-content-top">
+                                  <div class="flex">
+                                    <div class="cmt-reply-member-nick">${reply.NICK}</div>
+                                    <c:if test="${loginMember != null && loginMember.no == reply.WRITER}">
+                                    <a href="" class="cmt-edit">수정</a>
+                                    <a href="" class="cmt-edit">삭제</a>
+                                    </c:if>
+                                  </div>
+                                  <div class="cmt-reply-enroll-date">${reply.ENROLL_DATE}</div>
+                                </div>
+                                <div class="cmt-reply-content-bottom">${reply.CMT_CONTENT}</div>
+                              </div>
+                              <div >
+                                    
+                            </div>
+                            </li>
+                          </c:forEach>
+                          
+                        </ul>
+                        <div class="cmt-write-btn">
+                            <span>댓글작성</span>
+                        </div>
+                        <form action="${path}/mystudy/board/detail/writeCmtReply" method="post">
+                          <input type="hidden" name="gno" value="${groupOne.NO}">
+                          <input type="hidden" name="bno" value="${bno}">
+                          <input type="hidden" name="ctno" value="${ctno}">
+                          <input type="hidden" name="mno" value="${loginMember.no}">
+                          <div class="cmt-reply-btn hidden">
+                            <div class="cmt-reply-area">
+                                <textarea name="cmt" class="summernote"></textarea> 
+                                <input type="hidden" name="group" value="${map.GROUP}"> 
+                            </div>
+                            <div class="cmt-btn-area relative">
+                              <input type="submit" value="답변 등록" />
+                            </div>
+                          </div>
+        
+                        </form>
+        
+                      </div>
+                  </li>
+                </c:forEach>
+               
+              </ul>
             </section>
-
-            <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-            <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+            <script src="${path}/resources/js/summernote/summernote-lite.js"></script>
+            <script src="${path}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
             <script>
               $(document).ready(function () {
                 //여기 아래 부분
-                $("#summernote").summernote({
-                  height: 120, // 에디터 높이
+                $(".summernote").summernote({
+                  height: 150, // 에디터 높이
                   minHeight: null, // 최소 높이
                   maxHeight: null, // 최대 높이
-                  focus: true, // 에디터 로딩후 포커스를 맞출지 여부
+                  focus: false, // 에디터 로딩후 포커스를 맞출지 여부
                   lang: "ko-KR", // 한글 설정
-                  placeholder: "최대 2048자까지 쓸 수 있습니다", //placeholder 설정
+                  placeholder: "", //placeholder 설정
+                  disableResizeEditor: true,
                 });
               });
-
+    
+              //글쓰기 버튼 클릭 시 로그인모달 띄우기
+              function login() {
+                $(".blackBG").addClass("show");
+              }
               function deleteBoard() {
                 Swal.fire({
                   title: "게시글을 삭제하시겠습니까?",
@@ -117,8 +239,52 @@ pageEncoding="UTF-8"%>
                 });
               }
             </script>
+            <script>
+             
+           
+              const cmtToggleBtn = document.querySelectorAll('.cmt-toggle-btn');
+              cmtToggleBtn.forEach((o)=>{
+                o.addEventListener('click', (event)=>{
+                  const span = event.target.innerHTML;
+                  if(span == '더보기') {
+                    event.target.innerHTML = '접기';
+                  }
+                  if(span == '접기') {
+                    event.target.innerHTML = '더보기';
+                  }
+                  const icon = event.target.nextSibling;
+                  icon.classList.toggle('fa-chevron-down');
+                  icon.classList.toggle('fa-chevron-up');
+                  const cmtReply = event.target.parentNode.parentNode.parentNode;
+                  const cmtReplyDetail = cmtReply.nextSibling.nextSibling;
+                  cmtReplyDetail.classList.toggle('hidden');
+                })
+              })
+        
+              const cmtWriteBtnSpan = document.querySelectorAll('.cmt-write-btn span');
+              cmtWriteBtnSpan.forEach((o)=>{
+                o.addEventListener('click', (event)=>{
+                  const cmtWriteBtn = event.target.parentNode;
+                  const cmtReplyBtn = cmtWriteBtn.nextSibling.nextSibling.querySelector('.cmt-reply-btn');
+                  
+                  if("${loginMember}" == "") {
+                    login();
+                  }else {
+                    cmtWriteBtn.classList.add('hidden');
+                    cmtReplyBtn.classList.remove('hidden');
+        
+                  }
+         
+                })
+              })
+        
+             
+        
+            </script>
           </main>
         </div>
+           
+            
       </article>
     </main>
   </body>
