@@ -17,12 +17,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.learntime.app.badge.service.BadgeService;
+import com.learntime.app.badge.vo.BadgeVo;
 import com.learntime.app.common.file.FileUploader;
 import com.learntime.app.community.service.BoardService;
 import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.member.service.MemberService;
 import com.learntime.app.member.vo.FollowVo;
 import com.learntime.app.member.vo.MemberVo;
+import com.learntime.app.skin.service.SkinService;
+import com.learntime.app.skin.vo.SkinVo;
 import com.learntime.app.common.page.PageVo;
 import com.learntime.app.common.page.Pagination;
 import com.learntime.app.study.service.StudyService;
@@ -30,6 +34,15 @@ import com.learntime.app.study.service.StudyService;
 
 @Controller
 public class MemberController {
+	
+	@Autowired
+	@Qualifier("badgeServiceImpl")
+	private BadgeService badgeService;
+	
+	@Autowired
+	@Qualifier("skinServiceImpl")
+	private SkinService skinService;
+	
 	@Autowired
 	@Qualifier("studyServiceImpl")
 	private StudyService studyService;
@@ -433,14 +446,30 @@ public class MemberController {
 	   
 //	마이페이지-보유한 스킨(화면)
 		@GetMapping("/member/mypage/skin")
-		public String mypageSkin() {
+		public String mypageSkin(String no,HttpSession session,Model model) {
+			
+			MemberVo user=memberService.selectNo(no);
+			session.setAttribute("userNo",user);
+//			
+//			List<SkinVo> list=skinService.skinListMember();
+//			model.addAttribute("list",list);
+//			
 			return "/member/mypage-skin";
 		}
 	
 	
 //	마이페이지-보유한 뱃지(화면)
 		@GetMapping("/member/mypage/badge")
-		public String mypageBadge() {
+		public String mypageBadge(String no,HttpSession session,Model model) {
+			
+			MemberVo user=memberService.selectNo(no);
+			session.setAttribute("userNo",user);
+			
+			List<BadgeVo> list=badgeService.listSelectMember(no);
+
+			model.addAttribute("list", list);
+	
+			
 			return "/member/mypage-badge";
 		}
 	

@@ -145,10 +145,14 @@
     border:1px solid #D9D9D9;
 }
 
+.skin-img img{
+    width: 100%;
+}
+
 .skin-title{
     margin: 10px 0;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 16px;
 }
 .buy-btn{
     background: inherit ; 
@@ -169,7 +173,7 @@
 .skin-content{
     margin-bottom: 20px;
     color:#535353;
-    font-size: 16px;
+    font-size: 13px;
 }
 
 .buy-btn:hover{
@@ -363,68 +367,18 @@ input[type="range"]::-webkit-slider-thumb {
         </div>
 
         <div id="list">
-            <div class="skin">
-                <div class="skin-img">이미지 영역</div>
-                <div class="skin-title">스킨 제목</div>
-                <div class="skin-content">스킨 설명</div>
-                <button class="buy-btn"> N토큰으로 구매하기</button>
-            </div>
+        
+         <c:forEach items="${list}" var="list">
+                 
+                  <div class="skin">
+	                    <div class="skin-img"><img  src="${pageContext.request.contextPath}${list.imgName}"></div>
+	                    <div class="skin-title">${list.name}</div>
+	                    <div class="skin-content">${list.info}</div>
+	                     <button class="buy-btn"> ${list.price}토큰으로 구매하기</button>
+	              </div>
 
-            <div class="skin">
-                <div class="skin-img">이미지 영역</div>
-                <div class="skin-title">스킨 제목</div>
-                <div class="skin-content">스킨 설명</div>
-                <button class="buy-btn"> N토큰으로 구매하기</button>
-            </div>
-
-            <div class="skin">
-                <div class="skin-img">이미지 영역</div>
-                <div class="skin-title">스킨 제목</div>
-                <div class="skin-content">스킨 설명</div>
-                <button class="buy-btn"> N토큰으로 구매하기</button>
-            </div>
-
-            <div class="skin">
-                <div class="skin-img">이미지 영역</div>
-                <div class="skin-title">스킨 제목</div>
-                <div class="skin-content">스킨 설명</div>
-                <button class="buy-btn"> N토큰으로 구매하기</button>
-            </div>
-
-            <div class="skin">
-                <div class="skin-img">이미지 영역</div>
-                <div class="skin-title">스킨 제목</div>
-                <div class="skin-content">스킨 설명</div>
-                <button class="buy-btn"> N토큰으로 구매하기</button>
-            </div>
-
-            <div class="skin">
-                <div class="skin-img">이미지 영역</div>
-                <div class="skin-title">스킨 제목</div>
-                <div class="skin-content">스킨 설명</div>
-                <button class="buy-btn"> N토큰으로 구매하기</button>
-            </div>
-
-            <div class="skin">
-                <div class="skin-img">이미지 영역</div>
-                <div class="skin-title">스킨 제목</div>
-                <div class="skin-content">스킨 설명</div>
-                <button class="buy-btn"> N토큰으로 구매하기</button>
-            </div>
-
-            <div class="skin">
-                <div class="skin-img">이미지 영역</div>
-                <div class="skin-title">스킨 제목</div>
-                <div class="skin-content">스킨 설명</div>
-                <button class="buy-btn"> N토큰으로 구매하기</button>
-            </div>
-
-            <div class="skin">
-                <div class="skin-img">이미지 영역</div>
-                <div class="skin-title">스킨 제목</div>
-                <div class="skin-content">스킨 설명</div>
-                <button class="buy-btn"> N토큰으로 구매하기</button>
-            </div>
+               </c:forEach>
+            
         </div>
 
         <div id="search">
@@ -462,7 +416,8 @@ input[type="range"]::-webkit-slider-thumb {
                 </div>
                 <div class="token-cnt2">
                     <span class="material-symbols-outlined">toll</span>
-                    300개
+                    <c:if test="${loginMember.holdToken==null}">0</c:if>
+                    ${loginMember.holdToken}개
                 </div>
             </div>
         </div>

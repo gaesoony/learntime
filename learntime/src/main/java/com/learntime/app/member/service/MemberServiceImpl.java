@@ -10,6 +10,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.learntime.app.badge.dao.BadgeDao;
+import com.learntime.app.badge.vo.BadgeVo;
 import com.learntime.app.member.dao.MemberDao;
 import com.learntime.app.member.mail.MailHandler;
 import com.learntime.app.member.vo.AdminMemberVo;
@@ -34,11 +36,17 @@ public class MemberServiceImpl implements MemberService {
 	@Qualifier("memberDaoImpl")
 	private MemberDao memberDao;
 	
+	@Autowired
+	@Qualifier("badgeDaoImpl")
+	private BadgeDao badgeDao;
+	
 	//로그인
 	@Override
 	public MemberVo login(MemberVo vo) {
 		
 		MemberVo dbMember=memberDao.login(sst,vo);
+		List<BadgeVo> myBadge= badgeDao.listSelectMember(sst, dbMember.getNo());
+		dbMember.setBadges(myBadge);
 		boolean isMatch=enc.matches(vo.getPwd(), dbMember.getPwd());
 		
 		if (isMatch) {

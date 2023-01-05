@@ -57,4 +57,11 @@ public class BadgeDaoImpl implements BadgeDao {
 		return sst.update("badgeMapper.able",vo);
 	}
 
+	//회원용 뱃지 리스트
+	@Override
+	public List<BadgeVo> listSelectMember(SqlSessionTemplate sst,String no) {
+		
+		return sst.selectList("badgeMapper.listSelectMember",no);
+	}
+
 }

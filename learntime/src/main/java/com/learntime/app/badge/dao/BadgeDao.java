@@ -31,5 +31,8 @@ public interface BadgeDao {
 	
 	//뱃지 활성화
 	int able(SqlSessionTemplate sst, BadgeVo vo);
+	
+	//회원용 뱃지 리스트
+	List<BadgeVo> listSelectMember(SqlSessionTemplate sst,String no);
 
 }

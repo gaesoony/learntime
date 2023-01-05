@@ -44,31 +44,45 @@
     }
 
     
-
-    .badge{
-        
+.badge{
+        width: 140px;
+        --height: 300px;
         margin: 10px 0;
-        margin-top: 20px;
         text-align: left;
-            
+        padding: 10px;
+        
     }
 
     .badge-img{
-        width: 130px;
-        height: 130px;
+        width: 140px;
+        height: 140px;
         border-radius:4px;
         border:1px solid #D9D9D9;
+        
+    }
+    
+    .badge-img img{
+    width:100%;
     }
 
     .badge-title{
         margin: 10px 0;
         font-weight: 600;
-        font-size: 18px;
+        font-size: 16px;
+    }
+   
+    .badge-content{
+        margin-bottom: 20px;
+        color:#535353;
+        font-size: 12px;
     }
 
-   .main-color {
-        color: #5ecc80;
+    
+   .gray{
+    filter:opacity(0.1) drop-shadow(0 0 0 black);
+    background-color:gray;
     }
+
 
  
    
@@ -89,31 +103,17 @@
             <div id="badge">보유한 뱃지</div>
         
             <div id="have-badge">
+           
+                 <c:forEach items="${list}" var="list">
                 <div class="badge">
-                    <div class="badge-img">이미지 영역</div>
-                    <div class="badge-title">뱃지 제목</div>
-                    <div class="badge-content">뱃지 설명</div>
-                </div>
-                <div class="badge">
-                    <div class="badge-img">이미지 영역</div>
-                    <div class="badge-title">뱃지 제목</div>
-                    <div class="badge-content">뱃지 설명</div>
-                </div>
-                <div class="badge">
-                    <div class="badge-img">이미지 영역</div>
-                    <div class="badge-title">뱃지 제목</div>
-                    <div class="badge-content">뱃지 설명</div>
-                </div>
-                <div class="badge">
-                    <div class="badge-img">이미지 영역</div>
-                    <div class="badge-title">뱃지 제목</div>
-                    <div class="badge-content">뱃지 설명</div>
-                </div>
-                <div class="badge">
-                    <div class="badge-img">이미지 영역</div>
-                    <div class="badge-title">뱃지 제목</div>
-                    <div class="badge-content">뱃지 설명</div>
-                </div>
+                     
+                    <div class="badge-img"><img src="${pageContext.request.contextPath}/${list.imgName}"/></div>
+                    <div class="badge-title">${list.name}</div>
+                    <div class="badge-content">${list.info}</div> 
+                
+               
+                 </div>
+                </c:forEach>
                
             </div>
 
