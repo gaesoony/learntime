@@ -1,6 +1,7 @@
 package com.learntime.app.makegrass.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -28,7 +29,7 @@ public class MakegrassDaoImpl implements MakegrassDao {
 	}
 
 	@Override
-	public List<MakegrassVo> selectList(SqlSessionTemplate sst, MakegrassVo vo) {
+	public List<Map<String, Object>> selectList(SqlSessionTemplate sst, MakegrassVo vo) {
 		return sst.selectList("makegrassMapper.selectList", vo);
 	}
 
@@ -42,6 +43,12 @@ public class MakegrassDaoImpl implements MakegrassDao {
 	@Override
 	public int delete(SqlSessionTemplate sst, String no) {
 		return sst.update("makegrassMapper.delete", no);
+	}
+
+	//조회수
+	@Override
+	public int updateHit(SqlSessionTemplate sst, String no) {
+		return sst.update("makegrassMapper.updateHit", no);
 	}
 
 }

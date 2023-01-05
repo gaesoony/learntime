@@ -77,8 +77,8 @@ public class QnaServiceImpl implements QnaService {
 
 	//게시글 수정
 	@Override
-	public int edit(QnaVo vo) {
-		return dao.edit(sst, vo);
+	public int edit(QnaVo qvo) {
+		return dao.edit(sst, qvo);
 	}
 
 	//게시글 삭제

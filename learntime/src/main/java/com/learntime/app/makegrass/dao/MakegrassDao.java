@@ -1,6 +1,7 @@
 package com.learntime.app.makegrass.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -16,11 +17,13 @@ public interface MakegrassDao {
 
 	public int insertKnowledgeTag(SqlSessionTemplate sst, String[] str);
 
-	List<MakegrassVo> selectList(SqlSessionTemplate sst, MakegrassVo vo);
+	List<Map<String, Object>> selectList(SqlSessionTemplate sst, MakegrassVo vo);
 
 	MakegrassVo detail(SqlSessionTemplate sst, String no);
 
 	public int delete(SqlSessionTemplate sst, String no);
+
+	public int updateHit(SqlSessionTemplate sst, String no);
 
 	
 

@@ -1,6 +1,7 @@
 package com.learntime.app.makegrass.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,7 +28,7 @@ public class MakegrassController {
 	@GetMapping("/list")
 	public String list(Model model, MakegrassVo vo) {
 		
-		List<MakegrassVo> makegrassList = service.selectList(vo);
+		List<Map<String, Object>> makegrassList = service.selectList(vo);
 		model.addAttribute("makegrassList", makegrassList);
 		return "makegrass/list";
 	}

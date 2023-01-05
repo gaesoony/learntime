@@ -147,11 +147,11 @@
             <form action="${path}/qna/edit" method="post" name="myform" onkeydown="return event.key != 'Enter';">
 
                 <div class="radio-box">
-                    <input type="radio" value="${vo.cateNo}" id="cateNo1" name="cateNo" checked><label for="cateNo1">기술</label>
+                    <input type="radio" value="${qvo.cateNo}" id="cateNo1" name="cateNo" checked><label for="cateNo1">기술</label>
                     <input type="radio" value="${vo.cateNo}" id="cateNo2" name="cateNo"><label for="cateNo2">커리어</label>
                 </div>
 
-                <input type="text" name="title" class="title" value="${vo.title}"/>
+                <input type="text" name="title" class="title" value="${qvo.title}"/>
 
                 <div class="content">
                     <div>
@@ -162,7 +162,7 @@
                     </ul>
                 </div>
 
-                <textarea name="content" class="summernote">${vo.content}</textarea>
+                <textarea name="content" class="summernote">${qvo.content}</textarea>
 
                 <input type="button" onClick="history.back();" class="cancle" value="취소" />
                 <input type="submit" class="write" value="수정" />

@@ -310,6 +310,7 @@
         font-weight: 550;
         border: none;
         border-bottom: 1px solid #5ECC80;
+        cursor: pointer;
     }
 
     .bottom{
@@ -737,10 +738,10 @@
         <div class="listtitle">공부인증 게시판</div>
         <div class="writebtn">
             <c:if test="${loginMember == null}">
-                <button class="wbtn" onclick="login();" style='cursor:pointer;'>글쓰기✏️</button>
+                <button class="wbtn" onclick="login();">글쓰기✏️</button>
             </c:if>
             <c:if test="${loginMember != null}">
-                <button class="wbtn" onclick="location.href='${path}/makegrass/write'" style='cursor:pointer;'>글쓰기✏️</button>
+                <button class="wbtn" onclick="location.href='${path}/makegrass/write'">글쓰기✏️</button>
             </c:if>
         </div>
     
@@ -817,25 +818,25 @@
         <!-- 메인 리스트 부분 -->
         <div class="mainbox">
 
-            <c:forEach items="${makegrassList}" var="mlist">
-                <a href="${path}/makegrass/detail?no=${mlist.no}">
+            <c:forEach items="${makegrassList}" var="map">
+                <a href="${path}/makegrass/detail?no=${map.NO}">
                     <div class="mainlist">
                         <div class="thumbnail"></div>
-                        <div class="clockimg"><i class="fa-regular fa-clock"></i> ${mlist.learnTime}</div>
+                        <div class="clockimg"><i class="fa-regular fa-clock"></i> ${map.LEARN_TIME}</div>
                         <div class="bookimg"><i class="fa-solid fa-book"></i></div>
                         <div class="content">
-                            ${mlist.content}
+                            ${map.CONTENT}
                         </div>
                         <div class="contentline"></div>
                         <div class="info">
                             <ul class="infoetc">
                                 <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                                <li class="contentnick">${mlist.writer}</li>
-                                <li class="hit"><i class="fa-regular fa-eye"></i>&nbsp ${mlist.hit}</li>
-                                <li class="comment"><i class="fa-regular fa-comment"></i>&nbsp 20</li>
+                                <li class="contentnick">${map.WRITER}</li>
+                                <li class="hit"><i class="fa-regular fa-eye"></i>&nbsp ${map.HIT}</li>
+                                <li class="comment"><i class="fa-regular fa-comment"></i>&nbsp ${map.REPLY_CNT}</li>
                             </ul>
                             <ul>
-                                <li class="contentDate">${mlist.enrollDate}</li>
+                                <li class="contentDate">${map.ENROLL_DATE}</li>
                             </ul>
                         </div>
                     </div>

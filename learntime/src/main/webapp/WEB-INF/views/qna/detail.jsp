@@ -635,7 +635,7 @@
                         <td class="bookmark" id="bookmark" onclick="changeColor7()"><i class="fa-regular fa-bookmark"></i></td>
 
                         <c:if test="${loginMember.nick == qvo.writer}">
-                            <td class="edit"><button type="button" class="edit-btn" onclick="location.href='${path}/qna/edit?no=${qvo.no}'">수정</button></td>
+                            <td class="edit"><button type="button" class="edit-btn" onclick="location.href='${path}/qna/edit?qno=${qvo.no}'">수정</button></td>
                             <td class="slash">/</td>
                             <td class="delete">
                                 <button type="button" class="delete-btn">삭제</button>

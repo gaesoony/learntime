@@ -1,6 +1,7 @@
 package com.learntime.app.makegrass.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,23 +47,19 @@ public class MakegrassServiceImpl implements MakegrassService {
 			}
 		}
 		
-		System.out.println("result1 : " + result1);
-		System.out.println("result2 : " + result2);
-		System.out.println("result3 : " + result3);
-		
 		return result1 * result2 * result3;
 	}
 
 	//게시글 목록 조회
 	@Override
-	public List<MakegrassVo> selectList(MakegrassVo vo) {
+	public List<Map<String, Object>> selectList(MakegrassVo vo) {
 		return dao.selectList(sst, vo);
 	}
 
 	//게시글 상세조회
 	@Override
-	@Transactional
 	public MakegrassVo detail(String no) {
+		int result = dao.updateHit(sst, no);
 		return dao.detail(sst, no);
 	}
 

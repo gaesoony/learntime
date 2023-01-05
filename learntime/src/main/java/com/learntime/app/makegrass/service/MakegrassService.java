@@ -1,6 +1,7 @@
 package com.learntime.app.makegrass.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ public interface MakegrassService {
 	//게시글 작성
 	public int write(MakegrassVo vo);
 
-	public List<MakegrassVo> selectList(MakegrassVo vo);
+	public List<Map<String, Object>> selectList(MakegrassVo vo);
 
 	//게시글 상세조회
 	public MakegrassVo detail(String no);
