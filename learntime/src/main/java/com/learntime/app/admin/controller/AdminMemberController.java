@@ -182,7 +182,7 @@ public class AdminMemberController {
 		}
 		//관리자 회원 리스트에서 등급 수정
 		@PostMapping("/member/gradeEdit")
-		public String memberListGradeEdit(String[] checkNo,String accumToken) {
+		public String memberListGradeEdit(String[] checkNo,String accumToken,String pno) {
 			
 			Map<String, Object>map=new HashMap<String, Object>();
 			map.put("no", checkNo);
@@ -193,7 +193,7 @@ public class AdminMemberController {
 				return "common/errorPage";
 			}
 			
-			return "redirect:/admin/member/manage";
+			return "redirect:/admin/member/manage?pno="+pno+"&keyword=&category=nick&quitYn=&adminYn=";
 			
 		}
 		
@@ -201,7 +201,7 @@ public class AdminMemberController {
 		
 		//관리자 회원 리스트에서 탈퇴 
 		@PostMapping("/member/listDelete")
-		public String memberListMemberDelte(String[] checkNo) {
+		public String memberListMemberDelte(String[] checkNo,String pno) {
 		
 			
 			int result=memberService.memberListMemberDelte(checkNo);
@@ -209,7 +209,7 @@ public class AdminMemberController {
 				return "common/errorPage";
 			}
 			
-			return "redirect:/admin/member/manage";
+			return "redirect:/admin/member/manage?pno="+pno+"&keyword=&category=nick&quitYn=&adminYn=";
 			
 		}
 

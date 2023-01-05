@@ -19,6 +19,7 @@
 		<typeAlias type="com.learntime.app.member.vo.MemberGradeVo" alias="MemberGradeVo"/>
 		<typeAlias type="com.learntime.app.badge.vo.BadgeVo" alias="BadgeVo"/>
 		<typeAlias type="com.learntime.app.badge.vo.SearchVo" alias="SearchVo"/>
+		<typeAlias type="com.learntime.app.skin.vo.SkinVo" alias="SkinVo"/>
 	</typeAliases>
 
 	

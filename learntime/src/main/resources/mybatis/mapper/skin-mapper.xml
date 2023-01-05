@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="skinMapper">
+	<insert id="skinWrite">
+	INSERT INTO ITEM
+	VALUES(SEQ_ITEM_NO.NEXTVAL,#{name},#{info},#{className},#{price},#{imgName},'N')
+	</insert>
+	
+	<select id="skinList" resultType="SkinVo">
+	SELECT NO,NAME,INFO,CLASS_NAME,PRICE,IMG_PATH AS IMG_NAME,DELETE_YN
+	FROM ITEM
+	<trim prefix="WHERE" prefixOverrides="AND">
+	 <if test="keyword != null and keyword != ''">
+		${category} LIKE '%${keyword}%'
+		</if>
+		<if test="deleteYn != null and deleteYn != ''">
+		AND DELETE_YN = '${deleteYn}'
+		</if>
+	</trim>	
+	
+	</select>
+	
+	<select id="skinEdit" resultType="SkinVo">
+	SELECT NO,NAME,INFO,CLASS_NAME,PRICE,IMG_PATH AS IMG_NAME,DELETE_YN
+	FROM ITEM
+	WHERE NO=#{no}
+	</select>
+	
+	<update id="skinAble">
+	UPDATE ITEM
+	SET DELETE_YN='N'
+	WHERE NO=#{no}
+	</update>
+	
+	<update id="skinDelete">
+	UPDATE ITEM
+	SET DELETE_YN='Y'
+	WHERE NO=#{no}
+	</update>
+	
+	<update id="skinEditUpdate">
+	UPDATE ITEM
+	SET NAME=#{name},
+	INFO=#{info},
+	CLASS_NAME=#{className},
+	PRICE=#{price},
+	IMG_PATH=#{imgName}
+	WHERE NO=#{no}
+	</update>
+	
+	
+	<select id="skinListMember" resultType="SkinVo">
+	SELECT NO,NAME,INFO,CLASS_NAME,PRICE,IMG_PATH AS IMG_NAME,DELETE_YN
+	FROM ITEM
+	AND DELETE_YN = 'N'
+	
+	</select>
+	
+</mapper>

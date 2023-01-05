@@ -104,6 +104,32 @@ public class FileUploader {
         return imgName;
        
     }
+    
+  //멤버 등급 수정
+    public static String uploadSkin(HttpServletRequest req, MultipartFile multipartFile) {
+        String path = req.getSession().getServletContext().getRealPath("/resources/upload/skin/");
+        
+        
+        String originName = multipartFile.getOriginalFilename();
+     	 System.out.println(originName);
+     	 String ext = originName.substring(originName.lastIndexOf("."), originName.length());
+
+     	 String changeName = "skin" + System.nanoTime() + ext; //profile현재시간
+          System.out.println(changeName);
+          File target = new File(path + changeName);
+
+          String imgName="/resources/upload/skin/"+changeName;
+          
+          
+          try {
+         	 multipartFile.transferTo(target);
+          } catch (Exception e) {
+              e.printStackTrace();
+          } 
+          
+        return imgName;
+       
+    }
 
 
 }

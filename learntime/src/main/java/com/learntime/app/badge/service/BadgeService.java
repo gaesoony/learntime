@@ -28,6 +28,9 @@ public interface BadgeService {
 	int delete(BadgeVo vo);
 	//관리자 뱃지 활성화
 	int able(BadgeVo vo);
+	
+	//회원용 리스트
+	List<BadgeVo> listSelectMember(String no);
 
 	
 

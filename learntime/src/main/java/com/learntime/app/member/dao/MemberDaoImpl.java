@@ -26,7 +26,10 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int join(SqlSessionTemplate sst, MemberVo vo) {
 		
-		return sst.insert("memberMapper.join",vo);
+		int result1=sst.insert("memberMapper.join",vo);
+		
+		int result2=sst.insert("badgeMapper.giveBadge");
+		return result1*result2;
 	}
 	//닉네임 중복확인
 	@Override

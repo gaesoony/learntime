@@ -247,6 +247,7 @@ pageEncoding="UTF-8"%>
             </section>
             <section class="content-section">
              <form id="editDelete" action="${pageContext.request.contextPath}/admin/member/gradeEdit" method="post">
+              <input type="hidden" name="pno" value="${pv.currentPage}">
               <div class="content-section-top">
                 <div id="memberAll">
                       <span>조회된 멤버 수</span>

@@ -3,8 +3,14 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="badgeMapper">
+
+	<!--가입축하 뱃지 지급 -->
+	<insert id="giveBadge" >
+	INSERT INTO MEMBER_BADGE
+	VALUES(SEQ_MEMBER_NO.CURRVAL,1)
+	</insert>
 	
-	<!--뱃지 등록 -->
+	<!--관리자 뱃지 등록 -->
 	<insert id="write" >
 	INSERT INTO BADGE
 	VALUES(SEQ_BADGE_NO.NEXTVAL,#{name},#{info},#{imgName})
@@ -65,5 +71,15 @@
 		WHERE NO=#{no}
 	</update>
 	
+	<!--회원용 뱃지 리스트 -->
+	<select id="listSelectMember" resultType="BadgeVo">
+	SELECT B.NO,B.NAME,B.INFO,B.IMG_PATH AS IMG_NAME,B.STATUS
+	FROM BADGE B
+	JOIN MEMBER_BADGE MB ON MB.BADGE_NO=B.NO
+	WHERE B.STATUS='O'
+	AND MB.M_NO=#{no}
+	
+	
+	</select>
 	
 </mapper>

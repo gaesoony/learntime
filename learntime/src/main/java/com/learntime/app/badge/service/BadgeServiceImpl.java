@@ -67,5 +67,12 @@ public class BadgeServiceImpl implements BadgeService {
 		
 		return badgeDao.able(sst,vo);
 	}
+	
+	//회원용 리스트
+	@Override
+	public List<BadgeVo> listSelectMember(String no) {
+		
+		return badgeDao.listSelectMember(sst,no);
+	}
 
 }

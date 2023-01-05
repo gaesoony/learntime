@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -46,7 +47,7 @@ pageEncoding="UTF-8"%>
     #join-area{
         padding: 50px;
         display: grid;
-        grid-template-rows: repeat(4,1fr);
+        
         align-items: center;
         justify-content: center;
 
@@ -129,10 +130,12 @@ pageEncoding="UTF-8"%>
         cursor: pointer;
     }
 
-    .img-area{
+     .img-area{
         width: 320px;
         height: 320px;
-        background: #D9D9D9;
+        border: 1px solid #D9D9D9;
+        border-radius:7px;
+
         
         cursor: pointer;
         display: flex;
@@ -153,13 +156,16 @@ pageEncoding="UTF-8"%>
         color: #d90000;
     }
 
-    #join-area #before{
+    #join-area .before{
         background-color: #FFFFFF;
         color: #5ECC80;
         border: 1px solid #5ECC80;
     }
 
+    #preview{
+    width:100%;
     
+    }
  
   </style>
   <body>
@@ -170,51 +176,83 @@ pageEncoding="UTF-8"%>
           
         <section class="content-section">
           
-            <form action="" method="">
+            
                 <div id="join-area">
-    
+    			  <form action="${pageContext.request.contextPath}/admin/skinshop/edit" method="post"  enctype="multipart/form-data">
                     <div id="name">
                         <div class="text">스킨 이름</div>
-                        <input type="text" name="name">
+                        <input type="text" name="name" value="${vo.name}">
+                        <input type="hidden" name="no" value="${vo.no}">
                     </div>
                     
                     <div id="info">
                         <div class="text">스킨 정보</div>
-                        <input type="text" name="info">
+                        <input type="text" name="info" value="${vo.info}">
                     </div>
                     
                     
                     
                     <div id="">
                         <div class="text">스킨 스타일</div>
-                        <input type="text" name="">
+                        <input type="text" name="className" value="${vo.className}">
                     </div>
 
                     <div id="">
                         <div class="text">스킨 가격</div>
-                        <input type="text" name="">
+                        <input type="text" name="price" value="${vo.price}">
                     </div>
                     
                     
-                    <div id="">
+                     <div id="">
                         <div class="text">스킨 이미지</div>
                         <div class="img-area">
-                            <label for="imgPath">
-                                <span class="material-symbols-outlined">
-                                    add_photo_alternate
-                                    </span>
+                            
+                            <label for="file">
+                                <img id="preview"  src="${pageContext.request.contextPath}${vo.imgName}" />
                             </label>
+                             <input id="file" type="file" name="imgPath">
+                             <input type="hidden" name="imgName" value="${vo.imgName}">
                         </div>
+                         <script>
+		                    $("#file").on("change", function(event) {
+		
+		                        var file = event.target.files[0];
+		
+		                        var reader = new FileReader(); 
+		                        reader.onload = function(e) {
+		                        	$("#preview").attr("src","");
+		                            $("#preview").attr("src", e.target.result);
+		                      
+		                        }
+		
+		                        reader.readAsDataURL(file);
+		                    });
+		                    
+                    	</script>
                         
-                        <input type="file" name="imgPath" id="imgPath">
                     </div>
+                     <button>수정하기</button>
+                   </form> 
+                   
                     
-                    <button>수정하기</button>
-                    <button class="delete">비활성화</button>
-                    <button  type="button" id="before"onclick="location.href='${pageContext.request.contextPath}/admin/skinshop/list'">이전으로</button>
+                     <c:if test="${vo.deleteYn eq 'N'}">
+                 		<form action="${pageContext.request.contextPath}/admin/skinshop/delete" method="post">
+	                    <button class="delete">비활성화</button>
+	                    <input type="hidden" name="no" value="${vo.no}">
+	                    </form>
+	             	</c:if>
+	             	
+	             	 <c:if test="${vo.deleteYn eq 'Y'}">
+                 		<form action="${pageContext.request.contextPath}/admin/skinshop/able" method="post">
+	                    <button class="before">활성화</button>
+	                    <input type="hidden" name="no" value="${vo.no}">
+	                    </form>
+	             	</c:if>
+                    
+                    <button  type="button" class="before"onclick="location.href='${pageContext.request.contextPath}/admin/skinshop/list'">이전으로</button>
     
                 </div>
-            </form>
+            
          
         
         </section>

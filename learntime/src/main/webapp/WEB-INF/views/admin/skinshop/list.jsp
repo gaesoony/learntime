@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -135,7 +136,7 @@ pageEncoding="UTF-8"%>
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(4, auto);
+      grid-template-columns: repeat(4, 280px);
       justify-items: center;
       align-items: center;
       
@@ -194,11 +195,15 @@ pageEncoding="UTF-8"%>
         border-radius:4px;
         border:1px solid #D9D9D9;
     }
+    
+    .skin-img img{
+   		width:100%;
+    }
 
     .skin-title{
         margin: 10px 0;
         font-weight: 600;
-        font-size: 18px;
+        font-size: 16px;
     }
     .skin-btn{
         background: inherit ; 
@@ -215,11 +220,12 @@ pageEncoding="UTF-8"%>
         border: 1px solid #5ECC80;
         color:#5ECC80;
         margin-bottom: 10px;
+        background-color:#FFFFFF;
     }
     .skin-content{
         margin-bottom: 20px;
         color:#535353;
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .skin-btn:hover{
@@ -236,10 +242,10 @@ pageEncoding="UTF-8"%>
       background-color: #D60000;
       color: #FFFFFF;
     }
-
-
-
-
+    
+    .gray{
+    filter:opacity(.5) drop-shadow(0 0 0 gray);
+    }
 
 
 
@@ -279,25 +285,27 @@ pageEncoding="UTF-8"%>
       <div id="admin-category-title" class="shadow-light">스킨샵 관리</div>
       <div class="wrapper">
             <section class="search-section space-between">
+             <form action="" method="get">
               <div class="relative" id="search">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="내용을 입력해주세요" class="search-box"/>
-                    <select name="" id="" class="select-box">
-                      <option value="">이름</option>
-                      <option value="">토큰 갯수</option>
+                <input name="keyword" type="text" placeholder="내용을 입력해주세요" class="search-box"/>
+                    <select name="category" class="select-box">
+                      <option value="name">이름</option>
+                      <option value="price">토큰 갯수</option>
                     </select>
-                    <select name="" id="" class="select-box">
+                    <select name="deleteYn" id="" class="select-box">
                       <option value="">스킨 상태</option>
-                      <option value="">활성화</option>
-                      <option value="">비활성화</option>
+                      <option value="N">활성화</option>
+                      <option value="Y">비활성화</option>
                     </select>
-              </div>
+               </div>
+              </form>
             </section>
             <section class="content-section">
               <div class="content-section-top">
                 <div id="skin All">
                       <span>전체 스킨 수</span>
-                      <span class="main-color">10</span>
+                      <span class="main-color">${list.size()}</span>
                       <span>개</span>
                 </div>
 
@@ -308,19 +316,37 @@ pageEncoding="UTF-8"%>
               </div>
               <div class="grid">
                
-                <% for(int i=1; i<=10; i++) {%>
+                 <c:forEach items="${list}" var="list">
+                 <c:if test="${list.deleteYn eq 'N'}">
                   <div class="skin">
-                    <div class="skin-img">이미지 영역</div>
-                    <div class="skin-title">스킨 제목</div>
-                    <div class="skin-content">스킨 설명</div>
-                    <button class="skin-btn"  onclick="location.href='${pageContext.request.contextPath}/admin/skinshop/edit'"> 수정하기</button>
-                    <button class="skin-btn delete"> 비활성화</button>
-                </div>
-                <%}%>
+	                    <div class="skin-img"><img  src="${pageContext.request.contextPath}${list.imgName}"></div>
+	                    <div class="skin-title">${list.name}</div>
+	                    <div class="skin-content">${list.info}</div>
+	                    <button class="skin-btn"  onclick="location.href='${pageContext.request.contextPath}/admin/skinshop/edit?no=${list.no}'"> 수정하기</button>
+	                    <form action="${pageContext.request.contextPath}/admin/skinshop/delete" method="post">
+	                    <button class="skin-btn delete"> 비활성화</button>
+	                    <input type="hidden" name="no" value="${list.no}">
+	                    </form>
+	              </div>
+	             </c:if>
+	             
+	             <c:if test="${list.deleteYn eq 'Y'}">
+                  <div class="skin">
+	                    <div class="skin-img"><img class="gray" src="${pageContext.request.contextPath}${list.imgName}"></div>
+	                    <div class="skin-title">${list.name}</div>
+	                    <div class="skin-content">${list.info}</div>
+	                    <button class="skin-btn"  onclick="location.href='${pageContext.request.contextPath}/admin/skinshop/edit?no=${list.no}'"> 수정하기</button>
+	                    <form action="${pageContext.request.contextPath}/admin/skinshop/able" method="post">
+	                    <button class="skin-btn">활성화</button>
+	                    <input type="hidden" name="no" value="${list.no}">
+	                    </form>
+	              </div>
+	             </c:if>
+               </c:forEach>
               </div>
 
               
-
+<!-- 
               <div id="paging">
                 <div class="paging-btn">1</div>
                 <div class="paging-btn">2</div>
@@ -333,7 +359,7 @@ pageEncoding="UTF-8"%>
                 <div class="paging-btn">9</div>
                 <div class="paging-btn">10</div>
                 <div class="paging-btn" id="next-btn">다음</div>
-              </div>
+              </div> -->
             
             </section>
       

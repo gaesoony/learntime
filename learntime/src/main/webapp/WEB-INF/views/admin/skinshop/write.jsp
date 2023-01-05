@@ -132,7 +132,9 @@ pageEncoding="UTF-8"%>
     .img-area{
         width: 320px;
         height: 320px;
-        background: #D9D9D9;
+        border: 1px solid #D9D9D9;
+        border-radius:7px;
+
         
         cursor: pointer;
         display: flex;
@@ -158,6 +160,20 @@ pageEncoding="UTF-8"%>
         color: #5ECC80;
         border: 1px solid #5ECC80;
     }
+    
+     .hidden{
+    display:hidden;
+    }
+    
+    .show{
+    display:block;
+    }
+    
+    
+    #preview{
+    width:100%;
+    
+    }
 
     
  
@@ -170,7 +186,7 @@ pageEncoding="UTF-8"%>
           
         <section class="content-section">
           
-            <form action="" method="">
+            <form action="${pageContext.request.contextPath}/admin/skinshop/write" method="post" enctype="multipart/form-data">
                 <div id="join-area">
     
                     <div id="name">
@@ -187,26 +203,41 @@ pageEncoding="UTF-8"%>
                     
                     <div id="">
                         <div class="text">스킨 스타일</div>
-                        <input type="text" name="">
+                        <input type="text" name="className">
                     </div>
 
                     <div id="">
                         <div class="text">스킨 가격</div>
-                        <input type="text" name="">
+                        <input type="text" name="price">
                     </div>
                     
                     
                     <div id="">
                         <div class="text">스킨 이미지</div>
                         <div class="img-area">
-                            <label for="imgPath">
-                                <span class="material-symbols-outlined">
-                                    add_photo_alternate
-                                    </span>
+                            
+                            <label for="file">
+                                <img id="preview"  src="${pageContext.request.contextPath}/resources/img/mystudy/image-plus.png" />
                             </label>
+                             <input id="file" type="file" name="imgPath">
                         </div>
+                         <script>
+		                    $("#file").on("change", function(event) {
+		
+		                        var file = event.target.files[0];
+		
+		                        var reader = new FileReader(); 
+		                        reader.onload = function(e) {
+		                        	$("#preview").attr("src","");
+		                            $("#preview").attr("src", e.target.result);
+		                      
+		                        }
+		
+		                        reader.readAsDataURL(file);
+		                    });
+		                    
+                    	</script>
                         
-                        <input type="file" name="imgPath" id="imgPath">
                     </div>
                     
                     <button>저장하기</button>
