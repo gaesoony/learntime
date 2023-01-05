@@ -239,13 +239,18 @@ color: white;
 #schedule-table  th {
 background-color: rgb(241, 241, 241);
 text-align: left;
+
+
 }
 
 #schedule-table label {
 display: block;
 height: 25px;
-width: 99.5%;
+width: 100%;
 border: 1px solid rgb(225, 225, 225);
+border-top: none;
+
+box-sizing: border-box;
 }
 
 .back-green{
@@ -258,7 +263,7 @@ border: 1px solid rgb(225, 225, 225);
 
 /* th태그 중간정렬 */
 .week{
-    width: 96px;
+    width: 95px;
     font-size: 13px;
     color: #6b6b6b;
     text-align: center;

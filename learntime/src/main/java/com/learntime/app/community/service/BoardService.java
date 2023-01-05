@@ -14,10 +14,8 @@ public interface BoardService {
 	//insert
 	public int write(BoardVo vo);
 	
-	
 	//select list
 	public List<BoardVo> select(BoardFilterVo bfv);
-	
 	
 	//select one
 	public BoardVo selectOne(String bno);
@@ -25,8 +23,7 @@ public interface BoardService {
 	
 	//select comment list
 	public List<CmtVo> selectCmtList(CmtVo cv);
-
-
+	
 	//insert comment
 	public int insertCmt(CmtVo cv);
 	
@@ -83,6 +80,9 @@ public interface BoardService {
 
 	//댓글 좋아요 update
 	public int updateUserLike(CmtLHVo cmtLHVo);
+
+
+	
 	
 
 	

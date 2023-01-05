@@ -9,4 +9,7 @@ public interface MentoringDao {
 	//멘토 등록
 	public int mentorRegi(MentorVo vo, SqlSessionTemplate sst);
 
+	//멘토링 등록
+	public int mentoringRegi(MentorVo mv, SqlSessionTemplate sst);
+
 }
