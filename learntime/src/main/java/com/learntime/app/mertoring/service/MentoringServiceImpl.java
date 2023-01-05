@@ -3,6 +3,7 @@ package com.learntime.app.mertoring.service;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.learntime.app.mertoring.dao.MentoringDao;
 import com.learntime.app.mertoring.vo.MentorVo;
@@ -20,5 +21,12 @@ public class MentoringServiceImpl implements MentoringService{
 	@Override
 	public int mentorRegister(MentorVo vo) {
 		return dao.mentorRegi(vo, sst);
+	}
+
+	//멘토링 등록
+	@Transactional
+	@Override
+	public int registerMentoring(MentorVo mv) {
+		return dao.mentoringRegi(mv, sst);
 	}
 }

@@ -17,6 +17,7 @@ import com.learntime.app.community.service.BoardService;
 import com.learntime.app.community.vo.BoardFilterVo;
 import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.community.vo.CateVo;
+import com.learntime.app.community.vo.CmtVo;
 
 @Controller
 @RequestMapping("admin/community")
@@ -75,8 +76,11 @@ public class AdminCommunityController {
 		//글리스트
 		model.addAttribute("bv", bs.selectOne(boardNo));
 		//코멘트 리스트
-		model.addAttribute("cvList", bs.selectCmtList(boardNo));
-		System.out.println(bs.selectCmtList(boardNo));
+		
+		CmtVo cv = new CmtVo();
+		cv.setBoardNo(boardNo);
+		model.addAttribute("cvList", bs.selectCmtList(cv));
+		System.out.println(bs.selectCmtList(cv));
 		
 		return "/admin/community/adminCommunityDetail";
 	}

@@ -26,9 +26,11 @@
 	</insert>
 	
 	<!-- 멘토링 등록 -->
-	<insert id="registerMentoring">
-	
-	</insert>
+	<update id="registerMentoring">
+		UPDATE MENTOR
+		SET NAME = '변경됨~~'
+		WHERE WRITER = #{writer}
+	</update>
 
 
 

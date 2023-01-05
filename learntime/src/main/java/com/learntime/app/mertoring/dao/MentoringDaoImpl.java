@@ -14,6 +14,12 @@ public class MentoringDaoImpl implements MentoringDao{
 		return sst.insert("mentorMapper.registerMentor", vo);
 		
 	}
+
+	//멘토링등록(멘토 업데이트)
+	@Override
+	public int mentoringRegi(MentorVo mv, SqlSessionTemplate sst) {
+		return sst.update("mentorMapper.registerMentoring", mv);
+	}
 	
 	
 

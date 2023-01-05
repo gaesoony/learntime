@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/app/resources/css/reset.css">
 <link rel="stylesheet" href="/app/resources/css/mentoring/mentorList.css">
+<link rel="stylesheet" href="/app/resources/css/mentoring/calendar.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script src="https://kit.fontawesome.com/939838bb27.js"crossorigin="anonymous"></script>
 
@@ -158,18 +159,40 @@
             </div>
 
             <div class="modal-info-box">
-                <div id="modal-metoring-title">date picker api 찾아보기</div>
-                <div id="modal-metoring-content">
-                    <p>
-                        빨리좀 찾아보자..
-                    </p>
+                <!-- 캘린더 시작 -->
+                <div id="calendar-wrap">
+                    <div class="calendar">
+                        <div class="header">
+                            <div class="year-month"></div>
+                            <div class="nav">
+                                <button class="nav-btn go-prev" onclick="prevMonth();">&lt;</button>
+                                <button class="nav-btn go-today" onclick="goToday();">Today</button>
+                                <button class="nav-btn go-next" onclick="nextMonth();">&gt;</button>
+                            </div>
+                        </div>
+                        <div class="main">
+                            <div class="days">
+                                <div class="day">일</div>
+                                <div class="day">월</div>
+                                <div class="day">화</div>
+                                <div class="day">수</div>
+                                <div class="day">목</div>
+                                <div class="day">금</div>
+                                <div class="day">토</div>
+                            </div>
+                            <div class="dates"></div>
+                        </div>
+                    </div>
+                    <input id="date-input" type="hidden" name="reservationDate">
+                    <script type="text/javascript" src="/app/resources/js/mentoring/calendar.js"></script>
                 </div>
+                <!-- 캘린더 끝 -->
             </div>
             <div class="modal-info-box" id="time-select-box">
-                <select name="" id="time-select">
-                    <option value="">12:00 ~ 14:00</option>
-                    <option value="">14:00 ~ 16:00</option>
-                    <option value="">16:00 ~ 18:00</option>
+                <select name="reservationTime" id="time-select">
+                    <option value="12:00 ~ 14:00">12:00 ~ 14:00</option>
+                    <option value="14:00 ~ 16:00">14:00 ~ 16:00</option>
+                    <option value="16:00 ~ 18:00">16:00 ~ 18:00</option>
                 </select>
                 <div id="time-select-result"></div>
             </div>
@@ -177,19 +200,19 @@
                 <span class="modal-sub-title">연락처</span>
             </div>
             <div class="modal-info-box sm-box">
-                <input type="text" placeholder="01000000000" id="phone-input">
+                <input name = "phoneNo" type="text" placeholder="01000000000" id="phone-input">
             </div>
             <div class="mentoring-modal-title">
                 <span class="modal-sub-title">이메일</span>
             </div>
             <div class="modal-info-box sm-box">
-                <input type="text" placeholder="example@email.com">
+                <input name="email" type="text" placeholder="example@email.com">
             </div>
             <div class="mentoring-modal-title">
                 <span class="modal-sub-title">멘토에게 남길 메세지</span>
             </div>
             <div class="modal-info-box sm-box" id="massage-box">
-                <input id="massage-input" type="text" placeholder="멘토에게 남길 메세지를 간단히 작성해주세요">
+                <input name="message" id="massage-input" type="text" placeholder="멘토에게 남길 메세지를 간단히 작성해주세요">
             </div>
 
             <div class="modal-btn-box">
@@ -213,7 +236,7 @@
                         <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="">
                         <a href="">&nbsp코딩하는망치맨</a>
                     </div>
-                    <div id="modal-mentoring-info">1회 멘토링 : 1시간 / 22,000원 / 1명</div>
+                    <div id="modal-mentoring-info">1회 멘토링 : 1시간 / 22,000원</div>
                 </div>
                 <div id="modal-job">직무 PO/PM</div>
                 <div id="modal-career">경력 30년</div>
@@ -634,14 +657,13 @@
         });
 
 
-
-        // 시간 선택 후 div 출력
-        $(document).ready(function() {
-            $('#time-select').change(function() {
-                var time = $('#time-select option:selected').text();
-                console.log(time);
-                $('#time-select-result').text(time);
-            });
+        // 시간 선택 후 div 에 #date-input의 value 와 시간 출력
+        $('#time-select').on('change',function(){
+            var time = $('#time-select option:selected').text();
+            var date = $('#date-input').val();
+            $('#date').text(date);
+            $('#time').text(time);
+            $('#time-select-result').text(date + ' ' + time);
         });
 
 

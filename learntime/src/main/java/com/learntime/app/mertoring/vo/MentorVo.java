@@ -20,15 +20,18 @@ public class MentorVo {
 	
 	//멘토링 부분
 	private String job;
+	private String currentJob;
 	private String title;
 	private String career;
 	private String employedYn;
 	private String price;
-	private String maxPeople;
 	private String maxHour;
 	private String welcomePost;
 	private String writeDate;
 	private String openYn;
 	private String hit;
+	private String detail;
+	private String mEmail;
+	private String mPhoneNo;
 
 }
