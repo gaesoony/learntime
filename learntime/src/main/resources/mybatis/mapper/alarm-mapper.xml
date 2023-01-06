@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="alarmMapper">
+
+	<insert id="insert">
+	<selectKey keyProperty="no" resultType="String" order="BEFORE">
+	SELECT SEQ_ALARM_NO.NEXTVAL FROM DUAL
+	</selectKey>
+	INSERT INTO ALARM(NO,SEND_M_NO,RECE_M_NO,ALARM_TYPE_NO,MASSAGE)
+	VALUES(#{no},#{sendMno},#{receMno},#{alarmTypeNo},#{massage})
+	</insert>
+	
+	
+	<select id="listMember" resultType="AlarmVo">
+	SELECT A.NO
+		,M1.NICK AS SEND_M_NO
+		,M2.NICK AS RECE_M_NO
+		,AT.NAME AS ALARM_TYPE_NO
+		,A.MASSAGE
+		,A.ALARM_TIME
+		,A.CHECK_TIME
+		,A.CHECK_YN
+	FROM ALARM A
+	JOIN ALARM_TYPE AT ON AT.NO=A.ALARM_TYPE_NO
+	JOIN MEMBER M1 ON M1.NO=A.SEND_M_NO
+	JOIN MEMBER M2 ON M2.NO=A.RECE_M_NO
+	WHERE A.SEND_M_NO=#{no}
+	AND A.CHECK_YN='N'
+	</select>
+	
+	<update id="delete">
+	UPDATE ALARM
+	SET CHECK_YN='Y'
+	</update>
+	
+</mapper>

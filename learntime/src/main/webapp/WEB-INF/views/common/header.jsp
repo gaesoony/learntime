@@ -1,6 +1,7 @@
 <%@page import="com.learntime.app.member.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%
 	MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
@@ -47,9 +48,11 @@ session.removeAttribute("alertMsg"); %>
 
       .hidden{
       visibility: hidden;
+      
     }
     .show {
       visibility: visible;
+      padding: 10px;
       
     }
      
@@ -65,7 +68,7 @@ session.removeAttribute("alertMsg"); %>
         z-index:10001;
       }
 
-      #login-btn,#modal-closed,.inputbox, .modal-login-btn{
+      #login-btn,#modal-closed,.inputbox, .modal-login-btn,#alarm-btn{
         background: inherit ; 
         border:none; 
         box-shadow:none; 
@@ -207,20 +210,31 @@ session.removeAttribute("alertMsg"); %>
     #alarm{
       position: relative;
     }
+  
 
     #alarm #alarm-area{
       width: 400px;
-      height: 600px;
-      border: 1px solid #D9D9D9;
+      max-height: 400px;
+      --border: 1px solid #D9D9D9;
       background-color: #FFFFFF;
       position:absolute;
       right: 0;
       top: 75px;
-      padding: 10px;
+      overflow: scroll; 
+      
     
+     
+      
+    }
+    
+    #alarm-area::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
+	}
+    
+    .oneAlarm-area{
       display: grid;
-      grid-template-columns: 30px 370px;
-      grid-template-rows: repeat(20, 30px);
+      grid-template-columns: 30px 340px 30px;
+      height:30px;
     }
 
     #alarm-cate{
@@ -288,21 +302,21 @@ session.removeAttribute("alertMsg"); %>
       <div id="skinshop"><a href="${pageContext.request.contextPath}/skinshop">SKIN SHOP</a></div>
       <div id="community"><a href="${pageContext.request.contextPath}/community/board/list">COMMUNITY</a></div>
       <div id="empty"></div>
-      <%if(loginMember==null){%>
+      <c:if test="${loginMember eq null}">
       <div id="join"><a href="${pageContext.request.contextPath}/member/join">JOIN</a></div>
       <div id="login"><button id="login-btn">LOGIN</button></div>
-      <%}else{%>
+      </c:if>
+       <c:if test="${loginMember ne null}">
         <div id="alarm"><span class="material-symbols-outlined">notifications</span>
           <div id="alarm-area" class="hidden">
-            <div id="alarm-cate">[공지]</div>
-            <div id="alarm-content">알람내용입니다</div>
+
           </div>
         </div>
         
         <div id="mypage"><a href="${pageContext.request.contextPath}/member/mypage/home?no=${loginMember.getNo()}"><span class="material-symbols-outlined">account_circle</span></a></div>
        
         <div id="mypage"><a href="${pageContext.request.contextPath}/member/logout"><span class="material-symbols-outlined">logout</span></a></div>
-      <%}%>
+      </c:if>
   </div>
 </div>
    
@@ -332,17 +346,74 @@ session.removeAttribute("alertMsg"); %>
       if($('#alarm-area').hasClass('hidden')){
         $('#alarm-area').removeClass('hidden');
         $('#alarm-area').addClass('show');
+        
+        $.ajax({
+        	type: "get",
+			url: "${pageContext.request.contextPath}/alarm",
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+			success: function(data) {
+				 console.log(data);
+                 var obj = JSON.parse(data);
+                 
+                
+                 
+                 for (let i = 0; i < obj.listMember.length; i++) {
+                	 $('#alarm-area').empty();
+
+        		     let oneAlarmArea = $('<div>').prop({className: 'oneAlarm-area'});
+        		     $(oneAlarmArea).append(
+        		    		  '<div id="alarm-cate">'+obj.listMember[i].alarmTypeNo+'</div>'
+        	      	           +'<div id="alarm-content">'+obj.listMember[i].receMno+'님이 '+obj.listMember[i].massage+'</div>'       	 
+        		     );
+        		     
+        		     let deleteBtn=$('<button id="alarm-btn" value="'+obj.listMember[i].no+'">'
+        		     +'<span class="material-symbols-outlined">close</span></button>');
+        		   
+        		     $(oneAlarmArea).append(deleteBtn);
+
+        		     $('#alarm-area').append(oneAlarmArea);
+        		     
+        		     
+        		     $(deleteBtn).on('click',function(){
+        		    	 alarmDelete(obj.listMember[i].no, oneAlarmArea);
+        		    	
+        		     });
+
+                 };
+				
+			},
+			error: function() {   
+				$('#alarm-area').append("님 오류남 ");
+					
+			}
+        });
+        
       }else{
         $('#alarm-area').removeClass('show');
         $('#alarm-area').addClass('hidden');
-      }
-
-
-
-
-
-});
+      };
+      
+      
+	});
   
+  
+    //알람삭제
+    
+    function alarmDelete(no,oneAlarmArea){
+    	  $.ajax({
+    	      		type: "get",
+    				url: "${pageContext.request.contextPath}/alarmDelete",
+    				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+    				data:{"no":no},
+    				success: function(data) {	
+    					oneAlarmArea.remove();
+    				},
+    				error: function() {   
+	
+    				}
+    	      });
+
+    };
   
   
 function check2(){
@@ -381,7 +452,60 @@ function check2(){
 
         
 			
-		}
+		};
+		
+		
+
+		//소켓 생성
+		const webSocket = new WebSocket("ws://127.0.0.1:8888/app/alarm/server");
+		webSocket.onopen = function(){
+			
+		};
+		
+		
+		
+		//수신
+		webSocket.onmessage = function(event){		//인자 : 메세지 이벤트
+			
+			console.log(event.data);
+		
+			/*  알람번호+"#"+alarmType+"#"+ curLoginMemberNo(session).getNick() +"#"+alarmMsg*/
+			
+			let msg=event.data;
+			
+			let msgArr=msg.split("#");
+
+		     let oneAlarmArea = $('<div>').prop({className: 'oneAlarm-area'});
+		     
+		     $(oneAlarmArea).append(
+		    		  '<div id="alarm-cate">'+msgArr[1]+'</div>'
+	      	           +'<div id="alarm-content">'+msgArr[2]+'님이 '+msgArr[3]+'</div>'       	 
+		     );
+		     
+		     let deleteBtn=$('<button id="alarm-btn" value="'+msgArr[0]+'">'
+		     +'<span class="material-symbols-outlined">close</span></button>');
+		   
+		     $(oneAlarmArea).append(deleteBtn);
+
+		     $('#alarm-area').append(oneAlarmArea);
+		     
+		     
+		     $(deleteBtn).on('click',function(){
+		    	 alarmDelete(msgArr[0], oneAlarmArea);
+		    	
+		     });
+			
+			
+		
+		};
+		
+		//소켓 닫기
+		//webSocket.close();
+
+		
+
+
+
 
 
   
@@ -391,4 +515,5 @@ function check2(){
   <%if(alertMsg != null) {%>
     Swal.fire('<%= alertMsg%>')
   <%}%>
+
 </script>

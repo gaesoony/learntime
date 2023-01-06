@@ -416,23 +416,26 @@ pageEncoding="UTF-8"%>
     ></script>
 	<script>
 		//모달 띄우기
-		$('button[name=plus-btn]').on('click',function(){
-		    $('.blackBG2').addClass('show');
-		})
+		function btn(){
+			$('button[name=plus-btn]').on('click',function(){
+			    $('.blackBG2').addClass('show');
+			})
+			
+			//모달 닫기
+			$('#modal-closed2').on('click',function(){
+			    $('.blackBG2').removeClass('show');
+			})
+			
+			//검은 배경 클릭시 모달 닫기
+			$(document).mouseup(function (e){
+			//배경이 클릭 될 경우 리턴 0이 됨
+			if($('.blackBG2').has(e.target).length === 0){
+				$('.blackBG2').removeClass('show');
+			}
+			});
+		};
 		
-		//모달 닫기
-		$('#modal-closed2').on('click',function(){
-		    $('.blackBG2').removeClass('show');
-		})
-		
-		//검은 배경 클릭시 모달 닫기
-		$(document).mouseup(function (e){
-		//배경이 클릭 될 경우 리턴 0이 됨
-		if($('.blackBG2').has(e.target).length === 0){
-			$('.blackBG2').removeClass('show');
-		}
-		});
-
+		btn();
        
         
 
@@ -477,7 +480,7 @@ pageEncoding="UTF-8"%>
                             
                             );
                         };
-                         
+                        btn();
 
 			        },
 			        error: function() {   

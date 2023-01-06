@@ -183,8 +183,10 @@ body{
                                
                                 $('#followCnt').text(obj.followingCnt+" 팔로우 중");
                                 $('#followingCnt').text(obj.followerCnt+" 팔로워");
-
                                 location.reload(true);
+                                
+                                const msg = obj.alarmNo+"#팔로우#"+${userNo.no}+"#"+${loginMember.no}+"#팔로우 했어요";
+                     			webSocket.send(msg);
                                
                             }
                         },
@@ -220,6 +222,7 @@ body{
             }
 
 
+           
 
 
             

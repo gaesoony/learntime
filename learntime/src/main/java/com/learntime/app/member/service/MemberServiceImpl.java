@@ -44,6 +44,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVo login(MemberVo vo) {
 		
+		
 		MemberVo dbMember=memberDao.login(sst,vo);
 		boolean isMatch=enc.matches(vo.getPwd(), dbMember.getPwd());
 		
