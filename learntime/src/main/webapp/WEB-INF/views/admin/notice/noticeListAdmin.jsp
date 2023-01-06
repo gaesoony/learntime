@@ -474,7 +474,7 @@ background-color: #e9fde9;
                 <div class="notice-list-twoColored">
                     <div class="notice-group">
                         <c:forEach var="list" items="${list}" varStatus="status">
-                        	<div class="gathering-divs"> 
+                        	<div class="gatheringDivs"> 
 	                        	<c:if test="${status.index > 2 }">
 	                        	 	<div class="notice-white"></a>
 	                        	</c:if>
@@ -541,7 +541,8 @@ background-color: #e9fde9;
 	const left = pageNation.querySelector('.arrow.left');
 	const right = pageNation.querySelector('.arrow.right');
 	
-	
+	console.log(pageNation);
+	console.log(numArr);
 	if("${pv.startPage}" > 1){
 		left.href = '/app/notice/noticeList?p=${pv.startPage})-1';
 	}else{
@@ -557,7 +558,7 @@ background-color: #e9fde9;
 
 	let page = "${pv.startPage}";
 
-	for (let i = 0; i <= numArr.length; i++) {
+	for (let i = 0; i < numArr.length; i++) {
 		const num = numArr[i];
 		
 		if(page == "${pv.currentPage}"){
@@ -581,10 +582,10 @@ background-color: #e9fde9;
 	
 	/*상단고정버튼  */
 	
-   $('input[name=activate]').click(function(){
+   $('input[name="activate"]').click(function(){
 
        let activate = $('input[name="activate"]').val();
-       console.log(activate);
+       
        let valueArr = new Array();
        let list = $("#checkBoxBtn:checked");
        
@@ -616,7 +617,7 @@ background-color: #e9fde9;
    
 
 
-   $('input[name=deactivate]').click(function(){
+   $('input[name="deactivate"]').click(function(){
 
        let deactivate = $('input[name="deactivate"]').val();
        let valueArr = new Array();
@@ -646,9 +647,10 @@ background-color: #e9fde9;
        
    })
 
-   $('input[name=deleteList]').click(function(){
+   $('input[name="deleteList"]').click(function(){
 
-        let deleteList = $('input[name="deleteList"]').val();
+        let deleteList = $('input[name="deleteList"]').eq(0).val();
+        console.log($('input[name="deleteList"]').get(0));
         let valueArr = new Array();
         let list = $("#checkBoxBtn:checked");
         for(let i = 0; i <list.length; i++){
@@ -672,6 +674,15 @@ background-color: #e9fde9;
         }
 
         });
+        
+        const gatheringDivs = document.querySelectorAll('.gatheringDivs').value;
+        
+        for(let i = 0; i < list.length; i++) {
+        	  if(list[i] === list[i].checked)  {
+        		  
+        	    $('.gatheringDivs').remove('list[i].checked');
+        	  }
+        	}
 
     })
     

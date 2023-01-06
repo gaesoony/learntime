@@ -423,7 +423,7 @@
 	                    <input type="submit" value="검색" class="search-green-box">
 	                </div>
 	                <div class="deleteBtn">
-	                    <input type="submit" value="삭제" id="erase">
+	                    <input type="submit" value="삭제" id="erase" onclick="deleteValue();">
 	                </div>
 	            </div>
 	            <div class="listed-q">
@@ -438,7 +438,7 @@
 	                <c:forEach var="list" items="${list}" >
 	                    <div class="faqListAd">
 	                        <div class="gathering-divs-ad">
-	                            <div class="checkBox-Btn"><input type="checkbox" name="faq-ad" value="${list.no} id="checkBoxBtn"></div>
+	                            <div class="checkBox-Btn"><input type="checkbox" name="faqAd" value="${list.no}" id="checkBoxBtn"></div>
 	                            <div class="mark-ad">
 	                                <div class="green-circle">Q</div>
 	                            </div>
@@ -447,24 +447,37 @@
 	                            <a href = "app/admin/faq/faqDetailListAdmin?no=${list.no}"><div class="title-faq-ad" name="title">${list.title}</div></a>
 	                            <div class="nickname-faq-ad" name="writer">${list.writer}</div>
 	                            <div class="enrollDate-faq-ad" name="enrollDate">${list.enrollDate}</div>
-	                            <div class="deleteBtn-faq-ad"><input type="button" value="삭제" id="delete-ad"></div>
+	                            <div class="deleteBtn-faq-ad"><input type="button" value="삭제" id="deleteAd" onclick="deleteValue();"></div>
 	                        </div>
 	                    </div>
 	                </c:forEach>
 	            </div>
 	            <div class="page-qList-ad">
 	            	<div class="page-faq">
-					  	<ul id="page-nation">
-							<li><div class="pageBtn"><a href="/app/admin/faq/faqListAd?p=1" class="first"><<</a></div></li>
-							<li><div class="pageBtn"><a class="arrow left"><</a></div></li>
-							<li><div class="pageBtn"><a class="num"></a></div></li>
-							<li><div class="pageBtn"><a class="num"></a></div></li>
-							<li><div class="pageBtn"><a class="num"></a></div></li>
-							<li><div class="pageBtn"><a class="num"></a></div></li>
-							<li><div class="pageBtn"><a class="num"></a></div></li>
-							<li><div class="pageBtn"><a class="arrow right">></a></div></li>
-							<li><div class="pageBtn"><a href="/app/admin/faq/faqListAd?p=${pv.maxPage}" class="last">>></a></div></li>
-						</ul>
+					  	<c:if test="${pv.startPage != 1}">
+	                  <div class="paging-btn" id="prev-btn">
+	                    <a
+	                      href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+	                      >이전</a
+	                    >
+	                  </div>
+	                </c:if>
+	                <c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
+	                  <div class="paging-btn" id="${i}">
+	                    <a
+	                      href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+	                      >${i}</a
+	                    >
+	                  </div>
+	                </c:forEach>
+	                <c:if test="${pv.endPage < pv.maxPage}">
+	                  <div class="paging-btn" id="next-btn">
+	                    <a
+	                      href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+	                      >다음</a
+	                    >
+	                  </div>
+	                </c:if>
 				   </div>
 	            </div>
 	        </form>
@@ -475,57 +488,63 @@
 
  
 <script type="text/javascript">
-	const pageNation = document.querySelector('#page-nation');
-	const numArr = pageNation.querySelectorAll('.num');
-	const left = pageNation.querySelector('.arrow.left');
-	const right = pageNation.querySelector('.arrow.right');
-	
-	
-	if("${pv.startPage}" > 1){
-		left.href = '/app/admin/faq/faqListAd?p=${pv.startPage})-1';
-	}else{
-		left.classList.add('none-select');
-	}
-	
-	if("${pv.currentPage}" != "${pv.maxPage}"){
-		left.href = '/app/admin/faq/faqListAd?p=${pv.currentPage})+1';
-	}else{
-		right.classList.add('none-select');
-	}
-	
-
-	let page = ${pv.startPage};
-
-	for (let i = 0; i < numArr.length; i++) {
-		const num = numArr[i];
+	/* $(function(){
+		let rowCheck  = document.getElementsByName("faqAd");
+		let rowCnt = rowCheck.length;
+		$("input[name='faqAd']").click(function(){
+			let listArr =$("input[name='faqAd']");
+			for(let i = 0; i<listArr.length; i++){
+				listArr[i].checked = this.checked;
+			}
+			
+		});
 		
-		if(page == "${pv.currentPage}"){
-			num.classList.add('current');
+		
+	}); */
+	function deleteValue(){
+		
+		
+		const url="/app/admin/faq/faqListAd";
+		const valueArr = new Array();
+		const list = $("input[name = 'faqAd']");
+		for(let i = 0; i <list.length; i++){
+			if(list[i].checked){
+				valueArr.push(list[i].value);
+			}
 		}
 		
-		if(page<1 || page > "${pv.maxPage}"){
-			num.classList.add('p-none');
+		if(valueArr.length == 0){
+			alert("선택된 글이 없습니다.");
 		}else{
-			num.href = '/app/admin/faq/faqListAd?p='+page;
+			let chk = confirm("삭제하시겠습니까?");
+			$.ajax({
+				url: url,
+				type: 'POST',
+				traditional:true,
+				data:{"deleteList":deleteList,
+                    "valueArr":valueArr
+		        },
+		        success:function(x){
+		            alert('삭제되었습니다.');
+		        },
+		        error:function(){
+		            alert('에러가 발생했습니다.');
+		        }
+			});
 		}
-		num.classList.remove('p-none');
-        $(num).attr('onclick','/app/admin/faq/faqListAd?p=('+page+')');
-        
-		num.innerHTML = page;
-		page++;
 	}
-	
-	$('input[name=delete-ad]').click(function(){
-
-        let deleteList = $('input[name="delete-ad"]').val();
+	//* * $("#deleteAd").click(function(){
+/* 
+        let deleteList = $("#deleteAd").val();
         let valueArr = new Array();
         let list = $("#checkBoxBtn:checked");
         for(let i = 0; i <list.length; i++){
-            if(list[i].checked){
-                valueArr.push(list[i].value);
-            }
-        }
-
+            if(list[i].checked){ */ 
+            	
+         /*        /* valueArr.push(list[i].value); */
+            /*}
+       /*  }
+		console.log(list);
         var chk = confirm("삭제 하시겠습니까?");
         $.ajax({
             url:"/app/admin/faq/faqListAd",
@@ -541,8 +560,41 @@
         }
 
         });
+ 
+    }) */
+    
+    /* $("#erase").click(function(){
 
-    })
+        let erasePost = $("#erase").val();
+        let valueArr = new Array();
+        let list = $("#checkBoxBtn:checked");
+        
+        console.log(list);
+        for(let i = 0; i <list.length; i++){
+            if(list[i].checked){
+                valueArr.push(list[i].value);
+            }
+        }
+		
+		console.log(valueArr);
+		
+        var chk = confirm("삭제 하시겠습니까?");
+        $.ajax({
+            url:"/app/admin/faq/faqListAd",
+            type:"post",
+            data:{"erasePost":erasePost,
+                    "valueArr":valueArr
+        },
+        success:function(x){
+            alert('삭제되었습니다.');
+        },
+        error:function(){
+            alert('에러가 발생했습니다.');
+        }
+
+        });
+
+    }) */ 
 	
 	</script>
         
