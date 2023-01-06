@@ -291,6 +291,7 @@
         text-decoration: none;
         border-style: none;
         font-size: 15px;
+        cursor: pointer;
     }
     .replybtn:hover{
         font-weight: 550;
@@ -306,6 +307,7 @@
         text-decoration: none;
         border-style: none;
         font-size: 15px;
+        cursor: pointer;
     }
     .replybtn2:hover{
         font-weight: 550;
@@ -470,10 +472,12 @@
         color: #444444;
         margin-top: 30px;
         margin-left: 845px;
+        cursor: pointer;
     }
     .enddown2{
         font-size: 20px;
         color: #444444;
+        cursor: pointer;
     }
     .endline4{
         width: 825px;
@@ -512,6 +516,7 @@
         border: none;
         font-size: 15px;
         margin-top: 15px;
+        cursor: pointer;
     }
     .edit5{
         float: left;
@@ -526,6 +531,7 @@
         border: none;
         font-size: 15px;
         margin-top: 15px;
+        cursor: pointer;
     }
     .siderank{
         border: 1px solid #9D9D9D;
@@ -599,16 +605,16 @@
                 <div>미해결</div>
             </div>
             <div class="si">
-                <div><i class="fa-solid fa-thumbs-up"></i> 3</div>
+                <div><i class="fa-solid fa-thumbs-up"></i> 0</div>
             </div>
             <div class="si">
-                <div><i class="fa-solid fa-thumbs-down"></i> 1</div>
+                <div><i class="fa-solid fa-thumbs-down"></i> 0</div>
             </div>
             <div class="si">
-                <i class="fa-solid fa-comment"></i> 2
+                <i class="fa-solid fa-comment"></i> 0
             </div>
             <div class="si">
-                <i class="fa-solid fa-bookmark"></i> 3
+                <i class="fa-solid fa-bookmark"></i> 0
             </div>
         </div>
     </div>
@@ -635,7 +641,7 @@
                         <td class="bookmark" id="bookmark" onclick="changeColor7()"><i class="fa-regular fa-bookmark"></i></td>
 
                         <c:if test="${loginMember.nick == qvo.writer}">
-                            <td class="edit"><button type="button" class="edit-btn" onclick="location.href='${path}/qna/edit?qno=${qvo.no}'">수정</button></td>
+                            <td class="edit"><button type="button" class="edit-btn" onclick="location.href='${path}/qna/edit?no=${qvo.no}'">수정</button></td>
                             <td class="slash">/</td>
                             <td class="delete">
                                 <button type="button" class="delete-btn">삭제</button>
@@ -658,17 +664,6 @@
                             <td class="slash">/</td>
                             <td class="delete">
                                 <button type="button" class="delete-btn-null" title="해당 글의 작성자만 가능합니다.">삭제</button>
-                                <div class="modal hidden">
-                                    <div class="bg"></div>
-                                    <div class="modalBox">
-                                        <input type="button" class="closeBtn" onClick="location.reload();" value="X"></input>
-                                        <p class="modalTitle">게시물을 삭제하시겠습니까?</p>
-                                        <div class="modalBtn">
-                                            <input type="button" class="cancleBtn" value="취소" onClick="location.reload();"></input>
-                                            <input type="button" class="saveBtn" value="삭제"></input>
-                                        </div>
-                                    </div>
-                                </div>
                             </td>
                         </c:if>
                         
@@ -688,25 +683,29 @@
                         <li class="ha"><i class="fa-light fa-hashtag"></i>CSS</li>
                     </ul>
                 </div>
+                <input type="hidden" name="no" value="${qvo.no}">
             </div>
     
         </div>
         <div class="middle">
-            <div class="middlemain">
-                <div><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
-                <div class="replyplz">${loginMember.nick}님, 답변해주세요!</div>
-                <div class="replyplz-1">모두에게 도움이 되는 답변의 주인공이 되어주세요:)</div>
-                <div class="input">
-                    <textarea class="summernote" name="editordata"></textarea>
+            <c:if test="${loginMember != null}">
+                <div class="middlemain">
+                    <div><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
+                    <div class="replyplz">${loginMember.nick}님, 답변해주세요!</div>
+                    <div class="replyplz-1">모두에게 도움이 되는 답변의 주인공이 되어주세요:)</div>
+                    <div class="input">
+                        <textarea class="summernote" name="editordata"></textarea>
+                    </div>
+                    <button type="button" class="replybtn">답변 등록</button>
                 </div>
-                <button type="button" class="replybtn" style='cursor:pointer;'>답변 등록</button>
-            </div>
+            </c:if>
     
             <div class="end">
                 <i class="fa-regular fa-comment"></i>
                 <div class="endword">총 1개의 답변이 있습니다</div>
             </div>
-    
+            
+            
             <div class="jjinend">
                 <div class="choice"><i class="fa-solid fa-medal"></i></div>
                 <div><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
@@ -738,17 +737,17 @@
                     <div class="endend">nick03</div>
                     <div class="endendenrollDate">2202.12.08.</div>
                     <div class="endheart2"><i class="fa-solid fa-thumbs-up"></i> 15</div>
-                    <div class="edit4"><input type="button" id="edit4" style='cursor:pointer;' value="댓글 수정"></div>
+                    <div class="edit4"><input type="button" id="edit4" value="댓글 수정"></div>
                     <div class="edit5"> / </div>
-                    <div class="edit6"><input type="button" id="edit6" style='cursor:pointer;' value="삭제"></div>
+                    <div class="edit6"><input type="button" id="edit6" value="삭제"></div>
                     <div class="endline3"></div>
                     <div class="endendcontent">
                         말씀하신 내용 바탕으로 정리해보았는데,<br>
                         의존관계 자동주입 시점에 스프링컨테이너에 프로토타입빈을 요청하면 스프링컨테이너는<br>
                         프로토타입빈을 생성해서 반환한다. 반환된 프로토타입빈을 this.prototypeBean =prototypeBean; 에 의해서 내부필드에 주입되어서 보관한다.
                     </div>
-                    <div class="endup2" id="endup2" onclick="changeColor()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-up"></i></div>
-                    <div class="enddown2" id="enddown2" onclick="changeColor2()" style="cursor: pointer;"><i class="fa-regular fa-thumbs-down"></i></div>
+                    <div class="endup2" id="endup2" onclick="changeColor()"><i class="fa-regular fa-thumbs-up"></i></div>
+                    <div class="enddown2" id="enddown2" onclick="changeColor2()"><i class="fa-regular fa-thumbs-down"></i></div>
     
                     <div class="endline4"></div>
     
@@ -756,7 +755,7 @@
                         <div class="input2">
                             <textarea class="summernote2" name="editordata2"></textarea>
                         </div>
-                        <button type="button" class="replybtn2" style='cursor:pointer;'>댓글 등록</button>
+                        <button type="button" class="replybtn2">댓글 등록</button>
                         <div class="endline5"></div>
                     </div>
                 </div>

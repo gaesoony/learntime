@@ -13,9 +13,9 @@ public interface MakegrassDao {
 	
 	public int insertMakegrass(SqlSessionTemplate sst, MakegrassVo vo);
 
-	public int insertTag(SqlSessionTemplate sst, String[] str);
+	public int insertTag(SqlSessionTemplate sst, String[] tag);
 
-	public int insertKnowledgeTag(SqlSessionTemplate sst, String[] str);
+	public int insertMakegrassTag(SqlSessionTemplate sst, String[] tag);
 
 	List<Map<String, Object>> selectList(SqlSessionTemplate sst, MakegrassVo vo);
 
@@ -24,6 +24,8 @@ public interface MakegrassDao {
 	public int delete(SqlSessionTemplate sst, String no);
 
 	public int updateHit(SqlSessionTemplate sst, String no);
+
+	public int edit(SqlSessionTemplate sst, MakegrassVo vo);
 
 	
 

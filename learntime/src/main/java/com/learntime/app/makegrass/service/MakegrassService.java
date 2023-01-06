@@ -21,4 +21,7 @@ public interface MakegrassService {
 	//게시글 삭제
 	public int delete(String no);
 
+	//게시글 수정
+	public int edit(MakegrassVo vo);
+
 }

@@ -30,7 +30,7 @@ public class QnaController {
 
 	//목록 조회 (화면+DB)
 	@GetMapping("/list")
-	public String list(Model model, QnaVo vo, QnaTypeVo qvo) {
+	public String list(Model model, QnaVo vo, QnaTypeVo qvo, String tag) {
 		
 		if(qvo.getType() == null) {
 			qvo.setType("전체");
@@ -73,6 +73,8 @@ public class QnaController {
 		
 		int result = service.write(vo);
 		
+		System.out.println("컨트롤러에서 작성 DB : " + result);
+		
 		if(result >= 1) {
 			return "redirect:/qna/list";
 		}else {
@@ -92,26 +94,24 @@ public class QnaController {
 	
 	//게시글 수정 (화면)
 	@GetMapping("/edit")
-	public String edit(@RequestParam("qno")String qno, Model model) { 
+	public String edit(@RequestParam("no") String no, Model model) { 
 		
-		QnaVo qvo = service.detail(qno);
+		QnaVo qvo = service.detail(no);
 		model.addAttribute("qvo", qvo);
-		
-		System.out.println("컨트롤러에서 화면 : " + qvo);
 		
 		return "qna/edit";
 	}
 	
 	//게시글 수정 (DB)
 	@PostMapping("/edit")
-	public String edit(QnaVo vo, HttpSession session) {
+	public String edit(QnaVo vo) {
 		
 		int result = service.edit(vo);
 		
-		System.out.println("컨트롤러에서 DB 쪽 : " + result);
+		System.out.println("컨트롤러에서 수정 DB : " + result);
 		
 		if(result == 1) {
-			return "redirect:/qna/detail?qno="+vo.getNo();
+			return "redirect:/qna/detail?no="+vo.getNo();
 		}else {
 			return "common/errorPage";
 		}

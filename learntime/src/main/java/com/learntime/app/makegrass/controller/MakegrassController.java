@@ -48,6 +48,8 @@ public class MakegrassController {
 		
 		int result = service.write(vo);
 		
+		System.out.println("컨트롤러에서 작성 DB : " + vo);
+		
 		if(result >= 1) {
 			return "redirect:/makegrass/list";
 		}else {
@@ -63,6 +65,33 @@ public class MakegrassController {
 		model.addAttribute("mvo", mvo);
 		
 		return "makegrass/detail";
+	}
+	
+	//잔디심기 수정 (화면)
+	@GetMapping("/edit")
+	public String edit(String mno, Model model) {
+		
+		MakegrassVo mvo = service.detail(mno);
+		model.addAttribute("mvo", mvo);
+		
+		return "makegrass/edit";
+	}
+	
+	//잔디심기 수정 (DB)
+	@PostMapping("/edit")
+	public String edit(MakegrassVo vo, HttpSession session) {
+		
+		vo.setNo(vo.getNo());
+		
+		int result = service.edit(vo);
+		
+		System.out.println(result);
+		
+		if(result == 1) {
+			return "redirect:/makegrass/detail?mno=" + vo.getNo();
+		}else{
+			return "common/errorPage";
+		}
 	}
 	
 	//잔디심기 삭제 (DB)

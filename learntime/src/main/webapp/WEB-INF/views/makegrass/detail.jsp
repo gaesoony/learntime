@@ -719,12 +719,12 @@
                             <td><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></td>
                             <td class="nick">${mvo.writer}</td>
                             <td class="enrollDate">${mvo.enrollDate}</td>
-                            <td class="heart"><i class="fa-solid fa-thumbs-up"></i> ${mvo.likes}</td>
+                            <td class="heart"><i class="fa-solid fa-thumbs-up"></i> 3</td>
                             <td class="thumbsup"><i class="fa-regular fa-thumbs-up"></i></td>
                             <td class="thumbsdown"><i class="fa-regular fa-thumbs-down"></i></td>
                             <td class="bookmark"><i class="fa-regular fa-bookmark"></i></td>
                             <c:if test="${loginMember.nick == mvo.writer}">
-                                <td class="edit"><button type="button" class="edit-btn" onclick="location.href='${path}/makegrass/edit?no=${mvo.no}'">수정</button></td>
+                                <td class="edit"><button type="button" class="edit-btn" onclick="location.href='${path}/makegrass/edit?mno=${mvo.no}'">수정</button></td>
                                 <td class="slash">/</td>
                                 <td class="delete">
                                     <button type="button" class="delete-btn">삭제</button>
@@ -746,17 +746,6 @@
                                 <td class="slash">/</td>
                                 <td class="delete">
                                     <button type="button" class="delete-btn-null" title="해당 글의 작성자만 가능합니다.">삭제</button>
-                                    <div class="modal hidden">
-                                        <div class="bg"></div>
-                                        <div class="modalBox">
-                                            <input type="button" class="closeBtn" onClick="location.reload();" value="X"></input>
-                                            <p class="modalTitle">게시물을 삭제하시겠습니까?</p>
-                                            <div class="modalBtn">
-                                                <input type="button" class="cancleBtn" value="취소" onClick="location.reload();"></input>
-                                                <input type="button" class="saveBtn" onclick="location.href='${path}/makegrass/delete?no=${mvo.no}'" value="삭제"></input>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </td>
                             </c:if>
                             
@@ -788,13 +777,13 @@
         <div class="sidebarbox">
             <div class="side">
                 <div class="si">
-                    <div><i class="fa-solid fa-thumbs-up"></i>&nbsp ${mvo.likes}</div>
+                    <div><i class="fa-solid fa-thumbs-up"></i>&nbsp 3</div>
                 </div>
                 <div class="si">
-                    <div><i class="fa-solid fa-thumbs-down"></i>&nbsp ${mvo.hates}</div>
+                    <div><i class="fa-solid fa-thumbs-down"></i>&nbsp 2</div>
                 </div>
                 <div class="si">
-                    <i class="fa-solid fa-comment"></i>&nbsp ${mvo.replyCnt}
+                    <i class="fa-solid fa-comment"></i>&nbsp 0
                 </div>
             </div>
         </div>

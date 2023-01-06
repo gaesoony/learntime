@@ -18,16 +18,19 @@ public class QnaDaoImpl implements QnaDao {
 	//게시글 작성
 	@Override
 	public int write(SqlSessionTemplate sst, QnaVo vo) {
+		System.out.println("디에이옹서 작성 : " + vo);
 		return sst.insert("qnaMapper.write", vo);
 	}
 	
 	@Override
 	public int insertTag(SqlSessionTemplate sst, String[] tag) {
+		System.out.println("디에이오에서 태그1 : " + tag);
 		return sst.insert("qnaMapper.insertTag", tag);
 	}
 	
 	@Override
 	public int insertKnowledgeTag(SqlSessionTemplate sst, String[] tag) {
+		System.out.println("디에이오에서 태그2 : " + tag);
 		return sst.insert("qnaMapper.insertKnowledgeTag", tag);
 	}
 
@@ -48,6 +51,7 @@ public class QnaDaoImpl implements QnaDao {
 	//게시글 수정
 	@Override
 	public int edit(SqlSessionTemplate sst, QnaVo vo) {
+		System.out.println("디에이오에서 수정 : " + vo);
 		return sst.update("qnaMapper.edit", vo);
 	}
 
@@ -57,11 +61,10 @@ public class QnaDaoImpl implements QnaDao {
 		return sst.update("qnaMapper.updateHit", no);
 	}
 
+	//게시글 삭제
 	@Override
 	public int delete(SqlSessionTemplate sst, String qno) {
 		return sst.update("qnaMapper.delete", qno);
 	}
-
-	
 
 }

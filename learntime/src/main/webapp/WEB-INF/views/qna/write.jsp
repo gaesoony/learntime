@@ -41,6 +41,7 @@
         margin-left: 840px;
         margin-top: 30px;
         margin-bottom: 50px;
+        cursor: pointer;
      }
      .write{
         width: 5vw;
@@ -50,6 +51,7 @@
         color: white;
         border: #5ECC80;
         border-radius: 10px;
+        cursor: pointer;
      }
 
      /* 해시태그 */
@@ -95,6 +97,7 @@
         margin-left: 8px;
     }
     #tag{
+        width: 70px;
         text-align: center;
         border: none;
         background-color: white;
@@ -143,8 +146,7 @@
 		<div class="mainbox">
 		
 		<form action="${path}/qna/write" method="post" name="myform" onkeydown="return event.key != 'Enter';">
-
-
+                
                 <div class="radio-box">
                     <input type="radio" value="1" id="cateNo1" name="cateNo" checked><label for="cateNo1">기술</label>
                     <input type="radio" value="2" id="cateNo2" name="cateNo"><label for="cateNo2">커리어</label>
@@ -163,8 +165,8 @@
 	
 	            <textarea name="content" class="summernote"></textarea>
 	
-	            <input type="button" onClick="history.back();" class="cancle" style='cursor:pointer;' value="취소" />
-	            <input type="submit" class="write" style='cursor:pointer;' value="등록" />
+	            <input type="button" onClick="history.back();" class="cancle" value="취소" />
+	            <input type="submit" class="write" value="등록" />
         </div>
 		</form>
 

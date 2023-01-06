@@ -23,8 +23,8 @@ public class QnaServiceImpl implements QnaService {
 	private SqlSessionTemplate sst;
 	
 	//게시글 작성
-	@Transactional
 	@Override
+	@Transactional
 	public int write(QnaVo vo) {
 		
 		int result1 = 0;
@@ -77,8 +77,9 @@ public class QnaServiceImpl implements QnaService {
 
 	//게시글 수정
 	@Override
-	public int edit(QnaVo qvo) {
-		return dao.edit(sst, qvo);
+	@Transactional
+	public int edit(QnaVo vo) {
+		return dao.edit(sst, vo);
 	}
 
 	//게시글 삭제
@@ -87,8 +88,4 @@ public class QnaServiceImpl implements QnaService {
 		return dao.delete(sst, qno);
 	}
 
-	
-
-	
-	
 }

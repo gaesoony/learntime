@@ -43,7 +43,7 @@ public class MakegrassServiceImpl implements MakegrassService {
 			if(vo.getTag() == null) {
 				result3 = 1;
 			}else {
-				result3 = dao.insertKnowledgeTag(sst, vo.getTag());
+				result3 = dao.insertMakegrassTag(sst, vo.getTag());
 			}
 		}
 		
@@ -67,6 +67,12 @@ public class MakegrassServiceImpl implements MakegrassService {
 	@Override
 	public int delete(String no) {
 		return dao.delete(sst, no);
+	}
+
+	//게시글 수정
+	@Override
+	public int edit(MakegrassVo vo) {
+		return dao.edit(sst, vo);
 	}
 
 }

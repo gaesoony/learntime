@@ -59,6 +59,7 @@
         margin-left: 840px;
         margin-top: 30px;
         margin-bottom: 50px;
+        cursor: pointer;
      }
      .write{
         width: 5vw;
@@ -144,8 +145,8 @@
     <div class="mainbox">
 	    <form action="${path}/makegrass/edit" method="post" name="myform" onkeydown="return event.key != 'Enter';">
 	    	<div class="maintitle">
-	            <input type="text" name="title" class="title" placeholder="제목을 입력하세요">
-	            <input type="text" name="learnTime" class="worktime" placeholder="공부한 시간 | ex) 120분">
+	            <input type="text" name="title" class="title" value="${mvo.title}" />
+	            <input type="text" name="learnTime" class="worktime" value="${mvo.learnTime}" />
 
 	            <div class="content">
 	                <div>
@@ -155,9 +156,9 @@
 	                </ul>
 	            </div>
 	
-	            <textarea class="summernote" name="content"></textarea>
+	            <textarea class="summernote" name="content">${mvo.content}</textarea>
 	
-	            <input type="button" onClick="history.back();" class="cancle" style='cursor:pointer;' value="취소">
+	            <input type="button" onClick="history.back();" class="cancle" value="취소">
 	            <input type="submit" class="write" value="수정">
 	            
 	        </div>

@@ -148,7 +148,7 @@
 
                 <div class="radio-box">
                     <input type="radio" value="${qvo.cateNo}" id="cateNo1" name="cateNo" checked><label for="cateNo1">기술</label>
-                    <input type="radio" value="${vo.cateNo}" id="cateNo2" name="cateNo"><label for="cateNo2">커리어</label>
+                    <input type="radio" value="${qvo.cateNo}" id="cateNo2" name="cateNo"><label for="cateNo2">커리어</label>
                 </div>
 
                 <input type="text" name="title" class="title" value="${qvo.title}"/>

@@ -32,8 +32,5 @@ public interface QnaDao {
 
 	public int delete(SqlSessionTemplate sst, String qno);
 
-	
-
-	
 
 }

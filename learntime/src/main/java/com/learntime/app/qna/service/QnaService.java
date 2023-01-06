@@ -28,9 +28,5 @@ public interface QnaService {
 
 	//게시글 삭제
 	public int delete(String qno);
-
-	
-	
-	
 	
 }

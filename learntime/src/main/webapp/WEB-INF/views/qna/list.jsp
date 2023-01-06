@@ -410,12 +410,11 @@
                                                 </div>
             
                                                 <!-- 본문 속 해시태그 -->
-                                                <div class="hashtagbox">
+                                                <!-- <div class="hashtagbox">
                                                     <ul class="hashtag">
                                                         <li class="hash" name="tag"><i class="fa-light fa-hashtag"></i>자바</li>
-                                                        <li class="hash" name="tag"><i class="fa-light fa-hashtag"></i>CSS</li>
                                                     </ul>
-                                                </div>
+                                                </div> -->
                                                 <div class="etcbox">
                                                     <ul class="etc">
                                                         <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
