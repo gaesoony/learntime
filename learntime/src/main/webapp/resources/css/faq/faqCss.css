@@ -107,7 +107,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
+    width: 80px;
     height: 100%;
     padding-left: 10px;
    
@@ -129,7 +129,7 @@
     justify-content: center;
     align-items: center;
     font-weight: 600;
-    width: 120px;
+    width: 200px;
    
 }
 .title-faq{
@@ -138,6 +138,7 @@
     font-weight: 600;
     width: 700px;
     line-height:50px;
+    margin-left:50px;
    
 
 }
@@ -147,6 +148,7 @@
     align-items: center;
     font-weight: 600;
     width: 300px;
+    margin-left: 350px;
    
 
 }

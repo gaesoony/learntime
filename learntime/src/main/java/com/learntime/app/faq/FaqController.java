@@ -55,6 +55,8 @@ public class FaqController {
 		m.addAttribute("list",list);
 		m.addAttribute("cateNo",vo.getCateNo());
 		m.addAttribute("p",pv.getP());
+		m.addAttribute("category",vo.getCategory());
+		m.addAttribute("keyword",vo.getKeyword());
 		
 		
 		return "faq/faqList";

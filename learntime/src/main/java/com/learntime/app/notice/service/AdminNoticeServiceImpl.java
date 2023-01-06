@@ -64,7 +64,10 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 
 	@Override
 	public int deleteOne(NoticeVo vo) {
-		return adao.updateOne3(sst,vo);
+		System.out.println("sssss");
+		int no = adao.updateOne3(sst,vo);
+		System.out.println("서비스:"+no);
+		return no;
 	}
 
 	

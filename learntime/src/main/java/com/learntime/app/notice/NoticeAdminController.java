@@ -72,7 +72,7 @@ public class NoticeAdminController {
 		@PostMapping("noticeListAdmin")
 		@ResponseBody
 		public String noticeListAdmin(HttpServletRequest req,NoticeVo vo,String activate,@RequestParam(value="valueArr[]") List<Integer> valueArr) {
-			
+			System.out.println("ㅋㅋㅋ호출!!");
 //			String activate = req.getParameter("activate");
 			String deactivate = req.getParameter("deactivate");
 			String deleteList = req.getParameter("deleteList");
@@ -86,7 +86,8 @@ public class NoticeAdminController {
 				
 				
 			}
-//			System.out.println(valueArr);
+			System.out.println("deleteList"+deleteList);
+			System.out.println("valueArr:"+valueArr);
 			
 //			Map<String,Object> map = new HashMap<String,Object>();
 //			map.put("vo",vo);

@@ -54,13 +54,15 @@ public class AdminFaqController {
 		m.addAttribute("list",list);
 		m.addAttribute("cateNo",vo.getCateNo());
 		m.addAttribute("p",pv.getP());
+		m.addAttribute("category",vo.getCategory());
+		m.addAttribute("keyword",vo.getKeyword());
 		
 		
 		return "admin/faq/faqListAd";
 	}
 	@PostMapping("faqListAd")
 	@ResponseBody
-	public String faqListAd(NoticeVo vo,String deleteList,@RequestParam(value="valueArr[]") List<Integer> valueArr) {
+	public String faqListAd(NoticeVo vo,String deleteList,String erasePost, @RequestParam(value="valueArr[]") List<Integer> valueArr) {
 		
 		int no =0;
 		
@@ -79,7 +81,7 @@ public class AdminFaqController {
 		}
 		
 		
-		return "";
+		return "admin/faq/faqListAd";
 	}
 	
 	//관리자페이지 faq 상세조회

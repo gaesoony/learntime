@@ -65,7 +65,7 @@
 					<li><a class="num"></a></li>
 					<li><a class="num"></a></li>
 					<li><a class="num"></a></li>
-					<li><a class="arrow right">></a></li>
+					<li><a class="arrow right">>></a></li>
 					<li><a href="/app/faq/faqList?p=${pv.maxPage}&cateNo=0" class="last">>></a></li>
 				</ul>
 		   </div>

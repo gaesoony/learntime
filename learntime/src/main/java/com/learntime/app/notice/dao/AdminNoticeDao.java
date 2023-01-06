@@ -55,7 +55,10 @@ public class AdminNoticeDao {
 	}
 
 	public int updateOne3(SqlSessionTemplate sst, NoticeVo vo) {
-		return sst.update("adminNoticeMapper.delete",vo);
+		System.out.println("ddddd");
+		int no = sst.update("adminNoticeMapper.delete",vo);
+		System.out.println("dao:"+no);
+		return no;
 	}
 
 	

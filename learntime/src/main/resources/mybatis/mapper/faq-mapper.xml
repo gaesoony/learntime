@@ -14,7 +14,7 @@
       
  	  SELECT F.NO,F.CATE_NO, C.NAME as CATE_NAME,F.TITLE,F.ENROLL_DATE, M.NICK AS WRITER FROM FAQ F 
       JOIN COMMON_CATEGORY C ON F.CATE_NO= C.NO JOIN MEMBER M ON M.NO = F.WRITER
-      WHERE DELETE_YN = 'N'<if test = "vo.cateNo != null and vo.cateNo != '' "> AND CATE_NO = ${cateNo}</if> 
+      WHERE DELETE_YN = 'N'<if test = "vo.cateNo != null and vo.cateNo != '' "> AND CATE_NO = #{cateNo}</if> 
       <if test="keyword !=null and keyword != ''">
 		AND  ${category} LIKE '%${keyword}%' 
 	  </if>
