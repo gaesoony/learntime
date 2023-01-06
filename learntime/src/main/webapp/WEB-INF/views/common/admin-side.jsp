@@ -55,7 +55,9 @@ session.removeAttribute("alertMsg"); %>
         </span>
       </div>
     </div>
-    <div id="logout">log out</div>
+    <div id="logout" onclick="location.href='${path}/admin/manager/logout'">
+      log out
+    </div>
   </div>
   <div class="menu sub_menu" id="sub-menu">
     <ul class="big_menu">

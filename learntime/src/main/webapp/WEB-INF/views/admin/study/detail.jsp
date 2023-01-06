@@ -524,97 +524,136 @@ pageEncoding="UTF-8"%>
   <body>
     <%@include file="/WEB-INF/views/common/admin-side.jsp"%>
     <div id="content-wrap">
-      <div id="admin-category-title" class="shadow-light">스터디/프로젝트</div>
+      <div id="admin-category-title" class="shadow-light">
+        <a href="${path}/admin/study/list?pno=1">스터디/프로젝트</a>
+      </div>
       <div class="wrapper">
         <div class="detail-section">
           <main class="main-study-detail">
             <aside class="study-detail-aside-left">
               <button
                 class="back-btn"
-                onclick="location.href='/app/study/list'"
+                onclick="location.href='${path}/admin/study/list?pno=${pno}&keyword=${keyword}&category=${category}&status=${status}'"
               >
                 <i class="fa-solid fa-arrow-left"></i>
               </button>
             </aside>
             <article class="study-detail">
               <section class="study-detail-title-area">
-                <h1 class="bold700">토이 프로젝트 앱 개발자 구합니다!</h1>
+                <h1 class="bold700">${groupOne.TITLE}</h1>
                 <div class="space-between study-detail-title-bottom">
                   <div class="flex">
                     <div class="user-profile">
-                      <img src="/app/resources/img/study/profile.png" alt="" />
+                      <img
+                        src="${path}/resources/upload/common/profile_default.png"
+                        alt=""
+                      />
                     </div>
                     <div class="user-nick flex">
-                      <div>한혜원</div>
+                      <div>${groupOne.NICK}</div>
                       <img src="/app/resources/img/study/flower.png" alt="" />
                     </div>
                     <div class="soft-gray study-detail-title__date">
-                      | 2022.11.06 |
+                      | ${groupOne.ENROLL_DATE} |
                     </div>
                     <ul class="flex soft-gray hit-cmt-scrap">
-                      <li><i class="fa-regular fa-eye"></i><span>60</span></li>
                       <li>
-                        <i class="fa-regular fa-comment-dots"></i><span>5</span>
+                        <i class="fa-regular fa-eye"></i
+                        ><span>${groupOne.HIT}</span>
                       </li>
                       <li>
-                        <i class="fa-regular fa-bookmark"></i><span>10</span>
+                        <i class="fa-regular fa-comment-dots"></i
+                        ><span>${groupOne.CMT_CNT}</span>
+                      </li>
+                      <li>
+                        <i class="fa-regular fa-bookmark"></i
+                        ><span>${groupOne.SCRAP_CNT}</span>
                       </li>
                     </ul>
                   </div>
                   <div>
-                    <a
-                      href="${pageContext.request.contextPath}/admin/study/edit"
-                      >수정</a
-                    >
-                    <a href="">삭제</a>
+                  
+                      <a
+                        href="${path}/admin/study/edit?gno=${groupOne.NO}&pno=${pno}&keyword=${keyword}&category=${category}&status=${status}"
+                        class="edit-bnt"
+                        >수정</a
+                      >
+               
+    
+                    <c:if test="${loginMember.no == groupOne.WRITER_NO}">
+                      <span class="cursor" onclick="deleteAlert();">삭제</span>
+                    </c:if>
                   </div>
+                  <script>
+                    function deleteAlert() {
+                      Swal.fire({
+                        title: "글을 삭제하시겠습니까?",
+                        text: "삭제하시면 다시 복구시킬 수 없습니다",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#5ecc80",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "삭제",
+                        cancelButtonText: "취소",
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          location.href =
+                            "${path}/study/delete?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}";
+                        }
+                      });
+                    }
+                  </script>
                 </div>
               </section>
               <section class="study-detail-summary-area">
                 <ul class="study-detail-summary-list">
                   <li class="flex">
                     <div>모집구분</div>
-                    <div>프로젝트</div>
+                    <div>${groupOne.TYPE}</div>
                   </li>
                   <li class="flex">
                     <div>진행방식</div>
-                    <div>오프라인</div>
+                    <div>${groupOne.WAY}</div>
                   </li>
                   <li class="flex">
                     <div>모집인원</div>
-                    <div>5명 (3/5)</div>
+                    <div>
+                      ${groupOne.NUMBER_PEOPLE}명
+                      (${groupOne.memberList.size()}/${groupOne.NUMBER_PEOPLE})
+                    </div>
                   </li>
                   <li class="flex">
                     <div>시작예정</div>
-                    <div>2022.11.10</div>
+                    <div>${groupOne.START_DATE}</div>
                   </li>
                   <li class="flex">
                     <div>예상기간</div>
-                    <div>3개월</div>
+                    <div>${groupOne.PERIOD}</div>
                   </li>
                   <li class="flex">
                     <div>진행시간</div>
-                    <div>14:00 ~ 16:00</div>
+                    <div>${groupOne.START_TIME} ~ ${groupOne.END_TIME}</div>
                   </li>
                   <li class="flex">
                     <div>진행장소</div>
-                    <div>강남 KH정보교육원</div>
+                    <c:if test="${groupOne.PLACE != null }">
+                      <div>${groupOne.PLACE} (${groupOne.ADDRESS})</div>
+                    </c:if>
+                    <c:if test="${groupOne.PLACE == null }">
+                      <div>온라인에서 만나요</div>
+                    </c:if>
                   </li>
                   <li class="flex">
                     <div>기술스택</div>
                     <ul class="flex tech-list">
-                      <li class="study-tech">
-                        <img src="/app/resources/img/study/aws.svg" alt="" />
-                      </li>
-                      <li class="study-tech">
-                        <img src="/app/resources/img/study/docker.svg" alt="" />
-                      </li>
-                      <li class="study-tech">
-                        <img src="/app/resources/img/study/java.svg" alt="" />
-                      </li>
-                      <li class="study-tech">
-                        <img src="/app/resources/img/study/spring.svg" alt="" />
-                      </li>
+                      <c:forEach items="${groupOne.techStackList}" var="ts">
+                        <li class="study-tech">
+                          <img
+                            src="${path}/resources/upload/techStack/${ts.IMG_PATH}"
+                            alt=""
+                          />
+                        </li>
+                      </c:forEach>
                     </ul>
                   </li>
                 </ul>
@@ -625,57 +664,19 @@ pageEncoding="UTF-8"%>
                   <li class="study-tab">진행 장소</li>
                 </ul>
                 <div class="study-info-content">
-                  <div class="study-detail-info-content">
-                    <p>토이프로젝트 앱개발 같이 하실분 구합니다.</p>
-                    <br />
-                    <p>사용 기술스택</p>
-                    <p>App: Flutter (Android, Mobile)</p>
-                    <p>Backend: nestjs (Typescript) Apollo client</p>
-                    <p>Frontend react (typescript) (view only)</p>
-                    <p>git: Github</p>
-                    <p>CI: github actions</p>
-                    <p>CD: GCP</p>
-                    <br />
-                    <p>
-                      앱은 각정도만 잡혀 있는 상태이고 플루터 잘하시는분
-                      환영합니다!
-                    </p>
-                    <p>
-                      지금 인원은 앱 개발자:1분 PM: 1분 Devops, Backend 1분
-                      입니다
-                    </p>
-                    <br />
-                    <p>
-                      기존에 없던 앱을 만드는 것이라 나중에 포트폴리오 쓰실때
-                      좋을듯 합니다 :)
-                    </p>
-                  </div>
+                  <div class="study-detail-info-content">${groupOne.INTRO}</div>
                   <ul class="tag-list">
-                    <li class="tag-list-detail">
-                      <i class="fa-solid fa-hashtag gray1"></i>
-                      <span>자바</span>
-                    </li>
-                    <li class="tag-list-detail">
-                      <i class="fa-solid fa-hashtag gray1"></i>
-                      <span>포트폴리오</span>
-                    </li>
-                    <li class="tag-list-detail">
-                      <i class="fa-solid fa-hashtag gray1"></i>
-                      <span>프로젝트</span>
-                    </li>
-                    <li class="tag-list-detail">
-                      <i class="fa-solid fa-hashtag gray1"></i>
-                      <span>자바스크립트</span>
-                    </li>
-                    <li class="tag-list-detail">
-                      <i class="fa-solid fa-hashtag gray1"></i>
-                      <span>앱개발</span>
-                    </li>
+                    <c:forEach items="${groupOne.tagList}" var="item">
+                      <li class="tag-list-detail">
+                        <i class="fa-solid fa-hashtag gray1"></i>
+                        <span>${item.NAME}</span>
+                      </li>
+                    </c:forEach>
                   </ul>
                 </div>
                 <div class="study-location-content hidden">
                   <div id="map" style="width: 100%; height: 500px"></div>
-
+    
                   <script
                     type="text/javascript"
                     src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cb4230ca104b4d83bce478dce786ba7d&libraries=services"
@@ -684,18 +685,18 @@ pageEncoding="UTF-8"%>
                     var mapContainer = document.getElementById("map"), // 지도를 표시할 div
                       mapOption = {
                         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                        level: 1, // 지도의 확대 레벨
+                        level: 4, // 지도의 확대 레벨
                       };
-
+    
                     // 지도를 생성합니다
                     var map = new kakao.maps.Map(mapContainer, mapOption);
-
+    
                     // 주소-좌표 변환 객체를 생성합니다
                     var geocoder = new kakao.maps.services.Geocoder();
-
+    
                     // 주소로 좌표를 검색합니다
                     geocoder.addressSearch(
-                      "서울 강남구 테헤란로14길 6 남도빌딩 2층, 3층, 4층",
+                      "${groupOne.ADDRESS}",
                       function (result, status) {
                         // 정상적으로 검색이 완료됐으면
                         if (status === kakao.maps.services.Status.OK) {
@@ -703,21 +704,23 @@ pageEncoding="UTF-8"%>
                             result[0].y,
                             result[0].x
                           );
-
+                          map.setCenter(coords);
+    
                           // 결과값으로 받은 위치를 마커로 표시합니다
                           var marker = new kakao.maps.Marker({
                             map: map,
                             position: coords,
                           });
-
+    
                           // 인포윈도우로 장소에 대한 설명을 표시합니다
                           var infowindow = new kakao.maps.InfoWindow({
                             content:
-                              '<div style="width:150px;text-align:center;padding:6px 0;">스터디장소</div>',
+                              '<div style="width:150px;text-align:center;padding:6px 0 10px 0;">${groupOne.PLACE}</div>',
                           });
                           infowindow.open(map, marker);
-
+    
                           // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                          console.log(coords);
                           map.setCenter(coords);
                         }
                       }
@@ -726,146 +729,293 @@ pageEncoding="UTF-8"%>
                 </div>
               </section>
               <section class="study-detail-member-area">
-                <h1>참여 멤버(3명)</h1>
-
+                <h1>참여 멤버(${groupOne.memberList.size()}명)</h1>
+    
                 <ul class="study-member-list">
-                  <li>
-                    <img src="/app/resources/img/study/profile.png" alt="" />
-                    <div>한혜원</div>
-                    <div>모임장</div>
-                  </li>
-                  <li>
-                    <img src="/app/resources/img/study/profile.png" alt="" />
-                    <div>한혜원</div>
-                    <div>멤버</div>
-                  </li>
-                  <li>
-                    <img src="/app/resources/img/study/profile.png" alt="" />
-                    <div>한혜원</div>
-                    <div>멤버</div>
-                  </li>
+                  <c:forEach items="${groupOne.memberList}" var="item">
+                    <li>
+                      <img
+                        src="${path}/resources/upload/common/profile_default.png"
+                        alt=""
+                      />
+                      <div>${item.NICK}</div>
+                      <c:if test="${item.STATUS == 'B'}">
+                        <div>모임장</div>
+                      </c:if>
+                      <c:if test="${item.STATUS == 'C'}">
+                        <div>멤버</div>
+                      </c:if>
+                    </li>
+                  </c:forEach>
                 </ul>
               </section>
-              <section class="center">
-                <input
-                  class="study-join-btn"
-                  type="button"
-                  id="study-modal-open"
-                  value="가입하기"
-                />
-                <div class="study-popup-wrap" id="study-popup">
-                  <div class="study-popup">
-                    <div class="study-popup-head">
-                      <div class="study-head-title">가입 신청</div>
-                      <div>가입 신청을 위한 정보를 입력해주세요</div>
-                    </div>
-                    <div class="study-popup-body">
-                      <div class="study-body-content">
-                        <div class="study-body-titlebox">
-                          <div>질문1</div>
-                          <div>지원동기 알려주세요</div>
-                        </div>
-                        <div class="study-body-contentbox">
-                          <input type="text" />
-                        </div>
-                      </div>
-                      <div class="study-body-content">
-                        <div class="study-body-titlebox">
-                          <div>질문2</div>
-                          <div>사용 가능한 언어 알려주세요</div>
-                        </div>
-                        <div class="study-body-contentbox">
-                          <input type="text" />
-                        </div>
-                      </div>
-                      <div class="study-body-content">
-                        <div class="study-body-titlebox">
-                          <div>질문3</div>
-                          <div>공지사항 꼭 읽어주세요</div>
-                        </div>
-                        <div class="study-body-contentbox">
-                          <input type="text" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="study-popup-foot">
-                      <div
-                        class="study-pop-btn study-confirm"
-                        id="study-confirm"
-                      >
-                        신청
-                      </div>
-
-                      <div class="study-pop-btn study-close" id="study-close">
-                        취소
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <script>
-                  $(function () {
-                    $("#study-confirm").click(function () {
-                      modalClose(); //모달 닫기 함수 호출
-
-                      //컨펌 이벤트 처리
-                    });
-                    $("#study-modal-open").click(function () {
-                      $("#study-popup").css("display", "flex").hide().fadeIn();
-                      //팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
-                    });
-                    $("#study-close").click(function () {
-                      modalClose(); //모달 닫기 함수 호출
-                    });
-                    function modalClose() {
-                      $("#study-popup").fadeOut(); //페이드아웃 효과
-                    }
-                  });
-                </script>
-              </section>
+              <form action="${path}/study/apply" method="post" id="apply">
+                <input type="hidden" name="gno" value="${groupOne.NO}" />
+                <input type="hidden" name="mno" value="${loginMember.no}" />
+                <section class="center">
+                    <input
+                      class="study-join-btn"
+                      type="button"
+                      value="가입하기"
+                      onclick="login();"/>
+                 
+                 
+                </section>
+              </form>
             </article>
             <aside class="study-detail-aside-right">
               <div class="study-detail-aside-right-btns">
-                <div>모집중</div>
-                <div class="like-hate-btn">
-                  <div><i class="fa-solid fa-chevron-down"></i></div>
-                  <div>-5</div>
-                  <div><i class="fa-solid fa-chevron-up"></i></div>
-                </div>
-                <div><i class="fa-regular fa-bookmark"></i><span>5</span></div>
+                <c:if test="${groupOne.CLOSING_YN == 'N'}">
+                  <c:if test="${loginMember != null && myStatus == 'B'}">
+                    <div class="cursor" onclick="location.href = '${path}/study/detail/close?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'">모집중</div>
+                  </c:if>
+                  <c:if test="${loginMember == null or myStatus != 'B'}">
+                    <div>모집중</div>
+                  </c:if>
+                </c:if>
+                <c:if test="${groupOne.CLOSING_YN == 'Y'}">
+                  <c:if test="${loginMember != null && myStatus == 'B'}">
+                    <div class="cursor main-back" onclick="location.href = '${path}/study/detail/open?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'">모집완료</div>
+                  </c:if>
+                  <c:if test="${loginMember == null or myStatus != 'B'}">
+                    <div class="main-back">모집완료</div>
+                  </c:if>
+                </c:if>
+                <c:if test="${loginMember == null}">
+                  <div class="like-hate-btn">
+                    <div class="cursor" onclick="login();"><i class="fa-solid fa-chevron-down"></i></div>
+                    <div>${groupOne.LIKE_CNT}</div>
+                    <div class="cursor" onclick="login();"><i class="fa-solid fa-chevron-up"></i></div>
+                  </div>
+                </c:if>
+                <c:if test="${loginMember != null && likeScrap.likeHateStatus == null}">
+                  <div class="like-hate-btn">
+                    <div class="cursor" onclick="location.href = '${path}/study/detail/hate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'"><i class="fa-solid fa-chevron-down"></i></div>
+                    <div>${groupOne.LIKE_CNT}</div>
+                    <div class="cursor" onclick="location.href = '${path}/study/detail/like?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'"><i class="fa-solid fa-chevron-up"></i></div>
+                  </div>
+                </c:if>
+                <c:if test="${loginMember != null && likeScrap.likeHateStatus == 'L'}">
+                  <div class="like-hate-btn">
+                    <div class="cursor" ><i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="main-color">${groupOne.LIKE_CNT}</div>
+                    <div class="main-color cursor" onclick="location.href = '${path}/study/detail/deleteLikeHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'"><i class="fa-solid fa-chevron-up"></i></div>
+                  </div>
+                </c:if>
+                <c:if test="${loginMember != null && likeScrap.likeHateStatus == 'H'}">
+                  <div class="like-hate-btn">
+                    <div class="red cursor" onclick="location.href = '${path}/study/detail/deleteLikeHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'"><i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="red">${groupOne.LIKE_CNT}</div>
+                    <div class="cursor"><i class="fa-solid fa-chevron-up"></i></div>
+                  </div>
+                </c:if>
+                
+                <c:if test="${loginMember == null}">
+                  <div class="cursor" onclick="login();">
+                      <i class="fa-regular fa-bookmark"></i
+                      ><span>${groupOne.SCRAP_CNT}</span>
+                  </div>    
+                </c:if>
+                <c:if test="${loginMember != null && likeScrap.scrap_yn == null}">
+                  <div class="cursor" onclick="location.href = '${path}/study/detail/addScrap?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'">
+                    <i class="fa-regular fa-bookmark "></i
+                      ><span>${groupOne.SCRAP_CNT}</span>
+                  </div>    
+                </c:if>
+                <c:if test="${loginMember != null && likeScrap.scrap_yn != null}">
+                  <div class="cursor" onclick="location.href = '${path}/study/detail/deleteScrap?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}'">
+                    <i class="fa-regular fa-bookmark main-color"></i
+                      ><span class="main-color">${groupOne.SCRAP_CNT}</span>
+                  </div>    
+                </c:if>
+                
               </div>
             </aside>
           </main>
           <div class="cmt-div">
             <main class="middle">
               <section class="cmt-area">
-                <div class="cmt-input">
-                  <div class="cmt-input-top flex">
-                    <img src="/app/resources/img/study/profile.png" alt="" />
-                    <div class="bold700">한혜원님, 답글을 남겨보세요!</div>
-                  </div>
-                  <div class="cmt-area">
-                    <textarea name="editordata" id="summernote"></textarea>
-                  </div>
-                  <div class="cmt-btn-area relative">
-                    <input type="button" value="답변 등록" />
-                  </div>
-                </div>
+                
+                <ul class="cmt-list">
+                  <c:forEach items="${groupCmtList}" var="map">
+                    <li>
+                      <div class="cmt-top">
+                          <div class="cmt-top-div cmt-profile-img"><img src="${path}/resources/upload/common/profile_default.png" alt=""></div>
+                          <div class="cmt-top-div cmt-info">
+                            <div class="flex">
+                              <c:if test="${map.STATUS == 'B'}">
+                                <div class="group-member">모임장</div>
+                              </c:if>
+                              <c:if test="${map.STATUS == 'C'}">
+                                <div class="group-member">멤버</div>
+                              </c:if>
+                           
+                              <div class="member-nick">${map.NICK}</div>
+      
+                            </div>
+                            <div>
+                              <span class="enroll-date">${map.ENROLL_DATE}</span>
+                              
+                              <c:if test="${loginMember != null && loginMember.no == map.WRITER}">
+                                <a href="" class="cmt-edit">수정</a>
+                                <a href="" class="cmt-edit">삭제</a>
+      
+                              </c:if>
+                            </div>
+                          </div>
+                          <div class="cmt-top-div">
+                            <c:if test="${loginMember == null}">
+                              <div class="like-hate-btn">
+                                <div class="cursor" onclick="login();"><i class="fa-solid fa-chevron-down"></i></div>
+                                <div>${map.CMT_LIKE_CNT}</div>
+                                <div class="cursor" onclick="login();"><i class="fa-solid fa-chevron-up"></i></div>
+                              </div>
+                            </c:if>
+                            <c:if test="${loginMember != null && map.likeHateStatus == null}">
+                              <div class="like-hate-btn">
+                                <div class="cursor" onclick="location.href = '${path}/study/detail/cmtHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}&cno=${map.NO}'"><i class="fa-solid fa-chevron-down"></i></div>
+                                <div>${map.CMT_LIKE_CNT}</div>
+                                <div class="cursor" onclick="location.href = '${path}/study/detail/cmtLike?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}&cno=${map.NO}'"><i class="fa-solid fa-chevron-up"></i></div>
+                              </div>
+                            </c:if>
+                            <c:if test="${loginMember != null && map.likeHateStatus == 'L'}">
+                              <div class="like-hate-btn">
+                                <div class="cursor"><i class="fa-solid fa-chevron-down"></i></div>
+                                <div class="main-color">${map.CMT_LIKE_CNT}</div>
+                                <div class="cursor main-color" onclick="location.href = '${path}/study/detail/deleteCmtLikeHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}&cno=${map.NO}'"><i class="fa-solid fa-chevron-up"></i></div>
+                              </div>
+                            </c:if>
+                            <c:if test="${loginMember != null && map.likeHateStatus == 'H'}">
+                              <div class="like-hate-btn">
+                                <div class="cursor red" onclick="location.href = '${path}/study/detail/deleteCmtLikeHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}&cno=${map.NO}'"><i class="fa-solid fa-chevron-down"></i></div>
+                                <div class="red">${map.CMT_LIKE_CNT}</div>
+                                <div class="cursor"><i class="fa-solid fa-chevron-up"></i></div>
+                              </div>
+                            </c:if>     
+                          </div>
+                        </div>
+                        <div class="cmt-content">
+                           ${map.CMT_CONTENT}
+                        </div>
+                        <div class="cmt-reply"> 
+                          <div class="cmt-reply-top">
+                            <div>댓글</div>
+                            <div ><span class="cmt-toggle-btn">더보기</span><i class="fa-solid fa-chevron-down"></i></div>
+                          </div>
+                        </div>
+                        <div class="cmt-reply-detail hidden">
+                          <ul class=cmt-reply-list>
+                            <c:forEach items="${map.groupCmtReplyList}" var="reply">
+                              <li>
+                                <div class="cmt-reply-member-profile">
+                                  <div><img src="${path}/resources/upload/common/profile_default.png" alt=""></div>
+                                  <div></div>
+                                </div>
+                                <div class="cmt-reply-content">
+                                  <div class="cmt-reply-content-top">
+                                    <div class="flex">
+                                      <c:if test="${reply.STATUS == 'B'}">
+                                        <div class="group-member">모임장</div>
+                                      </c:if>
+                                      <c:if test="${reply.STATUS == 'C'}">
+                                        <div class="group-member">멤버</div>
+                                      </c:if>
+                                      
+                                      <div class="cmt-reply-member-nick">${reply.NICK}</div>
+                                      <c:if test="${loginMember != null && loginMember.no == reply.WRITER}">
+                                      <a href="" class="cmt-edit">수정</a>
+                                      <a href="" class="cmt-edit">삭제</a>
+                                      </c:if>
+                                    </div>
+                                    <div class="cmt-reply-enroll-date">${reply.ENROLL_DATE}</div>
+                                  </div>
+                                  <div class="cmt-reply-content-bottom">${reply.CMT_CONTENT}</div>
+                                </div>
+                                <div >
+                                  <c:if test="${loginMember == null}">
+                                    <div class="like-hate-btn">
+                                    <div class="cursor" onclick="login();"><i class="fa-solid fa-chevron-down"></i></div>
+                                    <div>${reply.CMT_LIKE_CNT}</div>
+                                    <div class="cursor" onclick="login();"><i class="fa-solid fa-chevron-up"></i></div>
+                                    </div>
+                                  </c:if>
+                                  <c:if test="${loginMember != null && reply.replyLikeHateStatus == null}">
+                                    <div class="like-hate-btn">
+                                    <div class="cursor" onclick="location.href = '${path}/study/detail/cmtHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}&cno=${reply.NO}'"><i class="fa-solid fa-chevron-down"></i></div>
+                                    <div>${reply.CMT_LIKE_CNT}</div>
+                                    <div class="cursor" onclick="location.href = '${path}/study/detail/cmtLike?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}&cno=${reply.NO}'"><i class="fa-solid fa-chevron-up"></i></div>
+                                    </div>
+                                  </c:if>
+                                  <c:if test="${loginMember != null && reply.replyLikeHateStatus == 'L'}">
+                                    <div class="like-hate-btn">
+                                    <div class="cursor"><i class="fa-solid fa-chevron-down"></i></div>
+                                    <div class="main-color">${reply.CMT_LIKE_CNT}</div>
+                                    <div class="cursor main-color" onclick="location.href = '${path}/study/detail/deleteCmtLikeHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}&cno=${reply.NO}'"><i class="fa-solid fa-chevron-up"></i></div>
+                                    </div>
+                                  </c:if>
+                                  <c:if test="${loginMember != null && reply.replyLikeHateStatus == 'H'}">
+                                    <div class="like-hate-btn">
+                                    <div class="cursor red" onclick="location.href = '${path}/study/detail/deleteCmtLikeHate?gno=${groupOne.NO}&keyword=${searchVo.keyword}&tag=${fn:join(searchVo.tag,',')}&techType=${searchVo.techType}&techStack=${fn:join(searchVo.techStack,',')}&type=${searchVo.type}&order=${searchVo.order}&status=${searchVo.status}&mno=${loginMember.no}&cno=${reply.NO}'"><i class="fa-solid fa-chevron-down"></i></div>
+                                    <div class="red">${reply.CMT_LIKE_CNT}</div>
+                                    <div class="cursor"><i class="fa-solid fa-chevron-up"></i></div>
+                                    </div>
+                                  </c:if>     
+                              </div>
+                              </li>
+                            </c:forEach>
+                            
+                          </ul>
+                          <div class="cmt-write-btn">
+                              <span>댓글작성</span>
+                          </div>
+                          <form action="${path}/study/detail/writeCmtReply" method="post">
+                            <input type="hidden" name="gno" value="${groupOne.NO}">
+                            <input type="hidden" name="keyword" value="${searchVo.keyword}">
+                            <input type="hidden" name="tag" value="${fn:join(searchVo.tag,',')}">
+                            <input type="hidden" name="techType" value="${searchVo.techType}">
+                            <input type="hidden" name="techStack" value="${fn:join(searchVo.techStack,',')}">
+                            <input type="hidden" name="type" value="${searchVo.type}">
+                            <input type="hidden" name="order" value="${searchVo.order}">
+                            <input type="hidden" name="status" value="${searchVo.status}">
+                            <input type="hidden" name="mno" value="${loginMember.no}">
+                            <div class="cmt-reply-btn hidden">
+                              <div class="cmt-reply-area">
+                                  <textarea name="cmt" class="summernote"></textarea> 
+                                  <input type="hidden" name="group" value="${map.GROUP}"> 
+                              </div>
+                              <div class="cmt-btn-area relative">
+                                <input type="submit" value="답변 등록" />
+                              </div>
+                            </div>
+          
+                          </form>
+          
+                        </div>
+                    </li>
+                  </c:forEach>
+                 
+                </ul>
               </section>
-
-              <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-              <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+              <script src="${path}/resources/js/summernote/summernote-lite.js"></script>
+              <script src="${path}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
               <script>
                 $(document).ready(function () {
                   //여기 아래 부분
-                  $("#summernote").summernote({
-                    height: 120, // 에디터 높이
+                  $(".summernote").summernote({
+                    height: 150, // 에디터 높이
                     minHeight: null, // 최소 높이
                     maxHeight: null, // 최대 높이
-                    focus: true, // 에디터 로딩후 포커스를 맞출지 여부
+                    focus: false, // 에디터 로딩후 포커스를 맞출지 여부
                     lang: "ko-KR", // 한글 설정
-                    placeholder: "최대 2048자까지 쓸 수 있습니다", //placeholder 설정
+                    placeholder: "", //placeholder 설정
+                    disableResizeEditor: true,
                   });
                 });
+      
+                //글쓰기 버튼 클릭 시 로그인모달 띄우기
+                function login() {
+                  $(".blackBG").addClass("show");
+                }
               </script>
             </main>
           </div>
@@ -894,7 +1044,54 @@ pageEncoding="UTF-8"%>
 
         studyTab1.classList.remove("clicked");
         studyInfoContent.classList.add("hidden");
+        window.setTimeout(function () {
+          map.relayout();
+        }, 0);
       });
+
+    </script>
+    <script>
+      
+      
+   
+      const cmtToggleBtn = document.querySelectorAll('.cmt-toggle-btn');
+      cmtToggleBtn.forEach((o)=>{
+        o.addEventListener('click', (event)=>{
+          const span = event.target.innerHTML;
+          if(span == '더보기') {
+            event.target.innerHTML = '접기';
+          }
+          if(span == '접기') {
+            event.target.innerHTML = '더보기';
+          }
+          const icon = event.target.nextSibling;
+          icon.classList.toggle('fa-chevron-down');
+          icon.classList.toggle('fa-chevron-up');
+          const cmtReply = event.target.parentNode.parentNode.parentNode;
+          const cmtReplyDetail = cmtReply.nextSibling.nextSibling;
+          cmtReplyDetail.classList.toggle('hidden');
+        })
+      })
+
+      const cmtWriteBtnSpan = document.querySelectorAll('.cmt-write-btn span');
+      cmtWriteBtnSpan.forEach((o)=>{
+        o.addEventListener('click', (event)=>{
+          const cmtWriteBtn = event.target.parentNode;
+          const cmtReplyBtn = cmtWriteBtn.nextSibling.nextSibling.querySelector('.cmt-reply-btn');
+          
+          if("${loginMember}" == "") {
+            login();
+          }else {
+            cmtWriteBtn.classList.add('hidden');
+            cmtReplyBtn.classList.remove('hidden');
+
+          }
+ 
+        })
+      })
+
+     
+
     </script>
     <script
       src="https://kit.fontawesome.com/939838bb27.js"

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.learntime.app.admin.vo.BannerVo;
 import com.learntime.app.badge.vo.BadgeVo;
 import com.learntime.app.member.vo.MemberGradeVo;
 import com.learntime.app.member.vo.MemberVo;
@@ -49,6 +50,26 @@ public class FileUploader {
 
         try {
             vo.getProfile().get(0).transferTo(target);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
+
+        return changeName;
+    }
+    
+	//배너 업뎃
+    public static String uploadBanner(HttpServletRequest req, BannerVo vo) {
+        String path = req.getSession().getServletContext().getRealPath("/resources/upload/banner/");
+        String originName = vo.getBanner().get(0).getOriginalFilename();
+
+        String ext = originName.substring(originName.lastIndexOf("."), originName.length());
+
+        String changeName = "banner" + System.nanoTime() + ext; //profile현재시간
+
+        File target = new File(path + changeName);
+
+        try {
+            vo.getBanner().get(0).transferTo(target);
         } catch (Exception e) {
             e.printStackTrace();
         } 

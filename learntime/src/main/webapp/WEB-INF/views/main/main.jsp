@@ -20,13 +20,42 @@ pageEncoding="UTF-8"%>
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
+    <style>
+      .main-banner {
+        display: flex !important;
+        justify-content: center !important;
+      }
+
+      .main-banner img{
+        width: 1200px;
+      }
+
+        
+      .material-symbols-outlined {
+        font-size: 45px !important;
+        color: white;
+      }
+
+
+      /* .main-banner .slick-initialized .slick-slide {
+        display: flex !important;
+        justify-content: center !important;
+      } */
+    </style>
   </head>
   <body>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
     <main id="learntime-main">
-      <section class="main-banner">
-        <img src="/app/resources/img/study/banner1.png" alt="메인배너" />
-      </section>
+      <div id="banner-slider">
+      	<c:forEach items="${bannerList}" var="map">
+ 
+            <section class="main-banner" style="background-color:${map.COLOR};">
+                <img src="/app/resources/upload/banner/${map.IMG_PATH}" alt="메인배너" />
+            </section>
+
+    
+      	</c:forEach>
+      </div>
       <section class="main-study-section middle">
         <div class="main-study">
           <div class="main-study-title-area">
@@ -45,6 +74,7 @@ pageEncoding="UTF-8"%>
           <article class="main-study-detail-area">
             <ul class="main-study-detail-list post-wrapper1">
             <c:forEach items="${groupList}" var="map">
+
                <a
                     href="${path}/study/detail?gno=${map.NO}&keyword=${keyword}&tag=${fn:join(tagList,',')}&techType=인기&techStack=${fn:join(techStack,',')}&type=전체&order=recent&status=${status}"
                     class="main-study-detail"
@@ -567,6 +597,22 @@ pageEncoding="UTF-8"%>
       src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
     ></script>
     <script>
+      $("#banner-slider").slick({
+        slide: "section",
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        dots: true,
+        dotsClass : "slick-dots", 
+        autoplay : true,			
+				autoplaySpeed : 100, 	
+        autoplay: false,
+        prevArrow:
+          "<button type='button' class='banner-prev'><span class='material-symbols-outlined'>arrow_back_ios</span></button>",
+        nextArrow:
+          "<button type='button' class='banner-next'><span class='material-symbols-outlined'>arrow_forward_ios</span></button>",
+      });
+
       $(".post-wrapper1").slick({
         slide: "a",
         slidesToShow: 4,
@@ -690,6 +736,12 @@ pageEncoding="UTF-8"%>
         
       });
  
+</script>
+<script>
+  const tab = document.querySelectorAll('button[role=tab]');
+  tab.forEach((o)=>{
+    o.innerHTML = "";
+  })
 </script>
     <script
       src="https://kit.fontawesome.com/939838bb27.js"

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.learntime.app.admin.vo.BannerVo;
 import com.learntime.app.common.page.PageVo;
 import com.learntime.app.mystudy.vo.ProfileVo;
 import com.learntime.app.study.vo.ApplyVo;
@@ -447,6 +448,8 @@ public class StudyDaoImpl implements StudyDao{
 	public int selectAdminGroupCnt(SqlSessionTemplate sst, Map map) {
 		return sst.selectOne("studyMapper.selectAdminGroupCnt", map);
 	}
+
+
 
 
 

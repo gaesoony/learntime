@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.learntime.app.admin.vo.BannerVo;
 import com.learntime.app.mystudy.vo.ProfileVo;
 import com.learntime.app.study.vo.ApplyVo;
 import com.learntime.app.study.vo.GroupVo;
@@ -202,6 +203,8 @@ public interface StudyDao {
 	public List<Map<String, Object>> selectAdminGroupList(SqlSessionTemplate sst, Map map);
 
 	public int selectAdminGroupCnt(SqlSessionTemplate sst, Map map);
+
+
 
 
 

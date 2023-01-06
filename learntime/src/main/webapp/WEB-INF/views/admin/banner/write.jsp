@@ -66,10 +66,10 @@ pageEncoding="UTF-8"%>
 
     .grid {
       display: grid;
-      height: 450px;
+      height: 500px;
       width: 1000px;
       grid-template-columns: 1fr 2fr;
-      grid-template-rows: 1fr 1fr 4fr 1fr;
+      grid-template-rows: 1fr 1fr 4fr 1fr 1fr;
 
       column-gap: 40px;
       font-size: 14px;
@@ -92,10 +92,10 @@ pageEncoding="UTF-8"%>
     }
 
     .height {
-      margin-top: 70px;
+      margin-top: 40px;
     }
 
-    input:not(input[type="button"]) {
+    input:not(input[type="submit"], input[type="button"]) {
       height: 20px;
       color: gray;
       border: none;
@@ -208,66 +208,90 @@ pageEncoding="UTF-8"%>
   </style>
   <body>
     <%@include file="/WEB-INF/views/common/admin-side.jsp"%>
-    <div id="content-wrap">
-      <div id="admin-category-title" class="shadow-light">배너 추가</div>
-      <div class="wrapper">
-        <div class="container">
-          <div class="grid">
-            <div class="grid-div">제목</div>
-            <div class="grid-div">
-              <input
-                type="text"
-                placeholder="관리용 제목(사용자에겐 표시되지 않습니다)"
-              />
-            </div>
-            <div class="grid-div">기간</div>
-            <div class="grid-div">
-              <input type="datetime-local" />~<input type="datetime-local" />
-            </div>
-
-            <div class="grid-div">이미지</div>
-            <div class="grid-div">
-              <div class="profile-img center relative">
-                <img
-                  id="preview"
-                  src="${pageContext.request.contextPath}/resources/img/mystudy/transparent.png"
+    <form
+      action="${path}/admin/banner/write"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <div id="content-wrap">
+        <div id="admin-category-title" class="shadow-light">배너 추가</div>
+        <div class="wrapper">
+          <div class="container">
+            <div class="grid">
+              <div class="grid-div">제목</div>
+              <div class="grid-div">
+                <input
+                  type="text"
+                  placeholder="관리용 제목(사용자에겐 표시되지 않습니다)"
+                  name="title"
                 />
-                <div class="file-btn-area">
-                  <label for="file" class="file-btn center">파일업로드</label>
-                  <input
-                    id="file"
-                    type="file"
-                    class="hidden"
-                    onchange="readURL(this);"
-                  />
+              </div>
+              <div class="grid-div">기간</div>
+              <div class="grid-div">
+                <input type="datetime-local" name="startDate" />~<input
+                  type="datetime-local"
+                  name="endDate"
+                />
+              </div>
 
-                  <script>
-                    function readURL(input) {
-                      if (input.files && input.files[0]) {
-                        var reader = new FileReader();
-                        reader.onload = function (e) {
-                          document.getElementById("preview").src =
-                            e.target.result;
-                        };
-                        reader.readAsDataURL(input.files[0]);
-                      } else {
-                        document.getElementById("preview").src = "";
+              <div class="grid-div">이미지</div>
+              <div class="grid-div">
+                <div class="profile-img center relative">
+                  <img
+                    id="preview"
+                    src="${pageContext.request.contextPath}/resources/img/mystudy/transparent.png"
+                  />
+                  <div class="file-btn-area">
+                    <label for="file" class="file-btn center">파일업로드</label>
+                    <input
+                      id="file"
+                      type="file"
+                      class="hidden"
+                      onchange="readURL(this);"
+                      name="banner"
+                    />
+
+                    <script>
+                      function readURL(input) {
+                        if (input.files && input.files[0]) {
+                          var reader = new FileReader();
+                          reader.onload = function (e) {
+                            document.getElementById("preview").src =
+                              e.target.result;
+                          };
+                          reader.readAsDataURL(input.files[0]);
+                        } else {
+                          document.getElementById("preview").src = "";
+                        }
                       }
-                    }
-                  </script>
+                    </script>
+                  </div>
                 </div>
               </div>
+              <div class="grid-div height">이미지 링크</div>
+              <div class="grid-div height">
+                <input type="text" name="link" />
+              </div>
+              <div class="grid-div height">배경색</div>
+              <div class="grid-div height">
+                <input type="color" name="color" />
+              </div>
             </div>
-            <div class="grid-div height">이미지 링크</div>
-            <div class="grid-div height"><input type="url" /></div>
+          </div>
+          <div class="flex btn-area">
+            <div><input type="submit" value="저장" class="save-btn" /></div>
+            <div>
+              <input
+                type="button"
+                value="취소"
+                class="cancel-btn"
+                onclick="location.href='${path}/admin/banner/list'"
+              />
+            </div>
           </div>
         </div>
-        <div class="flex btn-area">
-          <div><input type="button" value="저장" class="save-btn" /></div>
-          <div><input type="button" value="취소" class="cancel-btn" /></div>
-        </div>
       </div>
-    </div>
+    </form>
 
     <script
       src="https://kit.fontawesome.com/939838bb27.js"

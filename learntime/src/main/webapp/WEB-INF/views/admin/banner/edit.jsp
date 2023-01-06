@@ -66,7 +66,7 @@ pageEncoding="UTF-8"%>
 
     .grid {
       display: grid;
-      height: 450px;
+      height: 500px;
       width: 1000px;
       grid-template-columns: 1fr 2fr;
       grid-template-rows: 1fr 1fr 4fr 1fr;
@@ -92,7 +92,7 @@ pageEncoding="UTF-8"%>
     }
 
     .height {
-      margin-top: 70px;
+      margin-top: 40px;
     }
 
     input {
@@ -155,8 +155,8 @@ pageEncoding="UTF-8"%>
     }
 
     .profile-img img {
-      width: 200px;
-      height: 200px;
+      width: 100%;
+      height: 100%;
     }
 
     .profile-name div {
@@ -223,66 +223,94 @@ pageEncoding="UTF-8"%>
   </style>
   <body>
     <%@include file="/WEB-INF/views/common/admin-side.jsp"%>
-    <div id="content-wrap">
-      <div id="admin-category-title" class="shadow-light">배너 수정</div>
-      <div class="wrapper">
-        <div class="container">
-          <div class="grid">
-            <div class="grid-div">제목</div>
-            <div class="grid-div">
-              <input
-                type="text"
-                placeholder="관리용 제목(사용자에겐 표시되지 않습니다)"
-              />
-            </div>
-            <div class="grid-div">기간</div>
-            <div class="grid-div">
-              <input type="datetime-local" />~<input type="datetime-local" />
-            </div>
-
-            <div class="grid-div">이미지</div>
-            <div class="grid-div">
-              <div class="profile-img center relative">
-                <img
-                  id="preview"
-                  src="${pageContext.request.contextPath}/resources/img/mystudy/transparent.png"
+    <form
+      action="${path}/admin/banner/edit"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <input type="hidden" value="${bannerOne.NO}" name="no" />
+      <div id="content-wrap">
+        <div id="admin-category-title" class="shadow-light">배너 수정</div>
+        <div class="wrapper">
+          <div class="container">
+            <div class="grid">
+              <div class="grid-div">제목</div>
+              <div class="grid-div">
+                <input
+                  type="text"
+                  placeholder="관리용 제목(사용자에겐 표시되지 않습니다)"
+                  value="${bannerOne.TITLE}"
+                  name="title"
                 />
-                <div class="file-btn-area">
-                  <label for="file" class="file-btn center">파일업로드</label>
-                  <input
-                    id="file"
-                    type="file"
-                    class="hidden"
-                    onchange="readURL(this);"
-                  />
+              </div>
+              <div class="grid-div">기간</div>
+              <div class="grid-div">
+                <input
+                  type="datetime-local"
+                  value="${bannerOne.START_DATE}"
+                  name="startDate"
+                />~<input
+                  type="datetime-local"
+                  value="${bannerOne.END_DATE}"
+                  name="endDate"
+                />
+              </div>
 
-                  <script>
-                    function readURL(input) {
-                      if (input.files && input.files[0]) {
-                        var reader = new FileReader();
-                        reader.onload = function (e) {
-                          document.getElementById("preview").src =
-                            e.target.result;
-                        };
-                        reader.readAsDataURL(input.files[0]);
-                      } else {
-                        document.getElementById("preview").src = "";
+              <div class="grid-div">이미지</div>
+              <div class="grid-div">
+                <div class="profile-img center relative">
+                  <img
+                    src="${path}/resources/upload/banner/${bannerOne.IMG_PATH}"
+                    alt=""
+                  />
+                  <img
+                    id="preview"
+                    src="${path}/resources/img/mystudy/transparent.png"
+                  />
+                  <div class="file-btn-area">
+                    <label for="file" class="file-btn center">파일업로드</label>
+                    <input
+                      id="file"
+                      type="file"
+                      class="hidden"
+                      name="banner"
+                      onchange="readURL(this);"
+                    />
+
+                    <script>
+                      function readURL(input) {
+                        if (input.files && input.files[0]) {
+                          var reader = new FileReader();
+                          reader.onload = function (e) {
+                            document.getElementById("preview").src =
+                              e.target.result;
+                          };
+                          reader.readAsDataURL(input.files[0]);
+                        } else {
+                          document.getElementById("preview").src = "";
+                        }
                       }
-                    }
-                  </script>
+                    </script>
+                  </div>
                 </div>
               </div>
+              <div class="grid-div height">이미지 링크</div>
+              <div class="grid-div height">
+                <input type="text" value="${bannerOne.LINK}" name="link" />
+              </div>
+              <div class="grid-div height">배경색</div>
+              <div class="grid-div height">
+                <input type="color" name="color" value="${bannerOne.COLOR}" />
+              </div>
             </div>
-            <div class="grid-div height">이미지 링크</div>
-            <div class="grid-div height"><input type="url" /></div>
+          </div>
+          <div class="flex btn-area">
+            <div><input type="submit" value="저장" class="save-btn" /></div>
+            <div><input type="button" value="취소" class="cancel-btn" /></div>
           </div>
         </div>
-        <div class="flex btn-area">
-          <div><input type="button" value="저장" class="save-btn" /></div>
-          <div><input type="button" value="취소" class="cancel-btn" /></div>
-        </div>
       </div>
-    </div>
+    </form>
 
     <script
       src="https://kit.fontawesome.com/939838bb27.js"

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bannerMapper">
+
+	<insert id="insertBanner">
+		INSERT INTO BANNER
+		VALUES (SEQ_BANNER_NO.NEXTVAL, #{title}, #{changeName}, #{link}, SYSDATE, 'A', #{startDate}, #{endDate}, #{color})
+	</insert>
+	<select id="selectBannerList" resultType="map">
+		SELECT NO, TITLE, IMG_PATH, LINK, TO_CHAR(CAST(ENROLL_DATE as DATE),'YYYY-MM-DD HH24:MI') ENROLL_DATE, STATUS, TO_CHAR(CAST(START_DATE as DATE),'YYYY-MM-DD HH24:MI') START_DATE, TO_CHAR(CAST(END_DATE as DATE),'YYYY-MM-DD HH24:MI') END_DATE, COLOR
+		FROM BANNER
+		WHERE STATUS IN ('A', 'B')
+		ORDER BY NO
+	</select>
+	<select id="selectBannerListMain" resultType="map">
+		SELECT NO, TITLE, IMG_PATH, LINK, TO_CHAR(CAST(ENROLL_DATE as DATE),'YYYY-MM-DD HH24:MI') ENROLL_DATE, STATUS, TO_CHAR(CAST(START_DATE as DATE),'YYYY-MM-DD HH24:MI') START_DATE, TO_CHAR(CAST(END_DATE as DATE),'YYYY-MM-DD HH24:MI') END_DATE, COLOR
+		FROM BANNER
+		WHERE STATUS = 'A'
+		ORDER BY NO
+	</select>
+	<select id="selectBannerOne" resultType="map">
+		SELECT NO, TITLE, IMG_PATH, LINK, TO_CHAR(CAST(ENROLL_DATE as DATE),'YYYY-MM-DD HH24:MI') ENROLL_DATE, STATUS, TO_CHAR(CAST(START_DATE as DATE),'YYYY-MM-DD"T"HH24:MI') START_DATE, TO_CHAR(CAST(END_DATE as DATE),'YYYY-MM-DD"T"HH24:MI') END_DATE, COLOR
+		FROM BANNER
+		WHERE NO = #{no}
+	</select>
+	<update id="editBanner">
+		UPDATE BANNER SET
+		TITLE = #{title},
+		<if test="changeName != null and !''.equals(changeName)">
+			IMG_PATH = #{changeName},		
+		</if>
+		LINK = #{link},
+		START_DATE = #{startDate},
+		END_DATE = #{endDate},
+		COLOR = #{color}
+		WHERE NO = #{no}
+	</update>
+	<update id="disableBanner">
+		UPDATE BANNER SET
+		STATUS = 'B'
+		WHERE NO = #{no}
+	</update>
+	<update id="enableBanner">
+		UPDATE BANNER SET
+		STATUS = 'A'
+		WHERE NO = #{no}
+	</update>
+	<update id="deleteBanner">
+		UPDATE BANNER SET
+		STATUS = 'C'
+		WHERE NO = #{no}
+	</update>
+	
+</mapper>
