@@ -17,23 +17,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.learntime.app.alarm.service.AlarmService;
+import com.learntime.app.alarm.vo.AlarmVo;
 import com.learntime.app.badge.service.BadgeService;
 import com.learntime.app.badge.vo.BadgeVo;
 import com.learntime.app.common.file.FileUploader;
+import com.learntime.app.common.page.PageVo;
+import com.learntime.app.common.page.Pagination;
 import com.learntime.app.community.service.BoardService;
 import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.member.service.MemberService;
 import com.learntime.app.member.vo.FollowVo;
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.skin.service.SkinService;
-import com.learntime.app.skin.vo.SkinVo;
-import com.learntime.app.common.page.PageVo;
-import com.learntime.app.common.page.Pagination;
 import com.learntime.app.study.service.StudyService;
 
 
 @Controller
 public class MemberController {
+	
+	@Autowired
+	@Qualifier("alarmServiceImpl")
+	private AlarmService alarmService;
 	
 	@Autowired
 	@Qualifier("badgeServiceImpl")
@@ -74,13 +79,15 @@ public class MemberController {
 		String referer = request.getHeader("Referer");
 		request.getSession().setAttribute("redirectURI", referer);
 		return "redirect:" + referer;
-	}	
+	}
+	
+	
 	
 	
 //	로그인 (서버)
 	@PostMapping("/member/login")
 	public String login(MemberVo vo,HttpSession session, HttpServletRequest request,Model model) {
-
+		
 		MemberVo loginMember=memberService.login(vo);
 		if(loginMember==null) {
 			return"common/errorPage";
@@ -261,7 +268,7 @@ public class MemberController {
 			
 			
 			MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
-			System.out.println(loginMember.getNo());
+			
 			String followingMember=loginMember.getNo();
 			MemberVo followerMember=memberService.selectNo(no);
 			
@@ -584,7 +591,15 @@ public class MemberController {
 			follow.setFollowerNo(followerMember.getNo());
 			memberService.follow(follow);
 			
+			
+			//new AlarmVo(알람을 받는 회원 번호,알람을 보낸 회원 번호,"알람타입 1~7","보내고싶은 메세지 ")
+			//알람타입 (1=공지/2=팔로우/3=댓글/4=멘토링/5=스터디 모집/6=디엠/7=답변채택)
+			//AlarmVo alarmVo= new AlarmVo(sendMno, receMno, alarmTypeNo, massage);
+			AlarmVo alarmVo=new AlarmVo(followerMember.getNo(),followingMember.getNo(),"2","팔로우 했어요");
 
+			alarmService.insert(alarmVo);
+			
+			
 			
 //			나를 팔로우 하는 사람 수 구하기
 			int followerCnt =memberService.followerCnt(no);
@@ -597,6 +612,8 @@ public class MemberController {
 			followMap.put("result", "FollowOk");
 			followMap.put("followerCnt",followerCnt);
 			followMap.put("followingCnt",followingCnt);
+			followMap.put("alarmNo", alarmVo.getNo());
+			
 			
 //			팔로우 유무체크
 			int followCheck=memberService.followCheck(follow);
@@ -644,5 +661,48 @@ public class MemberController {
 			return followJson;
 
 		}
+		
+//		알람	(AJAX)
+		@ResponseBody
+		@GetMapping(value ="/alarm",produces = "application/text;charset=utf8")
+		public String alarmList(HttpSession session) {
+			MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
+			
+			if(loginMember==null) {
+				
+				return "";
+			}
+			List<AlarmVo> listMember=alarmService.listMember(loginMember.getNo());
+			
+			Gson gson = new Gson();
+	        HashMap<String, Object> map = new HashMap<String, Object>();
+
+	        map.put("listMember", listMember);
+
+	        String jsonString = gson.toJson(map);
+	        
+	        return jsonString;
+			
+			
+			
+
+		}
+		
+		
+//		알람삭제	(AJAX)
+		@ResponseBody
+		@GetMapping(value ="/alarmDelete",produces = "application/text;charset=utf8")
+		public String alarmDelete(HttpSession session,String no) {
+			
+			alarmService.delete(no);
+			
+	        return "잘 지웟슈";
+			
+			
+			
+
+		}
+		
+		
 	
 }

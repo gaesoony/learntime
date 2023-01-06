@@ -208,6 +208,13 @@
 		    <version>2.9.1</version>
 		</dependency>
 		
+		<!-- 웹소켓 -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		
 					       
 	</dependencies>
     <build>
