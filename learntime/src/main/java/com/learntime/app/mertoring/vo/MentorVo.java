@@ -7,6 +7,8 @@ public class MentorVo {
 	//멘토 부분
 	private String no;
 	private String writer;
+	private String writerImg;
+	private String nick;
 	private String cateNo;
 	private String email;
 	private String name;
@@ -20,6 +22,7 @@ public class MentorVo {
 	
 	//멘토링 부분
 	private String job;
+	private String jobName;
 	private String currentJob;
 	private String title;
 	private String career;
@@ -33,5 +36,9 @@ public class MentorVo {
 	private String detail;
 	private String mEmail;
 	private String mPhoneNo;
+	
+	//화면 나올부분
+	private String star;
+	private String reviewCnt;
 
 }

@@ -28,11 +28,61 @@
 	<!-- 멘토링 등록 -->
 	<update id="registerMentoring">
 		UPDATE MENTOR
-		SET NAME = '변경됨~~'
+		SET JOB = #{job}
+		, M_EMAIL = #{mEmail}
+		, M_PHONE_NO = #{mPhoneNo}
+		, CATE_NO = #{cateNo}
+		, TITLE = #{title}
+		, CURRENT_JOB = #{currentJob}
+		, CAREER = #{career}
+		, PRICE = #{price}
+		, DETAIL = #{detail}
+		, WELCOME_POST = #{welcomePost}
+		, OPEN_YN = 'Y'
 		WHERE WRITER = #{writer}
 	</update>
-
-
-
+	
+	<select id="selectJob" resultType="map">
+		SELECT * FROM
+		JOB_CATEGORY
+	</select>
+	
+	<select id="selectCateNo" resultType="map">
+		SELECT * FROM
+		MENTORING_CATEGORY
+	</select>
+	
+	<select id="selectMentor" resultType = "com.learntime.app.mertoring.vo.MentorVo">
+		SELECT * FROM
+		MENTOR
+		WHERE WRITER = #{no}
+	</select>
+	
+	
+	<insert id="insertSchedule" parameterType="java.util.List">
+		INSERT INTO MENTORING_SCHEDULE (NO, MENTOR_NO, ABLE_DAY, ABLE_TIME)
+			SELECT SEQ_MENTORING_SCHEDULE_NO.NEXTVAL, A.* 
+			FROM(
+			<foreach collection="list" item="item" index="index" separator="UNION ALL">
+	        	SELECT #{item.mentorNo}, #{item.ableDay}, #{item.ableTime} FROM DUAL
+	        </foreach>
+	        ) A
+	</insert>
+	
+	<!-- 멘토리스트 조회 -->
+	<select id="selectMentorList" resultType = "com.learntime.app.mertoring.vo.MentorVo">
+		SELECT MT.*, JC.NAME AS JOB_NAME, MB.NICK, MB.IMG_PATH AS WRITER_IMG, COALESCE(STAR.STAR , 0) AS STAR, COALESCE(STAR.REVIEW_COUNT, 0) AS REVIEW_CNT
+		FROM MENTOR MT
+		JOIN MEMBER MB
+		ON MT.WRITER = MB.NO
+        JOIN JOB_CATEGORY JC
+        ON JC.NO = MT.JOB
+		LEFT JOIN (SELECT NO, COALESCE(AVG(STAR), 0) AS STAR, COALESCE(COUNT(NO), 0) AS REVIEW_COUNT
+			      FROM MENTORING_REVIEW
+			      GROUP BY NO) STAR
+		ON MT.NO = STAR.NO
+		WHERE MT.OPEN_YN = 'Y'
+	</select>
+	
 
 </mapper>

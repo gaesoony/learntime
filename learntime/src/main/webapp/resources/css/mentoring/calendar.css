@@ -24,14 +24,13 @@
 }
 
 .year-month{
+    margin-left: 30px;
     font-size: 20px;
     margin-bottom: 20px;
 }
 
 .nav{
     display: flex;
-    border: 1px solid #333333;
-    border-radius: 5px;
 }
 
 .nav-btn{
@@ -43,11 +42,35 @@
     background-color: transparent;
     cursor: pointer;
 }
+.go-prev,
+.go-next{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.go-prev{
+    border-radius: 5px 0 0 5px;
+    background-color: #b4e0bf;
+    color: white;
+}
+
+.go-next{
+    border-radius: 0 5px 5px 0;
+    background-color: #b4e0bf;
+    color: white;
+}
 
 .go-today{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     width: 75px;
-    border-left: 1px solid #333333;
-    border-right: 1px solid #333333;
+    border-left: 1px solid #bebebe;
+    border-right: 1px solid #bebebe;
+    color: #969696;
 }
 
 .days{
@@ -65,8 +88,8 @@
     display : flex;
     flex-flow : row wrap;
     height: 370px;
-    border-top: 1px solid #aeaeae;
-    border-right: 1px solid #aeaeae;
+    border-top: 1px solid #fbfbfb;
+    border-right: 1px solid #fbfbfb;
 }
 
 .date{
@@ -76,8 +99,8 @@
     width: calc(100% / 7);
     padding: 15px;
     text-align: right;
-    border-left: 1px solid #aeaeae;
-    border-bottom: 1px solid #aeaeae;
+    border-left: 1px solid #fbfbfb;
+    border-bottom: 1px solid #fbfbfb;
     text-align: center;
 }
 

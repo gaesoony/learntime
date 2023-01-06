@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!-- jstl 라이브러리 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -190,6 +192,8 @@
             </div>
             <div class="modal-info-box" id="time-select-box">
                 <select name="reservationTime" id="time-select">
+                    <option value="" disabled selected>시간을 선택해 주세요</option>
+                    <!-- 시간 받아올 부분 -->
                     <option value="12:00 ~ 14:00">12:00 ~ 14:00</option>
                     <option value="14:00 ~ 16:00">14:00 ~ 16:00</option>
                     <option value="16:00 ~ 18:00">16:00 ~ 18:00</option>
@@ -368,7 +372,47 @@
         <div id="content-wrap">
             <div id="mentoring-list-box">
 
-                <!-- 반복문 시작지점.. -->
+                <!-- 멘토리스트 반복 -->
+                <c:forEach items="${mentorList}" var="mentor">
+                    <div class="mentoring">
+                        <input type="hidden" name="" value="${mentor.no}">
+                        <div class="mentoring-title">
+                            <span>${mentor.title}</span>
+                        </div>
+                        <div class="mentoring-job">
+                            <span class="mentoring-info">직무</span>
+                            <span class="job-input">${mentor.jobName}</span>
+                        </div>
+                        <div class="mentoring-career">
+                            <span class="mentoring-info">경력</span>
+                            <span class="career-input">${mentor.career}</span>
+                        </div>
+                        <div class="mentoring-nacara">
+                            <span class="mentoring-info">현직</span>
+                            <span class="nacara-input">${mentor.currentJob}</span>
+                        </div>
+                        <div class="star-box">
+                            <span class="star-score">${mentor.star}(${mentor.reviewCnt})</span>
+                            <span class="material-symbols-rounded star-icon star">star</span>
+                            <span class="material-symbols-rounded star-icon star">star</span>
+                            <span class="material-symbols-rounded star-icon star">star</span>
+                            <span class="material-symbols-rounded star-icon star">star</span>
+                            <span class="material-symbols-rounded star-icon star">star</span>
+                        </div>
+
+                        <div class="mentor">
+                            <div class="writer-img">
+                                <img src="/app/resources/img/${metor.writerImg}" alt="" onerror="this.src='/app/resources/img/profile_default.png';">
+                            </div>
+                            <span>${mentor.nick}</span>
+                        </div>
+                    </div>
+                </c:forEach>
+                <!-- 멘토리스트 반복 끝 -->
+
+                
+
+                <!-- 화면용.. -->
             
                 <div class="mentoring">
                     <div class="mentoring-title">
@@ -388,11 +432,77 @@
                     </div>
                     <div class="star-box">
                         <span class="star-score">4.2</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                    </div>
+
+                    <div class="mentor">
+                        <div class="writer-img">
+                            <img src="/app/resources/img/profile01.png" alt="">
+                        </div>
+                        <span>코딩하는망치맨</span>
+                    </div>
+                </div>
+
+                <div class="mentoring">
+                    <div class="mentoring-title">
+                        <span>스프링으로 생산력 향상 시켜 드립니다</span>
+                    </div>
+                    <div class="mentoring-job">
+                        <span class="mentoring-info">직무</span>
+                        <span class="job-input">PO/PM</span>
+                    </div>
+                    <div class="mentoring-career">
+                        <span class="mentoring-info">경력</span>
+                        <span class="career-input">30년</span>
+                    </div>
+                    <div class="mentoring-nacara">
+                        <span class="mentoring-info">현직</span>
+                        <span class="nacara-input">네카라쿠배당토</span>
+                    </div>
+                    <div class="star-box">
+                        <span class="star-score">3.6</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                    </div>
+
+                    <div class="mentor">
+                        <div class="writer-img">
+                            <img src="/app/resources/img/profile01.png" alt="">
+                        </div>
+                        <span>코딩하는망치맨</span>
+                    </div>
+                </div>
+
+                <div class="mentoring">
+                    <div class="mentoring-title">
+                        <span>스프링으로 생산력 향상 시켜 드립니다</span>
+                    </div>
+                    <div class="mentoring-job">
+                        <span class="mentoring-info">직무</span>
+                        <span class="job-input">PO/PM</span>
+                    </div>
+                    <div class="mentoring-career">
+                        <span class="mentoring-info">경력</span>
+                        <span class="career-input">30년</span>
+                    </div>
+                    <div class="mentoring-nacara">
+                        <span class="mentoring-info">현직</span>
+                        <span class="nacara-input">네카라쿠배당토</span>
+                    </div>
+                    <div class="star-box">
+                        <span class="star-score">5.0</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
                     </div>
 
                     <div class="mentor">
@@ -421,11 +531,11 @@
                     </div>
                     <div class="star-box">
                         <span class="star-score">4.2</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
                     </div>
 
                     <div class="mentor">
@@ -454,11 +564,11 @@
                     </div>
                     <div class="star-box">
                         <span class="star-score">4.2</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
+                        <span class="material-symbols-rounded star-icon star">star</span>
                     </div>
 
                     <div class="mentor">
@@ -487,77 +597,11 @@
                     </div>
                     <div class="star-box">
                         <span class="star-score">4.2</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star">star</span>
-                    </div>
-
-                    <div class="mentor">
-                        <div class="writer-img">
-                            <img src="/app/resources/img/profile01.png" alt="">
-                        </div>
-                        <span>코딩하는망치맨</span>
-                    </div>
-                </div>
-
-                <div class="mentoring">
-                    <div class="mentoring-title">
-                        <span>스프링으로 생산력 향상 시켜 드립니다</span>
-                    </div>
-                    <div class="mentoring-job">
-                        <span class="mentoring-info">직무</span>
-                        <span class="job-input">PO/PM</span>
-                    </div>
-                    <div class="mentoring-career">
-                        <span class="mentoring-info">경력</span>
-                        <span class="career-input">30년</span>
-                    </div>
-                    <div class="mentoring-nacara">
-                        <span class="mentoring-info">현직</span>
-                        <span class="nacara-input">네카라쿠배당토</span>
-                    </div>
-                    <div class="star-box">
-                        <span class="star-score">4.2</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star">star</span>
-                    </div>
-
-                    <div class="mentor">
-                        <div class="writer-img">
-                            <img src="/app/resources/img/profile01.png" alt="">
-                        </div>
-                        <span>코딩하는망치맨</span>
-                    </div>
-                </div>
-
-                <div class="mentoring">
-                    <div class="mentoring-title">
-                        <span>스프링으로 생산력 향상 시켜 드립니다</span>
-                    </div>
-                    <div class="mentoring-job">
-                        <span class="mentoring-info">직무</span>
-                        <span class="job-input">PO/PM</span>
-                    </div>
-                    <div class="mentoring-career">
-                        <span class="mentoring-info">경력</span>
-                        <span class="career-input">30년</span>
-                    </div>
-                    <div class="mentoring-nacara">
-                        <span class="mentoring-info">현직</span>
-                        <span class="nacara-input">네카라쿠배당토</span>
-                    </div>
-                    <div class="star-box">
-                        <span class="star-score">4.2</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star-fill">star</span>
-                        <span class="material-symbols-rounded star">star</span>
+                        <span class="material-symbols-rounded star star-icon">star</span>
+                        <span class="material-symbols-rounded star star-icon">star</span>
+                        <span class="material-symbols-rounded star star-icon">star</span>
+                        <span class="material-symbols-rounded star star-icon">star</span>
+                        <span class="material-symbols-rounded star star-icon">star</span>
                     </div>
 
                     <div class="mentor">
@@ -586,9 +630,36 @@
         
     </div>
 
+
     <%@include file="/WEB-INF/views/common/footer.jsp"%>
 
-   
+    <!-- 별 채우기 스크립트 -->
+    <script>
+        $(document).ready(function(){
+            $(".star-score").each(function(){
+                var starNum = parseInt($(this).text());
+                if(starNum >= 5){
+                    $(this).siblings(".star-icon").addClass("star-fill");
+                }else if(starNum >= 4){
+                    $(this).siblings(".star-icon").eq(0).removeClass("star").addClass("star-fill");
+                    $(this).siblings(".star-icon").eq(1).removeClass("star").addClass("star-fill");
+                    $(this).siblings(".star-icon").eq(2).removeClass("star").addClass("star-fill");
+                    $(this).siblings(".star-icon").eq(3).removeClass("star").addClass("star-fill");
+                }else if(starNum >= 3){
+                    $(this).siblings(".star-icon").eq(0).removeClass("star").addClass("star-fill");
+                    $(this).siblings(".star-icon").eq(1).removeClass("star").addClass("star-fill");
+                    $(this).siblings(".star-icon").eq(2).removeClass("star").addClass("star-fill");
+                }else if(starNum >= 2){
+                    $(this).siblings(".star-icon").eq(0).removeClass("star").addClass("star-fill");
+                    $(this).siblings(".star-icon").eq(1).removeClass("star").addClass("star-fill");
+                }else if(starNum >= 1){
+                    $(this).siblings(".star-icon").eq(0).removeClass("star").addClass("star-fill");
+                }
+            });
+        });
+    </script>
+
+    <!-- 모달 스크립트 -->
     <script>
         //버튼 클릭시 show 클래스 추가
         $('.mentoring').on('click',function(){
@@ -657,7 +728,7 @@
         });
 
 
-        // 시간 선택 후 div 에 #date-input의 value 와 시간 출력
+        // 날짜 시간 선택하면 출력
         $('#time-select').on('change',function(){
             var time = $('#time-select option:selected').text();
             var date = $('#date-input').val();

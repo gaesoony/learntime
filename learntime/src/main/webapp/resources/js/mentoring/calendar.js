@@ -5,7 +5,7 @@ const renderCalendar = () => {
     const viewYear = date.getFullYear();
     const viewMonth = date.getMonth();
 
-    document.querySelector('.year-month').textContent = `${viewYear}년 ${viewMonth + 1}월`;
+    document.querySelector('.year-month').textContent = `${viewYear}.  ${viewMonth + 1}`;
 
     const preLast = new Date(viewYear, viewMonth, 0);
     const thisLast = new Date(viewYear, viewMonth + 1, 0);
@@ -47,8 +47,28 @@ const renderCalendar = () => {
         }
         const formattedDateString = `${year}-${formattedMonth}-${formattedDate}`;
         const condition = i >= firstDateIndex && i < lastDateIndex + 1 ? 'this' : 'other';
-        dates[i] = `<div class="date" id="${formattedDateString}"><span class="${condition}">${date}</span></div>`;
+
+        //요일
+        const dateObject = new Date(`${year}-${formattedMonth}-${formattedDate}`);
+        const dayOfWeek = dateObject.getDay();
+        let dayOfWeekClass = 'sun';
+        if (dayOfWeek === 1) {
+            dayOfWeekClass = 'mon';
+        } else if (dayOfWeek === 2) {
+            dayOfWeekClass = 'tue';
+        } else if (dayOfWeek === 3) {
+            dayOfWeekClass = 'wed';
+        } else if (dayOfWeek === 4) {
+            dayOfWeekClass = 'thu';
+        } else if (dayOfWeek === 5) {
+            dayOfWeekClass = 'fri';
+        } else if (dayOfWeek === 6) {
+            dayOfWeekClass = 'sat';
+        }
+
+        dates[i] = `<div class="date ${dayOfWeekClass}" id="${formattedDateString}"><span class="${condition}">${date}</span></div>`;
     });
+
 
     document.querySelector('.dates').innerHTML = dates.join('');
 

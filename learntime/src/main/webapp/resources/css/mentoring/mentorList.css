@@ -133,7 +133,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 10px 10px 10px 0;
+    margin: 10px 10px 10px 5px;
 }
 
 .star-score{
@@ -161,6 +161,7 @@
     margin-left: 10px;
     font-size: 14px;
     font-weight: 600;
+    line-height: 15px;
 }
 
 /* 사이드 */
@@ -328,7 +329,9 @@ input[type='checkbox'] + .stylish-checkbox {
     'opsz' 48;
 }
 
-.star{
+
+
+.star-box .star{
     color: rgb(255, 204, 0);
     font-size: 30px;
     margin-left: -5px;
@@ -339,7 +342,7 @@ input[type='checkbox'] + .stylish-checkbox {
     'opsz' 48;
 }
 
-.star-fill{
+.star-box .star-fill{
     color: rgb(255, 204, 0);
     font-size: 30px;
     margin-left: -5px;
@@ -430,7 +433,6 @@ input[type='checkbox'] + .stylish-checkbox {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    
 
 }
 
@@ -548,7 +550,10 @@ p{
 }
 
 #time-select-box>select{
-    width: 120px;
+    width: 150px;
+    height: 30px;
+    border: 1px solid #58c079;
+    border-radius: 3px;
 }
 
 .sm-box{
