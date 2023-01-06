@@ -107,26 +107,26 @@ pageEncoding="UTF-8"%>
           <div class="profile-info-area">
             <section class="flex">
               <div class="profile-img center relative">
-              <c:if test="${groupOne.GROUP_IMG_PATH == null}">
-               <img
-                  src="${path}/resources/upload/mystudy/profile/default_profile.png"
-                  alt=""
-                />
-              </c:if>
+                <c:if test="${groupOne.GROUP_IMG_PATH == null}">
+                  <img
+                    src="${path}/resources/upload/mystudy/profile/default_profile.png"
+                    alt=""
+                  />
+                </c:if>
                 <c:if test="${groupOne.GROUP_IMG_PATH != null}">
-               <img
-                  src="${path}/resources/upload/mystudy/profile/${groupOne.GROUP_IMG_PATH}"
-                  alt=""
-                />
-              </c:if>
+                  <img
+                    src="${path}/resources/upload/mystudy/profile/${groupOne.GROUP_IMG_PATH}"
+                    alt=""
+                  />
+                </c:if>
                 <img
                   id="preview"
-                  src="${pageContext.request.contextPath}/resources/img/mystudy/transparent.png"
+                  src="${path}/resources/img/mystudy/transparent.png"
                 />
                 <div class="file-btn-area">
                   <label for="file" class="file-btn center"
                     ><img
-                      src="${pageContext.request.contextPath}/resources/img/mystudy/image-plus.png"
+                      src="${path}/resources/img/mystudy/image-plus.png"
                       alt=""
                   /></label>
                   <input

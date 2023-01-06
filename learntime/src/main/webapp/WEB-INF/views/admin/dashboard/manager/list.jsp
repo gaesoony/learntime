@@ -150,7 +150,7 @@ pageEncoding="UTF-8"%>
     .study-popup-head {
       width: 100%;
       height: 50px;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
     }
 
     .study-popup-head div:first-child {
@@ -165,9 +165,16 @@ pageEncoding="UTF-8"%>
       width: 100%;
       background-color: #ffffff;
     }
+
     .study-body-content {
       width: 100%;
+      height: 75px;
     }
+
+    .study-body-content:nth-child(3) .study-body-titlebox {
+      margin-top: 47px;
+    }
+
     .study-body-titlebox div:first-child {
       font-weight: 500;
       margin-bottom: 14px;
@@ -176,16 +183,17 @@ pageEncoding="UTF-8"%>
 
     .study-body-titlebox div:last-child {
       margin-bottom: 5px;
+      margin-top: 30px;
       font-size: 13px;
       color: gray;
     }
+
     .study-body-contentbox input {
       width: 100%;
-      height: 40px;
+      height: 50px;
       border: 1px solid rgb(218, 218, 218);
       border-radius: 3px;
       margin-top: 3px;
-      margin-bottom: 20px;
       outline: none;
       padding: 3px 10px;
       box-sizing: border-box;
@@ -196,6 +204,7 @@ pageEncoding="UTF-8"%>
       height: 30px;
       display: flex;
       justify-content: flex-end;
+      margin-top: 10px;
     }
 
     .study-pop-btn {
@@ -234,6 +243,23 @@ pageEncoding="UTF-8"%>
       right: 11px;
       font-size: 16px;
       color: gray;
+    }
+
+    #pwdResult {
+      margin-bottom: 30px;
+    }
+
+    .result {
+      margin-top: 5px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      line-height: 14px;
+      color: var(--deepGray);
+    }
+
+    input[type="submit"] {
+      border: none;
+      height: 31px;
     }
   </style>
   <body>
@@ -291,56 +317,87 @@ pageEncoding="UTF-8"%>
             <input type="button" value="관리자삭제" />
           </div>
         </section>
-        <div class="study-popup-wrap" id="study-popup">
-          <div class="study-popup">
-            <div class="study-popup-head">
-              <div class="study-head-title">관리자 생성</div>
-            </div>
-            <div class="study-popup-body">
-              <div class="study-body-content">
-                <div class="study-body-titlebox">
-                  <div>이메일</div>
+        <form
+          action="${path}/admin/manager/join"
+          method="post"
+          onsubmit="return check();"
+          id="join-form"
+        >
+          <div class="study-popup-wrap" id="study-popup">
+            <div class="study-popup">
+              <div class="study-popup-head">
+                <div class="study-head-title">관리자 생성</div>
+              </div>
+              <div class="study-popup-body">
+                <div class="study-body-content">
+                  <div class="study-body-titlebox">
+                    <div>이메일</div>
+                  </div>
+                  <div class="study-body-contentbox">
+                    <input type="text" name="id" />
+                    <div id="idResult" class="result"></div>
+                  </div>
                 </div>
-                <div class="study-body-contentbox">
-                  <input type="text" />
+                <div class="study-body-content">
+                  <div class="study-body-titlebox">
+                    <div>비밀번호</div>
+                  </div>
+                  <div class="study-body-contentbox main1 relative">
+                    <input type="password" name="pwd" autocomplete="off" />
+                    <i class="fa fa-eye fa-lg"></i>
+                    <div id="pwdResult" class="result">
+                      영문,숫자,특수문자 2가지 이상 포함, 8자 이상 32자 이하,
+                      연속 3자 이상 동일한 숫자,문자 제외
+                    </div>
+                  </div>
+                </div>
+                <div class="study-body-content">
+                  <div class="study-body-titlebox">
+                    <div>비밀번호 확인</div>
+                  </div>
+                  <div class="study-body-contentbox main2 relative">
+                    <input
+                      type="password"
+                      name="pwd2"
+                      autocomplete="off"
+                      placeholder="입력했던 비밀번호를 다시 입력해주세요"
+                    />
+                    <i class="fa fa-eye fa-lg"></i>
+                    <div id="pwdCheck" class="result"></div>
+                  </div>
+                </div>
+                <div class="study-body-content">
+                  <div class="study-body-titlebox">
+                    <div>닉네임</div>
+                  </div>
+                  <div class="study-body-contentbox">
+                    <input
+                      type="text"
+                      name="nick"
+                      placeholder="영문,숫자,한글로 2자 이상 8자 이하"
+                    />
+                    <div id="nickResult" class="result"></div>
+                  </div>
                 </div>
               </div>
-              <div class="study-body-content">
-                <div class="study-body-titlebox">
-                  <div>비밀번호</div>
-                </div>
-                <div class="study-body-contentbox main1 relative">
-                  <input type="password" />
-                  <i class="fa fa-eye fa-lg"></i>
-                </div>
-              </div>
-              <div class="study-body-content">
-                <div class="study-body-titlebox">
-                  <div>비밀번호 확인</div>
-                </div>
-                <div class="study-body-contentbox main2 relative">
-                  <input type="password" />
-                  <i class="fa fa-eye fa-lg"></i>
-                </div>
-              </div>
-              <div class="study-body-content">
-                <div class="study-body-titlebox">
-                  <div>닉네임</div>
-                </div>
-                <div class="study-body-contentbox">
-                  <input type="text" />
-                </div>
-              </div>
-            </div>
-            <div class="study-popup-foot">
-              <div class="study-pop-btn study-confirm" id="study-confirm">
-                생성
-              </div>
+              <div class="study-popup-foot">
+                <input
+                  type="submit"
+                  class="study-pop-btn study-confirm"
+                  id="study-confirm"
+                  value="생성"
+                />
+                <!-- <div class="study-pop-btn study-confirm" id="study-confirm">
+                  생성
+                </div> -->
 
-              <div class="study-pop-btn study-close" id="study-close">취소</div>
+                <div class="study-pop-btn study-close" id="study-close">
+                  취소
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
     <script>
@@ -350,9 +407,9 @@ pageEncoding="UTF-8"%>
       }
       $(function () {
         $("#study-confirm").click(function () {
-          modalClose(); //모달 닫기 함수 호출
-
-          //컨펌 이벤트 처리
+          // modalClose(); //모달 닫기 함수 호출
+          // //컨펌 이벤트 처리
+          // document.querySelector("#join-form").submit();
         });
 
         $("#study-close").click(function () {
@@ -364,6 +421,7 @@ pageEncoding="UTF-8"%>
       });
     </script>
     <script>
+      //비밀번호 보기,숨기기
       $(document).ready(function () {
         $(".main1 i").on("click", function () {
           $("input").toggleClass("active");
@@ -394,7 +452,190 @@ pageEncoding="UTF-8"%>
               .attr("type", "password");
           }
         });
+
+        const idInput = $("input[name=id]");
+
+        idInput.blur(function () {
+          const id = $("input[name=id]").val();
+          var idCheck =
+            /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+          var blackCheck = /\s/;
+          $.ajax({
+            type: "get",
+            url: "${path}/admin/manager/emailCheck?id=" + id,
+            success: function (data) {
+              if (data == 1) {
+                $("#idResult").text("이미 사용 중인 이메일 입니다.");
+                $("#idResult").css("color", "red");
+                $("#idResult").attr("disabled", true);
+                $("input[name=id]").eq(1).focus();
+              } else {
+                if (idCheck.test(id)) {
+                  // 0 : 아이디 길이 / 문자열 검사
+                  $("#idResult").text("");
+                  $("#idResult").css("color", "var(--main-color)");
+                  $("#idResult").attr("disabled", true);
+                } else if (id == "") {
+                  $("#idResult").text("이메일을 입력해주세요");
+                  $("#idResult").css("color", "red");
+                  $("#idResult").attr("disabled", true);
+                } else if (id.search(blackCheck) != -1) {
+                  $("#idResult").text("공백 없이 작성해 주세요.");
+                  $("#idResult").css("color", "red");
+                  $("#idResult").attr("disabled", true);
+                } else {
+                  $("#idResult").text("이메일 형식이 올바르지 않습니다.");
+                  $("#idResult").css("color", "red");
+                  $("#idResult").attr("disabled", true);
+                }
+              }
+            },
+            error: function () {
+              $("#emailCheck").text("이메일 중복 확인 불가");
+            },
+          });
+        });
+
+        $("input[name=nick]").blur(function () {
+          var nick = $("input[name=nick]").val();
+          var nickCheck = /^[a-zA-Z0-9가-힣]{2,8}$/;
+          var blackCheck = /\s/;
+
+          $.ajax({
+            type: "get",
+            url: "${path}/admin/manager/nickCheck?nick=" + nick,
+            success: function (data) {
+              if (data == 1) {
+                $("#nickResult").text("이미 사용 중인 닉네임 입니다.");
+                $("#nickResult").css("color", "red");
+                $("#nickResult").attr("disabled", true);
+                $("input[name=nick]").eq(0).focus();
+              } else {
+                if (nickCheck.test(nick)) {
+                  // 0 : 아이디 길이 / 문자열 검사
+                  $("#nickResult").text("");
+                  $("#nickResult").attr("disabled", false);
+                } else if (nick == "") {
+                  $("#nickResult").text("닉네임을 입력해주세요");
+                  $("#nickResult").css("color", "red");
+                  $("#nickResult").attr("disabled", true);
+                } else if (nick.search(blackCheck) != -1) {
+                  $("#nickResult").text("공백 없이 작성해 주세요.");
+                  $("#nickResult").css("color", "red");
+                  $("#nickResult").attr("disabled", true);
+                } else {
+                  $("#nickResult").text(
+                    "닉네임은 영문,숫자,한글로 2자 이상 8자 이하로 이뤄져야합니다. "
+                  );
+                  $("#nickResult").css("color", "red");
+                  $("#nickResult").attr("disabled", true);
+                }
+              }
+            },
+            error: function () {
+              $("#nickResult").text("닉네임 중복 확인 불가");
+            },
+          });
+        });
       });
+    </script>
+    <script>
+      function check() {
+        console.log("체크 들어옴?");
+        const id = $("input[name=id]");
+        //이메일 형식이 (알파벳,숫자,-,_,.)@(알파벳,숫자,-,_,.).(알파벳,숫자,-,_,.//1자리 이상)
+        var idCheck =
+          /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+
+        const pwd = $("input[name=pwd]");
+        const pwd2 = $("input[name=pwd2]");
+        //영문/숫자/특수문자 2가지 이상 포함, 8자 이상 32자 이하
+        var pwdCheck =
+          /^(?!((?:[A-Za-z]+)|(?:[~!@#$%^&*()_+=]+)|(?:[0-9]+))$)[A-Za-z\d~!@#$%^&*()_+=]{8,32}$/;
+        //같은 문자 3번 이상 X
+        var pwd3WordCheck = /(\w)\1\1/;
+
+        const nick = $("input[name=nick]");
+        //닉네임 중복확인 결과 div가 ""일때 인설트 됨
+        const nickDuplicationCheck = $("#nickResult");
+
+        if (idCheck.test(id.val()) == false) {
+          Swal.fire({
+            icon: "error",
+            title: "이메일을 다시 확인해주세요!",
+            text: "이메일 형식이 올바르지 않습니다.",
+            confirmButtonColor: "#5ECC80",
+          });
+
+          id.focus();
+          return false;
+        }
+
+        if ($("#idResult").text() != "") {
+          Swal.fire({
+            icon: "error",
+            title: "이메일을 다시 확인해주세요.",
+            text: "이메일 중복 확인이 되지 않았습니다.",
+            confirmButtonColor: "#5ECC80",
+          });
+          id.focus();
+          return false;
+        }
+
+        if (pwdCheck.test(pwd.val()) == false) {
+          Swal.fire({
+            icon: "error",
+            title: "비밀번호를 다시 확인해주세요!",
+            text: "영문,숫자,특수문자 2가지 이상 포함, 8자 이상 32자 이하로 이뤄져야합니다.",
+            confirmButtonColor: "#5ECC80",
+          });
+
+          pwd.focus();
+          return false;
+        } else if (pwd3WordCheck.test(pwd.val())) {
+          Swal.fire({
+            icon: "error",
+            title: "비밀번호를 다시 확인해주세요!",
+            text: "같은 문자를 3번 이상 사용하실 수 없습니다.",
+            confirmButtonColor: "#5ECC80",
+          });
+          pwd.focus();
+          return false;
+        }
+
+        if (pwd.val() !== pwd2.val()) {
+          Swal.fire({
+            icon: "error",
+            title: "비밀번호를 다시 확인해주세요!",
+            text: "비밀번호가 동일하지 않습니다.",
+            confirmButtonColor: "#5ECC80",
+          });
+          pwd2.focus();
+          return false;
+        }
+
+        if (nickDuplicationCheck.text() != "") {
+          Swal.fire({
+            icon: "error",
+            title: "닉네임을 다시 확인해주세요.",
+            text: "닉네임 중복 확인이 되지 않았습니다.",
+            confirmButtonColor: "#5ECC80",
+          });
+          nick.focus();
+          return false;
+        }
+
+        if (!nick.val()) {
+          Swal.fire({
+            icon: "error",
+            title: "닉네임을 다시 확인해주세요.",
+            text: "닉네임을 입력해주세요",
+            confirmButtonColor: "#5ECC80",
+          });
+          nick.focus();
+          return false;
+        }
+      }
     </script>
     <script
       src="https://kit.fontawesome.com/939838bb27.js"

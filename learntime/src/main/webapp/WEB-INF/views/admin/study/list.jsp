@@ -245,7 +245,7 @@ pageEncoding="UTF-8"%>
                 <div>${map.NO}</div>
                 <div>
                   <a
-                    href="${pageContext.request.contextPath}/admin/study/detail"
+                    href="${path}/admin/study/detail?gno=${map.NO}&pno=${pno}&keyword=${keyword}&category=${category}&status=${status}"
                     >${map.TITLE}</a
                   >
                 </div>

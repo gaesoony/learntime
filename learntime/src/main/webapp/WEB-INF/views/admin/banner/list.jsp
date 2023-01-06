@@ -207,7 +207,13 @@ pageEncoding="UTF-8"%>
   <body>
     <%@include file="/WEB-INF/views/common/admin-side.jsp"%>
     <div id="content-wrap">
-      <div id="admin-category-title" class="shadow-light">배너 관리</div>
+      <div
+        id="admin-category-title"
+        class="shadow-light"
+        onclick="location.href='${path}/admin/banner/list'"
+      >
+        배너 관리
+      </div>
       <div class="wrapper">
         <section class="search-section">
           <div class="relative">
@@ -227,53 +233,61 @@ pageEncoding="UTF-8"%>
               type="button"
               value="배너추가"
               class="add-btn"
-              onclick="location.href='${pageContext.request.contextPath}/admin/banner/write'"
+              onclick="location.href='${path}/admin/banner/write'"
             />
           </div>
         </section>
         <ul class="popup-list flex">
-          <%for(int i=0; i<10; i++) {%>
-          <li>
-            <header class="relative">
-              <div class="header-section">1</div>
-              <div class="header-section">
-                <span>런타임 배너입니다</span>
-                <span class="status">비활성화</span>
-              </div>
-              <div class="header-section">
-                <div class="more center" onclick="showMoreList(event);">
-                  <i
-                    class="fa-solid fa-ellipsis"
-                    onclick="showMoreList2(event)"
-                  ></i>
+          <c:forEach items="${bannerList}" var="map">
+            <li>
+              <header class="relative">
+                <div class="header-section">${map.NO }</div>
+                <div class="header-section">
+                  <span>${map.TITLE}</span>
+                  <c:if test="${map.STATUS == 'A'}">
+                    <span class="status">활성화</span>
+                  </c:if>
+                  <c:if test="${map.STATUS == 'B'}">
+                    <span class="status">비활성화</span>
+                  </c:if>
                 </div>
-              </div>
-              <ul class="more-list hidden">
-                <a href="${pageContext.request.contextPath}/admin/banner/edit"
-                  >수정</a
-                >
-                <a href="">활성화</a>
-                <a href="">영구삭제</a>
-              </ul>
-            </header>
-            <section class="popup-img">
-              <img
-                src="${pageContext.request.contextPath}/resources/img/study/banner1.png"
-                alt=""
-              />
-            </section>
-            <section class="popup-date-section">
-              <div class="popup-date">
-                <span>기간 : </span>
-                <span>2022-12-11 12:12 ~ 2022-12-11 12:12</span>
-              </div>
-              <div class="popup-date">
-                <span>등록일시 : </span>
-                <span>2022-12-11 12:12</span>
-              </div>
-            </section>
-          </li>
-          <%}%>
+                <div class="header-section">
+                  <div class="more center" onclick="showMoreList(event);">
+                    <i
+                      class="fa-solid fa-ellipsis"
+                      onclick="showMoreList2(event)"
+                    ></i>
+                  </div>
+                </div>
+                <ul class="more-list hidden">
+                  <a href="${path}/admin/banner/edit?no=${map.NO}">수정</a>
+                  <c:if test="${map.STATUS == 'A'}">
+                    <a href="${path}/admin/banner/disable?no=${map.NO}"">비활성화</a>
+                  </c:if>
+                  <c:if test="${map.STATUS == 'B'}">
+                    <a href="${path}/admin/banner/enable?no=${map.NO}"">활성화</a>
+                  </c:if>
+                  <a href="${path}/admin/banner/delete?no=${map.NO}"">영구삭제</a>
+                </ul>
+              </header>
+              <section class="popup-img">
+                <img
+                  src="${path}/resources/upload/banner/${map.IMG_PATH}"
+                  alt=""
+                />
+              </section>
+              <section class="popup-date-section">
+                <div class="popup-date">
+                  <span>기간 : </span>
+                  <span>${map.START_DATE} ~ ${map.END_DATE}</span>
+                </div>
+                <div class="popup-date">
+                  <span>등록일시 : </span>
+                  <span>${map.ENROLL_DATE}</span>
+                </div>
+              </section>
+            </li>
+          </c:forEach>
         </ul>
       </div>
     </div>

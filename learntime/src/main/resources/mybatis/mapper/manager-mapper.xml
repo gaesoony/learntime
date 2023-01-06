@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="managerMapper">
+
+	<!--로그인  -->
+	<select id="login" resultType = "ManagerVo">
+		<if test="id != null and !('').equals(id) or pwd != null and !('').equals(pwd)">
+			SELECT A.NO, A.ID, A.PWD, A.NICK, A.IMG_PATH, L.NO LOGIN_NO, L.ACCESS_TIME, L.ACCESS_IP
+			FROM ADMIN A
+			LEFT JOIN ADMIN_LOGIN L ON A.NO = L.A_NO
+			WHERE A.ID = #{id}
+		</if>
+	</select>
+	
+	<!--회원가입  -->
+	<insert id="join">
+		INSERT INTO ADMIN (NO, ID, PWD, NICK)
+		VALUES(SEQ_ADMIN_NO.NEXTVAL, #{id}, #{pwd}, #{nick})
+	</insert>
+	
+	<!--닉네임 중복 체크  -->
+	<select id="nickCheck" resultType = "Int">
+		 SELECT COUNT(*)
+		 FROM ADMIN
+		 WHERE NICK = #{nick}
+		 <if test="no != null and no != ''">
+		AND NO NOT IN(${no})
+		</if>
+	</select>
+	
+	<!--이메일 중복 체크  -->
+	<select id="emailCheck" resultType = "Int">
+		 SELECT COUNT(*)
+		 FROM ADMIN
+		 WHERE ID = #{id}
+		<if test="no != null and no != ''">
+		    AND NO NOT IN(#{no})
+		</if>
+	</select>
+
+
+</mapper>

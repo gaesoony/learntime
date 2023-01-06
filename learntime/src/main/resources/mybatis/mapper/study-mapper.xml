@@ -760,4 +760,5 @@
 		WHERE C.DELETE_YN = 'N' AND C.DEPTH = '1' AND C."GROUP" = #{cgno} 
 		ORDER BY C.NO
 	</select>
+
 </mapper>
