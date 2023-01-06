@@ -1,5 +1,8 @@
 package com.learntime.app.mertoring.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.learntime.app.mertoring.dao.MentoringDao;
 import com.learntime.app.mertoring.vo.MentorVo;
+import com.learntime.app.mertoring.vo.ScheduleVo;
 
 @Service
 public class MentoringServiceImpl implements MentoringService{
@@ -28,5 +32,39 @@ public class MentoringServiceImpl implements MentoringService{
 	@Override
 	public int registerMentoring(MentorVo mv) {
 		return dao.mentoringRegi(mv, sst);
+	}
+
+	
+	//직무받아오기
+	@Override
+	public List<Map<String, Object>> selectJob() {
+		return dao.selectJob(sst);
+		
+	}
+
+	//카테고리 받아오기
+	@Override
+	public List<Map<String, Object>> selectCateNo() {
+		return dao.selectCateNo(sst);
+	}
+
+	//멘토번호 받기
+	@Override
+	public MentorVo selectMentor(String no) {
+		return dao.selectMentor(sst, no);
+		
+	}
+	
+	//스케줄 등록
+	@Transactional
+	@Override
+	public int registerSchedule(List<ScheduleVo> scheduleList) {
+		return dao.insertSchedule(sst, scheduleList);
+	}
+
+	//멘토리스트 조회
+	@Override
+	public List<MentorVo> selectMentorList() {
+		return dao.selectMentorList(sst);
 	}
 }

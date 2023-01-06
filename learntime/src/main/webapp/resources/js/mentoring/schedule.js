@@ -49,14 +49,16 @@ $(document).ready(function() {
     $('#time-select').on('change', function() {
         selectedTime = $(this).val();
 
-        // 초기화 알림
-        if (confirm("스케줄이 초기화 됩니다. 초기화 하시겠습니까?")) {
-            // 초기화
-            $('input[type="checkbox"]').prop('checked', false);
-            $('input[type="checkbox"]').next().removeClass('back-green');
-        } else {
-            // 초기화 취소
-            return false;
+        // 초기화 알림(체크박스에 체크되어있는게 있을때
+        if ($('input[type="checkbox"]').is(':checked')) {
+            if (confirm("스케줄이 초기화 됩니다. 초기화 하시겠습니까?")) {
+                // 초기화
+                $('input[type="checkbox"]').prop('checked', false);
+                $('input[type="checkbox"]').next().removeClass('back-green');
+            } else {
+                // 초기화 취소
+                return false;
+            }
         }
 
     });

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- jstl 라이브러리 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,17 +51,16 @@
 
             <div id="category" class="info-box">
                 <!-- 카테고리 반복문.. -->
-                <input type="radio" name="cateNo" id="mentoring-cate1" value="1">
-                <label for="mentoring-cate1">개발/프로그래밍</label>
-                <input type="radio" name="cateNo" id="mentoring-cate2" value="2">
-                <label for="mentoring-cate2">보안/네트워크</label>
-                <input type="radio" name="cateNo" id="mentoring-cate3" value="3">
-                <label for="mentoring-cate3">데이터사이언스</label>
-                <input type="radio" name="cateNo" id="mentoring-cate4" value="4">
-                <label for="mentoring-cate4">게임개발</label>
-                <input type="radio" name="cateNo" id="mentoring-cate5" value="5">
-                <label for="mentoring-cate5">커리어</label>
+                <c:forEach var="category" items="${cateList}">
+                    <input type="radio" name="cateNo" id="mentoring-cate${category.NO}" value="${category.NO}">
+                    <label for="mentoring-cate${category.NO}">${category.NAME}</label>
+                </c:forEach>
                 <!-- 카테고리 반복문 끝 -->
+                <script>
+                    $('input[type="radio"]:first').attr('checked', 'checked');
+                </script>
+
+
             </div>
 
             <div id="mentoring-title" class="title"> 
@@ -67,7 +69,7 @@
 
             <div id="mentoring-info" class="info-box">
                 <div id="mentoring-name" class="sub-title">멘토링 명</div>
-                <input id="name-input" type="text" placeholder="멘티에게 보여 줄 한줄 소개를 작성해주세요">
+                <input id="name-input" type="text" placeholder="멘티에게 보여 줄 한줄 소개를 작성해주세요" name="title">
 
                 <div id="mentoring-info2">
 
@@ -80,9 +82,12 @@
                         <div class="sub-title">멘토 직무</div>
 
                         <select name="job" id="">
+                            <option value="" selected disabled>직무를 선택해주세요</option>
                             <!-- 직무 조회 해서 반복문 -->
-                            <option value=""></option>
-                            <option value=""></option>
+                            <c:forEach var="job" items="${jobList}">
+                                <option value="${job.NO}">${job.no}${job.NAME}</option>
+                            </c:forEach>
+                           
                             <!-- 직무 반복 끝 -->
                         </select>
                     </div>
@@ -90,12 +95,12 @@
                     <div class="mentoring-info2">
                         <div class="sub-title">멘토 경력</div>
                         <select name="career" id="">
-                            <option value="" disabled>선택</option>
-                            <option value="1" >1년 미만</option>
-                            <option value="2">1년 이상</option>
-                            <option value="3">3년 이상</option>
-                            <option value="4">5년 이상</option>
-                            <option value="5">10년 이상</option>
+                            <option value="" selected disabled>경력 선택</option>
+                            <option value="1년 미만">1년 미만</option>
+                            <option value="1년 이상">1년 이상</option>
+                            <option value="3년 이상">3년 이상</option>
+                            <option value="5년 이상">5년 이상</option>
+                            <option value="10년 이상">10년 이상</option>
                         </select>
                     </div>
                     
