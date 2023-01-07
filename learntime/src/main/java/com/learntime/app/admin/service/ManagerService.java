@@ -1,5 +1,8 @@
 package com.learntime.app.admin.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.learntime.app.admin.vo.ManagerVo;
 import com.learntime.app.mystudy.vo.ProfileVo;
 
@@ -22,5 +25,11 @@ public interface ManagerService {
 
 	//관리자 프로필 업데이트
 	public int updateProfile(ProfileVo vo);
+
+	//관리자 목록 조회
+	public List<Map<String, Object>> selectManagerList();
+
+	//운영자 목록 조회
+	public List<Map<String, Object>> selectOperatorList();
 
 }

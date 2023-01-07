@@ -846,15 +846,15 @@ pageEncoding="UTF-8"%>
                 let todayDate = new Date();
               
                 todayDate = new Date(parseInt(todayDate.getTime() / 86400000) * 86400000 + 54000000);
+          
                 if (todayDate > new Date()) {
                     expiredays = expiredays - 1;
                 }
-         
+             
                 todayDate.setDate(todayDate.getDate() + expiredays);
-           
-                document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+             
+                document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toUTCString() + ";"
 
-              
             }
 
             // 팝업출력

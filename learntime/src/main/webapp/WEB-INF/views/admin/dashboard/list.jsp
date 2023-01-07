@@ -259,6 +259,8 @@ pageEncoding="UTF-8"%>
       .manager-list,
       .operator-list {
         padding: 20px 20px 10px 20px;
+        height: 267px;
+        overflow-y: scroll;
       }
 
       .manager-list img,
@@ -713,34 +715,27 @@ pageEncoding="UTF-8"%>
             <header class="dashboard-header">
               <h1>관리자</h1>
               <div>
-                <a
-                  href="${pageContext.request.contextPath}/admin/dashboard/manager/list"
-                  >더보기</a
-                >
+                <a href="${path}/admin/dashboard/manager/list">더보기</a>
               </div>
             </header>
             <ul class="manager-list">
-              <li>
-                <img
-                  src="${pageContext.request.contextPath}/resources/img/study/profile.png"
-                  alt=""
-                />
-                <span>한혜원</span>
-              </li>
-              <li>
-                <img
-                  src="${pageContext.request.contextPath}/resources/img/study/profile.png"
-                  alt=""
-                />
-                <span>한혜원</span>
-              </li>
-              <li>
-                <img
-                  src="${pageContext.request.contextPath}/resources/img/study/profile.png"
-                  alt=""
-                />
-                <span>한혜원</span>
-              </li>
+              <c:forEach items="${managerList}" var="map">
+                <li>
+                  <c:if test="${map.IMG_PATH == null}">
+                    <img
+                      src="${path}/resources/img/profile_default.png"
+                      alt=""
+                    />
+                  </c:if>
+                  <c:if test="${map.IMG_PATH != null}">
+                    <img
+                      src="${path}/resources/upload/manager/profile/${map.IMG_PATH}"
+                      alt=""
+                    />
+                  </c:if>
+                  <span>${map.NICK}</span>
+                </li>
+              </c:forEach>
             </ul>
           </section>
           <section class="operator-section shadow">
@@ -749,34 +744,30 @@ pageEncoding="UTF-8"%>
               <div>더보기</div>
             </header>
             <ul class="operator-list">
-              <li>
-                <img
-                  src="${pageContext.request.contextPath}/resources/img/study/profile.png"
-                  alt=""
-                />
-                <span>한혜원</span>
-              </li>
-              <li>
-                <img
-                  src="${pageContext.request.contextPath}/resources/img/study/profile.png"
-                  alt=""
-                />
-                <span>한혜원</span>
-              </li>
-              <li>
-                <img
-                  src="${pageContext.request.contextPath}/resources/img/study/profile.png"
-                  alt=""
-                />
-                <span>한혜원</span>
-              </li>
+              <c:forEach items="${operatorList}" var="map">
+                <li>
+                  <c:if test="${map.IMG_PATH == null}">
+                    <img
+                      src="${path}/resources/img/profile_default.png"
+                      alt=""
+                    />
+                  </c:if>
+                  <c:if test="${map.IMG_PATH != null}">
+                    <img
+                      src="${path}/resources/upload/profile/${map.IMG_PATH}"
+                      alt=""
+                    />
+                  </c:if>
+                  <span>${map.NICK}</span>
+                </li>
+              </c:forEach>
             </ul>
           </section>
           <section class="manager-log-btn">
             <input
               type="button"
               value="관리자 로그 내역"
-              onclick="location.href='${pageContext.request.contextPath}/admin/dashboard/manager/log'"
+              onclick="location.href='${path}/admin/dashboard/manager/log'"
             />
           </section>
         </aside>

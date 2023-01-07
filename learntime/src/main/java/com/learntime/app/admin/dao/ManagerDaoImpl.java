@@ -1,5 +1,8 @@
 package com.learntime.app.admin.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -42,6 +45,24 @@ public class ManagerDaoImpl implements ManagerDao{
 	@Override
 	public int updateProfile(SqlSessionTemplate sst, ProfileVo vo) {
 		return sst.update("managerMapper.updateProfile", vo);
+	}
+
+	//관리자 목록 조회
+	@Override
+	public List<Map<String, Object>> selectManagerList(SqlSessionTemplate sst) {
+		return sst.selectList("managerMapper.selectManagerList");
+	}
+
+	//운영자 목록 조회
+	@Override
+	public List<Map<String, Object>> selectOperatorList(SqlSessionTemplate sst) {
+		return sst.selectList("managerMapper.selectOperatorList");
+	}
+
+	//관리자 마스터 계정 로그인
+	@Override
+	public ManagerVo masterLogin(SqlSessionTemplate sst, ManagerVo vo) {
+		return sst.selectOne("managerMapper.masterLogin", vo);
 	}
 
 }

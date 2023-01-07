@@ -1,5 +1,6 @@
 package com.learntime.app.admin.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.learntime.app.admin.service.ManagerService;
 import com.learntime.app.admin.vo.ManagerVo;
 import com.learntime.app.common.file.FileUploader;
+import com.learntime.app.member.service.MemberService;
 import com.learntime.app.mystudy.vo.ProfileVo;
 
 @RequestMapping("admin/dashboard")
@@ -25,9 +28,20 @@ public class AdminDashboardController {
 	@Qualifier("managerServiceImpl")
 	private ManagerService managerService;
 	
+	
 	//관리자페이지 대시보드 조회 (화면)
 	@GetMapping("")
-	public String dashboard() {
+	public String dashboard(Model model) {
+		
+		//관리자 목록 조회
+		List<Map<String, Object>> managerList = managerService.selectManagerList();
+		model.addAttribute("managerList", managerList);
+		
+		//운영자 목록 조회
+		List<Map<String, Object>> operatorList = managerService.selectOperatorList();
+		model.addAttribute("operatorList", operatorList);
+		
+		
 		return "admin/dashboard/list";
 	}
 	

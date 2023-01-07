@@ -7,9 +7,10 @@
 	<!--로그인  -->
 	<select id="login" resultType = "ManagerVo">
 		<if test="id != null and !('').equals(id) or pwd != null and !('').equals(pwd)">
-			SELECT A.NO, A.ID, A.PWD, A.NICK, A.IMG_PATH
+			SELECT A.NO, A.ID, A.PWD, A.NICK, A.IMG_PATH, A.DELETE_YN
 			FROM ADMIN A
 			WHERE A.ID = #{id}
+			AND DELETE_YN = 'N'
 		</if>
 	</select>
 	
@@ -48,5 +49,18 @@
 		NICK = #{name}
 		WHERE NO = #{no}
 	</update>
-
+	<select id="selectManagerList" resultType="map">
+		SELECT *
+		FROM ADMIN
+	</select>
+	<select id="selectOperatorList" resultType="map">
+		SELECT * 
+		FROM MEMBER
+		WHERE ADMIN_YN = 'Y'
+	</select>
+	<select id="masterLogin" resultType="ManagerVo">
+		SELECT *
+		FROM ADMIN
+		WHERE ID = #{id} AND PWD = #{pwd}
+	</select>
 </mapper>
