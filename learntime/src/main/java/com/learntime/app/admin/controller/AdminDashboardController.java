@@ -19,6 +19,7 @@ import com.learntime.app.admin.vo.ManagerVo;
 import com.learntime.app.common.file.FileUploader;
 import com.learntime.app.member.service.MemberService;
 import com.learntime.app.mystudy.vo.ProfileVo;
+import com.learntime.app.study.service.StudyService;
 
 @RequestMapping("admin/dashboard")
 @Controller
@@ -27,6 +28,10 @@ public class AdminDashboardController {
 	@Autowired
 	@Qualifier("managerServiceImpl")
 	private ManagerService managerService;
+	
+	@Autowired
+	@Qualifier("studyServiceImpl")
+	private StudyService studyService;
 	
 	
 	//관리자페이지 대시보드 조회 (화면)
@@ -40,6 +45,10 @@ public class AdminDashboardController {
 		//운영자 목록 조회
 		List<Map<String, Object>> operatorList = managerService.selectOperatorList();
 		model.addAttribute("operatorList", operatorList);
+		
+		//스터디/프로젝트 목록 조회
+		List<Map<String, Object>> groupList = studyService.selectMainGroupList();
+		model.addAttribute("groupList", groupList);
 		
 		
 		return "admin/dashboard/list";

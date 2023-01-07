@@ -243,6 +243,18 @@ pageEncoding="UTF-8"%>
         align-items: center;
       }
 
+      .board-title {
+        width: 462px;
+      }
+
+      .board-title a {
+        width: 462px;
+        height: 17px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
       .dashboard-aside section {
         margin-bottom: 10px;
       }
@@ -586,15 +598,17 @@ pageEncoding="UTF-8"%>
             <div class="board-section-grid-div">
               <header class="dashboard-header">
                 <h1>스터디/프로젝트</h1>
-                <div>더보기</div>
+                <div><a href="${path}/admin/study/list?pno=1">더보기</a></div>
               </header>
               <div class="board-grid">
-                <% for(int i=0; i<5; i++) {%>
-                <div class="board-grid-div">
-                  <a href="">제목입니다 제목입니다 제목입니다</a>
-                </div>
-                <div class="board-grid-div">2022-12-10</div>
-                <%}%>
+                <c:forEach items="${groupList}" var="map" end="4">
+                  <div class="board-grid-div board-title">
+                    <a href="${path}/study/detail?gno=${map.NO}&pno=1"
+                      >${map.TITLE}</a
+                    >
+                  </div>
+                  <div class="board-grid-div">${map.FORMAT_ENROLL_DATE}</div>
+                </c:forEach>
               </div>
             </div>
             <div class="board-section-grid-div">
