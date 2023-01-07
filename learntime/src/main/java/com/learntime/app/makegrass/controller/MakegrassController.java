@@ -1,5 +1,6 @@
 package com.learntime.app.makegrass.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +31,10 @@ public class MakegrassController {
 		
 		List<Map<String, Object>> makegrassList = service.selectList(vo);
 		model.addAttribute("makegrassList", makegrassList);
+		
+		List<Map<String, Object>> makegrassLankList = service.selectLankList();
+		model.addAttribute("makegrassLankList", makegrassLankList);
+		
 		return "makegrass/list";
 	}
 	
@@ -58,22 +63,34 @@ public class MakegrassController {
 	}
 	
 	//잔디심기 상세 조회 (화면+DB)
-	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String detail(String no, Model model) {
+	@GetMapping("/detail")
+	public String detail(MakegrassVo vo, Model model, HttpSession session) {
 		
-		MakegrassVo mvo = service.detail(no);
-		model.addAttribute("mvo", mvo);
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		Map map = new HashMap();
+		map.put("ano", vo.getNo());
+		if(loginMember != null) {
+			map.put("mno", vo.getWriter());
+		}
+		
+		Map<String, Object> makeDetail = service.detail(vo.getNo());
+		
+		//공부인증 랭킹 리스트
+		List<Map<String, Object>> makegrassLankList = service.selectLankList();
+		
+		model.addAttribute("makegrassLankList", makegrassLankList);
+		model.addAttribute("makeDetail", makeDetail);
+		model.addAttribute("loginMember", loginMember);
+		model.addAttribute("vo", vo);
 		
 		return "makegrass/detail";
 	}
 	
 	//잔디심기 수정 (화면)
 	@GetMapping("/edit")
-	public String edit(String mno, Model model) {
+	public String edit(MakegrassVo vo, String mno, Model model) {
 		
-		MakegrassVo mvo = service.detail(mno);
-		model.addAttribute("mvo", mvo);
-		
+		Map<String, Object> makeDetail = service.detail(vo.getNo());
 		return "makegrass/edit";
 	}
 	

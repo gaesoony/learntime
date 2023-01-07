@@ -605,13 +605,13 @@
                 <div>미해결</div>
             </div>
             <div class="si">
-                <div><i class="fa-solid fa-thumbs-up"></i> 0</div>
+                <div><i class="fa-solid fa-thumbs-up"></i> ${qnaDetail.LIKES}</div>
             </div>
             <div class="si">
-                <div><i class="fa-solid fa-thumbs-down"></i> 0</div>
+                <div><i class="fa-solid fa-thumbs-down"></i> ${qnaDetail.HATES}</div>
             </div>
             <div class="si">
-                <i class="fa-solid fa-comment"></i> 0
+                <i class="fa-solid fa-comment"></i> ${qnaDetail.REPLY_CNT}
             </div>
             <div class="si">
                 <i class="fa-solid fa-bookmark"></i> 0
@@ -626,22 +626,22 @@
             <div class="maintitle">
                 <div class="title">
                     <div class="title-start">Q.</div>
-                    <h2 class="title-end">[${qvo.cateNo}]&nbsp${qvo.title}</h2>
+                    <h2 class="title-end">[${qnaDetail.CATE_NO}]&nbsp${qnaDetail.TITLE}</h2>
                 </div>
             </div>
             <div class="middletitle">
                 <table>
                     <tr>
                         <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필"></td>
-                        <td class="nick">${qvo.writer}</td>
-                        <td class="enrollDate">${qvo.enrollDate}</td>
-                        <td class="heart"><i class="fa-solid fa-thumbs-up"></i> 3</td>
+                        <td class="nick">${qnaDetail.WRITER}</td>
+                        <td class="enrollDate">${qnaDetail.ENROLL_DATE}</td>
+                        <td class="heart"><i class="fa-solid fa-thumbs-up"></i> ${qnaDetail.LIKES}</td>
                         <td class="thumbsup" id="thumbsup" onclick="changeColor5()"><i class="fa-regular fa-thumbs-up"></i></td>
                         <td class="thumbsdown" id="thumbsdown" onclick="changeColor6()"><i class="fa-regular fa-thumbs-down"></i></td>
                         <td class="bookmark" id="bookmark" onclick="changeColor7()"><i class="fa-regular fa-bookmark"></i></td>
 
-                        <c:if test="${loginMember.nick == qvo.writer}">
-                            <td class="edit"><button type="button" class="edit-btn" onclick="location.href='${path}/qna/edit?no=${qvo.no}'">수정</button></td>
+                        <c:if test="${loginMember.nick == qnaDetail.WRITER}">
+                            <td class="edit"><button type="button" class="edit-btn" onclick="location.href='${path}/qna/edit?qno=${qnaDetail.NO}&keyword=${vo.keyword}&type=${vo.type}&order=${vo.order}'">수정</button></td>
                             <td class="slash">/</td>
                             <td class="delete">
                                 <button type="button" class="delete-btn">삭제</button>
@@ -652,14 +652,14 @@
                                         <p class="modalTitle">게시물을 삭제하시겠습니까?</p>
                                         <div class="modalBtn">
                                             <input type="button" class="cancleBtn" value="취소" onClick="location.reload();"></input>
-                                            <input type="button" class="saveBtn" onclick="location.href='${path}/qna/delete?no=${qvo.no}'" value="삭제"></input>
+                                            <input type="button" class="saveBtn" onclick="location.href='${path}/qna/delete?no=${qnaDetail.NO}'" value="삭제"></input>
                                         </div>
                                     </div>
                                 </div>
                             </td>
                         </c:if>
 
-                        <c:if test="${loginMember.nick != qvo.writer}">
+                        <c:if test="${loginMember.nick != qnaDetail.WRITER}">
                             <td class="edit"><button type="button" class="edit-btn-null" title="해당 글의 작성자만 가능합니다.">수정</button></td>
                             <td class="slash">/</td>
                             <td class="delete">
@@ -673,17 +673,18 @@
                 <table class="two">
                     <tr>
                         <td class="content">
-                            ${qvo.content}
+                            ${qnaDetail.CONTENT}
                         </td>
                     </tr>
                 </table>
                 <div class="three">
                     <ul class="hash">
-                        <li class="ha"><i class="fa-light fa-hashtag"></i>자바</li>
-                        <li class="ha"><i class="fa-light fa-hashtag"></i>CSS</li>
+                        <c:forEach items="${qnaDetail.tagList}" var="tag">
+                            <li class="ha"><i class="fa-light fa-hashtag"></i>${tag.NAME}</li>
+                        </c:forEach>
                     </ul>
                 </div>
-                <input type="hidden" name="no" value="${qvo.no}">
+                <input type="hidden" name="no" value="${qnaList.NO}">
             </div>
     
         </div>

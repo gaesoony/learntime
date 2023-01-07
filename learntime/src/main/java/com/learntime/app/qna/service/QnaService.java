@@ -18,15 +18,15 @@ public interface QnaService {
 	public int write(QnaVo vo);
 
 	//게시글 목록
-	List<Map<String, Object>> selectList(QnaVo vo, QnaTypeVo qvo);
+	List<Map<String, Object>> selectList(QnaTypeVo qvo);
 	
-	//게시글 상세조회
-	public QnaVo detail(String no);
-
 	//게시글 수정
 	public int edit(QnaVo vo);
 
 	//게시글 삭제
 	public int delete(String qno);
+
+	//게시글 상세조회
+	public Map<String, Object> detail(String qno);
 	
 }

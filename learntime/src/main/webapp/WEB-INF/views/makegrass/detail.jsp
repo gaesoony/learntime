@@ -21,7 +21,7 @@
         border: 1px solid #9D9D9D;
         background-color: white;
         margin-left: 30px;
-        margin-top: 200px;
+        margin-top: 210px;
     }
     .leftsidebox{
         width: 200px;
@@ -41,18 +41,19 @@
         margin-right: 10px;
     }
     .profile{
-        width: 25px;
+        width: 15px;
         margin-left: 17px;
         margin-top: 15px;
         margin-right: 10px;
         float: left;
     }
     .user{
-        width: 2.5vw;
-        font-size: 16px;
+        width: 1.5vw;
+        font-size: 14px;
         margin-right: 5px;
     }
     .usernick{
+        font-size: 14px;
         margin-top: 20px;
         margin-right: 50px;
         float: left;
@@ -247,6 +248,7 @@
         font-size: 18px;
         background-color: white;
         font-weight: 300;
+        margin-top: 4px;
     }
     .delete-btn-null{
         border: none;
@@ -571,7 +573,7 @@
         display: flex;
     }
     .sidebarbox{
-        margin-top: 200px;
+        margin-top: 210px;
         margin-left: 50px;
     }
     .side{
@@ -643,61 +645,15 @@
             </ul>
 
             <!-- user 랭킹 순위 -->
-            <div class="userbox">
-                <ul class="leftsidecontent">
-                    <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="usernick">nick02</li>
-                    <li class="usernum">25</li>
-                </ul>
-            </div>
-
-            <div class="userbox">
-                <ul class="leftsidecontent">
-                    <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="usernick">nick02</li>
-                    <li class="usernum">25</li>
-                </ul>
-            </div>
-
-            <div class="userbox">
-                <ul class="leftsidecontent">
-                    <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="usernick">nick02</li>
-                    <li class="usernum">25</li>
-                </ul>
-            </div>
-
-            <div class="userbox">
-                <ul class="leftsidecontent">
-                    <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="usernick">nick02</li>
-                    <li class="usernum">25</li>
-                </ul>
-            </div>
-
-            <div class="userbox">
-                <ul class="leftsidecontent">
-                    <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="usernick">nick02</li>
-                    <li class="usernum">25</li>
-                </ul>
-            </div>
-
-            <div class="userbox">
-                <ul class="leftsidecontent">
-                    <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="usernick">nick02</li>
-                    <li class="usernum">25</li>
-                </ul>
-            </div>
-
-            <div class="userbox">
-                <ul class="leftsidecontent">
-                    <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                    <li class="usernick">nick02</li>
-                    <li class="usernum">25</li>
-                </ul>
-            </div>
+            <c:forEach items="${makegrassLankList}" var="lank">
+                <div class="userbox">
+                    <ul class="leftsidecontent">
+                        <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                        <li class="usernick">${lank.NICK}</li>
+                        <li class="usernum">${lank.CNT}</li>
+                    </ul>
+                </div>
+            </c:forEach>
             
         </div> 
     </div>
@@ -708,7 +664,7 @@
             <article class="main">
                 <div class="maintitle">
                     <div class="title">
-                        <h2 class="title-end">${mvo.title}</h2>
+                        <h2 class="title-end">${makeDetail.TITLE}</h2>
                     </div>
                 </div>
     
@@ -717,14 +673,15 @@
                     <table>
                         <tr>
                             <td><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></td>
-                            <td class="nick">${mvo.writer}</td>
-                            <td class="enrollDate">${mvo.enrollDate}</td>
-                            <td class="heart"><i class="fa-solid fa-thumbs-up"></i> 3</td>
+                            <td class="nick">${makeDetail.WRITER}</td>
+                            <td class="enrollDate">${makeDetail.ENROLL_DATE}</td>
+                            <td class="heart"><i class="fa-solid fa-thumbs-up"></i> ${makeDetail.LIKES}</td>
                             <td class="thumbsup"><i class="fa-regular fa-thumbs-up"></i></td>
                             <td class="thumbsdown"><i class="fa-regular fa-thumbs-down"></i></td>
                             <td class="bookmark"><i class="fa-regular fa-bookmark"></i></td>
-                            <c:if test="${loginMember.nick == mvo.writer}">
-                                <td class="edit"><button type="button" class="edit-btn" onclick="location.href='${path}/makegrass/edit?mno=${mvo.no}'">수정</button></td>
+
+                            <c:if test="${loginMember.nick == makeDetail.WRITER}">
+                                <td class="edit"><button type="button" class="edit-btn" onclick="location.href='${path}/makegrass/edit?ano=${makeDetail.NO}'">수정</button></td>
                                 <td class="slash">/</td>
                                 <td class="delete">
                                     <button type="button" class="delete-btn">삭제</button>
@@ -735,13 +692,14 @@
                                             <p class="modalTitle">게시물을 삭제하시겠습니까?</p>
                                             <div class="modalBtn">
                                                 <input type="button" class="cancleBtn" value="취소" onClick="location.reload();"></input>
-                                                <input type="button" class="saveBtn" onclick="location.href='${path}/makegrass/delete?no=${mvo.no}'" value="삭제"></input>
+                                                <input type="button" class="saveBtn" onclick="location.href='${path}/makegrass/delete?no=${makeDetail.NO}'" value="삭제"></input>
                                             </div>
                                         </div>
                                     </div>
                                 </td>
                             </c:if>
-                            <c:if test="${loginMember.nick != mvo.writer}">
+
+                            <c:if test="${loginMember.nick != makeDetail.WRITER}">
                                 <td class="edit"><button type="button" class="edit-btn-null" title="해당 글의 작성자만 가능합니다.">수정</button></td>
                                 <td class="slash">/</td>
                                 <td class="delete">
@@ -755,15 +713,15 @@
                     <table class="two">
                         <tr>
                             <td class="content">
-                                ${mvo.content}
+                                ${makeDetail.CONTENT}
                             </td>
                         </tr>
                     </table>
                     <div class="three">
                         <ul class="hash">
-                            <li class="ha"><i class="fa-light fa-hashtag"></i>JAVA</li>
-                            <li class="ha"><i class="fa-light fa-hashtag"></i>자바</li>
-                            <li class="ha"><i class="fa-light fa-hashtag"></i>파이썬</li>
+                            <c:forEach items="${makeDetail.tagList}" var="tag">
+                                <li class="ha"><i class="fa-light fa-hashtag"></i>${tag.NAME}</li>
+                            </c:forEach>
                         </ul>
                     </div>
                 </div>
@@ -777,13 +735,13 @@
         <div class="sidebarbox">
             <div class="side">
                 <div class="si">
-                    <div><i class="fa-solid fa-thumbs-up"></i>&nbsp 3</div>
+                    <div><i class="fa-solid fa-thumbs-up"></i>&nbsp ${makeDetail.LIKES}</div>
                 </div>
                 <div class="si">
-                    <div><i class="fa-solid fa-thumbs-down"></i>&nbsp 2</div>
+                    <div><i class="fa-solid fa-thumbs-down"></i>&nbsp ${makeDetail.HATES}</div>
                 </div>
                 <div class="si">
-                    <i class="fa-solid fa-comment"></i>&nbsp 0
+                    <i class="fa-solid fa-comment"></i>&nbsp ${makeDetail.REPLY_CNT}
                 </div>
             </div>
         </div>
@@ -793,15 +751,17 @@
         <article class="replybox">
             <!-- 댓글 부분 -->
             <div class="middle">
-                <div class="middlemain">
-                    <div><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
-                    <div class="replyplz">nick1님, 댓글을 달아보세요!</div>
-                    <div class="replyplz-1">서로 예의를 지키는 좋은 말이면 더더욱 좋아요:)</div>
-                    <div class="input">
-                        <textarea class="summernote" name="editordata"></textarea>
+                <c:if test="${loginMember != null}">
+                    <div class="middlemain">
+                        <div><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
+                        <div class="replyplz">${loginMember.nick}님, 댓글을 달아보세요!</div>
+                        <div class="replyplz-1">서로 예의를 지키는 좋은 말이면 더더욱 좋아요:)</div>
+                        <div class="input">
+                            <textarea class="summernote" name="editordata"></textarea>
+                        </div>
+                        <button type="button" class="replybtn" style='cursor:pointer;'>댓글 등록</button>
                     </div>
-                    <button type="button" class="replybtn" style='cursor:pointer;'>댓글 등록</button>
-                </div>
+                </c:if>
         
                 <div class="end">
                     <i class="fa-regular fa-comment"></i>

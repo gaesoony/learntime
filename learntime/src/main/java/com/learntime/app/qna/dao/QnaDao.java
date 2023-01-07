@@ -21,16 +21,17 @@ public interface QnaDao {
 	public int insertKnowledgeTag(SqlSessionTemplate sst, String[] tag);
 
 	//게시글 목록
-	List<Map<String, Object>> selectList(SqlSessionTemplate sst, QnaVo vo, QnaTypeVo qvo);
+	List<Map<String, Object>> selectList(SqlSessionTemplate sst, QnaTypeVo qvo);
 	
-	//게시글 상세조회
-	QnaVo detail(SqlSessionTemplate sst, String no);
-
 	public int edit(SqlSessionTemplate sst, QnaVo vo);
 
 	public int updateHit(SqlSessionTemplate sst, String no);
 
 	public int delete(SqlSessionTemplate sst, String qno);
+
+	public Map<String, Object> detail(SqlSessionTemplate sst, String qno);
+
+	public List<Map<String, Object>> tagList(SqlSessionTemplate sst, String qno);
 
 
 }

@@ -54,25 +54,17 @@ public class QnaServiceImpl implements QnaService {
 
 	//게시글 목록 
 	@Override
-	public List<Map<String, Object>> selectList(QnaVo vo, QnaTypeVo qvo) {
+	public List<Map<String, Object>> selectList(QnaTypeVo qvo) {
 		
-		List<Map<String, Object>> qnaList = dao.selectList(sst, vo, qvo);
+		List<Map<String, Object>> qnaList = dao.selectList(sst, qvo);
 		
-		for(int i = 0; i<qnaList.size(); i++) {
-			String qno = String.valueOf(qnaList.get(i).get("NO"));
-		}
+//		for(int i = 0; i<qnaList.size(); i++) {
+//			String qno = String.valueOf(qnaList.get(i).get("NO"));
+//		}
+		
+		List<Map<String, Object>> tagList = dao.tagList(sst, qvo.getQno());
 		
 		return qnaList;
-	}
-
-	//게시글 상세조회
-	@Override
-	public QnaVo detail(String no) {
-		
-		int result = dao.updateHit(sst, no);
-		
-		return dao.detail(sst, no);
-		
 	}
 
 	//게시글 수정
@@ -86,6 +78,21 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public int delete(String qno) {
 		return dao.delete(sst, qno);
+	}
+
+	//게시글 상세조회
+	@Override
+	public Map<String, Object> detail(String qno) {
+		
+		int result = dao.updateHit(sst, qno);
+		Map<String, Object> qnaDetail = dao.detail(sst, qno);
+		
+		if(result == 1) {
+			List<Map<String, Object>> tagList = dao.tagList(sst, qno);
+			qnaDetail.put("tagList", tagList);
+		}
+		
+		return qnaDetail;
 	}
 
 }

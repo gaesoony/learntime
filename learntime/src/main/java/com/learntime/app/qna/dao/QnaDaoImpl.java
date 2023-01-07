@@ -36,18 +36,12 @@ public class QnaDaoImpl implements QnaDao {
 
 	//게시글 목록
 	@Override
-	public List<Map<String, Object>> selectList(SqlSessionTemplate sst, QnaVo vo, QnaTypeVo qvo) {
+	public List<Map<String, Object>> selectList(SqlSessionTemplate sst, QnaTypeVo qvo) {
 		
 		List list = sst.selectList("qnaMapper.selectList", qvo);
 		return list;
 	}
 	
-	//게시글 상세조회
-	@Override
-	public QnaVo detail(SqlSessionTemplate sst, String no) {
-		return sst.selectOne("qnaMapper.detail", no);
-	}
-
 	//게시글 수정
 	@Override
 	public int edit(SqlSessionTemplate sst, QnaVo vo) {
@@ -57,14 +51,26 @@ public class QnaDaoImpl implements QnaDao {
 
 	//조회수
 	@Override
-	public int updateHit(SqlSessionTemplate sst, String no) {
-		return sst.update("qnaMapper.updateHit", no);
+	public int updateHit(SqlSessionTemplate sst, String qno) {
+		return sst.update("qnaMapper.updateHit", qno);
 	}
 
 	//게시글 삭제
 	@Override
 	public int delete(SqlSessionTemplate sst, String qno) {
 		return sst.update("qnaMapper.delete", qno);
+	}
+
+	//게시글 상세조회
+	@Override
+	public Map<String, Object> detail(SqlSessionTemplate sst, String qno) {
+		return sst.selectOne("qnaMapper.detail", qno);
+	}
+
+	//상세조회 내 해시태그
+	@Override
+	public List<Map<String, Object>> tagList(SqlSessionTemplate sst, String qno) {
+		return sst.selectList("qnaMapper.selectTagList", qno);
 	}
 
 }

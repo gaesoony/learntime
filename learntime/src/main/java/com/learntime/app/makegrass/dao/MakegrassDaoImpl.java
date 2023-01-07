@@ -38,8 +38,8 @@ public class MakegrassDaoImpl implements MakegrassDao {
 
 	//게시글 상세조회
 	@Override
-	public MakegrassVo detail(SqlSessionTemplate sst, String no) {
-		return sst.selectOne("makegrassMapper.detail", no);
+	public Map<String, Object> detail(SqlSessionTemplate sst, String ano) {
+		return sst.selectOne("makegrassMapper.detail", ano);
 	}
 
 	//게시글 삭제
@@ -59,6 +59,18 @@ public class MakegrassDaoImpl implements MakegrassDao {
 	public int edit(SqlSessionTemplate sst, MakegrassVo vo) {
 		System.out.println("디에이오에서 : " + vo);
 		return sst.update("makegrassMapper.edit", vo);
+	}
+
+	//상세조회 내 해시태그 리스트
+	@Override
+	public List<Map<String, Object>> tagList(SqlSessionTemplate sst, String ano) {
+		return sst.selectList("makegrassMapper.selectTagList", ano);
+	}
+
+	//공부인증 랭킹 리스트
+	@Override
+	public List<Map<String, Object>> makegrassLankList(SqlSessionTemplate sst) {
+		return sst.selectList("makegrassMapper.makegrassLankList");
 	}
 
 }

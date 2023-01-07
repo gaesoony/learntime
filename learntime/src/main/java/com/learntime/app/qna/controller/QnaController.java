@@ -30,7 +30,7 @@ public class QnaController {
 
 	//목록 조회 (화면+DB)
 	@GetMapping("/list")
-	public String list(Model model, QnaVo vo, QnaTypeVo qvo, String tag) {
+	public String list(Model model, QnaTypeVo qvo, HttpSession session) {
 		
 		if(qvo.getType() == null) {
 			qvo.setType("전체");
@@ -42,7 +42,9 @@ public class QnaController {
 			qvo.setKeyword("");
 		}
 		
-		List<Map<String, Object>> qnaList = service.selectList(vo, qvo);
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		
+		List<Map<String, Object>> qnaList = service.selectList(qvo);
 		
 		model.addAttribute("qnaList", qnaList);
 		if(qvo.getKeyword().trim().equals("")) {
@@ -83,35 +85,46 @@ public class QnaController {
 	}
 	
 	//게시글 상세조회 (화면+DB)
-	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String detail(String no, Model model) {
+	@GetMapping("/detail")
+	public String detail(QnaTypeVo qvo, Model model, HttpSession session) {
 		
-		QnaVo qvo = service.detail(no);
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		Map map = new HashMap();
+		map.put("qno", qvo.getQno());
+		if(loginMember != null) {
+			map.put("mno", qvo.getMno());
+		}
+		
+		Map<String, Object> qnaDetail = service.detail(qvo.getQno());
+		
 		model.addAttribute("qvo", qvo);
+		model.addAttribute("loginMember", loginMember);
+		model.addAttribute("qnaDetail", qnaDetail);
 		
 		return "qna/detail";
 	}
 	
 	//게시글 수정 (화면)
 	@GetMapping("/edit")
-	public String edit(@RequestParam("no") String no, Model model) { 
+	public String edit(QnaTypeVo qvo, Model model) { 
 		
-		QnaVo qvo = service.detail(no);
-		model.addAttribute("qvo", qvo);
+		Map<String, Object> qnaDetail = service.detail(qvo.getQno());
+		model.addAttribute("qnaDetail", qnaDetail);
 		
 		return "qna/edit";
 	}
 	
 	//게시글 수정 (DB)
 	@PostMapping("/edit")
-	public String edit(QnaVo vo) {
+	public String edit(QnaVo vo, QnaTypeVo qvo, HttpSession session) {
 		
+		vo.setNo(qvo.getQno());
 		int result = service.edit(vo);
 		
 		System.out.println("컨트롤러에서 수정 DB : " + result);
 		
 		if(result == 1) {
-			return "redirect:/qna/detail?no="+vo.getNo();
+			return "redirect:/qna/detail?qno="+qvo.getQno() + "&keyword=" + qvo.getKeyword() + "&type=" + qvo.getType() + "&order=" + qvo.getOrder();
 		}else {
 			return "common/errorPage";
 		}

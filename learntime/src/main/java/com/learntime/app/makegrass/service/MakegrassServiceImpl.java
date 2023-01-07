@@ -58,9 +58,16 @@ public class MakegrassServiceImpl implements MakegrassService {
 
 	//게시글 상세조회
 	@Override
-	public MakegrassVo detail(String no) {
-		int result = dao.updateHit(sst, no);
-		return dao.detail(sst, no);
+	public Map<String, Object> detail(String ano) {
+		int result = dao.updateHit(sst, ano);
+		
+		Map<String, Object> makeDetail = dao.detail(sst, ano);
+		
+		if(result == 1) {
+			List<Map<String, Object>> tagList = dao.tagList(sst, ano);
+			makeDetail.put("tagList", tagList);
+		}
+		return makeDetail;
 	}
 
 	//게시글 삭제
@@ -73,6 +80,12 @@ public class MakegrassServiceImpl implements MakegrassService {
 	@Override
 	public int edit(MakegrassVo vo) {
 		return dao.edit(sst, vo);
+	}
+
+	//공부인증 랭킹 리스트
+	@Override
+	public List<Map<String, Object>> selectLankList() {
+		return dao.makegrassLankList(sst);
 	}
 
 }

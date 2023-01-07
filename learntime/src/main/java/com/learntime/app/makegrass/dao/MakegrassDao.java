@@ -19,13 +19,17 @@ public interface MakegrassDao {
 
 	List<Map<String, Object>> selectList(SqlSessionTemplate sst, MakegrassVo vo);
 
-	MakegrassVo detail(SqlSessionTemplate sst, String no);
+	Map<String, Object> detail(SqlSessionTemplate sst, String ano);
 
 	public int delete(SqlSessionTemplate sst, String no);
 
 	public int updateHit(SqlSessionTemplate sst, String no);
 
 	public int edit(SqlSessionTemplate sst, MakegrassVo vo);
+
+	public List<Map<String, Object>> tagList(SqlSessionTemplate sst, String ano);
+
+	public List<Map<String, Object>> makegrassLankList(SqlSessionTemplate sst);
 
 	
 

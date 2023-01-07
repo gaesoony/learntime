@@ -164,9 +164,12 @@
     }
     .cate{
         float: left;
-        margin-right: 508px;
+        margin-right: 523px;
         display: flex;
         padding-top: 20px;
+    }
+    .type-list{
+        cursor: pointer;
     }
     .writebtn{
         text-decoration: none;
@@ -177,6 +180,7 @@
         width: 7vw;
         height: 35px;
         border-radius: 10px;
+        cursor: pointer;
     }
     .ca{
         display: none;
@@ -350,9 +354,9 @@
                         <div class="mainside">
                             <!-- 전체, 해결, 미해결 카테고리 -->
                             <div class="list-type-box">
-                                <label for="all" ><input type="radio" class="side-category" name="type" id="all" value="전체"  checked/><div id="type-div">전체</div></label>
-                                <label for="solve" ><input type="radio" class="side-category" name="type" id="solve" value="해결"  checked/><div id="type-div">해결</div></label>
-                                <label for="unsolve" ><input type="radio" class="side-category" name="type" id="unsolve" value="미해결"  checked/><div id="type-div">미해결</div></label>
+                                <label onclick="form.submit();"><input type="radio" class="side-category" name="type" id="all" value="전체" checked/><div id="type-div">전체</div></label>
+                                <label onclick="form.submit();"><input type="radio" class="side-category" name="type" id="skill" value="기술"/><div id="type-div">기술</div></label>
+                                <label onclick="form.submit();"><input type="radio" class="side-category" name="type" id="career" value="커리어"/><div id="type-div">커리어</div></label>
                             </div>
                             
                             <div class="line1"></div>
@@ -376,16 +380,16 @@
                             <div class="category">
                                 <div class="catelist">
                                     <ul class="cate">
-                                        <li><input type="radio" class="ca" name="order" id="recent" value="recent" checked /><label for="recent" id="order">· 최신순&nbsp&nbsp</label></li>
-                                        <li><input type="radio" class="ca" name="order" id="hit" value="hit" /><label for="hit" id="order">· 조회수순&nbsp&nbsp</label></li>
-                                        <li><input type="radio" class="ca" name="order" id="reply" value="reply" /><label for="reply" id="order">· 답변순&nbsp&nbsp</label></li>
-                                        <li><input type="radio" class="ca" name="order" id="recommend" value="recommend" /><label for="recommend" id="order">· 좋아요순</label></li>
+                                        <li><label class="type-list" onclick="form.submit();"><input type="radio" class="ca" name="order" id="recent" value="recent" checked /><div>· 최신순&nbsp&nbsp</div></label></li>
+                                        <li><label class="type-list" onclick="form.submit();"><input type="radio" class="ca" name="order" id="hit" value="hit" /><div>· 조회순&nbsp&nbsp</div></label></li>
+                                        <li><label class="type-list" onclick="form.submit();"><input type="radio" class="ca" name="order" id="reply" value="reply" /><div>· 답변순&nbsp&nbsp</div></label></li>
+                                        <li><label class="type-list" onclick="form.submit();"><input type="radio" class="ca" name="order" id="recommend" value="recommend" /><div>· 좋아요순</div></label></li>
                                     </ul>
                                     <c:if test="${loginMember != null}">
-                                        <input type="button" onclick="location.href='${path}/qna/write'" class="writebtn" value="글쓰기✏️" style='cursor:pointer;'>
+                                        <input type="button" onclick="location.href='${path}/qna/write'" class="writebtn" value="글쓰기✏️">
                                     </c:if>
                                     <c:if test="${loginMember == null}">
-                                        <input type="button" onclick="login();" class="writebtn" value="글쓰기✏️" style='cursor:pointer;'>
+                                        <input type="button" onclick="login();" class="writebtn" value="글쓰기✏️">
                                     </c:if>
                                 </div>
                                 <div class="line2"></div>
@@ -394,7 +398,7 @@
     
                             <!-- 본문 리스트 -->
                             <c:forEach items="${qnaList}" var="map">
-                                <a href="${path}/qna/detail?no=${map.NO}&keyword=${keyword}">
+                                <a href="${path}/qna/detail?qno=${map.NO}&keyword=${keyword}&type=${type}&order=${order}">
                                     <div class="titlebox">
                                         <div class="titleb">
                                             <div class="title" name="title">[${map.CATE_NO}]&nbsp${map.TITLE}</div>
@@ -410,11 +414,14 @@
                                                 </div>
             
                                                 <!-- 본문 속 해시태그 -->
-                                                <!-- <div class="hashtagbox">
+                                                <div class="hashtagbox">
                                                     <ul class="hashtag">
-                                                        <li class="hash" name="tag"><i class="fa-light fa-hashtag"></i>자바</li>
+                                                        <c:forEach items="${tagList}" var="tag">
+                                                            <li class="hash" name="tag"><i class="fa-light fa-hashtag"></i>${tag.NAME}</li>
+                                                        </c:forEach>
                                                     </ul>
-                                                </div> -->
+                                                </div>
+
                                                 <div class="etcbox">
                                                     <ul class="etc">
                                                         <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
@@ -449,11 +456,6 @@
     <div class="bottom"></div>
 
     <script>
-        // 상단 카테고리 (전체 | 해결 | 미해결)
-        // $('.mainside .side-category').on("click",function(){
-        //     $(".mainside .side-category.active").removeClass('active');
-        //     $(this).addClass("active");
-        // });
 
         //글쓰기 버튼 클릭 시, 로그인창
         function login() {

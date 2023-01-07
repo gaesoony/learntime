@@ -28,7 +28,7 @@
         font-weight: 550;
         outline: none;
         margin-top: 25px;
-        margin-bottom: 25px;
+        margin-bottom: 70px;
      }
      .cancle{
         width: 5vw;
@@ -146,23 +146,17 @@
 		
             <form action="${path}/qna/edit" method="post" name="myform" onkeydown="return event.key != 'Enter';">
 
+                <input type="hidden" name="no" value="${qnaDetail.NO}">
+                <input type="hidden" name="writer" value="${qnaDetail.WRITER}">
+
                 <div class="radio-box">
-                    <input type="radio" value="${qvo.cateNo}" id="cateNo1" name="cateNo" checked><label for="cateNo1">기술</label>
-                    <input type="radio" value="${qvo.cateNo}" id="cateNo2" name="cateNo"><label for="cateNo2">커리어</label>
+                    <input type="radio" value="${qnaDetail.CATE_NO}" id="cateNo1" name="cateNo" checked><label for="cateNo1">기술</label>
+                    <input type="radio" value="${qnaDetail.CATE_NO}" id="cateNo2" name="cateNo"><label for="cateNo2">커리어</label>
                 </div>
 
-                <input type="text" name="title" class="title" value="${qvo.title}"/>
+                <input type="text" name="title" class="title" value="${qnaDetail.TITLE}"/>
 
-                <div class="content">
-                    <div>
-                        <input type="text" id="tagNo" placeholder="해시태그를 입력하세요"/>
-                    </div>
-                    <ul id="tag-list">
-                        
-                    </ul>
-                </div>
-
-                <textarea name="content" class="summernote">${qvo.content}</textarea>
+                <textarea name="content" class="summernote">${qnaDetail.CONTENT}</textarea>
 
                 <input type="button" onClick="history.back();" class="cancle" value="취소" />
                 <input type="submit" class="write" value="수정" />
@@ -184,75 +178,6 @@
             lang: "ko-KR",
             disableResizeEditor: true,
         });
-
-    </script>
-
-    <script>
-        $(document)
-        .ready(function () {
-
-            var tag = {};
-            var counter = 0;
-
-            // 태그를 추가한다.
-            function addTag(value) {
-            tag[counter] = value; // 태그를 Object 안에 추가
-            counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
-            }
-
-            // 최종적으로 서버에 넘길때 tag 안에 있는 값을 array type 으로 만들어서 넘긴다.
-            function marginTag() {
-            return Object.values(tag)
-                .filter(function (word) {
-                return word !== "";
-                });
-            }
-
-            $("#tagNo")
-            .on("keyup", function (e) {
-                var self = $(this);
-                console.log("keypress");
-
-                // input 에 focus 되있을 때 엔터 및 스페이스바 입력시 구동
-                if (e.key === "Enter" || e.keyCode == 32) {
-
-                var tagValue = self.val(); // 값 가져오기
-
-                // 값이 없으면 동작 안합니다.
-                if (tagValue !== "") {
-
-                    // 같은 태그가 있는지 검사한다. 있다면 해당값이 array 로 return 된다.
-                    var result = Object.values(tag)
-                    .filter(function (word) {
-                        return word === tagValue;
-                    })
-
-                    // 태그 중복 검사
-                    if (result.length == 0) {
-                    $("#tag-list")
-                        .append("<li class='tag-item'><input type='text' id='tag' name='tag' value='" + tagValue + "'' />" + "<span class='del-btn' idx='" + counter + "'>x</span></li>");
-                    addTag(tagValue);
-                    self.val("");
-                    } else {
-                    alert("해시태그 중복입니다");
-                    }
-                }
-                e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
-                }
-            });
-
-            // 삭제 버튼
-            // 삭제 버튼은 비동기적 생성이므로 document 최초 생성시가 아닌 검색을 통해 이벤트를 구현시킨다.
-            $(document)
-            .on("click", ".del-btn", function (e) {
-                var index = $(this)
-                .attr("idx");
-                tag[index] = "";
-                $(this)
-                .parent()
-                .remove();
-            });
-        })
 
     </script>
 

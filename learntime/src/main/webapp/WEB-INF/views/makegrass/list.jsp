@@ -161,7 +161,7 @@
         float: left;
     }
     .user{
-        width: 2.5vw;
+        width: 2vw;
         font-size: 16px;
         margin-right: 5px;
     }
@@ -756,61 +756,15 @@
                 </ul>
 
                 <!-- user 랭킹 순위 -->
-                <div class="userbox">
-                    <ul class="leftsidecontent">
-                        <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                        <li class="usernick">nick02</li>
-                        <li class="usernum">25</li>
-                    </ul>
-                </div>
-
-                <div class="userbox">
-                    <ul class="leftsidecontent">
-                        <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                        <li class="usernick">nick02</li>
-                        <li class="usernum">25</li>
-                    </ul>
-                </div>
-
-                <div class="userbox">
-                    <ul class="leftsidecontent">
-                        <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                        <li class="usernick">nick02</li>
-                        <li class="usernum">25</li>
-                    </ul>
-                </div>
-
-                <div class="userbox">
-                    <ul class="leftsidecontent">
-                        <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                        <li class="usernick">nick02</li>
-                        <li class="usernum">25</li>
-                    </ul>
-                </div>
-
-                <div class="userbox">
-                    <ul class="leftsidecontent">
-                        <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                        <li class="usernick">nick02</li>
-                        <li class="usernum">25</li>
-                    </ul>
-                </div>
-
-                <div class="userbox">
-                    <ul class="leftsidecontent">
-                        <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                        <li class="usernick">nick02</li>
-                        <li class="usernum">25</li>
-                    </ul>
-                </div>
-
-                <div class="userbox">
-                    <ul class="leftsidecontent">
-                        <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                        <li class="usernick">nick02</li>
-                        <li class="usernum">25</li>
-                    </ul>
-                </div>
+                <c:forEach items="${makegrassLankList}" var="lank">
+                    <div class="userbox">
+                        <ul class="leftsidecontent">
+                            <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                            <li class="usernick">${lank.NICK}</li>
+                            <li class="usernum">${lank.CNT}</li>
+                        </ul>
+                    </div>
+                </c:forEach>
                 
             </div> 
         </div>
@@ -852,12 +806,12 @@
                 </ul>
 
                 <!-- 팔로잉 리스트 유저 -->
-                <div>
-                    <ul class="rightsidecontent">
-                        <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                        <li class="rightnick">nick02</li>
-                    </ul>
-                </div>
+                    <div>
+                        <ul class="rightsidecontent">
+                            <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                            <li class="rightnick">nick02</li>
+                        </ul>
+                    </div>
 
                 <div>
                     <ul class="rightsidecontent">

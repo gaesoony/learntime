@@ -8,4 +8,7 @@ public class QnaTypeVo {
 	private String keyword;
 	private String type;
 	private String order;
+	private String qno;
+	private String mno;
+	private String cmtNo;
 }

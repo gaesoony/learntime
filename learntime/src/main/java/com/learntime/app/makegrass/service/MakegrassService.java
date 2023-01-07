@@ -16,12 +16,14 @@ public interface MakegrassService {
 	public List<Map<String, Object>> selectList(MakegrassVo vo);
 
 	//게시글 상세조회
-	public MakegrassVo detail(String no);
+	public Map<String, Object> detail(String ano);
 
 	//게시글 삭제
 	public int delete(String no);
 
 	//게시글 수정
 	public int edit(MakegrassVo vo);
+
+	public List<Map<String, Object>> selectLankList();
 
 }
