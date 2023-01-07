@@ -17,6 +17,7 @@ public class MemberVo {
 	private String pwd;
 	private String phone;
 	private String nick;
+	private String skinName;
 	private String enrollDate;
 	private String quitYn;
 	private String modifyDate;

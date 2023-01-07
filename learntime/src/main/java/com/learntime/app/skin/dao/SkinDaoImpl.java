@@ -1,6 +1,7 @@
 package com.learntime.app.skin.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +57,32 @@ public class SkinDaoImpl implements SkinDao {
 	@Override
 	public List<SkinVo> skinListMember(SqlSessionTemplate sst) {
 		
-		return sst.selectList("skinMapper.skinListMember",null);
+		return sst.selectList("skinMapper.skinListMember");
+	}
+	
+	//스킨 모달 정보
+	@Override
+	public SkinVo skinModal(SqlSessionTemplate sst, String no) {
+		
+		
+		return sst.selectOne("skinMapper.skinModal",no);
+	}
+	@Override
+	public int skinBuy(SqlSessionTemplate sst, Map<String, String> map) {
+		
+		return sst.insert("skinMapper.skinBuy",map);
+	}
+	
+	//스킨 포인트 차감
+	@Override
+	public int minusToken(SqlSessionTemplate sst, Map<String, String> map) {
+		
+		return sst.update("skinMapper.minusToken",map);
+	}
+	@Override
+	public List<SkinVo> myskin(SqlSessionTemplate sst, String no) {
+		
+		return sst.selectList("skinMapper.myskin",no);
 	}
 
 }

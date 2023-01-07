@@ -1,6 +1,7 @@
 package com.learntime.app.skin.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -29,5 +30,17 @@ public interface SkinDao {
 
 	//회원용 스킨 리스트 
 	List<SkinVo> skinListMember(SqlSessionTemplate sst);
+
+	//스킨 모달 정보
+	SkinVo skinModal(SqlSessionTemplate sst, String no);
+	
+	//스킨 구매
+	int skinBuy(SqlSessionTemplate sst, Map<String, String> map);
+	
+	//스킨 포인트 차감
+	int minusToken(SqlSessionTemplate sst, Map<String, String> map);
+	
+	//내스킨 조회
+	List<SkinVo> myskin(SqlSessionTemplate sst, String no);
 
 }

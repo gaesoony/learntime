@@ -11,6 +11,7 @@ public class SkinVo {
 	private String name;
 	private String info;
 	private String className;
+	private String classStyle;
 	private String price;
 	private MultipartFile imgPath;
 	private String imgName;
