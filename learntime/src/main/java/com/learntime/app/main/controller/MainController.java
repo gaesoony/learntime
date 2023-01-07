@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.learntime.app.admin.service.BannerService;
+import com.learntime.app.admin.service.PopupService;
 import com.learntime.app.main.service.MainService;
 import com.learntime.app.main.vo.MainVo;
 import com.learntime.app.study.service.StudyService;
@@ -26,6 +27,9 @@ public class MainController {
 	private BannerService bannerService;
 	
 	@Autowired
+	private PopupService popupService;
+	
+	@Autowired
 	private MainService service;
 	
 	//런타임 메인페이지 조회 (화면 + DB select)
@@ -38,6 +42,9 @@ public class MainController {
 		model.addAttribute("bannerList", bannerList);
 		
 		//팝업
+		//디비에서 팝업 리스트 조회
+		List<Map<String, Object>> popupList = popupService.selectPopupListMain();
+		model.addAttribute("popupList", popupList);
 		
 		//스터디 리스트 select
 		List<Map<String, Object>> groupList = studyService.selectMainGroupList();

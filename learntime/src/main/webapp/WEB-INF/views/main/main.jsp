@@ -31,29 +31,91 @@ pageEncoding="UTF-8"%>
       }
 
         
-      .material-symbols-outlined {
+      .arrow-btn {
         font-size: 45px !important;
         color: white;
       }
 
+      .main-popup {
+        position: fixed;
+        z-index: 10000;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.151);
+      }
 
-      /* .main-banner .slick-initialized .slick-slide {
-        display: flex !important;
-        justify-content: center !important;
-      } */
+      .main-popup-img{
+        width: 340px;
+        height: 240px;
+        cursor: pointer;
+      }
+
+      .main-popup-img img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .main-popup-btn {
+        display: flex;
+      }
+
+      .main-popup-btn div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 50px;
+        background-color: white;
+        border: 1px solid rgb(237, 237, 237);
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      .main-popup-btn label {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .main-popup-btn div:hover {
+        background-color: rgb(248, 248, 248);
+      }
+
+      .none {
+        display: none;
+      }
+
     </style>
   </head>
   <body>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
     <main id="learntime-main">
+      <div>
+      	<c:forEach items="${popupList}" var="map">
+      		<c:if test="${map.LOCATION == 'center'}">
+		        <div class="main-popup none" name="popup${map.NO}" style="top: calc(50% - 170px); left: calc(50% - 170px);" >      		
+      		</c:if>
+      		<c:if test="${map.LOCATION == 'leftTop'}">
+		        <div class="main-popup none" style="top:75px; left:0px;">      		
+      		</c:if>
+      		<c:if test="${map.LOCATION == 'rightTop'}">
+		        <div class="main-popup none" style="top:75px; right:0px;">      		
+      		</c:if>
+	          <div class="main-popup-img" onclick="window.open('${map.LINK}')">
+	            <img src="${path}/resources/upload/popup/${map.IMG_PATH}" alt="">
+	          </div>
+	          <div class="main-popup-btn">
+	            <div><label class="today_close"><input class="none" type="checkbox" name="today_close${map.NO}">오늘 하루 보지 않기</label> </div>
+	            <div onclick="closePopup(event);">닫기</div>
+	          </div>
+	        </div>
+      	</c:forEach>
+      </div>
       <div id="banner-slider">
       	<c:forEach items="${bannerList}" var="map">
- 
-            <section class="main-banner" style="background-color:${map.COLOR};">
+            <section class="main-banner cursor" style="background-color:${map.COLOR};" onclick="window.open('${map.LINK}')">
                 <img src="/app/resources/upload/banner/${map.IMG_PATH}" alt="메인배너" />
             </section>
-
-    
       	</c:forEach>
       </div>
       <section class="main-study-section middle">
@@ -608,9 +670,9 @@ pageEncoding="UTF-8"%>
 				autoplaySpeed : 100, 	
         autoplay: false,
         prevArrow:
-          "<button type='button' class='banner-prev'><span class='material-symbols-outlined'>arrow_back_ios</span></button>",
+          "<button type='button' class='banner-prev'><span class='material-symbols-outlined arrow-btn'>arrow_back_ios</span></button>",
         nextArrow:
-          "<button type='button' class='banner-next'><span class='material-symbols-outlined'>arrow_forward_ios</span></button>",
+          "<button type='button' class='banner-next'><span class='material-symbols-outlined arrow-btn'>arrow_forward_ios</span></button>",
       });
 
       $(".post-wrapper1").slick({
@@ -716,7 +778,6 @@ pageEncoding="UTF-8"%>
       }
       
       nextBtnSec.addEventListener('click',function(){
-        console.log('클릭됨?');
         if(currentIdxSec < slideCountSec -4){
           moveSlide(currentIdxSec + 1);
               
@@ -735,6 +796,10 @@ pageEncoding="UTF-8"%>
         }
         
       });
+
+      function  closePopup(e) {
+        e.target.parentNode.parentNode.classList.add('none');
+      }
  
 </script>
 <script>
@@ -743,6 +808,83 @@ pageEncoding="UTF-8"%>
     o.innerHTML = "";
   })
 </script>
+    <script>
+        $(document).ready(function () {
+            const popupList = document.querySelectorAll('.main-popup');
+            popupList.forEach((o)=>{
+              let popupName = o.getAttribute('name');
+             
+              // 팝업창에 주어진 이름을 변수로 던져 저장된 쿠키가 있는지 확인   
+              let popup = getCookie(popupName);
+
+              // 변수가 없을경우 팝업 출력       
+              if(!popup) {
+                popUpAction(popupName);
+              }
+            })
+
+             // 쿠키 가져오기 
+            function getCookie(name) {
+                var nameOfCookie = name + "=";
+                var x = 0; while (x <= document.cookie.length) {
+                    var y = (x + nameOfCookie.length);
+                    if (document.cookie.substring(x, y) == nameOfCookie) {
+                        if ((endOfCookie = document.cookie.indexOf(";", y)) == -1)
+                            endOfCookie = document.cookie.length;
+                        return unescape(document.cookie.substring(y, endOfCookie));
+                    }
+                    x = document.cookie.indexOf(" ", x) + 1; if (x == 0)
+                        break;
+                }
+                return "";
+            }
+
+            // 00:00 시 기준 쿠키 설정하기 
+            // expiredays 의 새벽 00:00:00 까지 쿠키 설정 
+            function setCookie00(name, value, expiredays) {
+           
+                let todayDate = new Date();
+              
+                todayDate = new Date(parseInt(todayDate.getTime() / 86400000) * 86400000 + 54000000);
+                if (todayDate > new Date()) {
+                    expiredays = expiredays - 1;
+                }
+         
+                todayDate.setDate(todayDate.getDate() + expiredays);
+           
+                document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+
+              
+            }
+
+            // 팝업출력
+            function popUpAction(name) {
+                // name으로 해당 팝업창 열기 
+                console.log(name);
+                document.querySelector('div[name='+ name +']').classList.remove('none');
+
+            }
+
+            const todayClose = document.querySelectorAll('.today_close input');
+      
+            todayClose.forEach((o)=>{
+              o.addEventListener('click', function(event) {
+                event.stopPropagation();
+           
+                const inputClose = event.target;
+                if (inputClose.checked) {
+   
+                  let num = inputClose.name.substr(11).trim();
+                  
+                  setCookie00('popup'+num, "done", 1);
+                  inputClose.parentNode.parentNode.parentNode.parentNode.classList.add('none');
+
+                }})
+
+             })
+            })
+      
+    </script>
     <script
       src="https://kit.fontawesome.com/939838bb27.js"
       crossorigin="anonymous"

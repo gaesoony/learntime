@@ -135,60 +135,64 @@ pageEncoding="UTF-8"%>
   </style>
   <body>
     <%@include file="/WEB-INF/views/common/admin-side.jsp"%>
-    <div id="content-wrap">
-      <div id="admin-category-title" class="shadow-light">관리자 프로필</div>
-      <div class="wrapper">
-        <div class="profile-info-area">
-          <section class="flex">
-            <div class="profile-img center relative">
-              <img
-                src="${pageContext.request.contextPath}/resources/img/profile_default.png"
-                alt=""
-              />
-              <img
-                id="preview"
-                src="${pageContext.request.contextPath}/resources/img/mystudy/transparent.png"
-              />
-              <div class="file-btn-area">
-                <label for="file" class="file-btn center"
-                  ><img
-                    src="${pageContext.request.contextPath}/resources/img/mystudy/image-plus.png"
-                    alt=""
-                /></label>
-                <input
-                  id="file"
-                  type="file"
-                  class="hidden"
-                  onchange="readURL(this);"
+    <form
+      action="${path}/admin/dashboard/manager/profile"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <div id="content-wrap">
+        <div id="admin-category-title" class="shadow-light">관리자 프로필</div>
+        <div class="wrapper">
+          <div class="profile-info-area">
+            <section class="flex">
+              <div class="profile-img center relative">
+                <img src="${path}/resources/img/profile_default.png" alt="" />
+                <img
+                  id="preview"
+                  src="${path}/resources/img/mystudy/transparent.png"
                 />
+                <div class="file-btn-area">
+                  <label for="file" class="file-btn center"
+                    ><img
+                      src="${path}/resources/img/mystudy/image-plus.png"
+                      alt=""
+                  /></label>
+                  <input
+                    id="file"
+                    type="file"
+                    class="hidden"
+                    name="profile"
+                    onchange="readURL(this);"
+                  />
 
-                <script>
-                  function readURL(input) {
-                    if (input.files && input.files[0]) {
-                      var reader = new FileReader();
-                      reader.onload = function (e) {
-                        document.getElementById("preview").src =
-                          e.target.result;
-                      };
-                      reader.readAsDataURL(input.files[0]);
-                    } else {
-                      document.getElementById("preview").src = "";
+                  <script>
+                    function readURL(input) {
+                      if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                          document.getElementById("preview").src =
+                            e.target.result;
+                        };
+                        reader.readAsDataURL(input.files[0]);
+                      } else {
+                        document.getElementById("preview").src = "";
+                      }
                     }
-                  }
-                </script>
+                  </script>
+                </div>
               </div>
+              <div class="profile-name">
+                <div>관리자 닉네임</div>
+                <input type="text" value="${loginManager.nick}" name="name" />
+              </div>
+            </section>
+            <div>
+              <input type="submit" value="저장하기" class="save-btn cursor" />
             </div>
-            <div class="profile-name">
-              <div>관리자 닉네임</div>
-              <input type="text" value="한혜원" />
-            </div>
-          </section>
-          <div>
-            <input type="button" value="저장하기" class="save-btn cursor" />
           </div>
         </div>
       </div>
-    </div>
+    </form>
 
     <script
       src="https://kit.fontawesome.com/939838bb27.js"

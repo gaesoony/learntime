@@ -1,5 +1,8 @@
 package com.learntime.app.admin.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -50,20 +53,54 @@ public class AdminManagerController {
 	
 //	로그인 (서버)
 	@PostMapping("/login")
-	public String login(ManagerVo vo,HttpSession session, HttpServletRequest request,Model model) {
+	public String login(ManagerVo vo,HttpSession session, HttpServletRequest request, Model model) {
 
 		ManagerVo loginManager =service.login(vo);
-		if(loginManager==null) {
+		
+		if(loginManager == null) {
 			return "common/errorPage";
 		}
+
+		//로그인 접속정보 insert
+		//로그인 아이피 set
+		loginManager.setLoginYn("Y");
 		
-		return "redirect:/admin/dashboard";
+		String ip = request.getHeader("X-Forwarded-For");
+		 
+        if (ip == null) {
+            ip = request.getHeader("Proxy-Client-IP");
+        }
+        if (ip == null) {
+            ip = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if (ip == null) {
+            ip = request.getHeader("HTTP_CLIENT_IP");
+        }
+        if (ip == null) {
+            ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+        }
+        if (ip == null) {
+            ip = request.getRemoteAddr();
+        }
+        
+        // 현재 날짜/시간
+        LocalDateTime now = LocalDateTime.now();
+ 
+        // 포맷팅
+        String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        
+        loginManager.setAccessTime(formatedNow);
+		loginManager.setAccessIp(ip);
 		
-//		session.setAttribute("loginManager", loginManager);
-//		//로그인 성공시 이전 페이지로 감.
-//		String referer = request.getHeader("Referer");
-//		request.getSession().setAttribute("redirectURI", referer);
-//		return "redirect:" + referer;
+		int result = service.insertIp(loginManager);
+		
+		if(result == 1) {
+			session.setAttribute("loginManager", loginManager);
+			return "redirect:/admin/dashboard";				
+		}else {
+			return "common/errorPage";
+		}
+			
 	}
 	
 //	로그아웃

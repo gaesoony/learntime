@@ -227,53 +227,61 @@ pageEncoding="UTF-8"%>
               type="button"
               value="팝업추가"
               class="add-btn"
-              onclick="location.href='${pageContext.request.contextPath}/admin/popup/write'"
+              onclick="location.href='${path}/admin/popup/write'"
             />
           </div>
         </section>
         <ul class="popup-list flex">
-          <%for(int i=0; i<10; i++) {%>
-          <li>
-            <header class="relative">
-              <div class="header-section">1</div>
-              <div class="header-section">
-                <span>런타임 팝업입니다</span>
-                <span class="status">비활성화</span>
-              </div>
-              <div class="header-section">
-                <div class="more center" onclick="showMoreList(event);">
-                  <i
-                    class="fa-solid fa-ellipsis"
-                    onclick="showMoreList2(event)"
-                  ></i>
+          <c:forEach items="${popupList}" var="map">
+            <li>
+              <header class="relative">
+                <div class="header-section">${map.NO}</div>
+                <div class="header-section">
+                  <span>${map.TITLE}</span>
+                  <c:if test="${map.STATUS == 'A'}">
+                    <span class="status">활성화</span>
+                  </c:if>
+                  <c:if test="${map.STATUS == 'B'}">
+                    <span class="status">비활성화</span>
+                  </c:if>
                 </div>
-              </div>
-              <ul class="more-list hidden">
-                <a href="${pageContext.request.contextPath}/admin/popup/edit"
-                  >수정</a
-                >
-                <a href="">활성화</a>
-                <a href="">영구삭제</a>
-              </ul>
-            </header>
-            <section class="popup-img">
-              <img
-                src="${pageContext.request.contextPath}/resources/img/study/study-profile.JPG"
-                alt=""
-              />
-            </section>
-            <section class="popup-date-section">
-              <div class="popup-date">
-                <span>기간 : </span>
-                <span>2022-12-11 12:12 ~ 2022-12-11 12:12</span>
-              </div>
-              <div class="popup-date">
-                <span>등록일시 : </span>
-                <span>2022-12-11 12:12</span>
-              </div>
-            </section>
-          </li>
-          <%}%>
+                <div class="header-section">
+                  <div class="more center" onclick="showMoreList(event);">
+                    <i
+                      class="fa-solid fa-ellipsis"
+                      onclick="showMoreList2(event)"
+                    ></i>
+                  </div>
+                </div>
+                <ul class="more-list hidden">
+                  <a href="${path}/admin/popup/edit?no=${map.NO}">수정</a>
+                  <c:if test="${map.STATUS == 'A'}">
+                    <a href="${path}/admin/popup/disable?no=${map.NO}"">비활성화</a>
+                  </c:if>
+                  <c:if test="${map.STATUS == 'B'}">
+                    <a href="${path}/admin/popup/enable?no=${map.NO}"">활성화</a>
+                  </c:if>
+                  <a href="${path}/admin/popup/delete?no=${map.NO}"">영구삭제</a>
+                </ul>
+              </header>
+              <section class="popup-img">
+                <img
+                  src="${path}/resources/upload/popup/${map.IMG_PATH}"
+                  alt=""
+                />
+              </section>
+              <section class="popup-date-section">
+                <div class="popup-date">
+                  <span>기간 : </span>
+                  <span>${map.START_DATE} ~ ${map.END_DATE}</span>
+                </div>
+                <div class="popup-date">
+                  <span>등록일시 : </span>
+                  <span>${map.ENROLL_DATE}</span>
+                </div>
+              </section>
+            </li>
+          </c:forEach>
         </ul>
       </div>
     </div>
