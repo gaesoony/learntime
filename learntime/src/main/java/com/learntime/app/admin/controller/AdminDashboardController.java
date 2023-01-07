@@ -73,6 +73,10 @@ public class AdminDashboardController {
 			return "common/errorPage";			
 		}
 	
+		loginManager.setImgPath(changeName);
+		loginManager.setNick(vo.getName());
+		
+		session.setAttribute("loginManager", loginManager);
 		session.setAttribute("alertMsg", "프로필 수정 성공!");
 		return "redirect:/admin/dashboard";
 

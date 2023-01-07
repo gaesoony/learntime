@@ -293,6 +293,7 @@ pageEncoding="UTF-8"%>
         width: 80px;
         height: 80px;
         margin-bottom: 10px;
+        border-radius: 50%;
       }
 
       .manager-profile {
@@ -684,14 +685,19 @@ pageEncoding="UTF-8"%>
           <section class="manager-info relative">
             <i
               class="fa-solid fa-gear setting-icon cursor"
-              onclick="location.href='${pageContext.request.contextPath}/admin/dashboard/manager/profile'"
+              onclick="location.href='${path}/admin/dashboard/manager/profile'"
             ></i>
             <div class="manager-profile">
               <div>
-                <img
-                  src="${pageContext.request.contextPath}/resources/img/profile_default.png"
-                  alt=""
-                />
+                <c:if test="${loginManager.imgPath == null}">
+                  <img src="${path}/resources/img/profile_default.png" alt="" />
+                </c:if>
+                <c:if test="${loginManager.imgPath != null}">
+                  <img
+                    src="${path}/resources/upload/manager/profile/${loginManager.imgPath}"
+                    alt=""
+                  />
+                </c:if>
               </div>
               <div>${loginManager.nick}</div>
               <div>${loginManager.id}</div>

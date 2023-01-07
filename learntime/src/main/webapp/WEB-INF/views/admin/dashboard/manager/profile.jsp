@@ -62,6 +62,7 @@ pageEncoding="UTF-8"%>
     .profile-img img {
       width: 200px;
       height: 200px;
+      border-radius: 50%;
     }
 
     .profile-name div {
@@ -146,7 +147,16 @@ pageEncoding="UTF-8"%>
           <div class="profile-info-area">
             <section class="flex">
               <div class="profile-img center relative">
-                <img src="${path}/resources/img/profile_default.png" alt="" />
+                <c:if test="${loginManager.imgPath == null}">
+                  <img src="${path}/resources/img/profile_default.png" alt="" />
+                </c:if>
+                <c:if test="${loginManager.imgPath != null}">
+                  <img
+                    src="${path}/resources/upload/manager/profile/${loginManager.imgPath}"
+                    alt=""
+                  />
+                </c:if>
+
                 <img
                   id="preview"
                   src="${path}/resources/img/mystudy/transparent.png"
