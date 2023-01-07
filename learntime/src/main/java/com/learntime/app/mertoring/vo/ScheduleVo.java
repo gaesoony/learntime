@@ -9,4 +9,6 @@ public class ScheduleVo {
 	private String mentorNo;
 	private String ableDay;
 	private String ableTime;
+	private String date;
+	
 }

@@ -36,6 +36,7 @@
 		, CURRENT_JOB = #{currentJob}
 		, CAREER = #{career}
 		, PRICE = #{price}
+		, MAX_HOUR = #{maxHour}
 		, DETAIL = #{detail}
 		, WELCOME_POST = #{welcomePost}
 		, OPEN_YN = 'Y'
@@ -75,14 +76,54 @@
 		FROM MENTOR MT
 		JOIN MEMBER MB
 		ON MT.WRITER = MB.NO
+		JOIN JOB_CATEGORY JC
+		ON JC.NO = MT.JOB
+		LEFT JOIN  (SELECT MENTOR_NO, COALESCE(ROUND(AVG(STAR), 1), 0) AS STAR, COALESCE(COUNT(MENTOR_NO), 0) AS REVIEW_COUNT
+		            FROM MENTORING_REVIEW
+		            GROUP BY MENTOR_NO) STAR
+		ON MT.NO = STAR.MENTOR_NO
+		WHERE MT.OPEN_YN = 'Y'
+	</select>
+	
+	<!-- 멘토링 상세조회 -->
+	<select id="selectMentoring" resultType = "com.learntime.app.mertoring.vo.MentorVo">
+		SELECT MT.*, JC.NAME AS JOB_NAME, MB.NICK, MB.IMG_PATH AS WRITER_IMG, COALESCE(STAR.STAR , 0) AS STAR, COALESCE(STAR.REVIEW_COUNT, 0) AS REVIEW_CNT
+		FROM MENTOR MT
+		JOIN MEMBER MB
+		ON MT.WRITER = MB.NO
         JOIN JOB_CATEGORY JC
         ON JC.NO = MT.JOB
 		LEFT JOIN (SELECT NO, COALESCE(AVG(STAR), 0) AS STAR, COALESCE(COUNT(NO), 0) AS REVIEW_COUNT
 			      FROM MENTORING_REVIEW
 			      GROUP BY NO) STAR
 		ON MT.NO = STAR.NO
-		WHERE MT.OPEN_YN = 'Y'
+		WHERE MT.OPEN_YN = 'Y' AND MT.NO = #{no}
 	</select>
+	
+	<select id="selectReviewByNo" resultType = "com.learntime.app.mertoring.vo.ReviewVo">
+		SELECT MR.*, MB.NICK AS WRITER_NICK, MB.IMG_PATH AS WRITER_IMG, MT.TITLE AS MENTORING_TITLE, MT.NICK AS MENTOR_NICK
+		FROM MENTORING_REVIEW MR
+		JOIN MEMBER MB
+		ON MB.NO = MR.WRITER
+		JOIN    (SELECT MT.NO, MT.TITLE, MB.NICK 
+		        FROM MENTOR MT 
+		        JOIN MEMBER MB 
+		        ON MB.NO = MT.WRITER) MT
+		ON MR.MENTOR_NO = MT.NO
+		WHERE MR.MENTOR_NO = #{no} AND <![CDATA[ ROWNUM <= 3]]>
+		ORDER BY MR.NO DESC
+	</select>
+	
+	<!-- 멘토링 시간 조회 -->
+	<select id="selectmentorSchedule">
+		
+	</select>
+	
+	
+	
+	
+	
+	
 	
 
 </mapper>
