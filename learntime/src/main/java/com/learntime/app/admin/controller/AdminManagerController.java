@@ -105,9 +105,40 @@ public class AdminManagerController {
 	
 //	로그아웃
 	@GetMapping("/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/admin/login";
+	public String logout(HttpSession session, HttpServletRequest request) {
+		
+		ManagerVo loginManager = (ManagerVo) session.getAttribute("loginManager");
+		
+		loginManager.setLoginYn("N");
+		
+		String ip = request.getHeader("X-Forwarded-For");
+		 
+        if (ip == null) {
+            ip = request.getHeader("Proxy-Client-IP");
+        }
+        if (ip == null) {
+            ip = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if (ip == null) {
+            ip = request.getHeader("HTTP_CLIENT_IP");
+        }
+        if (ip == null) {
+            ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+        }
+        if (ip == null) {
+            ip = request.getRemoteAddr();
+        }
+        
+        loginManager.setAccessIp(ip);
+		int result = service.insertIp(loginManager);
+		
+		if(result == 1) {
+			session.invalidate();
+			return "redirect:/admin/login";			
+		}else {
+			return "common/errorPage";
+		}
+		
 	}
 
 	
