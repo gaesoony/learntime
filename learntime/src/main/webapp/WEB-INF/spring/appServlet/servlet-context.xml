@@ -68,5 +68,20 @@
 	</websocket:handlers>
 	
 	
+	<!-- 웹소켓 빈 등록 -->
+	<beans:bean id="chatmbean" class="com.learntime.app.chat.server.ChatServer"></beans:bean>
+	
+	<!-- 웹소켓 -->
+	<websocket:handlers>
+		<websocket:mapping handler="chatmbean" path="/chat/server"></websocket:mapping>
+		
+		<websocket:handshake-interceptors>
+        <beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+     	</websocket:handshake-interceptors>
+	
+		
+	</websocket:handlers>
+	
+	
 	
 </beans:beans>

@@ -15,6 +15,7 @@ session.removeAttribute("alertMsg"); %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/variables.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/skinshop.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <!-- 구글아이콘 -->
@@ -352,13 +353,13 @@ session.removeAttribute("alertMsg"); %>
 			url: "${pageContext.request.contextPath}/alarm",
 			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 			success: function(data) {
-				 console.log(data);
+				 
                  var obj = JSON.parse(data);
                  
                 
-                 
+                
                  for (let i = 0; i < obj.listMember.length; i++) {
-                	 $('#alarm-area').empty();
+                	 
 
         		     let oneAlarmArea = $('<div>').prop({className: 'oneAlarm-area'});
         		     $(oneAlarmArea).append(
@@ -379,7 +380,7 @@ session.removeAttribute("alertMsg"); %>
         		    	
         		     });
 
-                 };
+                 }
 				
 			},
 			error: function() {   

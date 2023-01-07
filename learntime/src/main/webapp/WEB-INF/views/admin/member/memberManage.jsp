@@ -297,6 +297,7 @@ pageEncoding="UTF-8"%>
                     <div><img src="${pageContext.request.contextPath}${list.GRADE_IMG_PATH}"></div>
                     <div>${list.PHONE}</div>
                     <div>${list.ENROLL_DATE}</div>
+                    <fmt:formatDate value="${now}" pattern=" yyyyMMdd" type="date"/>
                     <div>${list.HOLD_TOKEN}</div>
                     <div>${list.BOARD}</div>
                     <div>${list.CMT}</div>

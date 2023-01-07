@@ -1,5 +1,9 @@
 package com.learntime.app.admin.controller;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.learntime.app.common.file.FileUploader;
-import com.learntime.app.skin.vo.SearchVo;
 import com.learntime.app.skin.service.SkinService;
+import com.learntime.app.skin.vo.SearchVo;
 import com.learntime.app.skin.vo.SkinVo;
 
 @RequestMapping("admin")
@@ -51,6 +55,26 @@ public class AdminSkinController {
 	    	  vo.setImgName(rename);
 	    	  
 	      }
+
+         try {
+        	 
+        	 String path = request.getSession().getServletContext().getRealPath("/resources/css/");
+        	 File file = new File(path+"skinshop.css");
+        	 if (!file.exists()) {
+        		 file.createNewFile();
+        	 }	 
+        	 
+        	 FileWriter fw = new FileWriter(file,true);
+             BufferedWriter writer = new BufferedWriter(fw);
+			
+             writer.write(vo.getClassStyle());
+             writer.close();
+             
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+         
 		
 		int result=skinService.skinEditUpdate(vo);
 	
@@ -76,6 +100,26 @@ public class AdminSkinController {
 	    	  vo.setImgName(rename);
 	    	  
 	      }
+		
+		try {
+        	 
+        	 String path = request.getSession().getServletContext().getRealPath("/resources/css/");
+        	 File file = new File(path+"skinshop.css");
+        	 if (!file.exists()) {
+        		 file.createNewFile();
+        	 }	 
+        	 
+        	 FileWriter fw = new FileWriter(file,true);
+             BufferedWriter writer = new BufferedWriter(fw);
+			
+             writer.write(vo.getClassStyle());
+             writer.close();
+             
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+         
 		
 		int result=skinService.skinWrite(vo);
 	

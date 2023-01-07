@@ -14,14 +14,14 @@
         height: 100vh;
         position: fixed;
         visibility: hidden;
-        opacity: 0;
+        
 
         display: flex;
         z-index:10000;
     }
     .show2 {
         visibility: visible;
-        opacity: 1;
+       
     }
     .whiteBG2 {
         text-align: center;
@@ -324,7 +324,7 @@ input[type="range"]::-webkit-slider-thumb {
 <%@include file="/WEB-INF/views/common/header.jsp" %>
 <div id="skinshop-area">
     <div id="banner-area">
-        <img src="/app/resources/img/skinshop/skinshop_banner.png" alt="배너이미지">
+        <img src="${pageContext.request.contextPath}/resources/img/skinshop/skinshop_banner.png" alt="배너이미지">
     </div>
 
     <!-- 구매창 모달 -->
@@ -332,25 +332,30 @@ input[type="range"]::-webkit-slider-thumb {
         <div class="whiteBG2">
             <div id="pay-info">구매하기</div>
             <div class="skin">
-                <div class="skin-img">이미지 영역</div>
-                <div class="skin-title">스킨 제목</div>
-                <div class="skin-content">스킨 설명</div>
+                <div class="skin-img" id="modalSkinImg"></div>
+                <div class="skin-title" id="modalSkinTitle"></div>
+                <div class="skin-content" id="modalSkinContent"></div>
 
                 <div class="payment">
                     <div class="have-token">
                         <span class="material-symbols-outlined">toll</span>
                         보유 토큰
                     </div>
-                    <div class="token-cnt">300개</div>
+                    <div class="token-cnt">
+	                     <c:if test="${loginMember.holdToken==null}">0</c:if>
+	                    ${loginMember.holdToken}개
+                    </div>
     
                     <div class="pay-token">
                         <span class="material-symbols-outlined">toll</span>
                         결제 토큰
                     </div>
-                    <div class="token-cnt">1개</div>
+                    <div class="token-cnt" id="modalTokenCnt"></div>
                 </div>
-
-                <button class="buy-btn"> N토큰으로 구매하기</button>
+				<form action="${pageContext.request.contextPath}/skinshop/buy" method="post">
+				 <button name="completeNo"id="complete" class="buy-btn">구매하기</button>
+				 <input type="hidden" name="tokenPrice" id="tokenPrice"/>
+				</form>
                 <button type="button" id="modal-closed2">취소하기</button>
             </div>
 
@@ -374,7 +379,7 @@ input[type="range"]::-webkit-slider-thumb {
 	                    <div class="skin-img"><img  src="${pageContext.request.contextPath}${list.imgName}"></div>
 	                    <div class="skin-title">${list.name}</div>
 	                    <div class="skin-content">${list.info}</div>
-	                     <button class="buy-btn"> ${list.price}토큰으로 구매하기</button>
+	                     <button id="skinBuy"class="buy-btn" value="${list.no}" onclick="skinModal(${list.no});"> ${list.price}토큰으로 구매하기</button>
 	              </div>
 
                </c:forEach>
@@ -432,24 +437,51 @@ input[type="range"]::-webkit-slider-thumb {
 
 <script>
     //모달 띄우기
-    $('.buy-btn').on('click',function(){
-    	$('.blackBG2').addClass('show');
-    })
     
      //모달 닫기
     $('#modal-closed2').on('click',function(){
-    	$('.blackBG2').removeClass('show');
-    })
+    	$('.blackBG2').removeClass('show2');
+    });
 
     //검은 배경 클릭시 모달 닫기
     $(document).mouseup(function (e){
     //배경이 클릭 될 경우 리턴 0이 됨
 	if($('.blackBG2').has(e.target).length === 0){
-		$('.blackBG2').removeClass('show');
+		$('.blackBG2').removeClass('show2');
 	}
   });
+    
+    function skinModal(no){
+    	 $.ajax({
+	      		type: "get",
+				url: "${pageContext.request.contextPath}/skinModal",
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+				data:{"no":no},
+				success: function(data) {	
+					 var obj = JSON.parse(data);
+					 console.log(obj);
+					 $('.blackBG2').addClass('show2');
+					 $('#modalSkinImg').empty();
+					 $('#modalSkinImg').append(
+							'<img src="${pageContext.request.contextPath}'+obj.skinModal.imgName+'">'	 
+					 );
+					 $('#modalSkinTitle').text();
+					 $('#modalSkinTitle').text(obj.skinModal.name);
+					 $('#modalSkinContent').text();
+					 $('#modalSkinContent').text(obj.skinModal.info);
+					 $('#modalTokenCnt').text();
+					 $('#modalTokenCnt').text(obj.skinModal.price+'개');
+					 
+					 $('#complete').val(obj.skinModal.no);
+					 $('#tokenPrice').val(obj.skinModal.price);
+				},
+				error: function() {   
 
+				}
+	      });
+    };
 
+	
 
     const inputLeft = document.getElementById("input-left");
     const inputRight = document.getElementById("input-right");

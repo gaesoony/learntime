@@ -30,12 +30,14 @@ import com.learntime.app.member.service.MemberService;
 import com.learntime.app.member.vo.FollowVo;
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.skin.service.SkinService;
+import com.learntime.app.skin.vo.SkinVo;
 import com.learntime.app.study.service.StudyService;
 
 
 @Controller
 public class MemberController {
 	
+
 	@Autowired
 	@Qualifier("alarmServiceImpl")
 	private AlarmService alarmService;
@@ -89,11 +91,13 @@ public class MemberController {
 	public String login(MemberVo vo,HttpSession session, HttpServletRequest request,Model model) {
 		
 		MemberVo loginMember=memberService.login(vo);
+		
 		if(loginMember==null) {
 			return"common/errorPage";
 		}
 		
 		session.setAttribute("loginMember", loginMember);
+		
 		//로그인 성공시 이전 페이지로 감.
 		String referer = request.getHeader("Referer");
 		request.getSession().setAttribute("redirectURI", referer);
@@ -261,6 +265,11 @@ public class MemberController {
 			MemberVo user=memberService.selectNo(no);
 			session.setAttribute("userNo",user);
 			
+			//내 스킨 조회
+			List<SkinVo> mySkin=skinService.myskin(no);
+			model.addAttribute("mySkin",mySkin);
+			
+			
 //			나를 팔로우 하는 사람 수 구하기
 			int followerCnt =memberService.followerCnt(no);
 //			내가 팔로우 하는 사람 수 구하기
@@ -279,8 +288,6 @@ public class MemberController {
 //			팔로우 유무체크
 			int followCheck=memberService.followCheck(follow);
 			session.setAttribute("followCheck", followCheck);
-			
-			
 			session.setAttribute("followerCnt", followerCnt);
 			session.setAttribute("followingCnt", followingCnt);
 			
@@ -674,6 +681,8 @@ public class MemberController {
 			}
 			List<AlarmVo> listMember=alarmService.listMember(loginMember.getNo());
 			
+			System.out.println(listMember);
+			
 			Gson gson = new Gson();
 	        HashMap<String, Object> map = new HashMap<String, Object>();
 
@@ -693,7 +702,7 @@ public class MemberController {
 		@ResponseBody
 		@GetMapping(value ="/alarmDelete",produces = "application/text;charset=utf8")
 		public String alarmDelete(HttpSession session,String no) {
-			
+			System.out.println(no);
 			alarmService.delete(no);
 			
 	        return "잘 지웟슈";

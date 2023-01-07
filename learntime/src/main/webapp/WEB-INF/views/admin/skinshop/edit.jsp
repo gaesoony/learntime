@@ -35,7 +35,7 @@ pageEncoding="UTF-8"%>
 
     .content-section{
         width: 445px;
-        height:1010px;
+        
         background-color: white;
         border: 1px solid rgb(221, 221, 221);
 
@@ -192,9 +192,14 @@ pageEncoding="UTF-8"%>
                     
                     
                     
-                    <div id="">
-                        <div class="text">스킨 스타일</div>
+                     <div id="">
+                        <div class="text">스킨 스타일 이름</div>
                         <input type="text" name="className" value="${vo.className}">
+                    </div>
+                    
+                     <div id="">
+                        <div class="text">스킨 스타일 속성</div>
+                        <input type="text" name="classStyle" value="${vo.classStyle}">
                     </div>
 
                     <div id="">

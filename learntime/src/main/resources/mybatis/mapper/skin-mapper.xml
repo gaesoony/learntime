@@ -5,11 +5,11 @@
 <mapper namespace="skinMapper">
 	<insert id="skinWrite">
 	INSERT INTO ITEM
-	VALUES(SEQ_ITEM_NO.NEXTVAL,#{name},#{info},#{className},#{price},#{imgName},'N')
+	VALUES(SEQ_ITEM_NO.NEXTVAL,#{name},#{info},#{className},#{classStyle},#{price},#{imgName},'N')
 	</insert>
 	
 	<select id="skinList" resultType="SkinVo">
-	SELECT NO,NAME,INFO,CLASS_NAME,PRICE,IMG_PATH AS IMG_NAME,DELETE_YN
+	SELECT NO,NAME,INFO,CLASS_NAME,CLASS_STYLE,PRICE,IMG_PATH AS IMG_NAME,DELETE_YN
 	FROM ITEM
 	<trim prefix="WHERE" prefixOverrides="AND">
 	 <if test="keyword != null and keyword != ''">
@@ -23,7 +23,7 @@
 	</select>
 	
 	<select id="skinEdit" resultType="SkinVo">
-	SELECT NO,NAME,INFO,CLASS_NAME,PRICE,IMG_PATH AS IMG_NAME,DELETE_YN
+	SELECT NO,NAME,INFO,CLASS_NAME,CLASS_STYLE,PRICE,IMG_PATH AS IMG_NAME,DELETE_YN
 	FROM ITEM
 	WHERE NO=#{no}
 	</select>
@@ -45,6 +45,7 @@
 	SET NAME=#{name},
 	INFO=#{info},
 	CLASS_NAME=#{className},
+	CLASS_STYLE=#{classStyle},
 	PRICE=#{price},
 	IMG_PATH=#{imgName}
 	WHERE NO=#{no}
@@ -52,10 +53,36 @@
 	
 	
 	<select id="skinListMember" resultType="SkinVo">
-	SELECT NO,NAME,INFO,CLASS_NAME,PRICE,IMG_PATH AS IMG_NAME,DELETE_YN
+	SELECT NO,NAME,INFO,CLASS_NAME,CLASS_STYLE,PRICE,IMG_PATH AS IMG_NAME,DELETE_YN
 	FROM ITEM
 	AND DELETE_YN = 'N'
 	
+	</select>
+	
+	
+	<select id="skinModal" resultType="SkinVo">
+	SELECT NO,NAME,INFO,CLASS_NAME,CLASS_STYLE,PRICE,IMG_PATH AS IMG_NAME,DELETE_YN
+	FROM ITEM
+	WHERE NO=#{no}
+	</select>
+	
+	
+	<insert id="skinBuy">
+	INSERT INTO MEMBER_ITEM(ITEM_NO,M_NO)
+	VALUES(#{ITEM_NO},#{M_NO})
+	</insert>
+	
+	<update id="minusToken">
+	UPDATE MEMBER
+	SET HOLD_TOKEN=HOLD_TOKEN-#{tokenPrice}
+	WHERE NO=#{M_NO}
+	</update>
+	
+	<select id="myskin" resultType="SkinVo">
+	SELECT MI.ITEM_NO AS NO,I.NAME,I.INFO,I.CLASS_NAME,I.CLASS_STYLE,I.PRICE,I.IMG_PATH AS IMG_NAME,I.DELETE_YN
+	FROM MEMBER_ITEM MI
+	JOIN ITEM I ON I.NO=MI.ITEM_NO
+	WHERE MI.M_NO=#{no}
 	</select>
 	
 </mapper>
