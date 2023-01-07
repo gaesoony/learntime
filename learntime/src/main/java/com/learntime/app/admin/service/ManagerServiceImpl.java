@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.learntime.app.admin.dao.ManagerDao;
 import com.learntime.app.admin.vo.ManagerVo;
+import com.learntime.app.mystudy.vo.ProfileVo;
 
 
 @Service
@@ -56,6 +57,18 @@ public class ManagerServiceImpl implements ManagerService{
 	@Override
 	public int emailCheck(ManagerVo vo) {
 		return dao.emailCheck(sst, vo);
+	}
+
+	//로그인 접속 정보 INSERT
+	@Override
+	public int insertIp(ManagerVo loginManager) {
+		return dao.insertIp(sst, loginManager);
+	}
+
+	//관리자 프로필 업데이트
+	@Override
+	public int updateProfile(ProfileVo vo) {
+		return dao.updateProfile(sst, vo);
 	}
 
 }

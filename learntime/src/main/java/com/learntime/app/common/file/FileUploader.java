@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.learntime.app.admin.vo.BannerVo;
+import com.learntime.app.admin.vo.PopupVo;
 import com.learntime.app.badge.vo.BadgeVo;
 import com.learntime.app.member.vo.MemberGradeVo;
 import com.learntime.app.member.vo.MemberVo;
@@ -57,6 +58,26 @@ public class FileUploader {
         return changeName;
     }
     
+    //관리자 프로필 업뎃
+    public static String uploadManagerProfile(HttpServletRequest req, ProfileVo vo) {
+        String path = req.getSession().getServletContext().getRealPath("/resources/upload/manager/profile/");
+        String originName = vo.getProfile().get(0).getOriginalFilename();
+
+        String ext = originName.substring(originName.lastIndexOf("."), originName.length());
+
+        String changeName = "profile" + System.nanoTime() + ext; //profile현재시간
+
+        File target = new File(path + changeName);
+
+        try {
+            vo.getProfile().get(0).transferTo(target);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
+
+        return changeName;
+    }
+    
 	//배너 업뎃
     public static String uploadBanner(HttpServletRequest req, BannerVo vo) {
         String path = req.getSession().getServletContext().getRealPath("/resources/upload/banner/");
@@ -74,6 +95,25 @@ public class FileUploader {
             e.printStackTrace();
         } 
 
+        return changeName;
+    }
+    
+	//팝업 업뎃
+    public static String uploadPopup(HttpServletRequest req, PopupVo vo) {
+        String path = req.getSession().getServletContext().getRealPath("/resources/upload/popup/");
+        String originName = vo.getPopup().get(0).getOriginalFilename();
+
+        String ext = originName.substring(originName.lastIndexOf("."), originName.length());
+
+        String changeName = "popup" + System.nanoTime() + ext; //profile현재시간
+
+        File target = new File(path + changeName);
+
+        try {
+            vo.getPopup().get(0).transferTo(target);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
         return changeName;
     }
     

@@ -239,7 +239,7 @@ pageEncoding="UTF-8"%>
                 <div class="profile-img center relative">
                   <img
                     id="preview"
-                    src="${pageContext.request.contextPath}/resources/img/mystudy/transparent.png"
+                    src="${path}/resources/img/mystudy/transparent.png"
                   />
                   <div class="file-btn-area">
                     <label for="file" class="file-btn center">파일업로드</label>
@@ -270,7 +270,7 @@ pageEncoding="UTF-8"%>
               </div>
               <div class="grid-div height">이미지 링크</div>
               <div class="grid-div height">
-                <input type="text" name="link" />
+                <input type="url" name="link" />
               </div>
               <div class="grid-div height">배경색</div>
               <div class="grid-div height">

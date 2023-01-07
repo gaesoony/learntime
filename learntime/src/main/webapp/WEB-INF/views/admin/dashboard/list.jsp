@@ -693,14 +693,14 @@ pageEncoding="UTF-8"%>
                   alt=""
                 />
               </div>
-              <div>관리자닉네임</div>
-              <div>hyewon@gmail.com</div>
+              <div>${loginManager.nick}</div>
+              <div>${loginManager.id}</div>
             </div>
             <div class="manager-profile-grid">
               <div>접속시간</div>
-              <div>2022-12-10 12:12:12</div>
+              <div>${loginManager.accessTime}</div>
               <div>접속아이피</div>
-              <div>192.168.0.1</div>
+              <div>${loginManager.accessIp}</div>
             </div>
           </section>
           <section class="manager-section shadow">

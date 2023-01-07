@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="popupMapper">
+
+	<insert id="insertPopup">
+		INSERT INTO POPUP
+		VALUES (SEQ_POPUP_NO.NEXTVAL, #{title}, #{changeName},#{location}, #{visitor} ,#{link}, SYSDATE, 'A', #{startDate}, #{endDate})
+	</insert>
+	<select id="selectPopupList" resultType="map">
+		SELECT NO, TITLE, IMG_PATH, LOCATION, APPLY, LINK, TO_CHAR(CAST(ENROLL_DATE as DATE),'YYYY-MM-DD HH24:MI') ENROLL_DATE, STATUS, TO_CHAR(CAST(START_DATE as DATE),'YYYY-MM-DD HH24:MI') START_DATE, TO_CHAR(CAST(END_DATE as DATE),'YYYY-MM-DD HH24:MI') END_DATE
+		FROM POPUP
+		WHERE STATUS IN ('A', 'B')
+		ORDER BY NO
+	</select>
+	<select id="selectPopupListMain" resultType="map">
+		SELECT NO, TITLE, IMG_PATH, LOCATION, APPLY, LINK, TO_CHAR(CAST(ENROLL_DATE as DATE),'YYYY-MM-DD HH24:MI') ENROLL_DATE, STATUS, TO_CHAR(CAST(START_DATE as DATE),'YYYY-MM-DD HH24:MI') START_DATE, TO_CHAR(CAST(END_DATE as DATE),'YYYY-MM-DD HH24:MI') END_DATE
+		FROM POPUP
+		WHERE STATUS = 'A'
+		ORDER BY NO
+	</select>
+	<select id="selectPopupOne" resultType="map">
+		SELECT NO, TITLE, IMG_PATH, LOCATION, APPLY, LINK, TO_CHAR(CAST(ENROLL_DATE as DATE),'YYYY-MM-DD HH24:MI') ENROLL_DATE, STATUS, TO_CHAR(CAST(START_DATE as DATE),'YYYY-MM-DD HH24:MI') START_DATE, TO_CHAR(CAST(END_DATE as DATE),'YYYY-MM-DD HH24:MI') END_DATE
+		FROM POPUP
+		WHERE NO = #{no}
+	</select>
+	<update id="editPopup">
+		UPDATE POPUP SET
+		TITLE = #{title},
+		<if test="changeName != null and !''.equals(changeName)">
+			IMG_PATH = #{changeName},		
+		</if>
+		LOCATION = #{location},
+		APPLY = #{apply},
+		LINK = #{link},
+		START_DATE = #{startDate},
+		END_DATE = #{endDate},
+
+		WHERE NO = #{no}
+	</update>
+	<update id="disablePopup">
+		UPDATE POPUP SET
+		STATUS = 'B'
+		WHERE NO = #{no}
+	</update>
+	<update id="enablePopup">
+		UPDATE POPUP SET
+		STATUS = 'A'
+		WHERE NO = #{no}
+	</update>
+	<update id="deletePopup">
+		UPDATE POPUP SET
+		STATUS = 'C'
+		WHERE NO = #{no}
+	</update>
+	
+</mapper>

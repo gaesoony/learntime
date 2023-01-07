@@ -42,8 +42,8 @@ session.removeAttribute("alertMsg"); %>
       <div id="profile-img"></div>
       <div id="profile-content">
         <div id="welcome">Welcome,</div>
-        <div id="admin-name">AdminNick님</div>
-        <div id="login-date">최근 로그인 2022/12/12 20:19:22</div>
+        <div id="admin-name">${loginManager.nick}님</div>
+        <div id="login-date">최근 로그인 ${loginManager.accessTime}</div>
       </div>
       <div id="admin-config">
         <span

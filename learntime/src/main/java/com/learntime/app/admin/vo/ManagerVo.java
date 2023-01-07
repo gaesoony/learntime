@@ -13,5 +13,6 @@ public class ManagerVo {
 	private String loginNo;
 	private String accessTime;
 	private String accessIp;
+	private String loginYn;
 
 }

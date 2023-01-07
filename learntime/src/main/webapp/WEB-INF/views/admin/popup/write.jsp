@@ -38,7 +38,7 @@ pageEncoding="UTF-8"%>
     }
 
     .wrapper {
-      padding: 40px 200px;
+      padding: 40px 40px;
     }
 
     .center {
@@ -64,12 +64,19 @@ pageEncoding="UTF-8"%>
       padding: 50px 20px;
     }
 
+    .grid-div label:not(.file-btn) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 22px;
+    }
+
     .grid {
       display: grid;
-      height: 615px;
-      width: 670px;
-      grid-template-columns: 1fr 2fr;
-      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 4fr 1fr;
+      height: 580px;
+      width: 1000px;
+      grid-template-columns: 1fr 8fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 5fr 1fr;
 
       column-gap: 40px;
       font-size: 14px;
@@ -78,13 +85,12 @@ pageEncoding="UTF-8"%>
     .grid-div {
       color: gray;
       display: flex;
-      align-items: center;
-      height: 50px;
+      height: 14px;
     }
 
-    .grid-div:nth-child(12) {
+    /* .grid-div:nth-child(12) {
       height: 264px;
-    }
+    } */
 
     .grid-div:nth-child(2n-1) {
       display: flex;
@@ -92,10 +98,11 @@ pageEncoding="UTF-8"%>
     }
 
     .height {
-      height: 100px;
+      margin-top: 40px;
     }
 
-    input {
+    input:not(input[type="submit"], input[type="button"]) {
+      height: 20px;
       color: gray;
       border: none;
       border-bottom: 1px solid gray;
@@ -146,8 +153,8 @@ pageEncoding="UTF-8"%>
     .profile-img {
       background-color: rgb(222, 222, 222);
 
-      width: 320px;
-      height: 220px;
+      width: 340px;
+      height: 240px;
 
       margin-right: 50px;
       /* border: 1px solid rgb(196, 196, 196); */
@@ -156,21 +163,6 @@ pageEncoding="UTF-8"%>
     .profile-img img {
       width: 200px;
       height: 200px;
-    }
-
-    .profile-name div {
-      margin-bottom: 10px;
-      color: rgb(79, 79, 79);
-    }
-
-    .profile-name input {
-      width: 300px;
-      height: 20px;
-      padding: 10px;
-      color: rgb(79, 79, 79);
-      border: 1px solid rgb(174, 174, 174);
-      outline: none;
-      font-size: 15px;
     }
 
     .save-btn {
@@ -196,8 +188,8 @@ pageEncoding="UTF-8"%>
 
     .file-btn-area {
       position: absolute;
-      top: 227px;
-      right: 234px;
+      top: 245px;
+      right: 254px;
     }
 
     .file-btn {
@@ -216,106 +208,118 @@ pageEncoding="UTF-8"%>
 
     #preview {
       position: absolute;
-      width: 320px;
-      height: 220px;
+      width: 340px;
+      height: 240px;
     }
   </style>
   <body>
     <%@include file="/WEB-INF/views/common/admin-side.jsp"%>
-    <div id="content-wrap">
-      <div id="admin-category-title" class="shadow-light">팝업 추가</div>
-      <div class="wrapper">
-        <div class="container">
-          <div class="grid">
-            <div class="grid-div">제목</div>
-            <div class="grid-div">
-              <input
-                type="text"
-                placeholder="관리용 제목(사용자에겐 표시되지 않습니다)"
-              />
-            </div>
-            <div class="grid-div">기간</div>
-            <div class="grid-div">
-              <input type="datetime-local" />~<input type="datetime-local" />
-            </div>
-            <div class="grid-div">적용 조건</div>
-            <div class="grid-div flex">
-              <div class="margin-right">
-                <label><input type="radio" name="visitor" />모든 방문자</label>
-              </div>
-              <div>
-                <label
-                  ><input type="radio" name="visitor" />로그인 방문자</label
-                >
-              </div>
-            </div>
-            <div class="grid-div">우측 상단 닫기 설정</div>
-            <div class="grid-div">
-              <div class="margin-right">
-                <label><input type="radio" name="close" />닫기</label>
-              </div>
-              <div class="margin-right">
-                <label
-                  ><input type="radio" name="close" />오늘 하루 다시 보지
-                  않기</label
-                >
-              </div>
-              <div>
-                <label><input type="radio" name="close" />표시안함</label>
-              </div>
-            </div>
-            <div class="grid-div">PC 팝업 위치</div>
-            <div class="grid-div">
-              <div class="margin-right">
-                <label><input type="radio" name="location" />가운데</label>
-              </div>
-              <div class="margin-right">
-                <label><input type="radio" name="location" />좌측 상단</label>
-              </div>
-            </div>
-            <div class="grid-div">이미지</div>
-            <div class="grid-div padding">
-              <div class="profile-img center relative">
-                <img
-                  id="preview"
-                  src="${pageContext.request.contextPath}/resources/img/mystudy/transparent.png"
+    <form
+      action="${path}/admin/popup/write"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <div id="content-wrap">
+        <div id="admin-category-title" class="shadow-light">팝업 추가</div>
+        <div class="wrapper">
+          <div class="container">
+            <div class="grid">
+              <div class="grid-div">제목</div>
+              <div class="grid-div">
+                <input
+                  type="text"
+                  placeholder="관리용 제목(사용자에겐 표시되지 않습니다)"
+                  name="title"
                 />
-                <div class="file-btn-area">
-                  <label for="file" class="file-btn center">파일업로드</label>
-                  <input
-                    id="file"
-                    type="file"
-                    class="hidden"
-                    onchange="readURL(this);"
-                  />
+              </div>
+              <div class="grid-div">기간</div>
+              <div class="grid-div">
+                <input type="datetime-local" name="startDate" />~<input
+                  type="datetime-local"
+                  name="endDate"
+                />
+              </div>
+              <div class="grid-div">적용 조건</div>
+              <div class="grid-div">
+                <label>
+                  <input type="radio" name="visitor" value="all" checked />
+                  <span>모든 방문자</span>
+                </label>
+                <label>
+                  <input type="radio" name="visitor" value="loginMember" />
+                  <span>로그인 방문자</span>
+                </label>
+              </div>
+              <div class="grid-div">PC 팝업 위치</div>
+              <div class="grid-div">
+                <label>
+                  <input type="radio" name="location" value="center" checked />
+                  <span>가운데</span>
+                </label>
+                <label>
+                  <input type="radio" name="location" value="leftTop" />
+                  <span>좌측 상단</span>
+                </label>
+                <label>
+                  <input type="radio" name="location" value="rightTop" />
+                  <span>우측 상단</span>
+                </label>
+              </div>
 
-                  <script>
-                    function readURL(input) {
-                      if (input.files && input.files[0]) {
-                        var reader = new FileReader();
-                        reader.onload = function (e) {
-                          document.getElementById("preview").src =
-                            e.target.result;
-                        };
-                        reader.readAsDataURL(input.files[0]);
-                      } else {
-                        document.getElementById("preview").src = "";
+              <div class="grid-div">이미지</div>
+              <div class="grid-div">
+                <div class="profile-img center relative">
+                  <img
+                    id="preview"
+                    src="${path}/resources/img/mystudy/transparent.png"
+                  />
+                  <div class="file-btn-area">
+                    <label for="file" class="file-btn center">파일업로드</label>
+                    <input
+                      id="file"
+                      type="file"
+                      class="hidden"
+                      onchange="readURL(this);"
+                      name="popup"
+                    />
+
+                    <script>
+                      function readURL(input) {
+                        if (input.files && input.files[0]) {
+                          var reader = new FileReader();
+                          reader.onload = function (e) {
+                            document.getElementById("preview").src =
+                              e.target.result;
+                          };
+                          reader.readAsDataURL(input.files[0]);
+                        } else {
+                          document.getElementById("preview").src = "";
+                        }
                       }
-                    }
-                  </script>
+                    </script>
+                  </div>
                 </div>
               </div>
+              <div class="grid-div height">이미지 링크</div>
+              <div class="grid-div height">
+                <input type="url" name="link" />
+              </div>
             </div>
-            <div class="grid-div height">이미지 링크</div>
-            <div class="grid-div height"><input type="url" /></div>
+          </div>
+          <div class="flex btn-area">
+            <div><input type="submit" value="저장" class="save-btn" /></div>
+            <div>
+              <input
+                type="button"
+                value="취소"
+                class="cancel-btn"
+                onclick="location.href='${path}/admin/popup/list'"
+              />
+            </div>
           </div>
         </div>
-        <div class="flex btn-area">
-          <div><input type="button" value="저장" class="save-btn" /></div>
-          <div><input type="button" value="취소" class="cancel-btn" /></div>
-        </div>
       </div>
-    </div>
+    </form>
 
     <script
       src="https://kit.fontawesome.com/939838bb27.js"

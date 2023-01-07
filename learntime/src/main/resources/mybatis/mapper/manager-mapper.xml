@@ -7,9 +7,8 @@
 	<!--로그인  -->
 	<select id="login" resultType = "ManagerVo">
 		<if test="id != null and !('').equals(id) or pwd != null and !('').equals(pwd)">
-			SELECT A.NO, A.ID, A.PWD, A.NICK, A.IMG_PATH, L.NO LOGIN_NO, L.ACCESS_TIME, L.ACCESS_IP
+			SELECT A.NO, A.ID, A.PWD, A.NICK, A.IMG_PATH
 			FROM ADMIN A
-			LEFT JOIN ADMIN_LOGIN L ON A.NO = L.A_NO
 			WHERE A.ID = #{id}
 		</if>
 	</select>
@@ -39,6 +38,15 @@
 		    AND NO NOT IN(#{no})
 		</if>
 	</select>
-
+	<insert id="insertIp">
+		INSERT INTO ADMIN_LOGIN
+		VALUES (SEQ_ADMIN_LOGIN_NO.NEXTVAL, #{no}, SYSDATE, #{accessIp}, #{loginYn})
+	</insert>
+	<update id="updateProfile">
+		UPDATE ADMIN SET
+		IMG_PATH = #{changeName},
+		NICK = #{name}
+		WHERE NO = #{no}
+	</update>
 
 </mapper>
