@@ -29,10 +29,10 @@ public class QuestionServiceImpl implements QuestionService{
 	}
 
 	@Override
-	public List<QuestionVo> selectQuestionList(QuestionVo vo, PageVo pv) {
+	public List<QuestionVo> selectQuestionList(Map map) {
 		
 		
-		return dao.selectQuestionList(sst,vo,pv);
+		return dao.selectQuestionList(sst,map);
 	}
 
 	@Override

@@ -24,22 +24,22 @@ public class AdminNoticeDao {
 		return sst.update("adminNoticeMapper.updateHit",vo);
 	}
 
-	public List<NoticeVo> selectNoticeListAll(SqlSessionTemplate sst, NoticeVo vo, PageVo pv) {
-		
+	public List<NoticeVo> selectNoticeListAll(SqlSessionTemplate sst, Map map) {
+		PageVo pv = (PageVo)map.get("pv");
 		int offset = (pv.getCurrentPage() -1)* pv.getBoardLimit();
 		int limit = pv.getBoardLimit();
 		RowBounds rb = new RowBounds(offset, limit);
 
-		return sst.selectList("adminNoticeMapper.noticeListAll",vo,rb);
+		return sst.selectList("adminNoticeMapper.noticeListAll",map,rb);
 	}
 
-	public List<NoticeVo> selectNoticeList(SqlSessionTemplate sst, NoticeVo vo, PageVo pv) {
-		
+	public List<NoticeVo> selectNoticeList(SqlSessionTemplate sst, Map map) {
+		PageVo pv = (PageVo)map.get("pv");
 		int offset = (pv.getCurrentPage() -1)* pv.getBoardLimit();
 		int limit = pv.getBoardLimit();
 		RowBounds rb = new RowBounds(offset, limit);
 
-		return sst.selectList("adminNoticeMapper.noticeList",vo,rb);
+		return sst.selectList("adminNoticeMapper.noticeList",map,rb);
 	}
 
 	public NoticeVo selectOne(SqlSessionTemplate sst, NoticeVo vo) {
@@ -55,9 +55,9 @@ public class AdminNoticeDao {
 	}
 
 	public int updateOne3(SqlSessionTemplate sst, NoticeVo vo) {
-		System.out.println("ddddd");
+		
 		int no = sst.update("adminNoticeMapper.delete",vo);
-		System.out.println("dao:"+no);
+		
 		return no;
 	}
 

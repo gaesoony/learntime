@@ -32,8 +32,9 @@
                     </select></div>
                     <div class="search-box-notice"><input type="text" name= "keyword" class="search-box" size="25"></div>
                     <div class="notice-input"><input type="submit" value="검색" class="submitBtn"></div>
-                    <c:if test="${loginMember.adminYn eq 'Y'}">
-                    	<a href="/app/notice/noticeWrite"><div class="write-notice-d" >글쓰기</div></a>
+                    <c:set var="admin" value="${loginMember.getAdminYn()}" scope="session"/>  
+            		<c:if test="${admin eq 'Y'}">
+            			<a href="/app/notice/noticeWrite"><div class="write-notice-d" >글쓰기</div></a>
                     </c:if>
                 </div>
             </div>
@@ -81,17 +82,32 @@
 </form>
 <div class="page-notice">
    	<div class="page-question">
-  	<ul id="page-nation">
-		<li><div ="pageBtn"><a href="/app/notice/noticeList?p=1&cateNo=0" class="first"><<</a></div></li>
-		<li><div ="pageBtn"><a class="arrow left"><</a></div></li>
-		<li><div ="pageBtn"><a class="num"></a></div></li>
-		<li><div ="pageBtn"><a class="num"></a></div></li>
-		<li><div ="pageBtn"><a class="num"></a></div></li>
-		<li><div ="pageBtn"><a class="num"></a></div></li>
-		<li><div ="pageBtn"><a class="num"></a></div></li>
-		<li><div ="pageBtn"><a class="arrow right">></a></div></li>
-		<li><div ="pageBtn"><a href="/app/notice/noticeList?p=${pv.maxPage}&cateNo=0" class="last">>></a></div></li>
-	</ul>
+  		<div class="page-faq">
+			<c:if test="${pv.startPage != 1}">
+                <div class="paging-btn" id="prev-btn">
+                  <a
+                    href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+                    >이전</a
+                  >
+                </div>
+            </c:if>
+              <c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
+                <div class="paging-btn" id="${i}">
+                  <a
+                    href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+                    >${i}</a
+                  >
+                </div>
+              </c:forEach>
+            <c:if test="${pv.endPage < pv.maxPage}">
+              <div class="paging-btn" id="next-btn">
+                <a
+                  href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+                  >다음</a
+                >
+              </div>
+            </c:if>
+	   </div>
    </div>
  </div>
 

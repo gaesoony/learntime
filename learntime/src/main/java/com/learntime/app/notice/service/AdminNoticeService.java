@@ -17,9 +17,9 @@ public interface AdminNoticeService {
 
 	public int updateHit(NoticeVo vo);
 
-	public List<NoticeVo> selectNoticeListAll(NoticeVo vo, PageVo pv);
+	public List<NoticeVo> selectNoticeListAll(Map map);
 
-	public List<NoticeVo> selectNoticeList(NoticeVo vo, PageVo pv);
+	public List<NoticeVo> selectNoticeList(Map map);
 
 	public NoticeVo selectOne(NoticeVo vo);
 

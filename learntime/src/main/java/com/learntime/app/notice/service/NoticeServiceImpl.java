@@ -28,8 +28,8 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public List<NoticeVo> selectNoticeList( NoticeVo vo, PageVo pv) {
-		return dao.selectNoticeList(sst,vo,pv);
+	public List<NoticeVo> selectNoticeList( Map map) {
+		return dao.selectNoticeList(sst,map);
 	}
 
 	@Override
@@ -56,13 +56,14 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public List<NoticeVo> selectNoticeListAll(NoticeVo vo, PageVo pv) {
+	public List<NoticeVo> selectNoticeListAll(Map map) {
 		
-		return dao.selectNoticeListAll(sst,vo,pv);
+		return dao.selectNoticeListAll(sst,map);
 	}
 
+	
 	@Override
-	public int insertCmt(NoticeCmtVo ncv) {
+	public int noticeCmtWrite(NoticeCmtVo ncv) {
 		return dao.insertCmt(sst,ncv);
 	}
 

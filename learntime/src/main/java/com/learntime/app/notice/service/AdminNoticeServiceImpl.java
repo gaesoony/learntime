@@ -37,13 +37,13 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 	}
 
 	@Override
-	public List<NoticeVo> selectNoticeListAll(NoticeVo vo, PageVo pv) {
-		return adao.selectNoticeListAll(sst,vo,pv);
+	public List<NoticeVo> selectNoticeListAll(Map map) {
+		return adao.selectNoticeListAll(sst,map);
 	}
 
 	@Override
-	public List<NoticeVo> selectNoticeList(NoticeVo vo, PageVo pv) {
-		return adao.selectNoticeList(sst,vo,pv);
+	public List<NoticeVo> selectNoticeList(Map map) {
+		return adao.selectNoticeList(sst,map);
 	}
 
 	@Override

@@ -331,6 +331,10 @@
         padding: 0;
         margin-top: 20px;
     }
+    .page-qList-ad{
+    	display:flex;
+    	justify-content:center;
+    }
 
     #page-nation li{
         display: inline;
@@ -453,7 +457,7 @@
 	                </c:forEach>
 	            </div>
 	            <div class="page-qList-ad">
-	            	<div class="page-faq">
+	            	<div class="page-faqAd">
 					  	<c:if test="${pv.startPage != 1}">
 	                  <div class="paging-btn" id="prev-btn">
 	                    <a
@@ -502,8 +506,8 @@
 		
 	}); */
 	function deleteValue(){
-		
-		
+		const del = document.querySelector('#erase');
+		const deleteList = document.querySelector('#deleteAd');
 		const url="/app/admin/faq/faqListAd";
 		const valueArr = new Array();
 		const list = $("input[name = 'faqAd']");
@@ -521,7 +525,9 @@
 				url: url,
 				type: 'POST',
 				traditional:true,
-				data:{"deleteList":deleteList,
+				data:{
+					"del":del,
+					"deleteList":deleteList,
                     "valueArr":valueArr
 		        },
 		        success:function(x){

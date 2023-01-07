@@ -62,7 +62,7 @@ public class AdminFaqController {
 	}
 	@PostMapping("faqListAd")
 	@ResponseBody
-	public String faqListAd(NoticeVo vo,String deleteList,String erasePost, @RequestParam(value="valueArr[]") List<Integer> valueArr) {
+	public String faqListAd(NoticeVo vo,String deleteList,String del, @RequestParam(value="valueArr[]") List<Integer> valueArr) {
 		
 		int no =0;
 		
@@ -76,7 +76,9 @@ public class AdminFaqController {
 		
 		int result = 0;
 		
-		if("활성화".equals(deleteList)) {
+		if("삭제".equals(deleteList)) {
+			result = afs.deleteOne(vo);
+		}else if ("삭제".equals(del)) {
 			result = afs.deleteOne(vo);
 		}
 		

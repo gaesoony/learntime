@@ -1,6 +1,9 @@
 package com.learntime.app.admin.q.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,9 +15,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.learntime.app.admin.q.service.AdminQuestionService;
 import com.learntime.app.member.vo.MemberVo;
+import com.learntime.app.notice.vo.NoticeVo;
 import com.learntime.app.question.service.QuestionService;
 import com.learntime.app.question.vo.PageVo;
 import com.learntime.app.question.vo.Pagination;
@@ -38,31 +43,41 @@ public class AdminQuestionController {
 		int pageLimit = 5;
 		pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 		
+		int cateNo = vo.getCateNo();
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("vo",vo );
+		map.put("pv",pv);
 		
 		
-		List<QuestionVo> list= aqs.selectQuestionListAd(vo,pv);
+		List<QuestionVo> list= aqs.selectQuestionListAd(map);
 		m.addAttribute("pv",pv);
 		m.addAttribute("list",list);
+		m.addAttribute("cateNo",vo.getCateNo());
 		m.addAttribute("p",pv.getP());
-
+		m.addAttribute("category",vo.getCategory());
+		m.addAttribute("keyword",vo.getKeyword());
 		
 		return "admin/question/qListAd";
 	}
 	//게시물 선택삭제
 	@PostMapping("qListAd")
-	public String qListAd(HttpServletRequest req,QuestionVo vo) {
+	public String qListAd(HttpServletRequest req,QuestionVo vo,String deleteList,@RequestParam(value="valueArr[]") List<Integer> valueArr) {
 
-		String[] ajaxMsg = req.getParameterValues("valueArr");
 		
-		int size= ajaxMsg.length;
-		int no = 0;
-		int result = 0;
+		int no =0;
 		
-		for(int i = 0; i<size; i++) {
-			no= Integer.parseInt(ajaxMsg[i]);
-			
+		List<NoticeVo> list = new ArrayList<NoticeVo>();
+		for(int i = 0; i<valueArr.size(); i++) {
+			no = valueArr.get(i);
 			vo.setNo(no);
-		    result = aqs.delete(vo);
+			
+			
+		}
+		
+		int result = 0;
+		if ("삭제".equals(deleteList)) {
+			result = aqs.deleteOne(vo);
 		}
 		if(result == 1) {
 			return "redirect:admin/question/qListAd";
