@@ -8,7 +8,7 @@ public class NoticeCmtVo {
 	
 	private int no;
 	private int nNo;
-	private int writer;
+	private String writer;
 	private Timestamp enrollDate;
 	private String deleteYn;
 	private Timestamp modifyDate;

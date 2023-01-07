@@ -13,8 +13,8 @@ public interface QuestionService {
 	
 	public int questionWrite(QuestionVo vo);
 	
-	public List<QuestionVo> selectQuestionList(QuestionVo vo,PageVo pv);
-//	public List<QuestionVo> boardList(int cate);
+	public List<QuestionVo> selectQuestionList(Map map);
+
 	
 	public int selectCount();
 	

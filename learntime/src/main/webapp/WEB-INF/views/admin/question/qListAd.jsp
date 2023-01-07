@@ -8,6 +8,7 @@
 <!-- <link rel="stylesheet" href="/app/.css"> -->
 <title>Insert title here</title>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> 
 <style>
 #content-wrap{
     background-color: #efefef;
@@ -234,7 +235,17 @@
         background-color: #5ECC80;
         cursor: pointer;
     }
+    .page-qList-ad{
+    	display:flex;
+    	justify-content:center;
+    }
 
+	.page-questionAd{
+		display:flex;
+	}
+	.paging-btn{
+		margin-left:20px;
+	}
 </style>
 <body>
 	<%@include file="/WEB-INF/views/common/admin-side.jsp"%>
@@ -254,7 +265,7 @@
 	                </div>
 	            </div>
 	            <div class="deleteBtn">
-	                <input type="button" value="삭제" id="erase" onclick="deleteValue();">
+	                <input type="button" value="삭제" id="erase" class="del">
 	            </div>
 	            <div class="listed-q">
 	                <c:forEach var="list" items="${list}"  >
@@ -265,101 +276,88 @@
 	                            <a href="app/admin/question/qDetailListAdmin?no=${list.no}"><div class="title-faq-ad" name="title">${list.title}</div></a>
 	                            <div class="nickname-faq-ad" name="writer">${list.writer}</div>
 	                            <div class="enrollDate-faq-ad" name="enrollDate">${list.enrollDate}</div>
-	                            <div class="deleteBtn-faq-ad"><input type="button" value="삭제" id="delete-ad" onclick="deleteValue();"></div>
+	                            <div class="deleteBtn-faq-ad"><input type="button" value="삭제" id="deleteAd" class="del"></div>
 	                        </div>
 	                    </div>
 	                </c:forEach>
 	            </div>
 	            <div class="page-qList-ad">
-					 <ul id="page-nation">
-						<li><a href="/app/admin/question/qListAd?p=1" class="first"><<</a></li>
-						<li><a class="arrow left"><</a></li>
-						<li><a class="num"></a></li>
-						<li><a class="num"></a></li>
-						<li><a class="num"></a></li>
-						<li><a class="num"></a></li>
-						<li><a class="num"></a></li>
-						<li><a class="arrow right">></a></li>
-						<li><a href="/app/admin/question/qListAd?p=${pv.maxPage}" class="last">>></a></li>
-					</ul>
+					 <div class="page-questionAd">
+					  	<c:if test="${pv.startPage != 1}">
+		                  <div class="paging-btn" id="prev-btn">
+		                    <a
+		                      href="${path}/admin/question/qListAd?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+		                      >이전</a
+		                    >
+		                  </div>
+		                </c:if>
+		                <c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
+		                  <div class="paging-btn" id="${i}">
+		                    <a
+		                      href="${path}/admin/question/qListAd?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+		                      >${i}</a
+		                    >
+		                  </div>
+		                </c:forEach>
+		                <c:if test="${pv.endPage < pv.maxPage}">
+		                  <div class="paging-btn" id="next-btn">
+		                    <a
+		                      href="${path}/admin/question/qListAd?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+		                      >다음</a
+		                    >
+		                  </div>
+	                	</c:if>
+				   </div>
 	            </div>
        		</form>
        	</div>   
     </div>
 
 <script type="text/javascript">
-	const pageNation = document.querySelector('#page-nation');
-	const numArr = pageNation.querySelectorAll('.num');
-	const left = pageNation.querySelector('.arrow.left');
-	const right = pageNation.querySelector('.arrow.right');
-	
-	
-	if(${pv.startPage} > 1){
-		left.href = '/app/admin/question/qListAd?p=${pv.startPage})-1';
-	}else{
-		left.classList.add('none-select');
-	}
-	
-	if(${pv.currentPage} != ${pv.maxPage}){
-		left.href = '/app/admin/question/qListAd?p=${pv.currentPage})+1';
-	}else{
-		right.classList.add('none-select');
-	}
-	
-
-	let page = ${pv.startPage};
-
-	for (let i = 0; i < numArr.length; i++) {
-		const num = numArr[i];
-		
-		if(page == ${pv.currentPage}){
-			num.classList.add('current');
-		}
-		
-		if(page<1 || page > ${pv.maxPage}){
-			num.classList.add('p-none');
-		}else{
-			num.href = '/app/admin/question/qListAd?p='+page;
-		}
-		num.classList.remove('p-none');
-        $(num).attr('onclick','/app/admin/question/qListAd?p=('+page+')');
-        
-		num.innerHTML = page;
-		page++;
-	}
 	
 	/*체크박스 삭제  */
 	 
-	function deleteValue(){
-		var url="qListAd?p=${pv.currentPage}";
-        var valueArr = new Array();
-        var list = $("checkBtn");
-        for(var i = 0; i <list.length; i++){
-            if(list[i].checked){
-                valueArr.push(list[i].value);
-            }
-        }
+	$('.del').click(function(){
+	
+		let deleteList = $('.del').eq(0).val();
+	    
+	    let valueArr = new Array();
+	    let list = $("#checkBtn:checked");
+	   
+	    
+	    for(let i = 0; i <list.length; i++){
+	        if(list[i].checked){
+	            valueArr.push(list[i].value);
+	        }
+	    }
+	    
+	    var chk = confirm("삭제 하시겠습니까?");
+	    const divs = document.querySelectorAll('.faqListAd').value;
+	    $.ajax({
+	        url:"/app/admin/notice/noticeListAdmin",
+	        type:"post",
+	        data:{"deleteList":deleteList,
+	                "valueArr":valueArr
+	    },
+	    success:function(x){
+	        alert('삭제되었습니다.');
+	        for(let i = 0; i < list.length; i++) {
+	        	$('.faqListAd').remove('list[i].checked'); 
+	        }
+	        
+	    },
+	    error:function(){
+	        alert('에러가 발생했습니다.');
+	    }
 
-        var chk = confirm("삭제하시겠습니까?");
-        $.ajax({
-            url: url,
-            type:'post',
-            traditional:true,
-            data:{
-                "valueArr":valueArr
-            },
-            success:function(jdata){
-                if(jdata == 1){
-                    alert("삭제되었습니다.");
-
-                }else{
-                    alert("삭제되지 않았습니다.");
-                }
-            }
-        });
-    
+	    });
 		
-	}
+        });
+        
+	
+        	
+		
+	
 	
 	</script>
 

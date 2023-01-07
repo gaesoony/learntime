@@ -33,6 +33,8 @@ public class NoticeController {
 	@Autowired
 	private NoticeService ns;
 	
+	
+	
 	// 공지사항 리스트 화면
 		@GetMapping("notice/noticeList")
 		public String noticeList(NoticeVo vo, Model m,PageVo pv) {
@@ -44,19 +46,24 @@ public class NoticeController {
 			int pageLimit = 5;
 			pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 			
+			int cateNo = vo.getCateNo();
 			int cmtCnt = ns.cmtCnt();
 			int hit = ns.updateHit(vo);
 			vo.setHit(hit);
+			
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("vo",vo);
+			map.put("pv",pv);
 			
 
 			List<NoticeVo> list= null;
 			if(vo.getCateNo()==0)  {
 				
-				list= ns.selectNoticeListAll(vo,pv);
+				list= ns.selectNoticeListAll(map);
 				
 			}else {
 				//vo.setCateNo(cateNo);
-				list= ns.selectNoticeList(vo,pv);
+				list= ns.selectNoticeList(map);
 				
 				
 			}
@@ -104,20 +111,24 @@ public class NoticeController {
 			
 			
 		}
+		//공지사항 상세조회(댓글)
 		@PostMapping("notice/noticeDetail")
-		public String inserCmt(NoticeCmtVo ncv,NoticeVo vo) {
+		public String inserCmt(NoticeCmtVo ncv,NoticeVo vo, HttpSession session) {
 			
+			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember"); 
+			
+			String writer = loginMember.getNo();
 			int nNo = vo.getNo();
-		    ncv.setNNo(nNo);
+			ncv.setNNo(nNo);
+			ncv.setWriter(writer);
 			
-			int result = ns.insertCmt(ncv);
+			int result = ns.noticeCmtWrite(ncv);
 			
 			if(result == 1) {
 				return "notice/noticeDetail";
 			}else {
 				return "common/errorPage";
 			}
-			
 			
 		}
 			

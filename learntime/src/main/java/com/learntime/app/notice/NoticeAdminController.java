@@ -41,19 +41,24 @@ public class NoticeAdminController {
 			int pageLimit = 5;
 			pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 			
+			int cateNo = vo.getCateNo();
 			int cmtCnt = ans.cmtCnt();
 			int hit = ans.updateHit(vo);
 			vo.setHit(hit);
+			
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("vo",vo);
+			map.put("pv",pv);
 			
 
 			List<NoticeVo> list= null;
 			if(vo.getCateNo()==0 )  {
 				
-				list= ans.selectNoticeListAll(vo,pv);
+				list= ans.selectNoticeListAll(map);
 				
 			}else {
 				
-				list= ans.selectNoticeList(vo,pv);
+				list= ans.selectNoticeList(map);
 				
 				
 			}
@@ -72,7 +77,7 @@ public class NoticeAdminController {
 		@PostMapping("noticeListAdmin")
 		@ResponseBody
 		public String noticeListAdmin(HttpServletRequest req,NoticeVo vo,String activate,@RequestParam(value="valueArr[]") List<Integer> valueArr) {
-			System.out.println("ㅋㅋㅋ호출!!");
+			
 //			String activate = req.getParameter("activate");
 			String deactivate = req.getParameter("deactivate");
 			String deleteList = req.getParameter("deleteList");
@@ -86,8 +91,7 @@ public class NoticeAdminController {
 				
 				
 			}
-			System.out.println("deleteList"+deleteList);
-			System.out.println("valueArr:"+valueArr);
+			
 			
 //			Map<String,Object> map = new HashMap<String,Object>();
 //			map.put("vo",vo);
@@ -106,7 +110,7 @@ public class NoticeAdminController {
 			
 			
 			
-			return "";
+			return "admin/notice/noticeListAdmin";
 			
 		}
 		

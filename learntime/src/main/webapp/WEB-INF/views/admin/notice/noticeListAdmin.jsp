@@ -8,7 +8,7 @@
 <!-- <link rel="stylesheet" href="/app/.css"> -->
 <title>Insert title here</title>
 </head>
-<<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
@@ -501,24 +501,39 @@ background-color: #e9fde9;
             </div>
             <div class="page-notice">
             	<div class="page-question">
-				  	<ul id="page-nation">
-						<li><div class="pageBtn"><a href="/app/notice/noticeList?p=1&cateNo=0" class="first"><<</a></div></li>
-						<li><div class="pageBtn"><a class="arrow left"><</a></div></li>
-						<li><div class="pageBtn"><a class="num"></a></div></li> 
-						<li><div class="pageBtn"><a class="num"></a></div></li>
-						<li><div class="pageBtn"><a class="num"></a></div></li>
-						<li><div class="pageBtn"><a class="num"></a></div></li>
-						<li><div class="pageBtn"><a class="num"></a></div></li>
-						<li><div class="pageBtn"><a class="arrow right">></a></div></li>
-						<li><div class="pageBtn"><a href="/app/notice/noticeList?p=${pv.maxPage}&cateNo=0" class="last">>></a></div></li>
-					</ul>
+				  	<div class="page-faq">
+					  	<c:if test="${pv.startPage != 1}">
+		                  <div class="paging-btn" id="prev-btn">
+		                    <a
+		                      href="${path}/admin/notice/noticeListAdmin?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+		                      >이전</a
+		                     >
+		                  </div>
+	                	</c:if>
+	                <c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
+	                  <div class="paging-btn" id="${i}">
+	                    <a
+	                      href="${path}/admin/notice/noticeListAdmin?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+	                      >${i}</a
+	                    >
+	                  </div>
+	                </c:forEach>
+		                <c:if test="${pv.endPage < pv.maxPage}">
+		                  <div class="paging-btn" id="next-btn">
+		                    <a
+		                      href="${path}/admin/notice/noticeListAdmin?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+		                      >다음</a
+		                    >
+		                  </div>
+		                </c:if>
+				   </div>
 			    </div>
             </div>
             </form>
         </div>
     </div>
-    <!-- 세팅 모달 -->
-    <div id="modal1" class="modal">
+     <!-- 세팅 모달 -->
+    <!-- <div id="modal1" class="modal">
 	 	<div class="notice-line">
 	 		<div class="line-a">
 	 			<div class="line-a-a"></div>
@@ -530,54 +545,12 @@ background-color: #e9fde9;
 	 	</div>
 	 	<div class="input-section">
 	 		<div class="empty"></div>
-	 		<div>카테고리 추가: <input type="text" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="확인" class="cate-btn"></div>
+	 		<div>카테고리 추가: <input type="text" class="cate-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="확인" class="cateBtn"></div>
 	   </div>
-   </div>
-   
+   </div> -->
+    
    
 <script type="text/javascript">
-	const pageNation = document.querySelector('#page-nation');
-	const numArr = pageNation.querySelectorAll('.num');
-	const left = pageNation.querySelector('.arrow.left');
-	const right = pageNation.querySelector('.arrow.right');
-	
-	console.log(pageNation);
-	console.log(numArr);
-	if("${pv.startPage}" > 1){
-		left.href = '/app/notice/noticeList?p=${pv.startPage})-1';
-	}else{
-		left.classList.add('none-select');
-	}
-	
-	if("${pv.currentPage}" != "${pv.maxPage}"){
-		left.href = '/app/notice/noticeList?p=${pv.currentPage})+1';
-	}else{
-		right.classList.add('none-select');
-	}
-	
-
-	let page = "${pv.startPage}";
-
-	for (let i = 0; i < numArr.length; i++) {
-		const num = numArr[i];
-		
-		if(page == "${pv.currentPage}"){
-			num.classList.add('current');
-		}
-		
-		if(page<1 || page > "${pv.maxPage}"){
-			console.log(num);
-			num.classList.add('p-none');
-			
-		}else{
-			num.href = '/app/notice/noticeList?p='+page;
-		}
-		num.classList.remove('p-none');
-        $(num).attr('onclick','/app/notice/noticeList?p=('+page+')');
-        
-		num.innerHTML = page;
-		page++;
-	}
 	
 	
 	/*상단고정버튼  */
@@ -652,14 +625,16 @@ background-color: #e9fde9;
         let deleteList = $('input[name="deleteList"]').eq(0).val();
         console.log($('input[name="deleteList"]').get(0));
         let valueArr = new Array();
-        let list = $("#checkBoxBtn:checked");
+        let list = $("#checkBoxBtn:checked"); 
         for(let i = 0; i <list.length; i++){
+        	console.log(list[i]);
             if(list[i].checked){
                 valueArr.push(list[i].value);
             }
         }
 
         var chk = confirm("삭제 하시겠습니까?");
+        
         $.ajax({
             url:"/app/admin/notice/noticeListAdmin",
             type:"post",
@@ -668,26 +643,21 @@ background-color: #e9fde9;
         },
         success:function(x){
             alert('삭제되었습니다.');
+            location.reload();
+            
         },
         error:function(){
             alert('에러가 발생했습니다.');
         }
+       
 
         });
         
-        const gatheringDivs = document.querySelectorAll('.gatheringDivs').value;
         
-        for(let i = 0; i < list.length; i++) {
-        	  if(list[i] === list[i].checked)  {
-        		  
-        	    $('.gatheringDivs').remove('list[i].checked');
-        	  }
-        	}
-
-    })
+    });
     
-
-   
+ 
+ 
 	
 	</script>
 

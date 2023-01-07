@@ -1,6 +1,7 @@
 package com.learntime.app.admin.q.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,9 @@ public class AdminQuestionServiceImpl implements AdminQuestionService {
 	private AdminQuestionDao adao;
 
 	@Override
-	public List<QuestionVo> selectQuestionListAd(QuestionVo vo, PageVo pv) {
+	public List<QuestionVo> selectQuestionListAd(Map map) {
 
-		return adao.selectQuestionListAd(sst,vo,pv);
+		return adao.selectQuestionListAd(sst,map);
 	}
 
 	@Override
@@ -38,10 +39,11 @@ public class AdminQuestionServiceImpl implements AdminQuestionService {
 		return adao.selectOne(sst,vo);
 	}
 
+	
+
 	@Override
-	public int delete(QuestionVo vo) {
-		return adao.delete(sst,vo);
-		
+	public int deleteOne(QuestionVo vo) {
+		return adao.deleteOne(sst,vo);
 	}
 
 }

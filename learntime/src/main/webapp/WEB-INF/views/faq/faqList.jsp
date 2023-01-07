@@ -44,7 +44,11 @@
         </div>
         
         <div class="list-all">
-            <c:forEach var="list" items="${list}" >
+        	<c:set var="no" value="${loginMember.getNo()}" scope="session"/>
+            <c:set var="writer" value="${vo.writer}" scope="session"/> 
+            <c:set var="admin" value="${loginMember.getAdminYn()}" scope="session"/>  
+            <c:if test="${not empty no || admin eq 'Y'}">
+            	<c:forEach var="list" items="${list}" >
                 <div class="faqList">
                     <div class="q-mark">
                         <div class="green-circle2">Q</div>
@@ -54,6 +58,7 @@
                     <div class="date-faq" name="enrollDate">${list.enrollDate}</div>
                 </div>
             </c:forEach>
+            </c:if>
         </div>
         <div class="page-section">
         	<div class="page-faq">

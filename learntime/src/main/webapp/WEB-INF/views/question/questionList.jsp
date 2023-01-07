@@ -28,7 +28,7 @@
                 <div class="gathering-blocks">
                     <div class="select-content">
                         <select name="category" >
-                            <option value="title-option">제목</option>
+                            <option value="title-option" >제목</option>
                             <option value="content-option">내용</option>
                         </select>
                     </div>
@@ -52,75 +52,54 @@
                     <a href="/app/question/questionList?p=1&cateNo=7"><div class="cate" value="7" name="cateNo">스킨샵</div></a>
                 </div>
             </div>
+            
+            <%
+            	System.out.println("화면에 넘어온 리스트 ~~~~~");
+            	System.out.println(request.getAttribute("list"));
+            %>
+            
             <div class="list-question">
-                <c:forEach var="list" items="${list}" >
+                <c:forEach var="vo" items="${list}" >
                     <div class="questionList">
-                        <div class="pick-cate" name="name">${list.cateName}</div>
-                        <a href="/app/question/qDetailList?no=${list.no}"><div class="pick-title" name="title">${list.title }</div></a>
-                        <div class="pick-date" name="enrollDate">${list.enrollDate}</div>
+                        <div class="pick-cate" name="name">${vo.cateName}</div>
+                        <a href="/app/question/qDetailList?no=${vo.no}"><div class="pick-title" name="title">${vo.title }</div></a>
+                        <div class="pick-date" name="enrollDate">${vo.enrollDate}</div>
                     </div>
                 </c:forEach>
             </div>
         </div>
     </div>
   <div class="page-question">
-  	<ul id="page-nation">
-		<li><a href="/app/question/questionList?p=1&cateNo=0" class="first"><<</a></li>
-		<li><a class="arrow left"><</a></li>
-		<li><a class="num"></a></li>
-		<li><a class="num"></a></li>
-		<li><a class="num"></a></li>
-		<li><a class="num"></a></li>
-		<li><a class="num"></a></li>
-		<li><a class="arrow right">></a></li>
-		<li><a href="/app/question/questionList?p=${pv.maxPage}&cateNo=0" class="last">>></a></li>
-	</ul>
+  	<div class="page-faq">
+	  	<c:if test="${pv.startPage != 1}">
+             <div class="paging-btn" id="prev-btn">
+               <a
+                 href="${path}/admin/question/questionList?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+                 >이전</a
+               >
+             </div>
+           </c:if>
+           <c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
+             <div class="paging-btn" id="${i}">
+               <a
+                 href="${path}/admin/question/questionList?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+                 >${i}</a
+               >
+             </div>
+           </c:forEach>
+           <c:if test="${pv.endPage < pv.maxPage}">
+             <div class="paging-btn" id="next-btn">
+               <a
+                 href="${path}/admin/question/questionList?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+                 >다음</a
+               >
+             </div>
+          	</c:if>
+   		</div>
    </div>
 </form>
 	
-	<script type="text/javascript">
-	const pageNation = document.querySelector('#page-nation');
-	const numArr = pageNation.querySelectorAll('.num');
-	const left = pageNation.querySelector('.arrow.left');
-	const right = pageNation.querySelector('.arrow.right');
 	
-	
-	if(${pv.startPage} > 1){
-		left.href = '/app/question/questionList?p=${pv.startPage})-1';
-	}else{
-		left.classList.add('none-select');
-	}
-	
-	if(${pv.currentPage} != ${pv.maxPage}){
-		left.href = '/app/question/questionList?p=${pv.currentPage})+1';
-	}else{
-		right.classList.add('none-select');
-	}
-	
-
-	let page = ${pv.startPage};
-
-	for (let i = 0; i < numArr.length; i++) {
-		const num = numArr[i];
-		
-		if(page == ${pv.currentPage}){
-			num.classList.add('current');
-		}
-		
-		if(page<1 || page > ${pv.maxPage}){
-			num.classList.add('p-none');
-		}else{
-			num.href = '/app/question/questionList?p='+page;
-		}
-		num.classList.remove('p-none');
-        $(num).attr('onclick','/app/question/questionList?p=('+page+')');
-        
-		num.innerHTML = page;
-		page++;
-	}
-	
-	</script>
-
 
 
 

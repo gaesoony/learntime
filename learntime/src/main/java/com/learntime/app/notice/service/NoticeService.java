@@ -13,7 +13,7 @@ public interface NoticeService {
 	
 	public int noticeWrite(NoticeVo vo);
 
-	public List<NoticeVo> selectNoticeList(NoticeVo vo, PageVo pv);
+	public List<NoticeVo> selectNoticeList(Map map);
 
 	public int selectCount();
 
@@ -23,9 +23,9 @@ public interface NoticeService {
 
 	public NoticeVo selectOne(NoticeVo vo);
 
-	public List<NoticeVo> selectNoticeListAll(NoticeVo vo, PageVo pv);
-
-	public int insertCmt(NoticeCmtVo ncv);
+	public List<NoticeVo> selectNoticeListAll(Map map);
+	
+	public int noticeCmtWrite(NoticeCmtVo ncv);
 
 	
 

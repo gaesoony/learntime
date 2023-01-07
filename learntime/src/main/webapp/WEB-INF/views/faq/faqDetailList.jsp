@@ -40,7 +40,7 @@
         <div class="empty1"></div>
         <div class="faq-content" name="content">${vo.content}</div>
         <div class="backBtn">
-            <a href="/app/faq/faqDetailList"></a><div class="btn-to-list">글목록</div>
+            <a href="/app/faq/faqList"><div class="btn-to-list">글목록</div></a>
         </div>
     </div>
 </div>

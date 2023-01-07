@@ -1,8 +1,9 @@
 package com.learntime.app.question;
 
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -48,16 +49,27 @@ public class QuestionController {
 		int pageLimit = 5;
 		pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 		
+		int cateNo = vo.getCateNo();
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("vo",vo);
+		map.put("pv",pv);
+		
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember"); 
 		List<QuestionVo> list= null;
 		if(loginMember != null) {
-			list= qs.selectQuestionList(vo,pv);
-			
+			list= qs.selectQuestionList(map);
 		}
+		
+		System.out.println("컨트롤러에서 리스트 출력 ~~~");
+		System.out.println(list);
 		
 		m.addAttribute("pv",pv);
 		m.addAttribute("list",list);
+		m.addAttribute("cateNo",vo.getCateNo());
 		m.addAttribute("p",pv.getP());
+		m.addAttribute("category",vo.getCategory());
+		m.addAttribute("keyword",vo.getKeyword());
 		
 		return "question/questionList";
 		
