@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.learntime.app.mertoring.dao.MentoringDao;
 import com.learntime.app.mertoring.vo.MentorVo;
+import com.learntime.app.mertoring.vo.ReviewVo;
 import com.learntime.app.mertoring.vo.ScheduleVo;
 
 @Service
@@ -66,5 +67,23 @@ public class MentoringServiceImpl implements MentoringService{
 	@Override
 	public List<MentorVo> selectMentorList() {
 		return dao.selectMentorList(sst);
+	}
+
+	//멘토링 상세조회
+	@Override
+	public MentorVo selectMentorDetail(String no) {
+		return dao.selectMentorDetail(sst, no);
+	}
+
+	//특정 멘토링 리뷰조회
+	@Override
+	public List<ReviewVo> selectReviewList(String no) {
+		return dao.selectReviewByNo(sst, no);
+	}
+
+	//멘토 스케줄 시간조회
+	@Override
+	public List<ScheduleVo> selectMentorSchedule(ScheduleVo sv) {
+		return dao.selectMentorSchedule(sst, sv);
 	}
 }

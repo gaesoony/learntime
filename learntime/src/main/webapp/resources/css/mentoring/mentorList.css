@@ -133,7 +133,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 10px 10px 10px 5px;
+    margin: 10px 10px 10px 0;
 }
 
 .star-score{
@@ -152,6 +152,8 @@
 .writer-img{
     height: 25px;
     width: 25px;
+    border-radius: 25px;
+    overflow: hidden;
 }
 .writer-img>img{
     height: 100%;
@@ -454,6 +456,10 @@ input[type='checkbox'] + .stylish-checkbox {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    
+}
+.modal-mentor-nick{
+    margin-left: 5px;
 }
 
 #modal-job,
@@ -468,6 +474,7 @@ input[type='checkbox'] + .stylish-checkbox {
 .modal-profile-img{
     height: 25px;
     width: 25px;
+    border-radius: 25px;
 }
 
 #modal-metoring-title{
@@ -485,6 +492,7 @@ p{
 /* 후기 */
 .modal-review-box{
     padding-bottom: 15px;
+    width: 100%;
 }
 .modal-review-box:not(:first-child){
     height: auto;
@@ -681,4 +689,20 @@ p{
 
 .pay-btn>span:last-child{
     width: 200px;
+}
+
+.hidden{
+    display: none;
+}
+
+.no-cmt{
+    margin: auto;
+    color: #666666;
+    font-size: 16px;
+    width: 566px;
+    margin: 30px 0 30px 0;
+}
+
+.review-content>p{
+    width: 100%;
 }

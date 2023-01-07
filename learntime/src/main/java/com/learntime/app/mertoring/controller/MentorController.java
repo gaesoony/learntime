@@ -1,6 +1,7 @@
 package com.learntime.app.mertoring.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,10 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.mertoring.service.MentoringService;
 import com.learntime.app.mertoring.vo.MentorVo;
+import com.learntime.app.mertoring.vo.ReviewVo;
 import com.learntime.app.mertoring.vo.ScheduleVo;
 
 @RequestMapping("mentor")
@@ -26,11 +31,7 @@ public class MentorController {
 
 	@GetMapping("/review/list")
 	public String mentorReview(Model model) {
-		
 		//리뷰리스트 조회
-
-		
-		
 		return "/mentoring/mentorReview";
 	}
 
@@ -46,6 +47,7 @@ public class MentorController {
 		System.out.println(mentorList);
 		
 		return "/mentoring/mentorList";
+		
 	}
 
 	// 멘토링 등록 화면
@@ -152,7 +154,7 @@ public class MentorController {
 			return "/common/error";
 		}
 
-		return "/mentoring/mentorList";
+		return "redirect:/mentor/list";
 	}
 
 	@GetMapping("/regist")
@@ -201,5 +203,49 @@ public class MentorController {
 	public String myMentoringT1() {
 		return "/member/mypage-mentoring";
 	}
+	
+	
+	//멘토리스트에서 멘토링 상세보기
+	@ResponseBody
+	@GetMapping(value = "/mentoring/detail", produces = "application/text;charset=utf8")
+	public String showDetail(@RequestParam("no") String no) {
+		
+		System.out.println(no);
+		//멘토링 디테일 조회
+		MentorVo mv = ms.selectMentorDetail(no);
+
+		//댓글 조회
+		List<ReviewVo> rv = ms.selectReviewList(no);
+		
+		System.out.println(rv);
+		
+		Gson gson = new Gson();
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("mv", mv);
+		map.put("rvList", rv);
+		
+		String jsonString = gson.toJson(map);
+		
+		return jsonString;
+	}
+	
+	//특정 날짜 가능시간 받아오기
+	@ResponseBody
+	@GetMapping(value = "/schedule", produces = "application/text;charset=utf8")
+	public String getSchedule(ScheduleVo sv) {
+		
+		List<ScheduleVo> svList = ms.selectMentorSchedule(sv);
+		
+		
+		
+		
+		return "";
+	}
+	
+	
+	
+	
 
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.learntime.app.mertoring.vo.MentorVo;
+import com.learntime.app.mertoring.vo.ReviewVo;
 import com.learntime.app.mertoring.vo.ScheduleVo;
 
 public interface MentoringDao {
@@ -30,5 +31,14 @@ public interface MentoringDao {
 
 	//멘토 리스트조회
 	public List<MentorVo> selectMentorList(SqlSessionTemplate sst);
+
+	//멘토링 상세조회
+	public MentorVo selectMentorDetail(SqlSessionTemplate sst, String no);
+
+	//특정 멘토링 리뷰조회
+	public List<ReviewVo> selectReviewByNo(SqlSessionTemplate sst, String no);
+
+	//멘토 스케줄 시간조회
+	public List<ScheduleVo> selectMentorSchedule(SqlSessionTemplate sst, ScheduleVo sv);
 
 }

@@ -17,7 +17,8 @@
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 
-    <!-- 모달 -->
+    <!--첫번째 모달 -->
+
     <div class="background" id="first-modal">
         <div class="foreground">
             <div class="mentoring-modal-title">
@@ -29,17 +30,24 @@
                 <div id="modal-mentor">
                     <div class="modal-nick">
                         <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="">
-                        <a href="">&nbsp코딩하는망치맨</a>
+                        <a href="" class="modal-mentor-nick">&nbsp코딩하는망치맨</a>
                     </div>
-                    <div id="modal-mentoring-info">1회 멘토링 : 1시간 / 22,000원 / 1명</div>
+                    <div id="modal-mentoring-info">1회 멘토링 : 
+                        <span class = "modal-mentoring-time"></span>/
+                        <span class = "modal-mentoring-price"></span>원
+                    </div>
                 </div>
-                <div id="modal-job">직무 PO/PM</div>
-                <div id="modal-career">경력 30년</div>
+                <div id="modal-job" class = "modal-mentoring-job">직무 PO/PM</div>
+                <div id="modal-career" class = "modal-mentoring-career">경력 30년</div>
             </div>
 
+            <div class="mentoring-modal-title">
+                <span class="modal-sub-title">상세 내용</span>
+            </div>
             <div class="modal-info-box">
-                <div id="modal-metoring-title">스프링으로 생산력 향상 시켜드립니다.</div>
-                <div id="modal-metoring-content">
+                
+                <div id="modal-mentoring-title">스프링으로 생산력 향상 시켜드립니다.</div>
+                <div id="modal-mentoring-content">
                     <p>
                         안녕하세요.. 스프링 쌉고수 입니다. 생산력 향상 시켜드립니다.
                         <br><br>
@@ -51,7 +59,6 @@
                     </p>
                 </div>
             </div>
-
         
 
             <div class="mentoring-modal-title">
@@ -61,10 +68,9 @@
                     <span class="material-symbols-rounded close-icon">navigate_next</span>
                 </a>
             </div>
+            <div class="modal-info-box main-review-box">
 
-
-
-            <div class="modal-info-box">
+                <!-- 임시 -->
                 <div class="modal-review-box">
                     <div class="modal-review-info">
                         <div class="writer-box">
@@ -74,11 +80,12 @@
                             </div>        
                         </div>
                         <div class="star-box">
-                            <span class="material-symbols-rounded star">star</span>
-                            <span class="material-symbols-rounded star">star</span>
-                            <span class="material-symbols-rounded star">star</span>
-                            <span class="material-symbols-rounded star">star</span>
-                            <span class="material-symbols-rounded star">star</span>
+                            <span class="star-score hidden">5</span>
+                            <span class="material-symbols-rounded star-icon star">star</span>
+                            <span class="material-symbols-rounded star-icon star">star</span>
+                            <span class="material-symbols-rounded star-icon star">star</span>
+                            <span class="material-symbols-rounded star-icon star">star</span>
+                            <span class="material-symbols-rounded star-icon star">star</span>
                         </div>
                     </div>
                     <div class="review-content">
@@ -87,50 +94,8 @@
                         </p>
                     </div>
                 </div>
-                <div class="modal-review-box">
-                    <div class="modal-review-info">
-                        <div class="writer-box">
-                            <div class="modal-nick">
-                                <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="">
-                                <span class="writer-nick">망치맨</span>
-                            </div>        
-                        </div>
-                        <div class="star-box">
-                            <span class="material-symbols-rounded star">star</span>
-                            <span class="material-symbols-rounded star">star</span>
-                            <span class="material-symbols-rounded star">star</span>
-                            <span class="material-symbols-rounded star">star</span>
-                            <span class="material-symbols-rounded star">star</span>
-                        </div>
-                    </div>
-                    <div class="review-content">
-                        <p>
-                            제가 국비지원 출신이라서 어떻게 해야 더 좋은 곳으로 갈 수 있을지 막막 했는데 방향을 이제 확실하게 알게 되었고 개발과 관련된 다양한 정보들을 얻어 볼 수 있는 기회가 되어서 매우 좋았습니다. 감사합니다.
-                        </p>
-                    </div>
-                </div>
-                <div class="modal-review-box">
-                    <div class="modal-review-info">
-                        <div class="writer-box">
-                            <div class="modal-nick">
-                                <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="">
-                                <span class="writer-nick">망치맨</span>
-                            </div>        
-                        </div>
-                        <div class="star-box">
-                            <span class="material-symbols-rounded star">star</span>
-                            <span class="material-symbols-rounded star">star</span>
-                            <span class="material-symbols-rounded star">star</span>
-                            <span class="material-symbols-rounded star">star</span>
-                            <span class="material-symbols-rounded star">star</span>
-                        </div>
-                    </div>
-                    <div class="review-content">
-                        <p>
-                            제가 국비지원 출신이라서 어떻게 해야 더 좋은 곳으로 갈 수 있을지 막막 했는데 방향을 이제 확실하게 알게 되었고 개발과 관련된 다양한 정보들을 얻어 볼 수 있는 기회가 되어서 매우 좋았습니다. 감사합니다.
-                        </p>
-                    </div>
-                </div>
+                <!-- 리뷰 반복 끝 -->
+
             </div>
             <div id="application-btn" class="modal-btn">신청하기</div>
         </div>
@@ -148,12 +113,15 @@
                 <div id="modal-mentor">
                     <div class="modal-nick">
                         <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="">
-                        <a href="">&nbsp코딩하는망치맨</a>
+                        <a href="" class="modal-mentor-nick">&nbsp코딩하는망치맨</a>
                     </div>
-                    <div id="modal-mentoring-info">1회 멘토링 : 1시간 / 22,000원 / 1명</div>
+                    <div id="modal-mentoring-info">1회 멘토링 : 
+                        <span class = "modal-mentoring-time"></span>/
+                        <span class = "modal-mentoring-price"></span>원
+                    </div>
                 </div>
-                <div id="modal-job">직무 PO/PM</div>
-                <div id="modal-career">경력 30년</div>
+                <div id="modal-job" class = "modal-mentoring-job">직무 PO/PM</div>
+                <div id="modal-career" class = "modal-mentoring-career">경력 30년</div>
             </div>
 
             <div class="mentoring-modal-title">
@@ -238,12 +206,15 @@
                 <div id="modal-mentor">
                     <div class="modal-nick">
                         <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="">
-                        <a href="">&nbsp코딩하는망치맨</a>
+                        <a href="" class="modal-mentor-nick">&nbsp코딩하는망치맨</a>
                     </div>
-                    <div id="modal-mentoring-info">1회 멘토링 : 1시간 / 22,000원</div>
+                    <div id="modal-mentoring-info">1회 멘토링 : 
+                        <span class = "modal-mentoring-time"></span>/
+                        <span class = "modal-mentoring-price"></span>원
+                    </div>
                 </div>
-                <div id="modal-job">직무 PO/PM</div>
-                <div id="modal-career">경력 30년</div>
+                <div id="modal-job" class = "modal-mentoring-job">직무 PO/PM</div>
+                <div id="modal-career" class = "modal-mentoring-career">경력 30년</div>
             </div>
 
             <div id="modal-seletedmentor">
@@ -402,182 +373,18 @@
 
                         <div class="mentor">
                             <div class="writer-img">
-                                <img src="/app/resources/img/${metor.writerImg}" alt="" onerror="this.src='/app/resources/img/profile_default.png';">
+                                <img src="/app/${mentor.writerImg}" alt="" onerror="this.src='/app/resources/img/profile_default.png';">
                             </div>
                             <span>${mentor.nick}</span>
                         </div>
                     </div>
                 </c:forEach>
                 <!-- 멘토리스트 반복 끝 -->
-
+                
                 
 
                 <!-- 화면용.. -->
             
-                <div class="mentoring">
-                    <div class="mentoring-title">
-                        <span>스프링으로 생산력 향상 시켜 드립니다 절 믿으세요</span>
-                    </div>
-                    <div class="mentoring-job">
-                        <span class="mentoring-info">직무</span>
-                        <span class="job-input">PO/PM</span>
-                    </div>
-                    <div class="mentoring-career">
-                        <span class="mentoring-info">경력</span>
-                        <span class="career-input">30년</span>
-                    </div>
-                    <div class="mentoring-nacara">
-                        <span class="mentoring-info">현직</span>
-                        <span class="nacara-input">네카라쿠배당토</span>
-                    </div>
-                    <div class="star-box">
-                        <span class="star-score">4.2</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                    </div>
-
-                    <div class="mentor">
-                        <div class="writer-img">
-                            <img src="/app/resources/img/profile01.png" alt="">
-                        </div>
-                        <span>코딩하는망치맨</span>
-                    </div>
-                </div>
-
-                <div class="mentoring">
-                    <div class="mentoring-title">
-                        <span>스프링으로 생산력 향상 시켜 드립니다</span>
-                    </div>
-                    <div class="mentoring-job">
-                        <span class="mentoring-info">직무</span>
-                        <span class="job-input">PO/PM</span>
-                    </div>
-                    <div class="mentoring-career">
-                        <span class="mentoring-info">경력</span>
-                        <span class="career-input">30년</span>
-                    </div>
-                    <div class="mentoring-nacara">
-                        <span class="mentoring-info">현직</span>
-                        <span class="nacara-input">네카라쿠배당토</span>
-                    </div>
-                    <div class="star-box">
-                        <span class="star-score">3.6</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                    </div>
-
-                    <div class="mentor">
-                        <div class="writer-img">
-                            <img src="/app/resources/img/profile01.png" alt="">
-                        </div>
-                        <span>코딩하는망치맨</span>
-                    </div>
-                </div>
-
-                <div class="mentoring">
-                    <div class="mentoring-title">
-                        <span>스프링으로 생산력 향상 시켜 드립니다</span>
-                    </div>
-                    <div class="mentoring-job">
-                        <span class="mentoring-info">직무</span>
-                        <span class="job-input">PO/PM</span>
-                    </div>
-                    <div class="mentoring-career">
-                        <span class="mentoring-info">경력</span>
-                        <span class="career-input">30년</span>
-                    </div>
-                    <div class="mentoring-nacara">
-                        <span class="mentoring-info">현직</span>
-                        <span class="nacara-input">네카라쿠배당토</span>
-                    </div>
-                    <div class="star-box">
-                        <span class="star-score">5.0</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                    </div>
-
-                    <div class="mentor">
-                        <div class="writer-img">
-                            <img src="/app/resources/img/profile01.png" alt="">
-                        </div>
-                        <span>코딩하는망치맨</span>
-                    </div>
-                </div>
-
-                <div class="mentoring">
-                    <div class="mentoring-title">
-                        <span>스프링으로 생산력 향상 시켜 드립니다</span>
-                    </div>
-                    <div class="mentoring-job">
-                        <span class="mentoring-info">직무</span>
-                        <span class="job-input">PO/PM</span>
-                    </div>
-                    <div class="mentoring-career">
-                        <span class="mentoring-info">경력</span>
-                        <span class="career-input">30년</span>
-                    </div>
-                    <div class="mentoring-nacara">
-                        <span class="mentoring-info">현직</span>
-                        <span class="nacara-input">네카라쿠배당토</span>
-                    </div>
-                    <div class="star-box">
-                        <span class="star-score">4.2</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                    </div>
-
-                    <div class="mentor">
-                        <div class="writer-img">
-                            <img src="/app/resources/img/profile01.png" alt="">
-                        </div>
-                        <span>코딩하는망치맨</span>
-                    </div>
-                </div>
-
-                <div class="mentoring">
-                    <div class="mentoring-title">
-                        <span>스프링으로 생산력 향상 시켜 드립니다</span>
-                    </div>
-                    <div class="mentoring-job">
-                        <span class="mentoring-info">직무</span>
-                        <span class="job-input">PO/PM</span>
-                    </div>
-                    <div class="mentoring-career">
-                        <span class="mentoring-info">경력</span>
-                        <span class="career-input">30년</span>
-                    </div>
-                    <div class="mentoring-nacara">
-                        <span class="mentoring-info">현직</span>
-                        <span class="nacara-input">네카라쿠배당토</span>
-                    </div>
-                    <div class="star-box">
-                        <span class="star-score">4.2</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                        <span class="material-symbols-rounded star-icon star">star</span>
-                    </div>
-
-                    <div class="mentor">
-                        <div class="writer-img">
-                            <img src="/app/resources/img/profile01.png" alt="">
-                        </div>
-                        <span>코딩하는망치맨</span>
-                    </div>
-                </div>
 
                 <div class="mentoring">
                     <div class="mentoring-title">
@@ -611,6 +418,8 @@
                         <span>코딩하는망치맨</span>
                     </div>
                 </div>
+
+
             </div>
             <div id="paging">
                 <div class="paging-btn">1</div>
@@ -658,6 +467,7 @@
             });
         });
     </script>
+    <script src="/app/resources/js/mentoring/mentoring.js"></script>
 
     <!-- 모달 스크립트 -->
     <script>
