@@ -73,4 +73,29 @@ public class QnaDaoImpl implements QnaDao {
 		return sst.selectList("qnaMapper.selectTagList", qno);
 	}
 
+	//댓글 작성
+	@Override
+	public int writeAnswer(SqlSessionTemplate sst, Map map) {
+		System.out.println("디에이오에서 댓글 작성 : " + map);
+		return sst.insert("qnaMapper.writeAnswer", map);
+	}
+
+	//상세조회 내 댓글 리스트
+	@Override
+	public List<Map<String, Object>> answerList(SqlSessionTemplate sst, String qno) {
+		return sst.selectList("qnaMapper.answerList", qno);
+	}
+
+	//상세조회 내 대댓글 리스트
+	@Override
+	public List<Map<String, Object>> commentList(SqlSessionTemplate sst, String agno) {
+		return sst.selectList("qnaMapper.commentList", agno);
+	}
+
+	//상세조회 내 답변 채택
+	@Override
+	public int select(SqlSessionTemplate sst, String cno) {
+		return sst.update("qnaMapper.selectReply", cno);
+	}
+
 }

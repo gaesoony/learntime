@@ -33,5 +33,13 @@ public interface QnaDao {
 
 	public List<Map<String, Object>> tagList(SqlSessionTemplate sst, String qno);
 
+	public int writeAnswer(SqlSessionTemplate sst, Map map);
+
+	public List<Map<String, Object>> answerList(SqlSessionTemplate sst, String qno);
+
+	public List<Map<String, Object>> commentList(SqlSessionTemplate sst, String agno);
+
+	public int select(SqlSessionTemplate sst, String cno);
+
 
 }

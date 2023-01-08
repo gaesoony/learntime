@@ -280,14 +280,14 @@
         margin-top: 15px;
     }
     .replybtn{
-        width: 5vw;
-        height: 3.5vh;
+        width: 6vw;
+        height: 4.5vh;
         margin-top: 10px;
         margin-bottom: 25px;
         background-color: #5ECC80;
         color: white;
-        border-radius: 20px;
-        margin-left: 860px;
+        border-radius: 10px;
+        margin-left: 870px;
         text-decoration: none;
         border-style: none;
         font-size: 15px;
@@ -297,13 +297,13 @@
         font-weight: 550;
     }
     .replybtn2{
-        width: 5vw;
-        height: 3.5vh;
+        width: 6vw;
+        height: 4.5vh;
         margin-top: 10px;
         background-color: #5ECC80;
         color: white;
-        border-radius: 20px;
-        margin-left: 810px;
+        border-radius: 10px;
+        margin-left: 815px;
         text-decoration: none;
         border-style: none;
         font-size: 15px;
@@ -330,6 +330,7 @@
         background-color: white;
         border-radius: 10px;
         margin: 0 auto;
+        margin-bottom: 20px;
     }
     .profile3{
         width: 2vw;
@@ -341,7 +342,7 @@
     .endnick{
         font-size: 18px;
         color: black;
-        padding: 30px;
+        padding: 25px;
     }
     .endenrollDate{
         font-size: 15px;
@@ -397,7 +398,7 @@
         width: 950px;
         margin: 0 auto;
         border-top: 1px solid #D8D7D7;
-        margin-top: 10px;
+        /* margin-top: 10px; */
     }
     .endreply{
         width: 950px;
@@ -690,77 +691,110 @@
         </div>
         <div class="middle">
             <c:if test="${loginMember != null}">
-                <div class="middlemain">
-                    <div><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
-                    <div class="replyplz">${loginMember.nick}님, 답변해주세요!</div>
-                    <div class="replyplz-1">모두에게 도움이 되는 답변의 주인공이 되어주세요:)</div>
-                    <div class="input">
-                        <textarea class="summernote" name="editordata"></textarea>
+                <form action="${path}/qna/detail/writeAnswer" method="post">
+                    <div class="middlemain">
+                        <div><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
+                        <div class="replyplz">${loginMember.nick}님, 답변해주세요!</div>
+                        <div class="replyplz-1">모두에게 도움이 되는 답변의 주인공이 되어주세요:)</div>
+                        
+                        <div class="input">
+                            <textarea class="summernote" name="answer"></textarea>
+                        </div>
+                        <input type="hidden" name="qno" value="${qnaDetail.NO}">
+                        <input type="hidden" name="mno" value="${loginMember.no}">
+                        <input type="hidden" name="keyword" value="${qvo.keyword}">
+                        <input type="hidden" name="type" value="${qvo.type}">
+                        <input type="hidden" name="order" value="${qvo.order}">
+                        <input type="submit" class="replybtn" value="답변 등록"></input>
                     </div>
-                    <button type="button" class="replybtn">답변 등록</button>
-                </div>
+                </form>
             </c:if>
     
             <div class="end">
                 <i class="fa-regular fa-comment"></i>
-                <div class="endword">총 1개의 답변이 있습니다</div>
+                <div class="endword">총 ${qnaDetail.REPLY_CNT}개의 답변이 있습니다</div>
             </div>
             
             
-            <div class="jjinend">
-                <div class="choice"><i class="fa-solid fa-medal"></i></div>
-                <div><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
-                <div class="endnick">nick02</div>
-                <div class="endenrollDate">2022.12.08</div>
-                <div class="endheart"><i class="fa-solid fa-thumbs-up"></i> 3</div>
-                <div class="edit1"><input type="button" id="edit1" value="답변 수정"></div>
-                <div class="edit2"> / </div>
-                <div class="edit3"><input type="button" id="edit3" value="삭제"></div>
-                <div class="reply-select-box"><input type="button" id="resply-select" value="/ 채택"></div>
-                <div class="endline1"></div>
-                <div class="endreply">
-                    안녕하세요. nick02입니다.<br>
-                    아래 4개의 클래스 차이는 인터페이스인지/ 클래스인지의 차이를 알 수 없습니다.<br>
-                    인터페이스는 객체를 생성할 수 없기 때문에 다른 클래서에서와 같이 추가할 수 없고,<br>
-                    대신 스프링 데이터 JPA를 사용할 경우 구현 클래스를 자동으로 생성하여 주입 받아
-                    사용가능합니다.
-                </div>
-                <div class="endup" id="endup" onclick="changeColor3()"><i class="fa-regular fa-thumbs-up"></i></div>
-                <div class="enddown" id="enddown" onclick="changeColor4()"><i class="fa-regular fa-thumbs-down"></i></div>
-    
-                <div class="endline2"></div>
-    
-                <div class="chat" id="chat">댓글 <i class="fa-solid fa-chevron-right"></i></div>
-    
-                <!-- 댓글 부분 -->
-                <div id="reply">
-                    <div><img class="profile4" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
-                    <div class="endend">nick03</div>
-                    <div class="endendenrollDate">2202.12.08.</div>
-                    <div class="endheart2"><i class="fa-solid fa-thumbs-up"></i> 15</div>
-                    <div class="edit4"><input type="button" id="edit4" value="댓글 수정"></div>
-                    <div class="edit5"> / </div>
-                    <div class="edit6"><input type="button" id="edit6" value="삭제"></div>
-                    <div class="endline3"></div>
-                    <div class="endendcontent">
-                        말씀하신 내용 바탕으로 정리해보았는데,<br>
-                        의존관계 자동주입 시점에 스프링컨테이너에 프로토타입빈을 요청하면 스프링컨테이너는<br>
-                        프로토타입빈을 생성해서 반환한다. 반환된 프로토타입빈을 this.prototypeBean =prototypeBean; 에 의해서 내부필드에 주입되어서 보관한다.
+            <c:forEach items="${answerList}" var="map">
+                <div class="jjinend">
+                    <c:if test="${map.SELECT_YN == 'Y'}">
+                        <div class="choice"><i class="fa-solid fa-medal"></i></div>
+                    </c:if>
+                    <div><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
+                    <div class="endnick">${map.WRITER}</div>
+                    <div class="endenrollDate">${map.ENROLL_DATE}</div>
+                    <div class="endheart"><i class="fa-solid fa-thumbs-up"></i> ${map.LIKES}</div>
+                    <c:if test="${loginMember.nick == map.WRITER}">
+                        <div class="edit1"><input type="button" id="edit1" value="답변 수정"></div>
+                        <div class="edit2"> / </div>
+                        <div class="edit3"><input type="button" id="edit3" value="삭제"></div>
+                        <c:if test="${map.SELECT_YN == 'N'}">
+                            <div class="reply-select-box"><input type="button" id="resply-select" onclick="location.href='${path}/qna/select?cno=${map.NO}'" value="/ 채택"></div>
+                        </c:if>
+
+                        <c:if test="${map.SELECT_YN == 'Y'}">
+                            <div class="reply-select-box"><input type="button" id="resply-select" onclick="location.href='${path}/qna/select?cno=${map.NO}'" value="/ 채택"></div>
+                        </c:if>
+
+                    </c:if>
+                    <div class="endline1"></div>
+                    <div class="endreply">
+                        ${map.CONTENT}
                     </div>
-                    <div class="endup2" id="endup2" onclick="changeColor()"><i class="fa-regular fa-thumbs-up"></i></div>
-                    <div class="enddown2" id="enddown2" onclick="changeColor2()"><i class="fa-regular fa-thumbs-down"></i></div>
-    
-                    <div class="endline4"></div>
-    
-                    <div class="pluschat2" id="pluschat2">
-                        <div class="input2">
-                            <textarea class="summernote2" name="editordata2"></textarea>
-                        </div>
-                        <button type="button" class="replybtn2">댓글 등록</button>
-                        <div class="endline5"></div>
+
+                    <c:if test="${loginMember != null}">
+                        <div class="endup" id="endup" onclick="changeColor3()"><i class="fa-regular fa-thumbs-up"></i></div>
+                        <div class="enddown" id="enddown" onclick="changeColor4()"><i class="fa-regular fa-thumbs-down"></i></div>
+                    </c:if>
+        
+                    <div class="endline2"></div>
+                    
+                    <div class="chat" id="chat">댓글 <i class="fa-solid fa-chevron-right"></i></div>
+        
+                    <!-- 댓글 부분 -->
+                    <div id="reply">
+                        <c:forEach items="${map.commentList}" var="cmap">
+                            <div><img class="profile4" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
+                            <div class="endend">${cmap.NICK}</div>
+                            <div class="endendenrollDate">${cmap.ENROLL_DATE}</div>
+                            <div class="endheart2"><i class="fa-solid fa-thumbs-up"></i> ${cmap.LIKES}</div>
+                            <c:if test="${loginMember.nick == map.WRITER}">
+                                <div class="edit4"><input type="button" id="edit4" value="댓글 수정"></div>
+                                <div class="edit5"> / </div>
+                                <div class="edit6"><input type="button" id="edit6" value="삭제"></div>
+                            </c:if>
+                            <div class="endline3"></div>
+                            <div class="endendcontent">
+                                ${cmap.CONTENT}
+                            </div>
+
+                            <c:if test="${loginMember != null}">
+                                <div class="endup2" id="endup2" onclick="changeColor()"><i class="fa-regular fa-thumbs-up"></i></div>
+                                <div class="enddown2" id="enddown2" onclick="changeColor2()"><i class="fa-regular fa-thumbs-down"></i></div>
+                            </c:if>
+            
+                            <div class="endline4"></div>
+                        </c:forEach>
+
+                        <c:if test="${loginMember == null}">
+                            <div class="replyLoginNull">로그인 후 댓글 작성이 가능합니다:)</div>
+                        </c:if>
+        
+                        <c:if test="${loginMember != null}">
+                            <div class="pluschat2" id="pluschat2">
+                                <div class="input2">
+                                    <textarea class="summernote2" name="editordata2"></textarea>
+                                </div>
+                                <button type="button" class="replybtn2">댓글 등록</button>
+                                <div class="endline5"></div>
+                            </div>
+                        </c:if>
+                            
                     </div>
                 </div>
-            </div>
+            </c:forEach>
+            
             <div class="endsection"></div>
         </div>
     </form>
@@ -791,13 +825,16 @@
         // 썸머노트
         $('.summernote').summernote({
             height: 130,
-            lang: "ko-KR"
+            lang: "ko-KR",
+            placeholder: '- 답변 채택 시, 토큰 1개가 부여됩니다. <br><br> - 발급된 토큰은 마이페이지 또는 스킨샵에서 확인이 가능합니다.',
+            disableResizeEditor: true,
         });
 
         $('.summernote2').summernote({
             height: 100,
             placeholder: '- 댓글을 작성해주세요:)',
-            lang: "ko-KR"
+            lang: "ko-KR",
+            disableResizeEditor: true,
         });
 
 

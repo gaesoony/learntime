@@ -195,12 +195,13 @@
         margin-bottom: 25px;
         margin-left: 15px;
     }
-    .thumbnail{
+    .title-type{
         width: 220px;
         height: 90px;
-        background-color: #5ECC80;
         margin: 0 auto;
         margin-top: 15px;
+        font-size: 15px;
+        font-weight: 550;
     }
     .clockimg{
         margin-left: 15px;
@@ -775,7 +776,7 @@
             <c:forEach items="${makegrassList}" var="map">
                 <a href="${path}/makegrass/detail?no=${map.NO}">
                     <div class="mainlist">
-                        <div class="thumbnail"></div>
+                        <div class="title-type"><i class="fa-solid fa-pencil"></i> Title <br><br>${map.TITLE}</div>
                         <div class="clockimg"><i class="fa-regular fa-clock"></i> ${map.LEARN_TIME}</div>
                         <div class="bookimg"><i class="fa-solid fa-book"></i></div>
                         <div class="content">

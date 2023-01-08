@@ -28,5 +28,12 @@ public interface QnaService {
 
 	//게시글 상세조회
 	public Map<String, Object> detail(String qno);
+
+	public int writeAnswer(Map map);
+
+	public List<Map<String, Object>> answerList(Map map);
+
+	//상세조회 내 답변 채택
+	public int select(String cno);
 	
 }
