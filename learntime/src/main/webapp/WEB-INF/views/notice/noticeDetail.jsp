@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="/app/resources/css/reset.css">
 <link rel="stylesheet" href="/app/resources/css/notice/noticeDetail.css">
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> 
 <body>
 <%@ include file = "/WEB-INF/views/common/header.jsp" %>
 
@@ -45,7 +46,7 @@
         </div>
         <div class="notice-content">${vo.content}</div>
     </div>
-    <form action="/app/notice/noticeDetail?no=${vo.no}" method="post">
+    <form action="/app/notice/noticeDetail" method="post">
     	<div class="notice-comments">
 	        <div class="reply-section">
 	            <div class="reply-num" name="cmt">${vo.cmt}개의 댓글</div>
@@ -56,7 +57,7 @@
 	                        <div class="div-box-d"><textarea class="reply-textarea" ></textarea> </div>
 	                    </div>
 	                    <div class="div-box-c">
-	                        <div class="input-box"><input type="button" value="댓글쓰기"></div>
+	                        <div class="input-box"><input type="button" value="댓글쓰기" class="writeComment"></div>
 	                    </div>
 	                </div>
 	            </div>
@@ -73,7 +74,6 @@
 	        </div>
     	</div>
     </form>
-    
  </div>
 </div>
 
@@ -85,19 +85,34 @@
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
 
 <script>
+$('.writeComment').click(function(){
 
-    //대댓글 쓰기
-    $('.write-reply').click(function(){
-            $('.hide-comment').slideToggle();
-        });
-
-
+    const no = ${vo.no};
+    const writer = ${vo.writer};
+    const content = ${ncv.content};
+    $.ajax({
+        url:"/app/notice/noticeDetail",
+        type:"post",
+        data:{"no":no,
+        	  "writer":writer,
+        	  "content":content
+    },
+    success:function(x){
+        alert('댓글 등록되었습니다.');
         
         
-        // 댓글 펼치기
-        $('.hide-reply').click(function(){
-            $('.comment-b-for-a').slideToggle();
-        });
+    },
+    error:function(){
+        alert('에러가 발생했습니다.');
+    }
+   
+
+    });
+    
+    
+});
+
+    
 
 </script>
 </body>

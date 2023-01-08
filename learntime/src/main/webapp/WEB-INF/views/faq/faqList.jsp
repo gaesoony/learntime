@@ -30,6 +30,10 @@
         </div>
         <div id="search-box-faq"><input type="text" name= "keyword" class="search-box" size="100"></div>
         <div id="searchBtn"><input type="submit" class="search-btn" value="검색"></div>
+        <c:set var="admin" value="${loginMember.getAdminYn()}" scope="session"/>  
+  			<c:if test="${admin eq 'Y'}">
+  				<a href="/app/faq/faqWrite"><div class="write-notice-d" >글쓰기</div></a>
+            </c:if>
     </div>
     <div class="list-section">
         <div class="category-section">
@@ -54,7 +58,7 @@
                         <div class="green-circle2">Q</div>
                     </div>
                     <div class="category-faq" name="name">${list.cateName}</div>
-                    <a href="/app/faq/faqDetailList?no=${list.no}"><div class="title-faq" name="title">${list.title}</div></a>
+                    <a class="a-section" href="/app/faq/faqDetailList?no=${list.no}"><div class="title-faq" name="title">${list.title}</div></a>
                     <div class="date-faq" name="enrollDate">${list.enrollDate}</div>
                 </div>
             </c:forEach>
@@ -62,18 +66,31 @@
         </div>
         <div class="page-section">
         	<div class="page-faq">
-			  	<ul id="page-nation">
-					<li><a href="/app/faq/faqList?p=1&cateNo=0" class="first"><<</a></li>
-					<li><a class="arrow left"><</a></li>
-					<li><a class="num"></a></li>
-					<li><a class="num"></a></li>
-					<li><a class="num"></a></li>
-					<li><a class="num"></a></li>
-					<li><a class="num"></a></li>
-					<li><a class="arrow right">>></a></li>
-					<li><a href="/app/faq/faqList?p=${pv.maxPage}&cateNo=0" class="last">>></a></li>
-				</ul>
-		   </div>
+				<c:if test="${pv.startPage != 1}">
+	                <div class="paging-btn" id="prev-btn">
+	                  <a
+	                    href="${path}/faq/faqList?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
+	                    >이전</a
+	                  >
+	                </div>
+	            </c:if>
+	              <c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
+	                <div class="paging-btn" id="${i}">
+	                  <a
+	                    href="${path}/faq/faqList?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
+	                    >${i}</a
+	                  >
+	                </div>
+	              </c:forEach>
+	            <c:if test="${pv.endPage < pv.maxPage}">
+	              <div class="paging-btn" id="next-btn">
+	                <a
+	                  href="${path}/faq/faqList?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
+	                  >다음</a
+	                >
+	              </div>
+	            </c:if>
+	   		</div>
         </div>
     </div>
 </div>
@@ -84,48 +101,5 @@
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
 
  
-<script type="text/javascript">
-	const pageNation = document.querySelector('#page-nation');
-	const numArr = pageNation.querySelectorAll('.num');
-	const left = pageNation.querySelector('.arrow.left');
-	const right = pageNation.querySelector('.arrow.right');
-	
-	
-	if("${pv.startPage}" > 1){
-		left.href = '/app/faq/faqList?p=${pv.startPage})-1';
-	}else{
-		left.classList.add('none-select');
-	}
-	
-	if("${pv.currentPage}" != "${pv.maxPage}"){
-		left.href = '/app/faq/faqList?p=${pv.currentPage})+1';
-	}else{
-		right.classList.add('none-select');
-	}
-	
-
-	let page = "${pv.startPage}";
-
-	for (let i = 0; i < numArr.length; i++) {
-		const num = numArr[i];
-		
-		if(page == "${pv.currentPage}"){
-			num.classList.add('current');
-		}
-		
-		if(page<1 || page > "${pv.maxPage}"){
-			num.classList.add('p-none');
-		}else{
-			num.href = '/app/faq/faqList?p='+page;
-		}
-		num.classList.remove('p-none');
-        $(num).attr('onclick','/app/faq/faqList?p=('+page+')');
-        
-		num.innerHTML = page;
-		page++;
-	}
-	
-	</script>
-
 </body>
 </html>

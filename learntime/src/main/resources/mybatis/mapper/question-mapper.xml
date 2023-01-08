@@ -38,12 +38,16 @@
     JOIN COMMON_CATEGORY C ON Q.CATE_NO= C.NO JOIN MEMBER M ON M.NO = Q.WRITER WHERE
     Q.NO = #{no}
   </select>
+  <select id="selectPost" resultType="com.learntime.app.question.vo.QuestionVo">
+  	SELECT M.NICK AS WRITER ,Q.TITLE,Q.CONTENT FROM QUESTION_BOARD Q
+    JOIN COMMON_CATEGORY C ON Q.CATE_NO= C.NO JOIN MEMBER M ON M.NO = Q.WRITER WHERE
+    Q.NO = #{no}
+  </select>
   
- 
-  
-	<!-- <update id="updateOne">
-		UPDATE QUESTION_BOARD SET CATE_NO = #{cateNo},TITLE=#{title},CONTENT = #{content}
+  <update id="updateOne">
+		UPDATE QUESTION_BOARD SET CATE_NO = #{vo.cateNo},TITLE=#{vo.title},CONTENT = #{vo.content}
 		WHERE NO=#{no}
-	</update> -->
+  </update> 
+  
 	
 </mapper>

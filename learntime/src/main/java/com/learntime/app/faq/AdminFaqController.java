@@ -77,9 +77,9 @@ public class AdminFaqController {
 		int result = 0;
 		
 		if("삭제".equals(deleteList)) {
-			result = afs.deleteOne(vo);
+			result = afs.deleteOne(list);
 		}else if ("삭제".equals(del)) {
-			result = afs.deleteOne(vo);
+			result = afs.deleteOne(list);
 		}
 		
 		

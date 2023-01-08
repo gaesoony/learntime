@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.learntime.app.admin.q.dao.AdminQuestionDao;
+import com.learntime.app.notice.vo.NoticeVo;
 import com.learntime.app.question.dao.QuestionDao;
 import com.learntime.app.question.vo.PageVo;
 import com.learntime.app.question.vo.QuestionVo;
@@ -42,8 +43,8 @@ public class AdminQuestionServiceImpl implements AdminQuestionService {
 	
 
 	@Override
-	public int deleteOne(QuestionVo vo) {
-		return adao.deleteOne(sst,vo);
+	public int deleteOne(List<NoticeVo> list) {
+		return adao.deleteOne(sst,list);
 	}
 
 }

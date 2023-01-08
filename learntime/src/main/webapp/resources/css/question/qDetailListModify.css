@@ -1,36 +1,61 @@
 @charset "UTF-8";
 
-.list-main-m{
+.list-main{
     width:100%;
     height:auto;
     margin:0 auto;
     display:flex;
     flex-direction: column;
     
-    
+}
+/* 배너 */
+.banner-section{
+    width: 100%;
+    height: 180px;
+    background-color: #343B3D;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+
+
 }
 
+.banner{
+    margin-right: 350px;
+}
 
-.q-detail-list-m{
-    width: 100%;
+#banner-title1{
+    color: white;
+    font-size: xx-large;
+    font-weight: 900;
+    text-align: right;
+    margin-bottom:20px;
+}
+
+#banner-title2{
+    color: white;
+    font-size: x-large;
+    font-weight: 900;
+}
+.q-detail-list{
+    width: 1200px;
     height:750px;
     display: grid;
     grid-template-rows:100px 100px 50px 400px 100px;
     margin: 0 auto;
 }
-.q-sign-m{
-    width: 1200px;
+.q-sign{
+    width: 100%;
     height: 100%;
     display: flex;
-    margin: 0 auto;
 
 }
-.line1-m{
+.line1{
     width: 100px;
     height: 100%;
 
 }
-.name-q-m{
+.name-q{
     width: 300px;
     height: 100%;
     font-size: xx-large;
@@ -39,411 +64,94 @@
     justify-content: center;
     align-items: center;
 }
-.line2-m{
-    width: 790px;
+.line2{
+    width: 800px;
     height: 100%;
 }
-.line-a-m{
+.line-a{
     width: 100%;
     height: 50%;
     border-bottom:5px solid gray;
 }
-.line-b-m{
+.line-b{
     width: 100%;
     height: 50%;
     border-bottom:5px solid gray;
 }
-
-/* 제목 */
-.q-title-date-m{
+.q-title-date{
     width: 1200px;
-    height: 90px;
-    border-bottom:2px solid lightgray;
-    margin: 0 auto;
-  
-
-}
-.gathering-divs-d{
-    width: 1200px;
-    height: 90px;
+    height: 100%;
     display: flex;
-    flex-wrap: wrap;
 
 }
-.q-title-cate{
-    
-    width:1200px;
-    height: 45px;
-    display: flex;
-    
-
-}
-.q-enrollDate-comment{
-    
-    width:1200px;
-    height: 45px;
-    display: flex;
-    line-height: 60px;
-}
-.q-nick{
-    width: 100px;
-    height: 45px;
-    font-size: small;
-    color: gray;
-    
-
-}
-.date-q-m{
-    width: 800px;
-    height: 45px;
-    font-size: small;
-    color: gray;
-    
-}
-.q-hit{
-    width: 300px;
-    height: 45px;
-    display: flex;
-    flex-direction: row;
-    font-size: small;
-    color: gray;
-}
-.q-comment{
-    margin-left: 10px;
-}
-
-.category-q-m{
-    width: 100px;
-    height: 45px;
-    font-weight: 600;
-    line-height: 80px;
-    
-    
-}
-.title-q-m{
-    width: 750px;
-    height: 45px;
-    font-weight: 600;
-    line-height: 80px;
-    
-    
- 
-}
-
-.q-content-m{
-    width: 1200px;
-    height: 400px;
-    border-top: 2px solid lightgray;
-    margin: 0 auto;
-    
-}
-.backBtn-m{
-    width: 1200px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin: 0 auto;
-}
-.btn-to-m{
-    width: 100px;
-    height: 50px;
-    background-color: #5ECC80;
-    color: white;
-    font-weight: 600;
-    border-radius: 1rem;
+.category-q{
+    width: 150px;
+    height: 100%;
     text-align: center;
-    line-height: 50px;
-    margin-left: 10px;
-}
-
-/* 댓글 */
-.reply-section{
-
-    width: 100%;
-    height: 900px;
+    line-height: 130px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-
-}
-.reply-num{
-    width: 1200px;
-    height: 50px;
-    
-}
-.leave-comment{
-    width: 100%;
-    height: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.div-box-a{
-    width: 1000px ;
-    height: 230px;
-    border: 3px solid lightgray;
-    box-shadow: 5px lightgray;
-    border-radius: 1rem;
-    display: flex;
-    flex-direction: column;
-}
-.div-box-b{
-    width: 1000px ;
-    height: 130px;
-    display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: flex-end;
+    margin-top: 2px;
+
+}
+.title-q{
+    width: 1200px;
+    height: 100%;
+    text-align: center;
+    line-height: 150px;
+    border-bottom: 2px solid gray;
+    
     
 }
-.div-box-c{
-    width: 1000px ;
-    height: 100px;
+.date-q{
+    width: 290px;
+    height: 100%;
+    text-align: center;
+    line-height: 130px;
+    border-bottom:2px solid gray;
+
+}
+.q-content{
+    width: 100%;
+    height: 400px;
+    
+    
+}
+.backBtn{
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    
-   
 }
-.profile-box{
-    width: 70px;
-    height: 70px;
-    margin-bottom: 20px;
-}
-   
-    
-
-.div-box-d{
-    width: 800px ;
-    height: 100px;
-    border: 3px solid lightgray;
-    box-shadow: 5px  lightgray;
-    border-radius: 1rem;
-   
-}
-
-input{
-    border: none;
-    background-color: #5ECC80;
-    font-size: medium;
-    font-weight: 600;
-    width: 90px;
+.btn-to{
+    width: 100px;
+    height: 50px;
+    background-color:#5ECC80;
     color: white;
+    font-weight: 600;
     text-align: center;
-    line-height: 45px;
-    border-radius: 1rem;
-    margin-right: 40px;
-
-
-}
-.comment-box{
-    width: 1000px;
-    height: 1000px;
-    display: flex;
-    margin-top: 100px;
-    
-}
-.gathering-boxes{
-    width: 1000px;
-    height: 1000px;
-    
-
-}
-.comment-a{
-    width: 100%;
-    height: 150px;
-    display: flex;
-    flex-direction: column;
-    
-
-}
-.profile-etc{
-    width: 100%;
-    height: 90px;
-    display: flex;
-    align-items: center;
-   
-
-}
-.profile-pic{
-    width: 70px;
-    height: 70px;
-   
-  
-}
-.profile-id{
-    width: 660px;
-    height: 90px;
-    display: flex;
-    align-items: center;
-    margin-left: 30px;
-   
-}
-.good-or-bad{
-    width: 200px;
-    height: 90px;
-    display: flex;
-    align-items: center;
-
-}
-.btn-good-or-bad{
-    width: 150px;
-    height: 50px;
-    display: flex;
-   
-    
-}
-.btn-good-or-bad-re{
-    width: 150px;
-    height: 50px;
-    display: flex;
+    line-height: 50px;
     margin-left: 10px;
-    
 }
-.downBtn{
-    width: 40px;
+
+#categories{
+    width: 120px;
     height: 50px;
-    border: 2px solid lightgray;
+    border: 2px solid gray;
+    font-size: larger;
     text-align: center;
-    line-height: 50px;
-    border-top-left-radius: 1rem;
-    border-bottom-left-radius: 1rem;
-}
-.middleBtn{
-    width: 70px;
-    height: 50px;
-    border: 2px solid lightgray;
-    text-align: center;
-    line-height: 50px;
-    font-size: x-large;
-    font-weight: 600;;
-    color: black;
     
 }
-.upBtn{
-    width: 40px;
-    height: 50px;
-    border: 2px solid lightgray;
-    text-align: center;
-    line-height: 50px;
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-
+.title-question{
+	border: none;
+	outline: none;
+	font-size:medium;
+	
 }
-.leaved-comment{
-    width: 100%;
-    height: 30px;
-    
-
+.submit-btn{
+	border: none;
+	font-size: medium;
+	font-weight: 600;
+	background-color:#5ECC80;
+	color: white;
 }
-.hide-comment{
-    width: 1000px;
-    height: 300px;
-    display: flex;
-    flex-direction: row-reverse;
-
-}
-.hide-reply{
-    width: 12%;
-    color: skyblue;
-    line-height: 40px;
-    font-size: small;
-    font-weight: 600;
-  
-
-}
-.hide-write-reply{
-    display: flex;
-}
-.write-reply{
-    width: 88%;
-    color: gray;
-    line-height: 40px;
-    font-size: small;
-    font-weight: 600;
-
-
-}
-.write-reply-reply{
-    display: flex;
-    align-items: center;
-}
-.comment-b-for-a{
-    width: 100%;
-    height: 250px;
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    margin-top: 100px;
-    font-weight: 400;
-
-
-}
-.reply-reply{
-    width: 970px;
-    height: 230px;
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-
-
-}
-.reply-section{
-    width: 100%;
-}
-.profile-etc-re{
-    width: 970px;
-    height: 90px;
-    display: flex;
-    align-items: center;
-   
-
-}
-.profile-pic-re{
-    width: 70px;
-    height: 70px;
-    
-   
-  
-}
-
-
-.profile-id-re{
-    width: 660px;
-    height: 90px;
-    display: flex;
-    align-items: center;
-    margin-left: 30px;
- 
-}
-.good-or-bad-re{
-    width: 200px;
-    height: 90px;
-    display: flex;
-    align-items: center;
-    margin-right: 40px;
- 
-    
-    
-
-}
-.leaved-comment-re{
-    width: 970px;
-    height: 100px;
-    color: black;
-    font-size: medium;
-    font-weight: 100px;
-
-
-}
-.hide-comment-re{
-    width: 970px;
-    height: 40px;
-    font-size: small;
-    color: gray;
-    font-weight: 600;
-    
-
-}
-
-

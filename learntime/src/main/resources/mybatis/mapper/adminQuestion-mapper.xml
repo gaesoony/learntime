@@ -23,7 +23,7 @@
     Q.NO = #{no}
   </select>
   <update id="deleteList">
-  	UPDATE QUESTION_BOARD SET DELETE_YN = 'Y' WHERE NO = ${no};
+  	UPDATE QUESTION_BOARD SET DELETE_YN = 'Y' WHERE NO = ${no}
   </update>
   
  

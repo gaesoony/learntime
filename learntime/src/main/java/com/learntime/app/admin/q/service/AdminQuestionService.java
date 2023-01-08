@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.learntime.app.notice.vo.NoticeVo;
 import com.learntime.app.question.vo.PageVo;
 import com.learntime.app.question.vo.QuestionVo;
 
@@ -16,6 +17,6 @@ public interface AdminQuestionService {
 
 	public QuestionVo selectOne(QuestionVo vo);
 
-	public int deleteOne(QuestionVo vo);
+	public int deleteOne(List<NoticeVo> list);
 
 }

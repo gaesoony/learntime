@@ -7,74 +7,68 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summernote/summernote-lite.css">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/app/resources/css/reset.css">
-<link rel="stylesheet" href="/app/resources/css/question/qDetailList.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/app/resources/css/common.css">
+<link rel="stylesheet" href="/app/resources/css/question/qDetailListModify.css">
+
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/common/header.jsp" %>
-<form action="" method="get">
-	<div class="list-main-m">
-    <div class="q-detail-list-m">
-        <div class="q-sign-m">
-            <div class="line1-m">
-                <div class="line-a-m"></div>
-            </div>
-            <div class="name-q-m">1:1 문의게시판 </div>
-            <div class="line2-m">
-                <div class="line-b-m"></div>
-            </div>
-        </div>
-        <div class="q-title-date-m">
-            <div class="gathering-divs-d">
-                <div class="q-title-cate">
-                    <div class="category-q">
-	                    <select name="category" id="categories">
-			                <option value="1">전체</option>
-			                <option value="2">스터디</option>
-			                <option value="3">공부인증</option>
-			                <option value="4">Q&A</option>
-			                <option value="5">멘토링</option>
-			                <option value="6">커뮤니티</option>
-			                <option value="7">스킨샵</option>
-			            </select>
-			            </div>
-                    <div class="title-q-m " name="title">${vo.title}</div>
-                </div>
-                <div class="q-enrollDate-comment">
-                    <div class="q-nick" name="writer">${vo.writer}</div>
-                    <div class="date-q-m" name="enrollDate">${vo.enrollDate}</div>
-                </div>
-            </div>
-        </div>
-        <div class="empty1-m"></div>
-        <div class="q-content-m">
-            <textarea class="summernote" name="editordata"></textarea>
-        </div>
-        <div class="backBtn-m">
-            <a href="/app/question/qDetailListModify"><div class="btn-to-m" id="btn-modify">수정</div></a>
-            <input type="button" value="삭제" name="btn-to-m" class="btn-to-m" id="btn-to-m">
-            <a href="/app/question/questionList"><div class="btn-to-m">글목록</div></a>
-        </div>   
-    </div>
-    </div>
-</div>
+<form action="/app/question/qDetailListModify" method="post">
+	<div class="list-main">
+	    <div class="banner-section">
+	        <div class="banner">
+	            <div id="banner-title1"><span>1:1 문의게시판</span></div>
+	            <div id="banner-title2"><span>궁금하신 점을 남겨주시면 접수 순서대로 답변 드리겠습니다.</span></div>
+	        </div>
+	    </div>
+	    <div class="q-detail-list">
+	        <div class="q-sign">
+	            <div class="line1">
+	                <div class="line-a"></div>
+	            </div>
+	            <div class="name-q">1:1 문의게시판 </div>
+	            <div class="line2">
+	                <div class="line-b"></div>
+	            </div>
+	        </div>
+	        <div class="q-title-date">
+	            <div class="category-q"><select name="cateNo" id="categories">
+	                <option value="1">전체</option>
+	                <option value="2">스터디</option>
+	                <option value="3">공부인증</option>
+	                <option value="4">Q&A</option>
+	                <option value="5">멘토링</option>
+	                <option value="6">커뮤니티</option>
+	                <option value="7">스킨샵</option>
+	            </select></div>
+	            <div class="title-q"><input type="text" name="title" size= "100" class="title-question" value="${vo.title}"></div>
+	            <div class="date-q"></div>
+	        </div>
+	        <div class="empty1"></div>
+	        <div class="q-content">
+	            <textarea class="summernote" name="content" value="${vo.content}"></textarea>
+	        </div>
+	        <div class="backBtn">
+	            <div class="btn-to"><input type="submit" class="submit-btn" value="수정 "></div>
+	            <a href="/app/question/questionList"><div class="btn-to">글목록</div></a>
+	        </div>
+	    </div>
+	</div>
+
 	
 </form>
+
+
+
+
+
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
 
-
-
-
-
-
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- 서머노트 로딩-->
-    <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script> 
+    <script src="${pageContext.request.contextPath}/resources/js/summernote/summernote-lite.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
     <script>
         $('.summernote').summernote({
@@ -83,46 +77,6 @@
             lang: "ko-KR",
             disableResizeEditor: true
         });
-
-
-        // $(document).ready(function(){
-        //     $('.hide-reply').click(function(){
-        //         $('.comment-b-for-a').toggle('slow');
-        //     });
-        // });
-        
-        //대댓글 쓰기
-       /*  $('.write-reply').click(function(){
-            $('.hide-comment').slideToggle();
-        });
-
-
-        
-        
-        // 댓글 펼치기
-        $('.hide-reply').click(function(){
-            $('.comment-b-for-a').slideToggle();
-        });
- */
-		//좋아요 싫어요 버튼
-		/* function count(type){
-            const result = document.getElementsByClassName('.middleBtn');
-            let number = result.innertext;
-
-            if(type === 'plus'){
-                number=parseInt(number) + 1;
-            }else if(type === 'minus'){
-                number = parseInt(number) - 1;
-
-            }
-
-            result.innertext=number;
-            
-			
-		} */
-
-
-    
     </script>
 
 </body>

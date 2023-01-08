@@ -28,8 +28,8 @@
                 <div class="gathering-blocks">
                     <div class="select-content">
                         <select name="category" >
-                            <option value="title-option" >제목</option>
-                            <option value="content-option">내용</option>
+                            <option value="title" >제목</option>
+                            <option value="content">내용</option>
                         </select>
                     </div>
                     <div class="search-box2">

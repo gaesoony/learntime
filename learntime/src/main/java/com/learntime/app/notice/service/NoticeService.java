@@ -27,6 +27,8 @@ public interface NoticeService {
 	
 	public int noticeCmtWrite(NoticeCmtVo ncv);
 
+	public List<NoticeCmtVo> selectCmtList(NoticeCmtVo ncv);
+
 	
 
 }

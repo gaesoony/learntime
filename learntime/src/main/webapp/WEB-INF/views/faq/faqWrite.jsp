@@ -40,9 +40,7 @@
                     <option value="6">커뮤니티</option>
                     <option value="7">스킨샵</option>
                 </select>
-	            <div class="category-faq">
-	                 
-	            </div>
+	            <div class="category-faq"></div>
 	            <input type="text" name="title" class="title-input" size="100"/>
 	            <div class="title-faq"></div>
 	            <div class="date-faq"></div>

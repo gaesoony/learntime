@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.learntime.app.notice.vo.NoticeVo;
 import com.learntime.app.question.vo.PageVo;
 import com.learntime.app.question.vo.QuestionVo;
 @Repository
@@ -32,8 +33,12 @@ public class AdminQuestionDao {
 
 	
 
-	public int deleteOne(SqlSessionTemplate sst, QuestionVo vo) {
-		return sst.update("adminQuestionMapper.deleteList",vo);
+	public int deleteOne(SqlSessionTemplate sst, List<NoticeVo> list) {
+		int count = 0;
+		for(int i = 0; i<list.size(); i++) {
+			count+= sst.update("adminQuestionMapper.deleteList",list.get(i));
+		}
+		return count;
 	}
 
 	

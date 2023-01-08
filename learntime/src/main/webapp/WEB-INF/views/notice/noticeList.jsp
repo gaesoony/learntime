@@ -72,8 +72,8 @@
 	                                    </div>
 	                                </div>
 	                            </div>
-                        	</div>
-                        </c:forEach>
+                        	</c:forEach>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -86,7 +86,7 @@
 			<c:if test="${pv.startPage != 1}">
                 <div class="paging-btn" id="prev-btn">
                   <a
-                    href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+                    href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
                     >이전</a
                   >
                 </div>
@@ -94,7 +94,7 @@
               <c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
                 <div class="paging-btn" id="${i}">
                   <a
-                    href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+                    href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
                     >${i}</a
                   >
                 </div>
@@ -102,7 +102,7 @@
             <c:if test="${pv.endPage < pv.maxPage}">
               <div class="paging-btn" id="next-btn">
                 <a
-                  href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+                  href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
                   >다음</a
                 >
               </div>
@@ -112,49 +112,7 @@
  </div>
 
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>  
- 
-<script type="text/javascript">
-	const pageNation = document.querySelector('#page-nation');
-	const numArr = pageNation.querySelectorAll('.num');
-	const left = pageNation.querySelector('.arrow.left');
-	const right = pageNation.querySelector('.arrow.right');
-	
-	
-	if("${pv.startPage}" > 1){
-		left.href = '/app/notice/noticeList?p=${pv.startPage})-1';
-	}else{
-		left.classList.add('none-select');
-	}
-	
-	if("${pv.currentPage}" != "${pv.maxPage}"){
-		left.href = '/app/notice/noticeList?p=${pv.currentPage})+1';
-	}else{
-		right.classList.add('none-select');
-	}
-	
 
-	let page = "${pv.startPage}";
-
-	for (let i = 0; i < numArr.length; i++) {
-		const num = numArr[i];
-		
-		if(page == "${pv.currentPage}"){
-			num.classList.add('current');
-		}
-		
-		if(page<1 || page > "${pv.maxPage}"){
-			num.classList.add('p-none');
-		}else{
-			num.href = '/app/notice/noticeList?p='+page;
-		}
-		num.classList.remove('p-none');
-        $(num).attr('onclick','/app/notice/noticeList?p=('+page+')');
-        
-		num.innerHTML = page;
-		page++;
-	}
-	
-	</script>
 
 
 </body>

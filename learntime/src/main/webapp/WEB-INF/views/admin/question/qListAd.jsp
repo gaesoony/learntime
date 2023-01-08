@@ -87,7 +87,7 @@
 }
 .listed-q{
     width: 1200px;
-    height: 675px;
+    height: 500px;
     border-top: 3px solid lightgray;;
     display: flex;
     flex-direction: column;
@@ -138,12 +138,7 @@
     font-weight: 600;
     display:flex;
 }
-/* .comment-faq-ad{
-    width: 510px;
-    height: 10px;
-    font-weight: 600;
-    margin-bottom: 5px;
-} */
+
 .nickname-faq-ad{
     width: 200px;
     height: 100%;
@@ -173,79 +168,35 @@
 
 }
 
+
 /*페이징  */
 
-.page-question{
+.page-qList-ad{
 	margin:0 auto;
 	display:flex;
 	justify-content:center;
 	align-items:center;
 	
 }
-	#page-nation{
-        list-style: none;
-        display: inline-block;
-        padding: 0;
-        margin-top: 20px;
-    }
+.page-questionAd{
 
-    #page-nation li{
-        display: inline;
-        text-align: center;
-        margin:0 10px;
-      
-    }
-/* 페이지 버튼~ */
-    #page-nation li a{
-        text-decoration: none;
-        color: #999999;
-        font-size: 15px;
-        font-family: var(--sans);
-        
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	
+}	
+.paging-btn{
+	
+	width:40px;
+	height:40px;
+	border-radius:1rem;
+	border:2px solid lightgray;
+	text-align:center;
+	line-height:40px;
+	margin-right:10px;
+}
 
-    }
-
-    #page-nation .first:hover,  #page-nation .last:hover,  #page-nation .right:hover,  #page-nation .left:hover{
-        color:#5ECC80;
-    }
-
-
-    #page-nation a:active{
-        cursor: default;
-        color: white;
-    }
-
-    #page-nation .num{
-        padding: 0;
-        width: 30px;
-        height: 30px;
-        display: inline-block;
-        border-radius: 100%;
-        line-height: 30px;
-         text-align: center;
-    }
-
-    #page-nation .num:hover{
-        background-color: #5ECC80;
-        color: white;
-       
-    }
-
-    #page-nation .num:active{
-        background-color: #5ECC80;
-        cursor: pointer;
-    }
-    .page-qList-ad{
-    	display:flex;
-    	justify-content:center;
-    }
-
-	.page-questionAd{
-		display:flex;
-	}
-	.paging-btn{
-		margin-left:20px;
-	}
+    
 </style>
 <body>
 	<%@include file="/WEB-INF/views/common/admin-side.jsp"%>
@@ -286,7 +237,7 @@
 					  	<c:if test="${pv.startPage != 1}">
 		                  <div class="paging-btn" id="prev-btn">
 		                    <a
-		                      href="${path}/admin/question/qListAd?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+		                      href="${path}/admin/question/qListAd?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
 		                      >이전</a
 		                    >
 		                  </div>
@@ -294,7 +245,7 @@
 		                <c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
 		                  <div class="paging-btn" id="${i}">
 		                    <a
-		                      href="${path}/admin/question/qListAd?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+		                      href="${path}/admin/question/qListAd?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
 		                      >${i}</a
 		                    >
 		                  </div>
@@ -302,7 +253,7 @@
 		                <c:if test="${pv.endPage < pv.maxPage}">
 		                  <div class="paging-btn" id="next-btn">
 		                    <a
-		                      href="${path}/admin/question/qListAd?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+		                      href="${path}/admin/question/qListAd?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
 		                      >다음</a
 		                    >
 		                  </div>
@@ -318,42 +269,41 @@
 	/*체크박스 삭제  */
 	 
 	$('.del').click(function(){
-	
-		let deleteList = $('.del').eq(0).val();
-	    
-	    let valueArr = new Array();
-	    let list = $("#checkBtn:checked");
-	   
-	    
-	    for(let i = 0; i <list.length; i++){
-	        if(list[i].checked){
-	            valueArr.push(list[i].value);
-	        }
-	    }
-	    
-	    var chk = confirm("삭제 하시겠습니까?");
-	    const divs = document.querySelectorAll('.faqListAd').value;
-	    $.ajax({
-	        url:"/app/admin/notice/noticeListAdmin",
-	        type:"post",
-	        data:{"deleteList":deleteList,
-	                "valueArr":valueArr
-	    },
-	    success:function(x){
-	        alert('삭제되었습니다.');
-	        for(let i = 0; i < list.length; i++) {
-	        	$('.faqListAd').remove('list[i].checked'); 
-	        }
-	        
-	    },
-	    error:function(){
-	        alert('에러가 발생했습니다.');
-	    }
 
-	    });
-		
+        let deleteList = $('.del').eq(0).val();
+        console.log($('.del').get(0));
+        let valueArr = new Array();
+        let list = $("#checkBtn:checked"); 
+        for(let i = 0; i <list.length; i++){
+        	console.log(list[i]);
+            if(list[i].checked){
+                valueArr.push(list[i].value);
+            }
+        }
+
+        var chk = confirm("삭제 하시겠습니까?");
+        
+        $.ajax({
+            url:"/app/admin/question/qListAd",
+            type:"post",
+            data:{"deleteList":deleteList,
+                    "valueArr":valueArr
+        },
+        success:function(x){
+            alert('삭제되었습니다.');
+            location.reload();
+            
+        },
+        error:function(){
+            alert('에러가 발생했습니다.');
+        }
+       
+
         });
         
+        
+    });
+    
 	
         	
 		

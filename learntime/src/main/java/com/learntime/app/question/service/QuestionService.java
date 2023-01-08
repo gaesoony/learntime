@@ -20,7 +20,11 @@ public interface QuestionService {
 	
 	public QuestionVo selectOne(QuestionVo vo);
 
-	//public int updateOne(QuestionVo vo);
+	public int updateOne(QuestionVo vo);
+
+	public QuestionVo selectPost(QuestionVo vo);
+
+	
 
 	
 

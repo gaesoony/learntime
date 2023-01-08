@@ -68,5 +68,10 @@ public class NoticeDao {
 	}
 
 
+	public List<NoticeCmtVo> selectCmtList(SqlSessionTemplate sst, NoticeCmtVo ncv) {
+		return sst.selectList("noticeMapper.selectCmtList",ncv);
+	}
+
+
 
 }

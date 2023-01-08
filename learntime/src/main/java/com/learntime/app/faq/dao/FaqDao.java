@@ -32,7 +32,10 @@ public class FaqDao {
 		int limit = pv.getBoardLimit();
 		RowBounds rb = new RowBounds(offset, limit);
 		
-		return sst.selectList("faqMapper.faqList",map,rb);
+		System.out.println("=================");
+		System.out.println(map);
+		
+		return sst.selectList("faqMapper.faqList",map);
 	}
 
 	public FaqVo selectOne(SqlSessionTemplate sst, FaqVo vo) {

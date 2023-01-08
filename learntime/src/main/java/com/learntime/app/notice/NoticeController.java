@@ -69,9 +69,12 @@ public class NoticeController {
 			}
 			
 			
+			m.addAttribute("pv",pv);
 			m.addAttribute("list",list);
+			m.addAttribute("cateNo",vo.getCateNo());
 			m.addAttribute("p",pv.getP());
-			
+			m.addAttribute("category",vo.getCategory());
+			m.addAttribute("keyword",vo.getKeyword());
 		
 			
 			return "notice/noticeList";
@@ -92,16 +95,19 @@ public class NoticeController {
 	}
 		// 공지사항 상세조회 화면
 		@GetMapping("notice/noticeDetail")
-		public String noticeDetail(NoticeVo vo, HttpSession session, Model m) {
+		public String noticeDetail(NoticeVo vo,NoticeCmtVo ncv, HttpSession session, Model m) {
 			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember"); 
 			int cmtCnt = ns.cmtCnt();
 			int hit = ns.updateHit(vo);
 			vo.setHit(hit);
 			vo.setCmt(cmtCnt);
 			
+			List<NoticeCmtVo> ncvList=null;
 			if(loginMember !=null) {
 				vo = ns.selectOne(vo);
+				ncvList = ns.selectCmtList(ncv);
 				m.addAttribute("vo",vo);
+				m.addAttribute("ncvList",ncvList);
 				return "notice/noticeDetail";
 			}else {
 				return "common/errorPage";
@@ -125,7 +131,7 @@ public class NoticeController {
 			int result = ns.noticeCmtWrite(ncv);
 			
 			if(result == 1) {
-				return "notice/noticeDetail";
+				return "redirect:/notice/noticeDetail?no="+vo.getNo();
 			}else {
 				return "common/errorPage";
 			}

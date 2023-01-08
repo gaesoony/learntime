@@ -74,10 +74,10 @@ public class AdminQuestionController {
 			
 			
 		}
-		
+	
 		int result = 0;
 		if ("삭제".equals(deleteList)) {
-			result = aqs.deleteOne(vo);
+			result = aqs.deleteOne(list);
 		}
 		if(result == 1) {
 			return "redirect:admin/question/qListAd";

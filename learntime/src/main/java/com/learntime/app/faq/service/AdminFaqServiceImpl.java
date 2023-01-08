@@ -37,8 +37,8 @@ public class AdminFaqServiceImpl implements AdminFaqService{
 	}
 
 	@Override
-	public int deleteOne(NoticeVo vo) {
-		return adao.deleteOne(sst,vo);
+	public int deleteOne(List<NoticeVo> list) {
+		return adao.deleteOne(sst,list);
 	}
 
 }
