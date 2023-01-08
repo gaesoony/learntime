@@ -72,36 +72,36 @@
         </div>
 
         <div id="content-wrap">
-            
-            <!-- 반복문써야함... -->
-            <div class="review-box">
-                <div class="review-info">
-                    <div class="writer-box">
-                        <div class="writer-img">
-                            <img src="/app/resources/img/profile01.png" alt="">
+            <!-- jstl 반복문 -->
+            <c:forEach items="${reviewList}" var="list">
+                <div class="review-box">
+                    <div class="review-info">
+                        <div class="writer-box">
+                            <div class="writer-img">
+                                <img src="/app/${list.writerImg}" alt="">
+                            </div>
+                            <span class="writer-nick">${list.writerNick}</span>
                         </div>
-                        <span class="writer-nick">망치맨</span>
+                        <div class="star-box">
+                            <span class="star-score hidden">${list.star}</span>
+                            <span class="material-symbols-rounded star-icon star">star</span>
+                            <span class="material-symbols-rounded star-icon star">star</span>
+                            <span class="material-symbols-rounded star-icon star">star</span>
+                            <span class="material-symbols-rounded star-icon star">star</span>
+                            <span class="material-symbols-rounded star-icon star">star</span>
+                        </div>
                     </div>
-                    <div class="star-box">
-                        <span class="material-symbols-rounded star">star</span>
-                        <span class="material-symbols-rounded star">star</span>
-                        <span class="material-symbols-rounded star">star</span>
-                        <span class="material-symbols-rounded star">star</span>
-                        <span class="material-symbols-rounded star">star</span>
-                    </div>
-                </div>
-                <div class="review-content-box">
-                    <div class="review-content">
-                        <p>제가 국비지원 출신이라서 어떻게 해야 더 좋은 곳으로 갈 수 있을지 막막 했는데 방향을 이제 확실하게 알게
-                            <br>
-                            되었고 개발과 관련된 다양한 정보들을 얻어 볼 수 있는 기회가 되어서 매우 좋았습니다. 감사합니다.
-                        </p>
-                    </div>
-                    <div class="mentor-info">
-                        <span>멘토링 - [망치맨]자바스크립트 마스터 시켜드립니다.</span>
+                    <div class="review-content-box">
+                        <div class="review-content">
+                            ${list.content}
+                        </div>
+                        <div class="mentor-info">
+                            <span>멘토링 - [${list.mentorNick}]${list.mentoringTitle}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </c:forEach>
+            <!-- 임시 -->
             <div class="review-box">
                 <div class="review-info">
                     <div class="writer-box">
@@ -353,6 +353,32 @@
                 $("input[type=checkbox]").prop("checked", false);
                 $("select").prop("selectedIndex", 0);
                 $("input[type=text]").val("");
+            });
+        });
+    </script>
+
+    <!-- 별 채우기 스크립트 -->
+    <script>
+        $(document).ready(function(){
+            $(".star-score").each(function(){
+                var starNum = parseInt($(this).text());
+                if(starNum >= 5){
+                    $(this).siblings(".star-icon").addClass("star-fill");
+                }else if(starNum >= 4){
+                    $(this).siblings(".star-icon").eq(0).removeClass("star").addClass("star-fill");
+                    $(this).siblings(".star-icon").eq(1).removeClass("star").addClass("star-fill");
+                    $(this).siblings(".star-icon").eq(2).removeClass("star").addClass("star-fill");
+                    $(this).siblings(".star-icon").eq(3).removeClass("star").addClass("star-fill");
+                }else if(starNum >= 3){
+                    $(this).siblings(".star-icon").eq(0).removeClass("star").addClass("star-fill");
+                    $(this).siblings(".star-icon").eq(1).removeClass("star").addClass("star-fill");
+                    $(this).siblings(".star-icon").eq(2).removeClass("star").addClass("star-fill");
+                }else if(starNum >= 2){
+                    $(this).siblings(".star-icon").eq(0).removeClass("star").addClass("star-fill");
+                    $(this).siblings(".star-icon").eq(1).removeClass("star").addClass("star-fill");
+                }else if(starNum >= 1){
+                    $(this).siblings(".star-icon").eq(0).removeClass("star").addClass("star-fill");
+                }
             });
         });
     </script>

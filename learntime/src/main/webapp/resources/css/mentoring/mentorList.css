@@ -107,6 +107,11 @@
     padding-bottom: 10px;
 }
 
+#modal-mentoring-title{
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
 .mentoring-title>span{
     display: -webkit-box;
     overflow: hidden;

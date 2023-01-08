@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.mertoring.service.MentoringService;
+import com.learntime.app.mertoring.vo.ApplicationVo;
 import com.learntime.app.mertoring.vo.MentorVo;
 import com.learntime.app.mertoring.vo.ReviewVo;
 import com.learntime.app.mertoring.vo.ScheduleVo;
@@ -29,9 +30,11 @@ public class MentorController {
 	@Autowired
 	public MentoringService ms;
 
+	//리뷰 리스트 조회
 	@GetMapping("/review/list")
 	public String mentorReview(Model model) {
-		//리뷰리스트 조회
+		List<ReviewVo> reviewList = ms.selectReviewList();
+		model.addAttribute("reviewList", reviewList);
 		return "/mentoring/mentorReview";
 	}
 
@@ -176,7 +179,6 @@ public class MentorController {
 	}
 
 	// 임시
-
 	@GetMapping("/mymentoring/temp3")
 	public String myMentoringT3() {
 		return "/member/mypage-mentoring3";
@@ -201,6 +203,9 @@ public class MentorController {
 
 	@GetMapping("/mymentoring/temp")
 	public String myMentoringT1() {
+		
+		
+		
 		return "/member/mypage-mentoring";
 	}
 	
@@ -234,18 +239,39 @@ public class MentorController {
 	//특정 날짜 가능시간 받아오기
 	@ResponseBody
 	@GetMapping(value = "/schedule", produces = "application/text;charset=utf8")
-	public String getSchedule(ScheduleVo sv) {
+	public String getSchedule(ScheduleVo sv, Model model) {
+		
+		System.out.println(sv.getMentorNo());
 		
 		List<ScheduleVo> svList = ms.selectMentorSchedule(sv);
 		
+		System.out.println(svList);
 		
+		Gson gson = new Gson();
 		
+		String jsonString = gson.toJson(svList);
 		
-		return "";
+		return jsonString;
+		
 	}
 	
-	
-	
+	//멘토링 신청
+	@PostMapping("/mentoring/apply")
+	public String mentoringApply(ApplicationVo application, HttpSession session) {
+		
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember"); 
+		application.setMNo(loginMember.getNo());
+		
+		System.out.println(application);
+		
+		int result = ms.insertApplication(application);
+		
+		if(result != 1) {
+			return "/common/error";
+		}
+		
+		return "redirect:/mentor/list";
+	}
 	
 
 }

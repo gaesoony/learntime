@@ -100,7 +100,9 @@
             <div id="application-btn" class="modal-btn">신청하기</div>
         </div>
     </div>
-
+<!-- 폼태그 자동 submit 방지-->
+<form action="/app/mentor/mentoring/apply" method="post" id="pay-form" onSubmit="return checkSubmit()">
+    <input type="hidden" name="" id="hidden-input" value="">
     <!-- 두번째 모달 -->
     <div id="second-modal" class="background">
         <div id="second-modal-content" class="foreground">
@@ -154,7 +156,7 @@
                         </div>
                     </div>
                     <input id="date-input" type="hidden" name="reservationDate">
-                    <script type="text/javascript" src="/app/resources/js/mentoring/calendar.js"></script>
+                    
                 </div>
                 <!-- 캘린더 끝 -->
             </div>
@@ -162,6 +164,7 @@
                 <select name="reservationTime" id="time-select">
                     <option value="" disabled selected>시간을 선택해 주세요</option>
                     <!-- 시간 받아올 부분 -->
+                    <!-- 임시 -->
                     <option value="12:00 ~ 14:00">12:00 ~ 14:00</option>
                     <option value="14:00 ~ 16:00">14:00 ~ 16:00</option>
                     <option value="16:00 ~ 18:00">16:00 ~ 18:00</option>
@@ -178,13 +181,13 @@
                 <span class="modal-sub-title">이메일</span>
             </div>
             <div class="modal-info-box sm-box">
-                <input name="email" type="text" placeholder="example@email.com">
+                <input name="email" type="text" placeholder="example@email.com" id="email-input">
             </div>
             <div class="mentoring-modal-title">
                 <span class="modal-sub-title">멘토에게 남길 메세지</span>
             </div>
             <div class="modal-info-box sm-box" id="massage-box">
-                <input name="message" id="massage-input" type="text" placeholder="멘토에게 남길 메세지를 간단히 작성해주세요">
+                <input name="massage" id="massage-input" type="text" placeholder="멘토에게 남길 메세지를 간단히 작성해주세요">
             </div>
 
             <div class="modal-btn-box">
@@ -218,25 +221,27 @@
             </div>
 
             <div id="modal-seletedmentor">
-                <div class="grid-title">멘토링 명</div>
-                <div>스프링으로 생산력 향상 시켜드립니다.</div>
-                <div class="grid-title">멘토</div>
-                <div>코딩하는망치맨</div>
-                <div class="grid-title">멘티</div>
-                <div>김량우</div>
+                <div class="grid-title" >멘토링 명</div>
+                <div id="grid-1">잘 가르쳐 드립니다</div>
+                <div class="grid-title" >멘토</div>
+                <div id="grid-2">코딩하는망치맨</div>
+                <div class="grid-title" >멘티</div>
+                <div id="grid-3">김량우</div>
                 <div class="grid-title">일정</div>
-                <div>2022.12.04, 20:00~22:00</div>
+                <div id="grid-4">2022.12.04, 20:00~22:00</div>
                 <div class="grid-title">연락처</div>
-                <div>010-9697-9377</div>
+                <div id="grid-5">010-9697-9377</div>
                 <div class="grid-title">이메일</div>
-                <div>ryangwooz@gmail.com</div>
+                <div id="grid-6">ryangwooz@gmail.com</div>
                 <div class="grid-title">메세지</div>
-                <div>잘좀 해달라구</div>
+                <div id="grid-7">잘좀 해달라구</div>
+                <input type="hidden" name="mentorNo" value="" id="mentorNo-input">
+                <input type="hidden" name="price" value="" id="price-input">
             </div>
             
             <div class="mentoring-modal-title" id="pay-info-box">
                 <span class="modal-sub-title">결제금액</span>
-                <span>22,000원</span>
+                <span id = "payment-price">22,000원</span>
             </div>
 
             <div id="pay-agree-box">
@@ -249,7 +254,8 @@
                 <div id="next-btn-3" class="modal-btn next-btn">결제하기</div>
             </div>
         </div> 
-    </div> 
+    </div>
+
 
     <!-- 네번째 모달 -->
     <div id="fourth-modal" class="background">
@@ -265,6 +271,11 @@
             </div>
         </div> 
     </div> 
+
+<!-- 폼태그 끝-->
+</form>
+
+<script type="text/javascript" src="/app/resources/js/mentoring/calendar.js"></script>
 
     
 	<div id="board-banner"> 
@@ -474,6 +485,15 @@
         //버튼 클릭시 show 클래스 추가
         $('.mentoring').on('click',function(){
             $('#first-modal').addClass('show');
+            //input 초기화
+            $('#date-input').val("");
+            $('#time-select').val("");
+            $('#time-select').attr('disabled', true);
+            $('#time-select-result').text('');
+            $('#phone-input').val("");
+            $('#message-input').val("");
+            $('#email-input').val("");
+
         })
         //닫기 버튼 클릭시 show 클래스 제거
         $('.close-btn').on('click',function(){
@@ -489,8 +509,12 @@
         })
         //#next-btn-2 클릭시 2번째 닫고 3번째 열기
         $('#next-btn-2').on('click',function(){
-            $('#second-modal').removeClass('show');
-            $('#third-modal').addClass('show');
+            if($('#date-input').val() != "" && $('#time-select-result').text() != "" && $('#phone-input').val() != "" && $('#message-input').val() != "" && $('#email-input').val() != ""){
+                $('#second-modal').removeClass('show');
+                $('#third-modal').addClass('show');
+            }else{
+                alert("모든 항목을 채워주세요.");
+            }
         });
         //#pre-btn-2 클릭시 2번째 닫고 1번째 열기
         $('#pre-btn-2').on('click',function(){
@@ -537,16 +561,35 @@
             e.stopPropagation();
         });
 
-
-        // 날짜 시간 선택하면 출력
-        $('#time-select').on('change',function(){
-            var time = $('#time-select option:selected').text();
+        // 멘토링 신청 정보 채우기
+        $(document).on('click', '#next-btn-2', function(){
             var date = $('#date-input').val();
-            $('#date').text(date);
-            $('#time').text(time);
-            $('#time-select-result').text(date + ' ' + time);
+            var time = $('#time-select').val();
+            var email = $('#email-input').val();
+            var phoneNo = $('#phone-input').val();
+            var massage = $('#massage-input').val();
+            //js에서는 안되던데 ㅜ
+            var userNick = '${loginMember.nick}';
+
+            $('#grid-3').text(userNick);
+            $('#grid-4').text(date+', '+time);
+            $('#grid-5').text(phoneNo);
+            $('#grid-6').text(email);
+            $('#grid-7').text(massage);
         });
 
+        //자동 서브밋 방지
+        
+        function checkSubmit(){
+            var hiddenInput = $('#hidden-input').val();
+
+            console.log(hiddenInput);
+            if(hiddenInput == 1){
+                return true;
+            }else{
+                return false;
+            }
+        }
 
     </script>
 

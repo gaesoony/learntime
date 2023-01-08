@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<!-- jstl 라이브러리 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -139,28 +143,99 @@ pageEncoding="UTF-8"%>
                             <span> 취소/환불</span>
                         </label>
                     </div>
-        
-                    <div class="content-box">
-                        <div class="mentoring-nbr">
-                            <span>No 221129192042</span>
-                        </div>
-                        <div class="mentoring-title">
-                            <span>스프링으로 생산력 향상 시켜드립니다.</span>
-                        </div>
-                        <div class="mentor-info">
-                            <div class="mentor-nick">
-                                <a href="">
-                                    <img src="/app/resources/img/profile01.png" alt="">
-                                    <span>코딩하는망치맨</span>
-                                </a>
+                    
+                    <!-- avList 가 null이거나 값이 없다면 -->
+                    <c:if test="${avList == null || avList.size() == 0}">
+                        <div id="no-application" class="m-notice">신청한 멘토링이 없습니다. :( </div>
+                    </c:if>
+
+                    <c:forEach items="${avList}" var="av">
+                    <!-- 예약 날짜 형식 변환 -->
+                    <fmt:parseDate value="${av.reservationDate}" var="date" pattern="yyyy-MM-dd" />
+                    <!-- 오늘날짜 today 가져오기 -->
+                    <fmt:parseDate value="${today}" var="today" pattern="yyyy-MM-dd" />
+                        <div class="content-box">
+                            <div class="mentoring-nbr">
+                                <span>No. ${av.no}</span>
                             </div>
-                            <div class="apply-date">신청 날짜 : 2022/11/29 19:20:42</div>
+                            <div class="mentoring-title">
+                                <span>${av.title}</span>
+                            </div>
+                            <div class="mentor-info">
+                                <div class="mentor-nick">
+                                    <a href="">
+                                        <img src="/app/${av.mentorImg}" alt="">
+                                        <span>${av.mentorNick}</span>
+                                    </a>
+                                </div>
+                                <div class="apply-date">신청 날짜 : ${av.paymentDate}</div>
+                            </div>
+                            <div class="mentoring-status">
+                                <div class="status-txt">
+                                    <!-- ${av.applyYn} 이 N 이면 -->
+                                    <c:if test="${av.applyYn eq 'N' and av.cancelYn eq 'N'}">
+                                        승인 대기중
+                                    </div>
+                                    <input type="hidden" name="" value="${av.no}">
+                                    <div class="status-btn red-btn cancel-btn">취소하기
+                                    </c:if>
+                                    <!-- ${av.applyYn} 이 Y 이고 ${av.cancelYn} 이 N 이면 -->
+                                    <c:if test="${av.applyYn eq 'Y' and av.cancelYn eq 'N'}">
+                                        예약 확정
+                                    </div>
+                                    <input type="hidden" name="" value="${av.no}">
+                                    <div class="status-btn red-btn cancel-btn">취소하기
+                                    </c:if>
+                                    <!-- ${av.applyYn} 이 N 이면 -->
+                                    <c:if test="${av.cancelYn eq 'Y'}">
+                                        취소 완료
+                                    </c:if>
+                                    <!-- ${av.applyYn} 이 Y 이고 ${av.cancelYn} 이 N 이고 ${av.reservationDate} 이 오늘보다 작으면 -->
+                                    
+                                    <c:if test="${av.applyYn eq 'Y' and av.cancelYn eq 'N' and date lt today}">
+                                        이용 완료
+                                    </div>
+                                    <div class="status-btn green-btn review-btn">후기작성
+                                    </c:if>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mentoring-status">
-                            <div class="status-txt">예약 확정</div>
-                            <div class="status-btn red-btn">취소하기</div>
-                        </div>
-                    </div>
+                        <!-- 후기작성 div -->
+                        <c:if test="${av.applyYn eq 'Y' and av.cancelYn eq 'N' and date lt today}">
+                            <div class="review-box" hidden>
+                                <form action="">
+                                    <div class="review-head">
+                                        <div class="review-star">
+                                            <div class="star-box">
+                                                <span class="material-symbols-rounded star-icon">star</span>
+                                                <span class="material-symbols-rounded star-icon">star</span>
+                                                <span class="material-symbols-rounded star-icon">star</span>
+                                                <span class="material-symbols-rounded star-icon">star</span>
+                                                <span class="material-symbols-rounded star-icon">star</span>
+        
+                                                <select name="star" id="" class="star" hidden>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="star-txt">
+                                            <span></span>
+                                        </div>
+                                        <input type="hidden" name="no" value="${av.no}">
+                                        <div class="review-write-btn green-btn">작성하기</div>
+                                    </div>
+                                    
+                                    <div class="review-txt">
+                                        <textarea name="content" id="" cols="30" rows="10" placeholder="멘토링에 대한 솔직한 후기를 남겨주세요"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                        </c:if>
+                    </c:forEach>
                     
                     <div class="content-box">
                         <div class="mentoring-nbr">
@@ -237,10 +312,6 @@ pageEncoding="UTF-8"%>
                             </div>
                         </form>
                     </div>
-
-
-
-                    <div id="no-application" class="m-notice">신청한 멘토링이 없습니다. :( </div>
                 </div>
             </div>
             </div>
