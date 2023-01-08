@@ -27,9 +27,21 @@ public interface ManagerService {
 	public int updateProfile(ProfileVo vo);
 
 	//관리자 목록 조회
-	public List<Map<String, Object>> selectManagerList();
+	public List<Map<String, Object>> selectManagerList(Map map);
 
 	//운영자 목록 조회
 	public List<Map<String, Object>> selectOperatorList();
+
+	//관리자 cnt 조회
+	public int selectManagerCnt(Map map);
+
+	//관리자 리스트 삭제
+	public int deleteManagerList(String[] group);
+
+	//관리자 로그 목록 조회
+	public List<Map<String, Object>> selectManagerLogList(Map map);
+
+	//관리자 로그 CNT 조회
+	public int selectManagerLogCnt(Map map);
 
 }

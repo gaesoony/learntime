@@ -1,5 +1,8 @@
 package com.learntime.app.admin.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,11 +17,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.learntime.app.admin.service.AdminDashboardService;
 import com.learntime.app.admin.service.ManagerService;
 import com.learntime.app.admin.vo.ManagerVo;
 import com.learntime.app.common.file.FileUploader;
+import com.learntime.app.common.page.PageVo;
+import com.learntime.app.common.page.Pagination;
+import com.learntime.app.community.service.BoardService;
+import com.learntime.app.community.vo.BoardVo;
+import com.learntime.app.faq.vo.FaqVo;
+import com.learntime.app.makegrass.service.MakegrassService;
 import com.learntime.app.member.service.MemberService;
+import com.learntime.app.mertoring.service.MentoringService;
+import com.learntime.app.mertoring.vo.MentorVo;
 import com.learntime.app.mystudy.vo.ProfileVo;
+import com.learntime.app.notice.service.AdminNoticeService;
+import com.learntime.app.notice.vo.NoticeVo;
+import com.learntime.app.qna.service.QnaService;
+import com.learntime.app.question.vo.QuestionVo;
 import com.learntime.app.study.service.StudyService;
 
 @RequestMapping("admin/dashboard")
@@ -33,13 +49,53 @@ public class AdminDashboardController {
 	@Qualifier("studyServiceImpl")
 	private StudyService studyService;
 	
+	@Autowired
+	@Qualifier("makegrassServiceImpl")
+	private MakegrassService makegrassService;
+	
+	@Autowired
+	@Qualifier("mentoringServiceImpl")
+	private MentoringService mentoringService;
+	
+	@Autowired
+	@Qualifier("qnaServiceImpl")
+	private QnaService qnaService;
+	
+	@Autowired
+	@Qualifier("boardServiceImpl")
+	private BoardService boardService;
+
+	@Autowired
+	@Qualifier("adminNoticeServiceImpl")
+	private AdminNoticeService adminNoticeService;
+	
+	@Autowired
+	@Qualifier("adminDashboardServiceImpl")
+	private AdminDashboardService adminDashboardService;
+	
+	
 	
 	//관리자페이지 대시보드 조회 (화면)
 	@GetMapping("")
 	public String dashboard(Model model) {
 		
+		//오늘 방문자수 조회
+		int visitorCnt = adminDashboardService.selectVisitorCnt();
+		model.addAttribute("visitorCnt", visitorCnt);
+		
+		//오늘 가입자수 조회
+		int joinCnt = adminDashboardService.selectJoinCnt();
+		model.addAttribute("joinCnt", joinCnt);
+		
+		//오늘 탈퇴자수 조회
+		int quitCnt = adminDashboardService.selectQuitCnt();
+		model.addAttribute("quitCnt", quitCnt);
+		
+		Map map = new HashMap<String, Object>();
+		map.put("deleteYn", "N");
+		
 		//관리자 목록 조회
-		List<Map<String, Object>> managerList = managerService.selectManagerList();
+		List<Map<String, Object>> managerList = managerService.selectManagerList(map);
 		model.addAttribute("managerList", managerList);
 		
 		//운영자 목록 조회
@@ -50,19 +106,120 @@ public class AdminDashboardController {
 		List<Map<String, Object>> groupList = studyService.selectMainGroupList();
 		model.addAttribute("groupList", groupList);
 		
+		//러닝 목록 조회
+		List<Map<String, Object>> learningList = adminDashboardService.selectLearningList();
+		model.addAttribute("learningList", learningList);
+		
+		//잔디심기 목록 조회
+		List<Map<String, Object>> makegrassList = makegrassService.selectList(null);
+		model.addAttribute("makegrassList", makegrassList);
+		
+		//멘토링 목록 조회
+		List<MentorVo> mentorList = mentoringService.selectMentorList();
+		model.addAttribute("mentorList", mentorList);
+		
+		//문의 목록 조회
+		List<QuestionVo> questionList = adminDashboardService.selectQuestionList();
+		model.addAttribute("questionList", questionList);
+		
+		//자유게시판 목록 조회
+		List<BoardVo> boardList = boardService.select(null);
+		model.addAttribute("boardList", boardList);
+		
+		//공지사항 목록 조회
+		List<NoticeVo> noticeList= adminDashboardService.selectNoticeList();
+		model.addAttribute("noticeList", noticeList);
+		
+		//faq 목록 조회
+		List<FaqVo> faqList= adminDashboardService.selectFaqList();
+		model.addAttribute("faqList", faqList);
+		
 		
 		return "admin/dashboard/list";
 	}
 	
 	//관리자페이지 대시보드 - 관리자 리스트 조회 (화면)
 	@GetMapping("manager/list")
-	public String managerList() {
+	public String managerList(Model model, String keyword, String category, String status, String pno) {
+		
+		Map map = new HashMap();
+		
+		map.put("keyword", keyword);
+		map.put("category", category);
+		map.put("status", status);
+       
+	    int listCount = managerService.selectManagerCnt(map);
+	    int currentPage = Integer.parseInt(pno);
+	    int pageLimit = 10;
+	    int boardLimit = 10;
+       
+        PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
+        map.put("pv", pv);
+		
+		//관리자 목록 조회
+		List<Map<String, Object>> managerList = managerService.selectManagerList(map);
+		model.addAttribute("managerList", managerList);
+	    model.addAttribute("listCount", listCount);
+	    model.addAttribute("pv", pv);
+	    model.addAttribute("pno", pno);
+	    model.addAttribute("keyword", keyword);
+	    model.addAttribute("category", category);
+	    model.addAttribute("status", status);
+		
 		return "admin/dashboard/manager/list";
 	}
 	
+	@GetMapping("manager/delete")
+	public String deleteManager(String[] group, String pno, String keyword, String category, String status, HttpSession session) throws UnsupportedEncodingException {
+		
+		String encodedKeyword = URLEncoder.encode(keyword, "UTF-8");
+		
+		int result = managerService.deleteManagerList(group);
+		
+		if(result == 1) {
+			session.setAttribute("alertMsg", "삭제되었습니다");
+			return "redirect:/admin/dashboard/manager/list?pno="+pno+"&keyword="+encodedKeyword+"&category="+category+"&status="+status;
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+
+	
 	//관리자페이지 대시보드 - 관리자 로그 조회 (화면)
 	@GetMapping("manager/log")
-	public String managerLog() {
+	public String managerLog(Model model, String keyword, String category, String status, String pno) {
+		
+		Map map = new HashMap();
+		
+		System.out.println(keyword);
+		System.out.println(category);
+		System.out.println(status);
+		System.out.println(pno);
+		
+		map.put("keyword", keyword);
+		map.put("category", category);
+		map.put("status", status);
+       
+	    int listCount = managerService.selectManagerLogCnt(map);
+	    int currentPage = Integer.parseInt(pno);
+	    int pageLimit = 10;
+	    int boardLimit = 10;
+       
+        PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
+        map.put("pv", pv);
+		System.out.println(listCount);
+		
+		//관리자 목록 조회
+		List<Map<String, Object>> managerLogList = managerService.selectManagerLogList(map);
+		model.addAttribute("managerLogList", managerLogList);
+	    model.addAttribute("listCount", listCount);
+	    model.addAttribute("pv", pv);
+	    model.addAttribute("pno", pno);
+	    model.addAttribute("keyword", keyword);
+	    model.addAttribute("category", category);
+	    model.addAttribute("status", status);
+		
 		return "admin/dashboard/manager/log";
 	}
 	

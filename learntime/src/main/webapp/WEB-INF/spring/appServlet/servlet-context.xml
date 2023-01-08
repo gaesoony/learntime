@@ -51,6 +51,19 @@
 			<exclude-mapping path="/member/join"/>
 			<beans:bean class="com.learntime.app.common.interceptor.LoginCheckInterceptor"></beans:bean>
 		</interceptor>
+		<interceptor>
+			<mapping path="/admin/**"/>
+			<exclude-mapping path="/" />
+			<exclude-mapping path="/admin/login"/>
+			<exclude-mapping path="/admin/manager/login"/>
+			<exclude-mapping path="/admin/manager/logout"/>
+			<exclude-mapping path="/admin/manager/wrong"/>
+			<exclude-mapping path="/**/*.css"/>
+		    <exclude-mapping path="/**/*.js"/>
+		    <exclude-mapping path="/image/**/*.*"/>
+			<exclude-mapping path="/resources/**" />
+			<beans:bean class="com.learntime.app.common.interceptor.AdminLoginCheckInterceptor"></beans:bean>
+		</interceptor>
 	</interceptors>
 	
 	<!-- 웹소켓 빈 등록 -->
@@ -81,7 +94,5 @@
 	
 		
 	</websocket:handlers>
-	
-	
 	
 </beans:beans>

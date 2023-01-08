@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminDashboardMapper">
+
+	<select id="selectLearningList" resultType="map">
+		SELECT K.NO, C.NAME AS CATE_NO, K.TITLE, TO_CHAR(K.CONTENT) CONTENT, M.NICK AS WRITER, K.HIT, TO_CHAR(CAST(K.ENROLL_DATE as DATE),'YYYY.MM.DD') ENROLL_DATE, M.IMG_PATH, NVL(REPLY_CNT,0) REPLY_CNT, NVL(LIKES,0) LIKES FROM KNOWLEDGE_QUESTION K
+		JOIN MEMBER M ON K.WRITER = M.NO
+		JOIN KNOWLEDGE_CATEGORY C ON K.CATE_NO = C.NO
+		LEFT JOIN (SELECT Q_NO, COUNT(*) REPLY_CNT FROM KNOWLEDGE_ANSWER WHERE DELETE_YN = 'N' GROUP BY Q_NO) A ON K.NO = A.Q_NO
+		LEFT JOIN (SELECT NO, SUM(CASE WHEN STATUS = 'L' THEN 1 ELSE 0 END) AS LIKES FROM KNOWLEDGE_LIKE_HATE GROUP BY NO) L ON K.NO = L.NO
+		WHERE K.DELETE_YN = 'N'
+		ORDER BY NO DESC
+	</select>
+	
+	<select id="selectNoticeList" resultType="com.learntime.app.notice.vo.NoticeVo">
+	      SELECT * FROM
+	 	 (SELECT N.NO,N.CATE_NO, C.NAME as CATE_NAME,N.TITLE,N.ENROLL_DATE, N.HIT, M.NICK AS WRITER,N.CATEGORY,N.KEYWORD  FROM NOTICE N 
+	      JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER
+	      WHERE STATUS = 2 AND DELETE_YN = 'N') WHERE ROWNUM <![CDATA[<= ]]>3
+	        
+	      UNION
+	      SELECT N.NO,N.CATE_NO,C.NAME as CATE_NAME,N.TITLE,N.ENROLL_DATE, N.HIT, M.NICK AS WRITER ,N.CATEGORY,N.KEYWORD FROM NOTICE N 
+	      JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER
+	      WHERE DELETE_YN = 'N'
+	</select>
+	
+	<select id="selectFaqList" resultType="com.learntime.app.faq.vo.FaqVo">
+		 SELECT F.NO,F.CATE_NO, C.NAME as CATE_NAME,F.TITLE,F.ENROLL_DATE, M.NICK AS WRITER FROM FAQ F 
+	      JOIN COMMON_CATEGORY C ON F.CATE_NO= C.NO JOIN MEMBER M ON M.NO = F.WRITER
+	      WHERE DELETE_YN = 'N'      
+	      ORDER BY F.NO DESC 
+	</select>
+	
+	<select id="selectQuestionList" resultType="com.learntime.app.question.vo.QuestionVo">
+	  	SELECT Q.NO,Q.CATE_NO,C.NAME as CATE_NAME,Q.TITLE,Q.ENROLL_DATE ,M.NICK AS WRITER FROM QUESTION_BOARD Q 
+      JOIN COMMON_CATEGORY C ON Q.CATE_NO= C.NO JOIN MEMBER M ON M.NO = Q.WRITER
+      WHERE DELETE_YN = 'N' 
+	  ORDER BY Q.ENROLL_DATE DESC 
+	</select>
+	<insert id="insertVisitor">
+         INSERT
+         INTO VISITOR
+         (
+             NO,
+             IP,
+             ENROLL_DATE,
+             REFER,
+             AGENT
+         )
+         VALUES
+         (
+             SEQ_VISITOR_NO.NEXTVAL,
+             #{ip},
+             SYSDATE,
+             #{refer},
+             #{agent}
+         )
+    </insert>
+	<select id="selectVisitorCnt" resultType="Int">
+		SELECT COUNT(*)
+		FROM VISITOR
+		<![CDATA[ WHERE ENROLL_DATE > (SYSDATE-1) AND ENROLL_DATE <= SYSDATE ]]>
+	</select>
+	<select id="selectJoinCnt" resultType="Int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		<![CDATA[ WHERE ENROLL_DATE > (SYSDATE-1) AND ENROLL_DATE <= SYSDATE ]]>
+	</select>
+	<select id="selectQuitCnt" resultType="Int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		<![CDATA[ WHERE MODIFY_DATE > (SYSDATE-1) AND MODIFY_DATE <= SYSDATE ]]>
+		AND QUIT_YN = 'Y'
+	</select>
+</mapper>

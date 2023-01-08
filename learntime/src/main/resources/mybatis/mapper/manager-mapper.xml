@@ -52,6 +52,44 @@
 	<select id="selectManagerList" resultType="map">
 		SELECT *
 		FROM ADMIN
+		WHERE NO LIKE '%%'
+		<if test="'N'.equals(deleteYn)">
+			AND DELETE_YN = 'N'
+		</if>
+		<if test="keyword != null and 'nick'.equals(category)">
+			AND NICK LIKE '%${keyword}%'		
+		</if>
+		<if test="keyword != null and 'id'.equals(category)">
+			AND ID LIKE '%${keyword}%'		
+		</if>
+		<if test="keyword != null and 'delete'.equals(status)">
+			AND DELETE_YN = 'Y' 
+		</if>
+		<if test="keyword != null and 'enable'.equals(status)">
+			AND DELETE_YN = 'N' 
+		</if>
+		ORDER BY NO DESC
+	</select>
+	<select id="selectManagerCnt" resultType="Int">
+		SELECT COUNT(*)
+		FROM ADMIN
+		WHERE NO LIKE '%%'
+		<if test="'N'.equals(deleteYn)">
+			AND DELETE_YN = 'N'
+		</if>
+		<if test="keyword != null and 'nick'.equals(category)">
+			AND NICK LIKE '%${keyword}%'		
+		</if>
+		<if test="keyword != null and 'id'.equals(category)">
+			AND ID LIKE '%${keyword}%'		
+		</if>
+		<if test="keyword != null and 'delete'.equals(status)">
+			AND DELETE_YN = 'Y' 
+		</if>
+		<if test="keyword != null and 'enable'.equals(status)">
+			AND DELETE_YN = 'N' 
+		</if>
+		ORDER BY NO DESC
 	</select>
 	<select id="selectOperatorList" resultType="map">
 		SELECT * 
@@ -62,5 +100,50 @@
 		SELECT *
 		FROM ADMIN
 		WHERE ID = #{id} AND PWD = #{pwd}
+	</select>
+	<update id="deleteManager">
+		UPDATE ADMIN SET
+		DELETE_YN = 'Y'
+		WHERE NO = #{no}
+	</update>
+	<select id="selectManagerLogList" resultType="map">
+		SELECT L.NO, ACCESS_TIME, ACCESS_IP, LOGIN_YN, ID, NICK
+		FROM ADMIN_LOGIN L
+		JOIN ADMIN A ON L.A_NO = A.NO
+		WHERE L.NO LIKE '%%'
+		<if test="keyword != null and 'nick'.equals(category)">
+			AND NICK LIKE '%${keyword}%'		
+		</if>
+		<if test="keyword != null and 'id'.equals(category)">
+			AND ID LIKE '%${keyword}%'		
+		</if>
+		<if test="keyword != null and 'login'.equals(status)">
+			AND LOGIN_YN = 'Y' 
+		</if>
+		<if test="keyword != null and 'logout'.equals(status)">
+			AND LOGIN_YN = 'N' 
+		</if>
+		
+		ORDER BY L.NO DESC
+	</select>
+	<select id="selectManagerLogCnt" resultType="Int">
+		SELECT COUNT(*)
+		FROM ADMIN_LOGIN L
+		JOIN ADMIN A ON L.A_NO = A.NO
+		
+		WHERE L.NO LIKE '%%'
+		<if test="keyword != null and 'nick'.equals(category)">
+			AND NICK LIKE '%${keyword}%'		
+		</if>
+		<if test="keyword != null and 'id'.equals(category)">
+			AND ID LIKE '%${keyword}%'		
+		</if>
+		<if test="keyword != null and 'login'.equals(status)">
+			AND LOGIN_YN = 'Y' 
+		</if>
+		<if test="keyword != null and 'logout'.equals(status)">
+			AND LOGIN_YN = 'N' 
+		</if>
+		ORDER BY L.NO DESC
 	</select>
 </mapper>

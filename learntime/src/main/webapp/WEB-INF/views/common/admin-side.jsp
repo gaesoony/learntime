@@ -39,7 +39,17 @@ session.removeAttribute("alertMsg"); %>
   </div>
   <div class="admin-profile-box">
     <div id="admin-profile">
-      <div id="profile-img"></div>
+      <div id="profile-img">
+        <c:if test="${loginManager.imgPath == null}">
+          <img src="${path}/resources/img/profile_default.png" alt="" />
+        </c:if>
+        <c:if test="${loginManager.imgPath != null}">
+          <img
+            src="${path}/resources/upload/manager/profile/${loginManager.imgPath}"
+            alt=""
+          />
+        </c:if>
+      </div>
       <div id="profile-content">
         <div id="welcome">Welcome,</div>
         <div id="admin-name">${loginManager.nick}님</div>

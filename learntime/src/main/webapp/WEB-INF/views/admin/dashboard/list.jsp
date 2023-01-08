@@ -425,7 +425,7 @@ pageEncoding="UTF-8"%>
                   </div>
                 </div>
                 <div class="info-bottom space-between flex">
-                  <div>1500</div>
+                  <div>${visitorCnt}</div>
                   <div><span>+1115&nbsp</span><span>+11.01%</span></div>
                 </div>
               </li>
@@ -440,7 +440,7 @@ pageEncoding="UTF-8"%>
                   </div>
                 </div>
                 <div class="info-bottom space-between flex">
-                  <div>1500</div>
+                  <div>${joinCnt}</div>
                   <div><span>+1115&nbsp</span><span>+11.01%</span></div>
                 </div>
               </li>
@@ -455,7 +455,7 @@ pageEncoding="UTF-8"%>
                   </div>
                 </div>
                 <div class="info-bottom space-between flex">
-                  <div>1500</div>
+                  <div>${quitCnt}</div>
                   <div><span>+1115&nbsp</span><span>+11.01%</span></div>
                 </div>
               </li>
@@ -583,27 +583,13 @@ pageEncoding="UTF-8"%>
           <section class="board-section board-section-grid">
             <div class="board-section-grid-div">
               <header class="dashboard-header">
-                <h1>문의 내역</h1>
-                <div>더보기</div>
-              </header>
-              <div class="board-grid">
-                <% for(int i=0; i<5; i++) {%>
-                <div class="board-grid-div">
-                  <a href="">제목입니다 제목입니다 제목입니다</a>
-                </div>
-                <div class="board-grid-div">2022-12-10</div>
-                <%}%>
-              </div>
-            </div>
-            <div class="board-section-grid-div">
-              <header class="dashboard-header">
-                <h1>스터디/프로젝트</h1>
+                <h1>STUDY/PROJECT</h1>
                 <div><a href="${path}/admin/study/list?pno=1">더보기</a></div>
               </header>
               <div class="board-grid">
                 <c:forEach items="${groupList}" var="map" end="4">
                   <div class="board-grid-div board-title">
-                    <a href="${path}/study/detail?gno=${map.NO}&pno=1"
+                    <a href="${path}/admin/study/detail?gno=${map.NO}&pno=1"
                       >${map.TITLE}</a
                     >
                   </div>
@@ -613,86 +599,148 @@ pageEncoding="UTF-8"%>
             </div>
             <div class="board-section-grid-div">
               <header class="dashboard-header">
-                <h1>지식인</h1>
-                <div>더보기</div>
+                <h1>MENTORING</h1>
+                <div>
+                  <a href="${path}/admin/mentor/mentoring?pno=1">더보기</a>
+                </div>
               </header>
               <div class="board-grid">
-                <% for(int i=0; i<5; i++) {%>
-                <div class="board-grid-div">
-                  <a href="">제목입니다 제목입니다 제목입니다</a>
-                </div>
-                <div class="board-grid-div">2022-12-10</div>
-                <%}%>
+                <c:forEach items="${mentorList}" var="vo" end="4">
+                  <div class="board-grid-div board-title">
+                    <a href="${path}/study/detail?gno=${map.NO}&pno=1"
+                      >${vo.title}</a
+                    >
+                  </div>
+                  <c:set var="enrollDate" value="${vo.enrollDate}" />
+                  <div class="board-grid-div">
+                    ${fn:substring(enrollDate,0,10)}
+                  </div>
+                </c:forEach>
               </div>
             </div>
             <div class="board-section-grid-div">
               <header class="dashboard-header">
-                <h1>공부인증</h1>
-                <div>더보기</div>
+                <h1>LEARNING</h1>
+                <div>
+                  <a href="${path}/admin/qna/list?pno=1">더보기</a>
+                </div>
               </header>
               <div class="board-grid">
-                <% for(int i=0; i<5; i++) {%>
-                <div class="board-grid-div">
-                  <a href="">제목입니다 제목입니다 제목입니다</a>
-                </div>
-                <div class="board-grid-div">2022-12-10</div>
-                <%}%>
+                <c:forEach items="${learningList}" var="map" end="4">
+                  <div class="board-grid-div board-title">
+                    <a href="${path}/admin/qna/detail?&pno=1">${map.TITLE}</a>
+                  </div>
+                  <c:set var="enrollDate" value="${map.ENROLL_DATE}" />
+                  <div class="board-grid-div">
+                    ${fn:substring(enrollDate,0,4)}-${fn:substring(enrollDate,5,7)}-${fn:substring(enrollDate,8,10)}
+                  </div>
+                </c:forEach>
               </div>
             </div>
             <div class="board-section-grid-div">
               <header class="dashboard-header">
-                <h1>멘토링</h1>
-                <div>더보기</div>
+                <h1>MAKE GRASS</h1>
+                <div>
+                  <a href="${path}/admin/makegrass/list?pno=1">더보기</a>
+                </div>
               </header>
               <div class="board-grid">
-                <% for(int i=0; i<5; i++) {%>
-                <div class="board-grid-div">
-                  <a href="">제목입니다 제목입니다 제목입니다</a>
+                <c:forEach items="${makegrassList}" var="map" end="4">
+                  <div class="board-grid-div board-title">
+                    <a href="${path}/study/detail?gno=${map.NO}&pno=1"
+                      >${map.TITLE}</a
+                    >
+                  </div>
+                  <c:set var="enrollDate" value="${map.ENROLL_DATE}" />
+                  <div class="board-grid-div">
+                    ${fn:substring(enrollDate,0,4)}-${fn:substring(enrollDate,5,7)}-${fn:substring(enrollDate,8,10)}
+                  </div>
+                </c:forEach>
+              </div>
+            </div>
+            <div class="board-section-grid-div">
+              <header class="dashboard-header">
+                <h1>문의 내역</h1>
+                <div>
+                  <a href="${path}/admin/question/qListAd?p=1">더보기</a>
                 </div>
-                <div class="board-grid-div">2022-12-10</div>
-                <%}%>
+              </header>
+              <div class="board-grid">
+                <c:forEach items="${questionList}" var="vo" end="4">
+                  <div class="board-grid-div board-title">
+                    <a
+                      href="${path}/admin/question/qDetailListAdmin?no=${vo.no}"
+                      >${vo.title}</a
+                    >
+                  </div>
+                  <c:set var="enrollDate" value="${vo.enrollDate}" />
+                  <div class="board-grid-div">
+                    ${fn:substring(enrollDate,0,10)}
+                  </div>
+                </c:forEach>
               </div>
             </div>
             <div class="board-section-grid-div">
               <header class="dashboard-header">
                 <h1>자유게시판</h1>
-                <div>더보기</div>
+                <div>
+                  <a href="${path}/admin/community/list?pno=1">더보기</a>
+                </div>
               </header>
               <div class="board-grid">
-                <% for(int i=0; i<5; i++) {%>
-                <div class="board-grid-div">
-                  <a href="">제목입니다 제목입니다 제목입니다</a>
-                </div>
-                <div class="board-grid-div">2022-12-10</div>
-                <%}%>
+                <c:forEach items="${boardList}" var="vo" end="4">
+                  <div class="board-grid-div board-title">
+                    <a href="${path}/study/detail?gno=${map.NO}&pno=1"
+                      >${vo.title}</a
+                    >
+                  </div>
+                  <c:set var="enrollDate" value="${vo.enrollDate}" />
+                  <div class="board-grid-div">
+                    ${fn:substring(enrollDate,0,10)}
+                  </div>
+                </c:forEach>
               </div>
             </div>
             <div class="board-section-grid-div">
               <header class="dashboard-header">
                 <h1>공지사항</h1>
-                <div>더보기</div>
+                <div>
+                  <a href="${path}/admin/notice/noticeListAdmin?p=1">더보기</a>
+                </div>
               </header>
               <div class="board-grid">
-                <% for(int i=0; i<5; i++) {%>
-                <div class="board-grid-div">
-                  <a href="">제목입니다 제목입니다 제목입니다</a>
-                </div>
-                <div class="board-grid-div">2022-12-10</div>
-                <%}%>
+                <c:forEach items="${noticeList}" var="vo" end="4">
+                  <div class="board-grid-div board-title">
+                    <a href="${path}/admin/notice/noticeDetailAdmin?no=${vo.no}"
+                      >${vo.title}</a
+                    >
+                  </div>
+                  <c:set var="enrollDate" value="${vo.enrollDate}" />
+                  <div class="board-grid-div">
+                    ${fn:substring(enrollDate,0,10)}
+                  </div>
+                </c:forEach>
               </div>
             </div>
             <div class="board-section-grid-div">
               <header class="dashboard-header">
                 <h1>FAQ</h1>
-                <div>더보기</div>
+                <div>
+                  <a href="${path}/admin/faq/faqListAd?pno=1">더보기</a>
+                </div>
               </header>
               <div class="board-grid">
-                <% for(int i=0; i<5; i++) {%>
-                <div class="board-grid-div">
-                  <a href="">제목입니다 제목입니다 제목입니다</a>
-                </div>
-                <div class="board-grid-div">2022-12-10</div>
-                <%}%>
+                <c:forEach items="${faqList}" var="vo" end="4">
+                  <div class="board-grid-div board-title">
+                    <a href="${path}/admin/faq/faqDetailListAdmin?no=${vo.no}"
+                      >${vo.title}</a
+                    >
+                  </div>
+                  <c:set var="enrollDate" value="${vo.enrollDate}" />
+                  <div class="board-grid-div">
+                    ${fn:substring(enrollDate,0,10)}
+                  </div>
+                </c:forEach>
               </div>
             </div>
           </section>
@@ -729,7 +777,7 @@ pageEncoding="UTF-8"%>
             <header class="dashboard-header">
               <h1>관리자</h1>
               <div>
-                <a href="${path}/admin/dashboard/manager/list">더보기</a>
+                <a href="${path}/admin/dashboard/manager/list?pno=1">더보기</a>
               </div>
             </header>
             <ul class="manager-list">
@@ -781,7 +829,7 @@ pageEncoding="UTF-8"%>
             <input
               type="button"
               value="관리자 로그 내역"
-              onclick="location.href='${path}/admin/dashboard/manager/log'"
+              onclick="location.href='${path}/admin/dashboard/manager/log?pno=1'"
             />
           </section>
         </aside>

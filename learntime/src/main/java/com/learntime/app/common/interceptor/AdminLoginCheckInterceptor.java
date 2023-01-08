@@ -18,9 +18,10 @@ public class AdminLoginCheckInterceptor implements HandlerInterceptor {
 		HttpSession session = request.getSession(false);
 		if(session != null) {
 			ManagerVo loginManager = (ManagerVo) session.getAttribute("loginManager");
+			
 			if(loginManager == null) {
 				request.getRequestDispatcher("/admin/manager/wrong").forward(request, response);
-				System.out.println("interceptor~~~");
+				System.out.println("admin interceptor~~~");
 				return false;
 			}
 		}

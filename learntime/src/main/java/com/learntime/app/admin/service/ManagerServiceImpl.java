@@ -32,6 +32,7 @@ public class ManagerServiceImpl implements ManagerService{
 	public ManagerVo login(ManagerVo vo) {
 		
 		if(vo.getId().equals("123")) {
+			System.out.println("로그인sst:"+sst);
 			ManagerVo master = dao.masterLogin(sst, vo);
 			if(master == null) {
 				return null;
@@ -83,14 +84,41 @@ public class ManagerServiceImpl implements ManagerService{
 
 	//관리자 목록 조회
 	@Override
-	public List<Map<String, Object>> selectManagerList() {
-		return dao.selectManagerList(sst);
+	public List<Map<String, Object>> selectManagerList(Map map) {
+		return dao.selectManagerList(sst, map);
 	}
 
 	//운영자 목록 조회
 	@Override
 	public List<Map<String, Object>> selectOperatorList() {
 		return dao.selectOperatorList(sst);
+	}
+
+	@Override
+	public int selectManagerCnt(Map map) {
+		return dao.selectManagerCnt(sst, map);
+	}
+
+	@Override
+	public int deleteManagerList(String[] group) {
+		int result = 0;
+		for(int i=0; i<group.length; i++) {
+			result = dao.deleteManager(sst, group[i]);	
+			if(result == 0) {
+				break;
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectManagerLogList(Map map) {
+		return dao.selectManagerLogList(sst, map);
+	}
+
+	@Override
+	public int selectManagerLogCnt(Map map) {
+		return dao.selectManagerLogCnt(sst, map);
 	}
 
 }

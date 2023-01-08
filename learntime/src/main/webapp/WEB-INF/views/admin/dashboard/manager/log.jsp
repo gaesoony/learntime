@@ -236,33 +236,85 @@ pageEncoding="UTF-8"%>
       font-size: 16px;
       color: gray;
     }
+
+    /* paging */
+    #paging {
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+      margin-top: 40px;
+      margin-bottom: 100px;
+    }
+
+    .paging-btn {
+      height: 25px;
+      width: 25px;
+      border: 1px solid #aeaeae;
+      border-radius: 2px;
+      text-align: center;
+      line-height: 24px;
+      color: #535353;
+      cursor: pointer;
+    }
+
+    .paging-btn:nth-child(n + 1) {
+      margin-left: 5px;
+    }
+
+    .paging-btn a {
+      display: block;
+    }
+
+    .paging-btn:hover {
+      background-color: #58c079;
+      color: white;
+    }
+
+    #next-btn,
+    #prev-btn {
+      width: 40px;
+    }
   </style>
   <body>
     <%@include file="/WEB-INF/views/common/admin-side.jsp"%>
     <div id="content-wrap">
-      <div id="admin-category-title" class="shadow-light">관리자 로그 내역</div>
+      <div id="admin-category-title" class="shadow-light">
+        <a href="${path}/admin/dashboard/manager/log?pno=1">관리자 로그 내역</a>
+      </div>
       <div class="wrapper">
-        <section class="search-section space-between">
-          <div class="relative">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input
-              type="text"
-              placeholder="내용을 입력해주세요"
-              class="search-box"
-            /><select name="" id="" class="select-box">
-              <option value="">닉네임</option>
-              <option value="">아이디</option>
-            </select>
-            <select name="" id="" class="select-box">
-              <option value="">로그인</option>
-              <option value="">로그아웃</option>
-            </select>
-          </div>
-        </section>
+        <form
+          action="${path}/admin/dashboard/manager/log"
+          method="get"
+          id="form"
+        >
+          <input type="hidden" value="${pno}" name="pno" />
+
+          <section class="search-section space-between">
+            <div class="relative">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input
+                type="text"
+                placeholder="내용을 입력해주세요"
+                class="search-box"
+                name="keyword"
+              />
+              <select name="category" class="select-box">
+                <option value="nick">닉네임</option>
+                <option value="id">아이디</option>
+              </select>
+              <select name="status" class="select-box">
+                <option value="total">로그정보</option>
+                <option value="login">로그인</option>
+                <option value="logout">로그아웃</option>
+              </select>
+            </div>
+          </section>
+        </form>
         <section class="content-section">
           <div class="content-section-top">
             <span>전체 로그</span>
-            <span class="main-color">100</span>
+            <span class="main-color">${listCount}</span>
             <span>건</span>
           </div>
           <div class="grid">
@@ -273,23 +325,90 @@ pageEncoding="UTF-8"%>
             <div class="grid-title">로그정보</div>
             <div class="grid-title">접속IP</div>
 
-            <% for(int i=1; i<=10; i++) {%>
-
-            <div>1</div>
-            <div>
-              <a href="/app/mystudy/board/detail">한혜원</a>
-            </div>
-            <div>hyewon@gmail.com</div>
-            <div>2022-12-11 12:12:12</div>
-            <div>로그아웃</div>
-            <div>127.0.0.1</div>
-
-            <%}%>
+            <c:forEach items="${managerLogList}" var="map">
+              <div>${map.NO}</div>
+              <div>${map.NICK}</div>
+              <div>${map.ID}</div>
+              <c:set var="enrollDate" value="${map.ACCESS_TIME}" />
+              <div>${fn:substring(enrollDate,0,19)}</div>
+              <c:if test="${map.LOGIN_YN == 'N'}">
+                <div>로그아웃</div>
+              </c:if>
+              <c:if test="${map.LOGIN_YN == 'Y'}">
+                <div>로그인</div>
+              </c:if>
+              <div>${map.ACCESS_IP}</div>
+            </c:forEach>
+          </div>
+          <div id="paging">
+            <c:if test="${pv.startPage != 1}">
+              <div class="paging-btn" id="prev-btn">
+                <a
+                  href="${path}/admin/dashboard/manager/log?keyword=${keyword}&category=${category}&status=${status}&pno=${pv.startPage - 1}"
+                  >이전</a
+                >
+              </div>
+            </c:if>
+            <c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
+              <div class="paging-btn">
+                <a
+                  href="${path}/admin/dashboard/manager/log?keyword=${keyword}&category=${category}&status=${status}&pno=${i}"
+                  >${i}</a
+                >
+              </div>
+            </c:forEach>
+            <c:if test="${pv.endPage < pv.maxPage}">
+              <div class="paging-btn" id="next-btn">
+                <a
+                  href="${path}/admin/dashboard/manager/log?keyword=${keyword}&category=${category}&status=${status}&pno=${pv.startPage + 1}"
+                  >다음</a
+                >
+              </div>
+            </c:if>
           </div>
         </section>
       </div>
     </div>
+    <script>
+      const category = document.querySelector("select[name=category]");
+      category.addEventListener("change", function () {
+        const form = document.querySelector("#form");
+        form.submit();
+      });
 
+      const status = document.querySelector("select[name=status]");
+      status.addEventListener("change", function () {
+        const form = document.querySelector("#form");
+        form.submit();
+      });
+
+      const keywordInput = document.querySelector("input[name=keyword]");
+
+      if ("${keyword}" != null) {
+        keywordInput.value = "${keyword}";
+      }
+
+      //카테고리
+      const categoryArr = document.querySelectorAll(
+        "select[name=category] option"
+      );
+      const categoryStr = "${category}";
+      for (let i = 0; i < categoryArr.length; i++) {
+        const x = categoryArr[i].value;
+        if (x == categoryStr) {
+          categoryArr[i].selected = true;
+        }
+      }
+      //status
+      const statusArr = document.querySelectorAll("select[name=status] option");
+      const statusStr = "${status}";
+      for (let i = 0; i < statusArr.length; i++) {
+        const x = statusArr[i].value;
+        if (x == statusStr) {
+          statusArr[i].selected = true;
+        }
+      }
+    </script>
     <script
       src="https://kit.fontawesome.com/939838bb27.js"
       crossorigin="anonymous"

@@ -29,12 +29,24 @@ public interface ManagerDao {
 	public int updateProfile(SqlSessionTemplate sst, ProfileVo vo);
 
 	//관리자 목록 조회
-	public List<Map<String, Object>> selectManagerList(SqlSessionTemplate sst);
+	public List<Map<String, Object>> selectManagerList(SqlSessionTemplate sst, Map map);
 
 	//운영자 목록 조회
 	public List<Map<String, Object>> selectOperatorList(SqlSessionTemplate sst);
 
 	//관리자 마스터계정 로그인
 	public ManagerVo masterLogin(SqlSessionTemplate sst, ManagerVo vo);
+
+	//관리자 cnt 조회
+	public int selectManagerCnt(SqlSessionTemplate sst, Map map);
+
+	//관리자 삭제
+	public int deleteManager(SqlSessionTemplate sst, String string);
+
+	//관리자 로그 목록 조회
+	public List<Map<String, Object>> selectManagerLogList(SqlSessionTemplate sst, Map map);
+
+	//관리자 로그 카운트 조회
+	public int selectManagerLogCnt(SqlSessionTemplate sst, Map map);
 
 }

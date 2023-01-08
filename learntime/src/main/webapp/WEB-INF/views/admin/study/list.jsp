@@ -157,6 +157,10 @@ pageEncoding="UTF-8"%>
       cursor: pointer;
     }
 
+    .paging-btn a {
+      display: block;
+    }
+
     .paging-btn:nth-child(n + 1) {
       margin-left: 5px;
     }
