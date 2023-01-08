@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.learntime.app.mertoring.vo.ApplicationVo;
 import com.learntime.app.mertoring.vo.MentorVo;
 import com.learntime.app.mertoring.vo.ReviewVo;
 import com.learntime.app.mertoring.vo.ScheduleVo;
@@ -72,6 +73,24 @@ public class MentoringDaoImpl implements MentoringDao{
 	@Override
 	public List<ScheduleVo> selectMentorSchedule(SqlSessionTemplate sst, ScheduleVo sv) {
 		return sst.selectList("mentorMapper.selectmentorSchedule", sv);
+	}
+
+	//멘토링 신청
+	@Override
+	public int insertApplication(SqlSessionTemplate sst, ApplicationVo application) {
+		return sst.insert("mentorMapper.insertApplication", application);
+	}
+
+	//신청한 멘토링 조회
+	@Override
+	public List<ApplicationVo> selectApplication(SqlSessionTemplate sst, String userNo) {
+		return sst.selectList("mentorMapper.selectApplication", userNo);
+	}
+
+	//멘토링 리뷰 조회
+	@Override
+	public List<ReviewVo> selectReview(SqlSessionTemplate sst) {
+		return sst.selectList("mentorMapper.selectReview");
 	}
 	
 	

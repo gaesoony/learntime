@@ -83,6 +83,7 @@
 		            GROUP BY MENTOR_NO) STAR
 		ON MT.NO = STAR.MENTOR_NO
 		WHERE MT.OPEN_YN = 'Y'
+		ORDER BY MT.NO DESC
 	</select>
 	
 	<!-- 멘토링 상세조회 -->
@@ -115,12 +116,55 @@
 	</select>
 	
 	<!-- 멘토링 시간 조회 -->
-	<select id="selectmentorSchedule">
-		
+	<select id="selectmentorSchedule" resultType = "com.learntime.app.mertoring.vo.ScheduleVo">
+		SELECT * FROM MENTORING_SCHEDULE
+		WHERE ABLE_DAY = #{ableDay} AND MENTOR_NO = #{mentorNo}
 	</select>
 	
+	<!-- 멘토링 신청 -->
+	<insert id="insertApplication">
+		INSERT INTO MENTORING_PAYMENT 
+		(NO, MENTOR_NO, M_NO, RESERVATION_DATE, RESERVATION_TIME, PHONE_NO, EMAIL, MESSAGE, PRICE, PAYMENT_TYPE, PAYMENT_DATE)
+		VALUES (
+		SEQ_MENTOR_PAYMENT_NO.NEXTVAL
+		, #{mentorNo}
+		, #{mNo}
+		, #{reservationDate}
+		, #{reservationTime}
+		, #{phoneNo}
+		, #{email}
+		, #{massage}
+		, #{price}
+		, 'null'
+		, SYSDATE
+		)
+	</insert>
 	
+	<!-- 신청한 멘토링 조회 -->
+	<select id="selectApplication" resultType = "com.learntime.app.mertoring.vo.ApplicationVo">
+		SELECT MP.*, MT.TITLE, M.NICK AS MENTOR_NICK, M.IMG_PATH AS MENTOR_IMG
+		FROM MENTORING_PAYMENT MP
+		JOIN MENTOR MT
+		ON MT.NO = MP.MENTOR_NO
+		JOIN "MEMBER" M
+		ON M.NO = MT.WRITER
+		WHERE M_NO = #{userNo}
+		ORDER BY MP.NO DESC
+	</select>
 	
+	<!-- 리뷰 조회 -->
+	<select id="selectReview" resultType = "com.learntime.app.mertoring.vo.ReviewVo">
+		SELECT MR.*, MB.NICK AS WRITER_NICK, MB.IMG_PATH AS WRITER_IMG, MT.TITLE AS MENTORING_TITLE, MT.NICK AS MENTOR_NICK
+		FROM MENTORING_REVIEW MR
+		JOIN MEMBER MB
+		ON MB.NO = MR.WRITER
+		JOIN    (SELECT MT.NO, MT.TITLE, MB.NICK 
+		        FROM MENTOR MT 
+		        JOIN MEMBER MB 
+		        ON MB.NO = MT.WRITER) MT
+		ON MR.MENTOR_NO = MT.NO
+		ORDER BY MR.NO DESC
+	</select>
 	
 	
 	

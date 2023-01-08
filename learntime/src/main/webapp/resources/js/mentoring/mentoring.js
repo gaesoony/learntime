@@ -1,5 +1,5 @@
 window.onload = function() {
-    //.mentroing클릭하면 자식요소중 input[type="hidden"]의 value 값을 가져와서 ajax 실행
+
     $(document).on('click', '.mentoring', function(){
         var no = $(this).children('input[type="hidden"]').val();
         $.ajax({
@@ -11,6 +11,7 @@ window.onload = function() {
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
             success: function(data) {  
                 var jsonData = $.parseJSON(data);
+                console.log(jsonData);
                 const parsePrice = parseInt(jsonData.mv.price).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
                 var hours = Math.floor(parseInt(jsonData.mv.maxHour)*30 / 60);
@@ -33,7 +34,16 @@ window.onload = function() {
                 $('#modal-mentoring-title').text(jsonData.mv.title);
                 $('#modal-mentoring-content').append(jsonData.mv.detail);
 
-                //댓글
+                //결제정보 비우기
+                $('#modal-seletedmentor').children().filter(':odd').text("");
+
+                //결제정보 기본정보 채우기
+                $('#grid-1').text(jsonData.mv.title);
+                $('#grid-2').text(jsonData.mv.nick);
+                $('#mentorNo-input').val(jsonData.mv.no);
+                $('#price-input').val(jsonData.mv.price);
+                $('#payment-price').text(parsePrice);
+
                 // 댓글 비워주기
                 $('.main-review-box').html("");
 
@@ -103,6 +113,23 @@ window.onload = function() {
 
                 //스케줄 받아와서 달력에 표시
 
+                //.date 클래스의 div의 아이디가 오늘 날짜 이상, 한달 이내인 div 에 class="able-date" 추가
+                // var today = new Date();
+                // var parseToday = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                // console.log('오늘의 날짜는 ~?'+ parseToday);
+                
+                // //id가 parseToday인 div에 class="able-date" 추가
+                // $('#'+parseToday).addClass('able-date');
+                    
+
+                
+
+
+
+
+
+                
+
 
             },
             error: function(request, status, error) {
@@ -113,36 +140,41 @@ window.onload = function() {
 
 
     $(document).on('click', '.date', function(){
-        var no = $(this).children('input[type="hidden"]').val();
+        var no = $('#mentorNo-input').val();
         var ableDay = $(this).attr('class').split(' ')[1];
         var date = $(this).attr('id');
 
-        console.log(day);
+        console.log(ableDay);
 
         $.ajax({
-            url: '/app/mentor/mentoring/detail',
+            url: '/app/mentor/schedule',
             type: 'GET',
             data: {
-                'no' : no,
-                'day' : ableDay,
+                'mentorNo' : no,
+                'ableDay' : ableDay,
                 'date' : date
             },
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
             success: function(data) { 
-            //날짜 클릭시 가능 시간 받아오기..
-                
+                //시간 나타내기
+                var jsonData = JSON.parse(data);
+                //1. 시간 선택 옵션 비우기
+                $('#time-select').html("");
 
+                //2. 시간 선택 옵션 채우기
+                var firstHtml = '<option value="" disabled selected>시간을 선택해 주세요</option>';
 
+                if(jsonData[0] == null){
+                    $('#time-select').attr('disabled', true);
+                }
 
-            //날짜 신청 된거 표시하기
+                $('#time-select').append(firstHtml);
+                $.each(jsonData, function(index, svList) {
+                    var timeHtml = '<option value="'+ svList.ableTime +'">'+ svList.ableTime +'</option>';
+                    $('#time-select').append(timeHtml);
+                });
 
-
-
-
-
-
-
-
+            //날짜 신청 된거 표시하기 나중에..
 
             },
             error: function(request, status, error) {
@@ -150,4 +182,61 @@ window.onload = function() {
             }
         });
     });
+
+    //시간선택
+    if($('#date-input').val() == "" || $('#date-input').val() == null){
+        $('#time-select').val("");
+        $('#time-select').attr('disabled', true);
+    }
+
+    //날짜선택 해야 시간선택 가능
+    $(document).on('click', '.date', function(){
+        var date = $(this).attr('id');
+        $('#date-input').val(date);
+        if($('#date-input').val() != "" || $('#date-input').val() != null){
+            //disabled 없애기
+            $('#time-select').attr('disabled', false);
+        }
+    });
+
+    // 날짜 시간 선택하면 출력
+    $('#time-select').on('change',function(){
+        var time = $('#time-select option:selected').text();
+        var date = $('#date-input').val();
+        $('#date').text(date);
+        $('#time').text(time);
+        $('#time-select-result').text(date + ', ' + time);
+    });
+
+    // 임시
+
+    //.pay-btn 클릭시 submit
+    $(document).on('click', '.pay-btn', function(){
+        $('#hidden-input').val(1);
+        console.log('클릭됨');
+        console.log($('#hidden-input').val());
+
+
+
+
+        $('#pay-form')[0].submit();
+    });
+
+
+   
+
+    //임시 끝
+
+    //달력
+   
+
+   
+
+
+
+
+
+
+
+
 }

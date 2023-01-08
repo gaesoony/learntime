@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.learntime.app.mertoring.dao.MentoringDao;
+import com.learntime.app.mertoring.vo.ApplicationVo;
 import com.learntime.app.mertoring.vo.MentorVo;
 import com.learntime.app.mertoring.vo.ReviewVo;
 import com.learntime.app.mertoring.vo.ScheduleVo;
@@ -86,4 +87,24 @@ public class MentoringServiceImpl implements MentoringService{
 	public List<ScheduleVo> selectMentorSchedule(ScheduleVo sv) {
 		return dao.selectMentorSchedule(sst, sv);
 	}
+
+	//멘토링 신청
+	@Transactional
+	@Override
+	public int insertApplication(ApplicationVo application) {
+		return dao.insertApplication(sst, application);
+	}
+
+	//신청한 멘토링 조회
+	@Override
+	public List<ApplicationVo> selectApplication(String userNo) {
+		return dao.selectApplication(sst, userNo);
+	}
+	//멘토링 리뷰 조회
+	@Override
+	public List<ReviewVo> selectReviewList() {
+		return dao.selectReview(sst);
+	}
+	
+	
 }
