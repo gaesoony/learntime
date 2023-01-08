@@ -121,7 +121,7 @@ input[id="joinAgree-check"] {
 }
 label[for="joinAgree-check"] {
 	position: relative;
-	top: -10px;
+	top: -6px;
 	left: 5px;
 }
 
@@ -138,217 +138,11 @@ label[for="joinAgree-check"] {
 	margin: 2px;
 }
 
-.choices__inner{
-	width: 305px;
-	display: flex;
-	background-color: #FFFFFF;
-}
-
-.choices__input{
-	background-color: #FFFFFF;
-	display: none;
-}
-
-.choices__list--multiple .choices__item{
-	background-color: #5ecc80;
-	border: 1px solid #5ecc80;
-		
-}
-
-.choices[data-type*=select-multiple] .choices__button{
-	border-left: 1px solid #FFFFFF;
-}
-
-.choices__list--dropdown{
-	width: 320px;
-}
-
 .result{
-	margin-top: 5px;
-	font-size: 12px;
-	letter-spacing: 1px;
-	line-height: 14px;
-	color: var(--deepGray);
-	
+	line-height: 16px;
+	font-size: 13px;
+	color: #929292;
 }
-
-
-
-/* 셀렉트 박스 */
-
-.container-list {
-  margin-left: 10px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.container-title {
-  font-weight: 700;
-  font-size: 15px;
-  margin-bottom: 15px;
-}
-
-
-
-.container1 {
-  margin-bottom: 15px;
-}
-
-.select-box {
-  display: flex;
-  flex-direction: column;
-}
-
-.selected:not(.selected-people):after {
-  content: "";
-  background: url("${pageContext.request.contextPath}/resources/img/study/arrow_down.png");
-
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  position: absolute;
-  height: 100%;
-  width: 32px;
-  right: 10px;
-  top: 5px;
-
-  transition: all 0.4s;
-}
-
-
-
-.select-box .options-container {
-  background: #ffffff;
-  color: #505050;
-  max-height: 0;
-  width: 100%;
-  opacity: 0;
-  transition: all 0.4s;
-  border-radius: 4px;
-  overflow: hidden;
-  border: 1px solid #D9D9D9;
-  font-weight: 700;
-  order: 1;
-  position: absolute;
-  top: 55px;
-  z-index: 10;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-}
-
-.selected {
-  background: #ffffff;
-  border-radius: 5px;
-  margin-bottom: 8px;
-  color: #727272;
-  font-weight: 700;
-  position: relative;
-  border: 1px solid #D9D9D9;
-  height: 45px;
-
-  order: 0;
-}
-
-.options-container > label {
-  width: 100%;
-}
-
-
-.box input {
-  height: 25px;
-  width: 300px;
-  border: none;
-  outline: #D9D9D9;
-  font-size: 15px;
-  color: #767676;
-  font-weight: 700;
-  cursor: pointer;
-  padding-bottom: 9px;
-}
-
-.select-box .options-container.active {
-  max-height: 240px;
-  opacity: 1;
-  overflow-y: scroll;
-}
-
-.select-box .option .radio {
-    display: none;
-}
-
-.select-box .options-container.active + .selected::after {
-  transform: rotateX(180deg);
-  top: -6px;
-}
-
-.select-box .option,
-.selected {
-  padding: 12px 17px 12px 17px;
-  cursor: pointer;
-}
-
-.selected-tech {
-  padding: 0px 0px 2px 11px !important;
-}
-
-
-
-/* 기술스택 여러개 선택하는 부분 */
-
-.selected-tech {
-  
-  display: flex;
-  /* align-items: center; */
-  overflow-y: scroll;
-}
-
-.tech-btn-list {
-  width: 272px;
-
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-
-  overflow-y: scroll;
-
-  color:#929292;
-  font-size: 14px;
-  font-weight: 400;
-  padding: 9px 5px ;
-
-}
-
-.selected-tech::-webkit-scrollbar {
-  display: none;
-}
-
-.tech-btn-list::-webkit-scrollbar {
-  display: none;
-}
-
-.tech-btn-div {
-  position: relative;
-  margin-bottom: 5px;
-}
-
-.tech-btn {
-  padding: 5px 17px 7px 9px;
-  background-color: rgb(228, 247, 255);
-  border: none;
-  border-radius: 3px;
-  margin-right: 5px;
-  font-size: 11px;
-  font-weight: 500;
-  color: rgb(35, 35, 35);
-}
-
-.tech-btn-div i {
-  position: absolute;
-  right: 12px;
-  top: 6px;
-  font-size: 5px;
-}
-
 
 </style>
 </head>
@@ -402,42 +196,6 @@ label[for="joinAgree-check"] {
 				</div>
 				
 
-				<div id="stack">
-                    <div class="text">관심 기술 스택</div>
-
-                    <div class="select-box relative">
-                      <div class="options-container options-container-tech">
-                        <c:forEach items="${techStackList}" var="map">
-                          <label>
-                            <div
-                              id="option-${map.NAME}"
-                              class="option option-tech"
-                              onclick="hiddenTag(event)"
-                            >
-                              <input
-                                id="${map.NAME}"
-                                type="checkbox"
-                                class="radio"
-                                name="techStackNo"
-                                value="${map.NO}"
-                                onclick="stop(event)"
-                              />
-                              <label
-                                onclick="hiddenTag2(event)"
-                                for="${map.NAME}"
-                                >${map.NAME}</label
-                              >
-                            </div>
-                          </label>
-                        </c:forEach>
-                      </div>
-
-                      <div class="selected selected-tech">
-                        <div class="tech-btn-list">프로젝트 사용 스택</div>
-                      </div>
-                    </div>
-                  </div>
-
 				
 				
 				<button id="join-btn">회원가입</button>
@@ -451,11 +209,7 @@ label[for="joinAgree-check"] {
 			
 				</div>
 				
-				<div id="line">간편 회원가입</div>
-				<div id="joinApi">
-					<div id="google"></div>
-					<div id="kakao"></div>
-				</div>
+				
 			
 			</div>
 		</form>
@@ -730,103 +484,6 @@ label[for="joinAgree-check"] {
 			
 	</script>
 	<%@include file="/WEB-INF/views/common/footer.jsp" %>
-	<script defer>
-
-		const selectedTech = document.querySelector(".tech-btn-list");
-		const selectedTech2 = document.querySelector(
-		".selected-tech:not(.tech-btn-list .tech-btn )"
-		);
-
-		const optionsListTech = document.querySelectorAll(".option-tech");
-		const optionsListTechLabel = document.querySelectorAll(".option-tech label");
-
-		const optionsContainerTech = document.querySelector(".options-container-tech");
-
-		selectedTech2.addEventListener("click", () => {
-		optionsContainerTech.classList.toggle("active");
-		});
-
-		
-
-		optionsListTech.forEach((o) => {
-		o.addEventListener("click", (event) => {
-			if (selectedTech.innerHTML.trim() == "프로젝트 사용 스택") {
-			selectedTech.innerHTML = "";
-			}
-
-			selectedTech.innerHTML +=
-			"<div class='tech-btn-div' onclick='deleteTech(event)'>" +
-			"<input onclick='deleteTech2(event)' class='tech-btn' type='button' value='" +
-			o.querySelector("label").innerHTML +
-			"'>" +
-			"<i class='fa-solid fa-xmark' onclick='deleteTech2(event)'></i>" +
-			"</div>";
-		});
-		});
-
-		optionsListTechLabel.forEach((o) => {
-		o.addEventListener("click", (event) => {
-			event.stopPropagation();
-			if (selectedTech.innerHTML.trim() == "프로젝트 사용 스택") {
-			selectedTech.innerHTML = "";
-			}
-
-			selectedTech.innerHTML +=
-			"<div class='tech-btn-div' onclick='deleteTech(event)'>" +
-			"<input onclick='deleteTech2(event)' class='tech-btn' type='button' value='" +
-			o.innerHTML +
-			"'>" +
-			"<i class='fa-solid fa-xmark' onclick='deleteTech2(event)'></i>" +
-			"</div>";
-		});
-		});
-
-		//기술스택 삭제1
-		function deleteTech(e) {
-		e.stopPropagation();
-		e.target.remove();
-		const value = e.target.querySelector("input").value;
-
-		const option = document.querySelector("#option-" + value);
-		option.parentNode.classList.toggle("hidden");
-		const selectedTech = document.querySelector(".tech-btn-list");
-		if (selectedTech.innerHTML.trim() == "") {
-			selectedTech.innerHTML = "프로젝트 사용 스택";
-		}
-		const input = optionsContainerTech.querySelector("#" + value);
-		console.log("1:" + input);
-		input.checked = false;
-		}
-
-		//기술스택 삭제2
-		function deleteTech2(e) {
-		e.stopPropagation();
-		e.target.parentNode.remove();
-		const value = e.target.parentNode.querySelector("input").value;
-
-		const option = document.querySelector("#option-" + value);
-		option.parentNode.classList.toggle("hidden");
-		const selectedTech = document.querySelector(".tech-btn-list");
-		if (selectedTech.innerHTML.trim() == "") {
-			selectedTech.innerHTML = "프로젝트 사용 스택";
-		}
-		const input = optionsContainerTech.querySelector("#" + value);
-		input.checked = false;
-		console.log("2:" + input);
-		}
-
-		function hiddenTag(e) {
-		e.target.parentNode.classList.add("hidden");
-		}
-
-		function hiddenTag2(e) {
-		e.stopPropagation();
-		e.target.parentNode.parentNode.classList.add("hidden");
-		}
-
-		function stop(e) {
-		e.stopPropagation();
-		}
-	</script>
+	
 </body>
 </html>

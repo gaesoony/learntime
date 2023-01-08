@@ -123,8 +123,8 @@
     #edit-area{
         width: 100%;
         display: grid;
-        grid-template-rows: 730px repeat(4,224px) auto;
-        margin-top: 20px;
+        grid-template-rows: 730px repeat(3,224px) auto;
+        margin: 20px;
         
     }
 
@@ -338,30 +338,6 @@
         color: #5ecc80;
     }
 
-    .choices__inner{
-	width: 807px;
-	display: flex;
-	background-color: #FFFFFF;
-    }
-
-    .choices__input{
-        background-color: #FFFFFF;
-        display: none;
-    }
-
-    .choices__list--multiple .choices__item{
-	background-color: #5ecc80;
-	border: 1px solid #5ecc80;
-		
-    }
-
-    .choices[data-type*=select-multiple] .choices__button{
-        border-left: 1px solid #FFFFFF;
-    }
-
-    .choices__list--dropdown{
-        width: 822px;
-    }
 
   
    
@@ -423,12 +399,12 @@
 		    	
                 <div class="profile-img">
                     <div class="profile-img center relative">
-                       <c:if test="${userNo.imgName ==null}">
+                       <c:if test="${userNo.imgName eq null}">
 				    	 <img src="/app/resources/img/profile_default.png" alt="기본프로필이미지">
 				    	  <img id="preview" src="/app/resources/img/profile_default.png"/>
 				    	</c:if>
 				    	
-				    	<c:if test="${userNo.imgName !=null}">
+				    	<c:if test="${userNo.imgName ne null}">
 				    	  <img src="${pageContext.request.contextPath}${userNo.imgName}" alt=""/>
                         	<img id="preview" src="${pageContext.request.contextPath}${userNo.imgName}"/>
 				    	</c:if>
@@ -437,7 +413,7 @@
                             <label for="file" class="file-btn center">
                                     <img src="${pageContext.request.contextPath}/resources/img/mystudy/image-plus.png"alt=""/>
                                 </label>
-                            <input id="file" type="file" class="hidden" name="imgPath" onchange="readURL(this);"/>
+                            <input id="file" type="file" class="hidden" name="imgPath" value="${userNo.imgName}" onchange="readURL(this);"/>
             
                             <script>
                                 function readURL(input) {
@@ -458,13 +434,13 @@
                 </div>
                 <div id="nick-area">
                     <div class="titleText">닉네임</div>
-                    <input type="text" name="nick" value="${loginMember.nick}">
+                    <input type="text" name="nick" value="${userNo.nick}">
                     <div id="nickReult"></div>
                 </div>
                         
                 <div id="profile-editor">
                     <div class="titleText">자기소개</div>
-                    <textarea class="click2edit" name="intro">${loginMember.intro}</textarea>
+                    <textarea class="click2edit" name="intro">${userNo.intro}</textarea>
                     
                 </div>
         
@@ -476,7 +452,7 @@
             <form action="${pageContext.request.contextPath}/member/mypage/edit/email" method="post" onsubmit="return emailCheck();">
                 <div id="email-area" class="area-grid">
                     <div class="titleText">이메일</div>
-                    <input type="text" name="id" value="${loginMember.id}">
+                    <input type="text" name="id" value="${userNo.id}">
                     <div id="emailCheck"></div>
                     <button class="edit-btn">저장하기</button>
                 </div>
@@ -554,34 +530,13 @@
             <form action="${pageContext.request.contextPath}/member/mypage/edit/phone" method="post">
                  <div id="phone-area" class="area-grid">
                      <div class="titleText">휴대폰 번호</div>
-                     <input type="text" name="phone" placeholder="- 제외한 번호만" value="${loginMember.phone}">
+                     <input type="text" name="phone" placeholder="- 제외한 번호만" value="${userNo.phone}">
                      <button class="edit-btn">저장하기</button>
                  </div>
 
             </form>
            
-            <div id="stack-area" class="area-grid">
-                 <div class="titleText">관심 기술 스택</div>
-                 <div class="row d-flex justify-content-center">
-                    <div class="col-md-6"> 		
-                        <select id="choices-multiple-remove-button"multiple>
-                            <option value="HTML">HTML</option>
-                            <option value="Jquery">Jquery</option>
-                            <option value="CSS">CSS</option>
-                            <option value="Java">Java</option>
-                            <option value="Javascript">Javascript</option>
-                            <option value="Angular">Angular</option>
-                            <option value="Python">Python</option>
-                            <option value="Hybris">Hybris</option>
-                            <option value="SQL">SQL</option>
-                            <option value="NOSQL">NOSQL</option>
-                            <option value="NodeJS">NodeJS</option>
-                        </select> 
-                    
-                    </div>					
-                </div>
-                 <button class="edit-btn">저장하기</button>
-            </div>
+           
             <div id="delete-area">
                  <div class="titleText">회원 탈퇴</div>
                  <button id="delete-btn">탈퇴하기</button>

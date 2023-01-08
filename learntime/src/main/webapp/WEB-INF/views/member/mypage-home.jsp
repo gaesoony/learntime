@@ -36,7 +36,7 @@
        
     }
 
-    #intro-editor, #have-badge,#makegrass{
+    #intro-editor,#makegrass{
         grid-column: span 2;
         display: flex;
         margin-top: 10px;
@@ -77,15 +77,55 @@
 
    
 
-    #badge-area{
-        margin-top: 10px;
-        justify-content: center;
+    #badge{
+        height: 45px;
+        font-size: 18px;
+        font-weight: 700;
+        color: #5ECC80;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #000000;
     }
 
-    #have-badge{
+   #have-badge{
+        grid-column: span 2;
         display: flex;
         justify-content: space-between;
         width: 100%;
+        overflow: hidden;
+    }
+
+    
+.badge{
+        width: 140px;
+        --height: 300px;
+        text-align: left;
+        padding: 10px;
+        
+    }
+
+    .badge-img{
+        width: 140px;
+        height: 140px;
+        border-radius:4px;
+        border:1px solid #D9D9D9;
+        
+    }
+    
+    .badge-img img{
+        width:100%;
+    }
+
+    .badge-title{
+        margin: 10px 0;
+        font-weight: 600;
+        font-size: 16px;
+    }
+   
+    .badge-content{
+        margin-bottom: 20px;
+        color:#535353;
+        font-size: 12px;
     }
 
     #badge,.more,#grass{
@@ -103,13 +143,7 @@
         align-items: center;
     }
 
-    .badge{
-        width: 130px;
-        height: 130px;
-        background-color: #D9D9D9;
-        margin-top: 10px;
-        
-    }
+   
 
     #makegrass{
         background-color: #D9D9D9;
@@ -146,7 +180,7 @@
                     
                 </div>
                 <div id="intro-editor">
-                     <div class="click2edit">${loginMember.intro}</div>
+                     <div class="click2edit">${userNo.intro}</div>
                 </div>
                 
            </div>
@@ -154,14 +188,16 @@
            <div id="badge-area">
                 <div id="badge">보유한 뱃지</div>
                 <div class="more">
-                    <a href="/app/member/mypage/badge">전체보기<span class="material-symbols-outlined">chevron_right</span></a>
+                    <a href="${pageContext.request.contextPath}/member/mypage/badge?no=106">전체보기<span class="material-symbols-outlined">chevron_right</span></a>
                 </div>
                 <div id="have-badge">
-                    <div class="badge"></div>
-                    <div class="badge"></div>
-                    <div class="badge"></div>
-                    <div class="badge"></div>
-                    <div class="badge"></div>
+                    <c:forEach items="${list}" var="list">
+                        <div class="badge">
+                            
+                            <div class="badge-img"><img src="${pageContext.request.contextPath}/${list.imgName}"/></div>
+                        
+                        </div>
+                    </c:forEach>
                 </div>
            </div>
            <div id="grass-area">

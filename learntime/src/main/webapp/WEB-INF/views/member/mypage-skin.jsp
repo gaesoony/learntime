@@ -39,31 +39,43 @@
 
 
     .skin{
-    width: 200px;
+    width: 180px;
     --height: 300px;
     margin: 10px 0;
     margin-top: 20px;
     text-align: left;
     
-}
-
-.skin-img{
-    width: 200px;
-    height: 200px;
-    border-radius:4px;
-    border:1px solid #D9D9D9;
-}
-
-.skin-title{
-    margin: 10px 0;
-    font-weight: 600;
-    font-size: 18px;
-}
-
-   .main-color {
-        color: #5ecc80;
     }
 
+    .skin-img{
+        width: 180px;
+        height: 180px;
+        border-radius:4px;
+        border:1px solid #D9D9D9;
+    }
+
+    .skin-img img{
+        width: 100%;
+    }
+
+    .skin-title{
+        margin: 10px 0;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .skin-content{
+        margin: 10px 0;
+        font-size: 12px;
+    }
+
+    .main-color {
+        color: #5ecc80;
+    }
+    .skin-notice{
+        text-align: center;
+        margin-top: 50px;
+    }
  
    
 </style>
@@ -81,12 +93,26 @@
         </div>
         <div id="home-area">
             <div id="have-skin">보유한 스킨</div>
-        
-            <div class="skin">
-                <div class="skin-img">이미지 영역</div>
-                <div class="skin-title">스킨 제목</div>
-                <div class="skin-content">스킨 설명</div>
-            </div>
+            <c:if test="${mySkinList.size() eq 0}">
+                <div class="skin-notice">보유한 스킨이 없습니다</div>
+
+            </c:if>
+
+            <c:if test="${mySkinList.size() ne 0}">
+                <c:forEach items="${mySkinList}" var="mySkinList">
+                    <div class="skin">
+                        <div class="skin-img"><img src="${pageContext.request.contextPath}/${mySkinList.imgName}"/></div>
+                        <div class="skin-title">${mySkinList.name}</div>
+                        <div class="skin-content">${mySkinList.info}</div>
+                    </div>
+                </c:forEach>
+
+            </c:if>
+
+          
+
+
+           
         </div>
     </div>
     

@@ -22,6 +22,7 @@
 		<typeAlias type="com.learntime.app.skin.vo.SkinVo" alias="SkinVo"/>
 		<typeAlias type="com.learntime.app.alarm.vo.AlarmVo" alias="AlarmVo"/>
 		<typeAlias type="com.learntime.app.admin.vo.ManagerVo" alias="ManagerVo"/>
+		<typeAlias type="com.learntime.app.chat.vo.ChatVo" alias="ChatVo"/>
 	</typeAliases>
 
 	

@@ -457,7 +457,7 @@ function check2(){
 		
 		
 
-		//소켓 생성
+		// 알람 소켓 생성
 		const webSocket = new WebSocket("ws://127.0.0.1:8888/app/alarm/server");
 		webSocket.onopen = function(){
 			
@@ -503,13 +503,6 @@ function check2(){
 		//소켓 닫기
 		//webSocket.close();
 
-		
-
-
-
-
-
-  
   </script>
   
   <script>
