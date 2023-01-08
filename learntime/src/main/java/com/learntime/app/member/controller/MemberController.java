@@ -21,6 +21,8 @@ import com.learntime.app.alarm.service.AlarmService;
 import com.learntime.app.alarm.vo.AlarmVo;
 import com.learntime.app.badge.service.BadgeService;
 import com.learntime.app.badge.vo.BadgeVo;
+import com.learntime.app.chat.service.ChatService;
+import com.learntime.app.chat.vo.ChatVo;
 import com.learntime.app.common.file.FileUploader;
 import com.learntime.app.common.page.PageVo;
 import com.learntime.app.common.page.Pagination;
@@ -29,6 +31,9 @@ import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.member.service.MemberService;
 import com.learntime.app.member.vo.FollowVo;
 import com.learntime.app.member.vo.MemberVo;
+import com.learntime.app.mertoring.service.MentoringService;
+import com.learntime.app.mertoring.vo.ApplicationVo;
+import com.learntime.app.mertoring.vo.MentorVo;
 import com.learntime.app.skin.service.SkinService;
 import com.learntime.app.skin.vo.SkinVo;
 import com.learntime.app.study.service.StudyService;
@@ -61,6 +66,13 @@ public class MemberController {
 	@Autowired
     @Qualifier("boardServiceImpl")
     private BoardService bs;
+	
+	@Autowired
+	private ChatService chatService;
+	
+	@Autowired
+    @Qualifier("mentoringServiceImpl")
+    private MentoringService ms;
 	
 	
 //	잘못된 경로-로그인(화면)
@@ -267,8 +279,7 @@ public class MemberController {
 			
 			//내 스킨 조회
 			List<SkinVo> mySkin=skinService.myskin(no);
-			model.addAttribute("mySkin",mySkin);
-			
+			session.setAttribute("mySkin",mySkin);
 			
 //			나를 팔로우 하는 사람 수 구하기
 			int followerCnt =memberService.followerCnt(no);
@@ -290,6 +301,10 @@ public class MemberController {
 			session.setAttribute("followCheck", followCheck);
 			session.setAttribute("followerCnt", followerCnt);
 			session.setAttribute("followingCnt", followingCnt);
+			
+			
+			List<BadgeVo> list=badgeService.listSelectMember(no);
+			model.addAttribute("list", list);
 			
 			return "/member/mypage-home";
 	}
@@ -427,10 +442,22 @@ public class MemberController {
       
 	   
 //   마이페이지-멘토링(화면)	   
-	   @GetMapping("/member/mypage/mentoring")
-	   public String myMentoring() {
-	      return "member/mypage-mentoring";
-	   }
+      @GetMapping("/member/mypage/mentoring")
+      public String myMentoring(HttpSession session, Model model) {
+          MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+          String userNo = loginMember.getNo();
+
+          //멘토 정보 넘겨주기
+          MentorVo mentorInfo = ms.selectMentor(userNo);
+          session.setAttribute("mentorInfo", mentorInfo);
+
+          //신청한 멘토링 정보
+          List<ApplicationVo> avList = ms.selectApplication(userNo);
+          System.out.println("신청한 멘토링 정보 : "+ avList);
+          model.addAttribute("avList", avList);
+
+          return "member/mypage-mentoring";
+      }
 	   
 //   마이페이지-커뮤니티(화면)	
 	   @GetMapping("/member/mypage/community")
@@ -464,10 +491,11 @@ public class MemberController {
 			
 			MemberVo user=memberService.selectNo(no);
 			session.setAttribute("userNo",user);
-//			
-//			List<SkinVo> list=skinService.skinListMember();
-//			model.addAttribute("list",list);
-//			
+			
+			//내 스킨 조회
+			List<SkinVo> mySkinList=skinService.myskin(no);
+			model.addAttribute("mySkinList",mySkinList);
+			
 			return "/member/mypage-skin";
 		}
 	
@@ -482,24 +510,27 @@ public class MemberController {
 			List<BadgeVo> list=badgeService.listSelectMember(no);
 
 			model.addAttribute("list", list);
-	
-			
 			return "/member/mypage-badge";
 		}
 	
 //	마이페이지-dm 리스트(화면)
 		@GetMapping("/member/mypage/dm/list")
-		public String dmList(@RequestParam("no") String no, MemberVo vo,HttpSession session,Model model) {
+		public String dmList(String no, MemberVo vo,HttpSession session,Model model) {
 			MemberVo user=memberService.selectNo(no);
 			model.addAttribute("userNo",user);
+			
+			List<ChatVo> chatlist=chatService.chatList(no);
+			
+			model.addAttribute("chatlist", chatlist);
 			return "/member/mypage-dmList";
 		}	
 	
 //	마이페이지-계정 정보(화면)
 		@GetMapping("/member/mypage/edit")
-		public String mypageEdit(@RequestParam("no") String no, MemberVo vo,HttpSession session,Model model) {
+		public String mypageEdit(String no, MemberVo vo,HttpSession session,Model model) {
 			MemberVo user=memberService.selectNo(no);
 			model.addAttribute("userNo",user);
+			
 			return "member/mypage-edit";
 		}
 		

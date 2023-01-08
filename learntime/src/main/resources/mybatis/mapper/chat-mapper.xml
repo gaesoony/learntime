@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chatMapper">
+
+	<insert id="chatRoomMake">
+	
+	MERGE INTO DM D
+    USING DUAL
+       ON (D.SEND_M_NO = #{sendNo} AND D.RECE_M_NO = #{receNo})
+    WHEN NOT MATCHED THEN
+        INSERT (D.NO,D.SEND_M_NO, D.RECE_M_NO)
+        VALUES (SEQ_DM_NO.NEXTVAL,#{sendNo},#{receNo})
+	</insert>
+	
+	
+	<insert id="chatSend">
+	
+	<selectKey resultType="string" keyProperty="no" order="BEFORE">
+        SELECT NO FROM DM   
+        WHERE SEND_M_NO = #{sendNo} AND RECE_M_NO = #{receNo}
+    </selectKey>    
+    INSERT INTO DM_MASSAGE(NO,DM_NO,SEND_M_NO,RECE_M_NO,CONTENT)
+    VALUES(SEQ_DM_MASSAGE_NO.NEXTVAL,#{no},#{sendNo}, #{receNo},#{message})
+	</insert>
+	
+	
+	
+	<select id="chatList" resultType="ChatVo">
+	SELECT NO,SEND_M_NO,RECE_M_NO,CONTENT,DELETE_YN,ENROLL_DATE,NICK,IMG_PATH
+	FROM
+	(SELECT D.NO,D.SEND_M_NO,D.RECE_M_NO,DM.CONTENT,D.DELETE_YN,DM.ENROLL_DATE,M2.NICK,M2.IMG_PATH
+	FROM DM D
+	JOIN DM_MASSAGE DM ON D.NO=DM.DM_NO
+	JOIN MEMBER M ON M.NO=D.RECE_M_NO
+	JOIN MEMBER M2 ON M2.NO=D.SEND_M_NO
+	WHERE D.RECE_M_NO = #{no}
+	ORDER BY DM.ENROLL_DATE DESC)
+	WHERE ROWNUM <![CDATA[<=]]> 1
+	</select>
+	
+	
+	<select id="chatRoomHistory" resultType="ChatVo">
+	(SELECT D.NO,D.SEND_M_NO,D.RECE_M_NO,DM.CONTENT,D.DELETE_YN,DM.ENROLL_DATE,M.NICK,M.IMG_PATH
+	FROM DM D
+	JOIN DM_MASSAGE DM ON D.NO=DM.DM_NO
+	JOIN MEMBER M ON M.NO=D.RECE_M_NO
+	WHERE D.SEND_M_NO =#{no}
+	UNION
+	SELECT D.NO,D.SEND_M_NO,D.RECE_M_NO,DM.CONTENT,D.DELETE_YN,DM.ENROLL_DATE,M.NICK,M.IMG_PATH
+	FROM DM D
+	JOIN DM_MASSAGE DM ON D.NO=DM.DM_NO
+	JOIN MEMBER M ON M.NO=D.RECE_M_NO
+	WHERE D.RECE_M_NO =#{no})
+	ORDER BY ENROLL_DATE ASC
+	
+	</select>
+	
+</mapper>

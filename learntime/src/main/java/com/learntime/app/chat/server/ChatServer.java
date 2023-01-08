@@ -58,18 +58,17 @@ public class ChatServer extends TextWebSocketHandler {
 		
 		log.info("msg="+msg);
 		
-		String[]alarmMessage= msg.split("#");
-		String alarmNo=alarmMessage[0];//알람 번호
-		String alarmType=alarmMessage[1];//알람 타입 
-		String receMemberNo=alarmMessage[2];//알람을 보낸 사람 
-		String sendMemberNo=alarmMessage[3];//받는 놈 
-		String alarmMsg=alarmMessage[4];//알람 메시지
+		String[] chatMsgs=msg.split("#");
+		
+		String sendNo =chatMsgs[0];
+		String receNo =chatMsgs[1];
+		String chatMessage =chatMsgs[2];
 		
 
-		TextMessage alarm=new TextMessage(alarmNo+"#"+alarmType+"#"+ curLoginMemberNo(session).getNick() +"#"+alarmMsg);
+
+		TextMessage alarm=new TextMessage(sendNo+"#"+receNo+"#"+chatMessage);
 		//받는 놈
-		
-		WebSocketSession receSession = userSessionsMap.get(receMemberNo);
+		WebSocketSession receSession = userSessionsMap.get(receNo);
 		
 		if(receSession!=null) {
 			receSession.sendMessage(alarm);

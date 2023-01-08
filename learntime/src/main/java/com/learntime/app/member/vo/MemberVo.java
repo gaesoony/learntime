@@ -39,8 +39,8 @@ public class MemberVo {
 	private List<BadgeVo> badges;
 	
 	public boolean isEmpty() {
-			if(imgPath==null){return true;}
-			return false;
+		if(imgPath.isEmpty()){return true;}
+		return false;
 	}
 	
 	public void strTechStachNoList() {
