@@ -194,13 +194,13 @@
             var tag = {};
             var counter = 0;
 
-            // 태그를 추가한다.
+            // 태그를 추가
             function addTag(value) {
             tag[counter] = value; // 태그를 Object 안에 추가
-            counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
+            counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 됨.
             }
 
-            // 최종적으로 서버에 넘길때 tag 안에 있는 값을 array type 으로 만들어서 넘긴다.
+            // 최종적으로 서버에 넘길때 tag 안에 있는 값을 array type 으로 만들어서 넘김.
             function marginTag() {
             return Object.values(tag)
                 .filter(function (word) {
@@ -218,10 +218,10 @@
 
                 var tagValue = self.val(); // 값 가져오기
 
-                // 값이 없으면 동작 안합니다.
+                // 값이 없으면 동작X
                 if (tagValue !== "") {
 
-                    // 같은 태그가 있는지 검사한다. 있다면 해당값이 array 로 return 된다.
+                    // 같은 태그가 있는지 검사한다. 있다면 해당값이 array 로 return
                     var result = Object.values(tag)
                     .filter(function (word) {
                         return word === tagValue;
@@ -242,7 +242,7 @@
             });
 
             // 삭제 버튼
-            // 삭제 버튼은 비동기적 생성이므로 document 최초 생성시가 아닌 검색을 통해 이벤트를 구현시킨다.
+            // 삭제 버튼은 비동기적 생성이므로 document 최초 생성시가 아닌 검색을 통해 이벤트를 구현
             $(document)
             .on("click", ".del-btn", function (e) {
                 var index = $(this)

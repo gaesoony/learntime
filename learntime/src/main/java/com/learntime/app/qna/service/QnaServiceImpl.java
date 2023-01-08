@@ -95,4 +95,37 @@ public class QnaServiceImpl implements QnaService {
 		return qnaDetail;
 	}
 
+	//댓글 작성
+	@Override
+	public int writeAnswer(Map map) {
+		return dao.writeAnswer(sst, map);
+	}
+
+	//상세조회 내 댓글 리스트
+	@Override
+	public List<Map<String, Object>> answerList(Map map) {
+		List<Map<String, Object>> answerList = dao.answerList(sst, (String)map.get("qno"));
+		for(int i = 0; i < answerList.size(); i++) {
+			String ano = String.valueOf(answerList.get(i).get("NO"));
+			String agno = String.valueOf(answerList.get(i).get("GROUP"));
+			map.put("ano", ano);
+			
+			List<Map<String, Object>> commentList = dao.commentList(sst, agno);
+			for(int l = 0; l < commentList.size(); l++ ) {
+				String cno = String.valueOf(commentList.get(l).get("NO"));
+				map.put("cno", cno);
+			}
+			
+			answerList.get(i).put("commentList", commentList);
+		}
+		
+		
+		return answerList;
+	}
+
+	@Override
+	public int select(String cno) {
+		return dao.select(sst, cno);
+	}
+
 }

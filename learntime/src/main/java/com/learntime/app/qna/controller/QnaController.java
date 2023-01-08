@@ -97,9 +97,12 @@ public class QnaController {
 		
 		Map<String, Object> qnaDetail = service.detail(qvo.getQno());
 		
+		List<Map<String, Object>> answerList = service.answerList(map);
+		
 		model.addAttribute("qvo", qvo);
 		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("qnaDetail", qnaDetail);
+		model.addAttribute("answerList", answerList);
 		
 		return "qna/detail";
 	}
@@ -143,6 +146,40 @@ public class QnaController {
 			return "common/errorPage";
 		}
 		
+	}
+	
+	//댓글 작성 (DB)
+	@PostMapping("/detail/writeAnswer")
+	public String writeAnswer(QnaTypeVo qvo, String answer) {
+		Map map = new HashMap();
+		map.put("qno", qvo.getQno());
+		map.put("mno", qvo.getMno());
+		map.put("answer", answer);
+		
+		int result = service.writeAnswer(map);
+		
+		System.out.println("컨트롤러에서 댓글 작성 : " + result);
+		
+		if(result == 1) {
+			return "redirect:/qna/detail?qno=" + qvo.getQno() + "&keyword=" + qvo.getKeyword() + "&type=" + qvo.getType() + "&order=" + qvo.getOrder();
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+	//상세조회 내 답변 채택 (DB)
+	@GetMapping("/select")
+	public String select(QnaTypeVo qvo, QnaAnswerVo avo) {
+		
+		String qno = qvo.getQno();
+		String cno = avo.getNo();
+		int result = service.select(cno);
+		
+		if(result == 1) {
+			return "redirect:/qna/detail?qno=" + qvo.getQno() + "&keyword=" + qvo.getKeyword() + "&type=" + qvo.getType() + "&order=" + qvo.getOrder();
+		}else {
+			return "common/errorPage";
+		}
 	}
 
 }
