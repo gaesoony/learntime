@@ -56,9 +56,11 @@ public class NoticeAdminController {
 				
 				list= ans.selectNoticeListAll(map);
 				
+				
 			}else {
 				
 				list= ans.selectNoticeList(map);
+				
 				
 				
 			}
@@ -91,7 +93,7 @@ public class NoticeAdminController {
 				
 				
 			}
-			
+			System.out.println(valueArr);
 			
 //			Map<String,Object> map = new HashMap<String,Object>();
 //			map.put("vo",vo);

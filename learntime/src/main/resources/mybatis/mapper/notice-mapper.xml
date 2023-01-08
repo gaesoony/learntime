@@ -14,14 +14,14 @@
       SELECT * FROM
  	 (SELECT N.NO,N.CATE_NO, C.NAME as CATE_NAME,N.TITLE,N.ENROLL_DATE, N.HIT, M.NICK AS WRITER,N.CATEGORY,N.KEYWORD FROM NOTICE N 
       JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER
-      WHERE STATUS = 2 AND CATE_NO = #{cateNo} AND DELETE_YN = 'N' ) WHERE ROWNUM<![CDATA[<=]]>3
+      WHERE STATUS = 2 AND CATE_NO = #{vo.cateNo} AND DELETE_YN = 'N' ) WHERE ROWNUM<![CDATA[<=]]>3
         
       UNION  
       SELECT N.NO,N.CATE_NO,C.NAME as CATE_NAME,N.TITLE,N.ENROLL_DATE, N.HIT, M.NICK AS WRITER ,N.CATEGORY,N.KEYWORD  FROM NOTICE N 
       JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER
-      WHERE CATE_NO = ${cateNo} AND DELETE_YN = 'N'
-      <if test="keyword !=null and keyword != ''">
-		AND  ${category} LIKE '%${keyword}%' 
+      WHERE CATE_NO = ${vo.cateNo} AND DELETE_YN = 'N'
+      <if test="vo.keyword !=null and vo.keyword != ''">
+		AND  ${vo.category} LIKE '%${vo.keyword}%' 
 	  </if>
   </select>
   <select id="noticeListAll" resultType="com.learntime.app.notice.vo.NoticeVo">
@@ -35,8 +35,8 @@
       JOIN COMMON_CATEGORY C ON N.CATE_NO= C.NO JOIN MEMBER M ON M.NO = N.WRITER
       WHERE DELETE_YN = 'N'
      
-	<if test="keyword !=null and keyword != ''">
-	  AND ${category} LIKE '%${keyword}%' 
+	<if test="vo.keyword !=null and vo.keyword != ''">
+	  AND ${vo.category} LIKE '%${vo.keyword}%' 
 	</if>
      
   </select>
@@ -63,7 +63,11 @@
   	INSERT INTO NOTICE_CMT (NO,N_NO,WRITER,ENROLL_DATE,DELETE_YN,MODIFY_DATE,CONTENT,DEPTH,GROUP)
   	VALUES (SEQ_NOTICE_CMT_NO.NEXTVAL, #{nNo},#{writer},SYSDATE,'N',SYSDATE,#{content},1,1)
   </insert>
- 
+ <select id="selectCmtList">
+ 	SELECT N.NO AS N_NO, M.NICK AS WRITER,C.ENROLL_DATE,C.DELETE_YN,C.MODIFY_DATE,
+ 	C.CONTENT FROM NOTICE_CMT C JOIN NOTICE N ON C.N_NO = N.NO JOIN
+ 	MEMBER M ON M.NO=C.WRITER WHERE C.N_NO = #{nNo}
+ </select>
   
  
 </mapper>

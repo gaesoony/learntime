@@ -32,8 +32,14 @@ public class AdminFaqDao {
 		return sst.selectOne("adminFaqMapper.selectOne",vo);
 	}
 
-	public int deleteOne(SqlSessionTemplate sst, NoticeVo vo) {
-		return sst.update("adminFaqMapper.deleteOne",vo);
+	public int deleteOne(SqlSessionTemplate sst, List<NoticeVo> list) {
+		
+		int count = 0;
+		for(int i = 0; i<list.size(); i++) {
+			count+= sst.update("adminFaqMapper.deleteOne",list.get(i));
+		}
+		return count;
+		
 	}
 
 }

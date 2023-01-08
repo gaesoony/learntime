@@ -50,7 +50,8 @@
 }
 .notice-list{
     width: 1200px;
-    height: 1000px;
+    height: 600px;
+    margin-top: 80px;
    
 
 }
@@ -104,6 +105,7 @@
     width: 100%;
     height: 100px;
     display: flex;
+    justify-content: flex-end;
 }
 .setting-Btn{
     width: 300px;
@@ -189,7 +191,7 @@
 
 .notice-list-twoColored{
     width: 1200px;
-    height: 600px;
+    height: 450px;
     display: flex;
     align-items: center;
 
@@ -289,13 +291,9 @@
     height: 30px;
 }
 
-/*모달창  */
-.popUp{
-width:300px;
-height: 600px;
 
 
-}
+
 .empty{
 	height: 15px;
 }
@@ -359,10 +357,6 @@ background-color: #e9fde9;
 
 /*페이징  */
 
-.page-notice{
-	margin-top: 50px;
-}
-
 .page-question{
 	margin:0 auto;
 	display:flex;
@@ -370,73 +364,23 @@ background-color: #e9fde9;
 	align-items:center;
 	
 }
-	#page-nation{
-        list-style: none;
-        display: flex;
-        padding: 0;
-        margin-top: 20px;
-    }
+.page-faq{
 
-    #page-nation li{
-        display: inline;
-        text-align: center;
-        margin:0 10px;
-      
-    }
-/* 페이지 버튼~ */
-    #page-nation li a{
-        text-decoration: none;
-        color: #999999;
-        font-size: 20px;
-        font-weight:900;
-        
-
-    }
-
-    #page-nation .first:hover,  #page-nation .last:hover,  #page-nation .right:hover,  #page-nation .left:hover{
-        color:#5ECC80;
-    }
-
-
-    #page-nation a:active{
-        cursor: default;
-        color: white;
-    }
-
-    #page-nation .num{
-        padding: 0;
-        width: 30px;
-        height: 30px;
-        display: inline-block;
-        border-radius: 100%;
-        line-height: 30px;
-         text-align: center;
-    }
-
-    #page-nation .num:hover{
-        background-color: #5ECC80;
-        color: white;
-       
-    }
-
-    #page-nation .num:active{
-    	width:40px;
-    	height:40px;
-    	border-radius:1rem;
-        background-color: #5ECC80;
-        cursor: pointer;
-    }
-    
-     .pageBtn{
-    	width:40px;
-    	height:40px;
-    	border: 3px solid lightgray;
-    	border-radius:1rem;
-    	line-height: 40px;
-    	
-    }
-
-
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	
+}	
+.paging-btn{
+	
+	width:40px;
+	height:40px;
+	border-radius:1rem;
+	border:2px solid lightgray;
+	text-align:center;
+	line-height:40px;
+	margin-right:10px;
+}
 </style>
 <body>
 	<%@include file="/WEB-INF/views/common/admin-side.jsp"%>
@@ -462,7 +406,6 @@ background-color: #e9fde9;
                 <input type="hidden" value="${no}" name="no">
             	<div class="notice-admin-Btns">
                 <div class="noticeBtn-etc">
-                    <a href="#modal1" rel="modal:open" class="popupArea" id="popup"><div class="setting-Btn"><img src="/app/resources/img/faq/image 116.png"></div></a>
                     <div class="Btns-noticeAd">
                         <div class="activate-Btn"><input class="activate" type="button" value="활성화" name="activate" ></div>
                         <div class="deactivate-Btn"><input class="deactivate" type="button" value="비활성화" name="deactivate" ></div>
@@ -474,27 +417,28 @@ background-color: #e9fde9;
                 <div class="notice-list-twoColored">
                     <div class="notice-group">
                         <c:forEach var="list" items="${list}" varStatus="status">
-                        	<div class="gatheringDivs"> 
+                        	<div class="gathering-divs">
 	                        	<c:if test="${status.index > 2 }">
 	                        	 	<div class="notice-white"></a>
 	                        	</c:if>
 	                        	<c:if test="${status.index <= 2 }">
 	                            	<div class="notice-green"></a>
 	                        	</c:if>
-                            		<div class="admin-id-etc">
-	                                    <div class="admin-id" name="writer">${list.writer}</div>
-	                                    <div class="enroll-date" name=enrollDate>${list.enrollDate}</div>
+	                                <div class="admin-id-etc">
+	                                    <div class="admin-id" name="nick">${list.writer}</div>
+	                                    <div class="enroll-date" name="enrollDate">${list.enrollDate}</div>
 	                                </div>
 	                                <div class="written-notice">
-	                                    <div class="checkBoxBtn-notice"><input type="checkbox"  id="checkBoxBtn" value="${list.no}"></div>
+							<div class="checkBoxBtn-notice"><input type="checkbox"  id="checkBoxBtn" value="${list.no}"></div>
 	                                    <div class="cate-notice" name="name">${list.cateName}</div>
-	                                    <a href = "app/admin/notice/noticeDetailAdmin?no=${list.no}"><div class="posted-notice" name="title">${list.title}</div></a>
+	                                    <a href="/app/notice/noticeDetail?no=${list.no}"><div class="posted-notice" name="title">${list.title}</div></a>
 	                                    <div class="views-etc">
-	                                        <div class="views" name="hit"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">&nbsp; ${list.hit }</div>
-	                                        <div class="replies" name="cmt"><img width="15px" height="15px" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">&nbsp; ${list.cmt}</div>
+	                                        <div class="views" name="hit"><img width="15px" height="15px" class="view" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">${list.hit}</div>
+	                                        <div class="replies" name="cmt"><img width="15px" height="15px"class="message" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">${list.cmt}</div>
 	                                    </div>
-                                	</div>
-                             </div> 
+	                                </div>
+	                            </div>
+                        	</div>
                         </c:forEach>
                     </div>
                 </div>
@@ -505,7 +449,7 @@ background-color: #e9fde9;
 					  	<c:if test="${pv.startPage != 1}">
 		                  <div class="paging-btn" id="prev-btn">
 		                    <a
-		                      href="${path}/admin/notice/noticeListAdmin?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+		                      href="${path}/admin/notice/noticeListAdmin?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
 		                      >이전</a
 		                     >
 		                  </div>
@@ -513,7 +457,7 @@ background-color: #e9fde9;
 	                <c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
 	                  <div class="paging-btn" id="${i}">
 	                    <a
-	                      href="${path}/admin/notice/noticeListAdmin?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+	                      href="${path}/admin/notice/noticeListAdmin?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
 	                      >${i}</a
 	                    >
 	                  </div>
@@ -521,7 +465,7 @@ background-color: #e9fde9;
 		                <c:if test="${pv.endPage < pv.maxPage}">
 		                  <div class="paging-btn" id="next-btn">
 		                    <a
-		                      href="${path}/admin/notice/noticeListAdmin?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+		                      href="${path}/admin/notice/noticeListAdmin?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
 		                      >다음</a
 		                    >
 		                  </div>
@@ -532,22 +476,6 @@ background-color: #e9fde9;
             </form>
         </div>
     </div>
-     <!-- 세팅 모달 -->
-    <!-- <div id="modal1" class="modal">
-	 	<div class="notice-line">
-	 		<div class="line-a">
-	 			<div class="line-a-a"></div>
-	 		</div>
-	 		<div class="title-sec">&nbsp;&nbsp;카테고리 설정&nbsp;&nbsp;</div>
-	 		<div class="line-b">
-	 			<div class="line-b-a"></div>
-	 		</div>
-	 	</div>
-	 	<div class="input-section">
-	 		<div class="empty"></div>
-	 		<div>카테고리 추가: <input type="text" class="cate-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="확인" class="cateBtn"></div>
-	   </div>
-   </div> -->
     
    
 <script type="text/javascript">

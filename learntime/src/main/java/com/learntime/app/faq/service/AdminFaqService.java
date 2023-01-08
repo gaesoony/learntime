@@ -18,6 +18,6 @@ public interface AdminFaqService {
 
 	public FaqVo selectOne(FaqVo vo);
 
-	public int deleteOne(NoticeVo vo);
+	public int deleteOne(List<NoticeVo> list);
 
 }

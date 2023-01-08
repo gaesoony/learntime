@@ -39,7 +39,7 @@
         <div class="empty1-m"></div>
         <div class="q-content-m" name="content">${vo.content}</div>
         <div class="backBtn-m">
-            <a href="/app/question/qDetailListModify"><div class="btn-to-m" id="btn-modify">수정</div></a>
+            <a href="/app/question/qDetailListModify?no=${vo.no}"><div class="btn-to-m" id="btn-modify">수정</div></a>
             <input type="button" value="삭제" name="btn-to-m" class="btn-to-m" id="btn-to-m">
             <a href="/app/question/questionList?p=1&cateNo=0"><div class="btn-to-m">글목록</div></a>
         </div>   

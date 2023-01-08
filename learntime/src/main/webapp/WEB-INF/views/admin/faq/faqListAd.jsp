@@ -70,7 +70,7 @@
 
 .listed-q{
     width: 100%;
-    height: 675px;
+    height: 550px;
     display: flex;
     flex-direction: column;
    
@@ -316,84 +316,34 @@
     font-weight: 800;
     color: gray;
 }
+
+
 /*페이징  */
 
-.page-question{
+.page-qList-ad{
 	margin:0 auto;
 	display:flex;
 	justify-content:center;
 	align-items:center;
 	
 }
-	#page-nation{
-        list-style: none;
-        display: flex;
-        padding: 0;
-        margin-top: 20px;
-    }
-    .page-qList-ad{
-    	display:flex;
-    	justify-content:center;
-    }
+.page-faqAd{
 
-    #page-nation li{
-        display: inline;
-        text-align: center;
-        margin:0 10px;
-      
-    }
-/* 페이지 버튼~ */
-    #page-nation li a{
-        text-decoration: none;
-        color: #999999;
-        font-size: 20px;
-        font-weight:900;
-        
-
-    }
-
-    #page-nation .first:hover,  #page-nation .last:hover,  #page-nation .right:hover,  #page-nation .left:hover{
-        color:#5ECC80;
-    }
-
-
-    #page-nation a:active{
-        cursor: default;
-        color: white;
-    }
-
-`///    #page-nation .num{
-        padding: 0;
-        width: 30px;
-        height: 30px;
-        display: inline-block;
-        border-radius: 100%;
-        line-height: 30px;
-         text-align: center;
-    }
-
-    #page-nation .num:hover{
-        background-color: #5ECC80;
-        color: white;
-       
-    }
-
-    #page-nation .num:active{
-    	width:40px;
-    	height:40px;
-    	border-radius:1rem;
-        background-color: #5ECC80;
-        cursor: pointer;
-    }
-    
-     .pageBtn{
-    	width:40px;
-    	height:40px;
-    	border: 3px solid lightgray;
-    	border-radius:1rem;
-    	line-height: 40px;
-    	
-    }
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	
+}	
+.paging-btn{
+	
+	width:40px;
+	height:40px;
+	border-radius:1rem;
+	border:2px solid lightgray;
+	text-align:center;
+	line-height:40px;
+	margin-right:10px;
+}
 
 `
 </style>
@@ -427,7 +377,7 @@
 	                    <input type="submit" value="검색" class="search-green-box">
 	                </div>
 	                <div class="deleteBtn">
-	                    <input type="submit" value="삭제" id="erase" onclick="deleteValue();">
+	                    <input type="submit" value="삭제" id="erase" >
 	                </div>
 	            </div>
 	            <div class="listed-q">
@@ -451,7 +401,7 @@
 	                            <a href = "app/admin/faq/faqDetailListAdmin?no=${list.no}"><div class="title-faq-ad" name="title">${list.title}</div></a>
 	                            <div class="nickname-faq-ad" name="writer">${list.writer}</div>
 	                            <div class="enrollDate-faq-ad" name="enrollDate">${list.enrollDate}</div>
-	                            <div class="deleteBtn-faq-ad"><input type="button" value="삭제" id="deleteAd" onclick="deleteValue();"></div>
+	                            <div class="deleteBtn-faq-ad"><input type="button" value="삭제" id="deleteAd"></div>
 	                        </div>
 	                    </div>
 	                </c:forEach>
@@ -461,7 +411,7 @@
 					  	<c:if test="${pv.startPage != 1}">
 	                  <div class="paging-btn" id="prev-btn">
 	                    <a
-	                      href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+	                      href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
 	                      >이전</a
 	                    >
 	                  </div>
@@ -469,7 +419,7 @@
 	                <c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
 	                  <div class="paging-btn" id="${i}">
 	                    <a
-	                      href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+	                      href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
 	                      >${i}</a
 	                    >
 	                  </div>
@@ -477,7 +427,7 @@
 	                <c:if test="${pv.endPage < pv.maxPage}">
 	                  <div class="paging-btn" id="next-btn">
 	                    <a
-	                      href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+	                      href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
 	                      >다음</a
 	                    >
 	                  </div>
@@ -492,115 +442,82 @@
 
  
 <script type="text/javascript">
-	/* $(function(){
-		let rowCheck  = document.getElementsByName("faqAd");
-		let rowCnt = rowCheck.length;
-		$("input[name='faqAd']").click(function(){
-			let listArr =$("input[name='faqAd']");
-			for(let i = 0; i<listArr.length; i++){
-				listArr[i].checked = this.checked;
-			}
-			
-		});
-		
-		
-	}); */
-	function deleteValue(){
-		const del = document.querySelector('#erase');
-		const deleteList = document.querySelector('#deleteAd');
-		const url="/app/admin/faq/faqListAd";
-		const valueArr = new Array();
-		const list = $("input[name = 'faqAd']");
-		for(let i = 0; i <list.length; i++){
-			if(list[i].checked){
-				valueArr.push(list[i].value);
-			}
-		}
-		
-		if(valueArr.length == 0){
-			alert("선택된 글이 없습니다.");
-		}else{
-			let chk = confirm("삭제하시겠습니까?");
-			$.ajax({
-				url: url,
-				type: 'POST',
-				traditional:true,
-				data:{
-					"del":del,
-					"deleteList":deleteList,
-                    "valueArr":valueArr
-		        },
-		        success:function(x){
-		            alert('삭제되었습니다.');
-		        },
-		        error:function(){
-		            alert('에러가 발생했습니다.');
-		        }
-			});
-		}
-	}
-	//* * $("#deleteAd").click(function(){
-/* 
-        let deleteList = $("#deleteAd").val();
-        let valueArr = new Array();
-        let list = $("#checkBoxBtn:checked");
-        for(let i = 0; i <list.length; i++){
-            if(list[i].checked){ */ 
-            	
-         /*        /* valueArr.push(list[i].value); */
-            /*}
-       /*  }
-		console.log(list);
-        var chk = confirm("삭제 하시겠습니까?");
-        $.ajax({
-            url:"/app/admin/faq/faqListAd",
-            type:"post",
-            data:{"deleteList":deleteList,
-                    "valueArr":valueArr
-        },
-        success:function(x){
-            alert('삭제되었습니다.');
-        },
-        error:function(){
-            alert('에러가 발생했습니다.');
-        }
 
-        });
- 
-    }) */
+$('#erase').click(function(){
+
+    let deleteList = $('#erase').eq(0).val();
+    console.log($('#erase').get(0));
+    let valueArr = new Array();
+    let list = $("#checkBoxBtn:checked"); 
+    for(let i = 0; i <list.length; i++){
+    	console.log(list[i]);
+        if(list[i].checked){
+            valueArr.push(list[i].value);
+        }
+    }
+
+    var chk = confirm("삭제 하시겠습니까?");
     
-    /* $("#erase").click(function(){
-
-        let erasePost = $("#erase").val();
-        let valueArr = new Array();
-        let list = $("#checkBoxBtn:checked");
+    $.ajax({
+        url:"/app/admin/notice/noticeListAdmin",
+        type:"post",
+        data:{"deleteList":deleteList,
+                "valueArr":valueArr
+    },
+    success:function(x){
+        alert('삭제되었습니다.');
+        location.reload();
         
-        console.log(list);
-        for(let i = 0; i <list.length; i++){
-            if(list[i].checked){
-                valueArr.push(list[i].value);
-            }
-        }
-		
-		console.log(valueArr);
-		
-        var chk = confirm("삭제 하시겠습니까?");
-        $.ajax({
-            url:"/app/admin/faq/faqListAd",
-            type:"post",
-            data:{"erasePost":erasePost,
-                    "valueArr":valueArr
-        },
-        success:function(x){
-            alert('삭제되었습니다.');
-        },
-        error:function(){
-            alert('에러가 발생했습니다.');
-        }
+    },
+    error:function(){
+        alert('에러가 발생했습니다.');
+    }
+   
 
-        });
+    });
+    
+    
+});
 
-    }) */ 
+
+$('#deleteAd').click(function(){
+
+    let del = $('#deleteAd').eq(0).val();
+    console.log($('#deleteAd').get(0));
+    let valueArr = new Array();
+    let list = $("#checkBoxBtn:checked"); 
+    for(let i = 0; i <list.length; i++){
+    	console.log(list[i]);
+        if(list[i].checked){
+            valueArr.push(list[i].value);
+        }
+    }
+
+    var chk = confirm("삭제 하시겠습니까?");
+    
+    $.ajax({
+        url:"/app/admin/notice/noticeListAdmin",
+        type:"post",
+        data:{"del":del,
+              "valueArr":valueArr
+    },
+    success:function(x){
+        alert('삭제되었습니다.');
+        location.reload();
+        
+    },
+    error:function(){
+        alert('에러가 발생했습니다.');
+    }
+   
+
+    });
+    
+    
+});
+
+
+
 	
 	</script>
         

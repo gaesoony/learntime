@@ -67,5 +67,10 @@ public class NoticeServiceImpl implements NoticeService{
 		return dao.insertCmt(sst,ncv);
 	}
 
+	@Override
+	public List<NoticeCmtVo> selectCmtList(NoticeCmtVo ncv) {
+		return dao.selectCmtList(sst,ncv);
+	}
+
 
 }

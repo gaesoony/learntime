@@ -301,70 +301,18 @@
 	align-items:center;
 	
 }
-	#page-nation{
-        list-style: none;
-        display: flex;
-        padding: 0;
-        margin-top: 20px;
-    }
-
-    #page-nation li{
-        display: inline;
-        text-align: center;
-        margin:0 10px;
-      
-    }
-/* 페이지 버튼~ */
-    #page-nation li a{
-        text-decoration: none;
-        color: #999999;
-        font-size: 20px;
-        font-weight:900;
-        
-        
-
-    }
-
-    #page-nation .first:hover,  #page-nation .last:hover,  #page-nation .right:hover,  #page-nation .left:hover{
-        color:#5ECC80;
-    }
-
-
-    #page-nation a:active{
-        cursor: default;
-        color: white;
-    }
-
-    #page-nation .num{
-        padding: 0;
-        width: 30px;
-        height: 30px;
-        display: inline-block;
-        border-radius: 100%;
-        line-height: 30px;
-         text-align: center;
-    }
-
-    #page-nation .num:hover{
-        background-color: #5ECC80;
-        color: white;
-       
-    }
-
-    #page-nation .num:active{
+.page-faq{
+	display:flex;
+}
+	
+     .paging-btn{
     	width:40px;
     	height:40px;
-    	border-radius:1rem;
-        background-color: #5ECC80;
-        cursor: pointer;
-    }
-    
-     .pageBtn{
-    	width:40px;
-    	height:40px;
-    	border: 3px solid lightgray;
+    	border: 2px solid lightgray;
     	border-radius:1rem;
     	line-height: 40px;
+    	text-align:center;
+    	margin-right:10px;
     	
     }
 

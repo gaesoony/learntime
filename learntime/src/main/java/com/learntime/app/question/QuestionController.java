@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.notice.vo.NoticeVo;
@@ -60,9 +60,7 @@ public class QuestionController {
 		if(loginMember != null) {
 			list= qs.selectQuestionList(map);
 		}
-		
-		System.out.println("컨트롤러에서 리스트 출력 ~~~");
-		System.out.println(list);
+		;
 		
 		m.addAttribute("pv",pv);
 		m.addAttribute("list",list);
@@ -92,7 +90,7 @@ public class QuestionController {
 		String writer = loginMember.getNo();
 		vo.setWriter(writer);
 		
-		System.out.println(writer);
+	
 		int result = qs.questionWrite(vo);
 		log.debug("vo:"+vo);
 		if(result == 1) {
@@ -127,28 +125,39 @@ public class QuestionController {
 			
 		}
 	
-//	// 문의게시판 수정페이지(회원)
-//	@GetMapping("question/qDetailListModify")
-//	public String qDetailListModify(QuestionVo vo,HttpSession session, Model m) {
-//		
-//		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember"); 
-//		
-//		
-//		int result = 0;
-//		if(loginMember !=null) {
-//			result = qs.updateOne(vo);
-//			m.addAttribute("vo",vo);
-//			
-//		}
-//		if(result == 1) {
-//			return "question/qDetailList";
-//		}else {
-//			return "common/errorPage";
-//		}
-//		
-//		
-//			
-//	}
+	
+	//문의게시판 수정페이지 조회(회원)
+		@GetMapping("question/qDetailListModify")
+		public String qDetailListModify(QuestionVo vo, Model m) {
+			
+			vo = qs.selectPost(vo);
+			m.addAttribute("vo",vo);
+			
+			return "/question/qDetailListModify";
+			
+			
+			
+				
+		}
+	 //문의게시판 수정페이지(회원)
+	@PostMapping("question/qDetailListModify")
+	public String qDetailListModify(HttpSession session,QuestionVo vo, Model m) {
+		
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember"); 
+		
+		int	result = qs.updateOne(vo);
+		
+		System.out.println(result);
+		
+		if(result == 1) {
+			return "redirect:/question/qDetailList?no="+vo.getNo();
+		}else {
+			return "common/errorPage";
+		}
+		
+		
+			
+	}
 
 
 }
