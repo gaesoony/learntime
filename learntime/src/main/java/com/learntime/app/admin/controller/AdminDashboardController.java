@@ -30,6 +30,7 @@ import com.learntime.app.makegrass.service.MakegrassService;
 import com.learntime.app.member.service.MemberService;
 import com.learntime.app.mertoring.service.MentoringService;
 import com.learntime.app.mertoring.vo.MentorVo;
+import com.learntime.app.mertoring.vo.MentoringFilterVo;
 import com.learntime.app.mystudy.vo.ProfileVo;
 import com.learntime.app.notice.service.AdminNoticeService;
 import com.learntime.app.notice.vo.NoticeVo;
@@ -184,7 +185,8 @@ public class AdminDashboardController {
 		model.addAttribute("makegrassList", makegrassList);
 		
 		//멘토링 목록 조회
-		List<MentorVo> mentorList = mentoringService.selectMentorList();
+		List<MentorVo> mentorList = mentoringService.selectMentorList(null);
+
 		model.addAttribute("mentorList", mentorList);
 		
 		//문의 목록 조회
