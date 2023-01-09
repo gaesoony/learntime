@@ -28,12 +28,16 @@ import com.learntime.app.common.page.PageVo;
 import com.learntime.app.common.page.Pagination;
 import com.learntime.app.community.service.BoardService;
 import com.learntime.app.community.vo.BoardVo;
+import com.learntime.app.makegrass.service.MakegrassService;
+import com.learntime.app.makegrass.vo.MakegrassVo;
 import com.learntime.app.member.service.MemberService;
 import com.learntime.app.member.vo.FollowVo;
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.mertoring.service.MentoringService;
 import com.learntime.app.mertoring.vo.ApplicationVo;
 import com.learntime.app.mertoring.vo.MentorVo;
+import com.learntime.app.qna.service.QnaService;
+import com.learntime.app.qna.vo.QnaVo;
 import com.learntime.app.skin.service.SkinService;
 import com.learntime.app.skin.vo.SkinVo;
 import com.learntime.app.study.service.StudyService;
@@ -73,6 +77,12 @@ public class MemberController {
 	@Autowired
     @Qualifier("mentoringServiceImpl")
     private MentoringService ms;
+	
+	@Autowired
+	private QnaService qnaService;
+	
+	@Autowired
+	private MakegrassService makegrassService;
 	
 	
 //	잘못된 경로-로그인(화면)
@@ -384,7 +394,11 @@ public class MemberController {
 	  
 //  마이페이지-makegrass list(화면)
     @GetMapping("/member/mypage/makegrassList")
-    public String mypageMakegrassList() {
+    public String mypageMakegrassList(Model model, MakegrassVo vo, HttpSession session) {
+    	List<Map<String, Object>> makegrassList = makegrassService.selectMypageList(vo);
+	  	model.addAttribute("makegrassList", makegrassList);
+	  	MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+	  	
        return "/member/mypage-makegrassList";
     }
     
@@ -431,7 +445,11 @@ public class MemberController {
 	  
 //   마이페이지-qna list(화면)
       @GetMapping("/member/mypage/qnaList")
-      public String mypageQnaList() {
+      public String mypageQnaList(Model model, QnaVo vo, HttpSession session) {
+    	  List<Map<String, Object>> qnaList = qnaService.selectMypageList(vo);
+    	  model.addAttribute("qnaList", qnaList);
+    	  MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+    	  
          return "/member/mypage-qnaList";
       }
       

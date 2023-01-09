@@ -39,5 +39,7 @@ public interface QnaService {
 	public int scrap(QnaTypeVo qvo);
 
 	public Map<String, Object> selectEtcList(Map map);
+
+	public List<Map<String, Object>> selectMypageList(QnaVo vo);
 	
 }

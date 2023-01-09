@@ -68,6 +68,7 @@
     /* 리스트 본문 */
     .realcontent{
         justify-content: flex-start;
+        cursor: pointer;
     }
     .qnalist{
         margin-left: 20px;
@@ -170,9 +171,9 @@
                     <div id="title-box">
 
                         <!-- 본문 -->
-                        <div class="realcontent" onclick="navToDetail()" style="cursor: pointer;">
+                        <div class="realcontent" onclick="navToDetail()">
                             <div class="qnalist">
-                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.</div>
+                                <div class="title">[기술] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="content">학습하는 분들께 도움이 되고, 더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.꼭 확인해주세요.꼭 확인해주세요.</div>
     
                                 <!-- 동그라미 답변 -->
@@ -180,22 +181,16 @@
                                     <div class="replytitle">0</div>
                                     <div class="replycontent">답변</div>
                                 </div>
-    
-                                <!-- 해시태그 -->
-                                <div class="hashtag">
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>자바</li>
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>JAVA</li>
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>CSS</li>
-                                </div>
+
                                 <div class="enrollDate">2202.12.12.</div>
                                 <div class="end-line"></div>
                             </div>
                         </div>
 
                         <!-- 본문2 -->
-                        <div class="realcontent" onclick="navToDetail()" style="cursor: pointer;">
+                        <div class="realcontent" onclick="navToDetail()">
                             <div class="qnalist">
-                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.</div>
+                                <div class="title">[기술] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="content">학습하는 분들께 도움이 되고, 더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.꼭 확인해주세요.꼭 확인해주세요.</div>
     
                                 <!-- 동그라미 답변 -->
@@ -204,21 +199,15 @@
                                     <div class="replycontent">답변</div>
                                 </div>
     
-                                <!-- 해시태그 -->
-                                <div class="hashtag">
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>자바</li>
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>JAVA</li>
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>CSS</li>
-                                </div>
                                 <div class="enrollDate">2202.12.12.</div>
                                 <div class="end-line"></div>
                             </div>
                         </div>
 
                         <!-- 본문3 -->
-                        <div class="realcontent" onclick="navToDetail()" style="cursor: pointer;">
+                        <div class="realcontent" onclick="navToDetail()">
                             <div class="qnalist">
-                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.</div>
+                                <div class="title">[기술] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="content">학습하는 분들께 도움이 되고, 더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.꼭 확인해주세요.꼭 확인해주세요.</div>
     
                                 <!-- 동그라미 답변 -->
@@ -227,21 +216,15 @@
                                     <div class="replycontent">답변</div>
                                 </div>
     
-                                <!-- 해시태그 -->
-                                <div class="hashtag">
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>자바</li>
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>JAVA</li>
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>CSS</li>
-                                </div>
                                 <div class="enrollDate">2202.12.12.</div>
                                 <div class="end-line"></div>
                             </div>
                         </div>
 
                         <!-- 본문4 -->
-                        <div class="realcontent" onclick="navToDetail()" style="cursor: pointer;">
+                        <div class="realcontent" onclick="navToDetail()">
                             <div class="qnalist">
-                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.</div>
+                                <div class="title">[기술] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.</div>
                                 <div class="content">학습하는 분들께 도움이 되고, 더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.꼭 확인해주세요.꼭 확인해주세요.</div>
     
                                 <!-- 동그라미 답변 -->
@@ -249,36 +232,7 @@
                                     <div class="replytitle">0</div>
                                     <div class="replycontent">답변</div>
                                 </div>
-    
-                                <!-- 해시태그 -->
-                                <div class="hashtag">
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>자바</li>
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>JAVA</li>
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>CSS</li>
-                                </div>
-                                <div class="enrollDate">2202.12.12.</div>
-                                <div class="end-line"></div>
-                            </div>
-                        </div>
 
-                        <!-- 본문5 -->
-                        <div class="realcontent" onclick="navToDetail()" style="cursor: pointer;">
-                            <div class="qnalist">
-                                <div class="title">[미해결] 연간관계편의 메서드와 카테고리가 이해가 되지 않습니다.이해가 되지 않습니다.이해가 되지 않습니다.</div>
-                                <div class="content">학습하는 분들께 도움이 되고, 더 좋은 답변을 드릴 수 있도록 질문 전에 다음을 꼭 확인해주세요.꼭 확인해주세요.꼭 확인해주세요.</div>
-    
-                                <!-- 동그라미 답변 -->
-                                <div class="circle">
-                                    <div class="replytitle">0</div>
-                                    <div class="replycontent">답변</div>
-                                </div>
-    
-                                <!-- 해시태그 -->
-                                <div class="hashtag">
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>자바</li>
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>JAVA</li>
-                                    <li class="hash"><i class="fa-thin fa-hashtag"></i>CSS</li>
-                                </div>
                                 <div class="enrollDate">2202.12.12.</div>
                                 <div class="end-line"></div>
                             </div>

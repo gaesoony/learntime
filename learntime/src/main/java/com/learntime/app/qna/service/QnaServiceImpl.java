@@ -150,4 +150,10 @@ public class QnaServiceImpl implements QnaService {
 		return result;
 	}
 
+	//마이페이지 내 메인 리스트
+	@Override
+	public List<Map<String, Object>> selectMypageList(QnaVo vo) {
+		return dao.selectMypageList(sst, vo);
+	}
+
 }

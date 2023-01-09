@@ -28,4 +28,6 @@ public interface MakegrassService {
 
 	public List<Map<String, Object>> followingList(String no);
 
+	public List<Map<String, Object>> selectMypageList(MakegrassVo vo);
+
 }
