@@ -47,5 +47,7 @@ public interface QnaDao {
 
 	public String selectScrap(SqlSessionTemplate sst, Map map);
 
+	public List<Map<String, Object>> selectMypageList(SqlSessionTemplate sst, QnaVo vo);
+
 
 }

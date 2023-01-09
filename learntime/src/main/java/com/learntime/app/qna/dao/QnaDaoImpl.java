@@ -116,4 +116,9 @@ public class QnaDaoImpl implements QnaDao {
 		return sst.selectOne("qnaMapper.selectScrap", map);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectMypageList(SqlSessionTemplate sst, QnaVo vo) {
+		return sst.selectList("qnaMapper.mypageList", vo);
+	}
+
 }

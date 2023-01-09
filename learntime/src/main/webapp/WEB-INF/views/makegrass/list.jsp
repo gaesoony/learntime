@@ -814,14 +814,14 @@
 
                 <!-- 팔로잉 리스트 유저 -->
                 <c:if test="${loginMember != null}">
-                    <c:forEach items="${followingList}" var="following">
-                        <div>
+                    <div>
+                        <c:forEach items="${followingList}" var="follow">
                             <ul class="rightsidecontent">
                                 <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
-                                <li class="rightnick">${following.FOLLOWING_NO}</li>
+                                <li class="rightnick">${follow.FOLLOWING_NO}</li>
                             </ul>
-                        </div>
-                    </c:forEach>
+                        </c:forEach>
+                    </div>
                 </c:if>
 
                 <c:if test="${loginMember == null && followingList == null}">

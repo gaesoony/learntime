@@ -79,12 +79,13 @@
         border-radius: 20px;
         margin: 0 auto;
     }
-    .thumbnail{
+    .title{
         width: 200px;
         height: 90px;
-        background-color: #5ECC80;
         margin: 0 auto;
         margin-top: 15px;
+        font-size: 14px;
+        font-weight: 550;
     }
     .clockimg{
         margin-left: 10px;
@@ -150,102 +151,7 @@
                         <div class="mainbox">
                             <!-- 리스트1 -->
                             <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-                                <div class="thumbnail"></div>
-                                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
-                                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
-                                <div class="content">
-                                    백앤드로 JAVA Script와 화면
-                                    구현을 위한 CSS, 추가로 AJAX에
-                                    대한 부분도 함께 공부함.
-                                    백앤드로 JAVA Script와 화면.
-                                </div>
-                                <div class="contentline"></div>
-                                <div class="info">
-                                    <ul>
-                                        <li class="contentDate">2202-12-09</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- 리스트2 -->
-                            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-                                <div class="thumbnail"></div>
-                                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
-                                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
-                                <div class="content">
-                                    백앤드로 JAVA Script와 화면
-                                    구현을 위한 CSS, 추가로 AJAX에
-                                    대한 부분도 함께 공부함.
-                                    백앤드로 JAVA Script와 화면.
-                                </div>
-                                <div class="contentline"></div>
-                                <div class="info">
-                                    <ul>
-                                        <li class="contentDate">2202-12-09</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- 리스트3 -->
-                            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-                                <div class="thumbnail"></div>
-                                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
-                                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
-                                <div class="content">
-                                    백앤드로 JAVA Script와 화면
-                                    구현을 위한 CSS, 추가로 AJAX에
-                                    대한 부분도 함께 공부함.
-                                    백앤드로 JAVA Script와 화면.
-                                </div>
-                                <div class="contentline"></div>
-                                <div class="info">
-                                    <ul>
-                                        <li class="contentDate">2202-12-09</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- 리스트4 -->
-                            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-                                <div class="thumbnail"></div>
-                                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
-                                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
-                                <div class="content">
-                                    백앤드로 JAVA Script와 화면
-                                    구현을 위한 CSS, 추가로 AJAX에
-                                    대한 부분도 함께 공부함.
-                                    백앤드로 JAVA Script와 화면.
-                                </div>
-                                <div class="contentline"></div>
-                                <div class="info">
-                                    <ul>
-                                        <li class="contentDate">2202-12-09</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- 리스트5 -->
-                            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-                                <div class="thumbnail"></div>
-                                <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
-                                <div class="bookimg"><i class="fa-solid fa-book"></i></div>
-                                <div class="content">
-                                    백앤드로 JAVA Script와 화면
-                                    구현을 위한 CSS, 추가로 AJAX에
-                                    대한 부분도 함께 공부함.
-                                    백앤드로 JAVA Script와 화면.
-                                </div>
-                                <div class="contentline"></div>
-                                <div class="info">
-                                    <ul>
-                                        <li class="contentDate">2202-12-09</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- 리스트6 -->
-                            <div class="mainlist" onclick="navToDetail()" style="cursor: pointer;">
-                                <div class="thumbnail"></div>
+                                <div class="title"><i class="fa-solid fa-pencil"></i> Title <br><br>타이틀타이틀</div>
                                 <div class="clockimg"><i class="fa-regular fa-clock"></i> 120분</div>
                                 <div class="bookimg"><i class="fa-solid fa-book"></i></div>
                                 <div class="content">

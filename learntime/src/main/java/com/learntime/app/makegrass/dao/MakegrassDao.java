@@ -33,6 +33,8 @@ public interface MakegrassDao {
 
 	public List<Map<String, Object>> followingList(SqlSessionTemplate sst, String no);
 
+	public List<Map<String, Object>> selectMypageList(SqlSessionTemplate sst, MakegrassVo vo);
+
 	
 
 }

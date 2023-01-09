@@ -649,9 +649,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                         </c:if>
 
                         <!-- 게시글 싫어요 -->
-                        <c:if test="${loginMember != null && etcList.likeHate == 'L'}">
-                            <td class="thumbsdown" id="thumbsdown" onclick="location.href=''"><i class="fa-regular fa-thumbs-down"></i></td>
-                        </c:if>
+                        <td class="thumbsdown" id="thumbsdown" onclick="location.href=''"><i class="fa-regular fa-thumbs-down"></i></td>
                         <c:if test="${loginMember == null}">
                             <td class="thumbsdown" id="thumbsdown" onclick="login();"><i class="fa-regular fa-thumbs-down"></i></td>
                         </c:if>

@@ -95,4 +95,10 @@ public class MakegrassServiceImpl implements MakegrassService {
 		return followingList;
 	}
 
+	//마이페이지 메인 리스트
+	@Override
+	public List<Map<String, Object>> selectMypageList(MakegrassVo vo) {
+		return dao.selectMypageList(sst, vo);
+	}
+
 }

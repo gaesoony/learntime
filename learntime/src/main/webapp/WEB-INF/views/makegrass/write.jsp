@@ -115,6 +115,7 @@
     }
 
     #tag{
+        width: 100px;
         text-align: center;
         border: none;
         background-color: white;
