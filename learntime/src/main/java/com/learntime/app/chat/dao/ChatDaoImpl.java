@@ -39,4 +39,9 @@ public class ChatDaoImpl implements ChatDao {
 		return sst.selectList("chatMapper.chatRoomHistory",no);
 	}
 
+	@Override
+	public List<ChatVo> chatMyList(SqlSessionTemplate sst, String no) {
+		return sst.selectList("chatMapper.chatMyList",no);
+	}
+
 }

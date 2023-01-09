@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.learntime.app.alarm.service.AlarmService;
+import com.learntime.app.alarm.vo.AlarmVo;
 import com.learntime.app.member.vo.MemberVo;
 
 import com.learntime.app.study.service.StudyService;
@@ -32,6 +35,10 @@ public class StudyController {
 	
 	@Autowired
 	private StudyService service;
+	
+	@Autowired
+	@Qualifier("alarmServiceImpl")
+	private AlarmService alarmService;
 	
 	//스터디/프로젝트 목록 조회, 검색 (DB)
 	@GetMapping("/list")
@@ -176,6 +183,8 @@ public class StudyController {
 		List<Map<String, String>> techStackList = service.selectTechStackList();
 		model.addAttribute("techStackList", techStackList);
 
+		
+		
 		return "study/recruit";
 	}
 	
@@ -266,6 +275,18 @@ public class StudyController {
 		
 		if(result == 1) {
 			session.setAttribute("alertMsg", "가입 신청 완료!");
+			
+			
+			//new AlarmVo(알람을 받는 회원 번호,알람을 보낸 회원 번호,"알람타입 1~7","보내고싶은 메세지 ")
+			//알람타입 (1=공지/2=팔로우/3=댓글/4=멘토링/5=스터디 모집/6=디엠/7=답변채택)
+			//AlarmVo alarmVo= new AlarmVo(sendMno, receMno, alarmTypeNo, massage);
+			//그룹번호조회
+			Map<String, Object> groupOne = service.selectGroupOne(vo.getGno());
+			String sendMno=(String) groupOne.get("WRITER_NO");
+			AlarmVo alarmVo=new AlarmVo(sendMno,vo.getMno(),"5","가입신청이 도착했어요");
+			alarmService.insert(alarmVo);
+			
+			
 			return "redirect:/study/list";
 			
 		}else {

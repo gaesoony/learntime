@@ -17,4 +17,6 @@ public interface ChatDao {
 
 	List<ChatVo> chatRoomHistory(SqlSessionTemplate sst, String no);
 
+	List<ChatVo> chatMyList(SqlSessionTemplate sst, String no);
+
 }

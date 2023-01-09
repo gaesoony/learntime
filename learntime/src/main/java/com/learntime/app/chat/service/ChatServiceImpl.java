@@ -43,4 +43,11 @@ public class ChatServiceImpl implements ChatService{
 		return chatDao.chatRoomHistory(sst,no);
 	}
 
+	@Override
+	public List<ChatVo> chatMyList(String no) {
+		
+		return chatDao.chatMyList(sst,no);
+				
+	}
+
 }

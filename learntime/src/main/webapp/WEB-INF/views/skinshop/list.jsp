@@ -125,7 +125,8 @@
 
 #list{
     display: grid;
-    grid-template-columns: repeat(4,auto);
+    grid-template-columns: repeat(5,240px);
+    justify-items: center;
 }
 
 
@@ -184,17 +185,68 @@
 
 /* 범위 검색 */
 #search{
-    height: 280px;
-    margin-top: 20px;
-    background-color: #F4FBF6;
-    position: sticky;
-    top:75px;
-    z-index: 500;
+     display: grid;
+    grid-column: span 2;
+     grid-template-columns: 9fr 1fr;
+    
+    
 }
 
-.multi-range-slider{
-    margin: 10px 0;
-}
+    #search1{
+        display: grid;
+        grid-template-columns: 6fr 1fr;
+         margin-top: 20px;
+	    background-color: #F4FBF6;
+	   
+	    grid-column: span 2;
+    }
+    
+    #skin-align{
+    margin: auto;
+    margin-left:10px;
+    }
+
+    .search-box {
+      outline: none;
+      background-color: rgb(255, 255, 255);
+      color: rgb(42, 42, 42);
+      width: 98%;
+      padding-left:2%;
+ 
+      border: 1px solid rgb(207, 207, 207);
+    }
+
+    .fa-magnifying-glass {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      color: gray;
+    }
+
+    .select-box {
+      width: 90%;
+      height: 45px;
+      border: 1px solid #5ecc80;
+      
+      outline: none;
+      padding: 0px 5px;
+      cursor: pointer;
+      color: #5ecc80;
+
+      margin: 0 10px;
+    }
+
+    .write-btn {
+      width: 100px;
+      height: 40px;
+      border: none;
+      outline: none;
+      background-color: #5ecc80;
+      color: white;
+      cursor: pointer;
+    }
+
+
 
 #search-name, #token{
     padding: 10px;
@@ -203,74 +255,7 @@
     font-weight: 600;
     font-size: 14px;
 }
-.slider {
-  position: relative;
-  z-index: 1;
-  height: 10px;
-  margin: 0 15px;
-}
-.slider > .track {
-  position: absolute;
-  z-index: 1;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  border-radius: 5px;
-  background-color: #D9D9D9;
-}
-.slider > .range {
-  position: absolute;
-  z-index: 2;
-  left: 25%;
-  right: 25%;
-  top: 0;
-  bottom: 0;
-  border-radius: 5px;
-  background-color: #5ECC80;
-}
-.slider > .thumb {
-  position: absolute;
-  z-index: 3;
-  width: 20px;
-  height: 20px;
-  background-color: #5ECC80;
-  border-radius: 50%;
-}
-.slider > .thumb.left {
-  left: 25%;
-  transform: translate(-15px, -5px);
-}
-.slider > .thumb.right {
-  right: 25%;
-  transform: translate(15px, -5px);
-}
 
-input[type="range"] {
-  position: absolute;
-  /* opacity로 가린 것을 이벤트도 비활성화하기 위해 */
-  pointer-events: none;
-  -webkit-appearance: none;
-  z-index: 2;
-  height: 10px;
-  width: 100%;
-  opacity: 0;
-  
-}
-
-input[type="range"]::-webkit-slider-thumb {
-    /* 겹쳐진 두 thumb를 모두 활성화 */
-  pointer-events: all;
-  width: 30px;
-  height: 30px;
-  border-radius: 0;
-  border: 0 none;
-  background-color: red;
-  cursor: pointer;
-
-  /* appearance를 해야 위의 스타일들을 볼 수 있음 */
-  -webkit-appearance: none;
-}
 
 #token{
     display: grid;
@@ -287,13 +272,14 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .token-cnt2{
     width: 160px;
-    height: 28px;
+    height: 23px;
     padding: 10px;
-    border-radius: 8px;
+    
     justify-content: space-between;
     align-items: center;
     background-color: #FFFFFF;
-    border: 1px solid #D9D9D9;
+    border: 1px solid #5ecc80;
+   
 }
 
 #search-name, #token,.align-name{
@@ -371,6 +357,33 @@ input[type="range"]::-webkit-slider-thumb {
             <span>LEARN TIME</span>에서 인싸가 되는 아이템 😎 
         </div>
 
+	 <div id="search1">
+
+            <div id="skin-align">
+               <form action="" method="get">
+              <div id="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input name="keyword" type="text" placeholder="내용을 입력해주세요" class="search-box"/>
+                    <select name="category" class="select-box">
+                      <option value="name">이름</option>
+                      <option value="price">토큰 갯수</option>
+                    </select>
+                    
+               </div>
+              </form>
+            </div>
+
+            <div id="token">
+                <div class="token-cnt2">
+                    <span class="material-symbols-outlined">toll</span>
+                    <c:if test="${loginMember.holdToken==null}">0</c:if>
+                    ${loginMember.holdToken}개
+                </div>
+            </div>
+        </div>
+        
+
+
         <div id="list">
         
          <c:forEach items="${list}" var="list">
@@ -386,47 +399,7 @@ input[type="range"]::-webkit-slider-thumb {
             
         </div>
 
-        <div id="search">
-            <div id="search-name"> 토큰으로 검색</div>
-
-            <div class="multi-range-slider">
-                <input type="range" id="input-left" min="0" max="100" value="25" />
-                <input type="range" id="input-right" min="0" max="100" value="75" />
-                
-                <div class="slider">
-                  <div class="track"></div>
-                  <div class="range"></div>
-                  <div class="thumb left"></div>
-                  <div class="thumb right"></div>
-                </div>
-            </div>
-
-            <div id="skin-align">
-                <div class="align-name">
-                    정렬
-                </div>
-                <div class="align-list">
-                    <select name="align-list" id="align-list" required style="color: #535353">
-                        <option value="" disabled selected >선택해주세요</option>
-					    <option value="1">최근 등록순</option>
-                        <option value="2">높은 토큰순</option>
-                        <option value="3">낮은 토큰순</option>
-                    </select>
-                </div>
-            </div>
-
-            <div id="token">
-                <div class="have-token2">
-                    보유 토큰
-                </div>
-                <div class="token-cnt2">
-                    <span class="material-symbols-outlined">toll</span>
-                    <c:if test="${loginMember.holdToken==null}">0</c:if>
-                    ${loginMember.holdToken}개
-                </div>
-            </div>
-        </div>
-        
+       
        
 
         
@@ -483,37 +456,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 	
 
-    const inputLeft = document.getElementById("input-left");
-    const inputRight = document.getElementById("input-right");
-
-    const thumbLeft = document.querySelector(".slider > .thumb.left");
-    const thumbRight = document.querySelector(".slider > .thumb.right");
-    const range = document.querySelector(".slider > .range");
-
-    const setLeftValue = () => {
-    const _this = inputLeft;
-    const [min, max] = [parseInt(_this.min), parseInt(_this.max)];
-    // 교차되지 않게, 1을 빼준 건 완전히 겹치기보다는 어느 정도 간격을 남겨두기 위해.
-    _this.value = Math.min(parseInt(_this.value), parseInt(inputRight.value) - 1);
-    // input, thumb 같이 움직이도록
-    const percent = ((_this.value - min) / (max - min)) * 100;
-    thumbLeft.style.left = percent + "%";
-    range.style.left = percent + "%";
-    };
-
-    const setRightValue = () => {
-    const _this = inputRight;
-    const [min, max] = [parseInt(_this.min), parseInt(_this.max)];
-    // 교차되지 않게, 1을 더해준 건 완전히 겹치기보다는 어느 정도 간격을 남겨두기 위해.
-    _this.value = Math.max(parseInt(_this.value), parseInt(inputLeft.value) + 1);
-    // input, thumb 같이 움직이도록
-    const percent = ((_this.value - min) / (max - min)) * 100;
-    thumbRight.style.right = 100 - percent + "%";
-    range.style.right = 100 - percent + "%";
-    };
-
-    inputLeft.addEventListener("input", setLeftValue);
-    inputRight.addEventListener("input", setRightValue);
+    
 
     
     </script>

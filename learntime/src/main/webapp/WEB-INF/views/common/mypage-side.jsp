@@ -349,7 +349,8 @@ input {
                
                 
                 <div id="userInfo">
-
+                    <div></div>
+                    <div>1:1 채팅방</div>
 
                     <button type="button" id="modal-closed2">
                         <span class="material-symbols-outlined">close</span>
@@ -379,22 +380,65 @@ input {
             $('.dm-btn').on('click',function(){
                 $('.blackBG2').addClass('show2');
                 let sendNo=${loginMember.no};
-                let receNo=${userNo.no};
+                let receNo=0;
                 let message=$('.message').val();
+                if(${loginMember.no} ==  ${chatlist[0].sendMno}){
+                    receNo=${chatlist[0].receMno}
+
+
+                }
+                
+                if(${loginMember.no} !=  ${chatlist[0].sendMno}){
+                    
+                    receNo=${chatlist[0].sendMno}
+                }
+
                 statChat(sendNo,receNo);
-                chatHistory(${loginMember.no});
+                chatHistory(sendNo,receNo);
                 
             });
 
-            //  //채팅방 보내기
-            //  $('#sendbtn').on('click',function(){
-            //         let sendNo=${loginMember.no};
-            //         let receNo=${userNo.no};
-            //         let message=$('.message').val();
-            //         chatSend(sendNo,receNo,message);
+
+
+           
             
-            // });
-          
+           
+            //채팅방 보내기
+            $('#sendbtn').on('click',function(){
+                let sendNo=${loginMember.no};
+                let receNo=0;
+                let message=$('.message').val();
+                if(${loginMember.no} ==  ${chatlist[0].sendMno}){
+                    receNo=${chatlist[0].receMno}
+
+
+                }
+                
+                if(${loginMember.no} !=  ${chatlist[0].sendMno}){
+                    
+                    receNo=${chatlist[0].sendMno}
+                }
+
+                
+                
+                chatSend(sendNo,receNo,message);
+
+                $('.message').val("");
+
+            });
+
+                     
+            
+           
+
+		
+                 
+
+
+
+
+           
+
 
 
         function statChat(sendNo,receNo){
@@ -404,7 +448,7 @@ input {
                     url:"${pageContext.request.contextPath}/chatRoomMake",
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     data:{"sendNo":sendNo,
-                        "receNo":receNo,
+                        "receNo":receNo
                     },
                     success:function(result){
                        console.log(result);
@@ -432,12 +476,13 @@ input {
                             my.text(message);
                         $('#chat-area').append(my);
 
-                        $('.message').val("");
+                       
 
                         const chatMsg = sendNo+"#"+receNo+"#"+message;
                         webSocketChat.send(chatMsg);
                         
-                        $('#chat-area').scrollTop($('#chat-area').scrollHeight);
+                        const msg1 = result+"#디엠#"+sendNo+"#"+receNo+"#메세지를 보냈어요";
+                        webSocket.send(msg1);
                         
                     },
                     error: function(result) {
@@ -447,39 +492,35 @@ input {
         }
 
 
-        function chatHistory(sendNo){
+        function chatHistory(sendNo,receNo){
 
             $.ajax({
                 type:"post",
                     url:"${pageContext.request.contextPath}/chatRoomHistory",
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-                    data:{"sendNo":sendNo
+                    data:{"sendNo":sendNo,
+                        "receNo":receNo
                     },
                     success:function(result){
 
                         var chat = JSON.parse(result);
-
-                        $('#userInfo').prepend(
-                                '<div><img src="${pageContext.request.contextPath}'+chat.chatlist.imgPath+'"></div>'
-                                +' <div>'+chat.chatlist.nick+'</div> '
-                            );
-
-                        
-                        
+                        $('#chat-area').empty();
                         for(let i=0; i<chat.chatRoomHistory.length;i++){
 
-                            if(chat.chatRoomHistory[i].sendMno==${userNo.no}){
+                            if(chat.chatRoomHistory[i].sendMno==sendNo){
                                 let my = $('<div>').prop({className: 'bubble my'});
                                 $(my).append(chat.chatRoomHistory[i].content);
                                 $('#chat-area').append(my);
-                            }else if(chat.chatRoomHistory[i].sendMno!=${userNo.no}){
+                            }else if(chat.chatRoomHistory[i].sendMno!=sendNo){
                                 let you = $('<div>').prop({className: 'bubble you'});
                                 $(you).append(chat.chatRoomHistory[i].content);
                                 $('#chat-area').append(you);
                             };
                         } 
 
-                        $('#chat-area').scrollTop($('#chat-area').scrollHeight);
+                        
+
+                       
                     },
                     error: function(result) {
                         alert("통신실패");
@@ -600,14 +641,14 @@ input {
 		//소켓 닫기
 		//webSocket.close();
 
-
+</script>
 
         
 
 
         
     
-</script>	 	
+
     
     
  

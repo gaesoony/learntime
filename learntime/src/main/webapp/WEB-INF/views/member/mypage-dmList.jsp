@@ -103,46 +103,29 @@
           	</div>
 
               <script>
-                     //모달 띄우기
+                    //모달 띄우기
                     $('#dm-btn').on('click',function(){
                         $('.blackBG2').addClass('show2');
                         let sendNo=${chatlist.sendMno};
                         let receNo=${chatlist.receMno};
                         let message=$('.message').val();
+
+                        
                         statChat(sendNo,receNo);
-                        chatHistory(${loginMember.no});
+                        chatHistory(sendNo,receNo);
+                        
                         
                     });
 
-		
+
                     $('.send-msg').on('click',function(){
                         $('.blackBG2').addClass('show2');
                         let sendNo=${chatlist.sendMno};
-                        chatHistory(${loginMember.no});
+                        let receNo=${chatlist.receMno};
+                        chatHistory(sendNo,receNo);
                     });
             
-                   
-                    //채팅방 보내기
-                    $('#sendbtn').on('click',function(){
-                        let sendNo=${loginMember.no};
-                        let receNo=0;
-                        if(${loginMember.no} ===  ${chatlist.receMno}){
-                            receNo=${chatlist.sendMno};
-                        }
-                        
-                        if(${loginMember.no} !== ${chatlist.receMno}){
-                            
-                            receNo=${chatlist.receMno};
-                        }
-                        let message=$('.message').val();
-                        chatSend(sendNo,receNo,message);
-
                     
-            
-                     });
-
-
-                     $('#chat-area').scrollTop('477');
           
                 </script>
  			

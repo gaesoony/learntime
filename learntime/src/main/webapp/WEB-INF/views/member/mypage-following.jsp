@@ -79,6 +79,15 @@
     border-radius: 30px;
     background-color: #d9d9d9;
    }
+   
+   .f-img img{
+      width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius: 100px;
+   
+   
+   }
    #fb,#ufb{
 	background: inherit ; 
     border:none; 
@@ -143,17 +152,9 @@
     
                 <div class="list">
 	                <c:forEach var="list" items="${list}" >
-						<div class="f-img"></div>
+						<div class="f-img"><img src="${pageContext.request.contextPath}${list.imgName}"></div>
 						<div class="f-nick"><a href="${pageContext.request.contextPath}/member/mypage/home?no=${list.no}">${list.nick}</a></div>
-                        
-
-                        <c:if test="${userNo.no ne loginMember.no}">
-                            <div></div>
-                        </c:if>
-
-                        <c:if test="${userNo.no eq loginMember.no}">
-                            <button id="ufb"class="following-btn"></button>
-                        </c:if>
+                       
 					</c:forEach>
                  
                     </div>

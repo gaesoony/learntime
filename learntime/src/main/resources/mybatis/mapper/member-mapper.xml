@@ -31,8 +31,8 @@
 	
 	<!--회원가입  -->
 	<insert id="join">
-	INSERT INTO MEMBER(NO,ID,PWD,PHONE,NICK,TECH_STACK_NO)
-	VALUES(SEQ_MEMBER_NO.NEXTVAL,#{id},#{pwd},#{phone},#{nick},#{teckStackNo})
+	INSERT INTO MEMBER(NO,ID,PWD,PHONE,NICK,TECH_STACK_NO,HOLD_TOKEN)
+	VALUES(SEQ_MEMBER_NO.NEXTVAL,#{id},#{pwd},#{phone},#{nick},#{teckStackNo},1)
 	
 	</insert>
 	
@@ -93,7 +93,8 @@
 	<!--탈퇴  -->
 	<update id="memberDeletePwd">
 		UPDATE MEMBER 
-		SET QUIT_YN='Y'
+		SET QUIT_YN='Y',
+		MODIFY_DATE=SYSDATE	
 		WHERE ID='${id}'
 	</update>
 	
@@ -181,7 +182,7 @@
 	
 	<!--나를 팔로우 하는 사람 리스트  -->
 	<select id="followerList" resultType = "MemberVo">
-		 SELECT M.NICK,M.IMG_PATH,M.NO
+		 SELECT M.NICK,M.IMG_PATH AS IMG_NAME,M.NO
 		FROM FOLLOW F
 		JOIN MEMBER M ON M.NO=F.FOLLOWING_NO
 		WHERE F.FOLLOWER_NO = #{no}
@@ -189,7 +190,7 @@
 	
 	<!--내가 팔로우 하는 사람 리스트  -->
 	<select id="followingList" resultType = "MemberVo">
-		SELECT M.NICK,M.IMG_PATH,M.NO
+		SELECT M.NICK,M.IMG_PATH AS IMG_NAME,M.NO
 		FROM FOLLOW F
 		JOIN MEMBER M ON M.NO=F.FOLLOWER_NO
 		WHERE F.FOLLOWING_NO = #{no}

@@ -65,8 +65,21 @@ session.removeAttribute("alertMsg"); %>
         border-radius: 8px;
         padding: 20px;
         display: grid;
-        grid-template-rows: 30px 70px 190px 45px 30px 45px;
+        grid-template-rows: 30px 80px 220px 75px;
         z-index:10001;
+      }
+
+
+      #modal-whiteBG form {
+        display: flex;
+        flex-direction: column;
+       
+      }
+
+
+      #modal-whiteBG form * {
+        margin-bottom: 15px;
+       
       }
 
       #login-btn,#modal-closed,.inputbox, .modal-login-btn,#alarm-btn{
@@ -267,11 +280,11 @@ session.removeAttribute("alertMsg"); %>
                 <div>
                     <input class="inputbox" type="text" name="id" placeholder="이메일">
                 </div>
-                <br>
+                
                 <div>
                     <input class="inputbox" type="password" name="pwd" autocomplete="off" placeholder="비밀번호">
                 </div>
-                <br>
+               
                 
                 <button type="submit" class="modal-login-btn" >로그인</button>
             </form>
@@ -283,11 +296,7 @@ session.removeAttribute("alertMsg"); %>
                 <span>|</span>
                 <a href="${pageContext.request.contextPath}/member/join">회원가입</a>
             </div>
-            <div id="line">간편 로그인</div>
-            <div id="loginApi">
-                <div id="google"></div>
-                <div id="kakao"></div>
-            </div>
+            
      
 	    </div>
 	  </div>
@@ -350,17 +359,17 @@ session.removeAttribute("alertMsg"); %>
         
         $.ajax({
         	type: "get",
-			url: "${pageContext.request.contextPath}/alarm",
-			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-			success: function(data) {
+          url: "${pageContext.request.contextPath}/alarm",
+          contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+          success: function(data) {
 				 
                  var obj = JSON.parse(data);
                  
-                
+                 
                 
                  for (let i = 0; i < obj.listMember.length; i++) {
                 	 
-
+                  $('#alarm-area').empty();
         		     let oneAlarmArea = $('<div>').prop({className: 'oneAlarm-area'});
         		     $(oneAlarmArea).append(
         		    		  '<div id="alarm-cate">'+obj.listMember[i].alarmTypeNo+'</div>'

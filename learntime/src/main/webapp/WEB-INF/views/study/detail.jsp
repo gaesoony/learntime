@@ -308,6 +308,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 $(function () {
                   $("#study-confirm").click(function () {
                     document.querySelector("#apply").submit();
+                    //알람보내기
+                    const msg1 = "11#스터디 가입#"+${groupOne.WRITER_NO}+"#"+${loginMember.no}+"#가입신청을 보냈어요";
+                    webSocket.send(msg1);
 
                     //컨펌 이벤트 처리
                   });
@@ -340,6 +343,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                     Swal.fire('강퇴회원은 재가입 불가합니다');
                   }
                 }
+
+               
               </script>
             </section>
           </form>

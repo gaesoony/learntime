@@ -20,4 +20,7 @@ public interface ChatService {
 	//마이페이지 채팅 내역
 	List<ChatVo> chatRoomHistory(String no);
 
+	//마이페이지 채팅 리스트(홈에서)
+	List<ChatVo> chatMyList(String no);
+
 }

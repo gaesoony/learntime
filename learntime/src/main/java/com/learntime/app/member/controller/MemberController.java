@@ -272,7 +272,9 @@ public class MemberController {
 	}	
 //	마이페이지-홈(화면)
 	@GetMapping("/member/mypage/home")
-	public String mypage(@RequestParam("no") String no,HttpSession session,Model model) {
+	public String mypage(String no,HttpSession session,Model model) {
+		MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
+		
 			//로그인 한 유저와 해당 페이지 유저가 동일 하지 않을경우 사이드 바가 달리 보임
 			MemberVo user=memberService.selectNo(no);
 			session.setAttribute("userNo",user);
@@ -281,13 +283,18 @@ public class MemberController {
 			List<SkinVo> mySkin=skinService.myskin(no);
 			session.setAttribute("mySkin",mySkin);
 			
+			List<ChatVo> chatlist=chatService.chatMyList(loginMember.getNo());
+			model.addAttribute("chatlist", chatlist);
+			
+
+			
 //			나를 팔로우 하는 사람 수 구하기
 			int followerCnt =memberService.followerCnt(no);
 //			내가 팔로우 하는 사람 수 구하기
 			int followingCnt =memberService.followingCnt(no);
 			
 			
-			MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
+		
 			
 			String followingMember=loginMember.getNo();
 			MemberVo followerMember=memberService.selectNo(no);
@@ -441,7 +448,7 @@ public class MemberController {
       }
       
 	   
-//   마이페이지-멘토링(화면)	   
+ //   마이페이지-멘토링(화면)	   
       @GetMapping("/member/mypage/mentoring")
       public String myMentoring(HttpSession session, Model model) {
           MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
@@ -450,7 +457,7 @@ public class MemberController {
           //멘토 정보 넘겨주기
           MentorVo mentorInfo = ms.selectMentor(userNo);
           session.setAttribute("mentorInfo", mentorInfo);
-
+          
           //신청한 멘토링 정보
           List<ApplicationVo> avList = ms.selectApplication(userNo);
           System.out.println("신청한 멘토링 정보 : "+ avList);
@@ -458,31 +465,146 @@ public class MemberController {
 
           return "member/mypage-mentoring";
       }
+ 
+//    마이페이지 - 멘토 신청(화면)
+	  @GetMapping("/member/mypage/mentoring/register")
+	  public String mentoringRegist(HttpSession session, Model model) {
+	
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		// 1. 직무
+		List<Map<String, Object>> jobList = ms.selectJob();
+		model.addAttribute("jobList", jobList);
+		
+		// 2. 카테고리
+		List<Map<String, Object>> cateList = ms.selectCateNo();
+		model.addAttribute("cateList", cateList);
+		
+		// 3. 유저 멘토 정보 받기
+		if(loginMember != null) {
+			MentorVo mv = ms.selectMentor(loginMember.getNo());
+//			session.setAttribute("mentorNo", mv.getNo());
+		}
+		
+		return "/member/mypage-mentoring2";
+	}
+	      
+//   마이페이지 - 멘토 신청(서버)
+		@PostMapping("/member/mypage/mentoring/register")
+		public String mentoringRegist(MentorVo vo) {
+			System.out.println("받아온vo : " + vo);
+			int result = ms.mentorRegister(vo);
+		
+			if (result != 1) {
+				return "common/error";
+			}
+			return "/member/mypage-mentoring3";
+		}
+		
+//	    마이페이지 - 멘토 수정(화면)
+		  @GetMapping("/member/mypage/mentor/modify")
+		  public String mentoringModify(HttpSession session, Model model) {
+		
+			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+			// 1. 직무
+			List<Map<String, Object>> jobList = ms.selectJob();
+			model.addAttribute("jobList", jobList);
+			
+			// 2. 카테고리
+			List<Map<String, Object>> cateList = ms.selectCateNo();
+			model.addAttribute("cateList", cateList);
+			
+			return "/member/mypage-mentorModify";
+		}
+		  
+//   마이페이지 - 멘토 수정(서버)
+	@PostMapping("/member/mypage/mentor/modify")
+	public String mentoringModify(MentorVo vo, HttpSession session) {
+		System.out.println("받아온vo : " + vo);
+		int result = ms.mentorModify(vo);
+	
+		if (result != 1) {
+			return "common/error";
+		}
+		
+		 //멘토 정보 새로 넣어주기
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+        String userNo = loginMember.getNo();
+        MentorVo mentorInfo = ms.selectMentor(userNo);
+        session.setAttribute("mentorInfo", mentorInfo);
+		
+		return "/member/mypage-mentoring3";
+	}
+		  
+      
+//    마이페이지  - 멘토링 관리 (화면)
+       @GetMapping("/member/mypage/mentoring/manage")
+       public String myMentoringManage(HttpSession session, Model model) {
+    	   
+    	   MentorVo myMentorInfo = (MentorVo) session.getAttribute("mentorInfo");
+    	   String myNo = myMentorInfo.getNo();
+    	   
+    	   List<ApplicationVo> requestList = ms.selectRequestList(myNo);
+    	   System.out.println(requestList);
+    	   
+    	   model.addAttribute("requestList", requestList);
+    	   
+	   	   return "/member/mypage-mentoring3";
+	   }
+      
 	   
 //   마이페이지-커뮤니티(화면)	
 	   @GetMapping("/member/mypage/community")
-	      public String myCommunity(HttpSession session, Model model) {
+	      public String myCommunity(HttpSession session, Model model, String searchType, String search) {
 	         MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 	         String userNo = loginMember.getNo();
 	         
+	         //검색 맵 만들기
+	         Map<String, String> filter = new HashMap<String, String>();
+	         filter.put("userNo", userNo);
 	         
-	         System.out.println("유저넘버"+userNo);
+	         if(search != null) {
+	        	 filter.put("searchType", searchType);
+		         filter.put("search", search);
+	         }
+	         
 	         //나의 글 조회
-	         List<BoardVo> myList = bs.selecMyList(userNo);
+	         List<BoardVo> myList = bs.selecMyList(filter);
 	         model.addAttribute("myList", myList);
-	      
-	         System.out.println("받아온 글 리스트");
-	         System.out.println(myList);
+	         
+	         return "/member/mypage-community1";
+	      }
+
+//   마이페이지-커뮤니티(화면)	
+	   @GetMapping("/member/mypage/community2")
+	      public String myCommunity2(HttpSession session, Model model, String searchType, String search) {
+	         MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+	         String userNo = loginMember.getNo();
+	         
+	         //검색 맵 만들기
+	         Map<String, String> filter = new HashMap<String, String>();
+	         filter.put("userNo", userNo);
+	         
+	         //검색 칼럼
+	         if(searchType != null) {
+		         if(searchType.equals("title")) {
+		        	 searchType = "FB.TITLE";
+		         }
+		         if(searchType.equals("writerNick")) {
+		        	 searchType = "M.WRITER_NICK";
+		         }
+	         }
+	         
+	         
+	         if(search != null && searchType != null) {
+	        	 filter.put("searchType", searchType);
+		         filter.put("search", search);
+	         }
 	         
 	         //나의 스크랩 글 조회
-	         List<BoardVo> scrapList = bs.selectScrapList(userNo);
+	         List<BoardVo> scrapList = bs.selectScrapList(filter);
 	         model.addAttribute("scrapList", scrapList);
 	         
-	         System.out.println("스크랩리스트 ->");
-	         System.out.println(scrapList);
-	      
-	         
-	         return "/member/mypage-community";
+	         return "/member/mypage-community2";
 	      }
 	   
 //	마이페이지-보유한 스킨(화면)
@@ -493,8 +615,8 @@ public class MemberController {
 			session.setAttribute("userNo",user);
 			
 			//내 스킨 조회
-			List<SkinVo> mySkinList=skinService.myskin(no);
-			model.addAttribute("mySkinList",mySkinList);
+//			List<SkinVo> mySkinList=skinService.myskin(no);
+//			model.addAttribute("mySkinList",mySkinList);
 			
 			return "/member/mypage-skin";
 		}
@@ -520,8 +642,7 @@ public class MemberController {
 			model.addAttribute("userNo",user);
 			
 			List<ChatVo> chatlist=chatService.chatList(no);
-			
-			model.addAttribute("chatlist", chatlist);
+			session.setAttribute("chatlist", chatlist);
 			return "/member/mypage-dmList";
 		}	
 	
@@ -634,7 +755,6 @@ public class MemberController {
 			//알람타입 (1=공지/2=팔로우/3=댓글/4=멘토링/5=스터디 모집/6=디엠/7=답변채택)
 			//AlarmVo alarmVo= new AlarmVo(sendMno, receMno, alarmTypeNo, massage);
 			AlarmVo alarmVo=new AlarmVo(followerMember.getNo(),followingMember.getNo(),"2","팔로우 했어요");
-
 			alarmService.insert(alarmVo);
 			
 			

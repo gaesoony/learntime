@@ -8,6 +8,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.learntime.app.alarm.vo.AlarmVo;
 import com.learntime.app.member.vo.MemberVo;
 
 import lombok.extern.slf4j.Slf4j;
