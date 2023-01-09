@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.learntime.app.admin.vo.VisitorCntVo;
 import com.learntime.app.faq.vo.FaqVo;
 import com.learntime.app.notice.vo.NoticeVo;
 import com.learntime.app.question.vo.QuestionVo;
@@ -19,10 +20,42 @@ public interface AdminDashboardDao {
 
 	List<QuestionVo> selectQuestionList(SqlSessionTemplate sst);
 
-	int selectVisitorCnt(SqlSessionTemplate sst);
+	int selectVisitorCnt(SqlSessionTemplate sst, Map map);
 
-	int selectJoinCnt(SqlSessionTemplate sst);
+	int selectJoinCnt(SqlSessionTemplate sst, Map map);
 
-	int selectQuitCnt(SqlSessionTemplate sst);
+	int selectQuitCnt(SqlSessionTemplate sst, Map map);
+	
+	int insertPageView(SqlSessionTemplate sst, VisitorCntVo vo);
+
+	int selectPageViewCnt(SqlSessionTemplate sst, Map map);
+
+	List<Map<String, Object>> selectWeekPageView(SqlSessionTemplate sst);
+
+	List<Map<String, Object>> selectWeekVisitor(SqlSessionTemplate sst);
+
+	List<Map<String, Object>> selectWeekSummary(SqlSessionTemplate sst);
+
+	int selectWeekPageViewSum(SqlSessionTemplate sst);
+
+	int selectWeekVisitorSum(SqlSessionTemplate sst);
+
+	int selectWeekJoinSum(SqlSessionTemplate sst);
+
+	int selectWeekQuitSum(SqlSessionTemplate sst);
+
+	int selectMonthPageViewSum(SqlSessionTemplate sst);
+
+	int selectMonthVisitorSum(SqlSessionTemplate sst);
+
+	int selectMonthJoinSum(SqlSessionTemplate sst);
+
+	int selectMonthQuitSum(SqlSessionTemplate sst);
+
+	int selectStudyCnt(SqlSessionTemplate sst, Map map);
+
+	int selectProjectCnt(SqlSessionTemplate sst, Map map);
+
+	int selectGroupApplyCnt(SqlSessionTemplate sst, Map map);
 
 }

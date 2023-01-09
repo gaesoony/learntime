@@ -61,17 +61,185 @@
 	<select id="selectVisitorCnt" resultType="Int">
 		SELECT COUNT(*)
 		FROM VISITOR
-		<![CDATA[ WHERE ENROLL_DATE > (SYSDATE-1) AND ENROLL_DATE <= SYSDATE ]]>
+	    <![CDATA[ WHERE ENROLL_DATE < TO_CHAR(SYSDATE+1-${status}, 'YY/MM/DD') || ' 00:00:00' AND ENROLL_DATE >= TO_CHAR(SYSDATE-${status}, 'YY/MM/DD') || ' 00:00:00' ]]>
 	</select>
 	<select id="selectJoinCnt" resultType="Int">
 		SELECT COUNT(*)
 		FROM MEMBER
-		<![CDATA[ WHERE ENROLL_DATE > (SYSDATE-1) AND ENROLL_DATE <= SYSDATE ]]>
+	    <![CDATA[ WHERE ENROLL_DATE < TO_CHAR(SYSDATE+1-${status}, 'YY/MM/DD') || ' 00:00:00' AND ENROLL_DATE >= TO_CHAR(SYSDATE-${status}, 'YY/MM/DD') || ' 00:00:00' ]]>
 	</select>
 	<select id="selectQuitCnt" resultType="Int">
 		SELECT COUNT(*)
 		FROM MEMBER
-		<![CDATA[ WHERE MODIFY_DATE > (SYSDATE-1) AND MODIFY_DATE <= SYSDATE ]]>
+	    <![CDATA[ WHERE MODIFY_DATE < TO_CHAR(SYSDATE+1-${status}, 'YY/MM/DD') || ' 00:00:00' AND MODIFY_DATE >= TO_CHAR(SYSDATE-${status}, 'YY/MM/DD') || ' 00:00:00' ]]>
 		AND QUIT_YN = 'Y'
 	</select>
+		<insert id="insertPageView">
+         INSERT
+         INTO PAGE_VIEW
+         (
+             NO,
+             IP,
+             ENROLL_DATE,
+             REFER,
+             AGENT
+         )
+         VALUES
+         (
+             SEQ_PAGE_VIEW_NO.NEXTVAL,
+             #{ip},
+             SYSDATE,
+             #{refer},
+             #{agent}
+         )
+    </insert>
+    <select id="selectPageViewCnt" resultType="Int">
+    	SELECT COUNT(*)
+    	FROM PAGE_VIEW
+	    <![CDATA[ WHERE ENROLL_DATE < TO_CHAR(SYSDATE+1-${status}, 'YY/MM/DD') || ' 00:00:00' AND ENROLL_DATE >= TO_CHAR(SYSDATE-${status}, 'YY/MM/DD') || ' 00:00:00' ]]>
+    </select>
+    <select id="selectWeekPageView" resultType="map">
+    	SELECT COUNT(*) CNT
+		FROM PAGE_VIEW
+		<![CDATA[WHERE ENROLL_DATE >= TO_CHAR(SYSDATE-6, 'YY/MM/DD') || ' 00:00:00' AND  ENROLL_DATE < TO_CHAR(SYSDATE-5, 'YY/MM/DD') || ' 00:00:00']]>
+		
+		UNION ALL
+		
+		SELECT COUNT(*) CNT
+		FROM PAGE_VIEW
+		<![CDATA[WHERE ENROLL_DATE >= TO_CHAR(SYSDATE-5, 'YY/MM/DD') || ' 00:00:00' AND  ENROLL_DATE < TO_CHAR(SYSDATE-4, 'YY/MM/DD') || ' 00:00:00']]>
+		
+		UNION ALL
+		
+		SELECT COUNT(*) CNT
+		FROM PAGE_VIEW
+		<![CDATA[WHERE ENROLL_DATE >= TO_CHAR(SYSDATE-4, 'YY/MM/DD') || ' 00:00:00' AND  ENROLL_DATE < TO_CHAR(SYSDATE-3, 'YY/MM/DD') || ' 00:00:00']]>
+		
+		UNION ALL
+		
+		SELECT COUNT(*) CNT
+		FROM PAGE_VIEW
+		<![CDATA[WHERE ENROLL_DATE >= TO_CHAR(SYSDATE-3, 'YY/MM/DD') || ' 00:00:00' AND  ENROLL_DATE < TO_CHAR(SYSDATE-2, 'YY/MM/DD') || ' 00:00:00']]>
+		
+		UNION ALL
+		
+		SELECT COUNT(*) CNT
+		FROM PAGE_VIEW
+		<![CDATA[WHERE ENROLL_DATE >= TO_CHAR(SYSDATE-2, 'YY/MM/DD') || ' 00:00:00' AND  ENROLL_DATE < TO_CHAR(SYSDATE-1, 'YY/MM/DD') || ' 00:00:00']]>
+		
+		UNION ALL
+		
+		SELECT COUNT(*) CNT
+		FROM PAGE_VIEW
+		<![CDATA[WHERE ENROLL_DATE >= TO_CHAR(SYSDATE-1, 'YY/MM/DD') || ' 00:00:00' AND  ENROLL_DATE < TO_CHAR(SYSDATE, 'YY/MM/DD') || ' 00:00:00']]>
+		
+		UNION ALL
+		
+		SELECT COUNT(*) CNT
+		FROM PAGE_VIEW
+		<![CDATA[WHERE ENROLL_DATE >= TO_CHAR(SYSDATE, 'YY/MM/DD') || ' 00:00:00']]>
+    </select>
+    
+     <select id="selectWeekVisitor" resultType="map">
+    	SELECT COUNT(*) CNT
+		FROM VISITOR
+		<![CDATA[WHERE ENROLL_DATE >= TO_CHAR(SYSDATE-6, 'YY/MM/DD') || ' 00:00:00' AND  ENROLL_DATE < TO_CHAR(SYSDATE-5, 'YY/MM/DD') || ' 00:00:00']]>
+		
+		UNION ALL
+		
+		SELECT COUNT(*) CNT
+		FROM VISITOR
+		<![CDATA[WHERE ENROLL_DATE >= TO_CHAR(SYSDATE-5, 'YY/MM/DD') || ' 00:00:00' AND  ENROLL_DATE < TO_CHAR(SYSDATE-4, 'YY/MM/DD') || ' 00:00:00']]>
+		
+		UNION ALL
+		
+		SELECT COUNT(*) CNT
+		FROM VISITOR
+		<![CDATA[WHERE ENROLL_DATE >= TO_CHAR(SYSDATE-4, 'YY/MM/DD') || ' 00:00:00' AND  ENROLL_DATE < TO_CHAR(SYSDATE-3, 'YY/MM/DD') || ' 00:00:00']]>
+		
+		UNION ALL
+		
+		SELECT COUNT(*) CNT
+		FROM VISITOR
+		<![CDATA[WHERE ENROLL_DATE >= TO_CHAR(SYSDATE-3, 'YY/MM/DD') || ' 00:00:00' AND  ENROLL_DATE < TO_CHAR(SYSDATE-2, 'YY/MM/DD') || ' 00:00:00']]>
+		
+		UNION ALL
+		
+		SELECT COUNT(*) CNT
+		FROM VISITOR
+		<![CDATA[WHERE ENROLL_DATE >= TO_CHAR(SYSDATE-2, 'YY/MM/DD') || ' 00:00:00' AND  ENROLL_DATE < TO_CHAR(SYSDATE-1, 'YY/MM/DD') || ' 00:00:00']]>
+		
+		UNION ALL
+		
+		SELECT COUNT(*) CNT
+		FROM VISITOR
+		<![CDATA[WHERE ENROLL_DATE >= TO_CHAR(SYSDATE-1, 'YY/MM/DD') || ' 00:00:00' AND  ENROLL_DATE < TO_CHAR(SYSDATE, 'YY/MM/DD') || ' 00:00:00']]>
+		
+		UNION ALL
+		
+		SELECT COUNT(*) CNT
+		FROM VISITOR
+		<![CDATA[WHERE ENROLL_DATE >= TO_CHAR(SYSDATE, 'YY/MM/DD') || ' 00:00:00']]>
+    </select>
+    <select id="selectWeekPageViewSum" resultType="Int">
+	    SELECT COUNT(*) CNT
+		FROM PAGE_VIEW
+		<![CDATA[WHERE ENROLL_DATE >= TO_CHAR(SYSDATE-6, 'YY/MM/DD') || ' 00:00:00' AND  ENROLL_DATE < TO_CHAR(SYSDATE+1, 'YY/MM/DD') || ' 00:00:00']]>
+    </select>
+    <select id="selectWeekVisitorSum" resultType="Int">
+    	SELECT COUNT(*) CNT
+		FROM VISITOR
+		<![CDATA[WHERE ENROLL_DATE >= TO_CHAR(SYSDATE-6, 'YY/MM/DD') || ' 00:00:00' AND  ENROLL_DATE < TO_CHAR(SYSDATE+1, 'YY/MM/DD') || ' 00:00:00']]>
+    </select>
+    <select id="selectWeekJoinSum" resultType="Int">
+    	SELECT COUNT(*) CNT
+		FROM MEMBER
+		<![CDATA[WHERE ENROLL_DATE >= TO_CHAR(SYSDATE-6, 'YY/MM/DD') || ' 00:00:00' AND  ENROLL_DATE < TO_CHAR(SYSDATE+1, 'YY/MM/DD') || ' 00:00:00']]>
+    </select>
+        <select id="selectWeekQuitSum" resultType="Int">
+    	SELECT COUNT(*) CNT
+		FROM MEMBER
+		<![CDATA[WHERE MODIFY_DATE >= TO_CHAR(SYSDATE-6, 'YY/MM/DD') || ' 00:00:00' AND  MODIFY_DATE < TO_CHAR(SYSDATE+1, 'YY/MM/DD') || ' 00:00:00']]>
+		AND QUIT_YN = 'Y'
+    </select>
+    <select id="selectMonthPageViewSum" resultType="Int">
+	    SELECT COUNT(*) CNT
+		FROM PAGE_VIEW
+		<![CDATA[WHERE ENROLL_DATE >= to_char(sysdate,'yyyy-mm') || '-01 00:00:00']]>
+    </select>
+    <select id="selectMonthVisitorSum" resultType="Int">
+	    SELECT COUNT(*) CNT
+		FROM VISITOR
+		<![CDATA[WHERE ENROLL_DATE >= to_char(sysdate,'yyyy-mm') || '-01 00:00:00']]>
+    </select>
+    <select id="selectMonthJoinSum" resultType="Int">
+	    SELECT COUNT(*) CNT
+		FROM MEMBER
+		<![CDATA[WHERE ENROLL_DATE >= to_char(sysdate,'yyyy-mm') || '-01 00:00:00']]>
+    </select>
+    <select id="selectMonthQuitSum" resultType="Int">
+	    SELECT COUNT(*) CNT
+		FROM MEMBER
+		<![CDATA[WHERE MODIFY_DATE >= to_char(sysdate,'yyyy-mm') || '-01 00:00:00']]>
+		AND QUIT_YN = 'Y'
+    </select>
+    <select id="selectStudyCnt" resultType="Int">
+    	SELECT COUNT(*)
+    	FROM RECRUIT_GROUP G
+    	JOIN GROUP_TYPE T ON G.G_TYPE_NO = T.NO
+    	 <![CDATA[ WHERE ENROLL_DATE < TO_CHAR(SYSDATE+1-${status}, 'YY/MM/DD') || ' 00:00:00' AND ENROLL_DATE >= TO_CHAR(SYSDATE-${status}, 'YY/MM/DD') || ' 00:00:00' ]]>
+    	 AND T.NAME = '스터디'
+    </select>
+    <select id="selectProjectCnt" resultType="Int">
+    	SELECT COUNT(*)
+    	FROM RECRUIT_GROUP G
+    	JOIN GROUP_TYPE T ON G.G_TYPE_NO = T.NO
+    	 <![CDATA[ WHERE ENROLL_DATE < TO_CHAR(SYSDATE+1-${status}, 'YY/MM/DD') || ' 00:00:00' AND ENROLL_DATE >= TO_CHAR(SYSDATE-${status}, 'YY/MM/DD') || ' 00:00:00' ]]>
+    	 AND T.NAME = '프로젝트'
+    </select>
+    <select id="selectGroupApplyCnt" resultType="Int">
+    	SELECT COUNT(*)
+    	FROM RECRUIT_LIST
+    	<![CDATA[ WHERE ENROLL_DATE < TO_CHAR(SYSDATE+1-${status}, 'YY/MM/DD') || ' 00:00:00' AND ENROLL_DATE >= TO_CHAR(SYSDATE-${status}, 'YY/MM/DD') || ' 00:00:00' ]]>
+    </select>
 </mapper>
