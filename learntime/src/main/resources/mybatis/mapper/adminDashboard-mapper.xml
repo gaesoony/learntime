@@ -242,4 +242,45 @@
     	FROM RECRUIT_LIST
     	<![CDATA[ WHERE ENROLL_DATE < TO_CHAR(SYSDATE+1-${status}, 'YY/MM/DD') || ' 00:00:00' AND ENROLL_DATE >= TO_CHAR(SYSDATE-${status}, 'YY/MM/DD') || ' 00:00:00' ]]>
     </select>
+    <select id="selectTechStackList" resultType="map">
+    	SELECT NO, NAME
+    	FROM TECH_STACK
+    </select>
+    <select id="selectTechStackCnt" resultType="Int">
+    	SELECT COUNT(*)
+    	FROM GROUP_TECH_STACK
+    	WHERE TECH_STACK_NO = #{no}
+    </select>
+    <select id="selectGroupTypeList" resultType="map">
+    	SELECT NO, NAME
+    	FROM GROUP_TYPE
+    </select>
+    <select id="selectGroupTypeCnt" resultType="Int">
+    	SELECT COUNT(*)
+    	FROM RECRUIT_GROUP
+    	WHERE G_TYPE_NO = #{no}
+    </select>
+    <select id="selectGroupPeriodList" resultType="map">
+        SELECT NO, NAME
+    	FROM GROUP_PERIOD
+    </select>
+        <select id="selectGroupPeriodCnt" resultType="Int">
+    	SELECT COUNT(*)
+    	FROM RECRUIT_GROUP
+    	WHERE G_PERIOD_NO = #{no}
+    </select>
+    <select id="selectGroupWayList" resultType="map">
+        SELECT NO, NAME
+    	FROM GROUP_WAY
+    </select>
+    <select id="selectGroupWayCnt" resultType="Int">
+    	SELECT COUNT(*)
+    	FROM RECRUIT_GROUP
+    	WHERE G_WAY_NO = #{no}
+    </select>
+    <select id="selectGroupStatusCnt" resultType="Int">
+    	SELECT COUNT(*)
+    	FROM RECRUIT_GROUP
+    	WHERE CLOSING_YN = #{status}
+    </select>
 </mapper>

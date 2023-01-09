@@ -739,6 +739,21 @@ public class StudyServiceImpl implements StudyService{
 		return result;
 	}
 
+	@Override
+	public List<Map<String, Object>> selectTechStackInfo() {
+		return dao.selectTechStackInfo(sst);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectTechTypeList() {
+		return dao.selectTechTypeList(sst);
+	}
+
+	@Override
+	public int quitGroup(Map map) {
+		return dao.quitGroup(sst, map);
+	}
+
 
 
 }

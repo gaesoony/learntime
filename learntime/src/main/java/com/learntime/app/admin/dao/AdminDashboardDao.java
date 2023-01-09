@@ -58,4 +58,22 @@ public interface AdminDashboardDao {
 
 	int selectGroupApplyCnt(SqlSessionTemplate sst, Map map);
 
+	List<Map<String, Object>> selectTechStackList(SqlSessionTemplate sst);
+
+	int selectTechStackCnt(SqlSessionTemplate sst, String no);
+
+	List<Map<String, Object>> selectGroupTypeList(SqlSessionTemplate sst);
+
+	int selectGroupTypeCnt(SqlSessionTemplate sst, String no);
+
+	List<Map<String, Object>> selectGroupPeriodList(SqlSessionTemplate sst);
+
+	int selectGroupPeriodCnt(SqlSessionTemplate sst, String no);
+
+	int selectGroupWayCnt(SqlSessionTemplate sst, String string);
+
+	List<Map<String, Object>> selectGroupWayList(SqlSessionTemplate sst);
+
+	int selectGroupStatusCnt(SqlSessionTemplate sst, String string);
+
 }

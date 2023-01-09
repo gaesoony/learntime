@@ -17,6 +17,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       rel="stylesheet"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
@@ -580,34 +581,57 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         </ul>
       </div>
     </div>
+
     <script>
-      function showPieChart(e) {
-        const parent = e.target.parentNode.parentNode.parentNode;
-        const pieSection = parent.querySelector(".pie-chart-section");
-        const barSection = parent.querySelector(".bar-chart-section");
+      let techStackNameArr = new Array();
+      let techStackCntArr = new Array();
 
-        pieSection.classList.remove("hidden");
-        barSection.classList.add("hidden");
+      let groupTypeNameArr = new Array();
+      let groupTypeCntArr = new Array();
 
-        const pieBtn = parent.querySelector(".pie-btn");
-        const barBtn = parent.querySelector(".bar-btn");
-        pieBtn.classList.add("btn-active");
-        barBtn.classList.remove("btn-active");
-      }
+      let groupWayNameArr = new Array();
+      let groupWayCntArr = new Array();
 
-      function showBarChart(e) {
-        const parent = e.target.parentNode.parentNode.parentNode;
-        const pieSection = parent.querySelector(".pie-chart-section");
-        const barSection = parent.querySelector(".bar-chart-section");
+      let groupStatusNameArr = new Array();
+      let groupStatusCntArr = new Array();
 
-        pieSection.classList.add("hidden");
-        barSection.classList.remove("hidden");
+      let groupPeriodNameArr = new Array();
+      let groupPeriodCntArr = new Array();
 
-        const pieBtn = parent.querySelector(".pie-btn");
-        const barBtn = parent.querySelector(".bar-btn");
-        pieBtn.classList.remove("btn-active");
-        barBtn.classList.add("btn-active");
-      }
+      <c:forEach items="${techStackSumList}" var="map">
+        techStackNameArr.push("${map.NAME}");
+      </c:forEach>;
+      <c:forEach items="${techStackSumList}" var="map">
+        techStackCntArr.push("${map.cnt}");
+      </c:forEach>;
+
+      <c:forEach items="${groupTypeSumList}" var="map">
+        groupTypeNameArr.push("${map.NAME}");
+      </c:forEach>;
+      <c:forEach items="${groupTypeSumList}" var="map">
+        groupTypeCntArr.push("${map.cnt}");
+      </c:forEach>;
+
+      <c:forEach items="${groupWaySumList}" var="map">
+        groupWayNameArr.push("${map.NAME}");
+      </c:forEach>;
+      <c:forEach items="${groupWaySumList}" var="map">
+        groupWayCntArr.push("${map.cnt}");
+      </c:forEach>;
+      console.log(typeof groupWayCntArr);
+      <c:forEach items="${groupStatusSumList}" var="map">
+        groupStatusNameArr.push("${map.name}");
+      </c:forEach>;
+      <c:forEach items="${groupStatusSumList}" var="map">
+        groupStatusCntArr.push("${map.cnt}");
+      </c:forEach>;
+
+      <c:forEach items="${groupPeriodSumList}" var="map">
+        groupPeriodNameArr.push("${map.NAME}");
+      </c:forEach>;
+      <c:forEach items="${groupPeriodSumList}" var="map">
+        groupPeriodCntArr.push("${map.cnt}");
+      </c:forEach>;
     </script>
     <script>
       window.onload = function () {
@@ -616,46 +640,10 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       };
 
       let mentorTypeData = {
-        labels: [
-          "JavaScript",
-          "TypeScript",
-          "React",
-          "Vue",
-          "Svelte",
-          "Nextjs",
-          "Nodejs",
-          "Java",
-          "Spring",
-          "Go",
-          "Nestjs",
-          "Kotlin",
-          "Express",
-          "MySQL",
-          "MongoDB",
-          "Python",
-          "Django",
-          "php",
-          "GraphQL",
-          "Firebase",
-          "Flutter",
-          "Swift",
-          "ReactNative",
-          "Unity",
-          "AWS",
-          "Kubernetes",
-          "Docker",
-          "Git",
-          "Figma",
-          "Zeplin",
-          "Jest",
-          "자격증",
-        ],
+        labels: techStackNameArr,
         datasets: [
           {
-            data: [
-              35, 12, 13, 7, 13, 1, 1, 1, 1, 10, 1, 2, 3, 40, 5, 6, 7, 8, 9, 10,
-              1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1,
-            ],
+            data: techStackCntArr,
             backgroundColor: [
               "#5ecc80",
               "#fe8d6f",
@@ -689,36 +677,37 @@ uri="http://java.sun.com/jsp/jstl/core"%>
               "#9adbc5",
               "#dfdd6c",
               "#5ecc80",
+              "#fe8d6f",
             ],
           },
         ],
       };
 
       let mentorJobTypeData = {
-        labels: ["온라인", "오프라인"],
+        labels: groupWayNameArr,
         datasets: [
           {
-            data: [1, 1],
+            data: groupWayCntArr,
             backgroundColor: ["#CDF2CA", "#FFDEFA"],
           },
         ],
       };
 
       let mentorJobData = {
-        labels: ["스터디", "프로젝트"],
+        labels: groupTypeNameArr,
         datasets: [
           {
-            data: [95, 12],
+            data: groupTypeCntArr,
             backgroundColor: ["#4ea1d3", "#FFB2A6"],
           },
         ],
       };
 
       let mentorCareerData = {
-        labels: ["모집중", "모집완료"],
+        labels: groupStatusNameArr,
         datasets: [
           {
-            data: [95, 12],
+            data: groupStatusCntArr,
             backgroundColor: [
               "#CAB8FF",
               "#CCF3EE",
@@ -754,12 +743,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         new Chart(barMentorType, {
           type: "bar",
           data: mentorTypeData,
-          options: {
-            responsive: false,
-            legend: {
-              display: false,
-            },
-          },
+          options: {},
         });
 
         document.getElementById("legend-mentor-type").innerHTML =
@@ -785,9 +769,22 @@ uri="http://java.sun.com/jsp/jstl/core"%>
           },
         });
 
+        const test = [];
+        <c:forEach items="${groupTypeSumList}" var="map">
+          test.push("${map.cnt}")
+        </c:forEach>;
+        console.log(test);
         new Chart(barMentorJobType, {
           type: "bar",
-          data: mentorJobTypeData,
+          data: {
+            labels: ["온라인", "오프라인"],
+            datasets: [
+              {
+                data: test,
+                backgroundColor: ["#CDF2CA", "#FFDEFA"],
+              },
+            ],
+          },
           options: {
             responsive: false,
             legend: {
@@ -869,7 +866,6 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       };
 
       let customLegend = function (chart) {
-        console.log("커스텀 레전드?");
         let ul = document.createElement("ul");
         let color = chart.data.datasets[0].backgroundColor;
 
@@ -886,6 +882,35 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 
         return ul.outerHTML;
       };
+    </script>
+    <script>
+      function showPieChart(e) {
+        const parent = e.target.parentNode.parentNode.parentNode;
+        const pieSection = parent.querySelector(".pie-chart-section");
+        const barSection = parent.querySelector(".bar-chart-section");
+
+        pieSection.classList.remove("hidden");
+        barSection.classList.add("hidden");
+
+        const pieBtn = parent.querySelector(".pie-btn");
+        const barBtn = parent.querySelector(".bar-btn");
+        pieBtn.classList.add("btn-active");
+        barBtn.classList.remove("btn-active");
+      }
+
+      function showBarChart(e) {
+        const parent = e.target.parentNode.parentNode.parentNode;
+        const pieSection = parent.querySelector(".pie-chart-section");
+        const barSection = parent.querySelector(".bar-chart-section");
+
+        pieSection.classList.add("hidden");
+        barSection.classList.remove("hidden");
+
+        const pieBtn = parent.querySelector(".pie-btn");
+        const barBtn = parent.querySelector(".bar-btn");
+        pieBtn.classList.remove("btn-active");
+        barBtn.classList.add("btn-active");
+      }
     </script>
     <script
       src="https://kit.fontawesome.com/939838bb27.js"

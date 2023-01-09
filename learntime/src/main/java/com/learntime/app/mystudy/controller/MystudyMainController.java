@@ -51,5 +51,23 @@ public class MystudyMainController {
 		
 		return "mystudy/main";
 	}
+	
+	@GetMapping("quit")
+	public String quit(String gno, HttpSession session) {
+		
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		Map map = new HashMap();
+		map.put("gno", gno);
+		map.put("mno", loginMember.getNo());
+		
+		int result = service.quitGroup(map);
+		
+		if(result == 1) {
+			return "redirect:/main";
+		}else {
+			return "common/errorPage";
+		}
+
+	}
 
 }

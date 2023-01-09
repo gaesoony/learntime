@@ -152,7 +152,26 @@ public class AdminStudyController {
 	
 	//관리자페이지 - 스터디/프로젝트 환경설정 (화면)
 	@GetMapping("setting")
-	public String setting() {
+	public String setting(Model model) {
+		
+		//기술스택+기술유형 selet
+		List<Map<String, Object>> techStackInfoList = service.selectTechStackInfo();
+		model.addAttribute("techStackInfoList", techStackInfoList);
+		
+		//기술유형 select
+		List<Map<String, Object>> techTypeList = service.selectTechTypeList();
+		model.addAttribute("techTypeList", techTypeList);
+		
+		//진행 기간 select
+		List<Map<String, String>> groupPeriodList = service.selectGroupPeriodList();
+		model.addAttribute("groupPeriodList", groupPeriodList);
+		
+		//모집 구분 select
+		List<Map<String, String>> groupTypeList = service.selectGroupTypeList();
+		model.addAttribute("groupTypeList", groupTypeList);
+		
+		//최대 가입질문 개수 select
+		
 		return "admin/study/setting";
 	}
 

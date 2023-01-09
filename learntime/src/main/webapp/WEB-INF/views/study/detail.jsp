@@ -246,14 +246,14 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <input type="hidden" name="gno" value="${groupOne.NO}" />
             <input type="hidden" name="mno" value="${loginMember.no}" />
             <section class="center">
-              <c:if test="${loginMember != null && (myStatus == null || myStatus == 'D' || myStatus == 'F')}">
+              <c:if test="${loginMember != null && groupOne.CLOSING_YN == 'N' && groupOne.memberList.size() != groupOne.NUMBER_PEOPLE &&(myStatus == null || myStatus == 'D' || myStatus == 'F' )}">
                 <input
                   class="study-join-btn"
                   type="button"
                   id="study-modal-open"
                   value="가입하기"/>
               </c:if>
-              <c:if test="${loginMember != null && (myStatus == 'A' || myStatus == 'B' || myStatus == 'C' || myStatus == 'E')}">
+              <c:if test="${loginMember != null && (myStatus == 'A' || myStatus == 'B' || myStatus == 'C' || myStatus == 'E' || groupOne.CLOSING_YN == 'Y' || groupOne.memberList.size() == groupOne.NUMBER_PEOPLE)}">
                 <input class="study-join-btn" type="button" value="가입하기" onclick="alertEnable('${myStatus}');"/>
               </c:if>
               <c:if test="${loginMember == null}">
@@ -327,6 +327,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 });
 
                 function alertEnable(x) {
+                  
                   if(x == 'A') {
                     Swal.fire('이미 가입신청한 모임입니다');
                   }
@@ -341,6 +342,14 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
                   if(x == 'E') {
                     Swal.fire('강퇴회원은 재가입 불가합니다');
+                  }
+
+                  if("${groupOne.CLOSING_YN}" == 'Y') {
+                    Swal.fire('모집완료되었습니다!');
+                  }
+
+                  if("${groupOne.memberList.size()}" == "${groupOne.NUMBER_PEOPLE}") {
+                    Swal.fire('정원이 꽉찼습니다!');
                   }
                 }
 

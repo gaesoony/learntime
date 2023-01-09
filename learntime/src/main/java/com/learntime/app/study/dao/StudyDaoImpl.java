@@ -449,6 +449,21 @@ public class StudyDaoImpl implements StudyDao{
 		return sst.selectOne("studyMapper.selectAdminGroupCnt", map);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectTechStackInfo(SqlSessionTemplate sst) {
+		return sst.selectList("studyMapper.selectTechStackInfo");
+	}
+
+	@Override
+	public List<Map<String, Object>> selectTechTypeList(SqlSessionTemplate sst) {
+		return sst.selectList("studyMapper.selectTechTypeList");
+	}
+
+	@Override
+	public int quitGroup(SqlSessionTemplate sst, Map map) {
+		return sst.update("studyMapper.quitGroup", map);
+	}
+
 
 
 

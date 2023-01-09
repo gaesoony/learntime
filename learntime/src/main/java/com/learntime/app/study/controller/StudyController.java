@@ -282,7 +282,7 @@ public class StudyController {
 			//AlarmVo alarmVo= new AlarmVo(sendMno, receMno, alarmTypeNo, massage);
 			//그룹번호조회
 			Map<String, Object> groupOne = service.selectGroupOne(vo.getGno());
-			String sendMno=(String) groupOne.get("WRITER_NO");
+			String sendMno = String.valueOf(groupOne.get("WRITER_NO"));
 			AlarmVo alarmVo=new AlarmVo(sendMno,vo.getMno(),"5","가입신청이 도착했어요");
 			alarmService.insert(alarmVo);
 			

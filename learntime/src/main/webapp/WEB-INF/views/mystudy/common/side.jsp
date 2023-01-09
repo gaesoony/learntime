@@ -269,6 +269,11 @@ select {
   font-size: 18px;
 }
 
+.quit-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
 
 
     </style>
@@ -360,6 +365,9 @@ select {
                 </li>
               </c:forEach>
         </ul>
+        
+          <input type="button" value="탈퇴하기" class="quit-btn" onclick="memberQuit('${myStatus}');">
+       
       </aside>
 
     <script
@@ -380,6 +388,31 @@ select {
       const rightAside = document.querySelector(".mystudy-right-aside");
       leftAside.style.height = window.innerHeight - 75 + "px";
       rightAside.style.height = window.innerHeight - 75 + "px";
+    </script>
+    <script>
+      function memberQuit(x) {
+
+        if(x == 'B') {
+          Swal.fire('모임장은 탈퇴 불가능합니다!');
+        }
+
+        if(x == 'C') {
+          Swal.fire({
+          title: '정말 탈퇴하시겠습니까?',
+      
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: '탈퇴',
+          cancelButtonText: '취소',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            location.href = '${path}/mystudy/quit?gno=${groupOne.NO}';
+          }
+        })
+        }
+      }
     </script>
   </body>
 </html>

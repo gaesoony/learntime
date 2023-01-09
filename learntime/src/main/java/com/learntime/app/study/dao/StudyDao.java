@@ -204,6 +204,12 @@ public interface StudyDao {
 
 	public int selectAdminGroupCnt(SqlSessionTemplate sst, Map map);
 
+	public List<Map<String, Object>> selectTechStackInfo(SqlSessionTemplate sst);
+
+	public List<Map<String, Object>> selectTechTypeList(SqlSessionTemplate sst);
+
+	public int quitGroup(SqlSessionTemplate sst, Map map);
+
 
 
 

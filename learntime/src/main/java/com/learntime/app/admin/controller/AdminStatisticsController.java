@@ -1,6 +1,7 @@
 package com.learntime.app.admin.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,15 +55,24 @@ public class AdminStatisticsController {
 		model.addAttribute("yesterdayGroupApplyCnt", yesterdayGroupApplyCnt);
 		
 		//기술스택이름, 각각 몇개인지 리스트 조회
+		List<Map<String, Object>> techStackSumList = adminDashboardService.selectTechStackSumList();
+		model.addAttribute("techStackSumList", techStackSumList);
 		
 		//모집유형(스터디/프로젝트)
+		List<Map<String, Object>> groupTypeSumList = adminDashboardService.selectGroupTypeSumList();
+		model.addAttribute("groupTypeSumList", groupTypeSumList);
 		
 		//진행방식(온라인/오프라인)
+		List<Map<String, Object>> groupWaySumList = adminDashboardService.selectGroupWaySumList();
+		model.addAttribute("groupWaySumList", groupWaySumList);
 		
 		//모집상태(모집중/모집완료)
+		List<Map<String, Object>> groupStatusSumList = adminDashboardService.selectGroupStatusSumList();
+		model.addAttribute("groupStatusSumList", groupStatusSumList);
 		
-		//진행기간??
-		
+		//진행기간
+		List<Map<String, Object>> groupPeriodSumList = adminDashboardService.selectGroupPeriodSumList();
+		model.addAttribute("groupPeriodSumList", groupPeriodSumList);
 		
 		return "admin/statistics/study";
 	}
