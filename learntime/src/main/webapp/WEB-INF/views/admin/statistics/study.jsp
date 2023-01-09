@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -18,7 +21,7 @@ pageEncoding="UTF-8"%>
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
     />
-    <script src="${pageContext.request.contextPath}/resources/js/admin/statistics/study.js"></script>
+    <!-- <script src="${path}/resources/js/admin/statistics/study.js"></script> -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -240,6 +243,11 @@ pageEncoding="UTF-8"%>
     .tech-legend ul li span {
       margin-right: 3px;
     }
+
+    .info-bottom > div:last-child {
+      font-size: 14px;
+      font-weight: 400;
+    }
   </style>
   <body>
     <%@include file="/WEB-INF/views/common/admin-side.jsp"%>
@@ -257,12 +265,41 @@ pageEncoding="UTF-8"%>
                 </div>
                 <div class="info-title">
                   <div>오늘 생성 스터디</div>
-                  <div>Today's Pageview</div>
+                  <div>Today's Study</div>
                 </div>
               </div>
               <div class="info-bottom space-between flex">
-                <div>1500</div>
-                <div><span>+1115&nbsp</span><span>+11.01%</span></div>
+                <div>${todayStudyCnt}</div>
+                <div>
+                  <span>어제 ${yesterdayStudyCnt}건 | </span>
+                  <c:if test="${(todayStudyCnt - yesterdayStudyCnt) >= 0}">
+                    <span>+${todayStudyCnt - yesterdayStudyCnt}건&nbsp | </span>
+                  </c:if>
+                  <c:if test="${(todayStudyCnt - yesterdayStudyCnt) < 0}">
+                    <span>${todayStudyCnt - yesterdayStudyCnt}건&nbsp | </span>
+                  </c:if>
+                  <c:if test="${yesterdayStudyCnt == 0}">
+                    <span>증가율없음</span>
+                  </c:if>
+                  <c:if test="${yesterdayStudyCnt != 0}">
+                    <c:if
+                      test="${((todayStudyCnt - yesterdayStudyCnt)/yesterdayStudyCnt * 100) >= 0}"
+                    >
+                      <span
+                        >+${(todayStudyCnt -
+                        yesterdayStudyCnt)/yesterdayStudyCnt * 100}%</span
+                      >
+                    </c:if>
+                    <c:if
+                      test="${((todayStudyCnt - yesterdayStudyCnt)/yesterdayStudyCnt * 100) < 0}"
+                    >
+                      <span
+                        >${(todayStudyCnt - yesterdayStudyCnt)/yesterdayStudyCnt
+                        * 100}%</span
+                      >
+                    </c:if>
+                  </c:if>
+                </div>
               </div>
             </li>
             <li class="shadow">
@@ -272,12 +309,45 @@ pageEncoding="UTF-8"%>
                 </div>
                 <div class="info-title">
                   <div>오늘 생성 프로젝트</div>
-                  <div>Today's Pageview</div>
+                  <div>Today's Project</div>
                 </div>
               </div>
               <div class="info-bottom space-between flex">
-                <div>1500</div>
-                <div><span>+1115&nbsp</span><span>+11.01%</span></div>
+                <div>${todayProjectCnt}</div>
+                <div>
+                  <span>어제 ${yesterdayProjectCnt}건 | </span>
+                  <c:if test="${(todayProjectCnt - yesterdayProjectCnt) >= 0}">
+                    <span
+                      >+${todayProjectCnt - yesterdayProjectCnt}건&nbsp |
+                    </span>
+                  </c:if>
+                  <c:if test="${(todayProjectCnt - yesterdayProjectCnt) < 0}">
+                    <span
+                      >${todayProjectCnt - yesterdayProjectCnt}건&nbsp |
+                    </span>
+                  </c:if>
+                  <c:if test="${yesterdayProjectCnt == 0}">
+                    <span>증가율없음</span>
+                  </c:if>
+                  <c:if test="${yesterdayProjectCnt != 0}">
+                    <c:if
+                      test="${((todayProjectCnt - yesterdayProjectCnt)/yesterdayProjectCnt * 100) >= 0}"
+                    >
+                      <span
+                        >+${(todayProjectCnt -
+                        yesterdayProjectCnt)/yesterdayProjectCnt * 100}%</span
+                      >
+                    </c:if>
+                    <c:if
+                      test="${((todayProjectCnt - yesterdayProjectCnt)/yesterdayProjectCnt * 100) < 0}"
+                    >
+                      <span
+                        >${(todayProjectCnt -
+                        yesterdayProjectCnt)/yesterdayProjectCnt * 100}%</span
+                      >
+                    </c:if>
+                  </c:if>
+                </div>
               </div>
             </li>
             <li class="shadow">
@@ -287,15 +357,54 @@ pageEncoding="UTF-8"%>
                 </div>
                 <div class="info-title">
                   <div>오늘 가입신청</div>
-                  <div>Today's Pageview</div>
+                  <div>Today's Apply</div>
                 </div>
               </div>
               <div class="info-bottom space-between flex">
-                <div>1500</div>
-                <div><span>+1115&nbsp</span><span>+11.01%</span></div>
+                <div>${todayGroupApplyCnt}</div>
+                <div>
+                  <span>어제 ${yesterdayGroupApplyCnt}건 | </span>
+                  <c:if
+                    test="${(todayGroupApplyCnt - yesterdayGroupApplyCnt) >= 0}"
+                  >
+                    <span
+                      >+${todayGroupApplyCnt - yesterdayGroupApplyCnt}건&nbsp |
+                    </span>
+                  </c:if>
+                  <c:if
+                    test="${(todayGroupApplyCnt - yesterdayGroupApplyCnt) < 0}"
+                  >
+                    <span
+                      >${todayGroupApplyCnt - yesterdayGroupApplyCnt}건&nbsp |
+                    </span>
+                  </c:if>
+                  <c:if test="${yesterdayGroupApplyCnt == 0}">
+                    <span>증가율없음</span>
+                  </c:if>
+                  <c:if test="${yesterdayGroupApplyCnt != 0}">
+                    <c:if
+                      test="${((todayGroupApplyCnt - yesterdayGroupApplyCnt)/yesterdayGroupApplyCnt * 100) >= 0}"
+                    >
+                      <span
+                        >+${(todayGroupApplyCnt -
+                        yesterdayGroupApplyCnt)/yesterdayGroupApplyCnt *
+                        100}%</span
+                      >
+                    </c:if>
+                    <c:if
+                      test="${((todayGroupApplyCnt - yesterdayGroupApplyCnt)/yesterdayGroupApplyCnt * 100) < 0}"
+                    >
+                      <span
+                        >${(todayGroupApplyCnt -
+                        yesterdayGroupApplyCnt)/yesterdayGroupApplyCnt *
+                        100}%</span
+                      >
+                    </c:if>
+                  </c:if>
+                </div>
               </div>
             </li>
-            <li class="shadow">
+            <!-- <li class="shadow">
               <div class="info-top flex">
                 <div class="info-img yellow">
                   <i class="fa-solid fa-users"></i>
@@ -309,7 +418,7 @@ pageEncoding="UTF-8"%>
                 <div>1500</div>
                 <div><span>+1115&nbsp</span><span>+11.01%</span></div>
               </div>
-            </li>
+            </li> -->
           </ul>
         </section>
         <ul class="statistics-list">
@@ -499,6 +608,284 @@ pageEncoding="UTF-8"%>
         pieBtn.classList.remove("btn-active");
         barBtn.classList.add("btn-active");
       }
+    </script>
+    <script>
+      window.onload = function () {
+        chartDraw();
+        // setLegendOnClick();
+      };
+
+      let mentorTypeData = {
+        labels: [
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "Vue",
+          "Svelte",
+          "Nextjs",
+          "Nodejs",
+          "Java",
+          "Spring",
+          "Go",
+          "Nestjs",
+          "Kotlin",
+          "Express",
+          "MySQL",
+          "MongoDB",
+          "Python",
+          "Django",
+          "php",
+          "GraphQL",
+          "Firebase",
+          "Flutter",
+          "Swift",
+          "ReactNative",
+          "Unity",
+          "AWS",
+          "Kubernetes",
+          "Docker",
+          "Git",
+          "Figma",
+          "Zeplin",
+          "Jest",
+          "자격증",
+        ],
+        datasets: [
+          {
+            data: [
+              35, 12, 13, 7, 13, 1, 1, 1, 1, 10, 1, 2, 3, 40, 5, 6, 7, 8, 9, 10,
+              1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1,
+            ],
+            backgroundColor: [
+              "#5ecc80",
+              "#fe8d6f",
+              "#fdc453",
+              "#dfdd6c",
+              "#9adbc5",
+              "#5ecc80",
+              "#fe8d6f",
+              "#fdc453",
+              "#dfdd6c",
+              "#9adbc5",
+              "#5ecc80",
+              "#fe8d6f",
+              "#fdc453",
+              "#dfdd6c",
+              "#9adbc5",
+              "#5ecc80",
+              "#fe8d6f",
+              "#fdc453",
+              "#dfdd6c",
+              "#9adbc5",
+              "#5ecc80",
+              "#fe8d6f",
+              "#fdc453",
+              "#dfdd6c",
+              "#9adbc5",
+              "#5ecc80",
+              "#fe8d6f",
+              "#fdc453",
+              "#dfdd6c",
+              "#9adbc5",
+              "#dfdd6c",
+              "#5ecc80",
+            ],
+          },
+        ],
+      };
+
+      let mentorJobTypeData = {
+        labels: ["온라인", "오프라인"],
+        datasets: [
+          {
+            data: [1, 1],
+            backgroundColor: ["#CDF2CA", "#FFDEFA"],
+          },
+        ],
+      };
+
+      let mentorJobData = {
+        labels: ["스터디", "프로젝트"],
+        datasets: [
+          {
+            data: [95, 12],
+            backgroundColor: ["#4ea1d3", "#FFB2A6"],
+          },
+        ],
+      };
+
+      let mentorCareerData = {
+        labels: ["모집중", "모집완료"],
+        datasets: [
+          {
+            data: [95, 12],
+            backgroundColor: [
+              "#CAB8FF",
+              "#CCF3EE",
+              "#fdc453",
+              "#dfdd6c",
+              "#9adbc5",
+            ],
+          },
+        ],
+      };
+
+      let chartDraw = function () {
+        let chartMentorType = document
+          .getElementById("chart-mentor-type")
+          .getContext("2d");
+
+        let barMentorType = document
+          .getElementById("bar-mentor-type")
+          .getContext("2d");
+
+        window.pieChart = new Chart(chartMentorType, {
+          type: "pie",
+          data: mentorTypeData,
+          options: {
+            responsive: false,
+            legend: {
+              display: false,
+            },
+            legendCallback: customLegend,
+          },
+        });
+
+        new Chart(barMentorType, {
+          type: "bar",
+          data: mentorTypeData,
+          options: {
+            responsive: false,
+            legend: {
+              display: false,
+            },
+          },
+        });
+
+        document.getElementById("legend-mentor-type").innerHTML =
+          window.pieChart.generateLegend();
+
+        let chartMentorJobType = document
+          .getElementById("chart-mentor-job-type")
+          .getContext("2d");
+
+        let barMentorJobType = document
+          .getElementById("bar-mentor-job-type")
+          .getContext("2d");
+
+        window.pieChart = new Chart(chartMentorJobType, {
+          type: "pie",
+          data: mentorJobTypeData,
+          options: {
+            responsive: false,
+            legend: {
+              display: false,
+            },
+            legendCallback: customLegend,
+          },
+        });
+
+        new Chart(barMentorJobType, {
+          type: "bar",
+          data: mentorJobTypeData,
+          options: {
+            responsive: false,
+            legend: {
+              display: false,
+            },
+          },
+        });
+
+        document.getElementById("legend-mentor-job-type").innerHTML =
+          window.pieChart.generateLegend();
+
+        let chartMentorJob = document
+          .getElementById("chart-mentor-job")
+          .getContext("2d");
+
+        let barMentorJob = document
+          .getElementById("bar-mentor-job")
+          .getContext("2d");
+
+        window.pieChart = new Chart(chartMentorJob, {
+          type: "pie",
+          data: mentorJobData,
+          options: {
+            responsive: false,
+            legend: {
+              display: false,
+            },
+            legendCallback: customLegend,
+          },
+        });
+
+        new Chart(barMentorJob, {
+          type: "bar",
+          data: mentorJobData,
+          options: {
+            responsive: false,
+            legend: {
+              display: false,
+            },
+          },
+        });
+
+        document.getElementById("legend-mentor-job").innerHTML =
+          window.pieChart.generateLegend();
+
+        let chartMentorCareer = document
+          .getElementById("chart-mentor-career")
+          .getContext("2d");
+
+        let barMentorCareer = document
+          .getElementById("bar-mentor-career")
+          .getContext("2d");
+
+        window.pieChart = new Chart(chartMentorCareer, {
+          type: "pie",
+          data: mentorCareerData,
+          options: {
+            responsive: false,
+            legend: {
+              display: false,
+            },
+            legendCallback: customLegend,
+          },
+        });
+
+        new Chart(barMentorCareer, {
+          type: "bar",
+          data: mentorCareerData,
+          options: {
+            responsive: false,
+            legend: {
+              display: false,
+            },
+          },
+        });
+
+        document.getElementById("legend-mentor-career").innerHTML =
+          window.pieChart.generateLegend();
+      };
+
+      let customLegend = function (chart) {
+        console.log("커스텀 레전드?");
+        let ul = document.createElement("ul");
+        let color = chart.data.datasets[0].backgroundColor;
+
+        chart.data.labels.forEach(function (label, index) {
+          ul.innerHTML +=
+            "<li data-index=" +
+            index +
+            "><span style=background-color:" +
+            color[index] +
+            "></span>" +
+            label +
+            "</li>";
+        });
+
+        return ul.outerHTML;
+      };
     </script>
     <script
       src="https://kit.fontawesome.com/939838bb27.js"
