@@ -23,7 +23,7 @@ public class MainControllerSec {
 	@GetMapping("")
 	public String mainSec(Model model,MakegrassVo vo) {
 		//멘토링 리스트 select
-		List<MentorVo> mentorList = mentoringService.selectMentorList();
+		List<MentorVo> mentorList = mentoringService.selectMentorList(null);
 		model.addAttribute("mentorList", mentorList);
 		
 		//공부인증 리스트 select
