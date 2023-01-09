@@ -1,6 +1,7 @@
 package com.learntime.app.community.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,14 +101,14 @@ public class BoardServiceImpl implements BoardService{
 	
 	//나의 글조회
 	@Override
-	public List<BoardVo> selecMyList(String userNo) {
-		return dao.selectMyList(sst, userNo);
+	public List<BoardVo> selecMyList(Map<String, String> filter) {
+		return dao.selectMyList(sst, filter);
 	}
 
 	//스크랩 글조회
 	@Override
-	public List<BoardVo> selectScrapList(String userNo) {
-		return dao.selectScrapList(sst, userNo);
+	public List<BoardVo> selectScrapList(Map<String, String> filter) {
+		return dao.selectScrapList(sst, filter);
 	}
 	
 	//유저 스크랩 조회

@@ -98,18 +98,35 @@ pageEncoding="UTF-8"%>
             <div id="home-area">
             <div id="main-wrap">
                     <div id="category-wrap">
-                        <div id="mentoring-category-box">
-                            <input type="radio" name="mentoring-category" id="mentoring-category1">
-                            <label for="mentoring-category1">신청한 멘토링</label>
-                            <input type="radio" name="mentoring-category" id="mentoring-category2">
-                            <label for="mentoring-category2">멘토 지원하기</label>
-                            <input type="radio" name="mentoring-category" id="mentoring-category3" checked>
-                            <label for="mentoring-category3">나의 멘토링 관리</label>
-                        </div>
-                        <div id="mentoring-regist-btn" onclick="location.href='/app/mentor/mentoring/regist'">멘토링 설정하기</div>
+                      <div id="mentoring-category-box">
+                          <input class="lg-category" type="radio" name="mentoring-category" id="mentoring-category1" >
+                          <label for="mentoring-category1">신청한 멘토링</label>
+
+                          <c:if test="${sessionScope.mentorInfo == null}">
+                              <input class="lg-category" type="radio" name="mentoring-category" id="mentoring-category2">
+                              <label for="mentoring-category2">멘토 지원하기</label>
+                          </c:if>
+
+                          <c:if test="${sessionScope.mentorInfo != null}">
+                              <input class="lg-category" type="radio" name="mentoring-category" id="mentoring-category3" checked>
+                              <label for="mentoring-category3">나의 멘토링 관리</label>
+                          </c:if>
+                      </div>
+                      <!-- TODO 멘토 정보 수정 -->
+                      <div id="mentor-modify-btn" onclick="location.href='/app/member/mypage/mentor/modify'">멘토 정보 수정</div>
+                      <div id="mentoring-regist-btn" onclick="location.href='/app/mentor/mentoring/regist'">멘토링 설정</div>
                     </div>
 
                     <div id="mentoring-content-wrap">
+                      
+                      <c:if test = "${sessionScope.mentorInfo != null and mentorInfo.title == null}">
+                        <div id="no-mentor" class="m-notice">아직 멘토링 설정을 하지 않았어요 :( <br>
+                          <a href="/app/mentor/mentoring/regist">멘토링 설정하기 ></a>
+                        </div>
+                      </c:if>
+
+                      <c:if test = "${sessionScope.mentorInfo != null and mentorInfo.title != null}">
+
                         <div id="content-title">
                             <div class="content-title">상태</div>
                             <div class="content-title">신청자</div>
@@ -119,21 +136,63 @@ pageEncoding="UTF-8"%>
                             <div class="content-title">멘토링일정</div>
                             <div class="content-title">신청정보</div>
                         </div>
+                        
+                        <c:forEach var="requestList" items="${requestList}">
+                          <div class="content-list">
+                            <c:if test = "${requestList.applyYn == 'N' and requestList.cancelYn == 'N' and requestList.completeYn == 'N'}">
+                              <div class="content">수락대기중</div>
+                            </c:if>
+                            <c:if test = "${requestList.applyYn == 'Y' and requestList.cancelYn == 'N' and requestList.completeYn == 'N'}">
+                              <div class="content">수락완료</div>
+                            </c:if>
+                            <c:if test = "${requestList.completeYn == 'Y'}">
+                              <div class="content">완료됨</div>
+                            </c:if>
+                            <c:if test = "${requestList.cancelYn == 'Y'}">
+                              <div class="content">취소됨</div>
+                            </c:if>
 
-                        <div class="content-list">
-                            <div class="content">수락대기중</div>
-                            <div class="content">망치맨</div>
-                            <div class="content">010********</div>
-                            <div class="content">ry******@******</div>
-                            <div class="content">스프링 고수가 가르치는 스프링 빡고수 되는법</div>
-                            <div class="content">2022.11.20 22:00</div>
-                            <div class="content">신청정보</div>
-                        </div>
+                              <div class="content">${requestList.menteeNick}</div>
+                              <div class="content">${requestList.phoneNo}</div>
+                              <div class="content">${requestList.email}</div>
+                              <div class="content">${requestList.title}</div>
+                              <div class="content">
+                                ${requestList.reservationDate} 
+                                ${requestList.reservationTime}
+                              </div>
 
-                        <div id="no-application" class="m-notice">아직 멘토링 신청이 없어요 :( </div>
-                        <div id="no-mentor" class="m-notice">아직 멘토링 설정을 하지 않았어요 :( <br>
-                            <a href="/app/mentor/mentoring/regist">멘토링 설정하기 ></a>
-                        </div>
+                            <c:if test = "${requestList.applyYn == 'N' and requestList.cancelYn == 'N'}">
+                              <div class="content">
+                                <input type="hidden" name="" id = "no-input" value="${requestList.no}">
+                                <div class = "apply-btn btn">수락</div>
+                                <div class = "refuse-btn btn">거절</div>
+                              </div>
+                            </c:if>
+                            <c:if test = "${requestList.applyYn == 'Y' and requestList.cancelYn == 'N' and requestList.completeYn == 'N'}">
+                              <div class="content">
+                                <input type="hidden" name="" id = "no-input" value="${requestList.no}">
+                                <div class = "complete-btn btn">멘토링 완료</div>
+                              </div>
+                            </c:if>
+                            <c:if test = "${requestList.completeYn == 'Y'}">
+                              <div class="content">
+                                멘토링 완료
+                              </div>
+                            </c:if>
+                            <c:if test = "${requestList.cancelYn == 'Y'}">
+                              <div class="content btn">취소됨</div>
+                            </c:if>
+                          </div>
+
+                        </c:forEach>
+
+                        <c:if test = "${requestList == null}">
+                          <div id="no-application" class="m-notice">아직 멘토링 신청이 없어요 :( </div>
+                        </c:if>
+
+                      </c:if>
+
+                        
                     </div>
                 </div>
             </div>
@@ -141,22 +200,64 @@ pageEncoding="UTF-8"%>
     </div>
     <%@include file="/WEB-INF/views/common/footer2.jsp" %>
 
-    <!-- 카테고리 임시 코드-->
     <script>
-      const mentoringCategory2 = document.querySelector('#mentoring-category2');
-      mentoringCategory2.addEventListener('click', () => {
-          location.href = '/app/mentor/mymentoring/temp2';
+      // 수락 처리
+      $('.apply-btn').click(function() {
+        console.log('수락');
+        const no = $(this).prev().val();
+        $.ajax({
+          url: '/app/mentor/mentoring/acception',
+          type: 'post',
+          data: {
+            no: no
+          },
+          success: function() {
+            //페이지 새로고침
+            console.log('성공');
+            document.location.reload();
+            
+          }
+        });
       });
 
-      // const mentoringCategory3 = document.querySelector('#mentoring-category3');
-      // mentoringCategory3.addEventListener('click', () => {
-      //     location.href = '/app/mentor/mymentoring/temp3';
-      // });
-
-      const mentoringCategory1 = document.querySelector('#mentoring-category1');
-      mentoringCategory1.addEventListener('click', () => {
-          location.href = '/app/mentor/mymentoring/temp';
+      // 멘토링 완료 처리
+      $('.complete-btn').click(function() {
+        console.log('완료');
+        const no = $(this).prev().val();
+        $.ajax({
+          url: '/app/mentor/mentoring/complete',
+          type: 'post',
+          data: {
+            no: no
+          },
+          success: function() {
+            //페이지 새로고침
+            console.log('성공');
+            document.location.reload();
+            
+          }
+        });
       });
+
+
+    </script>
+
+   
+    <script>
+        const mentoringCategory1 = $('#mentoring-category1').next();
+        mentoringCategory1.click(function() {
+            location.href = '/app/member/mypage/mentoring';
+        });
+
+        const mentoringCategory2 = $('#mentoring-category2').next();
+        mentoringCategory2.click(function() {
+            location.href = '/app/member/mypage/mentoring/register';
+        });
+
+        const mentoringCategory3 = $('#mentoring-category3').next();
+        mentoringCategory3.click(function() {
+            location.href = '/app/member/mypage/mentoring/manage';
+        });
 
     </script>
     

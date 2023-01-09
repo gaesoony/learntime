@@ -120,14 +120,6 @@ window.onload = function() {
                 
                 // //id가 parseToday인 div에 class="able-date" 추가
                 // $('#'+parseToday).addClass('able-date');
-                    
-
-                
-
-
-
-
-
                 
 
 
@@ -207,34 +199,6 @@ window.onload = function() {
         $('#time').text(time);
         $('#time-select-result').text(date + ', ' + time);
     });
-
-    // 임시
-
-    //.pay-btn 클릭시 submit
-    $(document).on('click', '.pay-btn', function(){
-        $('#hidden-input').val(1);
-        console.log('클릭됨');
-        console.log($('#hidden-input').val());
-
-
-
-
-        $('#pay-form')[0].submit();
-    });
-
-
-   
-
-    //임시 끝
-
-    //달력
-   
-
-   
-
-
-
-
 
 
 

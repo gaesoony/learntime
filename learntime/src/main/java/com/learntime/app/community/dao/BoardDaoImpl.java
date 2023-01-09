@@ -1,6 +1,7 @@
 package com.learntime.app.community.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -30,8 +31,8 @@ public class BoardDaoImpl implements BoardDao{
 	
 	//나의 글 조회
 	@Override
-	public List<BoardVo> selectMyList(SqlSessionTemplate sst, String userNo) {
-		return sst.selectList("freeBoardMapper.selectMyList", userNo);
+	public List<BoardVo> selectMyList(SqlSessionTemplate sst, Map<String, String> filter) {
+		return sst.selectList("freeBoardMapper.selectMyList", filter);
 	}
 	
 
@@ -94,8 +95,8 @@ public class BoardDaoImpl implements BoardDao{
 	}
 	//스크랩 글 목록 조회
 	@Override
-	public List<BoardVo> selectScrapList(SqlSessionTemplate sst, String userNo) {
-		return sst.selectList("freeBoardMapper.selectScrapList", userNo);
+	public List<BoardVo> selectScrapList(SqlSessionTemplate sst, Map<String, String> filter) {
+		return sst.selectList("freeBoardMapper.selectScrapList", filter);
 	}
 
 	//유저 스크랩 조회

@@ -105,6 +105,38 @@ public class MentoringServiceImpl implements MentoringService{
 	public List<ReviewVo> selectReviewList() {
 		return dao.selectReview(sst);
 	}
+
+	//들어온 멘토링 조회
+	@Override
+	public List<ApplicationVo> selectRequestList(String myNo) {
+		return dao.selectRequestList(sst, myNo);
+	}
+
+	//멘토링 수락
+	@Transactional
+	@Override
+	public int updateApplyYn(String no) {
+		return dao.updateApplyYn(sst, no);
+	}
+
+	//멘토링 완료 처리
+	@Transactional
+	@Override
+	public int updateCompleteYn(String no) {
+		return dao.updateCompleteYn(sst, no);
+	}
+
+	@Transactional
+	@Override
+	public int insertReview(Map<String, Object> reviewInfo) {
+		return dao.insertReview(sst, reviewInfo);
+	}
+
+	@Transactional
+	@Override
+	public int mentorModify(MentorVo vo) {
+		return dao.updateMentor(sst, vo);
+	}
 	
 	
 }

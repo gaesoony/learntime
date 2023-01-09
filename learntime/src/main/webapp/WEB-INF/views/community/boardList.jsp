@@ -99,18 +99,6 @@
             </div>
         </div>
 
-        <script>
-            //#search-icon 누르면 검색어 전달
-            $('#search-icon').click(function(){
-                console.log('click');
-                var search = $('#search').val();
-                location.href = '/app/community/board/list?search=' + search;
-            });
-        </script>
-
-
-
-
         <div id="board-list">
             <!-- 공지사항 반복 -->
             <div class="board-content notice">
@@ -243,32 +231,52 @@
 
         
     $(document).ready(function() {
+        //기존 쿼리스트링
+        var cate = getQueryString('cate');
+        var page = getQueryString('page');
+        var search = getQueryString('search');
+        var sort = getQueryString('sort');
+
         // 카테고리 클릭 시 쿼리 스트링으로 전달
         $('input[type="radio"]').on('click', function() {
             var cate = $(this).attr('id');
-            var sort = getQueryString('sort'); // 기존 쿼리 스트링 값 조회
             location.href = '/app/community/board/list?cate=' + cate;
         });
 
         // 정렬 클릭 시 쿼리 스트링으로 전달
         $('#sorting').on('change', function() {
             var sort = $(this).val();
-            var cate = getQueryString('cate'); // 기존 쿼리 스트링 값 조회
-            // var page = getQueryString('page'); // 기존 쿼리 스트링 값 조회
-            
-            if(cate == undefined){
+            if(cate == undefined && search == undefined){
                 location.href = '/app/community/board/list?sort=' + sort;
-            } else if(cate != undefined){
+            } else if(cate != undefined && search == undefined){
                 location.href = '/app/community/board/list?cate=' + cate + '&sort=' + sort;
-            } 
+            } else if(cate == undefined && search != undefined){
+                location.href = '/app/community/board/list?search=' + search + '&sort=' + sort;
+            } else if(cate != undefined && search != undefined){
+                location.href = '/app/community/board/list?cate=' + cate + '&search=' + search + '&sort=' + sort;
+            }
         });
 
         // 페이징 클릭 시 쿼리 스트링으로 전달
         $('.pagination a').on('click', function() {
             var page = $(this).text();
-            var cate = getQueryString('cate'); // 기존 쿼리 스트링 값 조회
-            var sort = getQueryString('sort'); // 기존 쿼리 스트링 값 조회
             location.href = '/app/community/board/list?cate=' + cate + '&sort=' + sort + '&page=' + page;
+        });
+
+        //검색 제출 시 쿼리 스트링으로 전달
+        $('#search-icon').on('click', function() {
+            var search = $('#search').val();
+            console.log(cate);
+            if(cate == undefined){
+                location.href = '/app/community/board/list?search=' + search;
+            } else if(cate != undefined){
+                location.href = '/app/community/board/list?cate=' + cate + '&search=' + search;
+            }
+        });
+
+        // 초기화 아이콘 클릭시 새로고침
+        $('#refresh-icon').on('click', function() {
+            location.href = '/app/community/board/list';
         });
 
         // 쿼리 스트링 값 조회 함수
@@ -296,9 +304,7 @@
 
     });
          
-        
-        
-        // 쿼리스트링 5이상이면 카테고리 펼치기
+        // 카테고리값 5이상이면 카테고리 펼치기
         $(document).ready(function(){
             var cate = location.search.split('=')[1];
             if(cate >= 5){

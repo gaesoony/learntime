@@ -12,6 +12,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script src="https://kit.fontawesome.com/939838bb27.js"crossorigin="anonymous"></script>
 
+<!-- 아임포트 -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -164,10 +167,6 @@
                 <select name="reservationTime" id="time-select">
                     <option value="" disabled selected>시간을 선택해 주세요</option>
                     <!-- 시간 받아올 부분 -->
-                    <!-- 임시 -->
-                    <option value="12:00 ~ 14:00">12:00 ~ 14:00</option>
-                    <option value="14:00 ~ 16:00">14:00 ~ 16:00</option>
-                    <option value="16:00 ~ 18:00">16:00 ~ 18:00</option>
                 </select>
                 <div id="time-select-result"></div>
             </div>
@@ -591,6 +590,59 @@
             }
         }
 
+    </script>
+
+    <!-- 결제 -->
+    <script>
+
+        // 임시 결제
+        // $('.pay-btn').eq(0).on('click', function() {
+        //     $('#hidden-input').val(1);
+        //     $('#pay-form')[0].submit();
+        // });
+        
+        // 카카오페이 활성화
+        $('.pay-btn').eq(0).on('click', function() {
+            requestPay();
+        });
+        
+        var IMP = window.IMP;
+        IMP.init('imp52718328');//가맹점 식별코드
+    
+        function requestPay() {
+            let temp = false;
+            IMP.request_pay({
+                pg: "kakaopay.TC0ONETIME",
+                pay_method: "card",
+                merchant_uid : 'merchant_'+ new Date().getTime(),
+                name : '결제테스트',
+                amount : $('#price-input').val(),
+                buyer_email : 'iamport@siot.do',
+                buyer_name : '구매자',
+                buyer_tel : '010-1234-5678',
+                buyer_addr : '서울특별시 강남구 삼성동',
+                buyer_postcode : '123-456'
+            },
+            function (rsp) { //callback
+                console.log(rsp);
+                if (rsp.success) {
+                    var msg = '결제가 완료되었습니다.\n마이페이지에서 확인해주세요.';
+                    alert(msg);
+                    temp = true;
+                    $('#hidden-input').val(1);
+                    $('#pay-form')[0].submit();
+                } else {
+                    var msg = '결제에 실패하였습니다.';
+                    msg += '에러내용 : ' + rsp.error_msg;
+                    alert(msg);
+                    location.href = '/app/mentor/list';
+                }
+                
+             });
+    
+             return temp;
+        }
+        
     </script>
 
 </body>

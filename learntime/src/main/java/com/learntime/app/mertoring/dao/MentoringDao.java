@@ -51,4 +51,19 @@ public interface MentoringDao {
 	//리뷰 조회
 	public List<ReviewVo> selectReview(SqlSessionTemplate sst);
 
+	//멘토링 요청 조회
+	public List<ApplicationVo> selectRequestList(SqlSessionTemplate sst, String myNo);
+
+	//멘토링 수락
+	public int updateApplyYn(SqlSessionTemplate sst, String no);
+
+	//멘토링 완료 처리
+	public int updateCompleteYn(SqlSessionTemplate sst, String no);
+
+	//멘토 리뷰 작성
+	public int insertReview(SqlSessionTemplate sst, Map<String, Object> reviewInfo);
+
+	//멘토 수정
+	public int updateMentor(SqlSessionTemplate sst, MentorVo vo);
+
 }

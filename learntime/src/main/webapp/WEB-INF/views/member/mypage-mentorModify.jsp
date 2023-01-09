@@ -102,17 +102,17 @@ pageEncoding="UTF-8"%>
                   <label for="mentoring-category1">신청한 멘토링</label>
 
                   <c:if test="${sessionScope.mentorInfo == null}">
-                      <input class="lg-category" type="radio" name="mentoring-category" id="mentoring-category2" checked>
+                      <input class="lg-category" type="radio" name="mentoring-category" id="mentoring-category2" >
                       <label for="mentoring-category2">멘토 지원하기</label>
                   </c:if>
 
                   <c:if test="${sessionScope.mentorInfo != null}">
-                      <input class="lg-category" type="radio" name="mentoring-category" id="mentoring-category3" >
+                      <input class="lg-category" type="radio" name="mentoring-category" id="mentoring-category3" checked>
                       <label for="mentoring-category3">나의 멘토링 관리</label>
                   </c:if>
                 </div>
 
-                <form action="/app/member/mypage/mentoring/register" method="post" onsubmit="return false;">
+                <form action="/app/member/mypage/mentor/modify" method="post" onsubmit="return false;">
                 <div id="basic-info-box">
                     <div id="basic-info-title" class="title">
                         <span>멘토 정보</span>
@@ -139,33 +139,18 @@ pageEncoding="UTF-8"%>
                         </div>
                         <input type="text" id="phone-input" name="phoneNo" placeholder="01000000000">
         
-                        <div id="category-title" class="sub-title" >
-                            <span>희망분야</span>
-                            <span class="sub-title-plus">*</span>
-                        </div>
-                        <select name="cateNo" id="field-input" required>
-                          <!-- 분야 반복문 시작 -->
-
-                            <option value="" disabled selected>멘토링과 연관된 분야를 선택해주세요</option>
-                            <option value="1">분야1</option>
-                            <option value="2">분야2</option>
-                            <option value="3">분야3</option>
-
-                          <!-- 분야 반복 끝 -->
-                        </select>
-        
                         <div id="link-title" class="sub-title">
                             <span>링크</span>
                             <span class="sub-title-plus">*</span>
                         </div>
-                        <input type="text" name="link" id="" placeholder="멘토님을 표현할 수 있는 깃허브 주소나 블로그 주소를 입력해주세요">
+                        <input type="text" id="link-input" name="link" placeholder="멘토님을 표현할 수 있는 깃허브 주소나 블로그 주소를 입력해주세요">
                         
                         <div id="account-title" class="sub-title">
                           <span>계좌번호</span>
                           <span class="sub-title-plus">*</span>
                         </div>
                           <div id="account-box">
-                            <select name="accountBank" id="">
+                            <select name="accountBank">
                               <option value="" disabled selected>은행을 선택해주세요</option> 
                               <option value="1" >기업은행</option>
                               <option value="2" >국민은행</option>
@@ -181,14 +166,14 @@ pageEncoding="UTF-8"%>
                               <option value="12">신협</option>                  
                               <option value="13">우체국</option>                  
                             </select>
-                            <input type="text" name="accountNo" id="" placeholder="정산 받을 계좌번호를 입력해주세요">
+                            <input type="text" name="accountNo" id="accountNo-input" placeholder="정산 받을 계좌번호를 입력해주세요">
                          </div>
 
                         <div id="intro-title" class="sub-title">
                             <span>나의 소개글</span>
                             <span class="sub-title-plus">*</span>
                         </div>
-                        <textarea id="intro-input" name="intro" id="" cols="30" rows="10" placeholder="멘토님을 상세하게 소개해주세요"></textarea>
+                        <textarea id="intro-input" name="intro" cols="30" rows="10" placeholder="멘토님을 상세하게 소개해주세요"></textarea>
                     </div>
                 </div>
         
@@ -196,19 +181,19 @@ pageEncoding="UTF-8"%>
                     <div id="cancel-btn">취소하기</div>
                     <input type="hidden" name="writer" value="${loginMember.no}">
                     <!-- 자동 submit 방지 input-->
-                    <input type="submit" value="저장하기">
+                    <input type="submit" value="저장하기 ">
                 </div>
                 </form>
               </div>
 
               <script>
 
-                var check1 = false;
-                var check2 = false;
-                var check3 = false;
-                var check4 = false;
-                var check5 = false;
-                var check6 = false;
+                var check1 = true;
+                var check2 = true;
+                var check3 = true;
+                var check4 = true;
+                var check5 = true;
+                var check6 = true;
 
 
                 // 이름 입력
@@ -287,7 +272,7 @@ pageEncoding="UTF-8"%>
                 // 조건 확인 후 submit true
 
                 $("input[type=\"submit\"]").click(function(){
-                  if(check1 && check2 && check3 && check4 && check5 && check6){
+                  if(check1 && check2 && check3 && check5 && check6){
                     //#form에 있는 submit을 실행
                     $('form').attr('onsubmit', 'return true');
                     $("form").submit();
@@ -298,6 +283,23 @@ pageEncoding="UTF-8"%>
                 });
 
               </script>
+
+              <script>
+                window.onload = function(){
+                  //기본 정보 채우기
+                  $('#name-input').val('${mentorInfo.name}');
+                  $('#email-input').val('${mentorInfo.email}');
+                  $('#phone-input').val('${mentorInfo.phoneNo}');
+                  $('#intro-input').val('${mentorInfo.intro}');
+                  $('#link-input').val('${mentorInfo.link}');
+
+                  //은행 채우기
+                  $("#account-box select option[value='${mentorInfo.accountBank}']").attr('selected', 'selected');
+                  $('#accountNo-input').val('${mentorInfo.accountNo}');
+                }
+              </script>
+
+
 
 
             </div>

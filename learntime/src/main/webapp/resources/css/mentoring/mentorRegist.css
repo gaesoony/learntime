@@ -92,10 +92,8 @@ input[type="submit"]{
     border-radius: 8px;
     border: 2px solid #5ecc80;
     text-align: center;
-    line-height: 33px;
     color: white;
     background-color: #5ecc80;
-    margin-right: 10px;
     font-size: 14px;
 }
 input[type="submit"]:hover{

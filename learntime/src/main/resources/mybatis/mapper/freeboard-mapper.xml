@@ -71,8 +71,6 @@
 		ORDER BY FB.NO DESC
 		</if>
 		
-	
-		
 		
 	</select>
 	
@@ -91,6 +89,9 @@
 		JOIN (SELECT NO, NAME CATE FROM FREE_BOARD_CATEGORY) FBC
 		ON FBC.NO = FB.CATE_NO
 		WHERE WRITER = #{userNo}
+		<if test ="search != null and !('').equals(searchType)">
+		AND FB.TITLE LIKE '%${search}%'
+		</if>
 		ORDER BY FB.NO DESC
 	</select>
 	
@@ -230,6 +231,9 @@
 		LEFT JOIN (SELECT BOARD_NO SCRAP FROM FREE_BOARD_SCRAP WHERE M_NO = #{userNo}) FBS
 		ON FB.NO = FBS.SCRAP
 		WHERE FBS.SCRAP IS NOT NULL
+		<if test ="search != null and !('').equals(searchType)">
+		AND ${searchType} LIKE '%${search}%'
+		</if>
 		ORDER BY FB.NO DESC
 	</select>
 	

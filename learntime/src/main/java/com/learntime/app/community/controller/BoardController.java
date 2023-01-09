@@ -36,7 +36,7 @@ public class BoardController {
 	@Autowired
 	private BoardService bs;
 
-// 	글 목록 (카테고리 있을때)
+// 	글 목록 
 	@GetMapping("/board/list")
 	public String boardList(Model model, BoardFilterVo bfv) {
 		
@@ -46,17 +46,21 @@ public class BoardController {
 			bfv.setSort("ENROLL_DATE");
 		}else if("2".equals(bfv.getSort())){
 			bfv.setSort("CMT_COUNT");
-			System.out.println(bfv.getSort());
 		}else if("3".equals(bfv.getSort())){
 			bfv.setSort("HIT");
 		}else if("4".equals(bfv.getSort())){
 			bfv.setSort("LH_COUNT");
 		}
 		
+		if("0".equals(bfv.getCate())) {
+			bfv.setCate(null);
+		}
+		
 		List<BoardVo> boardList = bs.select(bfv);
 		
+		
 		if (boardList == null) {
-			return "";
+			return "common/error";
 		}
 
 		// 카테고리 받아오기
@@ -208,22 +212,32 @@ public class BoardController {
 	}
 
 	
-// 마이페이지 임시
-	@GetMapping("/mypage")
-	public String myCommunity(HttpSession session, Model model) {
-		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
-		String userNo = loginMember.getNo();
-		
-		//나의 글 조회
-		List<BoardVo> myList = bs.selecMyList(userNo);
-		model.addAttribute("myList", myList);
-		
-		//나의 스크랩 글 조회
-		List<BoardVo> scrapList = bs.selectScrapList(userNo);
-		model.addAttribute("scrapList", scrapList);
-		
-		return "/member/mypage-community";
-	}
+//// 마이페이지
+//	@GetMapping("/mypage")
+//	public String myCommunity1(HttpSession session, Model model) {
+//		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+//		String userNo = loginMember.getNo();
+//		
+//		//나의 글 조회
+//		List<BoardVo> myList = bs.selecMyList(userNo);
+//		model.addAttribute("myList", myList);
+//		
+//		
+//		return "/member/mypage-community1";
+//	}
+//	
+//// 마이페이지
+//	@GetMapping("/mypage2")
+//	public String myCommunity2(HttpSession session, Model model) {
+//		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+//		String userNo = loginMember.getNo();
+//		
+//		//나의 스크랩 글 조회
+//		List<BoardVo> scrapList = bs.selectScrapList(userNo);
+//		model.addAttribute("scrapList", scrapList);
+//		
+//		return "/member/mypage-community2";
+//	}
 
 // 댓글 쓰기
 	@PostMapping(value = "comment/write", produces = "application/text;charset=utf8")

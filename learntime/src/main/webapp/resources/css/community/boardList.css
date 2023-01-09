@@ -315,12 +315,14 @@ input[type="submit"]#search-submit{
     color: #a8a8a8;
     margin-right: 5px;
     font-size: 30px;
+    cursor: pointer;
 }
 #search-icon{
     color: #a8a8a8;
     margin-right: 5px;
     margin-left: 15px;
     font-size: 30px;
+    cursor: pointer;
 }
 .arrow-icon{
     color: #a8a8a8;
