@@ -177,6 +177,36 @@ pageEncoding="UTF-8"%>
     .img-num {
       width: 30px;
     }
+    .tech-list {
+      display: flex;
+      width: 100%;
+      height: 50px;
+
+      align-items: center;
+      border-bottom: 1px solid rgb(219, 219, 219);
+    }
+
+    .tech-list > div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .tech-list > div:nth-child(1) {
+      width: 25%;
+    }
+
+    .tech-list > div:nth-child(2) {
+      width: 20%;
+    }
+
+    .tech-list > div:nth-child(3) {
+      width: 38%;
+    }
+
+    .tech-list > div:nth-child(4) {
+      width: 17%;
+    }
   </style>
   <body>
     <%@include file="/WEB-INF/views/common/admin-side.jsp"%>
@@ -201,28 +231,30 @@ pageEncoding="UTF-8"%>
                 <div class="grid-title">분야</div>
                 <div class="grid-title"></div>
               </div>
-              <div class="grid scroll-grid">
-                <% for(int i=1; i<=15; i++) {%>
-
-                <div>
-                  <img
-                    src="${pageContext.request.contextPath}/resources/img/study/java.svg"
-                    alt=""
-                    class="tech-icon"
-                  />
-                </div>
-                <div>Java</div>
-                <div>
-                  <select name="" id="">
-                    <option value="">프론트엔드</option>
-                    <option value="">백엔드</option>
-                  </select>
-                </div>
-                <div>
-                  <input type="button" class="delete-btn" value="삭제" />
-                </div>
-
-                <%}%>
+              <div class="grid1 scroll-grid">
+                <c:forEach items="${techStackInfoList}" var="map">
+                  <div class="tech-list">
+                    <div>
+                      <img
+                        src="${path}/resources/upload/techStack/${map.IMG_PATH}"
+                        alt=""
+                        class="tech-icon"
+                      />
+                    </div>
+                    <div>${map.NAME}</div>
+                    <div>
+                      <select name="techType" id="">
+                        <option value="${map.TYPE_NO}">${map.TYPE}</option>
+                        <c:forEach items="${techTypeList}" var="map2">
+                          <option value="${map2.NO}">${map2.NAME}</option>
+                        </c:forEach>
+                      </select>
+                    </div>
+                    <div>
+                      <input type="button" class="delete-btn" value="삭제" />
+                    </div>
+                  </div>
+                </c:forEach>
               </div>
             </div>
           </div>
@@ -244,18 +276,20 @@ pageEncoding="UTF-8"%>
                 <div class="grid-title"></div>
               </div>
               <div class="grid scroll-grid">
-                <% for(int i=1; i<=8; i++) {%>
-
-                <div>
-                  <input type="text" value="기간미정" class="input-setting" />
-                </div>
-                <div></div>
-                <div></div>
-                <div>
-                  <input type="button" class="delete-btn" value="삭제" />
-                </div>
-
-                <%}%>
+                <c:forEach items="${groupPeriodList}" var="map">
+                  <div>
+                    <input
+                      type="text"
+                      value="${map.NAME}"
+                      class="input-setting"
+                    />
+                  </div>
+                  <div></div>
+                  <div></div>
+                  <div>
+                    <input type="button" class="delete-btn" value="삭제" />
+                  </div>
+                </c:forEach>
               </div>
             </div>
           </div>
@@ -277,18 +311,20 @@ pageEncoding="UTF-8"%>
                 <div class="grid-title"></div>
               </div>
               <div class="grid scroll-grid">
-                <% for(int i=1; i<=2; i++) {%>
-
-                <div>
-                  <input type="text" value="스터디" class="input-setting" />
-                </div>
-                <div></div>
-                <div></div>
-                <div>
-                  <input type="button" class="delete-btn" value="삭제" />
-                </div>
-
-                <%}%>
+                <c:forEach items="${groupTypeList}" var="map">
+                  <div>
+                    <input
+                      type="text"
+                      value="${map.NAME}"
+                      class="input-setting"
+                    />
+                  </div>
+                  <div></div>
+                  <div></div>
+                  <div>
+                    <input type="button" class="delete-btn" value="삭제" />
+                  </div>
+                </c:forEach>
               </div>
             </div>
           </div>

@@ -760,5 +760,19 @@
 		WHERE C.DELETE_YN = 'N' AND C.DEPTH = '1' AND C."GROUP" = #{cgno} 
 		ORDER BY C.NO
 	</select>
+	<select id="selectTechStackInfo" resultType="map">
+		SELECT S.NO NO, S.TYPE_NO TYPE_NO, S.NAME, S.IMG_PATH, T.NAME TYPE
+		FROM TECH_STACK S
+		JOIN TECH_STACK_TYPE T ON S.TYPE_NO = T.NO
+	</select>
+	<select id="selectTechTypeList" resultType="map">
+		SELECT *
+		FROM TECH_STACK_TYPE
+	</select>
+	<update id="quitGroup">
+		UPDATE RECRUIT_LIST SET
+		STATUS = 'F'
+		WHERE G_NO = #{gno} AND M_NO = #{mno}
+	</update>
 
 </mapper>

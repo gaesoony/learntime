@@ -159,6 +159,12 @@ public interface StudyService {
 
 	public int deleteGroupList(String[] group);
 
+	public List<Map<String, Object>> selectTechStackInfo();
+
+	public List<Map<String, Object>> selectTechTypeList();
+
+	public int quitGroup(Map map);
+
 
 
 

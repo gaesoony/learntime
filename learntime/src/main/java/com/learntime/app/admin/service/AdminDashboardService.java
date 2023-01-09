@@ -61,6 +61,16 @@ public interface AdminDashboardService {
 
 	int selectGroupApplyCnt(Map map);
 
+	List<Map<String, Object>> selectTechStackSumList();
+
+	List<Map<String, Object>> selectGroupTypeSumList();
+
+	List<Map<String, Object>> selectGroupWaySumList();
+
+	List<Map<String, Object>> selectGroupStatusSumList();
+
+	List<Map<String, Object>> selectGroupPeriodSumList();
+
 
 
 }

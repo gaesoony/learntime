@@ -129,4 +129,49 @@ public class AdminDashboardDaoImpl implements AdminDashboardDao{
 		return sst.selectOne("adminDashboardMapper.selectGroupApplyCnt", map);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectTechStackList(SqlSessionTemplate sst) {
+		return sst.selectList("adminDashboardMapper.selectTechStackList");
+	}
+
+	@Override
+	public int selectTechStackCnt(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("adminDashboardMapper.selectTechStackCnt", no);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectGroupTypeList(SqlSessionTemplate sst) {
+		return sst.selectList("adminDashboardMapper.selectGroupTypeList");
+	}
+
+	@Override
+	public int selectGroupTypeCnt(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("adminDashboardMapper.selectGroupTypeCnt", no);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectGroupPeriodList(SqlSessionTemplate sst) {
+		return sst.selectList("adminDashboardMapper.selectGroupPeriodList");
+	}
+
+	@Override
+	public int selectGroupPeriodCnt(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("adminDashboardMapper.selectGroupPeriodCnt", no);
+	}
+
+	@Override
+	public int selectGroupWayCnt(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("adminDashboardMapper.selectGroupWayCnt", no);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectGroupWayList(SqlSessionTemplate sst) {
+		return sst.selectList("adminDashboardMapper.selectGroupWayList");
+	}
+
+	@Override
+	public int selectGroupStatusCnt(SqlSessionTemplate sst, String status) {
+		return sst.selectOne("adminDashboardMapper.selectGroupStatusCnt", status);
+	}
+
 }
