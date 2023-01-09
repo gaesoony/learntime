@@ -60,10 +60,10 @@
     N.NO = #{no}
   </select>
   <insert id="insertCmt">
-  	INSERT INTO NOTICE_CMT (NO,N_NO,WRITER,ENROLL_DATE,DELETE_YN,MODIFY_DATE,CONTENT,DEPTH,GROUP)
+  	INSERT INTO NOTICE_CMT
   	VALUES (SEQ_NOTICE_CMT_NO.NEXTVAL, #{nNo},#{writer},SYSDATE,'N',SYSDATE,#{content},1,1)
   </insert>
- <select id="selectCmtList">
+ <select id="selectCmtList" resultType="com.learntime.app.notice.vo.NoticeCmtVo">
  	SELECT N.NO AS N_NO, M.NICK AS WRITER,C.ENROLL_DATE,C.DELETE_YN,C.MODIFY_DATE,
  	C.CONTENT FROM NOTICE_CMT C JOIN NOTICE N ON C.N_NO = N.NO JOIN
  	MEMBER M ON M.NO=C.WRITER WHERE C.N_NO = #{nNo}

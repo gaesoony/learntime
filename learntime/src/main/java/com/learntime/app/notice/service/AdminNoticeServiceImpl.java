@@ -37,12 +37,12 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 	}
 
 	@Override
-	public List<NoticeVo> selectNoticeListAll(Map map) {
+	public List<Integer> selectNoticeListAll(Map map) {
 		return adao.selectNoticeListAll(sst,map);
 	}
 
 	@Override
-	public List<NoticeVo> selectNoticeList(Map map) {
+	public List<Integer> selectNoticeList(Map map) {
 		return adao.selectNoticeList(sst,map);
 	}
 
@@ -52,22 +52,21 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 		return adao.selectOne(sst,vo);
 	}
 
+
+
 	@Override
-	public int activate(NoticeVo vo) {
-		return adao.updateOne(sst,vo);
+	public int activate(List<Integer> list) {
+		return adao.updateOne(sst,list);
 	}
 
 	@Override
-	public int deactivate(NoticeVo vo) {
-		return adao.updateOne2(sst,vo);
+	public int deactivate(List<Integer> list) {
+		return adao.updateOne2(sst,list);
 	}
 
 	@Override
-	public int deleteOne(NoticeVo vo) {
-		System.out.println("sssss");
-		int no = adao.updateOne3(sst,vo);
-		System.out.println("서비스:"+no);
-		return no;
+	public int deleteOne(List<Integer> list) {
+		return adao.updateOne3(sst,list);
 	}
 
 	

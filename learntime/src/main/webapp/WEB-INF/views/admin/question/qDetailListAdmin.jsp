@@ -197,7 +197,7 @@ textarea{
         <div id="admin-category-title" class="shadow-light">
             카테고리
         </div>
-        <form action="">
+        <form action="" method="get">
         	<div class="list-main-m">
 	            <div class="q-detail-list-m">
 	                <div class="q-sign-m">

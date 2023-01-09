@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.learntime.app.admin.q.service.AdminQuestionService;
+import com.learntime.app.admin.vo.ManagerVo;
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.notice.vo.NoticeVo;
 import com.learntime.app.question.service.QuestionService;
@@ -36,6 +37,7 @@ public class AdminQuestionController {
 	//신규문의 리스트
 	@GetMapping("qListAd")
 	public String qListAd(QuestionVo vo,Model m,PageVo pv) {
+		
 		
 		int listCount = aqs.selectCount();
 		int currentPage = (int)pv.getP();
@@ -65,19 +67,20 @@ public class AdminQuestionController {
 	public String qListAd(HttpServletRequest req,QuestionVo vo,String deleteList,@RequestParam(value="valueArr[]") List<Integer> valueArr) {
 
 		
-		int no =0;
+
 		
-		List<NoticeVo> list = new ArrayList<NoticeVo>();
+		List<Integer> list = new ArrayList<Integer>();
 		for(int i = 0; i<valueArr.size(); i++) {
-			no = valueArr.get(i);
-			vo.setNo(no);
-			
+			list.add(valueArr.get(i));
 			
 		}
+		
 	
 		int result = 0;
 		if ("삭제".equals(deleteList)) {
+			System.out.println(list);
 			result = aqs.deleteOne(list);
+			
 		}
 		if(result == 1) {
 			return "redirect:admin/question/qListAd";
@@ -93,13 +96,18 @@ public class AdminQuestionController {
 	@GetMapping("qDetailListAdmin")
 	public String qDetailListAdmin(QuestionVo vo,HttpSession session, Model m) {
 		
-		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember"); 
+		ManagerVo loginManager = (ManagerVo) session.getAttribute("loginManager"); 
 		
-		if(loginMember != null && loginMember.getAdminYn().equalsIgnoreCase("Y")) {
+		System.out.println("호출");
+		
+		if(loginManager != null ) {
+			System.out.println("if통과");
 			vo = aqs.selectOne(vo);
 			m.addAttribute("vo",vo);
-			return "question/qListAd";
+			
+			return "admin/question/qDetailListAdmin";
 		}else {
+			System.out.println("else들어옴");
 			return "common/errorPage";
 		}
 

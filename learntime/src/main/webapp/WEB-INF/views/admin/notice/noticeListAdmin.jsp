@@ -7,11 +7,13 @@
 <meta charset="UTF-8">
 <!-- <link rel="stylesheet" href="/app/.css"> -->
 <title>Insert title here</title>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+
 <style>
 #content-wrap{
     background-color: #efefef;
@@ -418,7 +420,7 @@ background-color: #e9fde9;
                     <div class="notice-group">
                         <c:forEach var="list" items="${list}" varStatus="status">
                         	<div class="gathering-divs">
-	                        	<c:if test="${status.index > 2 }">
+	                        	<c:if test="${status.index >2}">
 	                        	 	<div class="notice-white"></a>
 	                        	</c:if>
 	                        	<c:if test="${status.index <= 2 }">
@@ -429,9 +431,9 @@ background-color: #e9fde9;
 	                                    <div class="enroll-date" name="enrollDate">${list.enrollDate}</div>
 	                                </div>
 	                                <div class="written-notice">
-							<div class="checkBoxBtn-notice"><input type="checkbox"  id="checkBoxBtn" value="${list.no}"></div>
-	                                    <div class="cate-notice" name="name">${list.cateName}</div>
-	                                    <a href="/app/notice/noticeDetail?no=${list.no}"><div class="posted-notice" name="title">${list.title}</div></a>
+										<div class="checkBoxBtn-notice"><input type="checkbox"  id="checkBoxBtn" value="${list.no}"></div>
+		                                <div class="cate-notice" name="name">${list.cateName}</div>
+		                                <a href="/app/notice/noticeDetail?no=${list.no}"><div class="posted-notice" name="title">${list.title}</div></a>
 	                                    <div class="views-etc">
 	                                        <div class="views" name="hit"><img width="15px" height="15px" class="view" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">${list.hit}</div>
 	                                        <div class="replies" name="cmt"><img width="15px" height="15px"class="message" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">${list.cmt}</div>
@@ -506,7 +508,12 @@ background-color: #e9fde9;
                    "valueArr":valueArr
        },
        success:function(x){
-           alert('활성화되었습니다.');
+    	   Swal.fire({
+    		   icon: 'success',
+    		   title: 'success!',
+    		   text: '활성화 되었습니다!',
+    		   
+    		 })
        },
        error:function(){
            alert('에러가 발생했습니다.');
@@ -538,7 +545,12 @@ background-color: #e9fde9;
                    "valueArr":valueArr
        },
        success:function(x){
-           alert('비활성화되었습니다.');
+    	   Swal.fire({
+    		   icon: 'success',
+    		   title: 'success!',
+    		   text: '비활성화 되었습니다!',
+    		   
+    		 })
        },
        error:function(){
            alert('에러가 발생했습니다.');
@@ -570,7 +582,18 @@ background-color: #e9fde9;
                     "valueArr":valueArr
         },
         success:function(x){
-            alert('삭제되었습니다.');
+        	Swal.fire({
+     		   icon: 'success',
+     		   title: 'success!',
+     		   text: '삭제 되었습니다!',
+     		   
+     		 })
+     		 
+     		 
+     		 
+     		 
+     		 
+     		 
             location.reload();
             
         },

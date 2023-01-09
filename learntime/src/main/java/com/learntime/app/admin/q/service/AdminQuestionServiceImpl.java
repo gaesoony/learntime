@@ -43,7 +43,7 @@ public class AdminQuestionServiceImpl implements AdminQuestionService {
 	
 
 	@Override
-	public int deleteOne(List<NoticeVo> list) {
+	public int deleteOne(List<Integer> list) {
 		return adao.deleteOne(sst,list);
 	}
 

@@ -17,6 +17,6 @@ public interface AdminQuestionService {
 
 	public QuestionVo selectOne(QuestionVo vo);
 
-	public int deleteOne(List<NoticeVo> list);
+	public int deleteOne(List<Integer> list);
 
 }

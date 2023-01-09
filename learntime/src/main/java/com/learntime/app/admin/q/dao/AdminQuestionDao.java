@@ -28,16 +28,21 @@ public class AdminQuestionDao {
 	}
 
 	public QuestionVo selectOne(SqlSessionTemplate sst, QuestionVo vo) {
-		return sst.selectOne("adminQuesionMapper.selectOne",vo);
+		return sst.selectOne("adminQuestionMapper.selectOne",vo);
+		
 	}
 
 	
 
-	public int deleteOne(SqlSessionTemplate sst, List<NoticeVo> list) {
+	public int deleteOne(SqlSessionTemplate sst, List<Integer> list) {
+		System.out.println("dao호출!!");
 		int count = 0;
+		System.out.println(list.size());
 		for(int i = 0; i<list.size(); i++) {
 			count+= sst.update("adminQuestionMapper.deleteList",list.get(i));
+			
 		}
+		System.out.println(count);
 		return count;
 	}
 
