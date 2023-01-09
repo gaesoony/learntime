@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.learntime.app.mertoring.vo.ApplicationVo;
 import com.learntime.app.mertoring.vo.MentorVo;
+import com.learntime.app.mertoring.vo.MentoringFilterVo;
 import com.learntime.app.mertoring.vo.ReviewVo;
 import com.learntime.app.mertoring.vo.ScheduleVo;
 
@@ -53,8 +54,8 @@ public class MentoringDaoImpl implements MentoringDao{
 
 	//멘토 리스트조회
 	@Override
-	public List<MentorVo> selectMentorList(SqlSessionTemplate sst) {
-		return sst.selectList("mentorMapper.selectMentorList");
+	public List<MentorVo> selectMentorList(SqlSessionTemplate sst, MentoringFilterVo filter) {
+		return sst.selectList("mentorMapper.selectMentorList", filter);
 	}
 
 	//멘토 상세조회
@@ -89,8 +90,8 @@ public class MentoringDaoImpl implements MentoringDao{
 
 	//멘토링 리뷰 조회
 	@Override
-	public List<ReviewVo> selectReview(SqlSessionTemplate sst) {
-		return sst.selectList("mentorMapper.selectReview");
+	public List<ReviewVo> selectReview(SqlSessionTemplate sst, MentoringFilterVo mfv) {
+		return sst.selectList("mentorMapper.selectReview", mfv);
 	}
 
 	//멘토링 요청 조회

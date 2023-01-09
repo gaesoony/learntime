@@ -27,7 +27,7 @@
 		<div id="content-info">
 			<div id="writer-date">
 				<div id="writer-profile">
-					<img src="" alt="">
+					<img src="/app/${bv.writerImg}" alt="">
 				</div>
 				<span id="writer">${bv.writerNick}</span>
 				<span id="enroll-date">${bv.enrollDate}</span>
@@ -63,7 +63,7 @@
 				$(document).ready(function() {
 					//좋아요
 					$('#like').click(function() {
-						console.log("좋아요");
+						console.log('${loginMember}'+'${loginMember.imgPath}');
 						likeRequest('L');
 					});
 
@@ -141,8 +141,10 @@
 			
 
 			<div id="btns-box">
-				<div id="modify-btn" onclick="location.href='/app/community/board/modify?bno=${bv.no}'">수정</div>
-				<div id="delete-btn" onclick="location.href='/app/community/board/delete?bno=${bv.no}'">삭제</div>
+				<c:if test="${sessionScope.loginMember.no eq bv.writer}">
+					<div id="modify-btn" onclick="location.href='/app/community/board/modify?bno=${bv.no}'">수정</div>
+					<div id="delete-btn" onclick="location.href='/app/community/board/delete?bno=${bv.no}'">삭제</div>
+				</c:if>
 			</div>
 
 		</div>

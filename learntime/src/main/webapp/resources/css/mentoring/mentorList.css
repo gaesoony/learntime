@@ -194,6 +194,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 #sorting-box>select{
@@ -710,4 +711,18 @@ p{
 
 .review-content>p{
     width: 100%;
+}
+
+#search-area{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#search-area>input{
+    height: 30px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    margin-left: 6px;
 }

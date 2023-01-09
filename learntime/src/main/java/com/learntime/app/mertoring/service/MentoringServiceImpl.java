@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.learntime.app.mertoring.dao.MentoringDao;
 import com.learntime.app.mertoring.vo.ApplicationVo;
 import com.learntime.app.mertoring.vo.MentorVo;
+import com.learntime.app.mertoring.vo.MentoringFilterVo;
 import com.learntime.app.mertoring.vo.ReviewVo;
 import com.learntime.app.mertoring.vo.ScheduleVo;
 
@@ -66,8 +67,8 @@ public class MentoringServiceImpl implements MentoringService{
 
 	//멘토리스트 조회
 	@Override
-	public List<MentorVo> selectMentorList() {
-		return dao.selectMentorList(sst);
+	public List<MentorVo> selectMentorList(MentoringFilterVo filter) {
+		return dao.selectMentorList(sst, filter);
 	}
 
 	//멘토링 상세조회
@@ -102,8 +103,8 @@ public class MentoringServiceImpl implements MentoringService{
 	}
 	//멘토링 리뷰 조회
 	@Override
-	public List<ReviewVo> selectReviewList() {
-		return dao.selectReview(sst);
+	public List<ReviewVo> selectReviewList(MentoringFilterVo mfv) {
+		return dao.selectReview(sst, mfv);
 	}
 
 	//들어온 멘토링 조회

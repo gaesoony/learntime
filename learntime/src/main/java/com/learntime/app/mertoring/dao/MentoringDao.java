@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.learntime.app.mertoring.vo.ApplicationVo;
 import com.learntime.app.mertoring.vo.MentorVo;
+import com.learntime.app.mertoring.vo.MentoringFilterVo;
 import com.learntime.app.mertoring.vo.ReviewVo;
 import com.learntime.app.mertoring.vo.ScheduleVo;
 
@@ -31,7 +32,7 @@ public interface MentoringDao {
 	public int insertSchedule(SqlSessionTemplate sst, List<ScheduleVo> scheduleList);
 
 	//멘토 리스트조회
-	public List<MentorVo> selectMentorList(SqlSessionTemplate sst);
+	public List<MentorVo> selectMentorList(SqlSessionTemplate sst, MentoringFilterVo filter);
 
 	//멘토링 상세조회
 	public MentorVo selectMentorDetail(SqlSessionTemplate sst, String no);
@@ -49,7 +50,7 @@ public interface MentoringDao {
 	public List<ApplicationVo> selectApplication(SqlSessionTemplate sst, String userNo);
 
 	//리뷰 조회
-	public List<ReviewVo> selectReview(SqlSessionTemplate sst);
+	public List<ReviewVo> selectReview(SqlSessionTemplate sst, MentoringFilterVo mfv);
 
 	//멘토링 요청 조회
 	public List<ApplicationVo> selectRequestList(SqlSessionTemplate sst, String myNo);
