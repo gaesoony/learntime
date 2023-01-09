@@ -1,6 +1,7 @@
 package com.learntime.app.community.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.learntime.app.community.vo.BoardFilterVo;
 import com.learntime.app.community.vo.BoardVo;
@@ -43,10 +44,10 @@ public interface BoardService {
 	public int deleteScrap(LHSVo lhs);
 
 	//나의 글 조회
-	public List<BoardVo> selecMyList(String userNo);
+	public List<BoardVo> selecMyList(Map<String, String> filter);
 
 	//스크랩 글조회
-	public List<BoardVo> selectScrapList(String userNo);
+	public List<BoardVo> selectScrapList(Map<String, String> filter);
 
 	//유저 스크랩 조회
 	public LHSVo selectScrap(LHSVo lhs);

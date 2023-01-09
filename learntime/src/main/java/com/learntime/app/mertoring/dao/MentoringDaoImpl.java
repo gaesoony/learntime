@@ -92,6 +92,36 @@ public class MentoringDaoImpl implements MentoringDao{
 	public List<ReviewVo> selectReview(SqlSessionTemplate sst) {
 		return sst.selectList("mentorMapper.selectReview");
 	}
+
+	//멘토링 요청 조회
+	@Override
+	public List<ApplicationVo> selectRequestList(SqlSessionTemplate sst, String myNo) {
+		return sst.selectList("mentorMapper.selectRequest", myNo);
+	}
+
+	//멘토링 요청 수락
+	@Override
+	public int updateApplyYn(SqlSessionTemplate sst, String no) {
+		return sst.update("mentorMapper.updateRequest", no);
+	}
+
+	//멘토링 완료 처리
+	@Override
+	public int updateCompleteYn(SqlSessionTemplate sst, String no) {
+		return sst.update("mentorMapper.updateComplete", no);
+	}
+
+	//멘토 리뷰 작성
+	@Override
+	public int insertReview(SqlSessionTemplate sst, Map<String, Object> reviewInfo) {
+		return sst.insert("mentorMapper.insertReview", reviewInfo);
+	}
+
+	//멘토 수정
+	@Override
+	public int updateMentor(SqlSessionTemplate sst, MentorVo vo) {
+		return sst.update("mentorMapper.updateMentor", vo);
+	}
 	
 	
 

@@ -18,10 +18,15 @@ public class ApplicationVo {
 	private String paymentDate;
 	private String cancelYn;
 	private String applyYn;
+	private String completeYn;
 	
 //추가
 	private String title;
 	private String mentorNick;
+	private String menteeNick;
 	private String mentorImg;
+	
+//추가 
+	private String reviewWriter;
 	
 }

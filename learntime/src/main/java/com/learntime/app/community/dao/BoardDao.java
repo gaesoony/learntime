@@ -1,6 +1,7 @@
 package com.learntime.app.community.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -47,10 +48,10 @@ public interface BoardDao {
 	public int deleteScrap(SqlSessionTemplate sst, LHSVo lhs);
 
 	//나의 글 조회
-	public List<BoardVo> selectMyList(SqlSessionTemplate sst, String userNo);
+	public List<BoardVo> selectMyList(SqlSessionTemplate sst, Map<String, String> filter);
 
 	//스크랩 글 조회
-	public List<BoardVo> selectScrapList(SqlSessionTemplate sst, String userNo);
+	public List<BoardVo> selectScrapList(SqlSessionTemplate sst, Map<String, String> filter);
 
 	//유저 스크랩 조회
 	public LHSVo selectScrapList(SqlSessionTemplate sst, LHSVo lhs);

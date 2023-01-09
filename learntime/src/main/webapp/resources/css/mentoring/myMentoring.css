@@ -49,7 +49,8 @@ color: #000000;
 font-weight: 550;
 }
 
-#mentoring-regist-btn{
+#mentoring-regist-btn,
+#mentor-modify-btn{
     width: 120px;
     height: 25px;
     font-size: 12px;
@@ -62,7 +63,12 @@ font-weight: 550;
     box-shadow: 2px 2px 2px rgb(233, 233, 233);
 }
 
-#mentoring-regist-btn:hover{
+#mentor-modify-btn{
+    margin-left: 260px;
+}
+
+#mentoring-regist-btn:hover,
+#mentor-modify-btn:hover{
     background-color: #58c079;
     color: white;
     cursor: pointer;
@@ -77,7 +83,7 @@ font-weight: 550;
 
 #content-title{
     display: grid;
-    grid-template-columns: 1fr 1.4fr 1.8fr 1.8fr 2fr 1.8fr 1fr;
+    grid-template-columns: 0.9fr 1.3fr 1.4fr 1.9fr 2.2fr 2fr 1fr;
     align-items: center;
     justify-content: space-between;
     width: 820px;
@@ -98,7 +104,7 @@ font-weight: 550;
 
 .content-list{
     display: grid;
-    grid-template-columns: 1fr 1.4fr 1.8fr 1.8fr 2fr 1.8fr 1fr;
+    grid-template-columns: 0.9fr 1.3fr 1.4fr 1.9fr 2.2fr 2fr 1fr;
     align-items: center;
     justify-content: space-between;
     width: 820px;
@@ -137,3 +143,41 @@ font-weight: 550;
 #no-mentor>a:hover{
     color: #186c33;
 }
+
+.btn{
+    border-radius: 5px;
+    width: 65px;
+    height: 16px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 16px;
+    box-shadow: 2px 2px 2px rgb(233, 233, 233);
+}
+
+.apply-btn,
+.complete-btn{
+    border: 1px solid #58c079;
+    margin-top: 2px;
+    color: #58c079;
+}
+
+.refuse-btn{
+    border: 1px solid #c25252;
+    margin-top: 2px;
+    color: #c25252;
+}
+
+.btn:hover{
+    color: white;
+    cursor: pointer;
+}
+
+.apply-btn:hover,
+.complete-btn:hover{
+    background-color: #58c079;
+}
+
+.refuse-btn:hover{
+    background-color: #c25252;
+}
+

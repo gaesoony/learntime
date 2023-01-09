@@ -25,6 +25,20 @@
 		)
 	</insert>
 	
+	<!-- 멘토 수정 -->
+	<update id="updateMentor">
+		UPDATE MENTOR
+		SET EMAIL = #{email},
+		NAME = #{name},
+		PHONE_NO = #{phoneNo},
+		LINK = #{link},
+		ACCOUNT_BANK = #{accountBank},
+		ACCOUNT_NO = #{accountNo},
+		INTRO = #{intro},
+		MODIFY_DATE = SYSDATE
+		WHERE WRITER = #{writer}
+	</update>
+	
 	<!-- 멘토링 등록 -->
 	<update id="registerMentoring">
 		UPDATE MENTOR
@@ -142,12 +156,14 @@
 	
 	<!-- 신청한 멘토링 조회 -->
 	<select id="selectApplication" resultType = "com.learntime.app.mertoring.vo.ApplicationVo">
-		SELECT MP.*, MT.TITLE, M.NICK AS MENTOR_NICK, M.IMG_PATH AS MENTOR_IMG
+		SELECT MP.*, MT.TITLE, M.NICK AS MENTOR_NICK, M.IMG_PATH AS MENTOR_IMG, NVL(MR.WRITER, 0) AS REVIEW_WRITER
 		FROM MENTORING_PAYMENT MP
 		JOIN MENTOR MT
 		ON MT.NO = MP.MENTOR_NO
 		JOIN "MEMBER" M
 		ON M.NO = MT.WRITER
+		JOIN MENTORING_REVIEW MR
+		ON MR.PAYMENT_NO = MP.NO
 		WHERE M_NO = #{userNo}
 		ORDER BY MP.NO DESC
 	</select>
@@ -165,6 +181,48 @@
 		ON MR.MENTOR_NO = MT.NO
 		ORDER BY MR.NO DESC
 	</select>
+	
+	<!-- 나에게 온 멘토링 요청 조회 -->
+	<select id="selectRequest" resultType = "com.learntime.app.mertoring.vo.ApplicationVo">
+		SELECT MP.*, MT.TITLE, M.NICK AS MENTEE_NICK
+		FROM MENTORING_PAYMENT MP
+		JOIN MENTOR MT
+		ON MT.NO = MP.MENTOR_NO
+		JOIN "MEMBER" M
+		ON M.NO = MP.M_NO
+		WHERE MP.MENTOR_NO = #{myNo}
+		ORDER BY MP.NO DESC
+	</select>
+	
+	<!-- 멘토링 요청 수락(업데이트) -->
+	<update id="updateRequest">
+		UPDATE MENTORING_PAYMENT
+		SET APPLY_YN = 'Y'
+		WHERE NO = #{no}
+	</update>
+	
+	<!-- 멘토링 요청 수락(업데이트) -->
+	<update id="updateComplete">
+		UPDATE MENTORING_PAYMENT
+		SET COMPLETE_YN = 'Y'
+		WHERE NO = #{no}
+	</update>
+	
+	<!-- 리뷰 작성 -->
+	<insert id="insertReview">
+		INSERT INTO MENTORING_REVIEW
+		VALUES(
+		SEQ_MENTOR_REVIEW_NO.NEXTVAL,
+		#{mentorNo},
+		#{writer},
+		#{content},
+		#{star},
+		SYSDATE,
+		'N',
+		SYSDATE,
+		#{paymentNo}
+		)
+	</insert>
 	
 	
 	

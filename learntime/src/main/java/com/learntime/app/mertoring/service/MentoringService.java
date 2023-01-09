@@ -48,6 +48,21 @@ public interface MentoringService {
 
 	//멘토링 리뷰 조회
 	public List<ReviewVo> selectReviewList();
+
+	//멘토링 요청 조회
+	public List<ApplicationVo> selectRequestList(String myNo);
+
+	//멘토링 수락
+	public int updateApplyYn(String no);
+
+	//멘토링 완료 처리
+	public int updateCompleteYn(String no);
+
+	//멘토 리뷰 작성
+	public int insertReview(Map<String, Object> reviewInfo);
+
+	//멘토 수정
+	public int mentorModify(MentorVo vo);
 	
 	
 }

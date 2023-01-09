@@ -115,13 +115,13 @@ pageEncoding="UTF-8"%>
             <div id="my-writing-box">
                 <!-- 나의 글 헤드 -->
                 <div class="community-content-head">
-                    <select name="" id="">
-                      <option value="">글제목</option>
+                    <select name="searchType" id="">
+                      <option value="title">글제목</option>
                     </select>
                     <div class="search-box">
                       <span class="material-symbols-rounded search-icon">search</span>
-                      <form action="">
-                         <input type="search" name="" id="">
+                      <form action="" method="get">
+                         <input type="search" name="search" id="">
                          <input type="submit" hidden>
                       </form>
                     </div>
@@ -172,115 +172,19 @@ pageEncoding="UTF-8"%>
                   </div>
                 </c:if>
 
-                <!-- 글 없을때.. -->
-                
             </div>
-
-            <!-- 나의 스크랩 카테고리 -->
-            <div id="my-scrap-box">
-                <!-- 나의 스크랩 헤드 -->
-                <div class="community-content-head">
-                    <select name="" id="">
-                        <option value="">글제목</option>
-                        <option value="">작성자</option>
-                    </select>
-                    <div class="search-box">
-                        <span class="material-symbols-rounded search-icon">search</span>
-                        <form action="">
-                            <input type="search" name="" id="">
-                            <input type="submit" hidden>
-                        </form>
-                    </div>
-                </div>
-                <!-- 나의 스크랩 컨텐츠 -->
-                <div class="scrap-content scrap-content-title">
-                    <div class="text-number">글번호</div>
-                    <div class="text-title">제목</div>
-                    <div class="text-writer">작성자</div>
-                    <div class="text-enroll">작성일</div>
-                    <div class="text-like">추천수</div>
-                </div>
-
-                <!-- 컨텐츠 반복 -->
-                <!-- scrapList 에서 글 나열하기 -->
-                <c:if test="${scrapList.size() == 0}">
-                  <div id="no-application" class="m-notice">스크랩한 글이 없어요 :(</div>
-                </c:if>
-
-                <c:forEach var="scrapList" items="${scrapList}">
-                  <a href="/app/community/board/detail?bno=${scrapList.no}" class="scrap-content content">
-                    <div class="text-number">${scrapList.no}</div>
-                    <div class="text-title">${scrapList.title}</div>
-                    <div class="text-writer">${scrapList.writerNick}</div>
-                    <div class="text-enroll">
-                      <c:out value="${scrapList.enrollDate.substring(0, scrapList.enrollDate.length()-3)}"/>
-                    </div>
-                    <div class="text-like">
-                      <c:if test="${scrapList.likes == null}">0</c:if>
-                      ${scrapList.likes}</div>
-                  </a>
-                </c:forEach>
-
-
-                <!-- 이전, 1부터 10, 다음 버튼이 있는 페이징 -->
-                
-
-
-
-
-
-
-
-
-
-                <!-- 페이징 -->
-                <div id="paging">
-                    <div class="paging-btn">1</div>
-                    <div class="paging-btn">2</div>
-                    <div class="paging-btn">3</div>
-                    <div class="paging-btn">4</div>
-                    <div class="paging-btn">5</div>
-                    <div class="paging-btn">6</div>
-                    <div class="paging-btn">7</div>
-                    <div class="paging-btn">8</div>
-                    <div class="paging-btn">9</div>
-                    <div class="paging-btn">10</div>
-                    <div class="paging-btn" id="next-btn">다음</div>
-                </div>
-
-                <!-- 글 없을때.. -->
-                <div id="no-application" class="m-notice">내가 스크랩한 글이 없어요 :(</div>
-            </div>
-
-
-
-
-
-
-            </div>
-            
 
             <!-- 카테고리 선택 -->
-
-  
             <script>
-                $("#my-scrap-box").hide();
-
-                $(document).ready(function(){
-                    $("#community-category2").click(function(){
-                        $("#my-scrap-box").show();
-                        $("#my-writing-box").hide();
-                    });
-                    $("#community-category1").click(function(){
-                        $("#my-scrap-box").hide();
-                        $("#my-writing-box").show();
-                    });
-                });
-            </script>
-            
-
-
-
+              $(document).ready(function(){
+                  $("#community-category2").click(function(){
+                      location.href = "/app/member/mypage/community2";
+                  });
+                  $("#community-category1").click(function(){
+                      location.href = "/app/member/mypage/community";
+                  });
+              });
+          </script>
 
           </div>
         </div>

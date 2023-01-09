@@ -273,5 +273,64 @@ public class MentorController {
 		return "redirect:/mentor/list";
 	}
 	
+	//멘토링 수락
+	@ResponseBody
+	@PostMapping("/mentoring/acception")
+	public String acceptMentoring(@RequestParam("no") String no) {
+		
+		int result = ms.updateApplyYn(no);
+		
+		if(result != 1) {
+			return "에러발생";
+		}
+		
+		return "잘 처리됨";
+		
+	}
+	
+	//멘토링 완료 처리
+	@ResponseBody
+	@PostMapping("/mentoring/complete")
+	public String completeMentoring(@RequestParam("no") String no) {
+		
+		int result = ms.updateCompleteYn(no);
+		
+		if(result != 1) {
+			return "에러발생";
+		}
+		
+		return "잘 처리됨";
+		
+	}
+	
+	//후기 작성
+	@ResponseBody
+	@PostMapping("/review/write")
+	public String writeReview(@RequestParam("paymentNo") String paymentNo,
+			@RequestParam("star") String star,
+			@RequestParam("content") String content,
+			@RequestParam("mentorNo") String mentorNo,
+			HttpSession session) {
+
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		
+		Map<String, Object> reviewInfo = new HashMap<String, Object>();
+		reviewInfo.put("paymentNo", paymentNo);
+		reviewInfo.put("star", star);
+		reviewInfo.put("content", content);
+		reviewInfo.put("mentorNo", mentorNo);
+		reviewInfo.put("writer", loginMember.getNo());
+		
+//		System.out.println(reviewInfo);
+		
+		int result = ms.insertReview(reviewInfo);
+		
+		if (result != 1) {
+			return "0";
+		}
+		
+		return "1";
+	}
+	
 
 }
