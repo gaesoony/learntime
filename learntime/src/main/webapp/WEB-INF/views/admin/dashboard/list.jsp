@@ -154,7 +154,7 @@ pageEncoding="UTF-8"%>
 
       .data-grid {
         display: grid;
-        grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1.9fr;
+        grid-template-columns: 1.3fr 1fr 1fr 1fr 1fr;
 
         height: 350px;
       }
@@ -201,24 +201,30 @@ pageEncoding="UTF-8"%>
       }
 
       .board-section-grid {
-        display: grid;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
         grid-template-columns: 1fr 1fr;
         row-gap: 10px;
         margin-top: 10px;
+        box-sizing: border-box;
       }
 
       .board-section-grid-div {
+        width: 49%;
+        box-sizing: border-box;
         height: 250px;
         background-color: white;
         box-shadow: rgba(0, 0, 0, 0.088) 0px 2px 4px;
       }
 
       .board-section-grid-div:nth-child(2n) {
-        margin-left: 10px;
+        margin-left: 17px;
       }
 
       .board-grid {
         display: grid;
+
         grid-template-columns: 2fr 1fr;
         margin: 10px 20px;
       }
@@ -244,11 +250,11 @@ pageEncoding="UTF-8"%>
       }
 
       .board-title {
-        width: 462px;
+        /* width: 462px; */
       }
 
       .board-title a {
-        width: 462px;
+        width: 280px;
         height: 17px;
         overflow: hidden;
         white-space: nowrap;
@@ -410,8 +416,47 @@ pageEncoding="UTF-8"%>
                   </div>
                 </div>
                 <div class="info-bottom space-between flex">
-                  <div>1500</div>
-                  <div><span>+1115&nbsp</span><span>+11.01%</span></div>
+                  <div>${todayPageViewCnt}</div>
+                  <div>
+                    <span>어제 ${yesterdayPageViewCnt}건 | </span>
+                    <c:if
+                      test="${(todayPageViewCnt - yesterdayPageViewCnt) >= 0}"
+                    >
+                      <span
+                        >+${todayPageViewCnt - yesterdayPageViewCnt}건&nbsp |
+                      </span>
+                    </c:if>
+                    <c:if
+                      test="${(todayPageViewCnt - yesterdayPageViewCnt) < 0}"
+                    >
+                      <span
+                        >${todayPageViewCnt - yesterdayPageViewCnt}건&nbsp |
+                      </span>
+                    </c:if>
+                    <c:if test="${yesterdayPageViewCnt == 0}">
+                      <span>증가율없음</span>
+                    </c:if>
+                    <c:if test="${yesterdayPageViewCnt != 0}">
+                      <c:if
+                        test="${((todayPageViewCnt - yesterdayPageViewCnt)/yesterdayPageViewCnt * 100) >= 0}"
+                      >
+                        <span
+                          >+${(todayPageViewCnt -
+                          yesterdayPageViewCnt)/yesterdayPageViewCnt *
+                          100}%</span
+                        >
+                      </c:if>
+                      <c:if
+                        test="${((todayPageViewCnt - yesterdayPageViewCnt)/yesterdayPageViewCnt * 100) < 0}"
+                      >
+                        <span
+                          >${(todayPageViewCnt -
+                          yesterdayPageViewCnt)/yesterdayPageViewCnt *
+                          100}%</span
+                        >
+                      </c:if>
+                    </c:if>
+                  </div>
                 </div>
               </li>
               <li class="shadow">
@@ -421,12 +466,47 @@ pageEncoding="UTF-8"%>
                   </div>
                   <div class="info-title">
                     <div>오늘 방문자수</div>
-                    <div>Today's Pageview</div>
+                    <div>Today's Visitor</div>
                   </div>
                 </div>
                 <div class="info-bottom space-between flex">
-                  <div>${visitorCnt}</div>
-                  <div><span>+1115&nbsp</span><span>+11.01%</span></div>
+                  <div>${todayVisitorCnt}</div>
+                  <div>
+                    <span>어제 ${yesterdayVisitorCnt}명 | </span
+                    ><c:if
+                      test="${(todayVisitorCnt - yesterdayVisitorCnt) >= 0}"
+                    >
+                      <span
+                        >+${todayVisitorCnt - yesterdayVisitorCnt}명&nbsp |
+                      </span>
+                    </c:if>
+                    <c:if test="${(todayVisitorCnt - yesterdayVisitorCnt) < 0}">
+                      <span
+                        >${todayVisitorCnt - yesterdayVisitorCnt}명&nbsp |
+                      </span>
+                    </c:if>
+                    <c:if test="${yesterdayVisitorCnt == 0}">
+                      <span>증가율없음</span>
+                    </c:if>
+                    <c:if test="${yesterdayVisitorCnt != 0}">
+                      <c:if
+                        test="${((todayVisitorCnt - yesterdayVisitorCnt)/yesterdayVisitorCnt * 100) >= 0}"
+                      >
+                        <span
+                          >+${(todayVisitorCnt -
+                          yesterdayVisitorCnt)/yesterdayVisitorCnt * 100}%</span
+                        >
+                      </c:if>
+                      <c:if
+                        test="${((todayVisitorCnt - yesterdayVisitorCnt)/yesterdayVisitorCnt * 100) < 0}"
+                      >
+                        <span
+                          >${(todayVisitorCnt -
+                          yesterdayVisitorCnt)/yesterdayVisitorCnt * 100}%</span
+                        >
+                      </c:if>
+                    </c:if>
+                  </div>
                 </div>
               </li>
               <li class="shadow">
@@ -436,12 +516,42 @@ pageEncoding="UTF-8"%>
                   </div>
                   <div class="info-title">
                     <div>오늘 가입자수</div>
-                    <div>Today's Pageview</div>
+                    <div>Today's Join</div>
                   </div>
                 </div>
                 <div class="info-bottom space-between flex">
-                  <div>${joinCnt}</div>
-                  <div><span>+1115&nbsp</span><span>+11.01%</span></div>
+                  <div>${todayJoinCnt}</div>
+                  <div>
+                    <span>어제 ${yesterdayJoinCnt}명 | </span
+                    ><c:if test="${(todayJoinCnt - yesterdayJoinCnt) >= 0}">
+                      <span>+${todayJoinCnt - yesterdayJoinCnt}명&nbsp | </span>
+                    </c:if>
+                    <c:if test="${(todayJoinCnt - yesterdayJoinCnt) < 0}">
+                      <span
+                        >${todayJoinCnt - yesterdayJoinCnt}명&nbsp |
+                      </span> </c:if
+                    ><c:if test="${yesterdayJoinCnt == 0}">
+                      <span>증가율없음</span>
+                    </c:if>
+                    <c:if test="${yesterdayJoinCnt != 0}">
+                      <c:if
+                        test="${((todayJoinCnt - yesterdayJoinCnt)/yesterdayJoinCnt * 100) >= 0}"
+                      >
+                        <span
+                          >+${(todayJoinCnt - yesterdayJoinCnt)/yesterdayJoinCnt
+                          * 100}%</span
+                        >
+                      </c:if>
+                      <c:if
+                        test="${((todayJoinCnt - yesterdayJoinCnt)/yesterdayJoinCnt * 100) < 0}"
+                      >
+                        <span
+                          >${(todayJoinCnt - yesterdayJoinCnt)/yesterdayJoinCnt
+                          * 100}%</span
+                        >
+                      </c:if>
+                    </c:if>
+                  </div>
                 </div>
               </li>
               <li class="shadow">
@@ -451,12 +561,42 @@ pageEncoding="UTF-8"%>
                   </div>
                   <div class="info-title">
                     <div>오늘 탈퇴자수</div>
-                    <div>Today's Pageview</div>
+                    <div>Today's Quit</div>
                   </div>
                 </div>
                 <div class="info-bottom space-between flex">
-                  <div>${quitCnt}</div>
-                  <div><span>+1115&nbsp</span><span>+11.01%</span></div>
+                  <div>${todayQuitCnt}</div>
+                  <div>
+                    <span>어제 ${yesterdayQuitCnt}명 | </span
+                    ><c:if test="${(todayQuitCnt - yesterdayQuitCnt) >= 0}">
+                      <span>+${todayQuitCnt - yesterdayQuitCnt}명&nbsp | </span>
+                    </c:if>
+                    <c:if test="${(todayQuitCnt - yesterdayQuitCnt) < 0}">
+                      <span
+                        >${todayQuitCnt - yesterdayQuitCnt}명&nbsp |
+                      </span> </c:if
+                    ><c:if test="${yesterdayQuitCnt == 0}">
+                      <span>증가율없음</span>
+                    </c:if>
+                    <c:if test="${yesterdayQuitCnt != 0}">
+                      <c:if
+                        test="${((todayQuitCnt - yesterdayQuitCnt)/yesterdayQuitCnt * 100) >= 0}"
+                      >
+                        <span
+                          >+${(todayQuitCnt - yesterdayQuitCnt)/yesterdayQuitCnt
+                          * 100}%</span
+                        >
+                      </c:if>
+                      <c:if
+                        test="${((todayQuitCnt - yesterdayQuitCnt)/yesterdayQuitCnt * 100) < 0}"
+                      >
+                        <span
+                          >${(todayQuitCnt - yesterdayQuitCnt)/yesterdayQuitCnt
+                          * 100}%</span
+                        >
+                      </c:if>
+                    </c:if>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -476,31 +616,47 @@ pageEncoding="UTF-8"%>
                   </div>
                 </div>
               </header>
+              <script>
+                const pageViewArr = new Array();
+                <c:forEach items="${weekPageView}" var="map">
+                  pageViewArr.push("${map.CNT}");
+                </c:forEach>;
+
+                const visitorArr = new Array();
+                <c:forEach items="${weekVisitor}" var="map">
+                  visitorArr.push("${map.CNT}");
+                </c:forEach>;
+              </script>
               <div class="chart-box">
                 <canvas id="myChart"></canvas>
                 <script>
+                  const d = new Date();
+                  const year = d.getFullYear(); // 년
+                  const month = d.getMonth(); // 월
+                  const day = d.getDate(); // 일
+
                   new Chart(document.getElementById("myChart"), {
                     type: "line",
                     data: {
                       labels: [
-                        "12/06",
-                        "12/07",
-                        "12/08",
-                        "12/09",
-                        "12/10",
-                        "12/11",
-                        "12/12",
+                        new Date(year, month, day - 6).toLocaleDateString(),
+                        new Date(year, month, day - 5).toLocaleDateString(),
+                        new Date(year, month, day - 4).toLocaleDateString(),
+                        new Date(year, month, day - 3).toLocaleDateString(),
+                        new Date(year, month, day - 2).toLocaleDateString(),
+                        new Date(year, month, day - 1).toLocaleDateString(),
+                        new Date(year, month, day - 0).toLocaleDateString(),
                       ],
                       datasets: [
                         {
-                          data: [100, 3, 30, 23, 40, 5, 50],
+                          data: pageViewArr,
                           borderColor: "rgba(248,90,42,0.8)",
                           backgroundColor: "rgba(248,90,42,0.1)",
                           fill: true,
                           lineTension: 0,
                         },
                         {
-                          data: [10, 30, 3, 13, 20, 15, 2],
+                          data: visitorArr,
                           borderColor: "rgb(76,76,76,0.8)",
                           backgroundColor: "rgba(76,76,76,0.1)",
                           fill: true,
@@ -551,32 +707,30 @@ pageEncoding="UTF-8"%>
               <header class="dashboard-header">일자별 요약</header>
               <div class="data-grid">
                 <div class="data-grid-div">일자</div>
-                <div class="data-grid-div">방문자</div>
-                <div class="data-grid-div">가입</div>
-                <div class="data-grid-div">문의</div>
-                <div class="data-grid-div">결제</div>
-                <div class="data-grid-div">결제총액</div>
-                <% for(int i=0; i<7; i++) {%>
-                <div class="data-grid-div">2022-05-10</div>
-                <div class="data-grid-div">10</div>
-                <div class="data-grid-div">5</div>
-                <div class="data-grid-div">20</div>
-                <div class="data-grid-div">10</div>
-                <div class="data-grid-div">500000</div>
-                <%}%>
+                <div class="data-grid-div">페이지뷰</div>
+                <div class="data-grid-div">방문자수</div>
+                <div class="data-grid-div">가입자수</div>
+                <div class="data-grid-div">탈퇴자수</div>
+
+                <c:forEach items="${weekSummary}" var="map">
+                  <div class="data-grid-div">${map.date}</div>
+                  <div class="data-grid-div">${map.pageViewCnt}</div>
+                  <div class="data-grid-div">${map.visitorCnt}</div>
+                  <div class="data-grid-div">${map.joinCnt}</div>
+                  <div class="data-grid-div">${map.quitCnt}</div>
+                </c:forEach>
+
                 <div class="data-grid-div">최근7일합계</div>
-                <div class="data-grid-div">70건</div>
-                <div class="data-grid-div">35명</div>
-                <div class="data-grid-div">20건</div>
-                <div class="data-grid-div">10건</div>
-                <div class="data-grid-div">500000원</div>
+                <div class="data-grid-div">${weekPageViewSum}건</div>
+                <div class="data-grid-div">${weekVisitorSum}명</div>
+                <div class="data-grid-div">${weekJoinSum}명</div>
+                <div class="data-grid-div">${weekQuitSum}명</div>
 
                 <div class="data-grid-div">이번달합계</div>
-                <div class="data-grid-div">100건</div>
-                <div class="data-grid-div">50명</div>
-                <div class="data-grid-div">20건</div>
-                <div class="data-grid-div">10건</div>
-                <div class="data-grid-div">500000원</div>
+                <div class="data-grid-div">${monthPageViewSum}건</div>
+                <div class="data-grid-div">${monthVisitorSum}명</div>
+                <div class="data-grid-div">${monthJoinSum}명</div>
+                <div class="data-grid-div">${monthQuitSum}명</div>
               </div>
             </div>
           </section>
@@ -607,7 +761,7 @@ pageEncoding="UTF-8"%>
               <div class="board-grid">
                 <c:forEach items="${mentorList}" var="vo" end="4">
                   <div class="board-grid-div board-title">
-                    <a href="${path}/study/detail?gno=${map.NO}&pno=1"
+                    <a href="${path}/admin/mentor/mentoring/detail"
                       >${vo.title}</a
                     >
                   </div>
@@ -647,9 +801,7 @@ pageEncoding="UTF-8"%>
               <div class="board-grid">
                 <c:forEach items="${makegrassList}" var="map" end="4">
                   <div class="board-grid-div board-title">
-                    <a href="${path}/study/detail?gno=${map.NO}&pno=1"
-                      >${map.TITLE}</a
-                    >
+                    <a href="${path}/admin/makegrass/detail">${map.TITLE}</a>
                   </div>
                   <c:set var="enrollDate" value="${map.ENROLL_DATE}" />
                   <div class="board-grid-div">
@@ -690,7 +842,7 @@ pageEncoding="UTF-8"%>
               <div class="board-grid">
                 <c:forEach items="${boardList}" var="vo" end="4">
                   <div class="board-grid-div board-title">
-                    <a href="${path}/study/detail?gno=${map.NO}&pno=1"
+                    <a href="${path}/admin/community/detail?bno=${vo.no}&pno=1"
                       >${vo.title}</a
                     >
                   </div>
@@ -803,7 +955,12 @@ pageEncoding="UTF-8"%>
           <section class="operator-section shadow">
             <header class="dashboard-header">
               <h1>운영자</h1>
-              <div>더보기</div>
+              <div>
+                <a
+                  href="${path}/admin/member/manage?pno=1&keyword=&category=nick&quitYn=N&adminYn=Y"
+                  >더보기</a
+                >
+              </div>
             </header>
             <ul class="operator-list">
               <c:forEach items="${operatorList}" var="map">

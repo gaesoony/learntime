@@ -22,12 +22,45 @@ public interface AdminDashboardService {
 	List<QuestionVo> selectQuestionList();
 
 	//방문자수 조회
-	int selectVisitorCnt();
+	int selectVisitorCnt(Map map);
 
 	//가입자수 조회
-	int selectJoinCnt();
+	int selectJoinCnt(Map map);
 
 	//탈퇴자수 조회
-	int selectQuitCnt();
+	int selectQuitCnt(Map map);
+
+	//페이지뷰 조회
+	int selectPageViewCnt(Map map);
+
+	List<Map<String, Object>> selectWeekPageView();
+
+	List<Map<String, Object>> selectWeekVisitor();
+
+	List<Map<String, Object>> selectWeekSummary();
+
+	int selectWeekPageViewSum();
+
+	int selectWeekVisitorSum();
+
+	int selectWeekJoinSum();
+
+	int selectWeekQuitSum();
+
+	int selectMonthPageViewSum();
+
+	int selectMonthVisitorSum();
+
+	int selectMonthJoinSum();
+
+	int selectMonthQuitSum();
+
+	int selectStudyCnt(Map map);
+
+	int selectProjectCnt(Map map);
+
+	int selectGroupApplyCnt(Map map);
+
+
 
 }

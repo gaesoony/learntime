@@ -60,9 +60,28 @@
 			<exclude-mapping path="/admin/manager/wrong"/>
 			<exclude-mapping path="/**/*.css"/>
 		    <exclude-mapping path="/**/*.js"/>
-		    <exclude-mapping path="/image/**/*.*"/>
+		    <exclude-mapping path="/img/**/*.*"/>
 			<exclude-mapping path="/resources/**" />
 			<beans:bean class="com.learntime.app.common.interceptor.AdminLoginCheckInterceptor"></beans:bean>
+		</interceptor>
+		<interceptor>
+			<mapping path="/main/**"/>
+			<mapping path="/study/**"/>
+			<mapping path="/mentor/**"/>
+			<mapping path="/qna/**"/>
+			<mapping path="/makegrass/**"/>
+			<mapping path="/skinshop/**"/>
+			<mapping path="/community/**"/>
+			<mapping path="/member/**"/>
+			<mapping path="/notice/**"/>
+			<mapping path="/faq/**"/>
+			<mapping path="/question/**"/>
+			<exclude-mapping path="/resources/**" />
+			<exclude-mapping path="/**/*.css"/>
+		    <exclude-mapping path="/**/*.js"/>
+		    <exclude-mapping path="/**/ajax/**"/>
+		    <exclude-mapping path="/**/cdn/**"/>
+			<beans:bean class="com.learntime.app.common.interceptor.PageViewInterceptor"></beans:bean>
 		</interceptor>
 	</interceptors>
 	

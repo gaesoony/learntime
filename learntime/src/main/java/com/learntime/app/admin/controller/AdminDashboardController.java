@@ -79,19 +79,88 @@ public class AdminDashboardController {
 	@GetMapping("")
 	public String dashboard(Model model) {
 		
+		Map map = new HashMap<String, Object>();
+		map.put("status", "0"); //오늘
+		
+		//오늘 페이지뷰 조회
+		int todayPageViewCnt = adminDashboardService.selectPageViewCnt(map);
+		model.addAttribute("todayPageViewCnt", todayPageViewCnt);
+		
 		//오늘 방문자수 조회
-		int visitorCnt = adminDashboardService.selectVisitorCnt();
-		model.addAttribute("visitorCnt", visitorCnt);
+		int todayVisitorCnt = adminDashboardService.selectVisitorCnt(map);
+		model.addAttribute("todayVisitorCnt", todayVisitorCnt);
 		
 		//오늘 가입자수 조회
-		int joinCnt = adminDashboardService.selectJoinCnt();
-		model.addAttribute("joinCnt", joinCnt);
+		int todayJoinCnt = adminDashboardService.selectJoinCnt(map);
+		model.addAttribute("todayJoinCnt", todayJoinCnt);
 		
 		//오늘 탈퇴자수 조회
-		int quitCnt = adminDashboardService.selectQuitCnt();
-		model.addAttribute("quitCnt", quitCnt);
+		int todayQuitCnt = adminDashboardService.selectQuitCnt(map);
+		model.addAttribute("todayQuitCnt", todayQuitCnt);
 		
-		Map map = new HashMap<String, Object>();
+		map.put("status", "1"); //어제
+		
+		//어제 페이지뷰 조회
+		int yesterdayPageViewCnt = adminDashboardService.selectPageViewCnt(map);
+		model.addAttribute("yesterdayPageViewCnt", yesterdayPageViewCnt);
+		
+		//어제 방문자수 조회
+		int yesterdayVisitorCnt = adminDashboardService.selectVisitorCnt(map);
+		model.addAttribute("yesterdayVisitorCnt", yesterdayVisitorCnt);
+		
+		//어제 가입자수 조회
+		int yesterdayJoinCnt = adminDashboardService.selectJoinCnt(map);
+		model.addAttribute("yesterdayJoinCnt", yesterdayJoinCnt);
+		
+		//어제 탈퇴자수 조회
+		int yesterdayQuitCnt = adminDashboardService.selectQuitCnt(map);
+		model.addAttribute("yesterdayQuitCnt", yesterdayQuitCnt);
+		
+		//일주일 페이지뷰 리스트 조회
+		List<Map<String, Object>> weekPageView = adminDashboardService.selectWeekPageView();
+		model.addAttribute("weekPageView", weekPageView);
+		
+		//일주일 방문자수 리스트 조회
+		List<Map<String, Object>> weekVisitor = adminDashboardService.selectWeekVisitor();
+		model.addAttribute("weekVisitor", weekVisitor);
+		
+		//일주일 페이지뷰, 방문자수, 가입자수, 탈퇴자수 조회
+		List<Map<String, Object>> weekSummary = adminDashboardService.selectWeekSummary();
+		model.addAttribute("weekSummary", weekSummary);
+		
+		//일주일 페이지뷰 합계
+		int weekPageViewSum = adminDashboardService.selectWeekPageViewSum();
+		model.addAttribute("weekPageViewSum", weekPageViewSum);
+		
+		//일주일 방문자수 합계
+		int weekVisitorSum = adminDashboardService.selectWeekVisitorSum();
+		model.addAttribute("weekVisitorSum", weekVisitorSum);
+		
+		//일주일 가입자수 합계
+		int weekJoinSum = adminDashboardService.selectWeekJoinSum();
+		model.addAttribute("weekJoinSum", weekJoinSum);
+		
+		//일주일 탈퇴자수 합계
+		int weekQuitSum = adminDashboardService.selectWeekQuitSum();
+		model.addAttribute("weekQuitSum", weekQuitSum);
+		
+		//이번달 페이지뷰 합계
+		int monthPageViewSum = adminDashboardService.selectMonthPageViewSum();
+		model.addAttribute("monthPageViewSum", monthPageViewSum);
+		
+		//이번달 방문자수 합계
+		int monthVisitorSum = adminDashboardService.selectMonthVisitorSum();
+		model.addAttribute("monthVisitorSum", monthVisitorSum);
+		
+		//이번달 가입자수 합계
+		int monthJoinSum = adminDashboardService.selectMonthJoinSum();
+		model.addAttribute("monthJoinSum", monthJoinSum);
+		
+		//이번달 탈퇴자수 합계
+		int monthQuitSum = adminDashboardService.selectMonthQuitSum();
+		model.addAttribute("monthQuitSum", monthQuitSum);
+		
+		
 		map.put("deleteYn", "N");
 		
 		//관리자 목록 조회
