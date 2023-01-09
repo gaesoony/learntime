@@ -176,14 +176,14 @@ pageEncoding="UTF-8"%>
                                         승인 대기중
                                     </div>
                                     <input type="hidden" name="" value="${av.no}">
-                                    <div class="status-btn red-btn cancel-btn">취소하기
+                                    <div class="status-btn red-btn cancel-btn">취소하기</div>
                                     </c:if>
 
                                     <c:if test="${av.applyYn eq 'Y' and av.cancelYn eq 'N' and av.completeYn eq 'N'}">
                                         예약 확정
                                     </div>
                                     <input type="hidden" name="" value="${av.no}">
-                                    <div class="status-btn red-btn cancel-btn">취소하기
+                                    <div class="status-btn red-btn cancel-btn">취소하기</div>
                                     </c:if>
 
                                     <c:if test="${av.cancelYn eq 'Y'}">
@@ -196,14 +196,14 @@ pageEncoding="UTF-8"%>
                                         <c:if test="${av.reviewWriter == 0}">
                                             <div class="status-btn green-btn review-btn">후기작성</div>
                                         </c:if>
-
+                                    
                                     </c:if>
                                     
-                                </div>
                             </div>
+                        </div>
                         <!-- 후기작성 div -->
-                        <c:if test="${av.applyYn eq 'Y' and av.cancelYn eq 'N' and av.completeYn eq 'Y'}">
-                            <div class="review-box" hidden>
+                        <c:if test="${av.applyYn eq 'Y' and av.cancelYn eq 'N' and av.completeYn eq 'Y' and av.reviewWriter == 0}">
+                            <div class="review-box" >
                                 <form action="/app/mentor/review/write" method="post">
                                     <div class="review-head">
                                         <div class="review-star">
@@ -238,79 +238,49 @@ pageEncoding="UTF-8"%>
                             </div>
                         </c:if>
                     </c:forEach>
-
-                    <script>
-                        // 후기작성 버튼 클릭시 ajax
-                        $('.review-write-btn').click(function(){
-                            $.ajax({
-                                url : '/app/mentor/review/write',
-                                type : 'post',
-                                data : {
-                                    paymentNo : $(this).closest('.review-box').find('input[name="no"]').val(),
-                                    star : $(this).closest('.review-box').find('.star').val(),
-                                    content : $(this).closest('.review-box').find('textarea[name="content"]').val(),
-                                    mentorNo : $(this).closest('.review-box').find('input[name="mentorNo"]').val()
-                                },
-                                success : function(data){
-                                    //들어온 data의 String 값이 1이면 true
-                                    if(data == 1){
-                                        alert('후기가 작성되었습니다.');
-                                        location.reload();
-                                    }else{
-                                        alert('후기 작성에 실패했습니다.');
-                                    }
-                                },
-                                error : function(){
-                                    alert('후기 작성에 실패했습니다.');
-                                }
-                            })
-                        })
-
-                    </script>
-                    
-                    
-                    <!-- 후기작성 임시 -->
-                    <div class="review-box" hidden>
-                        <form action="">
-                            <div class="review-head">
-                                <div class="review-star">
-                                    <div class="star-box">
-                                        <span class="material-symbols-rounded star-icon">star</span>
-                                        <span class="material-symbols-rounded star-icon">star</span>
-                                        <span class="material-symbols-rounded star-icon">star</span>
-                                        <span class="material-symbols-rounded star-icon">star</span>
-                                        <span class="material-symbols-rounded star-icon">star</span>
-
-                                        <select name="" class="star" hidden>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="star-txt">
-                                    <span></span>
-                                </div>
-                                <div class="review-write-btn green-btn">작성하기</div>
-                            </div>
-                            
-                            <div class="review-txt">
-                                <textarea name="" cols="30" rows="10" placeholder="멘토링에 대한 솔직한 후기를 남겨주세요"></textarea>
-                            </div>
-                        </form>
-                    </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>
     <%@include file="/WEB-INF/views/common/footer2.jsp" %>
-    
-      <!-- 카테고리 임시 코드-->
     <script>
-    window.onload = function() {
+        // 후기 작성창 토글
+        $('.review-btn').click(function(){
+            $(this).parent().parent().next('.review-box').slideToggle(200);
+        });
+
+        // 후기작성 버튼 클릭시 ajax
+        $('.review-write-btn').click(function(){
+            $.ajax({
+                url : '/app/mentor/review/write',
+                type : 'post',
+                data : {
+                    paymentNo : $(this).closest('.review-box').find('input[name="no"]').val(),
+                    star : $(this).closest('.review-box').find('.star').val(),
+                    content : $(this).closest('.review-box').find('textarea[name="content"]').val(),
+                    mentorNo : $(this).closest('.review-box').find('input[name="mentorNo"]').val()
+                },
+                success : function(data){
+                    //들어온 data의 String 값이 1이면 true
+                    if(data == 1){
+                        alert('후기가 작성되었습니다.');
+                        location.reload();
+                    }else{
+                        alert('후기 작성에 실패했습니다.');
+                    }
+                },
+                error : function(){
+                    alert('후기 작성에 실패했습니다.');
+                }
+            })
+        })
+
+    </script>
+
+    
+    <!-- 카테고리 임시 코드-->
+    <script>
+    
         const mentoringCategory1 = $('#mentoring-category1').next();
         mentoringCategory1.click(function() {
             location.href = '/app/member/mypage/mentoring';
@@ -326,13 +296,6 @@ pageEncoding="UTF-8"%>
             location.href = '/app/member/mypage/mentoring/manage';
         });
 
-        
-        // 리뷰
-        $('.review-btn').click(function(){
-            //다른 리뷰창 닫기
-            $(this).parent().parent().next().slideToggle(300);
-            $(this).parent().parent().siblings().find('.review-box').slideUp(300);
-        });
 
         //별 채우기, 별 점 value값 변경
         $(document).ready(function(){
@@ -370,7 +333,7 @@ pageEncoding="UTF-8"%>
                 $(".star-txt span").text("5점 (매우 좋음) 어떤 점이 만족스러웠나요? :)");
             });
         });
-    }
+    
     </script>
 
     <script>

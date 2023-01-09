@@ -21,15 +21,17 @@
 
         <div id="side-wrap">
             <div id="search-box">
-                <div id="search-area"></div>
+                <div id="search-area">
+                    <input type="text" name="search">
+                </div>
                 <div id="search-btn-area">
                     <span class="material-symbols-rounded search">search</span>
                 </div>
             </div>
             <div id="sorting-box">
-                <select name="" id="">
-                    <option value="">최신순</option>
-                    <option value="">별점순</option>
+                <select name="sorting" id="sorting-input">
+                    <option value="1">최신순</option>
+                    <option value="2">별점순</option>
                 </select>
             </div>
             <div id="category-box">
@@ -39,27 +41,27 @@
                 </div>
                 <div id="category-content">
                     <div class="category">
-                        <input type="checkbox" name="" id="cate1">
+                        <input type="checkbox" name="category" id="cate1" value="1">
                         <div class="stylish-checkbox"></div>
                         <label for="cate1">개발/프로그래밍</label>
                     </div>
                     <div class="category">
-                        <input type="checkbox" name="" id="cate2">
+                        <input type="checkbox" name="category" id="cate2" value="2">
                         <div class="stylish-checkbox"></div>
                         <label for="cate2">보안 네트워크</label>
                     </div>
                     <div class="category">
-                        <input type="checkbox" name="" id="cate3">
+                        <input type="checkbox" name="category" id="cate3" value="3">
                         <div class="stylish-checkbox"></div>
                         <label for="cate3">데이터 사이언스</label>
                     </div>
                     <div class="category">
-                        <input type="checkbox" name="" id="cate4">
+                        <input type="checkbox" name="category" id="cate4" value="4">
                         <div class="stylish-checkbox"></div>
                         <label for="cate4">게임 개발</label>
                     </div>
                     <div class="category">
-                        <input type="checkbox" name="" id="cate5">
+                        <input type="checkbox" name="category" id="cate5" value="5">
                         <div class="stylish-checkbox"></div>
                         <label for="cate5">커리어</label>
                     </div>
@@ -102,7 +104,7 @@
                 </div>
             </c:forEach>
             <!-- 임시 -->
-            <div class="review-box">
+            <!-- <div class="review-box">
                 <div class="review-info">
                     <div class="writer-box">
                         <div class="writer-img">
@@ -129,7 +131,7 @@
                         <span>멘토링 - [망치맨]자바스크립트 마스터 시켜드립니다.</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div id="paging">
                 <div class="paging-btn">1</div>
@@ -150,15 +152,111 @@
 
     </div>
 
-    <!-- span 누르면 checkbox, select, input 초기화 시키는 제이쿼리 함수 -->
     <script>
+        //검색, 필터링, 카테고리(체크박스)
         $(document).ready(function(){
-            $("#filter-reset").click(function(){
-                $("input[type=checkbox]").prop("checked", false);
-                $("select").prop("selectedIndex", 0);
-                $("input[type=text]").val("");
+
+             //기존 쿼리스트링 가져오기
+            var url = new URL(location.href);
+            var search = url.searchParams.get("search");
+            var sorting = url.searchParams.get("sorting");
+            var category = url.searchParams.get("category");
+            var page = url.searchParams.get("page");
+
+            console.log("search : "+search);
+            console.log("sorting : "+sorting);
+            console.log("category : "+category);
+            console.log("page : "+page);
+
+
+            //검색 채우기
+            $("input[name='search']").val(search);
+
+            //검색
+            $("#search-btn-area").click(function(){
+                var searchInput = $("input[name='search']").val();
+                if(category != null){
+                    location.href = "/app/mentor/review/list?search="+searchInput+"&category="+category;
+                    return;
+                }
+                location.href = "/app/mentor/review/list?search="+searchInput;
             });
+
+            //정렬 채우기
+            $("#sorting-input").children().each(function(){
+                if($(this).val() === sorting){
+                    $(this).attr("selected", "selected");
+                }
+            });
+            if(sorting == null){
+                $("#sorting-input").children().first().attr("selected", "selected");
+            }
+
+                                
+            //정렬
+            $("#sorting-input").change(function(){
+                var sortingInput = $(this).val();
+                if(search != null && category != null){
+                    location.href = "/app/mentor/review/list?search="+search+"&sorting="+sortingInput+"&category="+category;
+                    return;
+                }
+                if(search != null && category == null){
+                    location.href = "/app/mentor/review/list?search="+search+"&sorting="+sortingInput;
+                    return;
+                }
+                if(search == null && category != null){
+                    location.href = "/app/mentor/review/list?sorting="+sortingInput+"&category="+category;
+                    return;
+                }
+                location.href = "/app/mentor/review/list?sorting="+sortingInput;
+            });
+
+            //카테고리 채워놓기
+            if(category != null){
+                var categoryArr = category.split(",");
+                console.log(categoryArr);
+                for(var i=0; i<categoryArr.length; i++){
+                    $("input[name='category'][value='"+categoryArr[i]+"']").prop("checked", true);
+                }
+            }
+
+            //카테고리(체크박스)
+            $("input[name='category']").change(function(){
+            var categoryInput = $(this).val();
+            if(category == null){
+                location.href = "/app/mentor/review/list?category="+categoryInput;
+                return;
+            }
+            if(category != null){
+                var cateLength = categoryArr.length;
+                var categoryArrIndex = categoryArr.indexOf(categoryInput);
+                if (categoryArrIndex !== -1) {
+                categoryArr.splice(categoryArrIndex, 1);
+                if (categoryArr.length === 0) {
+                    location.href = '/app/mentor/review/list';
+                } else {
+                    var queryString = categoryArr.join(',');
+                    location.href = "/app/mentor/review/list?category=" + queryString;
+                }
+                } else {
+                categoryArr.push(categoryInput);
+                var queryString = categoryArr.join(',');
+                location.href = "/app/mentor/review/list?category=" + queryString;
+                }
+            }
+            });
+
+            // 초기화
+            $('.refresh').click(function(){
+                location.href = "/app/mentor/review/list";
+            });
+
+            $('#filter-reset').click(function(){
+                location.href = "/app/mentor/review/list";
+            });
+
         });
+
     </script>
 
     <!-- 별 채우기 스크립트 -->

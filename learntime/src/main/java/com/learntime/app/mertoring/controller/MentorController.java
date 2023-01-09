@@ -21,6 +21,7 @@ import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.mertoring.service.MentoringService;
 import com.learntime.app.mertoring.vo.ApplicationVo;
 import com.learntime.app.mertoring.vo.MentorVo;
+import com.learntime.app.mertoring.vo.MentoringFilterVo;
 import com.learntime.app.mertoring.vo.ReviewVo;
 import com.learntime.app.mertoring.vo.ScheduleVo;
 
@@ -32,19 +33,42 @@ public class MentorController {
 
 	//리뷰 리스트 조회
 	@GetMapping("/review/list")
-	public String mentorReview(Model model) {
-		List<ReviewVo> reviewList = ms.selectReviewList();
+	public String mentorReview(Model model, MentoringFilterVo mfv) {
+		
+		String[] categoryArr = null;
+		try {
+			if(mfv != null) {
+				categoryArr = mfv.getCategory().split(",");
+			}
+			mfv.setCategoryArr(categoryArr);
+		} catch (Exception e) {
+			System.out.println("배열비엇슴");
+		}
+		
+		List<ReviewVo> reviewList = ms.selectReviewList(mfv);
 		model.addAttribute("reviewList", reviewList);
 		return "/mentoring/mentorReview";
 	}
 
+	//멘토 리스트 조회
 	@GetMapping("/list")
-	public String mentorList(Model model) {
+	public String mentorList(Model model, MentoringFilterVo mfv) {
 		
-		//멘토 리스트 조회
+		String[] categoryArr = null;
+		try {
+			if(mfv != null) {
+				categoryArr = mfv.getCategory().split(",");
+			}
+			mfv.setCategoryArr(categoryArr);
+		} catch (Exception e) {
+			System.out.println("배열비엇슴");
+		}
+		
+		
 		List<MentorVo> mentorList = new ArrayList<MentorVo>();
+
+		mentorList = ms.selectMentorList(mfv);
 		
-		mentorList = ms.selectMentorList();
 		model.addAttribute("mentorList", mentorList);
 		
 		System.out.println(mentorList);

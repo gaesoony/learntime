@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.learntime.app.mertoring.vo.ApplicationVo;
 import com.learntime.app.mertoring.vo.MentorVo;
+import com.learntime.app.mertoring.vo.MentoringFilterVo;
 import com.learntime.app.mertoring.vo.ReviewVo;
 import com.learntime.app.mertoring.vo.ScheduleVo;
 
@@ -29,7 +30,7 @@ public interface MentoringService {
 	public int registerSchedule(List<ScheduleVo> scheduleList);
 
 	//멘토 리스트 조회
-	public List<MentorVo> selectMentorList();
+	public List<MentorVo> selectMentorList(MentoringFilterVo mfv);
 
 	//멘토링 상세조회
 	public MentorVo selectMentorDetail(String no);
@@ -47,7 +48,7 @@ public interface MentoringService {
 	public List<ApplicationVo> selectApplication(String userNo);
 
 	//멘토링 리뷰 조회
-	public List<ReviewVo> selectReviewList();
+	public List<ReviewVo> selectReviewList(MentoringFilterVo mfv);
 
 	//멘토링 요청 조회
 	public List<ApplicationVo> selectRequestList(String myNo);

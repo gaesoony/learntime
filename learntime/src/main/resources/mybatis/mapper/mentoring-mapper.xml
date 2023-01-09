@@ -97,7 +97,18 @@
 		            GROUP BY MENTOR_NO) STAR
 		ON MT.NO = STAR.MENTOR_NO
 		WHERE MT.OPEN_YN = 'Y'
-		ORDER BY MT.NO DESC
+		<if test ="search != null">AND MT.TITLE LIKE '%${search}%'</if>
+		<if test ="categoryArr != null">
+			AND (MT.CATE_NO = 100 
+			<foreach collection = "categoryArr" item="item" index="index" separator=" ">
+			OR MT.CATE_NO = ${item} 
+			</foreach>
+			)
+		</if>
+		<if test ='sorting == null'>ORDER BY MT.NO DESC</if>
+		<if test ='sorting != null and sorting.equals("1")'>ORDER BY MT.ENROLL_DATE DESC</if>
+		<if test ='sorting != null and sorting.equals("2")'>ORDER BY STAR DESC</if>
+		
 	</select>
 	
 	<!-- 멘토링 상세조회 -->
@@ -162,7 +173,7 @@
 		ON MT.NO = MP.MENTOR_NO
 		JOIN "MEMBER" M
 		ON M.NO = MT.WRITER
-		JOIN MENTORING_REVIEW MR
+		LEFT JOIN MENTORING_REVIEW MR
 		ON MR.PAYMENT_NO = MP.NO
 		WHERE M_NO = #{userNo}
 		ORDER BY MP.NO DESC
@@ -170,16 +181,33 @@
 	
 	<!-- 리뷰 조회 -->
 	<select id="selectReview" resultType = "com.learntime.app.mertoring.vo.ReviewVo">
-		SELECT MR.*, MB.NICK AS WRITER_NICK, MB.IMG_PATH AS WRITER_IMG, MT.TITLE AS MENTORING_TITLE, MT.NICK AS MENTOR_NICK
+		SELECT MR.*, MB.NICK AS WRITER_NICK, MB.IMG_PATH AS WRITER_IMG, MT.TITLE AS MENTORING_TITLE, MT.NICK AS MENTOR_NICK, MT.CATE_NO
 		FROM MENTORING_REVIEW MR
 		JOIN MEMBER MB
 		ON MB.NO = MR.WRITER
-		JOIN    (SELECT MT.NO, MT.TITLE, MB.NICK 
+		JOIN    (SELECT MT.NO, MT.TITLE, MB.NICK, MT.CATE_NO 
 		        FROM MENTOR MT 
 		        JOIN MEMBER MB 
 		        ON MB.NO = MT.WRITER) MT
 		ON MR.MENTOR_NO = MT.NO
-		ORDER BY MR.NO DESC
+		<if test = "search != null">WHERE MR.CONTENT LIKE '%${search}%' OR MT.TITLE LIKE '%${search}%'</if>
+		<if test = "categoryArr != null and search != null">
+			AND (MT.CATE_NO = 100 
+			<foreach collection = "categoryArr" item="item" index="index" separator=" ">
+			OR MT.CATE_NO = ${item} 
+			</foreach>
+			)
+		</if>
+		<if test = "categoryArr != null and search == null">
+			WHERE (MT.CATE_NO = 100 
+			<foreach collection = "categoryArr" item="item" index="index" separator=" ">
+			OR MT.CATE_NO = ${item} 
+			</foreach>
+			)
+		</if>
+		<if test ='sorting == null'>ORDER BY MR.NO DESC</if>
+		<if test ='sorting != null and sorting.equals("1")'>ORDER BY MR.ENROLL_DATE DESC</if>
+		<if test ='sorting != null and sorting.equals("2")'>ORDER BY STAR DESC</if>
 	</select>
 	
 	<!-- 나에게 온 멘토링 요청 조회 -->

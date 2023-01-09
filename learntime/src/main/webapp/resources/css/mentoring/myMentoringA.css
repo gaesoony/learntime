@@ -314,3 +314,7 @@ font-variation-settings:
 .star-icon:not(:first-child){
     margin-left: -10px;
 }
+
+.hidden{
+    display: none;
+}

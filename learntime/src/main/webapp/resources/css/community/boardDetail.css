@@ -51,10 +51,17 @@
     height: 50px;
 }
 #writer-profile{
-    height: 45px;
-    width: 45px;
+    height: 37px;
+    width: 37px;
     border-radius: 45px;
     background-color: #5ecc80;
+}
+#writer-profile>img{
+    height: 100%;
+    width: 100%;
+    border-radius: 45px;
+    object-fit: cover;
+    cursor: pointer;
 }
 #writer-date{
     display: flex;

@@ -5,8 +5,10 @@ import lombok.Data;
 @Data
 public class MentoringFilterVo {
 	
+	private String[] categoryArr;
+	private String search;
 	private String category;
-	private String sort;
+	private String sorting;
 	private String page;
 
 }
