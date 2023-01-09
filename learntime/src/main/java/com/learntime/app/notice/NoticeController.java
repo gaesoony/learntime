@@ -127,9 +127,11 @@ public class NoticeController {
 			int nNo = vo.getNo();
 			ncv.setNNo(nNo);
 			ncv.setWriter(writer);
+			System.out.println("컨트롤러 nNo:"+nNo);
+			System.out.println("컨트롤러 writer:"+writer);
 			
 			int result = ns.noticeCmtWrite(ncv);
-			
+			System.out.println("컨트롤러 result:"+result);
 			if(result == 1) {
 				return "redirect:/notice/noticeDetail?no="+vo.getNo();
 			}else {

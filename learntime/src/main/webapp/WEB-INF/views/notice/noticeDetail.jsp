@@ -52,7 +52,7 @@
 	            <div class="leave-comment">
 	                <div class="div-box-a">
 	                    <div class="div-box-b">
-	                        <div class="profile-box">${ncv.writer}</div>
+	                        <div class="profile-box">${ncv.writer} 님</div>
 	                        <div class="div-box-d"><textarea class="reply-textarea" ></textarea> </div>
 	                    </div>
 	                    <form action="/app/notice/noticeDetail" method="post">
@@ -66,7 +66,7 @@
 	                <div class="gathering-boxes">
 	                    <div class="comment-a">
 	                        <div class="profile-etc">
-	                            <div class="profile-id" name="writer">${ncv.writer}</div>
+	                            <div class="profile-id" name="writer">${ncv.writer}님</div>
 	                        </div>
 	                        <div class="leaved-comment"name="content">${ncv.content}</div>
 	                    </div>
