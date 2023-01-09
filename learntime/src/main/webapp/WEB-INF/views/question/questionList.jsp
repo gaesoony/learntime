@@ -52,12 +52,6 @@
                     <a href="/app/question/questionList?p=1&cateNo=7"><div class="cate" value="7" name="cateNo">스킨샵</div></a>
                 </div>
             </div>
-            
-            <%
-            	System.out.println("화면에 넘어온 리스트 ~~~~~");
-            	System.out.println(request.getAttribute("list"));
-            %>
-            
             <div class="list-question">
                 <c:forEach var="vo" items="${list}" >
                     <div class="questionList">
@@ -74,7 +68,7 @@
 	  	<c:if test="${pv.startPage != 1}">
              <div class="paging-btn" id="prev-btn">
                <a
-                 href="${path}/admin/question/questionList?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+                 href="${path}/admin/question/questionList?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
                  >이전</a
                >
              </div>
@@ -82,7 +76,7 @@
            <c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
              <div class="paging-btn" id="${i}">
                <a
-                 href="${path}/admin/question/questionList?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+                 href="${path}/admin/question/questionList?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
                  >${i}</a
                >
              </div>
@@ -90,7 +84,7 @@
            <c:if test="${pv.endPage < pv.maxPage}">
              <div class="paging-btn" id="next-btn">
                <a
-                 href="${path}/admin/question/questionList?cateNo=${cateNo}&p=${pv.startPage - 1}&keyword=${keyword}&category=${category}"
+                 href="${path}/admin/question/questionList?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
                  >다음</a
                >
              </div>

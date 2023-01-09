@@ -15,7 +15,7 @@
             <div class="mentoring-title">
                 <div class="empty"></div>
                 <div class="mentoring-title-icon">선배와 동료들에게<span id="color-change">&nbsp;조언</span>을 구해보세요<img width="35px" height="35px" src="https://cdn-icons-png.flaticon.com/128/7991/7991313.png"></div>
-                <div class="mentoring-content-more">더보기<img width="10px" height="10px" src="https://cdn-icons-png.flaticon.com/128/271/271228.png"></div>
+                <a href="/app/mentoring/mentorList"><div class="mentoring-content-more">더보기<img width="10px" height="10px" src="https://cdn-icons-png.flaticon.com/128/271/271228.png"></div></a>
             </div>
             <div class="mentoring-content">
                 <div class="slice-as-three">
@@ -25,14 +25,14 @@
                                 <c:forEach var="slide" begin="1" end="12" >
                                     <li class="slide">
                                         <div class="slide-box">
-                                            <div id="mentoring-ad1">서버개발자 취준생을 위한<br>멘토링/고민상담/이력서 첨삭</div>
-                                            <div id="mentoring-ad2">비바리퍼블리카(토스)에서 근무하고<br>있는 4년차 서버개발자입니다.</div>
+                                            <div id="mentoring-ad1">${mentorList.intro}</div>
+                                            <div id="mentoring-ad2">${mentorList.title}</div>
                                             <div id="mentoring-ad3">
                                                 <div id="border-box1">
                                                     <div id="inner-box1"></div>
                                                 </div>
                                                 <div id="border-box2">
-                                                    <div id="inner-box2">sunny</div>
+                                                    <div id="inner-box2">${mentorList.name}</div>
                                                 </div>
                                                 <div id="border-box3">
                                                     <div id="inner-box3"></div>
@@ -41,7 +41,7 @@
                                                     <div id="inner-box4"></div>
                                                 </div>
                                             </div>
-                                            <div id="mentoring-ad4">직무   백엔드/서버 개발자<br>경력   미들(4~8년)</div>
+                                            <div id="mentoring-ad4">직무   백엔드/서버 개발자<br>경력   ${mentorList.career}</div>
                                         </div>
                                     </li>
                                 </c:forEach>
@@ -55,7 +55,7 @@
             <div class="studying-title">
                 <div class="empty"></div>
                 <div class="studying-title-icon"><img src="/app/resources/img/main/LEARNER.png"></div>
-                <div class="studying-content-more">더보기<img width="10px" height="10px" src="https://cdn-icons-png.flaticon.com/128/271/271228.png"></div>
+                <a href="/app/makegrass/list"><div class="studying-content-more">더보기<img width="10px" height="10px" src="https://cdn-icons-png.flaticon.com/128/271/271228.png"></div></a>
             </div>
             <div class="studying-content">
                 <div class="slice-as-three-sec">
@@ -88,11 +88,11 @@
                             <div class="notice-title">공지사항</div>
                             <a href="/app/notice/noticeList?p=1&cateNo=0"><div class="arrow"><img width="50px" height="50px" src="https://cdn-icons-png.flaticon.com/128/271/271228.png"></div></a>
                         </div>
-                        <div class="list" id="list-one">º 런타임에서 알려드립니다.</div>
-                        <div class="list" id="list-two">º 런타임 이용약관 / 개인정보 처리방침 안내</div>
-                        <div class="list" id="list-three">º 멘토링 신청 기능 업데이트 안내</div>
-                        <div class="list" id="list-four">º 스킨샵내 추가기능 업데이트 안내</div>
-                        <div class="list" id="list-five">º 서비스 장애 발생 공지</div>
+                        <a href="/app/notice/noticeList?p=1&cateNo=0&no=1"><div class="list" id="list-one">º 개인정보 처리방침 개정 안내</div></a>
+                        <a href="/app/notice/noticeList?p=1&cateNo=0&no=2"><div class="list" id="list-two">º 스터디 기능 업데이트</div></a>
+                        <a href="/app/notice/noticeList?p=1&cateNo=0&no=3"><div class="list" id="list-three">º 공부인증 에러 처리 안내</div></a>
+                        <a href="/app/notice/noticeList?p=1&cateNo=0&no=4"><div class="list" id="list-four">º 큐엔에이 게시판 업데이트</div></a>
+                        <a href="/app/notice/noticeList?p=1&cateNo=0&no=5"><div class="list" id="list-five">º 멘토링 기능 업데이트</div></a>
                     </div>
                 </div>
                 <div class="faq-per-person">

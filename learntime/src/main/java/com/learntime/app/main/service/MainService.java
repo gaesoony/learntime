@@ -12,5 +12,7 @@ public interface MainService {
 
 	//스터디 리스트 조회
 	public List<Map<String, String>> selectGroupList();
+	
+	
 
 }

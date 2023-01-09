@@ -31,5 +31,6 @@ public class MainServiceImpl implements MainService{
 		List<Map<String, String>> result = dao.selectGroupList(sst);
 		return result;
 	}
+	
 
 }

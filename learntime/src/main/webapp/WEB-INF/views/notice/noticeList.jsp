@@ -55,10 +55,10 @@
                     <div class="notice-group">
                         <c:forEach var="list" items="${list}" varStatus="status">
                         	<div class="gathering-divs">
-	                        	<c:if test="${status.index > 2 }">
+                        		<c:if test="${status.index ==3}">
 	                        	 	<div class="notice-white"></a>
 	                        	</c:if>
-	                        	<c:if test="${status.index <= 2 }">
+	                        	<c:if test="${status.index == 2 }">
 	                            	<div class="notice-green"></a>
 	                        	</c:if>
 	                                <div class="admin-id-etc">
@@ -83,7 +83,7 @@
 								<c:if test="${pv.startPage != 1}">
 					                <div class="paging-btn" id="prev-btn">
 					                  <a
-					                    href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
+					                    href="${path}/notice/noticeList?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
 					                    >이전</a
 					                  >
 					                </div>
@@ -91,7 +91,7 @@
 					              <c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
 					                <div class="paging-btn" id="${i}">
 					                  <a
-					                    href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
+					                    href="${path}/notice/noticeList?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
 					                    >${i}</a
 					                  >
 					                </div>
@@ -99,7 +99,7 @@
 					            <c:if test="${pv.endPage < pv.maxPage}">
 					              <div class="paging-btn" id="next-btn">
 					                <a
-					                  href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
+					                  href="${path}/notice/noticeList?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
 					                  >다음</a
 					                >
 					              </div>
