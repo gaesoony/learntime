@@ -17,17 +17,17 @@ public interface AdminNoticeService {
 
 	public int updateHit(NoticeVo vo);
 
-	public List<NoticeVo> selectNoticeListAll(Map map);
+	public List<Integer> selectNoticeListAll(Map map);
 
-	public List<NoticeVo> selectNoticeList(Map map);
+	public List<Integer> selectNoticeList(Map map);
 
 	public NoticeVo selectOne(NoticeVo vo);
 
-	public int activate(NoticeVo vo);
+	public int activate(List<Integer> list);
 
-	public int deactivate(NoticeVo vo);
+	public int deactivate(List<Integer> list);
 
-	public int deleteOne(NoticeVo vo);
+	public int deleteOne(List<Integer> list);
 
 	
 

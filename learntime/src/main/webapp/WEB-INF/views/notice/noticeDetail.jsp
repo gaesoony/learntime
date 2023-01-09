@@ -46,7 +46,6 @@
         </div>
         <div class="notice-content">${vo.content}</div>
     </div>
-    <form action="/app/notice/noticeDetail" method="post">
     	<div class="notice-comments">
 	        <div class="reply-section">
 	            <div class="reply-num" name="cmt">${vo.cmt}개의 댓글</div>
@@ -56,9 +55,11 @@
 	                        <div class="profile-box">${ncv.writer}</div>
 	                        <div class="div-box-d"><textarea class="reply-textarea" ></textarea> </div>
 	                    </div>
-	                    <div class="div-box-c">
-	                        <div class="input-box"><input type="button" value="댓글쓰기" class="writeComment"></div>
-	                    </div>
+	                    <form action="/app/notice/noticeDetail" method="post">
+		                    <div class="div-box-c">
+		                        <input type="button" value="댓글쓰기" class="writeComment">
+		                    </div>
+	                    </form>
 	                </div>
 	            </div>
 	            <div class="comment-box">
@@ -73,8 +74,7 @@
 	            </div>
 	        </div>
     	</div>
-    </form>
- </div>
+ 	</div>
 </div>
 
 
@@ -85,7 +85,7 @@
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
 
 <script>
-$('.writeComment').click(function(){
+/* $('.writeComment').click(function(){
 
     const no = ${vo.no};
     const writer = ${vo.writer};
@@ -112,7 +112,7 @@ $('.writeComment').click(function(){
     
 });
 
-    
+     */
 
 </script>
 </body>

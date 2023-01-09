@@ -206,6 +206,8 @@
         </div>
         <div class="main-admin-q">
 	        <form action="/app/admin/question/qListAd?p=1" method="get">
+	        	<input type="hidden" value="${cateNo}" name="cateNo">
+				<input type="hidden" value="${p}" name="p">
 	        	<div class="line-on-the-top">
 	                <div class="box-for-line-a">
 	                    <div class="half-box-a"></div>
@@ -224,7 +226,7 @@
 	                        <div class="gathering-divs-ad">
 	                            <div class="check-Btn"><input type="checkbox" id="checkBtn" value="${list.no}"></div>
 	                            <div class="category-faq-ad" name="name">${list.cateName}</div>
-	                            <a href="app/admin/question/qDetailListAdmin?no=${list.no}"><div class="title-faq-ad" name="title">${list.title}</div></a>
+	                            <a href="/app/admin/question/qDetailListAdmin?no=${list.no}"><div class="title-faq-ad" name="title">${list.title}</div></a>
 	                            <div class="nickname-faq-ad" name="writer">${list.writer}</div>
 	                            <div class="enrollDate-faq-ad" name="enrollDate">${list.enrollDate}</div>
 	                            <div class="deleteBtn-faq-ad"><input type="button" value="삭제" id="deleteAd" class="del"></div>

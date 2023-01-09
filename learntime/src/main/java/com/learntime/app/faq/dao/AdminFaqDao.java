@@ -32,7 +32,7 @@ public class AdminFaqDao {
 		return sst.selectOne("adminFaqMapper.selectOne",vo);
 	}
 
-	public int deleteOne(SqlSessionTemplate sst, List<NoticeVo> list) {
+	public int deleteOne(SqlSessionTemplate sst, List<Integer> list) {
 		
 		int count = 0;
 		for(int i = 0; i<list.size(); i++) {

@@ -11,10 +11,12 @@
 </head>
 <body>
     <%@ include file = "/WEB-INF/views/common/header.jsp" %>
-<form action="/app/notice/noticeList" method="get">
-	<input type="hidden" value="${cateNo}" name="cateNo">
-	<input type="hidden" value="${p}" name="p">
+    
+
 	<div class="main-notice">
+		<form action="/app/notice/noticeList" method="get">
+		<input type="hidden" value="${cateNo}" name="cateNo">
+		<input type="hidden" value="${p}" name="p">
         <div class="banner-notice">
             <div class="banner-dark">
                 <div class="phrases-banner">
@@ -75,41 +77,41 @@
                         	</c:forEach>
                         </div>
                     </div>
+                    <div class="page-notice">
+					   	<div class="page-question">
+					  		<div class="page-faq">
+								<c:if test="${pv.startPage != 1}">
+					                <div class="paging-btn" id="prev-btn">
+					                  <a
+					                    href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
+					                    >이전</a
+					                  >
+					                </div>
+					            </c:if>
+					              <c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
+					                <div class="paging-btn" id="${i}">
+					                  <a
+					                    href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
+					                    >${i}</a
+					                  >
+					                </div>
+					              </c:forEach>
+					            <c:if test="${pv.endPage < pv.maxPage}">
+					              <div class="paging-btn" id="next-btn">
+					                <a
+					                  href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
+					                  >다음</a
+					                >
+					              </div>
+					            </c:if>
+						   </div>
+					   </div>
+					</div>
                 </div>
             </div>
-        </div>
-    </div>
-</form>
-<div class="page-notice">
-   	<div class="page-question">
-  		<div class="page-faq">
-			<c:if test="${pv.startPage != 1}">
-                <div class="paging-btn" id="prev-btn">
-                  <a
-                    href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
-                    >이전</a
-                  >
-                </div>
-            </c:if>
-              <c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
-                <div class="paging-btn" id="${i}">
-                  <a
-                    href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
-                    >${i}</a
-                  >
-                </div>
-              </c:forEach>
-            <c:if test="${pv.endPage < pv.maxPage}">
-              <div class="paging-btn" id="next-btn">
-                <a
-                  href="${path}/admin/faq/faqListAd?cateNo=${cateNo}&p=${i}&keyword=${keyword}&category=${category}"
-                  >다음</a
-                >
-              </div>
-            </c:if>
-	   </div>
-   </div>
- </div>
+        </form>
+     </div>
+   
 
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>  
 

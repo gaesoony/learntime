@@ -64,17 +64,14 @@ public class AdminFaqController {
 	@ResponseBody
 	public String faqListAd(NoticeVo vo,String deleteList,String del, @RequestParam(value="valueArr[]") List<Integer> valueArr) {
 		
-		int no =0;
-		
-		List<NoticeVo> list = new ArrayList<NoticeVo>();
+		List<Integer> list = new ArrayList<Integer>();
 		for(int i = 0; i<valueArr.size(); i++) {
-			no = valueArr.get(i);
-			vo.setNo(no);
-			
+			list.add(valueArr.get(i));
 			
 		}
 		
 		int result = 0;
+		
 		
 		if("삭제".equals(deleteList)) {
 			result = afs.deleteOne(list);

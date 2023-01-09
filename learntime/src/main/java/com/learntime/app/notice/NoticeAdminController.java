@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.learntime.app.admin.vo.ManagerVo;
 import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.notice.service.AdminNoticeService;
 import com.learntime.app.notice.vo.NoticeVo;
@@ -33,7 +34,7 @@ public class NoticeAdminController {
 	// 공지사항 리스트 화면
 		@GetMapping("noticeListAdmin")
 		public String noticeListAdmin(NoticeVo vo, Model m,PageVo pv) {
-			
+			System.out.println("!ㅇcontroller 호출");
 
 			int listCount = ans.selectCount();
 			int currentPage = (int)pv.getP();
@@ -51,7 +52,7 @@ public class NoticeAdminController {
 			map.put("pv",pv);
 			
 
-			List<NoticeVo> list= null;
+			List<Integer> list= null;
 			if(vo.getCateNo()==0 )  {
 				
 				list= ans.selectNoticeListAll(map);
@@ -78,36 +79,24 @@ public class NoticeAdminController {
 		
 		@PostMapping("noticeListAdmin")
 		@ResponseBody
-		public String noticeListAdmin(HttpServletRequest req,NoticeVo vo,String activate,@RequestParam(value="valueArr[]") List<Integer> valueArr) {
+		public String noticeListAdmin(HttpServletRequest req,NoticeVo vo,String activate,String deactivate,String deleteList, @RequestParam(value="valueArr[]") List<Integer> valueArr) {
 			
-//			String activate = req.getParameter("activate");
-			String deactivate = req.getParameter("deactivate");
-			String deleteList = req.getParameter("deleteList");
-//			String[] Arr = req.getParameterValues("valueArr");
-			int no =0;
-			
-			List<NoticeVo> list = new ArrayList<NoticeVo>();
+			List<Integer> list = new ArrayList<Integer>();
 			for(int i = 0; i<valueArr.size(); i++) {
-				no = valueArr.get(i);
-				vo.setNo(no);
-				
-				
+				list.add(valueArr.get(i));
 			}
-			System.out.println(valueArr);
-			
-//			Map<String,Object> map = new HashMap<String,Object>();
-//			map.put("vo",vo);
-//			map.put("valueArr",valueArr);
+			System.out.println(list);
 			
 			int result = 0;
 			int result2 = 0;
 			int result3 = 0;
 			if("활성화".equals(activate)) {
-				result = ans.activate(vo);
+				result = ans.activate(list);
 			}else if("비활성화".equals(deactivate)) {
-				result2 = ans.deactivate(vo);
+				result2 = ans.deactivate(list);
 			}else if ("삭제".equals(deleteList)) {
-				result3 = ans.deleteOne(vo);
+				System.out.println("cnt list:"+list);
+				result3 = ans.deleteOne(list);
 			}
 			
 			
@@ -120,12 +109,12 @@ public class NoticeAdminController {
 		@GetMapping("noticeDetailAdmin")
 		public String noticeDetailAdmin(NoticeVo vo, HttpSession session, Model m) {
 			
-			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember"); 
+			ManagerVo loginManager = (ManagerVo) session.getAttribute("loginManager"); 
 			int cmtCnt = ans.cmtCnt();
 			int hit = ans.updateHit(vo);
 			vo.setHit(hit);
 			vo.setCmt(cmtCnt);
-			if(loginMember !=null) {
+			if(loginManager !=null) {
 				vo = ans.selectOne(vo);
 				m.addAttribute("vo",vo);
 				return "admin/notice/noticeDetailAdmin";
