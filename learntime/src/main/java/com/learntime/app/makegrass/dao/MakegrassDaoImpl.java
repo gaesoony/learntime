@@ -73,4 +73,10 @@ public class MakegrassDaoImpl implements MakegrassDao {
 		return sst.selectList("makegrassMapper.makegrassLankList");
 	}
 
+	//리스트 내 팔로잉 리스트
+	@Override
+	public List<Map<String, Object>> followingList(SqlSessionTemplate sst, String no) {
+		return sst.selectList("makegrassMapper.followingList", no);
+	}
+
 }

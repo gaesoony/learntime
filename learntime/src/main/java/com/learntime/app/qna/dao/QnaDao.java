@@ -39,7 +39,13 @@ public interface QnaDao {
 
 	public List<Map<String, Object>> commentList(SqlSessionTemplate sst, String agno);
 
-	public int select(SqlSessionTemplate sst, String cno);
+	public int select(SqlSessionTemplate sst, String no);
+
+	public int scrap(SqlSessionTemplate sst, QnaTypeVo qvo);
+
+	public String selectLikeHate(SqlSessionTemplate sst, Map map);
+
+	public String selectScrap(SqlSessionTemplate sst, Map map);
 
 
 }

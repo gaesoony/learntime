@@ -10,5 +10,5 @@ public class QnaTypeVo {
 	private String order;
 	private String qno;
 	private String mno;
-	private String cmtNo;
+	private String cno;
 }

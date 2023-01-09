@@ -99,6 +99,12 @@ public class QnaController {
 		
 		List<Map<String, Object>> answerList = service.answerList(map);
 		
+		Map<String, Object> etcList = null;
+		if(loginMember != null) {
+			etcList = service.selectEtcList(map);
+			model.addAttribute("etcList", etcList);
+		}
+		
 		model.addAttribute("qvo", qvo);
 		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("qnaDetail", qnaDetail);
@@ -161,22 +167,33 @@ public class QnaController {
 		System.out.println("컨트롤러에서 댓글 작성 : " + result);
 		
 		if(result == 1) {
-			return "redirect:/qna/detail?qno=" + qvo.getQno() + "&keyword=" + qvo.getKeyword() + "&type=" + qvo.getType() + "&order=" + qvo.getOrder();
+			return "redirect:/qna/detail?qno="+qvo.getQno()+"&keyword="+qvo.getKeyword()+"&type="+qvo.getType()+"&order="+qvo.getOrder();
 		}else {
 			return "common/errorPage";
 		}
 	}
 	
 	//상세조회 내 답변 채택 (DB)
-	@GetMapping("/select")
+	@GetMapping("/detail/select")
 	public String select(QnaTypeVo qvo, QnaAnswerVo avo) {
 		
-		String qno = qvo.getQno();
-		String cno = avo.getNo();
-		int result = service.select(cno);
+		String no = avo.getNo();
+		int result = service.select(no);
 		
 		if(result == 1) {
 			return "redirect:/qna/detail?qno=" + qvo.getQno() + "&keyword=" + qvo.getKeyword() + "&type=" + qvo.getType() + "&order=" + qvo.getOrder();
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+	//게시글 스크랩
+	@GetMapping("/detail/scrap")
+	public String scrap(QnaTypeVo qvo) {
+		int result = service.scrap(qvo);
+		
+		if(result == 1) {
+			return "redirect:/qna/detail?qno=" + qvo.getQno();
 		}else {
 			return "common/errorPage";
 		}

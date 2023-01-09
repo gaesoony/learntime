@@ -1,5 +1,6 @@
 package com.learntime.app.qna.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -98,7 +99,8 @@ public class QnaServiceImpl implements QnaService {
 	//댓글 작성
 	@Override
 	public int writeAnswer(Map map) {
-		return dao.writeAnswer(sst, map);
+		int result = dao.writeAnswer(sst, map);
+		return result;
 	}
 
 	//상세조회 내 댓글 리스트
@@ -123,9 +125,29 @@ public class QnaServiceImpl implements QnaService {
 		return answerList;
 	}
 
+	//답변 채택
 	@Override
-	public int select(String cno) {
-		return dao.select(sst, cno);
+	public int select(String no) {
+		return dao.select(sst, no);
+	}
+
+	//게시글 스크랩
+	@Override
+	public int scrap(QnaTypeVo qvo) {
+		return dao.scrap(sst, qvo);
+	}
+
+	//상세 조회 내 좋아요&싫어요&스크랩 조회
+	@Override
+	public Map<String, Object> selectEtcList(Map map) {
+		String likeHate = dao.selectLikeHate(sst, map);
+		String scrap = dao.selectScrap(sst, map);
+		
+		Map result = new HashMap();
+		result.put("likeHate", likeHate);
+		result.put("scrap", scrap);
+		
+		return result;
 	}
 
 }

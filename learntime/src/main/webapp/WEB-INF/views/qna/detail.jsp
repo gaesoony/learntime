@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+pageEncoding="UTF-8"%> <%@taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -45,7 +45,6 @@
         font-size: 20px;
         color: #989898;
         vertical-align: middle;
-        padding-right: 20px;
     }
     .enrollDate{
         font-size: 20px;
@@ -57,7 +56,7 @@
         font-size: 20px;
         color: #5ECC80;
         vertical-align: middle;
-        padding-right: 500px;
+        padding-right: 480px;
     }
     .thumbsup{
         font-size: 20px;
@@ -623,7 +622,10 @@
     <!-- 상세조회 메인 부분 -->
     <form action="${path}/qna/detail" method="post">
         <div class="main">
-        
+            
+            <input type="hidden" name="gno" value="${qnaDetail.NO}" />
+            <input type="hidden" name="mno" value="${loginMember.no}" />
+
             <div class="maintitle">
                 <div class="title">
                     <div class="title-start">Q.</div>
@@ -634,13 +636,36 @@
                 <table>
                     <tr>
                         <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필"></td>
-                        <td class="nick">${qnaDetail.WRITER}</td>
+                        <td class="nick">${qnaDetail.WRITER}&nbsp&nbsp</td>
                         <td class="enrollDate">${qnaDetail.ENROLL_DATE}</td>
                         <td class="heart"><i class="fa-solid fa-thumbs-up"></i> ${qnaDetail.LIKES}</td>
-                        <td class="thumbsup" id="thumbsup" onclick="changeColor5()"><i class="fa-regular fa-thumbs-up"></i></td>
-                        <td class="thumbsdown" id="thumbsdown" onclick="changeColor6()"><i class="fa-regular fa-thumbs-down"></i></td>
-                        <td class="bookmark" id="bookmark" onclick="changeColor7()"><i class="fa-regular fa-bookmark"></i></td>
 
+                        <!-- 게시글 좋아요 -->
+                        <c:if test="${loginMember == null && etcList.likeHate == null}">
+                            <td class="thumbsup" id="thumbsup" onclick="login();"><i class="fa-regular fa-thumbs-up"></i></td>
+                        </c:if>
+                        <c:if test="${loginMember != null}">
+                            <td class="thumbsup" id="thumbsup" onclick="location.href=''"><i class="fa-regular fa-thumbs-up"></i></td>
+                        </c:if>
+
+                        <!-- 게시글 싫어요 -->
+                        <c:if test="${loginMember != null && etcList.likeHate == 'L'}">
+                            <td class="thumbsdown" id="thumbsdown" onclick="location.href=''"><i class="fa-regular fa-thumbs-down"></i></td>
+                        </c:if>
+                        <c:if test="${loginMember == null}">
+                            <td class="thumbsdown" id="thumbsdown" onclick="login();"><i class="fa-regular fa-thumbs-down"></i></td>
+                        </c:if>
+                        
+                        <!-- 게시글 스크랩 -->
+                        <c:if test="${loginMember != null && etcList.scrap == null}">
+                            <input type="hidden" name="mno" value="${loginMember.no}">
+                            <td class="bookmark" id="bookmark" onclick="location.href='${path}/qna/detail/scrap?qno=${qnaDetail.NO}'"><i class="fa-regular fa-bookmark"></i></td>
+                        </c:if>
+                        <c:if test="${loginMember == null}">
+                            <td class="bookmark" id="bookmark" onclick="login();"><i class="fa-regular fa-bookmark"></i></td>
+                        </c:if>
+
+                        <!-- 게시글 수정 & 삭제 -->
                         <c:if test="${loginMember.nick == qnaDetail.WRITER}">
                             <td class="edit"><button type="button" class="edit-btn" onclick="location.href='${path}/qna/edit?qno=${qnaDetail.NO}&keyword=${vo.keyword}&type=${vo.type}&order=${vo.order}'">수정</button></td>
                             <td class="slash">/</td>
@@ -691,8 +716,13 @@
         </div>
         <div class="middle">
             <c:if test="${loginMember != null}">
-                <form action="${path}/qna/detail/writeAnswer" method="post">
-                    <div class="middlemain">
+                <div class="middlemain">
+                    <form action="${path}/qna/detail/writeAnswer" method="POST">
+                        <input type="hidden" name="qno" value="${qnaDetail.NO}">
+                        <input type="hidden" name="mno" value="${loginMember.no}">
+                        <input type="hidden" name="keyword" value="${qvo.keyword}">
+                        <input type="hidden" name="type" value="${qvo.type}">
+                        <input type="hidden" name="order" value="${qvo.order}">
                         <div><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
                         <div class="replyplz">${loginMember.nick}님, 답변해주세요!</div>
                         <div class="replyplz-1">모두에게 도움이 되는 답변의 주인공이 되어주세요:)</div>
@@ -700,14 +730,9 @@
                         <div class="input">
                             <textarea class="summernote" name="answer"></textarea>
                         </div>
-                        <input type="hidden" name="qno" value="${qnaDetail.NO}">
-                        <input type="hidden" name="mno" value="${loginMember.no}">
-                        <input type="hidden" name="keyword" value="${qvo.keyword}">
-                        <input type="hidden" name="type" value="${qvo.type}">
-                        <input type="hidden" name="order" value="${qvo.order}">
                         <input type="submit" class="replybtn" value="답변 등록"></input>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </c:if>
     
             <div class="end">
@@ -730,11 +755,7 @@
                         <div class="edit2"> / </div>
                         <div class="edit3"><input type="button" id="edit3" value="삭제"></div>
                         <c:if test="${map.SELECT_YN == 'N'}">
-                            <div class="reply-select-box"><input type="button" id="resply-select" onclick="location.href='${path}/qna/select?cno=${map.NO}'" value="/ 채택"></div>
-                        </c:if>
-
-                        <c:if test="${map.SELECT_YN == 'Y'}">
-                            <div class="reply-select-box"><input type="button" id="resply-select" onclick="location.href='${path}/qna/select?cno=${map.NO}'" value="/ 채택"></div>
+                            <div class="reply-select-box"><input type="button" id="resply-select" onclick="location.href='${path}/qna/detail/select?no=${map.NO}'" value="/ 채택"></div>
                         </c:if>
 
                     </c:if>
@@ -864,6 +885,67 @@
         }
         function changeColor7(){
             document.getElementById("bookmark").style.color = "#5ECC80";
+        }
+    </script>
+
+    <script>
+
+        //글쓰기 버튼 클릭 시, 로그인창
+        function login() {
+        $(".blackBG").addClass("show");
+        }
+
+        const searchTag = document.querySelector(".study-search-tag");
+
+        searchTag.addEventListener("keydown", function () {
+        if (window.event.keyCode == 13) {
+            makeTag(event);
+        }
+
+        if (window.event.keyCode == 8) {
+            deleteBeforeTag();
+        }
+        });
+
+        function makeTag(event) {
+        const value = event.target.value;
+        const str =
+            '<div class="relative cursor tag-div" onclick="deleteTag(event)">' +
+            '<input onclick="deleteTag2(event)" name="tag" type="text" readonly style="width:' +
+            (value.length + 2) * 9 +
+            "px" +
+            ';" value="' +
+            value +
+            '" class="tag-btn cursor" /> ' +
+            '<i class="fa-solid fa-xmark" onclick="deleteTag2(event)"></i>' +
+            "</div>";
+
+        const tagList = document.querySelector(".tag-list");
+        tagList.innerHTML += str;
+
+        event.target.value = "";
+        }
+
+        function resetTag() {
+        const tagList = document.querySelector(".tag-list");
+        tagList.textContent = "";
+        form.submit();
+        }
+
+        function deleteTag(e) {
+        e.target.remove();
+        form.submit();
+        }
+
+        function deleteTag2(e) {
+        e.target.parentNode.remove();
+        form.submit();
+        }
+
+        function deleteBeforeTag() {
+        const lastTag = document.querySelector(".tag-list div:last-child");
+        lastTag.remove();
+        form.submit();
         }
     </script>
 

@@ -41,7 +41,7 @@
         margin-right: 10px;
     }
     .profile{
-        width: 15px;
+        width: 10px;
         margin-left: 17px;
         margin-top: 15px;
         margin-right: 10px;
@@ -53,16 +53,17 @@
         margin-right: 5px;
     }
     .usernick{
-        font-size: 14px;
+        font-size: 13px;
         margin-top: 20px;
         margin-right: 50px;
         float: left;
     }
     .usernum{
         width: 2vw;
-        margin-left: 155px;
+        margin-left: 147px;
         padding-top: 20px;
         margin-bottom: 10px;
+        font-size: 14px;
     }
     .mainbox{
         margin-left: 70px;
@@ -95,7 +96,6 @@
         font-size: 18px;
         color: #989898;
         vertical-align: middle;
-        padding-right: 20px;
     }
     .enrollDate{
         font-size: 18px;
@@ -107,7 +107,7 @@
         font-size: 18px;
         color: #5ECC80;
         vertical-align: middle;
-        padding-right: 500px;
+        padding-right: 480px;
     }
     .thumbsup{
         font-size: 20px;
@@ -673,7 +673,7 @@
                     <table>
                         <tr>
                             <td><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></td>
-                            <td class="nick">${makeDetail.WRITER}</td>
+                            <td class="nick">${makeDetail.WRITER}&nbsp&nbsp</td>
                             <td class="enrollDate">${makeDetail.ENROLL_DATE}</td>
                             <td class="heart"><i class="fa-solid fa-thumbs-up"></i> ${makeDetail.LIKES}</td>
                             <td class="thumbsup"><i class="fa-regular fa-thumbs-up"></i></td>
