@@ -31,6 +31,8 @@ public interface MakegrassDao {
 
 	public List<Map<String, Object>> makegrassLankList(SqlSessionTemplate sst);
 
+	public List<Map<String, Object>> followingList(SqlSessionTemplate sst, String no);
+
 	
 
 }

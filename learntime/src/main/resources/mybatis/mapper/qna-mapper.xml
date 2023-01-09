@@ -95,7 +95,7 @@
 	<update id="updateHit">
 		UPDATE KNOWLEDGE_QUESTION SET
 		HIT = HIT + 1
-		WHERE NO = #{no}
+		WHERE NO = #{qno}
 	</update>
 	
 	<update id="delete">
@@ -134,12 +134,26 @@
 	</select>
 	
 	<update id="selectReply">
-		UPDATE KNOWLEDGE_ANSWER
-		<if test="selectYn == 'N'">SET SELECT_YN = 'Y'</if>
-		<if test="selectYn == 'Y'">SET SELECT_YN = 'N'</if>
-		WHERE NO = #{cno} AND DEPTH = '0'
-		
+		UPDATE KNOWLEDGE_ANSWER SET
+		SELECT_YN = 'Y'	WHERE NO = #{no} AND DEPTH = '0'
 	</update>
+	
+	<insert id="scrap">
+		INSERT INTO KNOWLEDGE_SCRAP
+		VALUES (#{qno}, #{mno})
+	</insert>
+	
+	<select id="selectLikeHate" resultType="String">
+		SELECT STATUS FROM KNOWLEDGE_LIKE_HATE
+		WHERE NO = #{qno}
+		AND M_NO = #{mno}
+	</select>
+	
+	<select id="selectScrap" resultType="String">
+		SELECT Q_NO, M_NO FROM KNOWLEDGE_SCRAP
+		WHERE Q_NO = #{qno}
+		AND M_NO = #{mno}
+	</select>
 	
 	
 </mapper>

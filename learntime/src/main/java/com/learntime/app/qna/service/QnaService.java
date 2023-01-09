@@ -34,6 +34,10 @@ public interface QnaService {
 	public List<Map<String, Object>> answerList(Map map);
 
 	//상세조회 내 답변 채택
-	public int select(String cno);
+	public int select(String no);
+
+	public int scrap(QnaTypeVo qvo);
+
+	public Map<String, Object> selectEtcList(Map map);
 	
 }

@@ -27,13 +27,21 @@ public class MakegrassController {
 	
 	//잔디심기 목록 조회 (화면+DB)
 	@GetMapping("/list")
-	public String list(Model model, MakegrassVo vo) {
+	public String list(Model model, MakegrassVo vo, HttpSession session) {
 		
 		List<Map<String, Object>> makegrassList = service.selectList(vo);
 		model.addAttribute("makegrassList", makegrassList);
 		
 		List<Map<String, Object>> makegrassLankList = service.selectLankList();
 		model.addAttribute("makegrassLankList", makegrassLankList);
+		
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		if(loginMember != null) {
+			List<Map<String, Object>> followingList = service.followingList(loginMember.getNo());
+			model.addAttribute("loginMember", loginMember);
+		}else {
+			model.addAttribute("loginMember", null);
+		}
 		
 		return "makegrass/list";
 	}

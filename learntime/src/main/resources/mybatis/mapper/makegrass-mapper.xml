@@ -81,4 +81,10 @@
 		WHERE NO = #{no}
 	</update>
 	
+	<select id="followingList" resultType="map">
+		SELECT F.NO, M.NICK AS FOLLOWING_NO, F.FOLLOWER_NO FROM FOLLOW F
+		JOIN MEMBER M ON F.FOLLOWING_NO = M.NO
+		WHERE F.FOLLOWER_NO = #{no}
+	</select>
+	
 </mapper>

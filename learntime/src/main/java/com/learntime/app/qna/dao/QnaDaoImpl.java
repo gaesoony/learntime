@@ -94,8 +94,26 @@ public class QnaDaoImpl implements QnaDao {
 
 	//상세조회 내 답변 채택
 	@Override
-	public int select(SqlSessionTemplate sst, String cno) {
-		return sst.update("qnaMapper.selectReply", cno);
+	public int select(SqlSessionTemplate sst, String no) {
+		return sst.update("qnaMapper.selectReply", no);
+	}
+
+	//게시글 스크랩
+	@Override
+	public int scrap(SqlSessionTemplate sst, QnaTypeVo qvo) {
+		return sst.insert("qnaMapper.scrap", qvo);
+	}
+
+	//상세조회 내 좋아요&싫어요 조회
+	@Override
+	public String selectLikeHate(SqlSessionTemplate sst, Map map) {
+		return sst.selectOne("qnaMapper.selectLikeHate", map);
+	}
+
+	//상세조회 내 스크랩 조회
+	@Override
+	public String selectScrap(SqlSessionTemplate sst, Map map) {
+		return sst.selectOne("qnaMapper.selectScrap", map);
 	}
 
 }

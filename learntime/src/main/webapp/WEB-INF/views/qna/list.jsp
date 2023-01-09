@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+pageEncoding="UTF-8"%> <%@taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -37,7 +37,7 @@
         width: 190px;
         height: 310px;
         padding: 20px;
-        margin-top: 45px;
+        margin-top: 75px;
         background-color: white;
         border: 1px solid #9D9D9D;
         border-radius: 10px;

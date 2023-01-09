@@ -88,4 +88,11 @@ public class MakegrassServiceImpl implements MakegrassService {
 		return dao.makegrassLankList(sst);
 	}
 
+	//리스트 내 팔로잉 리스트
+	@Override
+	public List<Map<String, Object>> followingList(String no) {
+		List<Map<String, Object>> followingList = dao.followingList(sst, no);
+		return followingList;
+	}
+
 }

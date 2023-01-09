@@ -26,4 +26,6 @@ public interface MakegrassService {
 
 	public List<Map<String, Object>> selectLankList();
 
+	public List<Map<String, Object>> followingList(String no);
+
 }
