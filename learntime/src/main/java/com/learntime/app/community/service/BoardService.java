@@ -56,7 +56,7 @@ public interface BoardService {
 	public int modify(BoardVo vo);
 
 	//글 삭제
-	public int delete(BoardVo vo);
+	public int delete(String bno);
 
 	//유저의 특정글 좋아요 조회
 	public LHSVo selectUserLike(LHSVo lhsVo);

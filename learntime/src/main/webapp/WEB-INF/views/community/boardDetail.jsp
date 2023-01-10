@@ -137,9 +137,33 @@
 			<div id="btns-box">
 				<c:if test="${sessionScope.loginMember.no eq bv.writer}">
 					<div id="modify-btn" onclick="location.href='/app/community/board/modify?bno=${bv.no}'">수정</div>
-					<div id="delete-btn" onclick="location.href='/app/community/board/delete?bno=${bv.no}'">삭제</div>
+					<div id="delete-btn">삭제</div>
 				</c:if>
 			</div>
+
+			<script>
+				$('#delete-btn').click(function() {
+					if(confirm('모든 정보가 삭제 됩니다.\n삭제하시겠습니까?')) {
+						deleteRequest();
+					}
+				});
+				function deleteRequest(){
+					$.ajax({
+						url: '/app/community/board/delete',
+						type: 'post',
+						data: {
+							'bno': '${bv.no}'
+						},
+						success: function(data) {
+							console.log(data);
+							if(data == 1){
+								alert('삭제가 완료되었습니다.');
+								location.href='/app/community/board/list';
+							}
+						}
+					});
+				}
+			</script>
 		</div>
 		<div id="comment-wrap">
 			<!-- 로그인이 되어 있지 않을때 댓글 작성 -->

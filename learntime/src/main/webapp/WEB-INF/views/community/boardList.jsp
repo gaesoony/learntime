@@ -107,11 +107,30 @@
                         <div class="writer-date">2020.12.12 12:20:42</div>
                     </div>
                     <div class="content-info">
-                        <span class="hit-number">조회수 1,150</span>
+                        <span class="hit-number">조회수 777</span>
                         <span class="material-symbols-rounded comment-icon">comment</span>
-                        <span class="comment-number">3</span>
+                        <span class="comment-number">12</span>
                         <span class="material-symbols-rounded thumbup-icon">thumb_up</span>
-                        <span class="like-number">40</span>
+                        <span class="like-number">65</span>
+                    </div>
+                </div>
+            </div>
+            <div class="board-content notice">
+                <div class="title-box">
+                    <span>[런타임]LearnTime 세미나 개발자가 알아야 할 기초상식</span>
+                </div>
+                <div class="content-info-box">
+                    <div class="writer-info">
+                        <div class="writer-profile"></div>
+                        <span class="writer-nick">LearnTime</span>
+                        <div class="writer-date">2018.12.12 12:20:42</div>
+                    </div>
+                    <div class="content-info">
+                        <span class="hit-number">조회수 11,150</span>
+                        <span class="material-symbols-rounded comment-icon">comment</span>
+                        <span class="comment-number">29</span>
+                        <span class="material-symbols-rounded thumbup-icon">thumb_up</span>
+                        <span class="like-number">140</span>
                     </div>
                 </div>
             </div>

@@ -29,8 +29,8 @@
 		
 	<update id="delete">
 		UPDATE FREE_BOARD SET 
-		DELETE_YN = 'N'
-		WHERE NO = #{no}
+		DELETE_YN = 'Y'
+		WHERE NO = #{bno}
 	</update>
 	
 	<select id="selectList" resultType = "BoardVo">
