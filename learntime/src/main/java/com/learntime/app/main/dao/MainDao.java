@@ -15,4 +15,11 @@ public interface MainDao {
 	//select group list
 	public List<Map<String, String>> selectGroupList(SqlSessionTemplate sst);
 
+	//select notice list
+	public List<Map<String, Object>> selectNoticeList(SqlSessionTemplate sst);
+
+	public List<Map<String, Object>> selectLearningList(SqlSessionTemplate sst);
+
+	public List<Map<String, Object>> selectPopularLearningList(SqlSessionTemplate sst);
+
 }

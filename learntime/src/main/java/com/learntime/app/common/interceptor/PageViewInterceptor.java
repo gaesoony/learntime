@@ -26,8 +26,6 @@ public class PageViewInterceptor implements HandlerInterceptor{
         vo.setIp(request.getRemoteAddr());
         vo.setAgent(request.getHeader("User-Agent"));//브라우저 정보
         vo.setRefer(request.getHeader("referer"));//접속 전 사이트 정보
-		
-        System.out.println(vo);
         
 		//방문자 insert
 		int result = dao.insertPageView(sst, vo);

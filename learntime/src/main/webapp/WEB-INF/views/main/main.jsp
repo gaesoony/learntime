@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -34,6 +35,11 @@ pageEncoding="UTF-8"%>
       .arrow-btn {
         font-size: 45px !important;
         color: white;
+      }
+
+      .notice-more-btn {
+        font-size: 33px !important;
+        cursor: pointer;
       }
 
       .main-popup {
@@ -137,10 +143,7 @@ pageEncoding="UTF-8"%>
             <ul class="main-study-detail-list post-wrapper1">
             <c:forEach items="${groupList}" var="map">
 
-               <a
-                    href="${path}/study/detail?gno=${map.NO}&keyword=${keyword}&tag=${fn:join(tagList,',')}&techType=인기&techStack=${fn:join(techStack,',')}&type=전체&order=recent&status=${status}"
-                    class="main-study-detail"
-                  >
+               <div class="main-study-detail">
                 <div class="main-study-detail__date-like space-between">
                   <div class="soft-gray">시작 예정일 | ${map.START_DATE}</div>
                   <div>
@@ -148,7 +151,7 @@ pageEncoding="UTF-8"%>
                     ><span class="soft-gray">${map.LIKE_CNT}</span>
                   </div>
                 </div>
-                <h1 class="bold700">
+                <h1 class="study-title" onclick="location.href='${path}/study/detail?gno=${map.NO}&keyword=${keyword}&tag=${fn:join(tagList,',')}&techType=인기&techStack=${fn:join(techStack,',')}&type=전체&order=recent&status=${status}'">
                   ${map.TITLE}
                 </h1>
                 <ul class="study-tag-list flex soft-gray">
@@ -169,10 +172,10 @@ pageEncoding="UTF-8"%>
                     </ul>
                 <section class="flex">
                   <div class="user-profile">
-                    <img src="/app/resources/img/study/profile.png" alt="" />
+                    <img class="cursor" src="${path}${map.IMG_PATH}" alt="" onclick="location.href='${path}/member/mypage/home?no=${map.MEMBER_NO}'"/>
                   </div>
                   <div class="main-study-detail__profile-hit-cmt-scrap">
-                    <div class="user-nick bold700">${map.NICK }</div>
+                    <div class="user-nick bold700 cursor" onclick="location.href='${path}/member/mypage/home?no=${map.MEMBER_NO}'">${map.NICK }</div>
                     <ul class="view-cmt-scrap-list flex soft-gray">
                       <li><i class="fa-regular fa-eye"></i><span>${map.HIT }</span></li>
                       <li>
@@ -184,7 +187,7 @@ pageEncoding="UTF-8"%>
                     </ul>
                   </div>
                 </section>
-              </a>
+              </div>
             
             </c:forEach>
              
@@ -255,70 +258,42 @@ pageEncoding="UTF-8"%>
                   </ul>
                 </div>
                 <div class="qna-content-left flex post-wrapper2">
-                  <ul>
-                    <li>
-                      <div>
-                        <div class="qna-content-title bold700 black">
-                          자바스크립트 어떻게 하나요?
+                  <c:forEach items="${learningList}" var="map" varStatus="status" step="2">
+                    <ul>
+                      <li>
+                        <div>
+                          <div class="qna-content-title bold700 black">
+                            ${map.TITLE}
+                          </div>
+                          <div class="qna-content-detail">
+                            ${map.CONTENT}
+                          </div>
                         </div>
-                        <div class="qna-content-detail">
-                          공부를 해도 모르겠네요ㅜㅜ
+                        <div class="flex cmt-date soft-gray">
+                          <div>답변 ${map.REPLY_CNT}</div>
+                          <div>${map.ENROLL_DATE}</div>
+                          <div>16:27</div>
                         </div>
-                      </div>
-                      <div class="flex cmt-date soft-gray">
-                        <div>답변 0</div>
-                        <div>2022/11/24</div>
-                        <div>16:27</div>
-                      </div>
-                    </li>
-                    <li class="border-top">
-                      <div>
-                        <div class="qna-content-title bold700 black">
-                          자바스크립트 어떻게 하나요?
+                      </li>
+                      <li class="border-top">
+                        <div>
+                          <div class="qna-content-title bold700 black">
+                            ${learningList[status.index+1].TITLE}
+                          </div>
+                          <div class="qna-content-detail">
+                            공부를 해도 모르겠네요ㅜㅜ
+                          </div>
                         </div>
-                        <div class="qna-content-detail">
-                          공부를 해도 모르겠네요ㅜㅜ
+                        <div class="flex cmt-date soft-gray">
+                          <div>답변 0</div>
+                          <div>2022/11/24</div>
+                          <div>16:27</div>
                         </div>
-                      </div>
-                      <div class="flex cmt-date soft-gray">
-                        <div>답변 0</div>
-                        <div>2022/11/24</div>
-                        <div>16:27</div>
-                      </div>
-                    </li>
-                  </ul>
-                  <ul>
-                    <li>
-                      <div>
-                        <div class="qna-content-title bold700 black">
-                          자바스크립트 어떻게 하나요?
-                        </div>
-                        <div class="qna-content-detail">
-                          공부를 해도 모르겠네요ㅜㅜ
-                        </div>
-                      </div>
-                      <div class="flex cmt-date soft-gray">
-                        <div>답변 0</div>
-                        <div>2022/11/24</div>
-                        <div>16:27</div>
-                      </div>
-                    </li>
-                    <li class="border-top">
-                      <div>
-                        <div class="qna-content-title bold700 black">
-                          자바스크립트 어떻게 하나요?
-                        </div>
-                        <div class="qna-content-detail">
-                          공부를 해도 모르겠네요ㅜㅜ
-                        </div>
-                      </div>
-                      <div class="flex cmt-date soft-gray">
-                        <div>답변 0</div>
-                        <div>2022/11/24</div>
-                        <div>16:27</div>
-                      </div>
-                    </li>
-                  </ul>
+                      </li>
+                    </ul>
+
+                  </c:forEach>
+                  
                 </div>
               </div>
             </div>
@@ -522,8 +497,8 @@ pageEncoding="UTF-8"%>
           업계 후배들 혹은 동료들이더 빨리, 더 멀리 갈 수 있도록 도와주세요!
         </div>
         <div class="flex main-mentor-banner-list">
-          <a href="">멘토 지원하기</a>
-          <a href="">멘토링 신청하기</a>
+          <a href="" id="apply-mentor">멘토 지원하기</a>
+          <a href="${path}/mentor/list">멘토링 신청하기</a>
         </div>
       </section>
       <div class="the-lower-part-of-main">
@@ -531,38 +506,38 @@ pageEncoding="UTF-8"%>
             <div class="mentoring-title">
                 <div class="empty"></div>
                 <div class="mentoring-title-icon">선배와 동료들에게<span id="color-change">&nbsp;조언</span>을 구해보세요&nbsp;<img width="30px" height="30px" src="https://cdn-icons-png.flaticon.com/128/7991/7991313.png"></div>
-                <div class="mentoring-content-more">더보기<img width="12px" height="13px" src="https://cdn-icons-png.flaticon.com/128/271/271228.png"></div>
+                <div class="mentoring-content-more"><a href="${path}/mentor/list">더보기</a><img width="12px" height="13px" src="https://cdn-icons-png.flaticon.com/128/271/271228.png"></div>
             </div>
             <div class="mentoring-content">
                 <div class="slice-as-three relative">
                   <button type="button" class="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
                         <div class="container">
                             <ul class="container-slide">
-                                <c:forEach var="slide" begin="1" end="12" >
+                                <c:forEach items="${mentorList}" var="vo" begin="1" end="12" >
                                     <li class="slide">
                                         <div class="slide-box">
-                                          <div class="mentoring-title2">
-                                            <div id="mentoring-ad1">서버개발자 취준생을 위한<br>멘토링/고민상담/이력서 첨삭</div>
-                                            <div id="mentoring-ad2">비바리퍼블리카(토스)에서 근무하고<br>있는 4년차 서버개발자입니다.</div>
+                                          <div class="mentoring-title2 cursor"  onclick="location.href='${path}/mentor/list'">
+                                            <div id="mentoring-ad1">${vo.title}</div>
+                                            <div id="mentoring-ad2">${vo.intro}</div>
 
                                           </div>
                                             <div id="mentoring-ad3">
                                                 <div id="border-box1">
-                                                    <div id="inner-box1"></div>
+                                                    <div id="inner-box1"><img src="${path}${vo.writerImg}" alt="" class="cursor" onclick="location.href='${path}/member/mypage/home?no=${vo.no}'"></div>
                                                 </div>
                                                 <div id="border-box2">
-                                                    <div id="inner-box2">sunny</div>
+                                                    <div class="cursor" id="inner-box2" onclick="location.href='${path}/member/mypage/home?no=${vo.no}'">${vo.nick}</div>
                                                 </div>
                                                 <div id="border-box3">
-                                                    <div id="inner-box3">현직</div>
+                                                    <div id="inner-box3">${vo.currentJob}</div>
                                                 </div>
                                                 <div id="border-box4">
                                                     <div id="inner-box4"><i class="fa-solid fa-heart like-icon main-color"></i><span>50</span></div>
                                                 </div>
                                             </div>
                                             <div id="mentoring-ad4">
-                                              <div>직무&nbsp;&nbsp;백엔드/서버 개발자</div>
-                                              <div>경력&nbsp;&nbsp;미들(4~8년)</div>
+                                              <div>직무&nbsp;&nbsp;${vo.jobName}</div>
+                                              <div>경력&nbsp;&nbsp;${vo.career}</div>
                                             </div>
                                         </div>
                                     </li>
@@ -578,41 +553,50 @@ pageEncoding="UTF-8"%>
           <div class="mentoring-title">
             <div class="empty"></div>
             <div class="mentoring-title-icon"><span class="bold500">🔥&nbsp;이 순간에도</span><span>&nbsp;공부하는</span><span class="main-color">&nbsp;LEARNER&nbsp;🔥</span></div>
-            <div class="mentoring-content-more">더보기<img width="12px" height="13px" src="https://cdn-icons-png.flaticon.com/128/271/271228.png"></div>
+            <div class="mentoring-content-more learning-more"><a href="${path}/makegrass/list">더보기</a><img width="12px" height="13px" src="https://cdn-icons-png.flaticon.com/128/271/271228.png"></div>
         </div>
             <div class="studying-content">
                 <div class="slice-as-three-sec relative">
                   <button type="button" class="prevBtn prevBtn2 prevBtn-sec"><i class="fa-solid fa-chevron-left"></i></button>
                         <div class="container-sec">
                             <ul class="container-slide-sec">
-                                <c:forEach var="slide-sec" begin="1" end="12" >
+                                <c:forEach items="${makegrassList}" var="map" >
                                   <li class="slide-sec">
                                     <div class="slide-box">
-                                        <div class="learning-img"><img src="${path}/resources/img/study/study-profile.JPG" alt=""></div>
+                                        <div class="learning-img"><img src="${path}/resources/upload/common/coding_cat.gif" class="cursor" alt="" onclick="location.href='${path}/makegrass/detail?no=${map.NO}'"></div>
                                         <div class="learning-info">
-                                          <div class="learner-profile"><img src="${path}/resources/upload/common/profile_default.png" alt=""></div>
+                                          <div class="learning-title cursor" onclick="location.href='${path}/makegrass/detail?no=${map.NO}'">${map.TITLE}</div>
+                                          
                                           <div class="learning-detail">
                                             <div class="space-between">
-                                              <span class="bold500">JAVA정복기</span>
-                                              <span>120분</span>
+                                              <div class="learner-profile"><img src="${path}${map.IMG_PATH}" alt=""></div>
+                                              <div>
+                                                <div class="learning-user-nick">${map.WRITER}</div>
+                                                <div class="learning-summary">
+                                                  <div class="learning-time">${map.LEARN_TIME}</div>
+                                                  <ul class="view-cmt-scrap-list2 space-between soft-gray">
+                                                    <div class="flex">
+                                                      <li><i class="fa-regular fa-eye"></i><span>${map.HIT}</span></li>
+                                                      <li>
+                                                        <i class="fa-regular fa-comment-dots"></i><span>0</span>
+                                                      </li>
+    
+                                                    </div>
+                                                    <div>
+                                                      <li>
+                                                        <i class="fa-solid fa-heart like-icon main-color"></i
+                                                          ><span>0</span>
+                                                      </li>
+    
+                                                    </div>
+                                                  </ul>
+
+                                                </div>
+
+                                              </div>
                                             </div>
                                             <div>
-                                              <ul class="view-cmt-scrap-list2 space-between soft-gray">
-                                                <div class="flex">
-                                                  <li><i class="fa-regular fa-eye"></i><span>50</span></li>
-                                                  <li>
-                                                    <i class="fa-regular fa-comment-dots"></i><span>10</span>
-                                                  </li>
-
-                                                </div>
-                                                <div>
-                                                  <li>
-                                                    <i class="fa-solid fa-heart like-icon main-color"></i
-                                                      ><span>30</span>
-                                                  </li>
-
-                                                </div>
-                                              </ul>
+                                              
                                             </div>
                                           </div>
                                         </div>
@@ -632,13 +616,14 @@ pageEncoding="UTF-8"%>
                     <div class="lists">
                         <div class="list" id="boldline">
                             <div class="notice-title">공지사항</div>
-                            <div class="arrow"><i class="fa-solid fa-chevron-right" onclick="location.href='${path}/notice/noticeList?p=1&cateNo=0'"></i></div>
+                            
+                            <!-- <div class="arrow"><i class="fa-solid fa-chevron-right" onclick="location.href='${path}/notice/noticeList?p=1&cateNo=0'"></i></div> -->
+                            <div class="arrow"><span class='material-symbols-outlined notice-more-btn' onclick="location.href='${path}/notice/noticeList?p=1&cateNo=0'">arrow_forward_ios</span></div>
                         </div>
-                        <div class="list list-one" id="list-one">º 런타임에서 알려드립니다.</div>
-                        <div class="list list-one" id="list-two">º 런타임 이용약관 / 개인정보 처리방침 안내</div>
-                        <div class="list list-one" id="list-three">º 멘토링 신청 기능 업데이트 안내</div>
-                        <div class="list list-one" id="list-four">º 스킨샵내 추가기능 업데이트 안내</div>
-                        <div class="list list-one" id="list-five">º 서비스 장애 발생 공지</div>
+                        <c:forEach items="${noticeList}" var="map" begin="0" end="6">
+                          <div class="list list-one" id="list-one" onclick="location.href='${path}/notice/noticeDetail?no=${map.NO}'">º ${map.NAME}&nbsp;${map.TITLE}</div>
+                        </c:forEach>
+                       
                     </div>
                 </div>
                 <div class="faq-per-person">
@@ -676,7 +661,7 @@ pageEncoding="UTF-8"%>
       });
 
       $(".post-wrapper1").slick({
-        slide: "a",
+        slide: "div",
         slidesToShow: 4,
         slidesToScroll: 1,
         arrows: true,
@@ -762,7 +747,7 @@ pageEncoding="UTF-8"%>
         slideSec = document.querySelectorAll('.slide-sec'),
         currentIdxSec = 1,
         slideCountSec = slideSec.length,
-        slideWidthSec = 282,
+        slideWidthSec = 280,
         slideMarginSec = 20,
         prevBtnSec = document.querySelector('.prevBtn-sec'),
         nextBtnSec = document.querySelector('.nextBtn-sec');
@@ -885,6 +870,37 @@ pageEncoding="UTF-8"%>
             })
       
     </script>
+    <script>
+      //멘토 확인
+      $(document).on('click', '#apply-mentor', function(){
+
+          if('${loginMember}' == ''){
+              alert('로그인 후 이용해주세요.');
+              return false;
+          }
+
+          //멘토인지 확인
+          $.ajax({
+              url: '/app/mentor/checkMentor',
+              type: 'GET',
+              dataType: 'json',
+              success: function(data){
+                  console.log(data);
+                  if(1 == data){
+                      confirm('이미 멘토로 지원하셨습니다.\n멘토링 관리페이지로 이동하시겠습니까?');
+                      location.href = '/app/member/mypage/mentoring/manage';
+                  }else{
+                      //멘토 가 아니면 지원 페이지로 이동
+                      location.href = '/app/member/mypage/mentoring/register';
+                  }
+              },
+              error: function(){
+                  alert('멘토 확인 중 오류가 발생했습니다.');
+              }
+          });
+      });
+
+  </script>
     <script
       src="https://kit.fontawesome.com/939838bb27.js"
       crossorigin="anonymous"
