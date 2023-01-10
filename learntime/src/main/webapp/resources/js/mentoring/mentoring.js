@@ -60,7 +60,7 @@ window.onload = function() {
                             '<div class="modal-review-info">' + 
                                 '<div class="writer-box">' + 
                                     '<div class="modal-nick">' + 
-                                        '<img class="modal-profile-img" src="/app/'+ rvList.writerImg + '" alt="">' + 
+                                        '<img class="modal-profile-img" src="/app/'+ rvList.writerImg + '" alt="" onerror="this.src=\'/app/resources/img/profile_default.png\';">' + 
                                         '<span class="writer-nick">'+ rvList.writerNick + '</span>' + 
                                     '</div>' +
                                 '</div>' + 

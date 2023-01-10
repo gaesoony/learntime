@@ -32,7 +32,7 @@
             <div class="modal-info-box">
                 <div id="modal-mentor">
                     <div class="modal-nick">
-                        <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="">
+                        <img class="modal-profile-img" src="/app/resources/img/profile01.png" alt="" onerror="this.src='/app/resources/img/profile_default.png';">
                         <a href="" class="modal-mentor-nick">&nbsp코딩하는망치맨</a>
                     </div>
                     <div id="modal-mentoring-info">1회 멘토링 : 
