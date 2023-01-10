@@ -15,14 +15,11 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
-
 	<div id="board-banner">
 		<img src="/app/resources/img/freeBoardBanner.png" alt="자유게시판 배너">
 	</div>
-   
     <div id="main-wrap">
         <form action="${pageContext.request.contextPath}/community/board/modify" method="post">
-
         <div id="cate-txt">카테고리</div>
         <div id="cate-select-box">
             <select name="cateNo" id="">
@@ -45,10 +42,8 @@
             <input type="hidden" name="no" value="${bv.no}">
             <input id="write-btn" type="submit" value="등록">
         </div>
-        
         </form>
     </div>
-
 
     <%@include file ="/WEB-INF/views/common/footer.jsp" %>
     <!-- 서머노트 로딩-->

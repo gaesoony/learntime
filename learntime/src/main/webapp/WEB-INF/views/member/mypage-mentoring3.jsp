@@ -89,114 +89,117 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <%@include file="/WEB-INF/views/common/header.jsp" %>
-
     <div id="mypage-box">
-        <div id="mypage">
-            <div id="bin">
-            <%@include file="/WEB-INF/views/common/mypage-side.jsp"%>
-            </div>
-            <div id="home-area">
-            <div id="main-wrap">
-                    <div id="category-wrap">
-                      <div id="mentoring-category-box">
-                          <input class="lg-category" type="radio" name="mentoring-category" id="mentoring-category1" >
-                          <label for="mentoring-category1">신청한 멘토링</label>
-
-                          <c:if test="${sessionScope.mentorInfo == null}">
-                              <input class="lg-category" type="radio" name="mentoring-category" id="mentoring-category2">
-                              <label for="mentoring-category2">멘토 지원하기</label>
-                          </c:if>
-
-                          <c:if test="${sessionScope.mentorInfo != null}">
-                              <input class="lg-category" type="radio" name="mentoring-category" id="mentoring-category3" checked>
-                              <label for="mentoring-category3">나의 멘토링 관리</label>
-                          </c:if>
-                      </div>
-                      <!-- TODO 멘토 정보 수정 -->
-                      <div id="mentor-modify-btn" onclick="location.href='/app/member/mypage/mentor/modify'">멘토 정보 수정</div>
-                      <div id="mentoring-regist-btn" onclick="location.href='/app/mentor/mentoring/regist'">멘토링 설정</div>
-                    </div>
-
-                    <div id="mentoring-content-wrap">
-                      
-                      <c:if test = "${sessionScope.mentorInfo != null and mentorInfo.title == null}">
-                        <div id="no-mentor" class="m-notice">아직 멘토링 설정을 하지 않았어요 :( <br>
-                          <a href="/app/mentor/mentoring/regist">멘토링 설정하기 ></a>
-                        </div>
-                      </c:if>
-
-                      <c:if test = "${sessionScope.mentorInfo != null and mentorInfo.title != null}">
-
-                        <div id="content-title">
-                            <div class="content-title">상태</div>
-                            <div class="content-title">신청자</div>
-                            <div class="content-title">연락처</div>
-                            <div class="content-title">이메일</div>
-                            <div class="content-title">멘토링명</div>
-                            <div class="content-title">멘토링일정</div>
-                            <div class="content-title">신청정보</div>
-                        </div>
-                        
-                        <c:forEach var="requestList" items="${requestList}">
-                          <div class="content-list">
-                            <c:if test = "${requestList.applyYn == 'N' and requestList.cancelYn == 'N' and requestList.completeYn == 'N'}">
-                              <div class="content">수락대기중</div>
-                            </c:if>
-                            <c:if test = "${requestList.applyYn == 'Y' and requestList.cancelYn == 'N' and requestList.completeYn == 'N'}">
-                              <div class="content">수락완료</div>
-                            </c:if>
-                            <c:if test = "${requestList.completeYn == 'Y'}">
-                              <div class="content">완료됨</div>
-                            </c:if>
-                            <c:if test = "${requestList.cancelYn == 'Y'}">
-                              <div class="content">취소됨</div>
-                            </c:if>
-
-                              <div class="content">${requestList.menteeNick}</div>
-                              <div class="content">${requestList.phoneNo}</div>
-                              <div class="content">${requestList.email}</div>
-                              <div class="content">${requestList.title}</div>
-                              <div class="content">
-                                ${requestList.reservationDate} 
-                                ${requestList.reservationTime}
-                              </div>
-
-                            <c:if test = "${requestList.applyYn == 'N' and requestList.cancelYn == 'N'}">
-                              <div class="content">
-                                <input type="hidden" name="" id = "no-input" value="${requestList.no}">
-                                <div class = "apply-btn btn">수락</div>
-                                <div class = "refuse-btn btn">거절</div>
-                              </div>
-                            </c:if>
-                            <c:if test = "${requestList.applyYn == 'Y' and requestList.cancelYn == 'N' and requestList.completeYn == 'N'}">
-                              <div class="content">
-                                <input type="hidden" name="" id = "no-input" value="${requestList.no}">
-                                <div class = "complete-btn btn">멘토링 완료</div>
-                              </div>
-                            </c:if>
-                            <c:if test = "${requestList.completeYn == 'Y'}">
-                              <div class="content">
-                                멘토링 완료
-                              </div>
-                            </c:if>
-                            <c:if test = "${requestList.cancelYn == 'Y'}">
-                              <div class="content btn">취소됨</div>
-                            </c:if>
-                          </div>
-
-                        </c:forEach>
-
-                        <c:if test = "${requestList == null}">
-                          <div id="no-application" class="m-notice">아직 멘토링 신청이 없어요 :( </div>
-                        </c:if>
-
-                      </c:if>
-
-                        
-                    </div>
-                </div>
-            </div>
+      <div id="mypage">
+        <div id="bin">
+        <%@include file="/WEB-INF/views/common/mypage-side.jsp"%>
         </div>
+        <div id="home-area">
+        <div id="main-wrap">
+            <div id="category-wrap">
+              <div id="mentoring-category-box">
+                  <input class="lg-category" type="radio" name="mentoring-category" id="mentoring-category1" >
+                  <label for="mentoring-category1">신청한 멘토링</label>
+
+                  <c:if test="${sessionScope.mentorInfo == null}">
+                      <input class="lg-category" type="radio" name="mentoring-category" id="mentoring-category2">
+                      <label for="mentoring-category2">멘토 지원하기</label>
+                  </c:if>
+
+                  <c:if test="${sessionScope.mentorInfo != null}">
+                      <input class="lg-category" type="radio" name="mentoring-category" id="mentoring-category3" checked>
+                      <label for="mentoring-category3">나의 멘토링 관리</label>
+                  </c:if>
+              </div>
+              <!-- TODO 멘토 정보 수정 -->
+              <div id="mentor-modify-btn" onclick="location.href='/app/member/mypage/mentor/modify'">멘토 정보 수정</div>
+              <div id="mentoring-regist-btn" onclick="location.href='/app/mentor/mentoring/regist'">멘토링 설정</div>
+            </div>
+            <div id="mentoring-content-wrap">
+              
+            <c:if test = "${sessionScope.mentorInfo != null and mentorInfo.title == null}">
+              <div id="no-mentor" class="m-notice">아직 멘토링 설정을 하지 않았어요 :( <br>
+                <a href="/app/mentor/mentoring/regist">멘토링 설정하기 ></a>
+              </div>
+            </c:if>
+
+            <c:if test = "${sessionScope.mentorInfo != null and mentorInfo.title != null}">
+              <div id="content-title">
+                  <div class="content-title">상태</div>
+                  <div class="content-title">신청자</div>
+                  <div class="content-title">연락처</div>
+                  <div class="content-title">이메일</div>
+                  <div class="content-title">멘토링명</div>
+                  <div class="content-title">멘토링일정</div>
+                  <div class="content-title">신청정보</div>
+              </div>
+
+              <c:forEach var="requestList" items="${requestList}">
+                <div class="content-list">
+
+                  <c:if test = "${requestList.applyYn == 'N' and requestList.cancelYn == 'N' and requestList.completeYn == 'N'}">
+                    <div class="content">수락대기중</div>
+                  </c:if>
+
+                  <c:if test = "${requestList.applyYn == 'Y' and requestList.cancelYn == 'N' and requestList.completeYn == 'N'}">
+                    <div class="content">수락완료</div>
+                  </c:if>
+
+                  <c:if test = "${requestList.completeYn == 'Y'}">
+                    <div class="content">완료됨</div>
+                  </c:if>
+
+                  <c:if test = "${requestList.cancelYn == 'Y'}">
+                    <div class="content">취소됨</div>
+                  </c:if>
+
+                    <div class="content">${requestList.menteeNick}</div>
+                    <div class="content">${requestList.phoneNo}</div>
+                    <div class="content">${requestList.email}</div>
+                    <div class="content">${requestList.title}</div>
+                    <div class="content">
+                      ${requestList.reservationDate} 
+                      ${requestList.reservationTime}
+                    </div>
+
+                  <c:if test = "${requestList.applyYn == 'N' and requestList.cancelYn == 'N'}">
+                    <div class="content">
+                      <input type="hidden" name="" id = "no-input" value="${requestList.no}">
+                      <div class = "apply-btn btn">수락</div>
+                      <div class = "refuse-btn btn">거절</div>
+                    </div>
+                  </c:if>
+
+                  <c:if test = "${requestList.applyYn == 'Y' and requestList.cancelYn == 'N' and requestList.completeYn == 'N'}">
+                    <div class="content">
+                      <input type="hidden" name="" id = "no-input" value="${requestList.no}">
+                      <div class = "complete-btn btn">멘토링 완료</div>
+                    </div>
+                  </c:if>
+
+                  <c:if test = "${requestList.completeYn == 'Y'}">
+                    <div class="content">
+                      멘토링 완료
+                    </div>
+                  </c:if>
+
+                  <c:if test = "${requestList.cancelYn == 'Y'}">
+                    <div class="content btn">취소됨</div>
+                  </c:if>
+
+                  </div>
+
+                </c:forEach>
+
+                <c:if test = "${requestList == null}">
+                  <div id="no-application" class="m-notice">아직 멘토링 신청이 없어요 :( </div>
+                </c:if>
+
+              </c:if>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <%@include file="/WEB-INF/views/common/footer2.jsp" %>
 
@@ -238,8 +241,6 @@ pageEncoding="UTF-8"%>
           }
         });
       });
-
-
     </script>
 
    

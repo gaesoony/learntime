@@ -13,12 +13,10 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
-
 	<div id="board-banner">
 		<img src="/app/resources/img/reviewBanner.png" alt="멘토후기게시판 배너">
 	</div>
     <div id="main-wrap">
-
         <div id="side-wrap">
             <div id="search-box">
                 <div id="search-area">
@@ -72,7 +70,6 @@
                 <span> 필터 초기화</span>
             </div>
         </div>
-
         <div id="content-wrap">
             <!-- jstl 반복문 -->
             <c:forEach items="${reviewList}" var="list">
@@ -80,7 +77,7 @@
                     <div class="review-info">
                         <div class="writer-box">
                             <div class="writer-img">
-                                <img src="/app/${list.writerImg}" alt="">
+                                <img src="/app/${list.writerImg}" alt="" onerror="this.src='/app/resources/img/profile_default.png';">
                             </div>
                             <span class="writer-nick">${list.writerNick}</span>
                         </div>
@@ -103,36 +100,6 @@
                     </div>
                 </div>
             </c:forEach>
-            <!-- 임시 -->
-            <!-- <div class="review-box">
-                <div class="review-info">
-                    <div class="writer-box">
-                        <div class="writer-img">
-                            <img src="/app/resources/img/profile01.png" alt="">
-                        </div>
-                        <span class="writer-nick">망치맨</span>
-                    </div>
-                    <div class="star-box">
-                        <span class="material-symbols-rounded star">star</span>
-                        <span class="material-symbols-rounded star">star</span>
-                        <span class="material-symbols-rounded star">star</span>
-                        <span class="material-symbols-rounded star">star</span>
-                        <span class="material-symbols-rounded star">star</span>
-                    </div>
-                </div>
-                <div class="review-content-box">
-                    <div class="review-content">
-                        <p>제가 국비지원 출신이라서 어떻게 해야 더 좋은 곳으로 갈 수 있을지 막막 했는데 방향을 이제 확실하게 알게
-                            <br>
-                            되었고 개발과 관련된 다양한 정보들을 얻어 볼 수 있는 기회가 되어서 매우 좋았습니다. 감사합니다.
-                        </p>
-                    </div>
-                    <div class="mentor-info">
-                        <span>멘토링 - [망치맨]자바스크립트 마스터 시켜드립니다.</span>
-                    </div>
-                </div>
-            </div> -->
-
             <div id="paging">
                 <div class="paging-btn">1</div>
                 <div class="paging-btn">2</div>
@@ -146,10 +113,7 @@
                 <div class="paging-btn">10</div>
                 <div class="paging-btn" id="next-btn">다음</div>
             </div>
-        
         </div>
-
-
     </div>
 
     <script>
@@ -162,12 +126,6 @@
             var sorting = url.searchParams.get("sorting");
             var category = url.searchParams.get("category");
             var page = url.searchParams.get("page");
-
-            console.log("search : "+search);
-            console.log("sorting : "+sorting);
-            console.log("category : "+category);
-            console.log("page : "+page);
-
 
             //검색 채우기
             $("input[name='search']").val(search);
@@ -191,7 +149,6 @@
             if(sorting == null){
                 $("#sorting-input").children().first().attr("selected", "selected");
             }
-
                                 
             //정렬
             $("#sorting-input").change(function(){
@@ -211,10 +168,9 @@
                 location.href = "/app/mentor/review/list?sorting="+sortingInput;
             });
 
-            //카테고리 채워놓기
+            //카테고리 채워놓기(카테고리 배열 만들기)
             if(category != null){
                 var categoryArr = category.split(",");
-                console.log(categoryArr);
                 for(var i=0; i<categoryArr.length; i++){
                     $("input[name='category'][value='"+categoryArr[i]+"']").prop("checked", true);
                 }
@@ -222,43 +178,46 @@
 
             //카테고리(체크박스)
             $("input[name='category']").change(function(){
-            var categoryInput = $(this).val();
-            if(category == null){
-                location.href = "/app/mentor/review/list?category="+categoryInput;
-                return;
-            }
-            if(category != null){
-                var cateLength = categoryArr.length;
-                var categoryArrIndex = categoryArr.indexOf(categoryInput);
-                if (categoryArrIndex !== -1) {
-                categoryArr.splice(categoryArrIndex, 1);
-                if (categoryArr.length === 0) {
-                    location.href = '/app/mentor/review/list';
-                } else {
-                    var queryString = categoryArr.join(',');
-                    location.href = "/app/mentor/review/list?category=" + queryString;
+                var categoryInput = $(this).val();
+                if(category == null){
+                    location.href = "/app/mentor/review/list?category="+categoryInput;
+                    return;
                 }
-                } else {
-                categoryArr.push(categoryInput);
-                var queryString = categoryArr.join(',');
-                location.href = "/app/mentor/review/list?category=" + queryString;
-                }
-            }
-            });
+                if(category != null){
 
+                    // 배열 길이 가져오기
+                    var cateLength = categoryArr.length;
+
+                    // 배열 안에 input 찾기
+                    var categoryArrIndex = categoryArr.indexOf(categoryInput);
+
+                    if (categoryArrIndex !== -1) {
+                        // 배열에서 input 삭제
+                        categoryArr.splice(categoryArrIndex, 1);
+
+                        if (categoryArr.length === 0) {
+                            location.href = '/app/mentor/review/list';
+                        } else {
+                            var queryString = categoryArr.join(',');
+                            location.href = "/app/mentor/review/list?category=" + queryString;
+                        }
+                    } else {
+                        // 배열에 input 추가
+                        categoryArr.push(categoryInput);
+                        var queryString = categoryArr.join(',');
+                        location.href = "/app/mentor/review/list?category=" + queryString;
+                    }
+                }
+            });
             // 초기화
             $('.refresh').click(function(){
                 location.href = "/app/mentor/review/list";
             });
-
             $('#filter-reset').click(function(){
                 location.href = "/app/mentor/review/list";
             });
-
         });
-
     </script>
-
     <!-- 별 채우기 스크립트 -->
     <script>
         $(document).ready(function(){
@@ -284,11 +243,7 @@
             });
         });
     </script>
-
-   
-   
     <%@include file="/WEB-INF/views/common/footer.jsp"%>
-
 </body>
 
 </html>

@@ -24,14 +24,12 @@
             <input type="radio" name="mentoring-category" id="mentoring-category3">
             <label for="mentoring-category3">나의 멘토링 관리</label>
         </div>
-
         <form action="">
         <div id="basic-info-box">
             <div id="basic-info-title" class="title">
                 <span>멘토 정보</span>
                 <!-- <div id="save-btn">저장</div> -->
             </div>
-
             <div id="basic-info" class="info-box">
                 <div id="email-title" class="sub-title">
                     <span>이름(실명)</span>
@@ -44,22 +42,11 @@
                     <span class="sub-title-plus">*</span>
                 </div>
                 <input type="text" id="email-input" placeholder="멘토링에 사용하실 이메일을 입력해주세요">
-                
-
                 <div id="phone-title" class="sub-title">
                     <span>연락처</span>
                     <span class="sub-title-plus">*</span>
                 </div>
                 <input type="text" id="phone-input" placeholder="01000000000">
-
-                <div id="category-title" class="sub-title">
-                    <span>희망분야</span>
-                    <span class="sub-title-plus">*</span>
-                </div>
-                <select name="" id="">
-                    <option value="">멘토링과 연관된 분야를 선택해주세요</option>
-                </select>
-
                 <div id="link-title" class="sub-title">
                     <span>링크</span>
                 </div>
@@ -72,19 +59,13 @@
                 <textarea id="intro-input" name="" id="" cols="30" rows="10" placeholder="멘토님을 상세하게 소개해주세요"></textarea>
             </div>
         </div>
-
         <div id="btn-box">
             <div id="cancel-btn">취소하기</div>
             <input type="submit" value="저장하기">
         </div>
-        
-
         </form>
     </div>
-
-
     <%@include file ="/WEB-INF/views/common/footer.jsp" %>
-
 
     <script>
         $('#phone-input').on('keyup', function() {
@@ -93,8 +74,6 @@
             $(this).attr('placeholder', placeholder.substring(input.length)); // Update placeholder
         });
     </script>
-
-
 
 </body>
 </html>

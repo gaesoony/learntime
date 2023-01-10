@@ -23,7 +23,6 @@
             <span>멘토링 설정</span>
         </div>
 	</div>
-
     <div id="main-wrap">
         <form action="/app/mentor/mentoring/regist" method="post">
         <div id="basic-info-box">
@@ -31,7 +30,6 @@
                 <span>기본 정보</span>
                 <div id="save-btn">저장</div>
             </div>
-
             <div id="basic-info" class="info-box">
                 <div id="phone-title" class="sub-title">
                     연락 할 전화번호
@@ -44,7 +42,6 @@
                 </div>
                 <input type="text" id="" placeholder="example@email.com" name="mEmail">
             </div>
-
             <div id="category-title" class="title">
                 <span>카테고리</span>
             </div>
@@ -60,38 +57,30 @@
                     $('input[type="radio"]:first').attr('checked', 'checked');
                 </script>
 
-
             </div>
-
             <div id="mentoring-title" class="title"> 
                 <span>멘토링 정보</span>
             </div>
-
             <div id="mentoring-info" class="info-box">
                 <div id="mentoring-name" class="sub-title">멘토링 명</div>
                 <input id="name-input" type="text" placeholder="멘티에게 보여 줄 한줄 소개를 작성해주세요" name="title">
-
                 <div id="mentoring-info2">
-
                     <div class="mentoring-info2">
                         <div class="sub-title">현직</div>
                         <input class="short-input" type="text" placeholder="현재 직장을 입력해주세요" name = "currentJob">
                     </div>
-
                     <div class="mentoring-info2">
                         <div class="sub-title">멘토 직무</div>
 
                         <select name="job" id="">
                             <option value="" selected disabled>직무를 선택해주세요</option>
-                            <!-- 직무 조회 해서 반복문 -->
+                            <!-- 직무-->
                             <c:forEach var="job" items="${jobList}">
                                 <option value="${job.NO}">${job.no}${job.NAME}</option>
                             </c:forEach>
-                           
-                            <!-- 직무 반복 끝 -->
+                            <!-- 직무 끝 -->
                         </select>
                     </div>
-                    
                     <div class="mentoring-info2">
                         <div class="sub-title">멘토 경력</div>
                         <select name="career" id="">
@@ -129,7 +118,6 @@
                 <div id="schedule-title" class="sub-title">스케줄 설정</div>
                
                 <!-- 스케줄 -->
-                
                 <table id="schedule-table">
                     <thead>
                       <tr>
@@ -148,33 +136,25 @@
 
                 <!-- 스케줄 스크립트 -->
                 <script type="text/javascript" src="/app/resources/js/mentoring/schedule.js"></script>
-                
+                <!-- 스케줄 끝 -->
                
                 <div id="schedule-title" class="sub-title">멘토링 상세 설명</div>
                 <textarea class="summernote" name="detail"></textarea>
-
             </div>
-
             <div id="welcome-title" class="title">
                 <span>환영 공지</span>
             </div>
-
             <div id="basic-info" class="info-box">
                 <div id="phone-title" class="sub-title">멘토링 환영 공지</div>
                 <textarea name="welcomePost" id="" cols="30" rows="10" placeholder="공지 혹은 환영 메세지등 자유롭게 작성 해주세요."></textarea>
             </div>
-
         </div>
-
         <div id="btn-box">
             <div id="cancel-btn">취소하기</div>
             <input type="submit" value="저장하기">
         </div>
         </form>
-
     </div>
-
-
     <%@include file ="/WEB-INF/views/common/footer.jsp" %>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

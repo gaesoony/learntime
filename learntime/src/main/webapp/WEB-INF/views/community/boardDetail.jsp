@@ -16,13 +16,10 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
-	
 	<div id="board-banner">
 		<img src="/app/resources/img/freeBoardBanner.png" alt="자유게시판 배너">
 	</div>
-
 	<div class="cate-line">카테고리 - ${bv.cate}</div>
-
 	<div id="main-wrap">
 		<div id="content-info">
 			<div id="writer-date">
@@ -40,12 +37,10 @@
 				<span class="material-symbols-rounded bookmark-icon">bookmark</span>
 			</div>
 		</div>
-
 		<div id="content">
 			<h2>${bv.title}</h2>
 			${bv.content}
 		</div>
-
 		<div id="content-btns-box">
 			<div></div>
 			<div id="like-hate-box">
@@ -139,17 +134,13 @@
 
 			</script> -->
 			
-
 			<div id="btns-box">
 				<c:if test="${sessionScope.loginMember.no eq bv.writer}">
 					<div id="modify-btn" onclick="location.href='/app/community/board/modify?bno=${bv.no}'">수정</div>
 					<div id="delete-btn" onclick="location.href='/app/community/board/delete?bno=${bv.no}'">삭제</div>
 				</c:if>
 			</div>
-
 		</div>
-
-		
 		<div id="comment-wrap">
 			<!-- 로그인이 되어 있지 않을때 댓글 작성 -->
 			<c:if test="${sessionScope.loginMember == null}">
@@ -283,8 +274,6 @@
 				
 			</c:if>
 		</div>
-
-
 		<div id="comment-list">
 			<!-- cvList 의 첫번째 인덱스에 데이터가 없다면 실행-->
 			<c:if test = "${cvList[0] == null}">
@@ -338,8 +327,6 @@
 								<input class="cmt-no" type="hidden" name="" value="${cv.no}">
 							</div>
 						</div>
-
-
 					</div>
 
 					<!-- 숨긴 대댓글 창 -->
@@ -359,12 +346,10 @@
 
 				</c:forEach>
 			</c:if>
-			
 			<!-- 댓글 반복문 끝 -->
 
 			<!-- 댓글 좋아요 -->
 			<script>
-
 				$(document).ready(function() {
 					//좋아요 하는데 해당 댓글 번호 가져오기
 					var cmtNo = $(this).siblings('.cmt-no').val();
@@ -401,11 +386,9 @@
 						}
 					});
 				}
-
 			</script>
 			
 		</div>
-
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 
@@ -562,7 +545,7 @@
     </script>
 
 	<script>
-		//로그인멤버가 없을시 스크랩하기에 있는 모든 function 비활성화
+		//로그인멤버 체크하고 스크랩
 		$(document).ready(function() {
 			if("${loginMember}" == "") {
 				$("#scrap").next().click(function() {
@@ -576,13 +559,13 @@
 				$("#scrap").next().addClass("main-green-filled");
 			}
 		});
+
 		// 스크랩 미리 채워놓기
 		$(document).ready(function() {
 			if("${lhsList[0].scrap}" === "true" && "${loginMember}" != "") {
 				$("#scrap").next().addClass("main-green-filled");
 			}
 		});
-
 
 		// 스크랩하기 버튼클릭시 안내문구
 		$(document).ready(function() {
@@ -593,15 +576,12 @@
 				}
 			});
 		});
-
 		
 		$(document).ready(function() {
 			if("${loginMember}" != ""){
-
 				//스크랩 채우기
 				$("#scrap").next().click(function() {
 					$(".bookmark-icon").toggleClass("main-green-filled");
-				
 					//스크랩 서버
 					$.ajax({
 						url: "/app/community/scrap",
@@ -612,8 +592,6 @@
 						},
 						success: function(data) {
 							console.log(data);
-							
-
 						},
 						error: function() {
 							console.log(data);
@@ -622,10 +600,8 @@
 				});
 			}
 		});
-
 	</script>
 
-		
 	<script>
 		// 좋아요 & 싫어요 미리 채워놓기(red-filled, blue-filled)
 		$(document).ready(function() {
@@ -653,7 +629,6 @@
 			}
 
 		});
-
 
 		// 좋아요 & 싫어요
 		$('.like').click(function(){
@@ -685,7 +660,7 @@
 		});
 		}
 
-		// 로그인이 되어있지 않거나 로그인한 회원이 작성자가 아닐때 버튼 hide
+		// 로그인멤버, 작성자가 같은지 check
 		$(document).ready(function() {
 			if("${loginMember.no}" !== "${bv.writer}" || "${loginMember.no}" === "null") {
 				$("#modify-btn").hide();
