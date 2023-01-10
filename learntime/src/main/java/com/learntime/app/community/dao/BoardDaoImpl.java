@@ -113,8 +113,8 @@ public class BoardDaoImpl implements BoardDao{
 
 	//커뮤니티 글 삭제
 	@Override
-	public int delete(SqlSessionTemplate sst, BoardVo vo) {
-		return sst.delete("freeBoardMapper.delete", vo);
+	public int delete(SqlSessionTemplate sst, String bno) {
+		return sst.delete("freeBoardMapper.delete", bno);
 	}
 
 	//유저의 특정글 좋아요 조회

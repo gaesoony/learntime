@@ -116,6 +116,7 @@ pageEncoding="UTF-8"%>
                             <input class="lg-category" type="radio" name="mentoring-category" id="mentoring-category3">
                             <label for="mentoring-category3">나의 멘토링 관리</label>
                         </c:if>
+
                     </div>
                 </div>
         
@@ -147,8 +148,7 @@ pageEncoding="UTF-8"%>
                             <span> 취소/환불</span>
                         </label>
                     </div>
-                    
-                    <!-- avList 가 null이거나 값이 없다면 -->
+                    <!-- avList nul check -->
                     <c:if test="${avList == null || avList.size() == 0}">
                         <div id="no-application" class="m-notice">신청한 멘토링이 없습니다. :( </div>
                     </c:if>
@@ -213,7 +213,6 @@ pageEncoding="UTF-8"%>
                                                 <span class="material-symbols-rounded star-icon">star</span>
                                                 <span class="material-symbols-rounded star-icon">star</span>
                                                 <span class="material-symbols-rounded star-icon">star</span>
-        
                                                 <select name="star" class="star" hidden>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
@@ -230,7 +229,6 @@ pageEncoding="UTF-8"%>
                                         <input type="hidden" name="no" value="${av.no}">
                                         <div class="review-write-btn green-btn">작성하기</div>
                                     </div>
-                                    
                                     <div class="review-txt">
                                         <textarea name="content" cols="30" rows="10" placeholder="멘토링에 대한 솔직한 후기를 남겨주세요"></textarea>
                                     </div>
@@ -238,6 +236,7 @@ pageEncoding="UTF-8"%>
                             </div>
                         </c:if>
                     </c:forEach>
+                </div>
                 </div>
             </div>
         </div>
@@ -295,7 +294,6 @@ pageEncoding="UTF-8"%>
         mentoringCategory3.click(function() {
             location.href = '/app/member/mypage/mentoring/manage';
         });
-
 
         //별 채우기, 별 점 value값 변경
         $(document).ready(function(){

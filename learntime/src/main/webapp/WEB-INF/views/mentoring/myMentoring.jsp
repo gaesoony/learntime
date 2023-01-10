@@ -13,7 +13,6 @@
 </head>
 <body>
     <%@include file="/WEB-INF/views/common/header.jsp"%>
-
     <div id="main-wrap">
         <div id="category-wrap">
             <div id="mentoring-category-box">
@@ -26,7 +25,6 @@
             </div>
             <div id="mentoring-regist-btn">멘토링 설정하기</div>
         </div>
-
         <div id="mentoring-content-wrap">
             <div id="content-title">
                 <div class="content-title">상태</div>
@@ -37,7 +35,6 @@
                 <div class="content-title">멘토링일정</div>
                 <div class="content-title">신청정보</div>
             </div>
-
             <div class="content-list">
                 <div class="content">수락대기중</div>
                 <div class="content">망치맨</div>
@@ -47,19 +44,13 @@
                 <div class="content">2022.11.20 22:00</div>
                 <div class="content">신청정보</div>
             </div>
-
             <div id="no-application" class="m-notice">아직 멘토링 신청이 없어요 :( </div>
             <div id="no-mentor" class="m-notice">아직 멘토링 설정을 하지 않았어요 :( <br>
                 <a href="">멘토링 설정하기 ></a>
             </div>
         </div>
-
-
     </div>
-
-
     <%@include file ="/WEB-INF/views/common/footer.jsp" %>
-
 </body>
 </html>
 

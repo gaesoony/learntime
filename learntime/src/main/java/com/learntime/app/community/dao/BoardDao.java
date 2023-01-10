@@ -60,7 +60,7 @@ public interface BoardDao {
 	public int update(SqlSessionTemplate sst, BoardVo vo);
 
 	//커뮤니티 글 삭제
-	public int delete(SqlSessionTemplate sst, BoardVo vo);
+	public int delete(SqlSessionTemplate sst, String bno);
 
 	//유저의 특정글 좋아요 조회
 	public LHSVo selectUserLike(SqlSessionTemplate sst, LHSVo lhsVo);

@@ -127,8 +127,8 @@ public class BoardServiceImpl implements BoardService{
 	//글삭제
 	@Transactional
 	@Override
-	public int delete(BoardVo vo) {
-		return dao.delete(sst, vo);
+	public int delete(String bno) {
+		return dao.delete(sst, bno);
 	}
 
 	//유저의 특정글 좋아요 조회

@@ -344,6 +344,8 @@ div#content{
 .comment-writer-profile2>img{
     width: 25px;
     height: 25px;
+    border-radius: 25px;
+
 }
 .comment-writer,
 .comment-writer2{

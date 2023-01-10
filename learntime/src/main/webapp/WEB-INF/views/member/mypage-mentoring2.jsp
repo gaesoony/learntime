@@ -89,7 +89,6 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <%@include file="/WEB-INF/views/common/header.jsp" %>
-
     <div id="mypage-box">
         <div id="mypage">
             <div id="bin">
@@ -118,48 +117,27 @@ pageEncoding="UTF-8"%>
                         <span>멘토 정보</span>
                         <!-- <div id="save-btn">저장</div> -->
                     </div>
-        
                     <div id="basic-info" class="info-box">
                         <div id="email-title" class="sub-title">
                             <span>이름(실명)</span>
                             <span class="sub-title-plus">*</span>
                         </div>
                         <input type="text" id="name-input" name="name" placeholder="실명을 입력해주세요">
-        
                         <div id="email-title" class="sub-title">
                             <span>연락받을 이메일</span>
                             <span class="sub-title-plus">*</span>
                         </div>
                         <input type="text" id="email-input" name="email" placeholder="멘토링에 사용하실 이메일을 입력해주세요">
-                        
-        
                         <div id="phone-title" class="sub-title">
                             <span>연락처</span>
                             <span class="sub-title-plus">*</span>
                         </div>
                         <input type="text" id="phone-input" name="phoneNo" placeholder="01000000000">
-        
-                        <div id="category-title" class="sub-title" >
-                            <span>희망분야</span>
-                            <span class="sub-title-plus">*</span>
-                        </div>
-                        <select name="cateNo" id="field-input" required>
-                          <!-- 분야 반복문 시작 -->
-
-                            <option value="" disabled selected>멘토링과 연관된 분야를 선택해주세요</option>
-                            <option value="1">분야1</option>
-                            <option value="2">분야2</option>
-                            <option value="3">분야3</option>
-
-                          <!-- 분야 반복 끝 -->
-                        </select>
-        
                         <div id="link-title" class="sub-title">
                             <span>링크</span>
                             <span class="sub-title-plus">*</span>
                         </div>
-                        <input type="text" name="link" id="" placeholder="멘토님을 표현할 수 있는 깃허브 주소나 블로그 주소를 입력해주세요">
-                        
+                        <input type="text" name="link" id="link-input" placeholder="멘토님을 표현할 수 있는 깃허브 주소나 블로그 주소를 입력해주세요">
                         <div id="account-title" class="sub-title">
                           <span>계좌번호</span>
                           <span class="sub-title-plus">*</span>
@@ -183,7 +161,6 @@ pageEncoding="UTF-8"%>
                             </select>
                             <input type="text" name="accountNo" id="" placeholder="정산 받을 계좌번호를 입력해주세요">
                          </div>
-
                         <div id="intro-title" class="sub-title">
                             <span>나의 소개글</span>
                             <span class="sub-title-plus">*</span>
@@ -191,7 +168,6 @@ pageEncoding="UTF-8"%>
                         <textarea id="intro-input" name="intro" id="" cols="30" rows="10" placeholder="멘토님을 상세하게 소개해주세요"></textarea>
                     </div>
                 </div>
-        
                 <div id="btn-box">
                     <div id="cancel-btn">취소하기</div>
                     <input type="hidden" name="writer" value="${loginMember.no}">
@@ -202,14 +178,13 @@ pageEncoding="UTF-8"%>
               </div>
 
               <script>
-
                 var check1 = false;
                 var check2 = false;
                 var check3 = false;
                 var check4 = false;
                 var check5 = false;
                 var check6 = false;
-
+                var check7 = false;
 
                 // 이름 입력
                 $("#name-input").blur(function(){
@@ -270,9 +245,14 @@ pageEncoding="UTF-8"%>
                 });
 
                 // 링크 입력
+                $("#link-input").blur(function(){
+                  var link = $("#link-input").val();
+                  if(link != ""){
+                    check6 = true;
+                  }
+                });
                 
                 // 계좌번호 입력
-                // 계좌번호 은행 select 필수
                 $("#account-box input").blur(function(){
                   var account = $("#account-box input").val();
                   var regExp = /^[0-9]{10,15}$/;
@@ -280,25 +260,23 @@ pageEncoding="UTF-8"%>
                     $("#account-box input").css("border", "1px solid red");
                   }else{
                     $("#account-box input").css("border", "1px solid #58c079");
-                    check6 = true;
+                    check7 = true;
                   }
                 });
                 
                 // 조건 확인 후 submit true
-
                 $("input[type=\"submit\"]").click(function(){
                   if(check1 && check2 && check3 && check4 && check5 && check6){
-                    //#form에 있는 submit을 실행
+                    //submit true
                     $('form').attr('onsubmit', 'return true');
                     $("form").submit();
                   }else{
-                    alert("입력 조건을 확인해주세요");
+                    alert("입력 조건을 확인해주세요. (형식에 맞게 작성해주세요)");
                     return false;
                   }
                 });
 
               </script>
-
 
             </div>
         </div>

@@ -225,14 +225,6 @@ public class MentorController {
 		return "redirect:/mentor/mymentoring/temp3";
 	}
 
-	@GetMapping("/mymentoring/temp")
-	public String myMentoringT1() {
-		
-		
-		
-		return "/member/mypage-mentoring";
-	}
-	
 	
 	//멘토리스트에서 멘토링 상세보기
 	@ResponseBody
@@ -345,8 +337,6 @@ public class MentorController {
 		reviewInfo.put("mentorNo", mentorNo);
 		reviewInfo.put("writer", loginMember.getNo());
 		
-//		System.out.println(reviewInfo);
-		
 		int result = ms.insertReview(reviewInfo);
 		
 		if (result != 1) {
@@ -355,6 +345,24 @@ public class MentorController {
 		
 		return "1";
 	}
+	
+	//멘토 체크
+	@ResponseBody
+	@GetMapping("/checkMentor")
+	public String checkMentor(HttpSession session) {
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		MentorVo mv = ms.selectMentor(loginMember.getNo());
+		
+		if(mv == null) {
+			return "0";
+		}
+		return "1";
+	}
+	
+	
+	
+	
+	
 	
 
 }

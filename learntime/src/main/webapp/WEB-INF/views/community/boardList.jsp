@@ -34,14 +34,12 @@
             <div id="category" class="height-40">
                 <input type="radio" name="freeboard-cate" id="0" checked>
                 <label for="0">전체</label>
+                
                 <c:forEach items = "${cateList}" var= "cate">
                     <input type="radio" name="freeboard-cate" id="${cate.no}">
                     <label for="${cate.no}">${cate.name}</label>
                 </c:forEach>
-               
-            
-              
-                
+
             </div>
             <div id="cateDown">+</div>
 
@@ -81,9 +79,6 @@
                     <option value = "4">좋아요수</option>
                 </select>
             </div>
-
-           
-
         </div>
         <div id="explore">
             <span id="refresh-icon" class="material-symbols-rounded">refresh</span>
@@ -112,11 +107,30 @@
                         <div class="writer-date">2020.12.12 12:20:42</div>
                     </div>
                     <div class="content-info">
-                        <span class="hit-number">조회수 1,150</span>
+                        <span class="hit-number">조회수 777</span>
                         <span class="material-symbols-rounded comment-icon">comment</span>
-                        <span class="comment-number">3</span>
+                        <span class="comment-number">12</span>
                         <span class="material-symbols-rounded thumbup-icon">thumb_up</span>
-                        <span class="like-number">40</span>
+                        <span class="like-number">65</span>
+                    </div>
+                </div>
+            </div>
+            <div class="board-content notice">
+                <div class="title-box">
+                    <span>[런타임]LearnTime 세미나 개발자가 알아야 할 기초상식</span>
+                </div>
+                <div class="content-info-box">
+                    <div class="writer-info">
+                        <div class="writer-profile"></div>
+                        <span class="writer-nick">LearnTime</span>
+                        <div class="writer-date">2018.12.12 12:20:42</div>
+                    </div>
+                    <div class="content-info">
+                        <span class="hit-number">조회수 11,150</span>
+                        <span class="material-symbols-rounded comment-icon">comment</span>
+                        <span class="comment-number">29</span>
+                        <span class="material-symbols-rounded thumbup-icon">thumb_up</span>
+                        <span class="like-number">140</span>
                     </div>
                 </div>
             </div>
@@ -127,7 +141,7 @@
                 <div class="board-content" onclick="location.href='/app/community/board/detail?bno=${list.no}'">
                     <div class="title-box">
                         <span>${list.title} 
-                            <!-- ${list.cmtCount} 가 있을때 출력-->
+                            <!-- cmtCount null check-->
                             <c:if test="${list.cmtCount != null}">
                                 <span id="cmt-count">[${list.cmtCount}]</span>
                             </c:if>
@@ -169,7 +183,6 @@
             </c:forEach>
             <!-- 반복 끝 -->
 
-
         </div>
         <div id="paging">
             <div class="paging-btn">1</div>
@@ -184,7 +197,6 @@
             <div class="paging-btn">10</div>
             <div class="paging-btn" id="next-btn">다음</div>
         </div>
-
     </div>
     
     <%@include file ="/WEB-INF/views/common/footer.jsp" %>
@@ -223,86 +235,84 @@
             return String(betweenTimeYear)+'년전';
         }
 
-        //시간 계산후 넣어줌
+        //계산된 시간 적용
         $('.writer-date').each(function(index, item) {
             $(this).html(timeForToday($(this).html()));
         });
-
-
         
-    $(document).ready(function() {
-        //기존 쿼리스트링
-        var cate = getQueryString('cate');
-        var page = getQueryString('page');
-        var search = getQueryString('search');
-        var sort = getQueryString('sort');
+        $(document).ready(function() {
+            //기존 쿼리스트링
+            var cate = getQueryString('cate');
+            var page = getQueryString('page');
+            var search = getQueryString('search');
+            var sort = getQueryString('sort');
 
-        // 카테고리 클릭 시 쿼리 스트링으로 전달
-        $('input[type="radio"]').on('click', function() {
-            var cate = $(this).attr('id');
-            location.href = '/app/community/board/list?cate=' + cate;
-        });
+            // 카테고리 클릭 시 쿼리 스트링으로 전달
+            $('input[type="radio"]').on('click', function() {
+                var cate = $(this).attr('id');
+                location.href = '/app/community/board/list?cate=' + cate;
+            });
 
-        // 정렬 클릭 시 쿼리 스트링으로 전달
-        $('#sorting').on('change', function() {
-            var sort = $(this).val();
-            if(cate == undefined && search == undefined){
-                location.href = '/app/community/board/list?sort=' + sort;
-            } else if(cate != undefined && search == undefined){
-                location.href = '/app/community/board/list?cate=' + cate + '&sort=' + sort;
-            } else if(cate == undefined && search != undefined){
-                location.href = '/app/community/board/list?search=' + search + '&sort=' + sort;
-            } else if(cate != undefined && search != undefined){
-                location.href = '/app/community/board/list?cate=' + cate + '&search=' + search + '&sort=' + sort;
+            // 정렬 클릭 시 쿼리 스트링으로 전달
+            $('#sorting').on('change', function() {
+                var sort = $(this).val();
+                if(cate == undefined && search == undefined){
+                    location.href = '/app/community/board/list?sort=' + sort;
+                } else if(cate != undefined && search == undefined){
+                    location.href = '/app/community/board/list?cate=' + cate + '&sort=' + sort;
+                } else if(cate == undefined && search != undefined){
+                    location.href = '/app/community/board/list?search=' + search + '&sort=' + sort;
+                } else if(cate != undefined && search != undefined){
+                    location.href = '/app/community/board/list?cate=' + cate + '&search=' + search + '&sort=' + sort;
+                }
+            });
+
+            // 페이징 클릭 시 쿼리 스트링으로 전달
+            $('.pagination a').on('click', function() {
+                var page = $(this).text();
+                location.href = '/app/community/board/list?cate=' + cate + '&sort=' + sort + '&page=' + page;
+            });
+
+            //검색 제출 시 쿼리 스트링으로 전달
+            $('#search-icon').on('click', function() {
+                var search = $('#search').val();
+                console.log(cate);
+                if(cate == undefined){
+                    location.href = '/app/community/board/list?search=' + search;
+                } else if(cate != undefined){
+                    location.href = '/app/community/board/list?cate=' + cate + '&search=' + search;
+                }
+            });
+
+            // 초기화 아이콘 클릭시 새로고침
+            $('#refresh-icon').on('click', function() {
+                location.href = '/app/community/board/list';
+            });
+
+            // 쿼리 스트링 값 조회 함수
+            function getQueryString(key) {
+                var query = window.location.search.substring(1);
+                var vars = query.split("&");
+                for (var i=0;i<vars.length;i++) {
+                    var pair = vars[i].split("=");
+                    if(pair[0] == key){return pair[1];}
+                }
+                return undefined;
             }
-        });
 
-        // 페이징 클릭 시 쿼리 스트링으로 전달
-        $('.pagination a').on('click', function() {
-            var page = $(this).text();
-            location.href = '/app/community/board/list?cate=' + cate + '&sort=' + sort + '&page=' + page;
-        });
-
-        //검색 제출 시 쿼리 스트링으로 전달
-        $('#search-icon').on('click', function() {
-            var search = $('#search').val();
-            console.log(cate);
-            if(cate == undefined){
-                location.href = '/app/community/board/list?search=' + search;
-            } else if(cate != undefined){
-                location.href = '/app/community/board/list?cate=' + cate + '&search=' + search;
+            // 카테고리 쿼리 스트링 값으로 선택
+            var cate = getQueryString('cate');
+            if (cate != undefined) {
+                $('#' + cate).prop('checked', true);
             }
-        });
 
-        // 초기화 아이콘 클릭시 새로고침
-        $('#refresh-icon').on('click', function() {
-            location.href = '/app/community/board/list';
-        });
-
-        // 쿼리 스트링 값 조회 함수
-        function getQueryString(key) {
-            var query = window.location.search.substring(1);
-            var vars = query.split("&");
-            for (var i=0;i<vars.length;i++) {
-                var pair = vars[i].split("=");
-                if(pair[0] == key){return pair[1];}
+            // 정렬 쿼리 스트링 값으로 선택
+            var sort = getQueryString('sort');
+            if (sort != undefined) {
+                $('#sorting').val(sort);
             }
-            return undefined;
-        }
 
-        // 카테고리 쿼리 스트링 값으로 선택
-        var cate = getQueryString('cate');
-        if (cate != undefined) {
-            $('#' + cate).prop('checked', true);
-        }
-
-        // 정렬 쿼리 스트링 값으로 선택
-        var sort = getQueryString('sort');
-        if (sort != undefined) {
-            $('#sorting').val(sort);
-        }
-
-    });
+        });
          
         // 카테고리값 5이상이면 카테고리 펼치기
         $(document).ready(function(){
@@ -314,11 +324,6 @@
             }
         });
 
-
-
-
-       
-           
     </script>
     
 </body>

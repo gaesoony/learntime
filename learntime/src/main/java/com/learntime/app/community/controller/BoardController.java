@@ -195,49 +195,18 @@ public class BoardController {
 	}
 	
 // 글삭제 서버
-	@PostMapping("board/delete")
-	public String boardDelete(BoardVo vo) {
-		
-		System.out.println(vo);
-		
-		int result = bs.delete(vo);
+	@ResponseBody
+	@PostMapping("/board/delete")
+	public String boardDelete(String bno) {
+		int result = bs.delete(bno);
 		
 		System.out.println(result);
 		if(result != 1) {
-			return "";
+			return "0";
 		}
-		
-		return "redirect:/community/board/list";
-		
+		return "1";
 	}
 
-	
-//// 마이페이지
-//	@GetMapping("/mypage")
-//	public String myCommunity1(HttpSession session, Model model) {
-//		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
-//		String userNo = loginMember.getNo();
-//		
-//		//나의 글 조회
-//		List<BoardVo> myList = bs.selecMyList(userNo);
-//		model.addAttribute("myList", myList);
-//		
-//		
-//		return "/member/mypage-community1";
-//	}
-//	
-//// 마이페이지
-//	@GetMapping("/mypage2")
-//	public String myCommunity2(HttpSession session, Model model) {
-//		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
-//		String userNo = loginMember.getNo();
-//		
-//		//나의 스크랩 글 조회
-//		List<BoardVo> scrapList = bs.selectScrapList(userNo);
-//		model.addAttribute("scrapList", scrapList);
-//		
-//		return "/member/mypage-community2";
-//	}
 
 // 댓글 쓰기
 	@PostMapping(value = "comment/write", produces = "application/text;charset=utf8")
@@ -305,11 +274,9 @@ public class BoardController {
 	}
 	
 	
-	
 	//댓글삭제 서버
 	public String cmtDelete(@RequestParam("content") String content, @RequestParam("boardNo") String boardNo,
 			@RequestParam("writer") String writer, @RequestParam("group") String group,  HttpServletResponse response) {
-		
 		
 		// 댓글 조회
 		CmtVo cv = new CmtVo();
@@ -324,9 +291,8 @@ public class BoardController {
 		String jsonString = gson.toJson(map);
 
 		return jsonString;
+		
 	}
-	
-	
 	
 
 	// 스크랩하기
@@ -381,34 +347,7 @@ public class BoardController {
 		
 		System.out.println(lhsVo);
 		
-		// 먼저 조회를 한다... 이 유저의 이 글의 좋아요 싫어요 데이터가 있는지..
 		userLHS = bs.selectUserLike(lhsVo);
-		
-//		if(status.equals("L")) {
-//			// 조회가 null 이면 insert
-//			if(userLHS == null) {
-//				bs.insertUserLike(lhsVo);
-//			}else if("L".equals(userLHS.getStatus())) {
-//				// 조회한 결과중 status 가 L 이면 delete
-//				bs.deleteUserLike(lhsVo);
-//			}else if("H".equals(userLHS.getStatus())){
-//				//조회한 결과중 status 가 H 이면 update
-//				bs.updateUserLike(lhsVo);
-//			}
-//		}
-//		
-//		if(status.equals("H")) {
-//			// 조회가 null 이면 insert
-//			if(userLHS == null) {
-//				bs.insertUserLike(lhsVo);
-//			}else if("H".equals(userLHS.getStatus())) {
-//				// 조회한 결과중 status 가 H 이면 delete
-//				bs.deleteUserLike(lhsVo);
-//			}else if("L".equals(userLHS.getStatus())){
-//				//조회한 결과중 status 가 L 이면 update
-//				bs.updateUserLike(lhsVo);
-//			}
-//		}
 		
 		if (userLHS == null) {
 			System.out.println("좋아요 인서트~");

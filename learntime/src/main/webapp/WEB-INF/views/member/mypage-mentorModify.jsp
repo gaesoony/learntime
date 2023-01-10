@@ -118,33 +118,27 @@ pageEncoding="UTF-8"%>
                         <span>멘토 정보</span>
                         <!-- <div id="save-btn">저장</div> -->
                     </div>
-        
                     <div id="basic-info" class="info-box">
                         <div id="email-title" class="sub-title">
                             <span>이름(실명)</span>
                             <span class="sub-title-plus">*</span>
                         </div>
                         <input type="text" id="name-input" name="name" placeholder="실명을 입력해주세요">
-        
                         <div id="email-title" class="sub-title">
                             <span>연락받을 이메일</span>
                             <span class="sub-title-plus">*</span>
                         </div>
                         <input type="text" id="email-input" name="email" placeholder="멘토링에 사용하실 이메일을 입력해주세요">
-                        
-        
                         <div id="phone-title" class="sub-title">
                             <span>연락처</span>
                             <span class="sub-title-plus">*</span>
                         </div>
                         <input type="text" id="phone-input" name="phoneNo" placeholder="01000000000">
-        
                         <div id="link-title" class="sub-title">
                             <span>링크</span>
                             <span class="sub-title-plus">*</span>
                         </div>
                         <input type="text" id="link-input" name="link" placeholder="멘토님을 표현할 수 있는 깃허브 주소나 블로그 주소를 입력해주세요">
-                        
                         <div id="account-title" class="sub-title">
                           <span>계좌번호</span>
                           <span class="sub-title-plus">*</span>
@@ -176,7 +170,6 @@ pageEncoding="UTF-8"%>
                         <textarea id="intro-input" name="intro" cols="30" rows="10" placeholder="멘토님을 상세하게 소개해주세요"></textarea>
                     </div>
                 </div>
-        
                 <div id="btn-box">
                     <div id="cancel-btn">취소하기</div>
                     <input type="hidden" name="writer" value="${loginMember.no}">
@@ -187,14 +180,13 @@ pageEncoding="UTF-8"%>
               </div>
 
               <script>
-
                 var check1 = true;
                 var check2 = true;
                 var check3 = true;
                 var check4 = true;
                 var check5 = true;
                 var check6 = true;
-
+                var check7 = true;
 
                 // 이름 입력
                 $("#name-input").blur(function(){
@@ -232,13 +224,10 @@ pageEncoding="UTF-8"%>
                   }
                 });
 
-                // 분야 선택
-                $("#field-input").change(function(){
-                  var field = $("#field-input").val();
-                  if(field == ""){
-                    $("#field-input").css("border", "1px solid red");
-                  }else{
-                    $("#field-input").css("border", "1px solid #58c079");
+                // 링크 입력
+                $("#link-input").blur(function(){
+                  var link = $("#link-input").val();
+                  if(link != ""){
                     check4 = true;
                   }
                 });
@@ -253,11 +242,8 @@ pageEncoding="UTF-8"%>
                     check5 = true;
                   }
                 });
-
-                // 링크 입력
                 
                 // 계좌번호 입력
-                // 계좌번호 은행 select 필수
                 $("#account-box input").blur(function(){
                   var account = $("#account-box input").val();
                   var regExp = /^[0-9]{10,15}$/;
@@ -299,9 +285,6 @@ pageEncoding="UTF-8"%>
                 }
               </script>
 
-
-
-
             </div>
         </div>
     </div>
@@ -323,7 +306,6 @@ pageEncoding="UTF-8"%>
             location.href = '/app/member/mypage/mentoring/manage';
         });
     </script>
-    
 
     <script>
       src="https://kit.fontawesome.com/939838bb27.js"

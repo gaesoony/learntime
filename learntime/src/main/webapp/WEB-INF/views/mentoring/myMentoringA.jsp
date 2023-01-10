@@ -13,7 +13,6 @@
 </head>
 <body>
     <%@include file="/WEB-INF/views/common/header.jsp"%>
-
     <div id="main-wrap">
         <div id="category-wrap">
             <div id="mentoring-category-box">
@@ -25,7 +24,6 @@
                 <label for="mentoring-category3">나의 멘토링 관리</label>
             </div>
         </div>
-
         <div id="mentoring-content-wrap">
             <div id="content-title-box">
                 <input class="sm-category" type="radio" name="mentoring-sm-category" id="mentoring-sm-category1" checked>
@@ -54,7 +52,6 @@
                     <span> 취소/환불</span>
                 </label>
             </div>
-
             <div class="content-box">
                 <div class="mentoring-nbr">
                     <span>No 221129192042</span>
@@ -118,15 +115,9 @@
                     <div class="status-btn green-btn">후기작성</div>
                 </div>
             </div>
-
-
             <div id="no-application" class="m-notice">신청한 멘토링이 없습니다. :( </div>
-            
         </div>
-
-
     </div>
-
 
     <%@include file ="/WEB-INF/views/common/footer.jsp" %>
 
