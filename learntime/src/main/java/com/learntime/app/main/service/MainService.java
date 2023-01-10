@@ -12,6 +12,13 @@ public interface MainService {
 
 	//스터디 리스트 조회
 	public List<Map<String, String>> selectGroupList();
+
+	//공지사항 리스트 조회
+	public List<Map<String, Object>> selectNoticeList();
+
+	public List<Map<String, Object>> selectLearningList();
+
+	public List<Map<String, Object>> selectPopularLearningList();
 	
 	
 

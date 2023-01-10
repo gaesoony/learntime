@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,9 @@ import com.learntime.app.admin.service.BannerService;
 import com.learntime.app.admin.service.PopupService;
 import com.learntime.app.main.service.MainService;
 import com.learntime.app.main.vo.MainVo;
+import com.learntime.app.makegrass.service.MakegrassService;
+import com.learntime.app.mertoring.service.MentoringService;
+import com.learntime.app.mertoring.vo.MentorVo;
 import com.learntime.app.study.service.StudyService;
 import com.learntime.app.study.vo.SearchVo;
 
@@ -22,6 +26,13 @@ public class MainController {
 	
 	@Autowired
 	private StudyService studyService;
+	
+	@Autowired
+	private MentoringService mentoringService;
+	
+	@Autowired
+	@Qualifier("makegrassServiceImpl")
+	private MakegrassService makegrassService;
 	
 	@Autowired
 	private BannerService bannerService;
@@ -51,12 +62,24 @@ public class MainController {
 		model.addAttribute("groupList", groupList);
 		
 		//지식인
+		List<Map<String, Object>> learningList = service.selectLearningList();
+		model.addAttribute("learningList", learningList);
+		
+		//인기 지식인
+		List<Map<String, Object>> popularLearningList = service.selectPopularLearningList();
+		model.addAttribute("popularLearningList", popularLearningList);
 		
 		//멘토링
+		List<MentorVo> mentorList = mentoringService.selectMentorList(null);
+		model.addAttribute("mentorList", mentorList);
 		
-		//잔디심기
+		//잔디심기 목록 조회
+		List<Map<String, Object>> makegrassList = makegrassService.selectList(null);
+		model.addAttribute("makegrassList", makegrassList);
 		
 		//공지사항
+		List<Map<String, Object>> noticeList = service.selectNoticeList();
+		model.addAttribute("noticeList", noticeList);
 		
 //		MainVo vo = service.selectMain();
 		

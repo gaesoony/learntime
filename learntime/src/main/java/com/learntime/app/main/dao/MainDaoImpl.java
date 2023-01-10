@@ -23,4 +23,20 @@ public class MainDaoImpl implements MainDao{
 		return sst.selectList("mainMapper.selectGroupList");
 	}
 
+	//select notice list
+	@Override
+	public List<Map<String, Object>> selectNoticeList(SqlSessionTemplate sst) {
+		return sst.selectList("mainMapper.selectNoticeList");
+	}
+
+	@Override
+	public List<Map<String, Object>> selectLearningList(SqlSessionTemplate sst) {
+		return sst.selectList("mainMapper.selectLearningList");
+	}
+
+	@Override
+	public List<Map<String, Object>> selectPopularLearningList(SqlSessionTemplate sst) {
+		return sst.selectList("mainMapper.selectPopularLearningList");
+	}
+
 }

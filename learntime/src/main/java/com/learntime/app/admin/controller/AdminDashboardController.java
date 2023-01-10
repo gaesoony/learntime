@@ -186,7 +186,6 @@ public class AdminDashboardController {
 		
 		//멘토링 목록 조회
 		List<MentorVo> mentorList = mentoringService.selectMentorList(null);
-
 		model.addAttribute("mentorList", mentorList);
 		
 		//문의 목록 조회

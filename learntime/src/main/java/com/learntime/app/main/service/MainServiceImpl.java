@@ -28,8 +28,22 @@ public class MainServiceImpl implements MainService{
 	//스터디 리스트 조회
 	@Override
 	public List<Map<String, String>> selectGroupList() {
-		List<Map<String, String>> result = dao.selectGroupList(sst);
-		return result;
+		return dao.selectGroupList(sst);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectNoticeList() {
+		return dao.selectNoticeList(sst);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectLearningList() {
+		return dao.selectLearningList(sst);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectPopularLearningList() {
+		return dao.selectPopularLearningList(sst);
 	}
 	
 
