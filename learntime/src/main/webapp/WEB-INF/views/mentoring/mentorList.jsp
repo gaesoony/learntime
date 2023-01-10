@@ -281,9 +281,44 @@
 		<div id="banner-text-box">
             <span>멘토링</span>
             <span>지식을 나눠보세요</span>
-            <span><a href="/app/mentor/mymentoring/temp2">멘토 지원하기 ></a></span>
+            <span><a>멘토 지원하기 ></a></span>
         </div>
 	</div>
+
+    <script>
+        //멘토 확인
+        $(document).on('click', '#banner-text-box a', function(){
+            
+            if('${loginMember}' == ''){
+                alert('로그인 후 이용해주세요.');
+                return false;
+            }
+
+            //멘토인지 확인
+            $.ajax({
+                url: '/app/mentor/checkMentor',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data){
+                    console.log(data);
+                    if(1 == data){
+                        confirm('이미 멘토로 지원하셨습니다.\n멘토링 관리페이지로 이동하시겠습니까?');
+                        location.href = '/app/member/mypage/mentoring/manage';
+                    }else{
+                        //멘토 가 아니면 지원 페이지로 이동
+                        location.href = '/app/member/mypage/mentoring/register';
+                    }
+                },
+                error: function(){
+                    alert('멘토 확인 중 오류가 발생했습니다.');
+                }
+            });
+        });
+
+    </script>
+
+
+
     <div id="main-wrap">
 
         <div id="side-wrap">
@@ -547,9 +582,7 @@
             });
 
         });
-
     </script>
-
 
     <!-- 별 채우기 스크립트 -->
     <script>
