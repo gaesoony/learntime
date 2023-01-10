@@ -598,17 +598,6 @@
     
     });
 
-    $(document).ready(function(){
-
-        var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
-            removeItemButton: true,
-            maxItemCount:11,
-            searchResultLimit:11,
-            renderChoiceLimit:11
-        }); 
-
-
-    });
 
 
     //모달 띄우기

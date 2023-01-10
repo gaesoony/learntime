@@ -115,7 +115,8 @@ public class MemberController {
 		MemberVo loginMember=memberService.login(vo);
 		
 		if(loginMember==null) {
-			return"common/errorPage";
+			session.setAttribute("alertMsg", "로그인을 다시 해주세요!");
+			return "redirect:/main";
 		}
 		
 		session.setAttribute("loginMember", loginMember);
@@ -309,17 +310,18 @@ public class MemberController {
 			String followingMember=loginMember.getNo();
 			MemberVo followerMember=memberService.selectNo(no);
 			
-			FollowVo follow=new FollowVo();
-			follow.setFollowingNo(followingMember);
-			follow.setFollowerNo(followerMember.getNo());
-			
-//			팔로우 유무체크
-			int followCheck=memberService.followCheck(follow);
-			session.setAttribute("followCheck", followCheck);
-			session.setAttribute("followerCnt", followerCnt);
-			session.setAttribute("followingCnt", followingCnt);
-			
-			
+			if(followerMember!=null) {
+				FollowVo follow=new FollowVo();
+				follow.setFollowingNo(followingMember);
+				follow.setFollowerNo(followerMember.getNo());
+				
+//				팔로우 유무체크
+				int followCheck=memberService.followCheck(follow);
+				session.setAttribute("followCheck", followCheck);
+				session.setAttribute("followerCnt", followerCnt);
+				session.setAttribute("followingCnt", followingCnt);
+			}
+
 			List<BadgeVo> list=badgeService.listSelectMember(no);
 			model.addAttribute("list", list);
 			

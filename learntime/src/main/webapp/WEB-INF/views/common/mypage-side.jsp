@@ -382,16 +382,26 @@ input {
                 let sendNo=${loginMember.no};
                 let receNo=0;
                 let message=$('.message').val();
-                if(${loginMember.no} ==  ${chatlist[0].sendMno}){
-                    receNo=${chatlist[0].receMno}
-
-
-                }
                 
-                if(${loginMember.no} !=  ${chatlist[0].sendMno}){
-                    
-                    receNo=${chatlist[0].sendMno}
-                }
+               	if('${chatlist[0].sendMno}' == ''){
+               		receNo='${userNo.no}'
+               		
+               	}else {
+               		
+	               	 if('${loginMember.no}' ==  '${chatlist[0].sendMno}'){
+	                     receNo='${chatlist[0].receMno}'
+	
+	
+	                 }
+	                 
+	                 if('${loginMember.no}' !=  '${chatlist[0].sendMno}'){
+	                     
+	                     receNo='${chatlist[0].sendMno}'
+	                 }
+                 
+               	}
+                
+               
 
                 statChat(sendNo,receNo);
                 chatHistory(sendNo,receNo);
@@ -408,17 +418,24 @@ input {
                 let sendNo=${loginMember.no};
                 let receNo=0;
                 let message=$('.message').val();
-                if(${loginMember.no} ==  ${chatlist[0].sendMno}){
-                    receNo=${chatlist[0].receMno}
-
-
-                }
+             	if('${chatlist[0].sendMno}' == ''){
+               		receNo='${userNo.no}'
+               		
+               	}else {
+               		
+	               	 if('${loginMember.no}' ==  '${chatlist[0].sendMno}'){
+	                     receNo='${chatlist[0].receMno}'
+	                    	 
+	
+	                 }
+	                 
+	                 if('${loginMember.no}' !=  '${chatlist[0].sendMno}'){
+	                     
+	                     receNo='${chatlist[0].sendMno}'
+	                 }
+                 
+               	}
                 
-                if(${loginMember.no} !=  ${chatlist[0].sendMno}){
-                    
-                    receNo=${chatlist[0].sendMno}
-                }
-
                 
                 
                 chatSend(sendNo,receNo,message);
@@ -483,6 +500,8 @@ input {
                         
                         const msg1 = result+"#디엠#"+sendNo+"#"+receNo+"#메세지를 보냈어요";
                         webSocket.send(msg1);
+
+                        $('#chat-area').scrollTop($('#chat-area')[0].scrollHeight);
                         
                     },
                     error: function(result) {
@@ -518,7 +537,7 @@ input {
                             };
                         } 
 
-                        
+                        $('#chat-area').scrollTop($('#chat-area')[0].scrollHeight);
 
                        
                     },
@@ -630,12 +649,20 @@ input {
             let you = $('<div>').prop({className: 'bubble you'});
 
             
-            if(msgArr[1]==${userNo.no}){
+            if(msgArr[0]=='${loginMember.no}'){
+                $(me).append(msgArr[2]);
+                $('#chat-area').append(me);
+
+            }
+
+               
+            if(msgArr[0]!='${loginMember.no}'){
                 $(you).append(msgArr[2]);
                 $('#chat-area').append(you);
 
-                $('#chat-area').scrollTop($('#chat-area').scrollHeight);
             }
+
+        
 		};
 		
 		//소켓 닫기
