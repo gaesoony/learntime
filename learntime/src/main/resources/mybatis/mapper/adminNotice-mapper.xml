@@ -57,17 +57,29 @@
   <update id="activate">
 		UPDATE NOTICE
 		SET STATUS = 2
-		WHERE NO = #{no}
+		WHERE NO IN (
+		<foreach collection="list" item="no" separator="," >
+    		#{no}
+    	</foreach>
+    	)
 	</update>
 	<update id="deactivate">
 		UPDATE NOTICE
 		SET STATUS = 3
-		WHERE NO = #{no}
+		WHERE NO IN (
+		<foreach collection="list" item="no" separator="," >
+    		#{no}
+    	</foreach>
+    	)
 	</update>
 	<update id="delete">
 		UPDATE NOTICE
 		SET DELETE_YN = 'Y'
-		WHERE NO = #{no}
+		WHERE NO IN (
+		<foreach collection="list" item="no" separator="," >
+    		#{no}
+    	</foreach>
+    	)
 	</update>
   
   

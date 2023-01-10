@@ -7,10 +7,11 @@
 <meta charset="UTF-8">
 <!-- <link rel="stylesheet" href="/app/.css"> -->
 <title>Insert title here</title>
+
+</head>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
-</head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> 
 
 
@@ -411,32 +412,32 @@ background-color: #e9fde9;
                     <div class="Btns-noticeAd">
                         <div class="activate-Btn"><input class="activate" type="button" value="활성화" name="activate" ></div>
                         <div class="deactivate-Btn"><input class="deactivate" type="button" value="비활성화" name="deactivate" ></div>
-                        <div class="delete-notice-Btn"><input class="delete-lists" type="button" value="삭제" name="deleteList"></div>
+                        <div class="delete-notice-Btn"><input class="delete-lists" type="button" value="삭제" name="deleteList" onclick="delNotice();"></div>
                     </div>
                 </div>
             </div>
             <div class="notice-list">
                 <div class="notice-list-twoColored">
                     <div class="notice-group">
-                        <c:forEach var="list" items="${list}" varStatus="status">
+                        <c:forEach var="vo" items="${list}" varStatus="status">
                         	<div class="gathering-divs">
-	                        	<c:if test="${status.index >2}">
+	                        	<c:if test="${vo.status >2}">
 	                        	 	<div class="notice-white"></a>
 	                        	</c:if>
-	                        	<c:if test="${status.index <= 2 }">
+	                        	<c:if test="${vo.status  <= 2 }">
 	                            	<div class="notice-green"></a>
 	                        	</c:if>
 	                                <div class="admin-id-etc">
-	                                    <div class="admin-id" name="nick">${list.writer}</div>
-	                                    <div class="enroll-date" name="enrollDate">${list.enrollDate}</div>
+	                                    <div class="admin-id" name="nick">${vo.writer}</div>
+	                                    <div class="enroll-date" name="enrollDate">${vo.enrollDate}</div>
 	                                </div>
 	                                <div class="written-notice">
-										<div class="checkBoxBtn-notice"><input type="checkbox"  id="checkBoxBtn" value="${list.no}"></div>
-		                                <div class="cate-notice" name="name">${list.cateName}</div>
-		                                <a href="/app/notice/noticeDetail?no=${list.no}"><div class="posted-notice" name="title">${list.title}</div></a>
+										<div class="checkBoxBtn-notice"><input type="checkbox"  id="checkBoxBtn" value="${vo.no}"></div>
+		                                <div class="cate-notice" name="name">${vo.cateName}</div>
+		                                <a href="/app/notice/noticeDetail?no=${vo.no}"><div class="posted-notice" name="title">${vo.title}</div></a>
 	                                    <div class="views-etc">
-	                                        <div class="views" name="hit"><img width="15px" height="15px" class="view" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">${list.hit}</div>
-	                                        <div class="replies" name="cmt"><img width="15px" height="15px"class="message" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">${list.cmt}</div>
+	                                        <div class="views" name="hit"><img width="15px" height="15px" class="view" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">${vo.hit}</div>
+	                                        <div class="replies" name="cmt"><img width="15px" height="15px"class="message" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">${vo.cmt}</div>
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -560,56 +561,53 @@ background-color: #e9fde9;
        
    })
 
-   $('input[name="deleteList"]').click(function(){
+   function delNotice(){
+		
+	  
+       let valueArr = [];
+       let list = $("#checkBoxBtn:checked"); 
+       for(let i = 0; i <list.length; i++){
+           if(list[i].checked){
+               valueArr.push(list[i].value);
+           }
+       }
 
-        let deleteList = $('input[name="deleteList"]').eq(0).val();
-        console.log($('input[name="deleteList"]').get(0));
-        let valueArr = new Array();
-        let list = $("#checkBoxBtn:checked"); 
-        for(let i = 0; i <list.length; i++){
-        	console.log(list[i]);
-            if(list[i].checked){
-                valueArr.push(list[i].value);
-            }
-        }
-
-        var chk = confirm("삭제 하시겠습니까?");
-        
-        $.ajax({
-            url:"/app/admin/notice/noticeListAdmin",
-            type:"post",
-            data:{"deleteList":deleteList,
-                    "valueArr":valueArr
-        },
-        success:function(x){
-        	Swal.fire({
-     		   icon: 'success',
-     		   title: 'success!',
-     		   text: '삭제 되었습니다!',
-     		   
-     		 })
-     		 
-     		 
-     		 
-     		 
-     		 
-     		 
-            location.reload();
-            
-        },
-        error:function(){
-            alert('에러가 발생했습니다.');
-        }
+       var chk = confirm("삭제 하시겠습니까?");
        
+       $.ajax({
+           url:"/app/admin/notice/noticeListAdmin/delete",
+           type:"get",
+           data:{
+                   "valueArr":valueArr
+       },
+       success:function(x){
+    	   
+    	   
+       	 Swal.fire({
+    		   icon: 'success',
+    		   title: 'success!',
+    		   text: '삭제 되었습니다!',
+    		   
+    		 })
+    		  
+    		 
+    		 
+    		 
+    		 
+    		 
+           location.reload();
+           
+       },
+       error:function(){
+           alert('에러가 발생했습니다.');
+       }
+      
 
-        });
-        
-        
-    });
-    
- 
- 
-	
+       });
+		
+		
+	}
+   
 	</script>
 
 

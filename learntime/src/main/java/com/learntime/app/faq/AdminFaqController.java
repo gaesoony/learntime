@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.learntime.app.admin.vo.ManagerVo;
 import com.learntime.app.faq.service.AdminFaqService;
 import com.learntime.app.faq.vo.FaqVo;
 import com.learntime.app.member.vo.MemberVo;
@@ -63,7 +64,7 @@ public class AdminFaqController {
 	@PostMapping("faqListAd")
 	@ResponseBody
 	public String faqListAd(NoticeVo vo,String deleteList,String del, @RequestParam(value="valueArr[]") List<Integer> valueArr) {
-		
+		System.out.println("호출!");
 		List<Integer> list = new ArrayList<Integer>();
 		for(int i = 0; i<valueArr.size(); i++) {
 			list.add(valueArr.get(i));
@@ -75,8 +76,10 @@ public class AdminFaqController {
 		
 		if("삭제".equals(deleteList)) {
 			result = afs.deleteOne(list);
+			System.out.println(result);
 		}else if ("삭제".equals(del)) {
 			result = afs.deleteOne(list);
+			System.out.println(result);
 		}
 		
 		
@@ -87,9 +90,9 @@ public class AdminFaqController {
 	@GetMapping("faqDetailListAdmin")
 	public String faqDetailListAdmin(FaqVo vo, HttpSession session, Model m) {
 		
-		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember"); 
+		ManagerVo loginManager = (ManagerVo) session.getAttribute("loginManager"); 
 		
-		if(loginMember !=null) {
+		if(loginManager !=null) {
 			vo = afs.selectOne(vo);
 			m.addAttribute("vo",vo);
 			

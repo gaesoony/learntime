@@ -37,12 +37,12 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 	}
 
 	@Override
-	public List<Integer> selectNoticeListAll(Map map) {
+	public List<NoticeVo> selectNoticeListAll(Map map) {
 		return adao.selectNoticeListAll(sst,map);
 	}
 
 	@Override
-	public List<Integer> selectNoticeList(Map map) {
+	public List<NoticeVo> selectNoticeList(Map map) {
 		return adao.selectNoticeList(sst,map);
 	}
 

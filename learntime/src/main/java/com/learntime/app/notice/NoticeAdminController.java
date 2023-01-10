@@ -34,7 +34,7 @@ public class NoticeAdminController {
 	// 공지사항 리스트 화면
 		@GetMapping("noticeListAdmin")
 		public String noticeListAdmin(NoticeVo vo, Model m,PageVo pv) {
-			System.out.println("!ㅇcontroller 호출");
+			
 
 			int listCount = ans.selectCount();
 			int currentPage = (int)pv.getP();
@@ -50,9 +50,9 @@ public class NoticeAdminController {
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("vo",vo);
 			map.put("pv",pv);
-			
+			System.out.println(pv);
 
-			List<Integer> list= null;
+			List<NoticeVo> list= null;
 			if(vo.getCateNo()==0 )  {
 				
 				list= ans.selectNoticeListAll(map);
@@ -69,6 +69,11 @@ public class NoticeAdminController {
 			
 			m.addAttribute("list",list);
 			m.addAttribute("p",pv.getP());
+			m.addAttribute("cateNo",vo.getCateNo());
+			m.addAttribute("pv",pv);
+			m.addAttribute("category",vo.getCategory());
+			m.addAttribute("keyword",vo.getKeyword());
+		
 			
 		
 			
@@ -85,24 +90,37 @@ public class NoticeAdminController {
 			for(int i = 0; i<valueArr.size(); i++) {
 				list.add(valueArr.get(i));
 			}
-			System.out.println(list);
+			
 			
 			int result = 0;
 			int result2 = 0;
-			int result3 = 0;
+			
 			if("활성화".equals(activate)) {
 				result = ans.activate(list);
 			}else if("비활성화".equals(deactivate)) {
 				result2 = ans.deactivate(list);
-			}else if ("삭제".equals(deleteList)) {
-				System.out.println("cnt list:"+list);
-				result3 = ans.deleteOne(list);
+				
 			}
-			
 			
 			
 			return "admin/notice/noticeListAdmin";
 			
+		}
+		@GetMapping("")
+		@ResponseBody
+		public String delete(List<Integer> valueArr) {
+			
+			List<Integer> list = new ArrayList<Integer>();
+			for(int i = 0; i<valueArr.size(); i++) {
+				list.add(valueArr.get(i));
+			}
+			
+			int result = ans.deleteOne(list);
+			if(result == 1) {
+				return "admin/notice/noticeListAdmin"; 
+			}else {
+				return "common/errorPage";
+			}
 		}
 		
 		// 공지사항 상세조회 화면

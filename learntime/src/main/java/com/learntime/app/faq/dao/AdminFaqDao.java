@@ -33,12 +33,10 @@ public class AdminFaqDao {
 	}
 
 	public int deleteOne(SqlSessionTemplate sst, List<Integer> list) {
-		
-		int count = 0;
-		for(int i = 0; i<list.size(); i++) {
-			count+= sst.update("adminFaqMapper.deleteOne",list.get(i));
-		}
-		return count;
+		System.out.println("호출!!!!");
+		int no = sst.update("adminFaqMapper.deleteOne",list);
+		System.out.println(no);
+		return no;
 		
 	}
 

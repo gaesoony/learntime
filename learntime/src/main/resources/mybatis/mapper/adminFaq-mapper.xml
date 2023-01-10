@@ -37,7 +37,11 @@
   <update id="deleteOne">
 		UPDATE FAQ
 		SET DELETE_YN = 'Y'
-		WHERE NO = #{no}
+		WHERE NO IN (
+		<foreach collection="list" item="no" separator="," >
+    		#{no}
+    	</foreach>
+    	)
 	</update>
   
  

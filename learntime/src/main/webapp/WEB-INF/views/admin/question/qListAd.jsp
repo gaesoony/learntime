@@ -123,6 +123,12 @@
 
 
 }
+.del{
+	border:none;
+	outline:none;
+	font-size:medium;
+	font-weight:600;
+}
 .category-faq-ad{
     width: 150px;
     height: 45px;

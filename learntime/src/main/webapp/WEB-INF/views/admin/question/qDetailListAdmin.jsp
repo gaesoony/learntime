@@ -144,7 +144,7 @@
 .q-content-m{
     width: 100%;
     height: 400px;
-    border-top: 2px solid lightgray;
+    
     border-bottom:2px solid lightgray; ;
     
 }

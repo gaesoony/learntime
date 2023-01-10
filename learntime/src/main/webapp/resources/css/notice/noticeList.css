@@ -32,6 +32,7 @@
     display:flex;
     justify-content:center;
     align-items: center;
+    margin-bottom: 50px;
 
 
 }
@@ -147,11 +148,15 @@
 
 .notice-list{
     width: 1200px;
-    display: flex;
+    display:flex;
     height:700px;
-   
+    flex-direction:column;
 
+}
 
+.seperate-divs{
+	
+	display:flex;
 }
 
 .cate-box{

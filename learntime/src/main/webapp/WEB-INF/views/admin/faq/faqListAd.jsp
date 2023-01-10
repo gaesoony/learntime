@@ -125,7 +125,7 @@
     font-weight: 600;
 }
 .title-faq-ad{
-    width: 650px;
+    width: 620px;
     height: 45px;
     text-align: center;
     line-height: 45px;
@@ -133,9 +133,10 @@
 }
 
 .nickname-faq-ad{
-    width: 100px;
+    width: 130px;
     height: 100%;
     font-weight: 600;
+    
 }
 .enrollDate-faq-ad{
     width: 160px;
@@ -287,6 +288,12 @@
     margin-left:310px ;
     font-weight: 800;
     color: gray;
+}
+#deleteAd{
+	border:none;
+	outline:none;
+	font-size:medium;
+	font-weight:600;
 }
 
 .nick-faq-admin{
