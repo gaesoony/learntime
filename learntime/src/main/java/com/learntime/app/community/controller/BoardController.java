@@ -195,6 +195,7 @@ public class BoardController {
 	}
 	
 // 글삭제 서버
+	@ResponseBody
 	@PostMapping("/board/delete")
 	public String boardDelete(String bno) {
 		int result = bs.delete(bno);
