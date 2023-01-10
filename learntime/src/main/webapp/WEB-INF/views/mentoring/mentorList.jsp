@@ -19,7 +19,6 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
-
     <!--첫번째 모달 -->
     <div class="background" id="first-modal">
         <div class="foreground">

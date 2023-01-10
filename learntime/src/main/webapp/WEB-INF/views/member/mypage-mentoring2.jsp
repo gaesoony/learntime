@@ -271,7 +271,7 @@ pageEncoding="UTF-8"%>
                     $('form').attr('onsubmit', 'return true');
                     $("form").submit();
                   }else{
-                    alert("입력 조건을 확인해주세요");
+                    alert("입력 조건을 확인해주세요. (형식에 맞게 작성해주세요)");
                     return false;
                   }
                 });

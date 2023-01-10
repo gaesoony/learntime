@@ -285,3 +285,374 @@ input[type='checkbox'] + .stylish-checkbox {
     font-size: 16px;
     margin-left: 6px;
 }
+
+/* 모달달 */
+.background {
+    background: rgba(0, 0, 0, 0.3);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    display: flex;
+    z-index:30;
+}
+.foreground {
+    position: relative;
+    top: -80px;
+    text-align: center;
+    height: 700px;
+    width: 600px;
+    margin: auto;
+    background: white;
+    border-radius: 8px;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+    overflow-y: auto;
+}
+.foreground::-webkit-scrollbar{
+    display: none;
+}
+
+.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+#application-btn{
+    background-color: #58c079;
+    color: white;
+    
+    position: relative;
+    left: 480px;
+}
+
+.modal-btn{
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+.mentoring-modal-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 16px;
+}
+
+.close-icon{
+    cursor: pointer;
+}
+
+.modal-info-box{
+    margin: 10px 0;
+    border: 2px solid #5ecc80;
+    border-radius: 10px;
+    padding: 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+
+#modal-mentor{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 566px;
+}
+
+#modal-mentor div{
+    font-size: 15px;
+}
+
+.modal-nick{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.modal-mentor-nick{
+    margin-left: 5px;
+}
+
+#modal-job,
+#modal-career{
+    font-size: 12px;
+    font-weight: 400;
+    color: #7d7d7d;
+    margin-left: 30px;
+    margin-top: 5px;
+}
+
+.modal-profile-img{
+    height: 25px;
+    width: 25px;
+    border-radius: 25px;
+}
+
+#modal-metoring-title{
+    font-size: 20px;
+    font-weight: 600;
+
+    margin-bottom: 20px;
+}
+
+p{
+    text-align: left;
+    font-size: 15px;
+}
+
+/* 후기 */
+.modal-review-box{
+    padding-bottom: 15px;
+    width: 100%;
+}
+.modal-review-box:not(:first-child){
+    height: auto;
+    padding-top: 15px;
+}
+.modal-review-box:not(:last-child){
+    border-bottom:1px solid #d3d3d3;
+}
+
+.modal-review-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+}
+
+.star{
+    color: rgb(255, 204, 0);
+    font-size: 30px;
+    margin-left: -5px;
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
+}
+
+.modal-nick>span{
+    margin-left: 5px;
+}
+.modal-nick>a:hover{
+   text-decoration: underline;
+}
+   
+
+.modal-review-box p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+
+    line-height: 18px;
+
+}
+
+.more-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 16px;
+    
+    color: #7d7d7d;
+    font-size: 14px;
+}
+
+#time-select-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#time-select-box>select{
+    width: 150px;
+    height: 30px;
+    border: 1px solid #58c079;
+    border-radius: 3px;
+}
+
+.sm-box{
+    padding: 5px 15px;
+}
+
+.sm-box>input[type="text"]{
+    outline: none;
+    border: none;
+    font-size: 14px;
+    width: 100%;
+}
+
+.modal-btn-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pre-btn{
+    background-color: #fdfffd;
+    border: #aeaeae 1px solid;
+    color: #aeaeae;
+    margin-left: 350px;
+}
+.next-btn{
+    background-color: #58c079;
+    border: #58c079 1px solid;
+    color: white;
+    width: 120px;
+}
+
+/* 세번째 모달 */
+#modal-seletedmentor{
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    margin-top: 20px;
+    padding-bottom: 150px;
+
+    border-bottom: 2px solid #58c079;
+
+}
+#modal-seletedmentor>div{
+    text-align: left;
+    line-height: 35px;
+    font-size: 14px;
+}
+
+.grid-title{
+    font-weight: 600;
+}
+
+#pay-info-box{
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#pay-agree-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+#pay-modal{
+    position: relative;
+    top: -80px;
+    text-align: center;
+    height: 250px;
+    width: 300px;
+    margin: auto;
+    background: white;
+    border-radius: 8px;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+#pay-modal-title{
+    font-size: 20px;
+    font-weight: 600;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #aeaeae;
+    text-align: left;
+}
+
+.pay-btn{
+    border: 2px solid #aeaeae;
+    border-radius: 5px;
+    height: 35px;
+    margin-top: 15px;
+    font-size: 18px;
+    line-height: 31px;
+    color: #aeaeae;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.pay-btn:hover{
+    background-color: #d7d7d7;
+    color: rgb(5, 30, 5);
+    cursor: pointer;
+    
+}
+
+.pay-btn>img{
+    height: 25px;
+}
+
+.payment-icon{
+    font-size: 25px;
+    margin: 0 17.5px;
+}
+
+.pay-btn>span:last-child{
+    width: 200px;
+}
+
+.hidden{
+    display: none;
+}
+
+.no-cmt{
+    margin: auto;
+    color: #666666;
+    font-size: 16px;
+    width: 566px;
+    margin: 30px 0 30px 0;
+}
+
+.review-content>p{
+    width: 100%;
+}
+
+#search-area{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#search-area>input{
+    height: 30px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    margin-left: 6px;
+}
+
+.disabled,
+.other{
+    background-color: #f7f7f7;
+}
+
+.mentoring-title{
+    cursor: pointer;
+}

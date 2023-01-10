@@ -194,7 +194,4 @@ window.onload = function() {
         $('#time-select-result').text(date + ', ' + time);
     });
 
-
-
-
 }
