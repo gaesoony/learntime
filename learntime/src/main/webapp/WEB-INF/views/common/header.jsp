@@ -516,7 +516,10 @@ function check2(){
   
   <script>
   <%if(alertMsg != null) {%>
-    Swal.fire('<%= alertMsg%>')
+    Swal.fire({
+    		title:'<%= alertMsg%>',
+    		confirmButtonColor: '#5ECC80'
+    })
   <%}%>
 
 </script>

@@ -46,6 +46,10 @@ public class MemberServiceImpl implements MemberService {
 		
 		
 		MemberVo dbMember=memberDao.login(sst,vo);
+		if(dbMember==null) {
+			return null;
+		}
+		
 		boolean isMatch=enc.matches(vo.getPwd(), dbMember.getPwd());
 		
 		if (isMatch) {

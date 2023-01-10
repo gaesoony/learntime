@@ -31,8 +31,8 @@
 	
 	<!--회원가입  -->
 	<insert id="join">
-	INSERT INTO MEMBER(NO,ID,PWD,PHONE,NICK,TECH_STACK_NO,HOLD_TOKEN)
-	VALUES(SEQ_MEMBER_NO.NEXTVAL,#{id},#{pwd},#{phone},#{nick},#{teckStackNo},1)
+	INSERT INTO MEMBER(NO,ID,PWD,PHONE,NICK,TECH_STACK_NO,HOLD_TOKEN,IMG_PATH)
+	VALUES(SEQ_MEMBER_NO.NEXTVAL,#{id},#{pwd},#{phone},#{nick},#{teckStackNo},1,'/resources/img/profile_default.png')
 	
 	</insert>
 	

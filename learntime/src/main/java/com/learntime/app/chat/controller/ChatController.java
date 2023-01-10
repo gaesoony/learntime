@@ -34,6 +34,8 @@ public class ChatController {
 	@PostMapping(value="chatRoomMake",produces = "application/text;charset=utf8")
 	public String chatRoomMake(String sendNo, String receNo) {
 		
+		
+		
 		Map<String, String>map=new HashMap<String, String>();
 		map.put("sendNo", sendNo);
 		map.put("receNo", receNo);

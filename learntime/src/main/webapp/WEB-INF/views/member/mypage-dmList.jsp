@@ -102,27 +102,66 @@
                 </div>
           	</div>
 
-              <script>
+              <script defer>
                     //모달 띄우기
-                    $('#dm-btn').on('click',function(){
-                        $('.blackBG2').addClass('show2');
-                        let sendNo=${chatlist.sendMno};
-                        let receNo=${chatlist.receMno};
-                        let message=$('.message').val();
-
-                        
-                        statChat(sendNo,receNo);
-                        chatHistory(sendNo,receNo);
+                    
+                    
+                    $('.send-msg').on('click',function(){
+                    	 $('.blackBG2').addClass('show2');
+                    	 let sendNo=${loginMember.no};
+                         let receNo=0;
+                         let message=$('.message').val();
+                      	if('${chatlist.sendMno}' == ''){
+                        		receNo='${userNo.no}'
+                        		
+                        	}else {
+                        		
+         	               	 if('${loginMember.no}' ==  '${chatlist.sendMno}'){
+         	                     receNo='${chatlist.receMno}'
+         	                    	 
+         	
+         	                 }
+         	                 
+         	                 if('${loginMember.no}' !=  '${chatlist.sendMno}'){
+         	                     
+         	                     receNo='${chatlist.sendMno}'
+         	                 }
+                          
+                        	}
+                      	
+                      	 statChat(sendNo,receNo);
+                         chatHistory(sendNo,receNo);
+                         $('#chat-area').scrollTop($('#chat-area')[0].scrollHeight);
                         
                         
                     });
 
 
-                    $('.send-msg').on('click',function(){
-                        $('.blackBG2').addClass('show2');
-                        let sendNo=${chatlist.sendMno};
-                        let receNo=${chatlist.receMno};
-                        chatHistory(sendNo,receNo);
+                    $('#dm-btn').on('click',function(){
+                    	 let sendNo=${loginMember.no};
+                         let receNo=0;
+                         let message=$('.message').val();
+                      	if('${chatlist.sendMno}' == ''){
+                        		receNo='${userNo.no}'
+                        		
+                        	}else {
+                        		
+         	               	 if('${loginMember.no}' ==  '${chatlist.sendMno}'){
+         	                     receNo='${chatlist.receMno}'
+         	                    	 
+         	
+         	                 }
+         	                 
+         	                 if('${loginMember.no}' !=  '${chatlist.sendMno}'){
+         	                     
+         	                     receNo='${chatlist.sendMno}'
+         	                 }
+                          
+                        	}
+                      	
+                        chatSend(sendNo,receNo,message);
+                        $('#chat-area').scrollTop($('#chat-area')[0].scrollHeight);
+                        $('.message').val("");
                     });
             
                     
