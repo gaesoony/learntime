@@ -727,3 +727,8 @@ p{
     font-size: 16px;
     margin-left: 6px;
 }
+
+.disabled,
+.other{
+    background-color: #f7f7f7;
+}

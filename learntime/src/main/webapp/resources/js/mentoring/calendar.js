@@ -1,11 +1,12 @@
 let date = new Date();
 
 const renderCalendar = () => {
+    const currentDate = new Date();
 
     const viewYear = date.getFullYear();
     const viewMonth = date.getMonth();
 
-    document.querySelector('.year-month').textContent = `${viewYear}.  ${viewMonth + 1}`;
+    $('.year-month').text(`${viewYear}.  ${viewMonth + 1}`);
 
     const preLast = new Date(viewYear, viewMonth, 0);
     const thisLast = new Date(viewYear, viewMonth + 1, 0);
@@ -38,13 +39,17 @@ const renderCalendar = () => {
         const year = viewYear;
         const month = viewMonth + 1;
         let formattedMonth = month;
+
         if (month < 10) {
             formattedMonth = `0${month}`;
         }
+
         let formattedDate = date;
+
         if (date < 10) {
             formattedDate = `0${date}`;
         }
+
         const formattedDateString = `${year}-${formattedMonth}-${formattedDate}`;
         const condition = i >= firstDateIndex && i < lastDateIndex + 1 ? 'this' : 'other';
 
@@ -66,39 +71,59 @@ const renderCalendar = () => {
             dayOfWeekClass = 'sat';
         }
 
-        dates[i] = `<div class="date ${dayOfWeekClass}" id="${formattedDateString}"><span class="${condition}">${date}</span></div>`;
+        // 두달 뒤 날짜 가져오기
+        const twoMonthlater = new Date();
+        twoMonthlater.setMonth(twoMonthlater.getMonth() + 2);
+        // format 날짜 가져오기
+        const formattedDateReal = new Date(formattedDateString);
+
+        // 비교해서 disabled
+        
+        if (currentDate.getDate() == formattedDateReal.getDate() && currentDate.getMonth() == formattedDateReal.getMonth() && currentDate.getFullYear() == formattedDateReal.getFullYear()) {
+            // 오늘
+            dates[i] = `<div class="date ${dayOfWeekClass}" id="${formattedDateString}"><span class="${condition}">${date}</span></div>`;
+        } else if (currentDate > formattedDateReal) { 
+            // 오늘 이전
+            dates[i] = `<div class="date ${dayOfWeekClass} disabled" id="${formattedDateString}"><span class="${condition}">${date}</span></div>`;
+        }else if (twoMonthlater < formattedDateReal) {
+            // 두달 뒤
+            dates[i] = `<div class="date ${dayOfWeekClass} disabled" id="${formattedDateString}"><span class="${condition}">${date}</span></div>`;
+        } else {
+            // 오늘 이후 두달 이전
+            dates[i] = `<div class="date ${dayOfWeekClass}" id="${formattedDateString}"><span class="${condition}">${date}</span></div>`;
+        }
     });
 
 
-    document.querySelector('.dates').innerHTML = dates.join('');
+    $('.dates').html(dates.join(''));
 
     const today = new Date();
     if (viewMonth === today.getMonth() && viewYear === today.getFullYear()) {
-        for (let date of document.querySelectorAll('.this')) {
+        $('.this').each((index, date) => {
             if (+date.innerText === today.getDate()) {
-                date.classList.add('today');
-                break;
+            $(date).addClass('today');
+            return false;
             }
-        }
+        });
     }
 
-    const dateDiv = document.querySelectorAll('.date');
-    dateDiv.forEach((date) => {
-        date.addEventListener('click', (e) => {
-            if (e.target.classList.contains('date') && !e.target.querySelector('.other')) {
-                const dateDiv = document.querySelectorAll('.date');
-                dateDiv.forEach((date) => {
-                    date.classList.remove('back-green');
-                });
-                e.target.classList.add('back-green');
-
-                const dateInput = document.querySelector('#date-input');
-                dateInput.value = e.target.id;
+    $('.date').each((index, date) => {
+        $(date).click((e) => {
+            if ($(e.target).hasClass('disabled')) {
+                return;
             }
-            
+            if ($(e.target).hasClass('date') && !$(e.target).find('.other').length) {
+                $('.date').each((index, date) => {
+                    $(date).removeClass('back-green');
+                });
+                $(e.target).addClass('back-green');
+
+                $('#date-input').val(e.target.id);
+            }
         });
-        
     });
+
+    $('.other').parent().addClass('disabled');
 
 }
 

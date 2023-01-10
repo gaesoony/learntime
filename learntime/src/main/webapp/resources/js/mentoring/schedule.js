@@ -1,11 +1,9 @@
 const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-const numSlotsPerDay = 24 * 2; // 24 hours * 2 slots per hour
+const numSlotsPerDay = 24 * 2; 
 
 for (let i = 0; i < numSlotsPerDay; i++) {
     //시간표시 30분 단위로 24시간
     let timeSlotStart = Math.floor(i / 2) < 10 ? '0' + Math.floor(i / 2) + ':' + (i % 2 === 0 ? '00' : '30') : Math.floor(i / 2) + ':' + (i % 2 === 0 ? '00' : '30');
-    let timeSlotEnd = Math.floor((i + 1) / 2) < 10 ? '0' + Math.floor((i + 1) / 2) + ':' + ((i + 1) % 2 === 0 ? '00' : '30') : Math.floor((i + 1) / 2) + ':' + ((i + 1) % 2 === 0 ? '00' : '30');
-    // let timeSlotLabel = timeSlotStart + '-' + timeSlotEnd;
     let timeSlotLabel = timeSlotStart;
 
     let row = $('<tr>');
@@ -14,7 +12,6 @@ for (let i = 0; i < numSlotsPerDay; i++) {
 
     for (let j = 0; j < days.length; j++) {
         let timeSlotValue = days[j] + '-' + timeSlotStart
-        //  + '-' + timeSlotEnd;
         let checkboxId = days[j] + '-' + (i + 1);
         
         let checkbox = $('<input>', {
@@ -93,9 +90,6 @@ $(document).ready(function() {
             checkboxId = Day + '-' + (Number(num) + i);
             //back-green 체크(중복 시간 체크)
             if ($('#'+checkboxId).next().hasClass('back-green')) {
-                // console.log($('#' + checkboxId).next().hasClass('back-green'));
-                // console.log(checkboxId);
-                // console.log($(this).next().hasClass('back-green'));
                 alert('이미 선택된 시간입니다.');
                 $('#' + Day + '-' + num).prop('checked', false);
                 return false;

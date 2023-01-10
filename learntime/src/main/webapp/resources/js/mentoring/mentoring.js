@@ -111,18 +111,6 @@ window.onload = function() {
                 }
 
 
-                //스케줄 받아와서 달력에 표시
-
-                //.date 클래스의 div의 아이디가 오늘 날짜 이상, 한달 이내인 div 에 class="able-date" 추가
-                // var today = new Date();
-                // var parseToday = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-                // console.log('오늘의 날짜는 ~?'+ parseToday);
-                
-                // //id가 parseToday인 div에 class="able-date" 추가
-                // $('#'+parseToday).addClass('able-date');
-                
-
-
             },
             error: function(request, status, error) {
                 console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
@@ -132,6 +120,12 @@ window.onload = function() {
 
 
     $(document).on('click', '.date', function(){
+
+        if($(this).hasClass('disabled')){
+            $('#time-select').attr('disabled', true);
+            return;
+        }
+        
         var no = $('#mentorNo-input').val();
         var ableDay = $(this).attr('class').split(' ')[1];
         var date = $(this).attr('id');
