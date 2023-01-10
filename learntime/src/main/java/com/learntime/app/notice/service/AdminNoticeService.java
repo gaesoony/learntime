@@ -27,7 +27,7 @@ public interface AdminNoticeService {
 
 	public int deactivate(List<Integer> list);
 
-	public int deleteOne(List<Integer> list);
+	public int deleteOne(List<String> list);
 
 	
 

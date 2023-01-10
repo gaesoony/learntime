@@ -59,9 +59,9 @@ public class AdminNoticeDao {
 		return no;
 	}
 
-	public int updateOne3(SqlSessionTemplate sst, List<Integer> list) {
+	public int updateOne3(SqlSessionTemplate sst, List<String> a) {
 		
-		return sst.update("adminNoticeMapper.delete",list);
+		return sst.update("adminNoticeMapper.delete",a);
 	}
 
 	

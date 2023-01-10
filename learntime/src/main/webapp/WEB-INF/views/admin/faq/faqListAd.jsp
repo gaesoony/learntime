@@ -405,7 +405,7 @@
 	                            </div>
 	                            <div class="no-faq-ad" name="no">${list.no}</div>
 	                            <div class="category-faq-ad" name="name">${list.cateName}</div>
-	                            <a href = "app/admin/faq/faqDetailListAdmin?no=${list.no}"><div class="title-faq-ad" name="title">${list.title}</div></a>
+	                            <a href = "/app/admin/faq/faqDetailListAdmin?no=${list.no}"><div class="title-faq-ad" name="title">${list.title}</div></a>
 	                            <div class="nickname-faq-ad" name="writer">${list.writer}</div>
 	                            <div class="enrollDate-faq-ad" name="enrollDate">${list.enrollDate}</div>
 	                            <div class="deleteBtn-faq-ad"><input type="button" value="삭제" id="deleteAd"></div>

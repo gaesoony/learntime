@@ -106,16 +106,12 @@ public class NoticeAdminController {
 			return "admin/notice/noticeListAdmin";
 			
 		}
-		@GetMapping("")
+		@PostMapping("noticeListAdmin/delete")
 		@ResponseBody
-		public String delete(List<Integer> valueArr) {
+		public String delete(@RequestParam List<String> valueArr) {
 			
-			List<Integer> list = new ArrayList<Integer>();
-			for(int i = 0; i<valueArr.size(); i++) {
-				list.add(valueArr.get(i));
-			}
-			
-			int result = ans.deleteOne(list);
+			System.out.println(valueArr);
+			int result = ans.deleteOne(valueArr);
 			if(result == 1) {
 				return "admin/notice/noticeListAdmin"; 
 			}else {

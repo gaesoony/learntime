@@ -77,7 +77,7 @@
 		SET DELETE_YN = 'Y'
 		WHERE NO IN (
 		<foreach collection="list" item="no" separator="," >
-    		#{no}
+    		${no}
     	</foreach>
     	)
 	</update>

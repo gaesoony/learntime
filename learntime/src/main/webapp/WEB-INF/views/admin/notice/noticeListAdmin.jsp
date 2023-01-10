@@ -576,9 +576,11 @@ background-color: #e9fde9;
        
        $.ajax({
            url:"/app/admin/notice/noticeListAdmin/delete",
-           type:"get",
+           type:"post",
+           traditional:true,
            data:{
-                   "valueArr":valueArr
+        	   "valueArr" : valueArr
+                   
        },
        success:function(x){
     	   
