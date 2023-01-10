@@ -51,13 +51,13 @@
 	            <div class="reply-num" name="cmt">${vo.cmt}개의 댓글</div>
 	            <div class="leave-comment">
 	                <div class="div-box-a">
+	                	<form action="/app/notice/noticeDetail" method="post">
 	                    <div class="div-box-b">
 	                        <div class="profile-box">${ncv.writer} 님</div>
-	                        <div class="div-box-d"><textarea class="reply-textarea" ></textarea> </div>
+	                        <div class="div-box-d"><textarea class="reply-textarea" name="content"></textarea> </div>
 	                    </div>
-	                    <form action="/app/notice/noticeDetail" method="post">
 		                    <div class="div-box-c">
-		                        <input type="button" value="댓글쓰기" class="writeComment">
+		                        <input type="submit" value="댓글쓰기" class="writeComment">
 		                    </div>
 	                    </form>
 	                </div>

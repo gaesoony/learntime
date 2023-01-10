@@ -68,7 +68,7 @@
 		                                </div>
 		                                <div class="written-notice">
 		                                    <div class="cate-notice" name="name">${vo.cateName}</div>
-		                                    <a href="/app/notice/noticeDetail?no=${vo.no}"><div class="posted-notice" name="title">${list.title}</div></a>
+		                                    <a href="/app/notice/noticeDetail?no=${vo.no}"><div class="posted-notice" name="title">${vo.title}</div></a>
 		                                    <div class="views-etc">
 		                                        <div class="views" name="hit"><img width="15px" height="15px" class="view" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">${vo.hit}</div>
 		                                        <div class="replies" name="cmt"><img width="15px" height="15px"class="message" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">${vo.cmt}</div>

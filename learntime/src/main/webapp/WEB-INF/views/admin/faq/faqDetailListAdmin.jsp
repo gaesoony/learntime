@@ -150,7 +150,6 @@
 .q-content-m{
     width: 100%;
     height: 400px;
-    border-top: 2px solid lightgray;
     border-bottom: 2px solid lightgray;
     
 }
@@ -169,6 +168,9 @@
     text-align: center;
     line-height: 50px;
     margin-left: 20px;
+    font-size:medium;
+    border:none;
+    
    
     
 }
@@ -212,7 +214,7 @@ textarea{
                     </div>
                     <div class="empty1-m"></div>
                     <div class="making-gap-a">
-                        <div class="q-content-m"></div>
+                        <div class="q-content-m" name="content">${vo.content}</div>
                         <div class="making-gap-b">
                             <div class="backBtn-m">
                                 <input type="submit" id=btn-to-expose class="btn-to-m" value="공개">
