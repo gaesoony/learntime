@@ -110,7 +110,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         cursor: pointer;
         display: grid;
         grid-template-columns: 80px 80px 80px;
-        /* color: #AAAAAA; */
     }
     .list-type-box input[type=radio]{
         display: none;
@@ -160,7 +159,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         margin-bottom: 15px;
         margin-left: 15px;
         width: 65vw;
-        color: #AAAAAA;
     }
     .cate{
         float: left;
@@ -170,6 +168,13 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     }
     .type-list{
         cursor: pointer;
+    }
+    input[type="radio"]:checked + div{
+        color: black;
+        font-weight: 550;
+    }
+    input[type="radio"] + div{
+        color: #6F6F6F;
     }
     .writebtn{
         text-decoration: none;
@@ -354,8 +359,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                         <div class="mainside">
                             <!-- 전체, 해결, 미해결 카테고리 -->
                             <div class="list-type-box">
-                                <label onclick="form.submit();"><input type="radio" class="side-category" name="type" id="all" value="전체" checked/><div id="type-div">전체</div></label>
-                                <label onclick="form.submit();"><input type="radio" class="side-category" name="type" id="skill" value="기술"/><div id="type-div">기술</div></label>
+                                <label onclick="form.submit();"><input type="radio" class="side-category" name="type" id="all" value="전체" checked/><div id="all">전체</div></label>
+                                <label onclick="form.submit();"><input type="radio" class="side-category" name="type" id="skill" value="기술"/><div id="skill">기술</div></label>
                                 <label onclick="form.submit();"><input type="radio" class="side-category" name="type" id="career" value="커리어"/><div id="type-div">커리어</div></label>
                             </div>
                             
@@ -411,15 +416,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                                                 <div class="circle">
                                                     <div class="replytitle">${map.REPLY_CNT}</div>
                                                     <div class="replycontent">답변</div>
-                                                </div>
-            
-                                                <!-- 본문 속 해시태그 -->
-                                                <div class="hashtagbox">
-                                                    <ul class="hashtag">
-                                                        <c:forEach items="${tagList}" var="tag">
-                                                            <li class="hash" name="tag"><i class="fa-light fa-hashtag"></i>${tag.NAME}</li>
-                                                        </c:forEach>
-                                                    </ul>
                                                 </div>
 
                                                 <div class="etcbox">
@@ -514,6 +510,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         lastTag.remove();
         form.submit();
         }
+
     </script>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
