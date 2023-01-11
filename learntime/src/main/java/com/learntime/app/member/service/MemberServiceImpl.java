@@ -153,6 +153,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	//------------계정 정보 수정-----------
+	//자기소개 
+	@Override
+	public int mypageEditIntro(MemberVo vo) {
+		return memberDao.mypageEditIntro(sst,vo);
+	}
+
 	//프로필,닉네임,자기소개
 	@Override
 	public int mypageEditProfile(MemberVo vo) {
@@ -260,7 +266,8 @@ public class MemberServiceImpl implements MemberService {
 	//운영자 생성
 	@Override
 	public int createOperator(MemberVo vo) {
-		
+		String newPwd=enc.encode(vo.getPwd());
+		vo.setPwd(newPwd);
 		return memberDao.createOperator(sst,vo);
 	}
 	//멤버 등급 리스트
@@ -306,6 +313,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberDao.memberCnt(sst,vo);
 	}
+
 
 	
 

@@ -86,7 +86,7 @@ session.removeAttribute("alertMsg"); %>
       <ul class="small_menu">
         <li>
           <a
-            href="${path}/admin/member/manage?pno=1&keyword=&category=nick&quitYn=&adminYn="
+            href="${path}/admin/member/manage?pno=1"
             >회원 목록</a
           >
         </li>

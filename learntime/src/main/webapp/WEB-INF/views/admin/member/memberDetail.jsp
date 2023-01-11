@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -204,36 +205,19 @@ pageEncoding="UTF-8"%>
                         <input type="text" name="phone" placeholder="- 제외한 번호만" value="${user.phone}">
                     </div>
 
-                    <div id="stack">
-					<div class="text">관심 기술 스택</div>
-					<div class="row d-flex justify-content-center">
-						<div class="col-md-6"> 		
-							<select id="choices-multiple-remove-button"multiple>
-								<option value="HTML">HTML</option>
-								<option value="Jquery">Jquery</option>
-								<option value="CSS">CSS</option>
-								<option value="Java">Java</option>
-								<option value="Javascript">Javascript</option>
-								<option value="Angular">Angular</option>
-								<option value="Python">Python</option>
-								<option value="Hybris">Hybris</option>
-								<option value="SQL">SQL</option>
-								<option value="NOSQL">NOSQL</option>
-								<option value="NodeJS">NodeJS</option>
-							</select> 
-						
-						</div>					
-					</div>
-						
-				</div>
+             
                     
                     <button class="edit">수정하기</button>
+                    
+                    <c:if test="${user.quitYn!='Y'}">
                  </form>    
                      <form action="/app/admin/member/manage/delete" method="post">
                       <input type="hidden" name="id" value="${user.id}">
+                       <input type="hidden" name="no" value="${user.no}">
                       <button class="delete">삭제하기</button>
                     </form>
-                    <button type="button"id="before"onclick="location.href='${pageContext.request.contextPath}/admin/member/manage'">이전으로</button>
+                    </c:if>
+                    <button type="button"id="before"onclick="location.href='${pageContext.request.contextPath}/admin/member/manage?pno=1">이전으로</button>
     
                   
                 </div>

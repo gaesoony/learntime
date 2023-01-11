@@ -35,6 +35,9 @@ public interface MemberDao {
 	public int memberDeletePwd(SqlSessionTemplate sst, MemberVo vo);
 	
 	//------------계정 정보 수정-----------
+	
+	//자기소개
+	public int mypageEditIntro(SqlSessionTemplate sst, MemberVo vo);
 	//프로필,닉네임,자기소개
 	public int mypageEditProfile(SqlSessionTemplate sst, MemberVo vo);
 	//이메일
@@ -94,6 +97,7 @@ public interface MemberDao {
 	
 	//멤버 전체 인원 
 	public int memberCnt(SqlSessionTemplate sst, SearchVo vo);
+
 	
 	
 	

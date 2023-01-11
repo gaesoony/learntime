@@ -76,6 +76,13 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	//------------계정 정보 수정-----------
+	//자기소개
+	@Override
+	public int mypageEditIntro(SqlSessionTemplate sst, MemberVo vo) {
+		
+		return sst.update("memberMapper.mypageEditIntro", vo);
+	}
+	
 	//프로필,닉네임,자기소개
 	@Override
 	public int mypageEditProfile(SqlSessionTemplate sst, MemberVo vo) {
@@ -218,9 +225,6 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return sst.selectOne("memberMapper.memberCnt",vo);
 	}
-	
-	
-	
-	
+
 
 }

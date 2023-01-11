@@ -234,7 +234,7 @@ body{
 }
 
 
-input {
+ input:not(.search-box) {
   height: 25px;
   width: 290px;
   border: none;
