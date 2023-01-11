@@ -294,33 +294,37 @@ public class MemberController {
 			List<SkinVo> mySkin=skinService.myskin(no);
 			session.setAttribute("mySkin",mySkin);
 			
-			List<ChatVo> chatlist=chatService.chatMyList(loginMember.getNo());
-			model.addAttribute("chatlist", chatlist);
-			
 
-			
 //			나를 팔로우 하는 사람 수 구하기
 			int followerCnt =memberService.followerCnt(no);
 //			내가 팔로우 하는 사람 수 구하기
 			int followingCnt =memberService.followingCnt(no);
 			
+			if(loginMember!=null) {
+				List<ChatVo> chatlist=chatService.chatMyList(loginMember.getNo());
+				model.addAttribute("chatlist", chatlist);
+				
+				String followingMember=loginMember.getNo();
+				MemberVo followerMember=memberService.selectNo(no);
+				
+				if(followerMember!=null) {
+					FollowVo follow=new FollowVo();
+					follow.setFollowingNo(followingMember);
+					follow.setFollowerNo(followerMember.getNo());
+					
+//					팔로우 유무체크
+					int followCheck=memberService.followCheck(follow);
+					session.setAttribute("followCheck", followCheck);
+					session.setAttribute("followerCnt", followerCnt);
+					session.setAttribute("followingCnt", followingCnt);
+				}
+				
+			}
 			
 		
 			
-			String followingMember=loginMember.getNo();
-			MemberVo followerMember=memberService.selectNo(no);
 			
-			if(followerMember!=null) {
-				FollowVo follow=new FollowVo();
-				follow.setFollowingNo(followingMember);
-				follow.setFollowerNo(followerMember.getNo());
-				
-//				팔로우 유무체크
-				int followCheck=memberService.followCheck(follow);
-				session.setAttribute("followCheck", followCheck);
-				session.setAttribute("followerCnt", followerCnt);
-				session.setAttribute("followingCnt", followingCnt);
-			}
+
 
 			List<BadgeVo> list=badgeService.listSelectMember(no);
 			model.addAttribute("list", list);
@@ -334,8 +338,7 @@ public class MemberController {
 	public String mypage(MemberVo vo,HttpSession session) {
 		MemberVo loginMember=(MemberVo)session.getAttribute("loginMember");
 		vo.setNo(loginMember.getNo());
-		vo.setNick(loginMember.getNick());
-		int result=memberService.mypageEditProfile(vo);
+		int result=memberService.mypageEditIntro(vo);
 		if(result==0) {
 			return"0";
 		}
@@ -635,8 +638,12 @@ public class MemberController {
 			session.setAttribute("userNo",user);
 			
 			//내 스킨 조회
-//			List<SkinVo> mySkinList=skinService.myskin(no);
-//			model.addAttribute("mySkinList",mySkinList);
+			List<SkinVo> mySkinList=skinService.myskin(no);
+			
+			if(mySkinList!=null) {
+				model.addAttribute("mySkinList",mySkinList);
+			}
+			
 			
 			return "/member/mypage-skin";
 		}

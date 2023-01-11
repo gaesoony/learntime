@@ -79,14 +79,14 @@ public class AdminMemberController {
 		
 //  	관리자 회원관리 정보수정 -탈퇴
 		@PostMapping("/member/manage/delete")
-		public String memberAdminDelete(String id) {
+		public String memberAdminDelete(String id,String no) {
 			System.out.println(id);
 			int result=memberService.memberAdminDelete(id);
 			if(result==0) {
 				return "common/errorPage";
 			}
 			
-			return "redirect:/admin/member/manage";
+			return "redirect:/admin/member/manage/detail?no="+no;
 		}
 		
 		
@@ -105,7 +105,7 @@ public class AdminMemberController {
 				return "common/errorPage";
 			}
 			
-			return "redirect:/admin/member/manage";
+			return "redirect:/admin/member/manage?pno=1";
 		}
 		
 		//관리자 회원등급관리,토큰 조건 관리

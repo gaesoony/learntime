@@ -99,11 +99,23 @@
 	</update>
 	
 	<!--계정정보 닉네임,소개,프로필사진 수정  -->
+	<update id="mypageEditIntro">
+		UPDATE MEMBER 
+		SET INTRO=#{intro},
+			MODIFY_DATE=SYSDATE
+		WHERE NO=#{no}
+	</update>
+	
+	 
+	
+	<!--계정정보 닉네임,소개,프로필사진 수정  -->
 	<update id="mypageEdiProfile">
 		UPDATE MEMBER 
 		SET NICK=#{nick},
 			INTRO=#{intro},
+			<if test="imgName != null and imgName != ''">
 			IMG_PATH=#{imgName},
+			</if>
 			MODIFY_DATE=SYSDATE
 		WHERE NO=#{no}
 	</update>

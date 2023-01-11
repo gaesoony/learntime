@@ -134,7 +134,7 @@ pageEncoding="UTF-8"%>
 
     .content-section{
         width: 1265px;
-        height: 500px;
+        height: 85vh;
         background-color: white;
         border: 1px solid rgb(221, 221, 221);
         margin: 30px auto ;
@@ -153,7 +153,7 @@ pageEncoding="UTF-8"%>
     form .grade-list,form .grade-list1{
         display: grid;
         grid-template-columns: 1fr 1fr 3fr 1fr;
-        grid-auto-rows: 40px;
+        grid-auto-rows: 60px;
         margin-top: 40px;
         border-bottom: 1px solid #000000; 
         
@@ -188,6 +188,8 @@ pageEncoding="UTF-8"%>
     .list-btn{
      	display: flex;
     	justify-content: space-between;
+    	align-items: center;
+    	   
     }
 
     .list-btn button,.list-btn2 button{
@@ -221,6 +223,7 @@ pageEncoding="UTF-8"%>
         display: flex;
         justify-content: center;
         align-items: center;
+         margin-top: 40px;
     }
     
     .grade-btn button{
@@ -352,7 +355,6 @@ pageEncoding="UTF-8"%>
 	            	<div class="list-content grade-img">
 	            	 <label for="file">
                            	  <img id="preview"  src="${pageContext.request.contextPath}${map.IMG_PATH}"/>
-                              
                             </label>
                              <input id="file" type="file" name="MemberGradeVoList[${status.index}].imgPath">
                              <input type="hidden" name="MemberGradeVoList[${status.index}].imgName" value="${map.IMG_PATH}">
@@ -375,41 +377,7 @@ pageEncoding="UTF-8"%>
           </form> 
         </section>
 
-        <section class="content-section">
-        
-            <div class="grade-title">
-                토큰 조건 관리
-          </div>
-		<form action="" method="post">
-          <div class="grade-list">
-            <div class="list-info">토큰 부여 조건을 변경 가능합니다</div>
-            <div class="list-title">토큰</div>
-            <div class="list-title">토큰 발급 게시판</div>
-            <div class="list-title">토큰 부여 조건</div>
-            <div class="list-title"></div>
-
-            <% for(int i=1; i<=5; i++) {%>
-                <div class="list-content">1개</div>
-                <div class="list-content">게시판이름</div>
-                <div class="list-content">
-                    조건 내용
-                </div>
-                <div class="list-btn">
-                   <button class="plus">추가</button>
-                   <button class="delete">삭제</button>
-                </div>
-            <%}%>
-          </div>
-
-          <div class="grade-btn">
-            <button class="cancel">취소하기</button>
-            <button class="save">저장하기</button>
-          </div>
-
-          
-        </form>  
-        </section>
-    </div>
+         </div>
     <script
       src="https://kit.fontawesome.com/939838bb27.js"
       crossorigin="anonymous"

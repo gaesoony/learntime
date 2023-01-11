@@ -11,7 +11,7 @@
 	
 <style>
     /* 탈퇴 모달 시작 */
-        .blackBG2 {
+        .blackBG3 {
             background: rgba(0, 0, 0, 0.5);
             width: 100vw;
             height: 100vh;
@@ -21,11 +21,11 @@
             display: flex;
             z-index:10000;
         }
-        .show {
+        .show3 {
             visibility: visible;
             opacity: 1;
         }
-        .whiteBG2 {
+        .whiteBG3 {
             width: 800px;
             height: auto;
             margin: auto;
@@ -39,7 +39,7 @@
         }
 
 
-        #modal-closed2{
+        #modal-closed3{
             background: inherit ; 
             border:none; 
             box-shadow:none; 
@@ -346,9 +346,9 @@
 <body>
 
 <!-- 탈퇴 모달 -->
-<div class="blackBG2">
-    <div class="whiteBG2">
-        <button type="button" id="modal-closed2">
+<div class="blackBG3">
+    <div class="whiteBG3">
+        <button type="button" id="modal-closed3">
             <span class="material-symbols-outlined">close</span>
         </button>
 
@@ -602,19 +602,19 @@
 
     //모달 띄우기
     $('#delete-btn').on('click',function(){
-        $('.blackBG2').addClass('show');
+        $('.blackBG3').addClass('show3');
     })
     
     //모달 닫기
-    $('#modal-closed2').on('click',function(){
-        $('.blackBG2').removeClass('show');
+    $('#modal-closed3').on('click',function(){
+        $('.blackBG3').removeClass('show3');
     })
 
    //검은 배경 클릭시 모달 닫기
   $(document).mouseup(function (e){
     //배경이 클릭 될 경우 리턴 0이 됨
-	if($('.blackBG2').has(e.target).length === 0){
-		$('.blackBG2').removeClass('show');
+	if($('.blackBG3').has(e.target).length === 0){
+		$('.blackBG3').removeClass('show3');
 	}
   });
 </script>

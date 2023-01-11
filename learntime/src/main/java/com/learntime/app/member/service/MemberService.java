@@ -32,6 +32,9 @@ public interface MemberService {
 	public int memberDeletePwd(MemberVo vo);
 	
 	//------------계정 정보 수정-----------
+	//인트로 수정
+	public int mypageEditIntro(MemberVo vo);
+	
 	//프로필,닉네임,자기소개
 	public int mypageEditProfile(MemberVo vo);
 	//이메일
@@ -89,6 +92,7 @@ public interface MemberService {
 	
 	//전체 멤버 조회
 	public int memberCnt(SearchVo vo);
+
 	
 	
 	

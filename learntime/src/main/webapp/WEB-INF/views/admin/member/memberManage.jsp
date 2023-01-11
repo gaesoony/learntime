@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -135,7 +137,7 @@ pageEncoding="UTF-8"%>
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(2,0.5fr)2fr 3fr 1fr  0.5fr 2fr 2fr repeat(5,1fr);
+      grid-template-columns: repeat(2,0.5fr)2fr 3fr 1fr  0.5fr 2fr 2fr repeat(6,1fr) ;
     }
 
     .grid div {
@@ -277,27 +279,26 @@ pageEncoding="UTF-8"%>
                 <div class="grid-title">전화번호</div>
                 <div class="grid-title">가입일</div>
                 <div class="grid-title">보유 토큰</div>
-                <div class="grid-title">작성한 글</div>
-                <div class="grid-title">작성한 댓글</div>
-                <div class="grid-title">작성한 문의</div>
+                <div class="grid-title">글</div>
+                <div class="grid-title">댓글</div>
+                <div class="grid-title">문의</div>
                 <div class="grid-title">계정상태</div>
-                
+                <div class="grid-title"></div>
 
                   <c:forEach items="${list}" var="list">
                    <div><input name="checkNo" type="checkbox" value="${list.NO}"/></div>
                     <div>${list.NO}</div>
                     <div>${list.NICK}</div>
                     <div>${list.ID}</div>
-                    <c:if test="${list.QUIT_YN eq 'Y'}">
+                    <c:if test="${list.ADMIN_YN eq 'Y'}">
                     <div>운영자</div>
                     </c:if>
-                     <c:if test="${list.QUIT_YN eq 'N'}">
+                     <c:if test="${list.ADMIN_YN eq 'N'}">
                     <div>회원</div>
                     </c:if>
                     <div><img src="${pageContext.request.contextPath}${list.GRADE_IMG_PATH}"></div>
                     <div>${list.PHONE}</div>
-                    <div>${list.ENROLL_DATE}</div>
-                    <fmt:formatDate value="${now}" pattern=" yyyyMMdd" type="date"/>
+                    <div>${fn:substring(list.ENROLL_DATE,0,10)}</div>
                     <div>${list.HOLD_TOKEN}</div>
                     <div>${list.BOARD}</div>
                     <div>${list.CMT}</div>
@@ -305,7 +306,7 @@ pageEncoding="UTF-8"%>
                     <c:if test="${list.QUIT_YN eq 'Y'}">
                     <div>삭제</div>
                     </c:if>
-                    <c:if test="${list.QUIT_YNn eq 'N'}">
+                    <c:if test="${list.QUIT_YN eq 'N'}">
                     <div>활동</div>
                     </c:if>
                     <div>

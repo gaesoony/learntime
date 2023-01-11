@@ -67,7 +67,7 @@
 
    .list{
     display: grid;
-    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-columns: 1fr 5fr;
     grid-template-rows: repeat(10, 50px);
     margin-top: 10px;
     align-items: center;
