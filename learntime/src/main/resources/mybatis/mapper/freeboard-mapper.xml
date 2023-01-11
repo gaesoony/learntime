@@ -34,6 +34,7 @@
 	</update>
 	
 	<select id="selectList" resultType = "BoardVo">
+	
 		SELECT FB.*, FLH.*, (COALESCE(FLH.LIKES, 0) - COALESCE(FLH.HATES, 0)) AS LH_COUNT, M.*, FBC.*, COALESCE(CMT.count, 0) AS CMT_COUNT
 		FROM FREE_BOARD FB
 		LEFT JOIN (  SELECT  BOARD_NO,
@@ -68,9 +69,8 @@
 		</if>
 		
 		<if test = "('').equals(sort) or sort == null">
-		ORDER BY FB.NO DESC
+		ORDER BY FB.ENROLL_DATE DESC
 		</if>
-		
 		
 	</select>
 	
@@ -158,10 +158,6 @@
 		ORDER BY fbc."GROUP" ASC, fbc.MODIFY_DATE ASC
 	</select>
 	
-	
-	
-	
-	
 	<insert id="insertCmt">
 		INSERT INTO FREE_BOARD_CMT VALUES (
 			SEQ_FREEBOARD_CMT_NO.NEXTVAL,
@@ -238,7 +234,6 @@
 	</select>
 	
 	
-	
 	<!-- 유저의 특정글 좋아요 조회 -->
 	<select id="selectUserLike" resultType = "com.learntime.app.community.vo.LHSVo">
 		SELECT * 
@@ -297,6 +292,43 @@
 		WHERE M_NO = #{writer} AND BOARD_NO = #{cmtNo}
 	</update>
 	
+	<update id="deleteCmt">
+		UPDATE FREE_BOARD_CMT
+		SET DELETE_YN = 'Y'
+		WHERE NO = #{commentNo}
+	</update>
+	
+	<select id="boardCnt" resultType = "INT">
+		SELECT COUNT(*)
+		FROM FREE_BOARD FB
+		LEFT JOIN (  SELECT  BOARD_NO,
+		                SUM(CASE WHEN STATUS = 'L' THEN 1 ELSE 0 END) AS LIKES,
+		                SUM(CASE WHEN STATUS = 'H' THEN 1 ELSE 0 END) AS HATES
+		        FROM FREE_BOARD_LIKE_HATE
+		        GROUP BY BOARD_NO) FLH
+		ON FB.NO = FLH.BOARD_NO
+		JOIN (SELECT  NO, ID, NICK WRITER_NICK, IMG_PATH WRITER_IMG FROM MEMBER) M
+		ON FB.WRITER = M.NO
+		JOIN (SELECT NO, NAME CATE FROM FREE_BOARD_CATEGORY) FBC
+		ON FBC.NO = FB.CATE_NO
+		LEFT JOIN (SELECT BOARD_NO, COUNT(*) as COUNT FROM FREE_BOARD_CMT GROUP BY BOARD_NO) CMT
+		ON FB.NO = CMT.BOARD_NO
+		WHERE FB.DELETE_YN = 'N'
+		 
+		<if test = "cate != null and !('').equals(cate) and cate != '0'.toString()">
+		AND FB.CATE_NO = #{cate}
+		</if>
+		
+		<if test = "search != null and !('').equals(search)">
+		AND (FB.TITLE LIKE '%${search}%' OR M.WRITER_NICK LIKE '%${search}%')
+		</if>
+		
+		<if test = "search != null and !('').equals(search) and cate != null and !('').equals(cate)">
+		AND FB.CATE_NO = #{cate}
+		AND (FB.TITLE LIKE '%${search}%' OR M.WRITER_NICK LIKE '%${search}%')
+		</if>
+		
+	</select>
 	
 
 </mapper>

@@ -3,6 +3,7 @@ package com.learntime.app.community.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.learntime.app.common.page.PageVo;
+import com.learntime.app.common.page.Pagination;
 import com.learntime.app.community.service.BoardService;
 import com.learntime.app.community.vo.BoardFilterVo;
 import com.learntime.app.community.vo.BoardVo;
@@ -38,7 +41,11 @@ public class BoardController {
 
 // 	글 목록 
 	@GetMapping("/board/list")
-	public String boardList(Model model, BoardFilterVo bfv) {
+	public String boardList(Model model, BoardFilterVo bfv, String pno) {
+		
+		if(pno == null) {
+			pno = "1";
+		}
 		
 		//나중에 메소드로 분리  TODO
 		System.out.println(bfv);
@@ -56,8 +63,26 @@ public class BoardController {
 			bfv.setCate(null);
 		}
 		
-		List<BoardVo> boardList = bs.select(bfv);
+		//페이징
+		int listCount = bs.boardCnt(bfv);
+		int currentPage = Integer.parseInt(pno);
+		int pageLimit = 10;
+		int boardLimit = 10;
+	       
+        PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 		
+        bfv.setListCount(listCount);
+        bfv.setCurrentPage(currentPage);
+        bfv.setPageLimit(pageLimit);
+        bfv.setBoardLimit(boardLimit);
+        bfv.setMaxPage(pv.getMaxPage());
+        bfv.setCurrentPage(pv.getCurrentPage());
+        bfv.setPageLimit(pv.getPageLimit());
+        bfv.setBoardLimit(pv.getBoardLimit());
+        bfv.setStartPage(pv.getStartPage());
+        bfv.setEndPage(pv.getEndPage());
+		
+		List<BoardVo> boardList = bs.select(bfv);
 		
 		if (boardList == null) {
 			return "common/error";
@@ -68,6 +93,7 @@ public class BoardController {
 
 		model.addAttribute("cateList", cateList);
 		model.addAttribute("boardList", boardList);
+		model.addAttribute("bfv", bfv);
 
 		return "/community/boardList";
 	}
@@ -270,7 +296,7 @@ public class BoardController {
 		String jsonString = gson.toJson(map);
 
 		return jsonString;
-		
+//		return "redirect:/community/board/detail?bno="+vo.getNo();
 	}
 	
 	
@@ -375,49 +401,60 @@ public class BoardController {
 	}
 	
 	// 좋아요, 싫어요
-		@PostMapping(value = "/cmt/like")
-		@ResponseBody
-		public String cmtLike( @RequestParam("no") String no,
-							@RequestParam("userNo") String writer,
-							@RequestParam("status") String status,
-							Model model) {
-		
-			CmtLHVo cmtLHVo = new CmtLHVo();
-			CmtLHVo userLH = new CmtLHVo();
-			cmtLHVo.setCmtNo(no);
-			cmtLHVo.setWriter(writer);
-			cmtLHVo.setStatus(status);
-			
-			System.out.println(cmtLHVo);
-			
-			// 이 유저의 이글 댓글  좋아요 싫어요 데이터가 있는지 조회
-			userLH = bs.selectUserLike(cmtLHVo);
-
-			if (userLH == null) {
-				System.out.println("좋아요 인서트~");
-		        bs.insertUserLike(cmtLHVo);
-		    } else if (status.equals(userLH.getStatus())) {
-		    	System.out.println("좋아요 딜리트~");
-		        bs.deleteUserLike(cmtLHVo);
-		    } else {
-		    	System.out.println("좋아요 업데이트~");
-		        bs.updateUserLike(cmtLHVo);
-		    }
-			
-				
-			//넘겨줘야 할것...(조회 해야 할 것) 
-			// 1. 유저의 this.글 좋아요 status 넘겨주기
-			userLH = bs.selectUserLike(cmtLHVo);
-			model.addAttribute("userLH", userLH);
-			
-			// 2. 이 글의 좋아요 싫어요수 조회해서 넘겨주기
-			BoardVo bv = bs.selectOne(no);
-			String lhCount = bv.getLhCount();
-			
-			//좋아요 숫자 조회해서 넘겨주기
-			return lhCount;
-		}
+	@PostMapping(value = "/cmt/like")
+	@ResponseBody
+	public String cmtLike( @RequestParam("no") String no,
+						@RequestParam("userNo") String writer,
+						@RequestParam("status") String status,
+						Model model) {
 	
+		CmtLHVo cmtLHVo = new CmtLHVo();
+		CmtLHVo userLH = new CmtLHVo();
+		cmtLHVo.setCmtNo(no);
+		cmtLHVo.setWriter(writer);
+		cmtLHVo.setStatus(status);
+		
+		System.out.println(cmtLHVo);
+		
+		// 이 유저의 이글 댓글  좋아요 싫어요 데이터가 있는지 조회
+		userLH = bs.selectUserLike(cmtLHVo);
+
+		if (userLH == null) {
+			System.out.println("좋아요 인서트~");
+	        bs.insertUserLike(cmtLHVo);
+	    } else if (status.equals(userLH.getStatus())) {
+	    	System.out.println("좋아요 딜리트~");
+	        bs.deleteUserLike(cmtLHVo);
+	    } else {
+	    	System.out.println("좋아요 업데이트~");
+	        bs.updateUserLike(cmtLHVo);
+	    }
+		
+			
+		//넘겨줘야 할것...(조회 해야 할 것) 
+		// 1. 유저의 this.글 좋아요 status 넘겨주기
+		userLH = bs.selectUserLike(cmtLHVo);
+		model.addAttribute("userLH", userLH);
+		
+		// 2. 이 글의 좋아요 싫어요수 조회해서 넘겨주기
+		BoardVo bv = bs.selectOne(no);
+		String lhCount = bv.getLhCount();
+		
+		//좋아요 숫자 조회해서 넘겨주기
+		return lhCount;
+	}
+	
+		
+	// 댓글 삭제
+	@ResponseBody
+	@PostMapping("/deleteComment")
+	public String deleteCmt(@RequestParam("commentNo") String commentNo) {
+		int result = bs.deleteCmt(commentNo);
+		if(result != 1) {
+			return "0";
+		}
+		return "1";
+	}
 	
 
 }

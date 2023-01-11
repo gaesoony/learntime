@@ -215,13 +215,18 @@ public class MentorController {
 
 	// 멘토 등록 찐
 	@PostMapping("/mymentoring/temp2")
-	public String mentoringRegist(MentorVo vo) {
+	public String mentoringRegist(MentorVo vo, HttpSession session) {
 		System.out.println("받아온vo : " + vo);
 		int result = ms.mentorRegister(vo);
 
 		if (result != 1) {
 			return "common/error";
 		}
+		//멘토 정보 세션에 담아주고 리다이렉트
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		session.setAttribute("mentorInfo", ms.selectMentor(loginMember.getNo())); 
+		System.out.println(ms.selectMentor(loginMember.getNo()));
+		
 		return "redirect:/mentor/mymentoring/temp3";
 	}
 

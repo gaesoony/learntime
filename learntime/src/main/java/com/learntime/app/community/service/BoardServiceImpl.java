@@ -178,6 +178,18 @@ public class BoardServiceImpl implements BoardService{
 		return dao.updateUserLike(sst, cmtLHVo);
 	}
 
+	//댓글 삭제
+	@Override
+	public int deleteCmt(String commentNo) {
+		return dao.deleteCmt(sst, commentNo);
+	}
+
+	//글 수 조회
+	@Override
+	public int boardCnt(BoardFilterVo bfv) {
+		return dao.getBoardCnt(sst, bfv);
+	}
+
 	
 	
 	

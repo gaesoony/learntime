@@ -160,28 +160,11 @@ font-weight: 550;
     text-overflow: ellipsis;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* paging */
 #paging{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     margin: auto;
     margin-top: 40px;  

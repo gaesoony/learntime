@@ -218,6 +218,33 @@
 											} else if(cvList.depth == 1) {
 												commentMain = '<div class=\"comment2-main\">';
 											}
+
+											if(cvList.deleteYn == 'Y') {
+												var commentContent = '<span class="modi-dele modi"></span>'+
+																	'<span class="modi-dele dele"></span>'+
+																	'</div>'+
+																	'<div class="comment-content">'+
+																		'<p class="txt-grey">[삭제된 댓글입니다.]<br></p>';
+												var commentBtnBox = '';
+											}else{
+												var commentContent = '<span class="modi-dele modi">수정</span>'+
+																	'<span class="modi-dele dele">삭제</span>'+
+																	'<input type="hidden" name="" class="comment-no" value="'+cvList.no+'">'+
+																	'</div>'+
+																	'<div class="comment-content">'+
+																		'<p>'+cvList.content+'</p><br>';
+												var commentBtnBox = '<div class="like-hate-box">'+
+																	'<div class="like">'+
+																		'<span class="material-symbols-rounded lh-icon">thumb_up</span>'+
+																	'</div>'+
+																	'<div class="lh-number-box red">'+cvList.likes+'</div>'+
+																	'<div class="hate">'+
+																		'<span class="material-symbols-rounded lh-icon">thumb_down</span>'+
+																	'</div>'+
+																	'<input type="hidden" name="" class="cmt-no" value="'+cvList.no+'">'+
+																	'</div>';
+
+											}
 											
 											var commentHtml = 
 											'<div class="comment-box">' +
@@ -228,36 +255,21 @@
 														'</div>' +
 														'<span class="comment-writer">' + cvList.writerNick + '</span>' +
 														'<span class="comment-write-time">' + cvList.enrollDate + '</span>' +
-														'<span class="modi-dele modi">수정</span>' +
-														'<span class="modi-dele dele">삭제</span>' +
-													'</div>' +
-													'<div class="comment-content">' +
-														'<p>' + cvList.content + '</p><br>' +
+														commentContent +
 														'<div class="cmt2-btn">' +
 															'<span class="material-symbols-outlined reply-icon"> reply </span>' +
 															'<span>댓글 쓰기</span>' +
 														'</div>' +
 													'</div>' +
 												'</div>' +
-
 												'<div class="comment-lh-box">' +
-													'<div class="like-hate-box">' +
-														'<div class="like">' +
-															'<span class="material-symbols-rounded lh-icon">thumb_up</span>' +
-														'</div>' +
-														'<div class="lh-number-box red">' + cvList.likes + '</div>' +
-														'<div class="hate">' +
-															'<span class="material-symbols-rounded lh-icon">thumb_down</span>' +
-														'</div>' +
-													'</div>' +
+													commentBtnBox +
 												'</div>' +
 											'</div>' +
-
-											
 											'<div class="comment-write-box2">'+
 												'<div class="comment-writer-box2">'+
 													'<div class="comment-writer-profile2">'+
-														'<img src="" alt="" onerror="this.src=\'/app/resources/img/profile_default.png\'">'+
+														'<img src="/app/${loginMember.imgName}" alt="" onerror="this.src=\'/app/resources/img/profile_default.png\'">'+
 													'</div>'+
 													'<span class="comment-writer2">${loginMember.nick}</span>'+
 												'</div>'+
@@ -275,6 +287,27 @@
 											// 대댓글 창 임시 숨기기
 											$('.comment-write-box2').hide();
 											$('.comment-write-box2').next().hide();
+
+											$('.dele').click(function() {
+												if(!confirm("삭제하시겠습니까?")) {
+													return;
+												}
+												var commentNo = $(this).next().val();
+												$.ajax({
+													url: "/app/community/deleteComment",
+													type: "post",
+													data: {
+														"commentNo": commentNo,
+													},
+													success: function(data) {
+														console.log(data);
+														location.reload();
+													},
+													error: function() {
+														console.log(data);
+													}
+												});
+											});
 
 											//.cmt2-btn 클릭시 대댓글 창 토글로 보이기
 											$('.cmt2-btn').click(function() {
@@ -327,29 +360,44 @@
 								</div>
 								<span class="comment-writer">${cv.writerNick}</span>
 								<span class="comment-write-time">${cv.enrollDate}</span>
-								<span class="modi-dele modi">수정</span>
-								<span class="modi-dele dele">삭제</span>
+								
+								<c:if test = "${cv.deleteYn == 'Y'}">
+								<span class="modi-dele modi"></span>
+								<span class="modi-dele dele"></span>
 							</div>
 							<div class="comment-content">
-								<p>${cv.content}</p><br>
+									<p class = "txt-grey">[삭제된 댓글입니다]</p><br>
+								</c:if>
+
+								<c:if test = "${cv.deleteYn == 'N'}">
+								<span class="modi-dele modi">수정</span>
+								<span class="modi-dele dele">삭제</span>
+								<input type="hidden" name="" class="comment-no" value="${cv.no}">
+							</div>
+							<div class="comment-content">
+									<p>${cv.content}</p><br>
+								</c:if>
+								
 								<div class="cmt2-btn">
 									<span class="material-symbols-outlined reply-icon"> reply </span>
 									<span>댓글 쓰기</span>
 								</div>
 							</div>
 						</div>
-
 						<div class="comment-lh-box">
-							<div class="like-hate-box">
-								<div class="like cmt-like">
-									<span class="material-symbols-rounded lh-icon">thumb_up</span>
+							<c:if test = "${cv.deleteYn == 'N'}">
+								<div class="like-hate-box">
+									<div class="like cmt-like">
+										<span class="material-symbols-rounded lh-icon">thumb_up</span>
+									</div>
+									<div class="lh-number-box red">${cv.likes}</div>
+									<div class="hate cmt-hate">
+										<span class="material-symbols-rounded lh-icon">thumb_down</span>
+									</div>
+									<input class="cmt-no" type="hidden" name="" value="${cv.no}">
 								</div>
-								<div class="lh-number-box red">${cv.likes}</div>
-								<div class="hate cmt-hate">
-									<span class="material-symbols-rounded lh-icon">thumb_down</span>
-								</div>
-								<input class="cmt-no" type="hidden" name="" value="${cv.no}">
-							</div>
+							</c:if>
+							<c:if test = "${cv.deleteYn == 'Y'}"></c:if>
 						</div>
 					</div>
 
@@ -475,7 +523,36 @@
 					} else if(cvList.depth == 1) {
 						commentMain = '<div class=\"comment2-main\">';
 					}
-					
+
+					if(cvList.deleteYn == 'Y') {
+						var commentContent = '<span class="modi-dele modi"></span>'+
+											'<span class="modi-dele dele"></span>'+
+											'</div>'+
+											'<div class="comment-content">'+
+												'<p class="txt-grey">[삭제된 댓글입니다.]<br></p>';
+											
+
+						var commentBtnBox = '';
+					}else{
+						var commentContent = '<span class="modi-dele modi">수정</span>'+
+											'<span class="modi-dele dele">삭제</span>'+
+											'<input type="hidden" name="" class="comment-no" value="'+cvList.no+'">'+
+											'</div>'+
+											'<div class="comment-content">'+
+												'<p>'+cvList.content+'</p><br>';
+						var commentBtnBox = '<div class="like-hate-box">'+
+											'<div class="like">'+
+												'<span class="material-symbols-rounded lh-icon">thumb_up</span>'+
+											'</div>'+
+											'<div class="lh-number-box red">'+cvList.likes+'</div>'+
+											'<div class="hate">'+
+												'<span class="material-symbols-rounded lh-icon">thumb_down</span>'+
+											'</div>'+
+											'<input type="hidden" name="" class="cmt-no" value="'+cvList.no+'">'+
+											'</div>';
+
+					}
+
 					var commentHtml = 
 					'<div class="comment-box">' +
 						commentMain +
@@ -485,11 +562,9 @@
 								'</div>' +
 								'<span class="comment-writer">' + cvList.writerNick + '</span>' +
 								'<span class="comment-write-time">' + cvList.enrollDate + '</span>' +
-								'<span class="modi-dele modi">수정</span>' +
-								'<span class="modi-dele dele">삭제</span>' +
-							'</div>' +
-							'<div class="comment-content">' +
-								'<p>' + cvList.content + '</p><br>' +
+
+								commentContent +
+
 								'<div class="cmt2-btn">' +
 									'<span class="material-symbols-outlined reply-icon"> reply </span>' +
 									'<span>댓글 쓰기</span>' +
@@ -498,15 +573,9 @@
 						'</div>' +
 
 						'<div class="comment-lh-box">' +
-							'<div class="like-hate-box">' +
-								'<div class="like">' +
-									'<span class="material-symbols-rounded lh-icon">thumb_up</span>' +
-								'</div>' +
-								'<div class="lh-number-box red">' + cvList.likes + '</div>' +
-								'<div class="hate">' +
-									'<span class="material-symbols-rounded lh-icon">thumb_down</span>' +
-								'</div>' +
-							'</div>' +
+
+							commentBtnBox+
+
 						'</div>' +
 					'</div>' +
 
@@ -531,6 +600,29 @@
 					// 대댓글 창 임시 숨기기
 					$('.comment-write-box2').hide();
 					$('.comment-write-box2').next().hide();
+
+					$('.dele').click(function() {
+						if(!confirm("삭제하시겠습니까?")) {
+							return;
+						}
+						var commentNo = $(this).next().val();
+						$.ajax({
+							url: "/app/community/deleteComment",
+							type: "post",
+							data: {
+								"commentNo": commentNo,
+							},
+							success: function(data) {
+								console.log(data);
+								location.reload();
+							},
+							error: function() {
+								console.log(data);
+							}
+						});
+					});
+
+
 					//.cmt2-btn 클릭시 대댓글 창 토글로 보이기
 					$('.cmt2-btn').click(function() {
 
@@ -666,22 +758,22 @@
 		});
 
 		// 좋아요 & 싫어요 채워 놓기
-		document.ready(calcLike());
+		calcLike();
 
 		// 좋아요 & 싫어요 수 에따라 색상 변경
 		function calcLike() {
-		$('#lh-number-box').each(function(){
-			if($(this).text() > 0){
-				$(this).addClass('red');
-				$(this).removeClass('blue');
-			}else if($(this).text() < 0){
-				$(this).addClass('blue');
-				$(this).removeClass('red');
-			}else{
-				$(this).removeClass('red');
-				$(this).removeClass('blue');
-			}
-		});
+			$('#lh-number-box').each(function(){
+				if($(this).text() > 0){
+					$(this).addClass('red');
+					$(this).removeClass('blue');
+				}else if($(this).text() < 0){
+					$(this).addClass('blue');
+					$(this).removeClass('red');
+				}else{
+					$(this).removeClass('red');
+					$(this).removeClass('blue');
+				}
+			});
 		}
 
 		// 로그인멤버, 작성자가 같은지 check
@@ -692,11 +784,26 @@
 			}
 		});
 
-		
-		
-
-
-
+		$('.dele').click(function() {
+			if(!confirm("삭제하시겠습니까?")) {
+				return;
+			}
+			var commentNo = $(this).next().val();
+			$.ajax({
+				url: "/app/community/deleteComment",
+				type: "post",
+				data: {
+					"commentNo": commentNo,
+				},
+				success: function(data) {
+					console.log(data);
+					location.reload();
+				},
+				error: function() {
+					console.log(data);
+				}
+			});
+		});
 
 	</script>
 </body>

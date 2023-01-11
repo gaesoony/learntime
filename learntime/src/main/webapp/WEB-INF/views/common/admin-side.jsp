@@ -140,7 +140,7 @@ session.removeAttribute("alertMsg"); %>
         </li>
       </ul>
     </ul>
-    <ul class="big_menu">
+    <!-- <ul class="big_menu">
       <li>
         <span class="material-symbols-rounded">co_present</span>
         <span>멘토링 관리</span>
@@ -148,13 +148,13 @@ session.removeAttribute("alertMsg"); %>
       </li>
       <ul class="small_menu">
         <li>
-          <a href="${path}/admin/mentor/mentoring">멘토링 목록</a>
+          <a href="">멘토링 목록</a>
         </li>
         <li>
-          <a href="${path}/admin/mentor/review">멘토링 후기</a>
+          <a href="">멘토링 후기</a>
         </li>
       </ul>
-    </ul>
+    </ul> -->
     <ul class="big_menu">
       <li>
         <span class="material-symbols-rounded">forum</span>

@@ -203,7 +203,7 @@ pageEncoding="UTF-8"%>
                         </div>
                         <!-- 후기작성 div -->
                         <c:if test="${av.applyYn eq 'Y' and av.cancelYn eq 'N' and av.completeYn eq 'Y' and av.reviewWriter == 0}">
-                            <div class="review-box" >
+                            <div class="review-box" hidden>
                                 <form action="/app/mentor/review/write" method="post">
                                     <div class="review-head">
                                         <div class="review-star">

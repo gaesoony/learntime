@@ -86,6 +86,12 @@ public interface BoardDao {
 	//유저의 특정 댓글 좋아요 업데이트
 	public int updateUserLike(SqlSessionTemplate sst, CmtLHVo cmtLHVo);
 
+	//댓글 삭제
+	public int deleteCmt(SqlSessionTemplate sst, String commentNo);
+
+	//글수 조회
+	public int getBoardCnt(SqlSessionTemplate sst, BoardFilterVo bfv);
+
 	
 	
 	

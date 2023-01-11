@@ -82,6 +82,12 @@ public interface BoardService {
 	//댓글 좋아요 update
 	public int updateUserLike(CmtLHVo cmtLHVo);
 
+	//댓글 삭제
+	public int deleteCmt(String commentNo);
+
+	//전체 글 수 조회
+	public int boardCnt(BoardFilterVo bfv);
+
 
 	
 	

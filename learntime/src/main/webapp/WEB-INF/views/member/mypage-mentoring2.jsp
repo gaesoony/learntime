@@ -181,7 +181,7 @@ pageEncoding="UTF-8"%>
                 var check1 = false;
                 var check2 = false;
                 var check3 = false;
-                var check4 = false;
+                
                 var check5 = false;
                 var check6 = false;
                 var check7 = false;
@@ -222,16 +222,16 @@ pageEncoding="UTF-8"%>
                   }
                 });
 
-                // 분야 선택
-                $("#field-input").change(function(){
-                  var field = $("#field-input").val();
-                  if(field == ""){
-                    $("#field-input").css("border", "1px solid red");
-                  }else{
-                    $("#field-input").css("border", "1px solid #58c079");
-                    check4 = true;
-                  }
-                });
+                // // 분야 선택
+                // $("#field-input").change(function(){
+                //   var field = $("#field-input").val();
+                //   if(field == ""){
+                //     $("#field-input").css("border", "1px solid red");
+                //   }else{
+                //     $("#field-input").css("border", "1px solid #58c079");
+                //     check4 = true;
+                //   }
+                // });
 
                 // 소개글 입력
                 $("#intro-input").blur(function(){
@@ -266,7 +266,7 @@ pageEncoding="UTF-8"%>
                 
                 // 조건 확인 후 submit true
                 $("input[type=\"submit\"]").click(function(){
-                  if(check1 && check2 && check3 && check4 && check5 && check6){
+                  if(check1 && check2 && check3 && check7 && check5 && check6){
                     //submit true
                     $('form').attr('onsubmit', 'return true');
                     $("form").submit();

@@ -3,9 +3,11 @@ package com.learntime.app.community.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.learntime.app.common.page.PageVo;
 import com.learntime.app.community.vo.BoardFilterVo;
 import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.community.vo.CateVo;
@@ -26,7 +28,10 @@ public class BoardDaoImpl implements BoardDao{
 	//모든 리스트 조회
 	@Override
 	public List<BoardVo> selectBoardList(SqlSessionTemplate sst, BoardFilterVo bfv) {
-		return sst.selectList("freeBoardMapper.selectList", bfv);
+		int offset = (bfv.getCurrentPage()-1) * bfv.getBoardLimit();
+		int limit = bfv.getBoardLimit();
+		RowBounds rb = new RowBounds(offset, limit);
+		return sst.selectList("freeBoardMapper.selectList",bfv,rb);
 	}
 	
 	//나의 글 조회
@@ -159,6 +164,18 @@ public class BoardDaoImpl implements BoardDao{
 	@Override
 	public int updateUserLike(SqlSessionTemplate sst, CmtLHVo cmtLHVo) {
 		return sst.update("freeBoardMapper.updateUserCmtLike", cmtLHVo);
+	}
+
+	// 댓글 삭제
+	@Override
+	public int deleteCmt(SqlSessionTemplate sst, String commentNo) {
+		return sst.update("freeBoardMapper.deleteCmt", commentNo);
+	}
+
+	// 글 수 조회
+	@Override
+	public int getBoardCnt(SqlSessionTemplate sst, BoardFilterVo bfv) {
+		return sst.selectOne("freeBoardMapper.boardCnt", bfv);
 	}
 
 

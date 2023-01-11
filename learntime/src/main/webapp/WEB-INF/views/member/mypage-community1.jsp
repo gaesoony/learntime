@@ -159,16 +159,6 @@ pageEncoding="UTF-8"%>
                 <c:if test="${myList.size() != 0}">
                   <div id="paging">
                       <div class="paging-btn">1</div>
-                      <div class="paging-btn">2</div>
-                      <div class="paging-btn">3</div>
-                      <div class="paging-btn">4</div>
-                      <div class="paging-btn">5</div>
-                      <div class="paging-btn">6</div>
-                      <div class="paging-btn">7</div>
-                      <div class="paging-btn">8</div>
-                      <div class="paging-btn">9</div>
-                      <div class="paging-btn">10</div>
-                      <div class="paging-btn" id="next-btn">다음</div>
                   </div>
                 </c:if>
 

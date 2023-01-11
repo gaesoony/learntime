@@ -288,8 +288,10 @@
                 success: function(data){
                     console.log(data);
                     if(1 == data){
-                        confirm('이미 멘토로 지원하셨습니다.\n멘토링 관리페이지로 이동하시겠습니까?');
-                        location.href = '/app/member/mypage/mentoring/manage';
+                        if(confirm('이미 멘토로 지원하셨습니다.\n멘토링 관리페이지로 이동하시겠습니까?')){;
+                            location.href = '/app/member/mypage/mentoring/manage';
+                        }
+                        return;
                     }else{
                         //멘토 가 아니면 지원 페이지로 이동
                         location.href = '/app/member/mypage/mentoring/register';
@@ -399,17 +401,7 @@
                 </c:forEach>
             </div>
             <div id="paging">
-                <div class="paging-btn">1</div>
-                <div class="paging-btn">2</div>
-                <div class="paging-btn">3</div>
-                <div class="paging-btn">4</div>
-                <div class="paging-btn">5</div>
-                <div class="paging-btn">6</div>
-                <div class="paging-btn">7</div>
-                <div class="paging-btn">8</div>
-                <div class="paging-btn">9</div>
-                <div class="paging-btn">10</div>
-                <div class="paging-btn" id="next-btn">다음</div>
+                
             </div>
         </div>
     </div>

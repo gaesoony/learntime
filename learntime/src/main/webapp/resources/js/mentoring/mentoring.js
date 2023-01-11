@@ -179,7 +179,7 @@ window.onload = function() {
     $(document).on('click', '.date', function(){
         var date = $(this).attr('id');
         $('#date-input').val(date);
-        if($('#date-input').val() != "" || $('#date-input').val() != null){
+        if(($('#date-input').val() != "" || $('#date-input').val() != null) && !$(this).hasClass('disabled')){
             //disabled 없애기
             $('#time-select').attr('disabled', false);
         }

@@ -12,7 +12,7 @@
 		(
 		SEQ_MENTOR_NO.NEXTVAL
 		, #{writer}
-		, #{cateNo}
+		, 1
 		, #{email}
 		, #{name}
 		, #{phoneNo}
