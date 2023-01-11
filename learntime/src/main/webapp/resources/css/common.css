@@ -43,3 +43,7 @@ button,
 .red {
   color: #d90000;
 }
+
+.circle {
+  border-radius: 50%;
+}

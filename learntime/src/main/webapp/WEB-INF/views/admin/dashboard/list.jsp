@@ -254,7 +254,7 @@ pageEncoding="UTF-8"%>
       }
 
       .board-title a {
-        width: 280px;
+        width: 320px;
         height: 17px;
         overflow: hidden;
         white-space: nowrap;
@@ -441,18 +441,24 @@ pageEncoding="UTF-8"%>
                         test="${((todayPageViewCnt - yesterdayPageViewCnt)/yesterdayPageViewCnt * 100) >= 0}"
                       >
                         <span
-                          >+${(todayPageViewCnt -
+                          >+<fmt:formatNumber
+                            value="${(todayPageViewCnt -
                           yesterdayPageViewCnt)/yesterdayPageViewCnt *
-                          100}%</span
+                          100}"
+                            pattern=".0"
+                          />%</span
                         >
                       </c:if>
                       <c:if
                         test="${((todayPageViewCnt - yesterdayPageViewCnt)/yesterdayPageViewCnt * 100) < 0}"
                       >
                         <span
-                          >${(todayPageViewCnt -
+                          ><fmt:formatNumber
+                            value="${(todayPageViewCnt -
                           yesterdayPageViewCnt)/yesterdayPageViewCnt *
-                          100}%</span
+                          100}"
+                            pattern=".0"
+                          />%</span
                         >
                       </c:if>
                     </c:if>
@@ -493,16 +499,22 @@ pageEncoding="UTF-8"%>
                         test="${((todayVisitorCnt - yesterdayVisitorCnt)/yesterdayVisitorCnt * 100) >= 0}"
                       >
                         <span
-                          >+${(todayVisitorCnt -
-                          yesterdayVisitorCnt)/yesterdayVisitorCnt * 100}%</span
+                          >+<fmt:formatNumber
+                            value="${(todayVisitorCnt -
+                            yesterdayVisitorCnt)/yesterdayVisitorCnt * 100}"
+                            pattern=".0"
+                          />%</span
                         >
                       </c:if>
                       <c:if
                         test="${((todayVisitorCnt - yesterdayVisitorCnt)/yesterdayVisitorCnt * 100) < 0}"
                       >
-                        <span
-                          >${(todayVisitorCnt -
-                          yesterdayVisitorCnt)/yesterdayVisitorCnt * 100}%</span
+                        <span></span>
+                          <fmt:formatNumber
+                            value="${(todayVisitorCnt -
+                            yesterdayVisitorCnt)/yesterdayVisitorCnt * 100}"
+                            pattern=".0"
+                          />%</span
                         >
                       </c:if>
                     </c:if>
@@ -538,16 +550,22 @@ pageEncoding="UTF-8"%>
                         test="${((todayJoinCnt - yesterdayJoinCnt)/yesterdayJoinCnt * 100) >= 0}"
                       >
                         <span
-                          >+${(todayJoinCnt - yesterdayJoinCnt)/yesterdayJoinCnt
-                          * 100}%</span
+                          >+<fmt:formatNumber
+                          value="${(todayJoinCnt - yesterdayJoinCnt)/yesterdayJoinCnt
+                            * 100}"
+                          pattern=".0"
+                        />%</span
                         >
                       </c:if>
                       <c:if
                         test="${((todayJoinCnt - yesterdayJoinCnt)/yesterdayJoinCnt * 100) < 0}"
                       >
                         <span
-                          >${(todayJoinCnt - yesterdayJoinCnt)/yesterdayJoinCnt
-                          * 100}%</span
+                          ><fmt:formatNumber
+                          value="${(todayJoinCnt - yesterdayJoinCnt)/yesterdayJoinCnt
+                            * 100}"
+                          pattern=".0"
+                        />%</span
                         >
                       </c:if>
                     </c:if>
@@ -583,16 +601,22 @@ pageEncoding="UTF-8"%>
                         test="${((todayQuitCnt - yesterdayQuitCnt)/yesterdayQuitCnt * 100) >= 0}"
                       >
                         <span
-                          >+${(todayQuitCnt - yesterdayQuitCnt)/yesterdayQuitCnt
-                          * 100}%</span
+                          >+<fmt:formatNumber
+                          value="${(todayQuitCnt - yesterdayQuitCnt)/yesterdayQuitCnt
+                            * 100}"
+                          pattern=".0"
+                        />%</span
                         >
                       </c:if>
                       <c:if
                         test="${((todayQuitCnt - yesterdayQuitCnt)/yesterdayQuitCnt * 100) < 0}"
                       >
                         <span
-                          >${(todayQuitCnt - yesterdayQuitCnt)/yesterdayQuitCnt
-                          * 100}%</span
+                          ><fmt:formatNumber
+                          value="${(todayQuitCnt - yesterdayQuitCnt)/yesterdayQuitCnt
+                            * 100}"
+                          pattern=".0"
+                        />%</span
                         >
                       </c:if>
                     </c:if>
@@ -945,6 +969,7 @@ pageEncoding="UTF-8"%>
                     <img
                       src="${path}/resources/upload/manager/profile/${map.IMG_PATH}"
                       alt=""
+                      class="circle"
                     />
                   </c:if>
                   <span>${map.NICK}</span>
@@ -973,8 +998,10 @@ pageEncoding="UTF-8"%>
                   </c:if>
                   <c:if test="${map.IMG_PATH != null}">
                     <img
-                      src="${path}/resources/upload/profile/${map.IMG_PATH}"
+                      class="circle"
+                      src="${path}${map.IMG_PATH}"
                       alt=""
+                      onerror="this.src='${path}/resources/img/profile_default.png'"
                     />
                   </c:if>
                   <span>${map.NICK}</span>

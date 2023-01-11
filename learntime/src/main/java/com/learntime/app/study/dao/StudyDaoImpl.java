@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.learntime.app.admin.vo.BannerVo;
 import com.learntime.app.common.page.PageVo;
+import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.mystudy.vo.ProfileVo;
 import com.learntime.app.study.vo.ApplyVo;
 import com.learntime.app.study.vo.GroupVo;
@@ -462,6 +463,11 @@ public class StudyDaoImpl implements StudyDao{
 	@Override
 	public int quitGroup(SqlSessionTemplate sst, Map map) {
 		return sst.update("studyMapper.quitGroup", map);
+	}
+
+	@Override
+	public Map selectLoginMember(SqlSessionTemplate sst, String mno) {
+		return sst.selectOne("studyMapper.selectLoginMember", mno);
 	}
 
 

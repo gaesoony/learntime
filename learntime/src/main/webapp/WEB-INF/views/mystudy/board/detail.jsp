@@ -33,11 +33,17 @@ pageEncoding="UTF-8"%>
             <div class="space-between study-detail-title-bottom">
               <div class="flex">
                 <div class="user-profile">
-                  <img src="/app/resources/img/study/profile.png" alt="" />
+                  <img
+                  class="circle"
+                  src="${path}${boardOne.IMG_PATH}"
+                  alt=""
+                  onerror="this.src='${path}/resources/img/profile_default.png'"
+                />
+
                 </div>
                 <div class="user-nick flex">
                   <div>${boardOne.NICK}</div>
-                  <img src="/app/resources/img/study/flower.png" alt="" />
+               
                 </div>
                 <div class="soft-gray study-detail-title__date">
                   | ${boardOne.ENROLL_DATE} |
@@ -78,17 +84,20 @@ pageEncoding="UTF-8"%>
                     <div class="bold700">로그인하고 댓글을 남겨보세요!</div>
                   </c:if>
                   <c:if test="${loginMember.nick != null}">
-                    <c:if test="${loginMember.imgPath == null}">
+                    <c:if test="${loginMember.imgName == null}">
                       <img
                         src="/app/resources/upload/common/profile_default.png"
                         alt=""
                       />
                     </c:if>
-                    <c:if test="${loginMember.imgPath != null}">
+                    <c:if test="${loginMember.imgName != null}">
                       <img
-                        src="/app/resources/upload/common/${loginMember.imgPath}"
-                        alt=""
-                      />
+                      class="circle"
+                      src="${path}${loginMember.imgName}"
+                      alt=""
+                      onerror="this.src='${path}/resources/img/profile_default.png'"
+                    />
+
                     </c:if>
                     <div class="bold700">
                       ${loginMember.nick}님, 댓글을 남겨보세요!
@@ -116,7 +125,15 @@ pageEncoding="UTF-8"%>
                 <c:forEach items="${groupCmtList}" var="map">
                   <li>
                     <div class="cmt-top">
-                        <div class="cmt-top-div cmt-profile-img"><img src="${path}/resources/upload/common/profile_default.png" alt=""></div>
+                        <div class="cmt-top-div cmt-profile-img">
+                          <img
+                          class="circle"
+                          src="${path}${map.IMG_PATH}"
+                          alt=""
+                          onerror="this.src='${path}/resources/img/profile_default.png'"
+                        />
+
+                        </div>
                         <div class="cmt-top-div cmt-info">
                           <div class="flex">
                             
@@ -152,7 +169,15 @@ pageEncoding="UTF-8"%>
                           <c:forEach items="${map.groupCmtReplyList}" var="reply">
                             <li>
                               <div class="cmt-reply-member-profile">
-                                <div><img src="${path}/resources/upload/common/profile_default.png" alt=""></div>
+                                <div>
+                                  <img
+                                  class="circle"
+                                  src="${path}${reply.IMG_PATH}"
+                                  alt=""
+                                  onerror="this.src='${path}/resources/img/profile_default.png'"
+                                />
+        
+                                </div>
                                 <div></div>
                               </div>
                               <div class="cmt-reply-content">

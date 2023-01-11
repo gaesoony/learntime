@@ -38,13 +38,16 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               <div class="flex">
                 <div class="user-profile">
                   <img
-                    src="${path}/resources/upload/common/profile_default.png"
-                    alt=""
-                  />
+                  src="${path}${groupOne.IMG_PATH}"
+                  alt=""
+                  onerror="this.src='${path}/resources/img/profile_default.png'"
+                  onclick="location.href='${path}/member/mypage/home?no=${groupOne.WRITER_NO}'"
+                  class="cursor"
+                />
                 </div>
                 <div class="user-nick flex">
-                  <div>${groupOne.NICK}</div>
-                  <img src="/app/resources/img/study/flower.png" alt="" />
+                  <div class="cursor" onclick="location.href='${path}/member/mypage/home?no=${groupOne.WRITER_NO}'">${groupOne.NICK}</div>
+                  
                 </div>
                 <div class="soft-gray study-detail-title__date">
                   | ${groupOne.ENROLL_DATE} |
@@ -228,10 +231,13 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               <c:forEach items="${groupOne.memberList}" var="item">
                 <li>
                   <img
-                    src="${path}/resources/upload/common/profile_default.png"
-                    alt=""
-                  />
-                  <div>${item.NICK}</div>
+                  class="circle cursor"
+                  src="${path}${item.IMG_PATH}"
+                  alt=""
+                  onerror="this.src='${path}/resources/img/profile_default.png'"
+                  onclick="location.href='${path}/member/mypage/home?no=${groupOne.WRITER_NO}'"
+                />
+                  <div class="cursor" onclick="location.href='${path}/member/mypage/home?no=${groupOne.WRITER_NO}'">${item.NICK}</div>
                   <c:if test="${item.STATUS == 'B'}">
                     <div>모임장</div>
                   </c:if>
@@ -441,17 +447,19 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <div class="bold700">로그인하고 댓글을 남겨보세요!</div>
               </c:if>
               <c:if test="${loginMember.nick != null}">
-                <c:if test="${loginMember.imgPath == null}">
+                <c:if test="${loginMember.imgName == null}">
                   <img
                     src="/app/resources/upload/common/profile_default.png"
                     alt=""
                   />
                 </c:if>
-                <c:if test="${loginMember.imgPath != null}">
+                <c:if test="${loginMember.imgName != null}">
                   <img
-                    src="/app/resources/upload/common/${loginMember.imgPath}"
-                    alt=""
-                  />
+                  class="circle"
+                  src="/app/${loginMember.imgName}"
+                  alt=""
+                  onerror="this.src='${path}/resources/img/profile_default.png'"
+                />
                 </c:if>
                 <div class="bold700">
                   ${loginMember.nick}님, 댓글을 남겨보세요!
@@ -484,7 +492,15 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           	<c:forEach items="${groupCmtList}" var="map">
             	<li>
 	            	<div class="cmt-top">
-	                	<div class="cmt-top-div cmt-profile-img"><img src="${path}/resources/upload/common/profile_default.png" alt=""></div>
+	                	<div class="cmt-top-div cmt-profile-img">
+                      <img
+                      class="circle cursor"
+                      src="${path}${map.IMG_PATH}"
+                      alt=""
+                      onerror="this.src='${path}/resources/img/profile_default.png'"
+                      onclick="location.href='${path}/member/mypage/home?no=${map.MEMBER_NO}'"
+                    />
+                    </div>
 		                <div class="cmt-top-div cmt-info">
                       <div class="flex">
                         <c:if test="${map.STATUS == 'B'}">
@@ -494,7 +510,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                           <div class="group-member">멤버</div>
                         </c:if>
                      
-                        <div class="member-nick">${map.NICK}</div>
+                        <div class="member-nick cursor" onclick="location.href='${path}/member/mypage/home?no=${map.MEMBER_NO}'">${map.NICK}</div>
 
                       </div>
 		                  <div>
@@ -552,7 +568,15 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 		                	<c:forEach items="${map.groupCmtReplyList}" var="reply">
 			                	<li>
 			                    <div class="cmt-reply-member-profile">
-			                      <div><img src="${path}/resources/upload/common/profile_default.png" alt=""></div>
+			                      <div>
+                              <img
+                              class="circle cursor"
+                              src="${path}${reply.IMG_PATH}"
+                              alt=""
+                              onerror="this.src='${path}/resources/img/profile_default.png'"
+                              onclick="location.href='${path}/member/mypage/home?no=${reply.MEMBER_NO}'"
+                            />
+                            </div>
 			                      <div></div>
 			                    </div>
 			                    <div class="cmt-reply-content">
@@ -565,7 +589,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                                   <div class="group-member">멤버</div>
                                 </c:if>
 			                          
-			                          <div class="cmt-reply-member-nick">${reply.NICK}</div>
+			                          <div class="cmt-reply-member-nick cursor" onclick="location.href='${path}/member/mypage/home?no=${reply.MEMBER_NO}'">${reply.NICK}</div>
                                 <c:if test="${loginMember != null && loginMember.no == reply.WRITER}">
 			                          <a href="" class="cmt-edit">수정</a>
 			                          <a href="" class="cmt-edit">삭제</a>

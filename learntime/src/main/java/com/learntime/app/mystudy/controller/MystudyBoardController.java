@@ -87,7 +87,10 @@ public class MystudyBoardController {
 
 	//게시판 템플릿 상세조회 화면
 	@GetMapping("detail")
-	public String detail(String pno, String ctno, String gno, String bno, Model model) {
+	public String detail(String pno, String ctno, String gno, String bno, Model model, HttpSession session) {
+		
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		
 		Map map = new HashMap();
 		
 		map.put("gno", gno);
@@ -95,6 +98,10 @@ public class MystudyBoardController {
 		map.put("bno", bno);
 		
 		System.out.println(map);
+		
+		//내가 가입한 스터디 리스트 select
+		List<Map<String, String>> myGroupList = service.selectMyGroupList(loginMember.getNo());
+		model.addAttribute("myGroupList", myGroupList);	
 
 		//그룹번호로 정보 select
 		Map<String, Object> groupOne = service.selectGroupOne(gno);

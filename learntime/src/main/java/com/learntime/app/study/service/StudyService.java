@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.learntime.app.admin.vo.BannerVo;
+import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.mystudy.vo.ProfileVo;
 import com.learntime.app.study.vo.ApplyVo;
 import com.learntime.app.study.vo.GroupVo;
@@ -164,6 +165,8 @@ public interface StudyService {
 	public List<Map<String, Object>> selectTechTypeList();
 
 	public int quitGroup(Map map);
+
+	public Map<String, String> selectLoginMember(String mno);
 
 
 

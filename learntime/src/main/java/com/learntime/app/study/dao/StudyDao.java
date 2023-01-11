@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.learntime.app.admin.vo.BannerVo;
+import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.mystudy.vo.ProfileVo;
 import com.learntime.app.study.vo.ApplyVo;
 import com.learntime.app.study.vo.GroupVo;
@@ -209,6 +210,8 @@ public interface StudyDao {
 	public List<Map<String, Object>> selectTechTypeList(SqlSessionTemplate sst);
 
 	public int quitGroup(SqlSessionTemplate sst, Map map);
+
+	public Map selectLoginMember(SqlSessionTemplate sst, String mno);
 
 
 

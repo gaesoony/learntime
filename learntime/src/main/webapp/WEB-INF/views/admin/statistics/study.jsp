@@ -287,16 +287,22 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                       test="${((todayStudyCnt - yesterdayStudyCnt)/yesterdayStudyCnt * 100) >= 0}"
                     >
                       <span
-                        >+${(todayStudyCnt -
-                        yesterdayStudyCnt)/yesterdayStudyCnt * 100}%</span
+                        >+<fmt:formatNumber
+                          value="${(todayStudyCnt -
+                          yesterdayStudyCnt)/yesterdayStudyCnt * 100}"
+                          pattern=".0"
+                        />%</span
                       >
                     </c:if>
                     <c:if
                       test="${((todayStudyCnt - yesterdayStudyCnt)/yesterdayStudyCnt * 100) < 0}"
                     >
                       <span
-                        >${(todayStudyCnt - yesterdayStudyCnt)/yesterdayStudyCnt
-                        * 100}%</span
+                        ><fmt:formatNumber
+                          value="${(todayStudyCnt -
+                          yesterdayStudyCnt)/yesterdayStudyCnt * 100}"
+                          pattern=".0"
+                        />%</span
                       >
                     </c:if>
                   </c:if>
@@ -335,16 +341,22 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                       test="${((todayProjectCnt - yesterdayProjectCnt)/yesterdayProjectCnt * 100) >= 0}"
                     >
                       <span
-                        >+${(todayProjectCnt -
-                        yesterdayProjectCnt)/yesterdayProjectCnt * 100}%</span
+                        >+<fmt:formatNumber
+                          value="${(todayProjectCnt -
+                          yesterdayProjectCnt)/yesterdayProjectCnt * 100}"
+                          pattern=".0"
+                        />%</span
                       >
                     </c:if>
                     <c:if
                       test="${((todayProjectCnt - yesterdayProjectCnt)/yesterdayProjectCnt * 100) < 0}"
                     >
                       <span
-                        >${(todayProjectCnt -
-                        yesterdayProjectCnt)/yesterdayProjectCnt * 100}%</span
+                        ><fmt:formatNumber
+                          value="${(todayProjectCnt -
+                          yesterdayProjectCnt)/yesterdayProjectCnt * 100}"
+                          pattern=".0"
+                        />%</span
                       >
                     </c:if>
                   </c:if>
@@ -387,18 +399,24 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                       test="${((todayGroupApplyCnt - yesterdayGroupApplyCnt)/yesterdayGroupApplyCnt * 100) >= 0}"
                     >
                       <span
-                        >+${(todayGroupApplyCnt -
-                        yesterdayGroupApplyCnt)/yesterdayGroupApplyCnt *
-                        100}%</span
+                        >+<fmt:formatNumber
+                          value="${(todayGroupApplyCnt -
+                          yesterdayGroupApplyCnt)/yesterdayGroupApplyCnt *
+                          100}"
+                          pattern=".0"
+                        />%</span
                       >
                     </c:if>
                     <c:if
                       test="${((todayGroupApplyCnt - yesterdayGroupApplyCnt)/yesterdayGroupApplyCnt * 100) < 0}"
                     >
-                      <span
-                        >${(todayGroupApplyCnt -
-                        yesterdayGroupApplyCnt)/yesterdayGroupApplyCnt *
-                        100}%</span
+                      <span>
+                        <fmt:formatNumber
+                          value="${(todayGroupApplyCnt -
+                          yesterdayGroupApplyCnt)/yesterdayGroupApplyCnt *
+                          100}"
+                          pattern=".0"
+                        />%</span
                       >
                     </c:if>
                   </c:if>
