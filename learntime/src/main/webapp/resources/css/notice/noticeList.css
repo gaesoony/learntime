@@ -149,7 +149,7 @@
 .notice-list{
     width: 1200px;
     display:flex;
-    height:700px;
+    height:800px;
     flex-direction:column;
 
 }
@@ -157,6 +157,7 @@
 .seperate-divs{
 	
 	display:flex;
+	
 }
 
 .cate-box{

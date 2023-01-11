@@ -55,18 +55,13 @@ public class NoticeController {
 			map.put("vo",vo);
 			map.put("pv",pv);
 			
-			System.out.println(pv);
-			
 
 			List<NoticeVo> list= null;
 			if(vo.getCateNo()==0)  {
-				
 				list= ns.selectNoticeListAll(map);
 				
 			}else {
-				//vo.setCateNo(cateNo);
 				list= ns.selectNoticeList(map);
-				
 				
 			}
 			

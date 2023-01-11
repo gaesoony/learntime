@@ -499,9 +499,20 @@ background-color: #e9fde9;
                
            }
        }
-       console.log(valueArr);
-    
-       var chk = confirm("활성화 하시겠습니까?");
+       Swal.fire({
+     	  title: '활성화 하시겠습니까?',
+     	  showDenyButton: true,
+     	  confirmButtonText: '네',
+     	  denyButtonText: '아니오',
+     	}).then((result) => {
+     	 /* Read more about isConfirmed, isDenied below */
+     	if (result.isConfirmed) {
+     		Swal.fire('활성화되었습니다.', '', 'success')
+     	} else if (result.isDenied) {
+     		Swal.fire('활성화되지 않았습니다', '', 'info')
+     	}
+     	}) 
+     
        $.ajax({
            url:"/app/admin/notice/noticeListAdmin",
            type:"post",
@@ -509,17 +520,11 @@ background-color: #e9fde9;
                    "valueArr":valueArr
        },
        success:function(x){
-    	   Swal.fire({
-    		   icon: 'success',
-    		   title: 'success!',
-    		   text: '활성화 되었습니다!',
-    		   
-    		   
-    		 })
+    	   
     		 setTimeout(function() {
     			 location.reload();
     			 
-  			}, 3000);
+  			}, 4000);
  		  
 
     		 
@@ -546,7 +551,20 @@ background-color: #e9fde9;
            }
        }
     
-       var chk = confirm("비활성화 하시겠습니까?");
+       Swal.fire({
+     	  title: '비활성화 하시겠습니까?',
+     	  showDenyButton: true,
+     	  confirmButtonText: '네',
+     	  denyButtonText: '아니오',
+     	}).then((result) => {
+     	 /* Read more about isConfirmed, isDenied below */
+     	if (result.isConfirmed) {
+     		Swal.fire('비활성화되었습니다.', '', 'success')
+     	} else if (result.isDenied) {
+     		Swal.fire('비활성화되지 않았습니다', '', 'info')
+     	}
+     	}) 
+     
        $.ajax({
            url:"/app/admin/notice/noticeListAdmin",
            type:"post",
@@ -554,20 +572,11 @@ background-color: #e9fde9;
                    "valueArr":valueArr
        },
        success:function(x){
-    	   Swal.fire({
-    		   icon: 'success',
-    		   title: 'success!',
-    		   text: '비활성화 되었습니다!',
-    		   
-    		   
-    		 })
     		 
     		 setTimeout(function() {
     			 location.reload();
-  			}, 3000);
+  			}, 4000);
  		  
-    		 
-    		 
        },
        error:function(){
            alert('에러가 발생했습니다.');
@@ -588,7 +597,20 @@ background-color: #e9fde9;
            }
        }
 
-       var chk = confirm("삭제 하시겠습니까?");
+       Swal.fire({
+     	  title: '삭제하시겠습니까?',
+     	  showDenyButton: true,
+     	  confirmButtonText: '네',
+     	  denyButtonText: '아니오',
+     	}).then((result) => {
+     	 /* Read more about isConfirmed, isDenied below */
+     	if (result.isConfirmed) {
+     		Swal.fire('삭제되었습니다.', '', 'success')
+     	} else if (result.isDenied) {
+     		Swal.fire('삭제되지 않았습니다', '', 'info')
+     	}
+     	}) 
+     
        
        $.ajax({
            url:"/app/admin/notice/noticeListAdmin/delete",
@@ -600,23 +622,11 @@ background-color: #e9fde9;
        },
        success:function(x){
     	   
-    	   
-       	 Swal.fire({
-    		   icon: 'success',
-    		   title: 'success!',
-    		   text: '삭제 되었습니다!',
-    		   
-    		 })
-    		  
-    		 
     	setTimeout(function() {
     		location.reload();
     		
-  			}, 3000);
+  			}, 4000);
  		  	 
-    		 
-           
-           
        },
        error:function(){
            alert('에러가 발생했습니다.');

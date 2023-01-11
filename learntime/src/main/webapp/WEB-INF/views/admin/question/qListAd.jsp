@@ -235,7 +235,7 @@
 	                            <a href="/app/admin/question/qDetailListAdmin?no=${list.no}"><div class="title-faq-ad" name="title">${list.title}</div></a>
 	                            <div class="nickname-faq-ad" name="writer">${list.writer}</div>
 	                            <div class="enrollDate-faq-ad" name="enrollDate">${list.enrollDate}</div>
-	                            <div class="deleteBtn-faq-ad"><input type="submit" value="삭제" id="deleteAd" class="del" onclick="delQList()"></div>
+	                            <div class="deleteBtn-faq-ad"><input type="submit" value="삭제" id="deleteAd" class="del" onclick="delQList('${list.no}');"></div>
 	                        </div>
 	                    </div>
 	                </c:forEach>
@@ -276,6 +276,21 @@
 	
 	/*체크박스 삭제  */
 	function deleteList(){
+		
+		Swal.fire({
+		  	  title: '삭제하시겠습니까?',
+		  	  showDenyButton: true,
+		  	  confirmButtonText: '네',
+		  	  denyButtonText: '아니오',
+		  	}).then((result) => {
+		  	 /* Read more about isConfirmed, isDenied below */
+		  	if (result.isConfirmed) {
+		  		Swal.fire('삭제되었습니다.', '', 'success')
+		  	} else if (result.isDenied) {
+		  		Swal.fire('삭제되지 않았습니다', '', 'info')
+		  	}
+		  	}) 
+		  
 	
 	  
     let valueArr = [];
@@ -286,7 +301,7 @@
         }
     }
 
-    var chk = confirm("삭제 하시겠습니까?");
+    
     
     $.ajax({
         url:"/app/admin/question/qListAd/deleteList",
@@ -298,18 +313,10 @@
     },
     success:function(x){
  	   
- 	   
-    	 Swal.fire({
- 		   icon: 'success',
- 		   title: 'success!',
- 		   text: '삭제 되었습니다!',
- 		   
- 		 })
- 		 
  		 setTimeout(function() {
  			location.reload();
  			 
-  			}, 3000);
+  			}, 10000);
  		  
  		
  		 
@@ -327,13 +334,23 @@
 	}
 
 
-function delQList(){
+function delQList(no){
 	
-	  
-    
-    let check = $("#checkBtn:checked"); 
-    
-    var chk = confirm("삭제 하시겠습니까?");
+	
+	Swal.fire({
+  	  title: '삭제하시겠습니까?',
+  	  showDenyButton: true,
+  	  confirmButtonText: '네',
+  	  denyButtonText: '아니오',
+  	}).then((result) => {
+  	 /* Read more about isConfirmed, isDenied below */
+  	if (result.isConfirmed) {
+  		Swal.fire('삭제되었습니다.', '', 'success')
+  	} else if (result.isDenied) {
+  		Swal.fire('삭제되지 않았습니다', '', 'info')
+  	}
+  	}) 
+  
     
     $.ajax({
         url:"/app/admin/question/qListAd/delete",
@@ -346,21 +363,11 @@ function delQList(){
     success:function(x){
  	   
  	   
-    	 Swal.fire({
- 		   icon: 'success',
- 		   title: 'success!',
- 		   text: '삭제 되었습니다!',
- 		   
- 		 })
- 		  
  		 setTimeout(function() {
  			location.reload();
  			 
-  			}, 3000);
+  			}, 10000);
  		  
- 		 
- 		 
-        
         
     },
     error:function(){
