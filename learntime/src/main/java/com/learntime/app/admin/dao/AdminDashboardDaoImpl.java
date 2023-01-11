@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.learntime.app.admin.vo.VisitorCntVo;
+import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.faq.vo.FaqVo;
 import com.learntime.app.notice.vo.NoticeVo;
 import com.learntime.app.question.vo.QuestionVo;
@@ -172,6 +173,11 @@ public class AdminDashboardDaoImpl implements AdminDashboardDao{
 	@Override
 	public int selectGroupStatusCnt(SqlSessionTemplate sst, String status) {
 		return sst.selectOne("adminDashboardMapper.selectGroupStatusCnt", status);
+	}
+
+	@Override
+	public List<BoardVo> selectBoardList(SqlSessionTemplate sst) {
+		return sst.selectList("adminDashboardMapper.selectBoardList");
 	}
 
 }

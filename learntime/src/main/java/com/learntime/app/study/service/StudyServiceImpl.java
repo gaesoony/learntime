@@ -601,12 +601,7 @@ public class StudyServiceImpl implements StudyService{
 		int result2 = 0;
 		int result3 = 0;
 		
-		System.out.println(cateList);
-		System.out.println(updateCateMap);
-		System.out.println(insertCateMap);
-		
 		if(cateList.size() != 0) {
-			//delete
 			for(int i=0; i<cateList.size(); i++) {
 				String ctno = String.valueOf(cateList.get(i).get("NO"));
 				result1 = dao.deleteMystudyCategory(sst, ctno);
@@ -614,8 +609,6 @@ public class StudyServiceImpl implements StudyService{
 					break;
 				}
 			}
-			
-			
 		}else {
 			result1 = 1;
 		}
@@ -651,9 +644,6 @@ public class StudyServiceImpl implements StudyService{
 				result3 = 1;
 			}
 		}
-		System.out.println(result1);
-		System.out.println(result2);
-		System.out.println(result3);
 		
 		return result1 * result2 * result3;
 	}

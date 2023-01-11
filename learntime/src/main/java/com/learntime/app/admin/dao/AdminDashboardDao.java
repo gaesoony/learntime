@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.learntime.app.admin.vo.VisitorCntVo;
+import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.faq.vo.FaqVo;
 import com.learntime.app.notice.vo.NoticeVo;
 import com.learntime.app.question.vo.QuestionVo;
@@ -75,5 +76,7 @@ public interface AdminDashboardDao {
 	List<Map<String, Object>> selectGroupWayList(SqlSessionTemplate sst);
 
 	int selectGroupStatusCnt(SqlSessionTemplate sst, String string);
+
+	List<BoardVo> selectBoardList(SqlSessionTemplate sst);
 
 }

@@ -294,11 +294,9 @@ public class MystudyManageController {
 		return "mystudy/manage/category";
 	}
 	
-	//게시판 템플릿 관리 카테고리 수정 DB
+	//스터디게시판 관리페이지 카테고리 수정 (서버)
 	@PostMapping("category")
 	public String category(String gno, HttpSession session, String[] cateName, String[] cateNo) {
-		System.out.println(Arrays.toString(cateName));
-		System.out.println(Arrays.toString(cateNo));
 		
 		Map map = new HashMap();
 		map.put("gno", gno);
@@ -306,12 +304,11 @@ public class MystudyManageController {
 		//원래 카테고리 번호 리스트 
 		List<Map<String, Object>> cateList = service.selectCateList(map);
 		
-		//들어온 카테고리 번호를 원래 카테고리번호에서 삭제한다. -> 들어온 카테고리 번호는 이름만 업데이트하고 안들어온 카테고리번호는 delete
+		//요청된 카테고리 번호를 원래 카테고리번호에서 삭제한다. -> 요청된 카테고리 번호는 이름만 업데이트하고 안들어온 카테고리번호는 delete
 		if(cateNo != null) {
 			for(int i=0; i<cateList.size(); i++) {
 				for(int j=0; j<cateNo.length ; j++) {
 					if(String.valueOf(cateList.get(i).get("NO")).equals(cateNo[j])) {
-						System.out.println("리무브들어옴!");
 						cateList.remove(i);
 						i--;
 						break;
@@ -319,14 +316,6 @@ public class MystudyManageController {
 				}
 			}
 		}
-		
-		//기존카테고리 다 삭제하고 추가한 카테고리도 없는 경우 -> cateList 모두 delete
-		if(cateNo == null) {
-			//모든 카테고리 delete 해야함
-		}
-		
-		//cateList 모두 delete
-		System.out.println("지워야됨:"+cateList);
 		
 		//들어온 카테고리 번호는 이름만 update해야함
 		Map updateCateMap = new HashMap();
@@ -342,9 +331,7 @@ public class MystudyManageController {
 				if(cateNo[i].equals("new")) {
 					insertCateMap.put(i, cateName[i]);	
 				}
-				
 			}
-			
 		}
 		
 		int result = service.updateMystudyCategory(gno, cateList, updateCateMap, insertCateMap);

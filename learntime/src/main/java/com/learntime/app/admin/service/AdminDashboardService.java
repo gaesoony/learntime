@@ -3,6 +3,7 @@ package com.learntime.app.admin.service;
 import java.util.List;
 import java.util.Map;
 
+import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.faq.vo.FaqVo;
 import com.learntime.app.notice.vo.NoticeVo;
 import com.learntime.app.question.vo.QuestionVo;
@@ -70,6 +71,8 @@ public interface AdminDashboardService {
 	List<Map<String, Object>> selectGroupStatusSumList();
 
 	List<Map<String, Object>> selectGroupPeriodSumList();
+
+	List<BoardVo> selectBoardList();
 
 
 
