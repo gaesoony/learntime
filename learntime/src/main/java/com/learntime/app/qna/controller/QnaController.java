@@ -45,6 +45,8 @@ public class QnaController {
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 		
 		List<Map<String, Object>> qnaList = service.selectList(qvo);
+		List<Map<String, Object>> answerLankList = service.selectLankList();
+		model.addAttribute("answerLankList", answerLankList);
 		
 		model.addAttribute("qnaList", qnaList);
 		if(qvo.getKeyword().trim().equals("")) {
@@ -117,6 +119,8 @@ public class QnaController {
 	@GetMapping("/edit")
 	public String edit(QnaTypeVo qvo, Model model) { 
 		
+		model.addAttribute("qvo", qvo);
+		
 		Map<String, Object> qnaDetail = service.detail(qvo.getQno());
 		model.addAttribute("qnaDetail", qnaDetail);
 		
@@ -132,7 +136,7 @@ public class QnaController {
 		
 		System.out.println("컨트롤러에서 수정 DB : " + result);
 		
-		if(result == 1) {
+		if(result >= 1) {
 			return "redirect:/qna/detail?qno="+qvo.getQno() + "&keyword=" + qvo.getKeyword() + "&type=" + qvo.getType() + "&order=" + qvo.getOrder();
 		}else {
 			return "common/errorPage";
@@ -156,11 +160,11 @@ public class QnaController {
 	
 	//댓글 작성 (DB)
 	@PostMapping("/detail/writeAnswer")
-	public String writeAnswer(QnaTypeVo qvo, String answer) {
+	public String writeAnswer(QnaTypeVo qvo, String content) {
 		Map map = new HashMap();
 		map.put("qno", qvo.getQno());
 		map.put("mno", qvo.getMno());
-		map.put("answer", answer);
+		map.put("content", content);
 		
 		int result = service.writeAnswer(map);
 		

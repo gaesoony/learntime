@@ -53,7 +53,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         margin-bottom: 10px;
     }
     .sideid{
-        width: 8.5vw;
+        width: 140px;
         margin-left: 10px;
         float: left; 
         font-size: 16px; 
@@ -62,7 +62,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     .sidenum{
         margin: 10px;
         font-size: 16px;
-        vertical-align: top;
+        vertical-align: middle;
+        padding-bottom: 15px;
     }
     .mainbody{
         width: 1002px;
@@ -318,49 +319,21 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                     <div class="sidebar">
                         <div class="sidetitle"><img class="crown" src="/app/resources/img/qna/crown.png" alt="왕관"> 답변 채택 랭킹</div>
                         <table>
-                            <tr>
-                                <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
-                                <td class="sideid">nick01</td>
-                                <td class="sidenum">25</td>
-                            </tr>
-                            <tr>
-                                <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
-                                <td class="sideid">nick01</td>
-                                <td class="sidenum">25</td>
-                            </tr>
-                            <tr>
-                                <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
-                                <td class="sideid">nick01</td>
-                                <td class="sidenum">25</td>
-                            </tr>
-                            <tr>
-                                <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
-                                <td class="sideid">nick01</td>
-                                <td class="sidenum">25</td>
-                            </tr>
-                            <tr>
-                                <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
-                                <td class="sideid">nick01</td>
-                                <td class="sidenum">25</td>
-                            </tr>
-                            <tr>
-                                <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
-                                <td class="sideid">nick01</td>
-                                <td class="sidenum">25</td>
-                            </tr>
-                            <tr>
-                                <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></td>
-                                <td class="sideid">nick01</td>
-                                <td class="sidenum">25</td>
-                            </tr>
+                            <c:forEach items="${answerLankList}" var="lank">
+                                <tr>
+                                    <td><img src="/app/${loginMember.imgName}" class="profile" alt="" onerror="this.src='/app/resources/img/profile_default.png'"></td>
+                                    <td class="sideid">${lank.NICK}</td>
+                                    <td class="sidenum">${lank.CNT}</td>
+                                </tr>
+                            </c:forEach>
                         </table>
                     </div>
                     <div class="mainbody">
                         <div class="mainside">
                             <!-- 전체, 해결, 미해결 카테고리 -->
                             <div class="list-type-box">
-                                <label onclick="form.submit();"><input type="radio" class="side-category" name="type" id="all" value="전체" checked/><div id="all">전체</div></label>
-                                <label onclick="form.submit();"><input type="radio" class="side-category" name="type" id="skill" value="기술"/><div id="skill">기술</div></label>
+                                <label onclick="form.submit();"><input type="radio" class="side-category" name="type" id="all" value="전체" checked/><div id="type-div">전체</div></label>
+                                <label onclick="form.submit();"><input type="radio" class="side-category" name="type" id="skill" value="기술"/><div id="type-div">기술</div></label>
                                 <label onclick="form.submit();"><input type="radio" class="side-category" name="type" id="career" value="커리어"/><div id="type-div">커리어</div></label>
                             </div>
                             
@@ -420,7 +393,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
                                                 <div class="etcbox">
                                                     <ul class="etc">
-                                                        <li><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                                                        <li><img src="/app/${loginMember.imgName}" class="profile2" alt="" onerror="this.src='/app/resources/img/profile_default.png'"></li>
                                                         <li name="writer">${map.WRITER}</li>
                                                         <li><i class="fa-regular fa-eye"></i>&nbsp ${map.HIT}</li>
                                                         <li><i class="fa-regular fa-comment"></i>&nbsp ${map.REPLY_CNT}</li>

@@ -49,5 +49,9 @@ public interface QnaDao {
 
 	public List<Map<String, Object>> selectMypageList(SqlSessionTemplate sst, QnaVo vo);
 
+	public int deleteTag(SqlSessionTemplate sst, String no);
+
+	public List<Map<String, Object>> answerLankList(SqlSessionTemplate sst);
+
 
 }

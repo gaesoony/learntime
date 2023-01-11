@@ -53,9 +53,10 @@
         margin-right: 5px;
     }
     .usernick{
+        width: 70px;
         font-size: 13px;
         margin-top: 20px;
-        margin-right: 50px;
+        margin-right: 40px;
         float: left;
     }
     .usernum{
@@ -91,8 +92,10 @@
     .profile3{
         width: 25px;
         margin-right: 5px;
+        padding-top: 5px;
     }
     .nick{
+        height: 5vh;
         font-size: 18px;
         color: #989898;
         vertical-align: middle;
@@ -107,7 +110,7 @@
         font-size: 18px;
         color: #5ECC80;
         vertical-align: middle;
-        padding-right: 480px;
+        padding-right: 460px;
     }
     .thumbsup{
         font-size: 20px;
@@ -136,7 +139,6 @@
         background-color: white;
         font-weight: 300;
         cursor: pointer;
-        margin-top: 8px;
     }
     .edit-btn:hover{
         color: #5ECC80;
@@ -155,7 +157,6 @@
         cursor: pointer;
         font-weight: 300;
         background-color: white;
-        padding-bottom: 16px;
     }
     .delete-btn:hover{
         color: #5ECC80;
@@ -404,6 +405,7 @@
         float: left;
         color: #989898;
         margin-right: 5px;
+        padding-top: 6px;
     }
     #edit3{
         color: #989898;
@@ -648,7 +650,7 @@
             <c:forEach items="${makegrassLankList}" var="lank">
                 <div class="userbox">
                     <ul class="leftsidecontent">
-                        <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                        <li class="user"><img src="/app/${loginMember.imgName}" class="profile" alt="" onerror="this.src='/app/resources/img/profile_default.png'"></li>
                         <li class="usernick">${lank.NICK}</li>
                         <li class="usernum">${lank.CNT}</li>
                     </ul>
@@ -672,7 +674,7 @@
                 <div class="middletitle">
                     <table>
                         <tr>
-                            <td><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></td>
+                            <td><img src="/app/${loginMember.imgName}" class="profile3" alt="" onerror="this.src='/app/resources/img/profile_default.png'"></td>
                             <td class="nick">${makeDetail.WRITER}&nbsp&nbsp</td>
                             <td class="enrollDate">${makeDetail.ENROLL_DATE}</td>
                             <td class="heart"><i class="fa-solid fa-thumbs-up"></i> ${makeDetail.LIKES}</td>
@@ -753,7 +755,7 @@
             <div class="middle">
                 <c:if test="${loginMember != null}">
                     <div class="middlemain">
-                        <div><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
+                        <div><img src="/app/${loginMember.imgName}" class="profile2" alt="" onerror="this.src='/app/resources/img/profile_default.png'"></div>
                         <div class="replyplz">${loginMember.nick}님, 댓글을 달아보세요!</div>
                         <div class="replyplz-1">서로 예의를 지키는 좋은 말이면 더더욱 좋아요:)</div>
                         <div class="input">
@@ -765,11 +767,11 @@
         
                 <div class="end">
                     <i class="fa-regular fa-comment"></i>
-                    <div class="endword">총 1개의 댓글이 있습니다</div>
+                    <div class="endword">총 ${makeDetail.REPLY_CNT}개의 댓글이 있습니다</div>
                 </div>
         
                 <div class="jjinend">
-                    <div><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
+                    <div><img src="/app/${loginMember.imgName}" class="profile3" alt="" onerror="this.src='/app/resources/img/profile_default.png'"></div>
                     <div class="endnick">nick02</div>
                     <div class="endenrollDate">2022.12.08</div>
                     <div class="endheart"><i class="fa-solid fa-thumbs-up"></i> 12</div>
@@ -792,7 +794,7 @@
                     <div class="chat" id="chat" style="cursor: pointer;">댓글 <i class="fa-solid fa-chevron-right"></i></div>
         
                     <div id="reply">
-                        <div><img class="profile4" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
+                        <div><img src="/app/${loginMember.imgName}" class="profile4" alt="" onerror="this.src='/app/resources/img/profile_default.png'"></div>
                         <div class="endend">nick03</div>
                         <div class="endendenrollDate">2202.12.08.</div>
                         <div class="endheart2"><i class="fa-solid fa-thumbs-up"></i> 15</div>

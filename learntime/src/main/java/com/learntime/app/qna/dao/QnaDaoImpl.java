@@ -121,4 +121,16 @@ public class QnaDaoImpl implements QnaDao {
 		return sst.selectList("qnaMapper.mypageList", vo);
 	}
 
+	//공통 태그 삭제
+	@Override
+	public int deleteTag(SqlSessionTemplate sst, String no) {
+		return sst.update("qnaMapper.deleteTag", no);
+	}
+
+	//답변 채택 랭킹
+	@Override
+	public List<Map<String, Object>> answerLankList(SqlSessionTemplate sst) {
+		return sst.selectList("qnaMapper.answerLankList");
+	}
+
 }

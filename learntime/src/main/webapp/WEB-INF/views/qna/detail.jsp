@@ -635,13 +635,13 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="middletitle">
                 <table>
                     <tr>
-                        <td><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필"></td>
+                        <td><img src="/app/${loginMember.imgName}" class="profile" alt="" onerror="this.src='/app/resources/img/profile_default.png'"></td>
                         <td class="nick">${qnaDetail.WRITER}&nbsp&nbsp</td>
                         <td class="enrollDate">${qnaDetail.ENROLL_DATE}</td>
                         <td class="heart"><i class="fa-solid fa-thumbs-up"></i> ${qnaDetail.LIKES}</td>
 
                         <!-- 게시글 좋아요 -->
-                        <c:if test="${loginMember == null && etcList.likeHate == null}">
+                        <c:if test="${loginMember == null}">
                             <td class="thumbsup" id="thumbsup" onclick="login();"><i class="fa-regular fa-thumbs-up"></i></td>
                         </c:if>
                         <c:if test="${loginMember != null}">
@@ -649,13 +649,15 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                         </c:if>
 
                         <!-- 게시글 싫어요 -->
-                        <td class="thumbsdown" id="thumbsdown" onclick="location.href=''"><i class="fa-regular fa-thumbs-down"></i></td>
+                        <c:if test="${loginMember != null}">
+                            <td class="thumbsdown" id="thumbsdown" onclick="location.href=''"><i class="fa-regular fa-thumbs-down"></i></td>
+                        </c:if>
                         <c:if test="${loginMember == null}">
                             <td class="thumbsdown" id="thumbsdown" onclick="login();"><i class="fa-regular fa-thumbs-down"></i></td>
                         </c:if>
                         
                         <!-- 게시글 스크랩 -->
-                        <c:if test="${loginMember != null && etcList.scrap == null}">
+                        <c:if test="${loginMember != null}">
                             <input type="hidden" name="mno" value="${loginMember.no}">
                             <td class="bookmark" id="bookmark" onclick="location.href='${path}/qna/detail/scrap?qno=${qnaDetail.NO}'"><i class="fa-regular fa-bookmark"></i></td>
                         </c:if>
@@ -715,18 +717,18 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <div class="middle">
             <c:if test="${loginMember != null}">
                 <div class="middlemain">
-                    <form action="${path}/qna/detail/writeAnswer" method="POST">
+                    <form action="${path}/qna/detail/writeAnswer" method="post">
                         <input type="hidden" name="qno" value="${qnaDetail.NO}">
                         <input type="hidden" name="mno" value="${loginMember.no}">
                         <input type="hidden" name="keyword" value="${qvo.keyword}">
                         <input type="hidden" name="type" value="${qvo.type}">
                         <input type="hidden" name="order" value="${qvo.order}">
-                        <div><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
+                        <div><img src="/app/${loginMember.imgName}" class="profile2" alt="" onerror="this.src='/app/resources/img/profile_default.png'"></div>
                         <div class="replyplz">${loginMember.nick}님, 답변해주세요!</div>
                         <div class="replyplz-1">모두에게 도움이 되는 답변의 주인공이 되어주세요:)</div>
                         
                         <div class="input">
-                            <textarea class="summernote" name="answer"></textarea>
+                            <textarea class="summernote" name="content"></textarea>
                         </div>
                         <input type="submit" class="replybtn" value="답변 등록"></input>
                     </form>
@@ -744,7 +746,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                     <c:if test="${map.SELECT_YN == 'Y'}">
                         <div class="choice"><i class="fa-solid fa-medal"></i></div>
                     </c:if>
-                    <div><img class="profile3" src="/app/resources/img/qna/profile.png" alt="프로필"></div>
+                    <div><img src="/app/${loginMember.imgName}" class="profile3" alt="" onerror="this.src='/app/resources/img/profile_default.png'"></div>
                     <div class="endnick">${map.WRITER}</div>
                     <div class="endenrollDate">${map.ENROLL_DATE}</div>
                     <div class="endheart"><i class="fa-solid fa-thumbs-up"></i> ${map.LIKES}</div>
