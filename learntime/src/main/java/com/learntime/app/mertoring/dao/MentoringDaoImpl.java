@@ -123,6 +123,11 @@ public class MentoringDaoImpl implements MentoringDao{
 	public int updateMentor(SqlSessionTemplate sst, MentorVo vo) {
 		return sst.update("mentorMapper.updateMentor", vo);
 	}
+
+	@Override
+	public List<Map<String,String>> selectTime(SqlSessionTemplate sst, Map<String, String> scheduleMap) {
+		return sst.selectList("mentorMapper.selectTime", scheduleMap);
+	}
 	
 	
 

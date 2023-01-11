@@ -64,6 +64,8 @@ public interface MentoringService {
 
 	//멘토 수정
 	public int mentorModify(MentorVo vo);
+
+	public List<Map<String, String>> selectMentorTime(Map<String, String> scheduleMap);
 	
 	
 }
