@@ -220,7 +220,7 @@ textarea{
                                 <input type="submit" id=btn-to-expose class="btn-to-m" value="공개">
 			                    <input type="submit" id=btn-to-expose class="btn-to-m" value="수정">
 			                    <input type="submit" id=btn-to-expose class="btn-to-m" value="삭제">
-                                <a><div class="btn-to-m">글목록</div></a>
+                                <a href="/app/admin/faq/faqListAd"><div class="btn-to-m">글목록</div></a>
                             </div>
                         </div>
                     </div>

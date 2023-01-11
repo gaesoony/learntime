@@ -139,13 +139,14 @@
     
 }
 .enrollDate-faq-ad{
-    width: 160px;
+    width: 180px;
     height: 100%;
     font-weight: 600;
+    margin-left:25px;
     
 }
 .deleteBtn-faq-ad{
-    width: 100px;
+    width: 80px;
     height: 100%;
 }
 #delete-ad{
@@ -304,6 +305,7 @@
     margin-left: 320px;
     font-weight: 800;
     color: gray;
+    margin-right:20px;
 }
 .enrollDate-faq-admin{
    
@@ -408,7 +410,7 @@
 	                            <a href = "/app/admin/faq/faqDetailListAdmin?no=${list.no}"><div class="title-faq-ad" name="title">${list.title}</div></a>
 	                            <div class="nickname-faq-ad" name="writer">${list.writer}</div>
 	                            <div class="enrollDate-faq-ad" name="enrollDate">${list.enrollDate}</div>
-	                            <div class="deleteBtn-faq-ad"><input type="button" value="삭제" id="deleteAd" onclick="delNotice();"></div>
+	                            <div class="deleteBtn-faq-ad"><input type="button" value="삭제" id="deleteAd" onclick="delNotice('${list.no}');"></div>
 	                        </div>
 	                    </div>
 	                </c:forEach>
@@ -452,6 +454,22 @@
 
 function deleteList(){
 	
+	/* Swal.fire({
+  	  title: '삭제하시겠습니까?',
+  	  showDenyButton: true,
+  	  confirmButtonText: '네',
+  	  denyButtonText: '아니오',
+  	}).then((result) => {
+  	 /* Read more about isConfirmed, isDenied below */
+  	 
+  	/* if (result.isConfirmed) {
+  		Swal.fire('삭제되었습니다.', '', 'success')
+  	} else if (result.isDenied) {
+  		Swal.fire('삭제되지 않았습니다', '', 'info')
+  	}
+  	}) 
+   */ 
+	
 	  
     let valueArr = [];
     let list = $("#checkBoxBtn:checked"); 
@@ -460,9 +478,8 @@ function deleteList(){
             valueArr.push(list[i].value);
         }
     }
-
+ 	
     var chk = confirm("삭제 하시겠습니까?");
-    
     $.ajax({
         url:"/app/admin/faq/faqListAd/deleteList",
         type:"get",
@@ -472,19 +489,16 @@ function deleteList(){
                 
     },
     success:function(x){
- 	   
- 	   
-    	 Swal.fire({
- 		   icon: 'success',
- 		   title: 'success!',
- 		   text: '삭제 되었습니다!',
- 		   
- 		 })
- 		  
+    	Swal.fire({
+    		  icon: 'success',
+    		  title: 'success',
+    		  text: '삭제되었습니다!',
+    		  
+    		})
  		setTimeout(function() {
  			location.reload();
  			 
-  			}, 3000);
+  			}, 4000);
  		  
         
     },
@@ -498,34 +512,34 @@ function deleteList(){
 		
 	}
 	
-	function delTest(){
-		
-		
-		
-	}
-
-
-function delNotice(){
-    let check = $("#checkBoxBtn:checked"); 
-    console.log(check);
-    //var chk = confirm("삭제 하시겠습니까?2222233322");
+	
+function delNotice(no){
+    
+    Swal.fire({
+  title: '삭제하시겠습니까?',
+  showDenyButton: true,
+  confirmButtonText: '네',
+  denyButtonText: '아니오',
+}).then((result) => {
+	  /* Read more about isConfirmed, isDenied below */
+	  if (result.isConfirmed) {
+	    Swal.fire('삭제되었습니다.', '', 'success')
+	  } else if (result.isDenied) {
+	    Swal.fire('삭제되지 않았습니다', '', 'info')
+	  }
+	}) 
     
     $.ajax({
         url : "/app/admin/faq/faqListAd/delete",
         type : "get",
         data : {
-     	   "check" : check
+     	   "check" : no
 	    },
 	    success:function(x){
-	    	alert('success1111');
-// 	    	Swal.fire({
-// 		 		   icon: 'success',
-// 		 		   title: 'success!',
-// 		 		   text: '삭제 되었습니다!',
-// 		 		 })
-//	 	 		setTimeout(function() {
-//	 	 			//location.reload();
-//	 	  			}, 3000);
+	    	
+	 	 setTimeout(function() {
+	 	 	location.reload();
+	 	  }, 7000);
 	        
 	    },
 	    error:function(){
