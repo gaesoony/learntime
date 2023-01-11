@@ -194,7 +194,7 @@ public class AdminManagerController {
 
 		if(result==1) {
 			session.setAttribute("alertMsg", "관리자가 생성되었습니다");
-			return "redirect:/admin/dashboard/manager/list";
+			return "redirect:/admin/dashboard/manager/list?pno=1";
 		}else {
 			return"common/errorPage";
 		}

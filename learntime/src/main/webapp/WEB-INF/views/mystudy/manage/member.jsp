@@ -377,7 +377,7 @@ pageEncoding="UTF-8"%>
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
             success: function (data) {
               var obj = JSON.parse(data);
-              console.log(obj.result[0].MEMBER_NICK);
+
               let str = "";
               let str2 = "";
               for (let i = 0; i < obj.result.length; i++) {
@@ -387,7 +387,7 @@ pageEncoding="UTF-8"%>
                   obj.result[i].NO +
                   ')">' +
                   '<div class="grid-div-left">' +
-                  '<img src="${pageContext.request.contextPath}/resources/upload/profile/' +
+                  '<img src="${path}' +
                   obj.result[i].MEMBER_PROFILE +
                   '" alt=""/></div>' +
                   '<div class="grid-div-right">' +
@@ -459,7 +459,6 @@ pageEncoding="UTF-8"%>
 
       status.forEach((o) => {
         o.addEventListener("click", () => {
-          console.log("클릭됨?");
           const grid = document.querySelector(".grid");
 
           $.ajax({
@@ -482,7 +481,7 @@ pageEncoding="UTF-8"%>
                   obj.result[i].NO +
                   ')">' +
                   '<div class="grid-div-left">' +
-                  '<img src="${pageContext.request.contextPath}/resources/upload/profile/' +
+                  '<img src="${pageContext.request.contextPath}' +
                   obj.result[i].MEMBER_PROFILE +
                   '" alt=""/></div>' +
                   '<div class="grid-div-right">' +

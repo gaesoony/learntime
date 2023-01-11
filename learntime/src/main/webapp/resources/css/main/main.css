@@ -420,9 +420,9 @@
 }
 
 .qna-category {
-  padding: 15px 30px 0px 3px;
+  padding: 23px 30px 0px 3px;
   border-right: 1px solid rgb(221, 221, 221);
-  margin-top: 8px;
+  /* margin-top: 8px; */
   padding-bottom: 150px;
 }
 
@@ -455,7 +455,7 @@
 .qna-content-left li {
   width: 460px;
   height: 120px;
-  padding: 0px 15px 33px 15px;
+  padding: 0px 15px 31px 14px;
 
   display: flex;
   flex-direction: column;
@@ -464,26 +464,53 @@
 
 .qna-content-detail {
   font-size: 14px;
-  margin: 20px 0px;
+  width: 430px;
+  height: 43px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  margin: 21px 0px;
   letter-spacing: -1px;
-  line-height: 23px;
-  width: 444px;
-  height: 65px;
+  line-height: 20px;
+}
+
+.qna-content-detail-right {
+  font-size: 14px;
+  width: 268px;
+  height: 42px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   word-wrap: break-word;
   text-overflow: ellipsis;
-  margin: 12px 0px;
   letter-spacing: -1px;
-  line-height: 23px;
+  line-height: 20px;
+  display: flex;
+  align-items: flex-start;
+  white-space: wrap;
+}
+
+.qna-content-detail-right div {
+  width: 238px;
+  height: 60px;
+  text-overflow: ellipsis;
 }
 
 .qna-content-detail img {
   width: 18px;
   height: 18px;
   margin-right: 5px;
+}
+
+.qna-content-detail-right img {
+  width: 15px;
+  height: 21px;
+  margin-right: 7px;
+  margin-top: -4px;
 }
 
 .qna-content-right li {
@@ -498,18 +525,35 @@
 .qna-content-title {
   font-size: 18px;
   margin-bottom: 15px;
-
   letter-spacing: -1px;
   line-height: 23px;
-  width: 444px;
+  width: 435px;
   height: 21px;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   word-wrap: break-word;
   text-overflow: ellipsis;
-  margin: 12px 0px;
+  margin: 17px 0px;
+  letter-spacing: -1px;
+  line-height: 23px;
+}
+
+.qna-content-title-right {
+  font-size: 18px;
+  margin-bottom: 17px;
+  letter-spacing: -1px;
+  line-height: 23px;
+  width: 273px;
+  height: 21px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  /* margin: 17px 0px; */
   letter-spacing: -1px;
   line-height: 23px;
 }
@@ -519,11 +563,20 @@
   margin-right: 5px;
 }
 
+.qna-content-title-right span:first-child {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
 .main-qna-detail__left {
   width: 570px;
-  padding-bottom: 5px;
+  /* padding-bottom: 5px; */
   border-bottom: 1px solid #5ecc80;
   margin-right: 50px;
+}
+
+.hit-cmt {
+  margin-left: 21px;
 }
 
 /* 지식인 오른쪽 부분 */
@@ -934,6 +987,7 @@
 
 #inner-box4 span {
   font-size: 13px;
+  color: gray;
 }
 
 /* 스터디 제목 부분 */

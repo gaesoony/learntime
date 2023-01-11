@@ -59,7 +59,7 @@ pageEncoding="UTF-8"%>
                     <a
                       href="/app/mystudy/board/detail?ctno=${ctno}&gno=${groupOne.NO}&bno=${map.NO}"
                       >${map.TITLE}</a
-                    ><span class="main-color">&nbsp[10]</span>
+                    ><span class="main-color">&nbsp[${map.CMT_CNT}]</span>
                   </div>
                   <div>${map.NICK}</div>
                   <div>${map.ENROLL_DATE}</div>

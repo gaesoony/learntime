@@ -160,7 +160,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                   obj.result[i].NO +
                   ')">' +
                   '<div class="grid-div-left">' +
-                  '<img src="${pageContext.request.contextPath}/resources/upload/common/' +
+                  '<img src="${pageContext.request.contextPath}' +
                   obj.result[i].MEMBER_PROFILE +
                   '" alt=""/></div>' +
                   '<div class="grid-div-right relative">' +
@@ -206,7 +206,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                   obj.result[i].NO +
                   ')">' +
                   '<div class="grid-div-left">' +
-                  '<img src="${pageContext.request.contextPath}/resources/upload/common/' +
+                  '<img src="${pageContext.request.contextPath}' +
                   obj.result[i].MEMBER_PROFILE +
                   '" alt=""/></div>' +
                   '<div class="grid-div-right relative">' +

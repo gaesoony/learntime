@@ -352,9 +352,11 @@ select {
           <c:forEach items="${groupOne.memberList}" var="item">
                 <li>
                   <img
-                    src="${path}/resources/upload/common/profile_default.png"
-                    alt=""
-                  />
+                  class="circle"
+                  src="${path}${item.IMG_PATH}"
+                  alt=""
+                  onerror="this.src='${path}/resources/img/profile_default.png'"
+                />
                   <div>${item.NICK}</div>
                   <c:if test="${item.STATUS == 'B'}">
                     <div>모임장</div>

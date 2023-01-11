@@ -98,22 +98,67 @@ pageEncoding="UTF-8"%>
     <main id="learntime-main">
       <div>
       	<c:forEach items="${popupList}" var="map">
-      		<c:if test="${map.LOCATION == 'center'}">
-		        <div class="main-popup none" name="popup${map.NO}" style="top: calc(50% - 170px); left: calc(50% - 170px);" >      		
+      		<c:if test="${map.LOCATION == 'center' && map.APPLY == 'loginMember' && loginMember != null}">
+		        <div class="main-popup none" name="popup${map.NO}" style="top: calc(50% - 170px); left: calc(50% - 170px);" >   
+              <div class="main-popup-img" onclick="window.open('${map.LINK}')">
+                <img src="${path}/resources/upload/popup/${map.IMG_PATH}" alt="">
+              </div>
+              <div class="main-popup-btn">
+                <div><label class="today_close"><input class="none" type="checkbox" name="today_close${map.NO}">오늘 하루 보지 않기</label> </div>
+                <div onclick="closePopup(event);">닫기</div>
+              </div>   		
       		</c:if>
-      		<c:if test="${map.LOCATION == 'leftTop'}">
-		        <div class="main-popup none" style="top:75px; left:0px;">      		
+          <c:if test="${map.LOCATION == 'center' && map.APPLY == 'all'}">
+		        <div class="main-popup none" name="popup${map.NO}" style="top: calc(50% - 170px); left: calc(50% - 170px);" >   
+              <div class="main-popup-img" onclick="window.open('${map.LINK}')">
+                <img src="${path}/resources/upload/popup/${map.IMG_PATH}" alt="">
+              </div>
+              <div class="main-popup-btn">
+                <div><label class="today_close"><input class="none" type="checkbox" name="today_close${map.NO}">오늘 하루 보지 않기</label> </div>
+                <div onclick="closePopup(event);">닫기</div>
+              </div>   		
       		</c:if>
-      		<c:if test="${map.LOCATION == 'rightTop'}">
-		        <div class="main-popup none" style="top:75px; right:0px;">      		
+      		<c:if test="${map.LOCATION == 'leftTop' && map.APPLY == 'loginMember' && loginMember != null}">
+		        <div class="main-popup none" name="popup${map.NO}" style="top:111px; left:111px;">      	
+              <div class="main-popup-img" onclick="window.open('${map.LINK}')">
+                <img src="${path}/resources/upload/popup/${map.IMG_PATH}" alt="">
+              </div>
+              <div class="main-popup-btn">
+                <div><label class="today_close"><input class="none" type="checkbox" name="today_close${map.NO}">오늘 하루 보지 않기</label> </div>
+                <div onclick="closePopup(event);">닫기</div>
+              </div>	
       		</c:if>
-	          <div class="main-popup-img" onclick="window.open('${map.LINK}')">
-	            <img src="${path}/resources/upload/popup/${map.IMG_PATH}" alt="">
-	          </div>
-	          <div class="main-popup-btn">
-	            <div><label class="today_close"><input class="none" type="checkbox" name="today_close${map.NO}">오늘 하루 보지 않기</label> </div>
-	            <div onclick="closePopup(event);">닫기</div>
-	          </div>
+          <c:if test="${map.LOCATION == 'leftTop' && map.APPLY == 'all'}">
+		        <div class="main-popup none" name="popup${map.NO}" style="top:111px; left:111px;">   
+              <div class="main-popup-img" onclick="window.open('${map.LINK}')">
+                <img src="${path}/resources/upload/popup/${map.IMG_PATH}" alt="">
+              </div>
+              <div class="main-popup-btn">
+                <div><label class="today_close"><input class="none" type="checkbox" name="today_close${map.NO}">오늘 하루 보지 않기</label> </div>
+                <div onclick="closePopup(event);">닫기</div>
+              </div>   		
+      		</c:if>
+      		<c:if test="${map.LOCATION == 'rightTop' && map.APPLY == 'loginMember' && loginMember != null}">
+		        <div class="main-popup none" name="popup${map.NO}" style="top:111px; right:111px;">      		
+              <div class="main-popup-img" onclick="window.open('${map.LINK}')">
+                <img src="${path}/resources/upload/popup/${map.IMG_PATH}" alt="">
+              </div>
+              <div class="main-popup-btn">
+                <div><label class="today_close"><input class="none" type="checkbox" name="today_close${map.NO}">오늘 하루 보지 않기</label> </div>
+                <div onclick="closePopup(event);">닫기</div>
+              </div>
+      		</c:if>
+          <c:if test="${map.LOCATION == 'rightTop' && map.APPLY == 'all'}">
+		        <div class="main-popup none" name="popup${map.NO}" style="top:111px; right:111px;">    
+              <div class="main-popup-img" onclick="window.open('${map.LINK}')">
+                <img src="${path}/resources/upload/popup/${map.IMG_PATH}" alt="">
+              </div>
+              <div class="main-popup-btn">
+                <div><label class="today_close"><input class="none" type="checkbox" name="today_close${map.NO}">오늘 하루 보지 않기</label> </div>
+                <div onclick="closePopup(event);">닫기</div>
+              </div>  		
+      		</c:if>
+	          
 	        </div>
       	</c:forEach>
       </div>
@@ -223,7 +268,7 @@ pageEncoding="UTF-8"%>
               ><div>많이 본 질문</div>
               <img src="/app/resources/img/study/Popular.png" alt=""
             /></a>
-            <a class="qna-btn flex-column" href=""
+            <a class="qna-btn flex-column" href="${path}/qna/list"
               ><div>전체보기</div>
               <img src="/app/resources/img/study/total.png" alt=""
             /></a>
@@ -257,10 +302,11 @@ pageEncoding="UTF-8"%>
                     </li>
                   </ul>
                 </div>
+                
                 <div class="qna-content-left flex post-wrapper2">
                   <c:forEach items="${learningList}" var="map" varStatus="status" step="2">
                     <ul>
-                      <li>
+                      <li class="cursor" onclick="location.href='${path}/qna/detail?qno=${map.NO}'">
                         <div>
                           <div class="qna-content-title bold700 black">
                             ${map.TITLE}
@@ -272,22 +318,22 @@ pageEncoding="UTF-8"%>
                         <div class="flex cmt-date soft-gray">
                           <div>답변 ${map.REPLY_CNT}</div>
                           <div>${map.ENROLL_DATE}</div>
-                          <div>16:27</div>
+                        
                         </div>
                       </li>
-                      <li class="border-top">
+                      <li class="border-top cursor" onclick="location.href='${path}/qna/detail?qno=${learningList[status.index+1].NO}'">
                         <div>
                           <div class="qna-content-title bold700 black">
                             ${learningList[status.index+1].TITLE}
                           </div>
                           <div class="qna-content-detail">
-                            공부를 해도 모르겠네요ㅜㅜ
+                            ${learningList[status.index+1].CONTENT}
                           </div>
                         </div>
                         <div class="flex cmt-date soft-gray">
-                          <div>답변 0</div>
-                          <div>2022/11/24</div>
-                          <div>16:27</div>
+                          <div>답변 ${learningList[status.index+1].REPLY_CNT}</div>
+                          <div>${learningList[status.index+1].ENROLL_DATE}</div>
+                      
                         </div>
                       </li>
                     </ul>
@@ -307,178 +353,104 @@ pageEncoding="UTF-8"%>
               </div>
               <div>
                 <div class="qna-content-right flex post-wrapper3">
-                  <ul>
-                    <div class="flex">
-                      <li>
-                        <div>
-                          <div class="qna-content-title bold700">
-                            <span class="main-color">1</span>
-                            <span class="black">자바 잘하려면</span>
+                  <c:forEach items="${popularLearningList}" var="map" varStatus="status" step="4">
+                    <ul>
+                      <div class="flex">
+                        <li class="cursor" onclick="location.href='${path}/qna/detail?qno=${map.NO}'">
+                          <div>
+                            <div class="qna-content-title-right bold700">
+                              <span class="main-color">${status.index + 1}</span>
+                              <span class="black">${map.TITLE}</span>
+                            </div>
+                            <div class="qna-content-detail-right flex">
+                                <img
+                                  src="/app/resources/img/study/Down-Right.png"
+                                  alt=""
+                                />
+                                <div class="qna-content-detail-right-test">
+                                  ${map.CONTENT}
+                                </div>
+                            </div>
                           </div>
-                          <div class="qna-content-detail flex">
-                            <img
-                              src="/app/resources/img/study/Down-Right.png"
-                              alt=""
-                            />
-                            하루 6시간 복습하시면 됩니다.
+                          <div class="flex hit-cmt soft-gray">
+                            <div class="blue">조회수  ${map.HIT}</div>
+                            <div>| 답변  ${map.REPLY_CNT}</div>
+                            <div></div>
                           </div>
-                        </div>
-                        <div class="flex hit-cmt soft-gray">
-                          <div class="blue">조회수 1,150</div>
-                          <div>| 답변 3</div>
-                          <div></div>
-                        </div>
-                      </li>
-                      <li>
-                        <div>
-                          <div class="qna-content-title bold700 black">
-                            <span class="main-color">2</span>
-                            <span class="black">자바 잘하려면</span>
+                        </li>
+                        <li class="cursor" onclick="location.href='${path}/qna/detail?qno=${learningList[status.index+1].NO}'">
+                          <div>
+                            <div class="qna-content-title-right bold700 black">
+                              <span class="main-color">${status.index + 2}</span>
+                              <span class="black">${learningList[status.index+1].TITLE}</span>
+                            </div>
+                            <div class="qna-content-detail-right flex">
+                              <img
+                                src="/app/resources/img/study/Down-Right.png"
+                                alt=""
+                              />
+                              <div>
+                                ${learningList[status.index+1].CONTENT}
+                              </div>
+                            </div>
                           </div>
-                          <div class="qna-content-detail flex">
-                            <img
-                              src="/app/resources/img/study/Down-Right.png"
-                              alt=""
-                            />
-                            하루 6시간 복습하시면 됩니다.
+                          <div class="flex hit-cmt soft-gray">
+                            <div class="blue">조회수 ${learningList[status.index+1].HIT}</div>
+                            <div>| 답변 ${learningList[status.index+1].REPLY_CNT}</div>
+                            <div></div>
                           </div>
-                        </div>
-                        <div class="flex hit-cmt soft-gray">
-                          <div class="blue">조회수 1,150</div>
-                          <div>| 답변 3</div>
-                          <div></div>
-                        </div>
-                      </li>
-                    </div>
-                    <div class="flex border-top">
-                      <li>
-                        <div>
-                          <div class="qna-content-title bold700 black">
-                            <span class="main-color">3</span>
-                            <span class="black">자바 잘하려면</span>
+                        </li>
+                      </div>
+                      <div class="flex border-top">
+                        <li class="cursor" onclick="location.href='${path}/qna/detail?qno=${learningList[status.index+2].NO}'">
+                          <div>
+                            <div class="qna-content-title-right bold700 black">
+                              <span class="main-color">${status.index + 3}</span>
+                              <span class="black">${learningList[status.index+2].TITLE}</span>
+                            </div>
+                            <div class="qna-content-detail-right flex">
+                              <img
+                                src="/app/resources/img/study/Down-Right.png"
+                                alt=""
+                              />
+                              <div>
+                                ${learningList[status.index+2].CONTENT}
+                              </div>
+                            </div>
                           </div>
-                          <div class="qna-content-detail flex">
-                            <img
-                              src="/app/resources/img/study/Down-Right.png"
-                              alt=""
-                            />
-                            하루 6시간 복습하시면 됩니다.
+                          <div class="flex hit-cmt soft-gray">
+                            <div class="blue">조회수 ${learningList[status.index+2].HIT}</div>
+                            <div>| 답변 ${learningList[status.index+2].REPLY_CNT}</div>
+                            <div></div>
                           </div>
-                        </div>
-                        <div class="flex hit-cmt soft-gray">
-                          <div class="blue">조회수 1,150</div>
-                          <div>| 답변 3</div>
-                          <div></div>
-                        </div>
-                      </li>
-                      <li>
-                        <div>
-                          <div class="qna-content-title bold700 black">
-                            <span class="main-color">4</span>
-                            <span class="black">자바 잘하려면</span>
+                        </li>
+                        <li class="cursor" onclick="location.href='${path}/qna/detail?qno=${learningList[status.index+3].NO}'">
+                          <div>
+                            <div class="qna-content-title-right bold700 black">
+                              <span class="main-color">${status.index + 4}</span>
+                              <span class="black">${learningList[status.index+3].TITLE}</span>
+                            </div>
+                            <div class="qna-content-detail-right flex">
+                              <img
+                                src="/app/resources/img/study/Down-Right.png"
+                                alt=""
+                              />
+                              <div>
+                                ${learningList[status.index+3].CONTENT}
+                              </div>
+                            </div>
                           </div>
-                          <div class="qna-content-detail flex">
-                            <img
-                              src="/app/resources/img/study/Down-Right.png"
-                              alt=""
-                            />
-                            하루 6시간 복습하시면 됩니다.
+                          <div class="flex hit-cmt soft-gray">
+                            <div class="blue">조회수 ${learningList[status.index+3].HIT}</div>
+                            <div>| 답변 ${learningList[status.index+3].REPLY_CNT}</div>
+                            <div></div>
                           </div>
-                        </div>
-                        <div class="flex hit-cmt soft-gray">
-                          <div class="blue">조회수 1,150</div>
-                          <div>| 답변 3</div>
-                          <div></div>
-                        </div>
-                      </li>
-                    </div>
-                  </ul>
-                  <ul>
-                    <div class="flex">
-                      <li>
-                        <div>
-                          <div class="qna-content-title bold700">
-                            <span class="main-color">1</span>
-                            <span class="black">자바 잘하려면</span>
-                          </div>
-                          <div class="qna-content-detail flex">
-                            <img
-                              src="/app/resources/img/study/Down-Right.png"
-                              alt=""
-                            />
-                            하루 6시간 복습하시면 됩니다.
-                          </div>
-                        </div>
-                        <div class="flex hit-cmt soft-gray">
-                          <div class="blue">조회수 1,150</div>
-                          <div>| 답변 3</div>
-                          <div></div>
-                        </div>
-                      </li>
-                      <li>
-                        <div>
-                          <div class="qna-content-title bold700 black">
-                            <span class="main-color">2</span>
-                            <span class="black">자바 잘하려면</span>
-                          </div>
-                          <div class="qna-content-detail flex">
-                            <img
-                              src="/app/resources/img/study/Down-Right.png"
-                              alt=""
-                            />
-                            하루 6시간 복습하시면 됩니다.
-                          </div>
-                        </div>
-                        <div class="flex hit-cmt soft-gray">
-                          <div class="blue">조회수 1,150</div>
-                          <div>| 답변 3</div>
-                          <div></div>
-                        </div>
-                      </li>
-                    </div>
-                    <div class="flex border-top">
-                      <li>
-                        <div>
-                          <div class="qna-content-title bold700 black">
-                            <span class="main-color">3</span>
-                            <span class="black">자바 잘하려면</span>
-                          </div>
-                          <div class="qna-content-detail flex">
-                            <img
-                              src="/app/resources/img/study/Down-Right.png"
-                              alt=""
-                            />
-                            하루 6시간 복습하시면 됩니다.
-                          </div>
-                        </div>
-                        <div class="flex hit-cmt soft-gray">
-                          <div class="blue">조회수 1,150</div>
-                          <div>| 답변 3</div>
-                          <div></div>
-                        </div>
-                      </li>
-                      <li>
-                        <div>
-                          <div class="qna-content-title bold700 black">
-                            <span class="main-color">4</span>
-                            <span class="black">자바 잘하려면</span>
-                          </div>
-                          <div class="qna-content-detail flex">
-                            <img
-                              src="/app/resources/img/study/Down-Right.png"
-                              alt=""
-                            />
-                            하루 6시간 복습하시면 됩니다.
-                          </div>
-                        </div>
-                        <div class="flex hit-cmt soft-gray">
-                          <div class="blue">조회수 1,150</div>
-                          <div>| 답변 3</div>
-                          <div></div>
-                        </div>
-                      </li>
-                    </div>
-                  </ul>
+                        </li>
+                      </div>
+                    </ul>
+
+                  </c:forEach>
+                  
                 </div>
               </div>
             </div>
@@ -672,6 +644,7 @@ pageEncoding="UTF-8"%>
           "<button type='button' class='slick-next'><i class='fa-solid fa-chevron-right'></i></button>",
       });
 
+      
       $(".post-wrapper2").slick({
         slide: "ul",
         slidesToShow: 1,
@@ -684,6 +657,7 @@ pageEncoding="UTF-8"%>
           "<button type='button' class='slick-next2'><i class='fa-solid fa-chevron-right'></i></button>",
       });
 
+    
       $(".post-wrapper3").slick({
         slide: "ul",
         slidesToShow: 1,
@@ -873,12 +847,10 @@ pageEncoding="UTF-8"%>
     <script>
       //멘토 확인
       $(document).on('click', '#apply-mentor', function(){
-
           if('${loginMember}' == ''){
               alert('로그인 후 이용해주세요.');
               return false;
           }
-
           //멘토인지 확인
           $.ajax({
               url: '/app/mentor/checkMentor',
@@ -887,8 +859,10 @@ pageEncoding="UTF-8"%>
               success: function(data){
                   console.log(data);
                   if(1 == data){
-                      confirm('이미 멘토로 지원하셨습니다.\n멘토링 관리페이지로 이동하시겠습니까?');
-                      location.href = '/app/member/mypage/mentoring/manage';
+                      if(confirm('이미 멘토로 지원하셨습니다.\n멘토링 관리페이지로 이동하시겠습니까?')){;
+                          location.href = '/app/member/mypage/mentoring/manage';
+                      }
+                      return;
                   }else{
                       //멘토 가 아니면 지원 페이지로 이동
                       location.href = '/app/member/mypage/mentoring/register';
@@ -899,7 +873,6 @@ pageEncoding="UTF-8"%>
               }
           });
       });
-
   </script>
     <script
       src="https://kit.fontawesome.com/939838bb27.js"

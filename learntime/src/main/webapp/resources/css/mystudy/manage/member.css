@@ -250,3 +250,7 @@ input[name="status"]:checked ~ .bar {
 .main-back {
   background-color: #ffe3e3;
 }
+
+.grid-div-left img {
+  border-radius: 50%;
+}

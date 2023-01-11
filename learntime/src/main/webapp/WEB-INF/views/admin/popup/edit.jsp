@@ -241,11 +241,18 @@ pageEncoding="UTF-8"%>
             <div class="grid-div">적용 조건</div>
             <div class="grid-div flex">
               <div class="margin-right">
-                <label><input type="radio" name="visitor" />모든 방문자</label>
+                <label
+                  ><input type="radio" name="visitor" value="all" />모든
+                  방문자</label
+                >
               </div>
               <div>
                 <label
-                  ><input type="radio" name="visitor" />로그인 방문자</label
+                  ><input
+                    type="radio"
+                    name="visitor"
+                    value="loginMember"
+                  />로그인 방문자</label
                 >
               </div>
             </div>

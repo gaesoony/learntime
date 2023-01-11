@@ -131,6 +131,13 @@ public class StudyController {
 		
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 		
+		if(loginMember != null) {
+			String mno = loginMember.getNo();			
+			Map updatedloginMember = service.selectLoginMember(mno);
+			model.addAttribute("loginMember", updatedloginMember);
+		}
+		
+		
 		//map에 gno, mno 넣음
 		Map map = new HashMap();
 		map.put("gno", vo.getGno());
@@ -163,6 +170,7 @@ public class StudyController {
 		model.addAttribute("likeScrap", likeScrap);
 		model.addAttribute("groupCmtList", groupCmtList);
 		model.addAttribute("myStatus", myStatus);
+	
 		
 		return "study/detail";
 	}

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.learntime.app.admin.vo.BannerVo;
+import com.learntime.app.member.vo.MemberVo;
 import com.learntime.app.mystudy.vo.ProfileVo;
 import com.learntime.app.study.dao.StudyDao;
 import com.learntime.app.study.vo.ApplyVo;
@@ -752,6 +753,11 @@ public class StudyServiceImpl implements StudyService{
 	@Override
 	public int quitGroup(Map map) {
 		return dao.quitGroup(sst, map);
+	}
+
+	@Override
+	public Map selectLoginMember(String mno) {
+		return dao.selectLoginMember(sst, mno);
 	}
 
 

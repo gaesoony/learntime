@@ -20,6 +20,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
         <div class="flex">
           <img src="${path}/resources/img/study/study-banner-logo.png" alt="" />
           <span>에서 함께할 개발자를 찾으세요</span>
+        
         </div>
       </div>
     </section>
@@ -294,10 +295,19 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
               </div>
               <ul class="main-study-detail-list">
                 <c:forEach items="${groupList}" var="map">
-                  <a
-                    href="${path}/study/detail?gno=${map.NO}&keyword=${keyword}&tag=${fn:join(tagList,',')}&techType=${techType}&techStack=${fn:join(techStack,',')}&type=${type}&order=${order}&status=${status}"
-                    class="main-study-detail"
-                  >
+                  <c:if test="${map.CLOSING_YN == 'N'}">
+                    <a
+                      href="${path}/study/detail?gno=${map.NO}&keyword=${keyword}&tag=${fn:join(tagList,',')}&techType=${techType}&techStack=${fn:join(techStack,',')}&type=${type}&order=${order}&status=${status}"
+                      class="main-study-detail"
+                    >
+                  </c:if>
+                  <c:if test="${map.CLOSING_YN == 'Y'}">
+                    <a
+                      href="${path}/study/detail?gno=${map.NO}&keyword=${keyword}&tag=${fn:join(tagList,',')}&techType=${techType}&techStack=${fn:join(techStack,',')}&type=${type}&order=${order}&status=${status}"
+                      class="main-study-detail opacity"
+                    >
+                    <img class="absolute" src="${path}/resources/img/study/close.png" alt="">
+                  </c:if>
                     <div class="main-study-detail__date-like space-between">
                       <div class="soft-gray">
                         시작 예정일 | ${map.START_DATE}
@@ -327,8 +337,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
                     <section class="flex">
                       <div class="user-profile">
                         <img
-                          src="${path}/resources/img/study/profile.png"
+                          src="${path}${map.IMG_PATH}"
                           alt=""
+                          onerror="this.src='${path}/resources/img/profile_default.png'"
+                          onclick="location.href='${path}/member/mypage/home?no=${map.MEMBER_NO}'"
                         />
                       </div>
                       <div class="main-study-detail__profile-hit-cmt-scrap">
