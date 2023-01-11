@@ -45,37 +45,12 @@
             </div>
         </div>
         <div class="notice-content">${vo.content}</div>
+        <div class="btn">
+        	<a href="/app/notice/noticeList?p=1&cateNo=0"><div class="btn-to-m">글목록</div></a>
+        </div>
     </div>
-    	<div class="notice-comments">
-	        <div class="reply-section">
-	            <div class="reply-num" name="cmt">${vo.cmt}개의 댓글</div>
-	            <div class="leave-comment">
-	                <div class="div-box-a">
-	                	<form action="/app/notice/noticeDetail" method="post">
-	                    <div class="div-box-b">
-	                        <div class="profile-box">${ncv.writer} 님</div>
-	                        <div class="div-box-d"><textarea class="reply-textarea" name="content"></textarea> </div>
-	                    </div>
-		                    <div class="div-box-c">
-		                        <input type="submit" value="댓글쓰기" class="writeComment" onclick="writeComment();">
-		                    </div>
-	                    </form>
-	                </div>
-	            </div>
-	            <div class="comment-box">
-	                <div class="gathering-boxes">
-	                    <div class="comment-a">
-	                        <div class="profile-etc">
-	                            <div class="profile-id" name="writer">${ncv.writer}님</div>
-	                        </div>
-	                        <div class="leaved-comment"name="content">${ncv.content}</div>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-    	</div>
- 	</div>
-</div>
+ </div>
+
 
 
 

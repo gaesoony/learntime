@@ -498,7 +498,7 @@ function deleteList(){
  		setTimeout(function() {
  			location.reload();
  			 
-  			}, 4000);
+  			}, 10000);
  		  
         
     },
@@ -539,7 +539,7 @@ function delNotice(no){
 	    	
 	 	 setTimeout(function() {
 	 	 	location.reload();
-	 	  }, 7000);
+	 	  }, 10000);
 	        
 	    },
 	    error:function(){
