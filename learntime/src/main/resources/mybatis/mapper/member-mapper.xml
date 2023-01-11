@@ -277,8 +277,8 @@
 	
 	<!--어드민 운영자 추가 -->
 	<insert id="createOperator">
-		INSERT INTO MEMBER(NO,ID,NICK,PWD,PHONE,ADMIN_YN,EMAIL_AUTH)
-		VALUES (SEQ_MEMBER_NO.NEXTVAL,#{id},#{nick},#{pwd},#{phone},#{adminYn},1)
+		INSERT INTO MEMBER(NO,ID,NICK,PWD,PHONE,ADMIN_YN,EMAIL_AUTH,IMG_PATH)
+		VALUES (SEQ_MEMBER_NO.NEXTVAL,#{id},#{nick},#{pwd},#{phone},#{adminYn},1,'/resources/img/puffer-fish.png')
 	</insert>
 	
 	<!--멤버 등급 조회 -->
