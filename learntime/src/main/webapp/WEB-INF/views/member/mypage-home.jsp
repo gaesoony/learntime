@@ -26,7 +26,7 @@
     #home-area{
         padding: 40px;
         display: grid;
-        grid-template-rows: 230px 210px 210px;
+        grid-template-rows: 230px 210px;
     }
 
     #intro-area,#badge-area,#grass-area{
@@ -159,7 +159,7 @@
     .banner{
         border: 2px solid #5ecc80;
         width: 800px;
-        height: 26vh;
+        height: 200px;
         border-radius: 20px;
         margin: 0 auto;
     }
@@ -293,7 +293,7 @@
            <div id="badge-area">
                 <div id="badge">보유한 뱃지</div>
                 <div class="more">
-                    <a href="${pageContext.request.contextPath}/member/mypage/badge?no=106">전체보기<span class="material-symbols-outlined">chevron_right</span></a>
+                    <a href="${pageContext.request.contextPath}/member/mypage/badge?no=${userNo.no}">전체보기<span class="material-symbols-outlined">chevron_right</span></a>
                 </div>
                 <div id="have-badge">
                     <c:forEach items="${list}" var="list">
@@ -308,7 +308,7 @@
            <div id="grass-area">
             <div id="grass">MAKE GRASS</div>
             <div class="more">
-                <a href="/app/member/mypage/makegrassList">전체보기<span class="material-symbols-outlined">chevron_right</span></a>
+                <a href="/app/member/mypage/makegrassList?no=${userNo.no}">전체보기<span class="material-symbols-outlined">chevron_right</span></a>
             </div>
             <div id="makegrass">
                 <div class="bannerbox">

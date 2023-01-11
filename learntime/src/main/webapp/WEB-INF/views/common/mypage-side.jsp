@@ -234,7 +234,7 @@ body{
 }
 
 
- input:not(.search-box) {
+#chatInputBox{
   height: 25px;
   width: 290px;
   border: none;
@@ -362,7 +362,7 @@ body{
                 </div>
 
                 <div id="chat-send">
-                    <input type="text" class="message">
+                    <input id="chatInputBox"type="text" class="message">
                     <button id="sendbtn">전송</button>
                 </div>
             </div>    
