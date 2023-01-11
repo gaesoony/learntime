@@ -30,7 +30,7 @@
                             <span class="cate-name">${cate.name}</span>
                             <input type="hidden" name="" value="${cate.no}">
                             <div class="modi-dele-box">
-                                <a href="/app/admin/community/modicate?cate=${cate.no}" class="modi-btn txt-sm">수정</a>
+                                <a href="/app/admin/community/delecate?cate=${cate.no}" class="dele-btn txt-sm">수정</a>
                                 <a href="/app/admin/community/delecate?cate=${cate.no}" class="dele-btn txt-sm">삭제</a>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                         </div>
                         <div>
                             <span class="txt-sm">Total Post</span>
-                            <span class="statis-number">99</span>
+                            <span class="statis-number">${bfv.listCount}</span>
                         </div>
                         
                     </div>
@@ -161,42 +161,60 @@
                         <div>추천수</div>
                         <div>처리</div>
                     </div>
-                    <!-- 반복시작 -->
-                    <c:forEach items="${boardList}" var="list">
-                        <div class="board-content board">
-                            <div>${list.no}</div>
-                            <div>${list.cate}</div>
-                            <div>${list.title}
-                                <!-- ${list.cmtCount} 가 있을때 출력-->
-                                <c:if test="${list.cmtCount != null}">
-                                    <span class="cmt-cnt">[${list.cmtCount}]</span>
-                                </c:if>
-                            </div>
-                            <div>${list.writerNick}</div>
-                            <div>${list.enrollDate}</div>
-                            <div>${list.hit}</div>
-                            <div>${list.lhCount}</div>
-                            <div class="board-btn-box">
-                                <div class="detail-btn" onclick="location.href='/app/admin/community/detail?bno=${list.no}'">상세보기</div>
-                                <div class="modify-btn" onclick="location.href='/app/admin/community/modify?bno=${list.no}'">수정</div>
-                                <div class="delete-btn" onclick="location.href='/app/admin/community/delete?bno=${list.no}'">삭제</div>
-                            </div>
+                    <!-- 컨텐츠 반복 -->
+                    <!-- boardList의 첫번째 인덱스가 null일때 -->
+
+
+                    <c:if test="${boardList[0] == null}">
+                        <div class = "not-found">
+                            <p>조회된 글이 없습니다 :<</p>
                         </div>
-                    </c:forEach>
-                        <!-- 반복 끝 -->
-                    <!-- <div id="paging">
-                        <div class="paging-btn">1</div>
-                        <div class="paging-btn">2</div>
-                        <div class="paging-btn">3</div>
-                        <div class="paging-btn">4</div>
-                        <div class="paging-btn">5</div>
-                        <div class="paging-btn">6</div>
-                        <div class="paging-btn">7</div>
-                        <div class="paging-btn">8</div>
-                        <div class="paging-btn">9</div>
-                        <div class="paging-btn">10</div>
-                        <div class="paging-btn" id="next-btn">다음</div>
-                    </div> -->
+                    </c:if>
+                    <c:if test="${boardList != null}">
+                        <c:forEach items="${boardList}" var="list">
+                            <div class="board-content board">
+                                <div>${list.no}</div>
+                                <div>${list.cate}</div>
+                                <div>${list.title}
+                                    <!-- ${list.cmtCount} 가 있을때 출력-->
+                                    <c:if test="${list.cmtCount != null}">
+                                        <span class="cmt-cnt">[${list.cmtCount}]</span>
+                                    </c:if>
+                                </div>
+                                <div>${list.writerNick}</div>
+                                <div>${list.enrollDate}</div>
+                                <div>${list.hit}</div>
+                                <div>${list.lhCount}</div>
+                                <div class="board-btn-box">
+                                    <div class="detail-btn" onclick="location.href='/app/admin/community/detail?bno=${list.no}'">상세보기</div>
+                                    <div class="delete-btn">삭제</div>
+                                    <input type="hidden" name="" value="${list.no}">
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </c:if>
+
+                    <script>
+                        $('.delete-btn').click(function() {
+                            if(confirm('삭제하시겠습니까?')) {
+                                var bno = $(this).next().val();
+                                $.ajax({
+                                    url: '/app/community/board/delete',
+                                    type: 'post',
+                                    data: {
+                                        'bno': bno
+                                    },
+                                    success: function(data) {
+                                        console.log(data);
+                                        if(data == 1){
+                                            location.reload();
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                        
+                    </script>
 
                     <div id="paging">
                         <c:if test="${bfv.startPage != 1}">
@@ -223,26 +241,22 @@
     </div>
 
     <script>
-        $(document).ready(function() {
-            //기존 쿼리스트링
-            var page = getQueryString('pno');
-            if(page == undefined){
-               var page = 1;
-            };
-            var sort = 1;
-            var search = getQueryString('search');
-            // var sort = getQueryString('sort');
-            
+    $(document).ready(function() {
+        //기존 쿼리스트링 가져오기
+        var url = new URL(location.href);
+        var search = url.searchParams.get("search");
+        var cate = url.searchParams.get("cate");
+        var page = url.searchParams.get("pno");
+
+        
         // 카테고리 클릭 시 쿼리 스트링으로 전달
         $('.cate-name').on('click', function() {
             var cate = $(this).next().val();
             location.href = '/app/admin/community/list?cate='+cate;
         });
-
         
         //검색 시 쿼리 스트링으로 전달
         $('#search-btn').on('click', function() {
-            var cate = getQueryString('cate'); // 기존 쿼리 스트링 값 조회
             var search = $(this).prev().val();
             if(cate == undefined){
                 location.href = '/app/admin/community/list?search=' + search;
@@ -251,125 +265,75 @@
             }
         });
 
-        // 정렬 클릭 시 쿼리 스트링으로 전달
-        $('#sorting').on('change', function() {
-            var sort = $(this).val();
-            if(cate == undefined && search == undefined){
-                location.href = '/app/admin/community/list?sort=' + sort;
-            } else if(cate != undefined && search == undefined){
-                location.href = '/app/admin/community/list?cate=' + cate + '&sort=' + sort;
-            } else if(cate == undefined && search != undefined){
-                location.href = '/app/admin/community/list?search=' + search + '&sort=' + sort;
-            } else if(cate != undefined && search != undefined){
-                location.href = '/app/admin/community/list?cate=' + cate + '&search=' + search + '&sort=' + sort;
-            }
-        });
-
-
         // 페이징
-        //페이징 채워놓기
+            //페이징 채워놓기
+        if(page == undefined){
+            page = 1;
+        }
         $('.paging-btn').each(function(index, item) {
             if($(this).attr('id') == page){
                 $(this).addClass('active');
             }
         });
 
-
-        //이전
+            //이전
         $('.prev-btn').on('click', function() {
             if(page == 1){
                 alert('첫 페이지입니다.');
                 return;
             }
-
-            if(sort == undefined && search == undefined && cate == undefined){
-                location.href = '/app/community/board/list?pno=' + (Number(page) - 1);
+            if(search == undefined && cate == undefined){
+                location.href = '/app/admin/community/list?pno=' + (Number(page) - 1);
             }
-            if(sort == undefined && search == undefined && cate != undefined){
-                location.href = '/app/community/board/list?cate=' + cate + '&pno=' + (Number(page) - 1);
+            if(search == undefined && cate != undefined){
+                location.href = '/app/admin/community/list?cate=' + cate + '&sort=' + sort + '&pno=' + (Number(page) - 1);
             }
-            if(sort == undefined && search != undefined && cate == undefined){
-                location.href = '/app/community/board/list?search=' + search + '&pno=' + (Number(page) - 1);
+            if(search != undefined && cate == undefined){
+                location.href = '/app/admin/community/list?search=' + search + '&sort=' + sort + '&pno=' + (Number(page) - 1);
             }
-            if(sort == undefined && search != undefined && cate != undefined){
-                location.href = '/app/community/board/list?cate=' + cate + '&search=' + search + '&pno=' + (Number(page) - 1);
-            }
-            if(sort != undefined && search == undefined && cate == undefined){
-                location.href = '/app/community/board/list?sort=' + sort + '&pno=' + (Number(page) - 1);
-            }
-            if(sort != undefined && search == undefined && cate != undefined){
-                location.href = '/app/community/board/list?cate=' + cate + '&sort=' + sort + '&pno=' + (Number(page) - 1);
-            }
-            if(sort != undefined && search != undefined && cate == undefined){
-                location.href = '/app/community/board/list?search=' + search + '&sort=' + sort + '&pno=' + (Number(page) - 1);
-            }
-            if(sort != undefined && search != undefined && cate != undefined){
-                location.href = '/app/community/board/list?cate=' + cate + '&search=' + search + '&sort=' + sort + '&pno=' + (Number(page) - 1);
+            if(search != undefined && cate != undefined){
+                location.href = '/app/admin/community/list?cate=' + cate + '&search=' + search + '&sort=' + sort + '&pno=' + (Number(page) - 1);
             }
         });
             //숫자
         $('.paging-btn').on('click', function() {
             var num = $(this).attr('id');
-            console.log(num);
-            if(sort == undefined && search == undefined && cate == undefined){
-                location.href = '/app/community/board/list?pno=' + num;
+            if(search == undefined && cate == undefined){
+                location.href = '/app/admin/community/list?pno=' + num;
             }
-            if(sort == undefined && search == undefined && cate != undefined){
-                location.href = '/app/community/board/list?cate=' + cate + '&pno=' + num;
+            if(search == undefined && cate != undefined){
+                location.href = '/app/admin/community/list?cate=' + cate +  '&pno=' + num;
             }
-            if(sort == undefined && search != undefined && cate == undefined){
-                location.href = '/app/community/board/list?search=' + search + '&pno=' + num;
+            if(search != undefined && cate == undefined){
+                location.href = '/app/admin/community/list?search=' + search + '&pno=' + num;
             }
-            if(sort == undefined && search != undefined && cate != undefined){
-                location.href = '/app/community/board/list?cate=' + cate + '&search=' + search + '&pno=' + num;
-            }
-            if(sort != undefined && search == undefined && cate == undefined){
-                location.href = '/app/community/board/list?sort=' + sort + '&pno=' + num;
-            }
-            if(sort != undefined && search == undefined && cate != undefined){
-                location.href = '/app/community/board/list?cate=' + cate + '&sort=' + sort + '&pno=' + num;
-            }
-            if(sort != undefined && search != undefined && cate == undefined){
-                location.href = '/app/community/board/list?search=' + search + '&sort=' + sort + '&pno=' + num;
-            }
-            if(sort != undefined && search != undefined && cate != undefined){
-                location.href = '/app/community/board/list?cate=' + cate + '&search=' + search + '&sort=' + sort + '&pno=' + num;
+            if(search != undefined && cate != undefined){
+                location.href = '/app/admin/community/list?cate=' + cate + '&search=' + search + '&pno=' + num;
             }
 
         });
             //다음
         $('.next-btn').on('click', function() {
-
             if(page == '${bfv.maxPage}'){
                 alert('마지막 페이지입니다.');
                 return;
             }
-
-            if(sort == undefined && search == undefined && cate == undefined){
-                location.href = '/app/community/board/list?pno=' + (Number(page) + 1);
+            if(search == undefined && cate == undefined){
+                location.href = '/app/admin/community/list?pno=' + (Number(page) + 1);
             }
-            if(sort == undefined && search == undefined && cate != undefined){
-                location.href = '/app/community/board/list?cate=' + cate + '&pno=' + (Number(page) + 1);
+            if(search == undefined && cate != undefined){
+                location.href = '/app/admin/community/list?cate=' + cate + '&pno=' + (Number(page) + 1);
             }
-            if(sort == undefined && search != undefined && cate == undefined){
-                location.href = '/app/community/board/list?search=' + search + '&pno=' + (Number(page) + 1);
+            if(search != undefined && cate == undefined){
+                location.href = '/app/admin/community/list?search=' + search + '&pno=' + (Number(page) + 1);
             }
-            if(sort == undefined && search != undefined && cate != undefined){
-                location.href = '/app/community/board/list?cate=' + cate + '&search=' + search + '&pno=' + (Number(page) + 1);
-            }
-            if(sort != undefined && search == undefined && cate == undefined){
-                location.href = '/app/community/board/list?sort=' + sort + '&pno=' + (Number(page) + 1);
-            }
-            if(sort != undefined && search == undefined && cate != undefined){
-                location.href = '/app/community/board/list?cate=' + cate + '&sort=' + sort + '&pno=' + (Number(page) + 1);
-            }
-            if(sort != undefined && search != undefined && cate == undefined){
-                location.href = '/app/community/board/list?search=' + search + '&sort=' + sort + '&pno=' + (Number(page) + 1);
-            }
-            if(sort != undefined && search != undefined && cate != undefined){
-                location.href = '/app/community/board/list?cate=' + cate + '&search=' + search + '&sort=' + sort + '&pno=' + (Number(page) + 1);
+            if(search != undefined && cate != undefined){
+                location.href = '/app/admin/community/list?cate=' + cate + '&search=' + search + '&pno=' + (Number(page) + 1);
             }
         });
+
+
+
     });
 
     </script>

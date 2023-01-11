@@ -89,7 +89,9 @@
             </div>
             <div id="mini-paging">
                 <span class="material-symbols-rounded arrow-icon prev-btn">arrow_back</span>
-                <span id="paging-number" >${bfv.currentPage}/${bfv.maxPage}</span>
+                <span id="paging-number" >${bfv.currentPage}/<c:if test = "${bfv.maxPage == 0}">1</c:if>
+                    <c:if test = "${bfv.maxPage gt 0}">${bfv.maxPage}</c:if>
+                </span>
                 <span class="material-symbols-rounded arrow-icon next-btn">arrow_forward</span>
             </div>
         </div>

@@ -300,6 +300,21 @@ color: white;
     cursor: pointer;
 }
 
-  .cmt-cnt{
-    color: rgb(111, 114, 179);
-  }
+.cmt-cnt{
+color: rgb(111, 114, 179);
+}
+
+.active{
+background-color: #454545;
+color: white;
+}
+
+.not-found{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    font-size: 20px;
+    color: #bebebe;
+}
