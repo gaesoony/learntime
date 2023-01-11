@@ -41,5 +41,7 @@ public interface QnaService {
 	public Map<String, Object> selectEtcList(Map map);
 
 	public List<Map<String, Object>> selectMypageList(QnaVo vo);
+
+	public List<Map<String, Object>> selectLankList();
 	
 }

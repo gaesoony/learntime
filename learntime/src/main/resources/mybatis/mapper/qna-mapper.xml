@@ -35,9 +35,9 @@
 		INSERT INTO TAG (NO, NAME)
 		SELECT SEQ_TAG_NO.NEXTVAL, A FROM
 		(
-		<foreach collection="array" item="arr" separator="UNION ALL">
-		SELECT #{arr} AS A FROM DUAL WHERE NOT EXISTS (SELECT NAME FROM TAG WHERE NAME = #{arr})
-		</foreach>
+		    <foreach collection="array" item="arr" separator="UNION ALL">
+		    SELECT #{arr} AS A FROM DUAL WHERE NOT EXISTS (SELECT NAME FROM TAG WHERE NAME = #{arr})
+		    </foreach>
 		)
 	</insert>
 	
@@ -106,9 +106,9 @@
 	
 	<insert id="writeAnswer">
 		INSERT INTO KNOWLEDGE_ANSWER <if test="group == null">VALUES
-		(SEQ_KNOWLEDGE_ANSWER_NO.NEXTVAL, #{qno}, #{mno}, #{answer}, SYSDATE, 'N', SYSDATE, 'N', '0', SEQ_KNOWLEDGE_ANSWER_NO.NEXTVAL)</if>
+		(SEQ_KNOWLEDGE_ANSWER_NO.NEXTVAL, #{qno}, #{mno}, #{content}, SYSDATE, 'N', SYSDATE, 'N', '0', SEQ_KNOWLEDGE_ANSWER_NO.NEXTVAL)</if>
 		<if test="group != null">VALUES
-		(SEQ_KNOWLEDGE_ANSWER_NO.NEXTVAL, #{qno}, #{mno}, #{answer}, SYSDATE, 'N', SYSDATE, 'N', '1', #{group})</if>
+		(SEQ_KNOWLEDGE_ANSWER_NO.NEXTVAL, #{qno}, #{mno}, #{content}, SYSDATE, 'N', SYSDATE, 'N', '1', #{group})</if>
 	</insert>
 	
 	<select id="answerList" resultType="map">
@@ -163,6 +163,20 @@
 		WHERE K.DELETE_YN = 'N'
 		AND K.WRITER = #{no}
 		ORDER BY K.NO DESC
+	</select>
+	
+	<update id="deleteTag">
+		DELETE FROM KNOWLEDGE_TAG
+		WHERE A_NO = #{qno}
+	</update>
+	
+	<select id="answerLankList" resultType="map">
+		SELECT M.IMG_PATH, M.NICK, COUNT(K.NO) CNT
+		FROM KNOWLEDGE_ANSWER K
+		JOIN MEMBER M ON K.WRITER = M.NO
+		WHERE K.SELECT_YN = 'Y'
+		GROUP BY (M.NICK, M.IMG_PATH)
+		ORDER BY CNT DESC FETCH NEXT 7 ROWS ONLY
 	</select>
 	
 	

@@ -166,6 +166,7 @@
         margin-right: 5px;
     }
     .usernick{
+        width: 80px;
         margin-top: 20px;
         margin-right: 50px;
         float: left;
@@ -246,7 +247,7 @@
     .contentnick{
         width: 110px;
         margin-left: 5px;
-        margin-top: 13px;
+        margin-top: 10px;
         font-size: 13px;
     }
     .hit{
@@ -766,7 +767,7 @@
                 <c:forEach items="${makegrassLankList}" var="lank">
                     <div class="userbox">
                         <ul class="leftsidecontent">
-                            <li class="user"><img class="profile" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                            <li class="user"><img src="/app/${loginMember.imgName}" class="profile" alt="" onerror="this.src='/app/resources/img/profile_default.png'"></li>
                             <li class="usernick">${lank.NICK}</li>
                             <li class="usernum">${lank.CNT}</li>
                         </ul>
@@ -791,7 +792,7 @@
                         <div class="contentline"></div>
                         <div class="info">
                             <ul class="infoetc">
-                                <li class="userprofile2"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                                <li class="userprofile2"><img src="/app/${loginMember.imgName}" class="profile2" alt="" onerror="this.src='/app/resources/img/profile_default.png'"></li>
                                 <li class="contentnick">${map.WRITER}</li>
                                 <li class="hit"><i class="fa-regular fa-eye"></i>&nbsp ${map.HIT}</li>
                                 <li class="comment"><i class="fa-regular fa-comment"></i>&nbsp ${map.REPLY_CNT}</li>
@@ -817,7 +818,7 @@
                     <div>
                         <c:forEach items="${followingList}" var="follow">
                             <ul class="rightsidecontent">
-                                <li class="rightuser"><img class="profile2" src="/app/resources/img/qna/profile.png" alt="프로필사진"></li>
+                                <li class="rightuser"><img src="/app/${loginMember.imgName}" class="profile2" alt="" onerror="this.src='/app/resources/img/profile_default.png'"></li>
                                 <li class="rightnick">${follow.FOLLOWING_NO}</li>
                             </ul>
                         </c:forEach>

@@ -72,7 +72,27 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	@Transactional
 	public int edit(QnaVo vo) {
-		return dao.edit(sst, vo);
+		
+		int delete1 = 0;
+		int result1 = 0;
+		int result2 = 0;
+		int result3 = 0;
+		
+		delete1 = dao.deleteTag(sst, vo.getNo());
+		result1 = dao.edit(sst, vo);
+		
+		if(vo.getTag() == null) {
+			result2 = 1;
+		}else {
+			result2 = dao.insertTag(sst, vo.getTag());
+		}
+		if(vo.getTag() == null) {
+			result3 = 1;
+		}else {
+			result3 = dao.insertKnowledgeTag(sst, vo.getTag());
+		}
+		
+		return result1 * result2 * result3;
 	}
 
 	//게시글 삭제
@@ -154,6 +174,11 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public List<Map<String, Object>> selectMypageList(QnaVo vo) {
 		return dao.selectMypageList(sst, vo);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectLankList() {
+		return dao.answerLankList(sst);
 	}
 
 }
