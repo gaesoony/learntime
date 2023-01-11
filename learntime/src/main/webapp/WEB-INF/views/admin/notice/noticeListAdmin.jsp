@@ -516,17 +516,13 @@ background-color: #e9fde9;
     		   
     		   
     		 })
-    		 
+    		 setTimeout(function() {
+    			 location.reload();
+    			 
+  			}, 3000);
+ 		  
 
-
     		 
-    		 
-    		 
-    		 
-    		 
-    		 
-    		 
-    		 location.reload();
        },
        error:function(){
            alert('에러가 발생했습니다.');
@@ -566,19 +562,12 @@ background-color: #e9fde9;
     		   
     		 })
     		 
+    		 setTimeout(function() {
+    			 location.reload();
+  			}, 3000);
+ 		  
     		 
     		 
-    		 
-    		 
-    		 
-    		 
-    		 
-    		 
-    		 
-    		 
-    		 
-    		 
-    		 location.reload();
        },
        error:function(){
            alert('에러가 발생했습니다.');
@@ -620,15 +609,13 @@ background-color: #e9fde9;
     		 })
     		  
     		 
+    	setTimeout(function() {
+    		location.reload();
+    		
+  			}, 3000);
+ 		  	 
     		 
-    		 
-    		 
-    		 
-    		 
-    		 
-    		 
-    		 
-           location.reload();
+           
            
        },
        error:function(){

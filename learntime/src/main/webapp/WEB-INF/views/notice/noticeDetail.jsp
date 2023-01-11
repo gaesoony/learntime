@@ -57,7 +57,7 @@
 	                        <div class="div-box-d"><textarea class="reply-textarea" name="content"></textarea> </div>
 	                    </div>
 		                    <div class="div-box-c">
-		                        <input type="submit" value="댓글쓰기" class="writeComment">
+		                        <input type="submit" value="댓글쓰기" class="writeComment" onclick="writeComment();">
 		                    </div>
 	                    </form>
 	                </div>
@@ -85,15 +85,16 @@
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
 
 <script>
-/* $('.writeComment').click(function(){
 
-    const no = ${vo.no};
+function writeComment(){
+	
+	
     const writer = ${vo.writer};
     const content = ${ncv.content};
     $.ajax({
-        url:"/app/notice/noticeDetail",
-        type:"post",
-        data:{"no":no,
+        url:"/app/notice/noticeDetail/insert",
+        type:"get",
+        data:{
         	  "writer":writer,
         	  "content":content
     },
@@ -109,10 +110,10 @@
 
     });
     
-    
-});
-
-     */
+	
+	
+}
+   
 
 </script>
 </body>

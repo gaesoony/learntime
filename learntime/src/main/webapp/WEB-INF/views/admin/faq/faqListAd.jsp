@@ -408,7 +408,7 @@
 	                            <a href = "/app/admin/faq/faqDetailListAdmin?no=${list.no}"><div class="title-faq-ad" name="title">${list.title}</div></a>
 	                            <div class="nickname-faq-ad" name="writer">${list.writer}</div>
 	                            <div class="enrollDate-faq-ad" name="enrollDate">${list.enrollDate}</div>
-	                            <div class="deleteBtn-faq-ad"><input type="submit" value="삭제" id="deleteAd" onclick="delNotice();"></div>
+	                            <div class="deleteBtn-faq-ad"><input type="button" value="삭제" id="deleteAd" onclick="delNotice();"></div>
 	                        </div>
 	                    </div>
 	                </c:forEach>
@@ -481,16 +481,11 @@ function deleteList(){
  		   
  		 })
  		  
- 		 
- 		 
- 		 
- 		 
- 		 
- 		 
- 		 
- 		 
- 		 
-        location.reload();
+ 		setTimeout(function() {
+ 			location.reload();
+ 			 
+  			}, 3000);
+ 		  
         
     },
     error:function(){
@@ -502,51 +497,40 @@ function deleteList(){
 		
 		
 	}
+	
+	function delTest(){
+		
+		
+		
+	}
 
 
 function delNotice(){
-	
-	  
-    
     let check = $("#checkBoxBtn:checked"); 
-    
-    var chk = confirm("삭제 하시겠습니까?");
+    console.log(check);
+    //var chk = confirm("삭제 하시겠습니까?2222233322");
     
     $.ajax({
-        url:"/app/admin/faq/faqListAd/delete",
-        type:"get",
-        traditional:true,
-        data:{
+        url : "/app/admin/faq/faqListAd/delete",
+        type : "get",
+        data : {
      	   "check" : check
-                
-    },
-    success:function(x){
- 	   
- 	   
-    	 Swal.fire({
- 		   icon: 'success',
- 		   title: 'success!',
- 		   text: '삭제 되었습니다!',
- 		   
- 		 })
- 		  
- 		 
- 		 
- 		 
- 		 
- 		 
- 		 
- 		 
- 		 
- 		 
-        location.reload();
-        
-    },
-    error:function(){
-        alert('에러가 발생했습니다.');
-    }
-   
-
+	    },
+	    success:function(x){
+	    	alert('success1111');
+// 	    	Swal.fire({
+// 		 		   icon: 'success',
+// 		 		   title: 'success!',
+// 		 		   text: '삭제 되었습니다!',
+// 		 		 })
+//	 	 		setTimeout(function() {
+//	 	 			//location.reload();
+//	 	  			}, 3000);
+	        
+	    },
+	    error:function(){
+	        alert('에러가 발생했습니다.');
+	    }
     });
 		
 		

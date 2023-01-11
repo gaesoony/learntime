@@ -305,22 +305,15 @@
  		   text: '삭제 되었습니다!',
  		   
  		 })
+ 		 
+ 		 setTimeout(function() {
+ 			location.reload();
+ 			 
+  			}, 3000);
  		  
+ 		
  		 
- 		 
- 		 
- 		 
- 		 
- 		 
- 		 
- 		 
- 		 
- 		 
- 		    
- 		 
- 		 
- 		 
-        location.reload();
+        
         
     },
     error:function(){
@@ -360,21 +353,14 @@ function delQList(){
  		   
  		 })
  		  
+ 		 setTimeout(function() {
+ 			location.reload();
+ 			 
+  			}, 3000);
+ 		  
  		 
  		 
- 		 
- 		 
- 		 
- 		 
- 		 
- 		 
- 		 
- 		 
- 		 
- 		 
- 		 
- 		 
-        location.reload();
+        
         
     },
     error:function(){

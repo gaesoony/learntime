@@ -61,16 +61,17 @@ public class NoticeServiceImpl implements NoticeService{
 		return dao.selectNoticeListAll(sst,map);
 	}
 
-	
 	@Override
-	public int noticeCmtWrite(NoticeCmtVo ncv) {
-		return dao.insertCmt(sst,ncv);
+	public int insertCmt(Map<String, Object> map) {
+		return dao.insertCmt(sst, map);
 	}
 
 	@Override
 	public List<NoticeCmtVo> selectCmtList(NoticeCmtVo ncv) {
-		return dao.selectCmtList(sst,ncv);
+		return dao.selectCmtList(sst, ncv);
 	}
 
+	
+	
 
 }

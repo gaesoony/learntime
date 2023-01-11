@@ -63,8 +63,8 @@ public class NoticeDao {
 
 
 
-	public int insertCmt(SqlSessionTemplate sst, NoticeCmtVo ncv) {
-		return sst.insert("noticeMapper.insertCmt",ncv);
+	public int insertCmt(SqlSessionTemplate sst, Map<String, Object> map) {
+		return sst.insert("noticeMapper.insertCmt",map);
 	}
 
 

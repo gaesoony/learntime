@@ -24,11 +24,11 @@ public interface NoticeService {
 	public NoticeVo selectOne(NoticeVo vo);
 
 	public List<NoticeVo> selectNoticeListAll(Map map);
-	
-	public int noticeCmtWrite(NoticeCmtVo ncv);
+
+	public int insertCmt(Map<String, Object> map);
 
 	public List<NoticeCmtVo> selectCmtList(NoticeCmtVo ncv);
-
+	
 	
 
 }

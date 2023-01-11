@@ -70,8 +70,8 @@ public class AdminFaqController {
 	@GetMapping("faqListAd/delete")
 	@ResponseBody
 	public String delete(int check) {
-		
-		
+		System.out.println("호출됨!!!!!!");
+		System.out.println(check);
 		int result = afs.deleteOne(check);
 		if(result == 1) {
 			return "admin/faq/faqListAd"; 

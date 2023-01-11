@@ -119,19 +119,25 @@ public class NoticeController {
 			
 			
 		}
-		//공지사항 상세조회(댓글)
-		@PostMapping("notice/noticeDetail")
-		public String inserCmt(NoticeCmtVo ncv,NoticeVo vo, HttpSession session) {
+		
+		//상세조회 댓글 쓰기
+		@GetMapping("notice/noticeDetail/insert")
+		@ResponseBody
+		public String insertCmt(NoticeVo vo,NoticeCmtVo ncv, String writer, String content, HttpSession session) {
 			
 			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember"); 
 			
-			String writer = loginMember.getNo();
+			
 			int nNo = vo.getNo();
 			ncv.setNNo(nNo);
-			ncv.setWriter(writer);
 			
 			
-			int result = ns.noticeCmtWrite(ncv);
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("nNo", nNo);
+			map.put("writer",writer);
+			map.put("content",content);
+			
+			int result = ns.insertCmt(map);
 			
 			if(result == 1) {
 				return "redirect:/notice/noticeDetail?no="+vo.getNo();
