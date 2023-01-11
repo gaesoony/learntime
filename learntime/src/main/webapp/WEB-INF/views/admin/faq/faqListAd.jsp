@@ -384,7 +384,7 @@
 	                    <input type="submit" value="검색" class="search-green-box">
 	                </div>
 	                <div class="deleteBtn">
-	                    <input type="submit" value="삭제" id="erase" >
+	                    <input type="submit" value="삭제" id="erase" onclick="deleteList();">
 	                </div>
 	            </div>
 	            <div class="listed-q">
@@ -405,10 +405,10 @@
 	                            </div>
 	                            <div class="no-faq-ad" name="no">${list.no}</div>
 	                            <div class="category-faq-ad" name="name">${list.cateName}</div>
-	                            <a href = "app/admin/faq/faqDetailListAdmin?no=${list.no}"><div class="title-faq-ad" name="title">${list.title}</div></a>
+	                            <a href = "/app/admin/faq/faqDetailListAdmin?no=${list.no}"><div class="title-faq-ad" name="title">${list.title}</div></a>
 	                            <div class="nickname-faq-ad" name="writer">${list.writer}</div>
 	                            <div class="enrollDate-faq-ad" name="enrollDate">${list.enrollDate}</div>
-	                            <div class="deleteBtn-faq-ad"><input type="button" value="삭제" id="deleteAd"></div>
+	                            <div class="deleteBtn-faq-ad"><input type="button" value="삭제" id="deleteAd" onclick="delNotice();"></div>
 	                        </div>
 	                    </div>
 	                </c:forEach>
@@ -450,14 +450,12 @@
  
 <script type="text/javascript">
 
-$('#erase').click(function(){
-
-    let deleteList = $('#erase').eq(0).val();
-    console.log($('#erase').get(0));
-    let valueArr = new Array();
+function deleteList(){
+	
+	  
+    let valueArr = [];
     let list = $("#checkBoxBtn:checked"); 
     for(let i = 0; i <list.length; i++){
-    	console.log(list[i]);
         if(list[i].checked){
             valueArr.push(list[i].value);
         }
@@ -466,14 +464,28 @@ $('#erase').click(function(){
     var chk = confirm("삭제 하시겠습니까?");
     
     $.ajax({
-        url:"/app/admin/notice/noticeListAdmin",
-        type:"post",
-        data:{"deleteList":deleteList,
-                "valueArr":valueArr
+        url:"/app/admin/faq/faqListAd/deleteList",
+        type:"get",
+        traditional:true,
+        data:{
+     	   "valueArr" : valueArr
+                
     },
     success:function(x){
-        alert('삭제되었습니다.');
-        location.reload();
+ 	   
+ 	   
+    	 Swal.fire({
+ 		   icon: 'success',
+ 		   title: 'success!',
+ 		   text: '삭제 되었습니다!',
+ 		   
+ 		 })
+ 		  
+ 		setTimeout(function() {
+ 			location.reload();
+ 			 
+  			}, 3000);
+ 		  
         
     },
     error:function(){
@@ -482,47 +494,47 @@ $('#erase').click(function(){
    
 
     });
-    
-    
-});
+		
+		
+	}
+	
+	function delTest(){
+		
+		
+		
+	}
 
 
-$('#deleteAd').click(function(){
-
-    let del = $('#deleteAd').eq(0).val();
-    console.log($('#deleteAd').get(0));
-    let valueArr = new Array();
-    let list = $("#checkBoxBtn:checked"); 
-    for(let i = 0; i <list.length; i++){
-    	console.log(list[i]);
-        if(list[i].checked){
-            valueArr.push(list[i].value);
-        }
-    }
-
-    var chk = confirm("삭제 하시겠습니까?");
+function delNotice(){
+    let check = $("#checkBoxBtn:checked"); 
+    console.log(check);
+    //var chk = confirm("삭제 하시겠습니까?2222233322");
     
     $.ajax({
-        url:"/app/admin/notice/noticeListAdmin",
-        type:"post",
-        data:{"del":del,
-              "valueArr":valueArr
-    },
-    success:function(x){
-        alert('삭제되었습니다.');
-        location.reload();
-        
-    },
-    error:function(){
-        alert('에러가 발생했습니다.');
-    }
-   
-
+        url : "/app/admin/faq/faqListAd/delete",
+        type : "get",
+        data : {
+     	   "check" : check
+	    },
+	    success:function(x){
+	    	alert('success1111');
+// 	    	Swal.fire({
+// 		 		   icon: 'success',
+// 		 		   title: 'success!',
+// 		 		   text: '삭제 되었습니다!',
+// 		 		 })
+//	 	 		setTimeout(function() {
+//	 	 			//location.reload();
+//	 	  			}, 3000);
+	        
+	    },
+	    error:function(){
+	        alert('에러가 발생했습니다.');
+	    }
     });
-    
-    
-});
-
+		
+		
+	}
 
 
 	

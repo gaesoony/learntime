@@ -32,9 +32,16 @@ public class AdminFaqDao {
 		return sst.selectOne("adminFaqMapper.selectOne",vo);
 	}
 
-	public int deleteOne(SqlSessionTemplate sst, List<Integer> list) {
+	public int deleteList(SqlSessionTemplate sst, List<String> list) {
 		System.out.println("호출!!!!");
-		int no = sst.update("adminFaqMapper.deleteOne",list);
+		int no = sst.update("adminFaqMapper.deleteList",list);
+		System.out.println(no);
+		return no;
+		
+	}
+	public int deleteOne(SqlSessionTemplate sst, int check) {
+		System.out.println("호출!!!!");
+		int no = sst.update("adminFaqMapper.deleteOne",check);
 		System.out.println(no);
 		return no;
 		

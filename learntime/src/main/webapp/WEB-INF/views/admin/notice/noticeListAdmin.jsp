@@ -436,8 +436,8 @@ background-color: #e9fde9;
 		                                <div class="cate-notice" name="name">${vo.cateName}</div>
 		                                <a href="/app/notice/noticeDetail?no=${vo.no}"><div class="posted-notice" name="title">${vo.title}</div></a>
 	                                    <div class="views-etc">
-	                                        <div class="views" name="hit"><img width="15px" height="15px" class="view" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">${vo.hit}</div>
-	                                        <div class="replies" name="cmt"><img width="15px" height="15px"class="message" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">${vo.cmt}</div>
+	                                        <div class="views" name="hit"><img width="15px" height="15px" class="view" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">&nbsp;${vo.hit}</div>
+	                                        <div class="replies" name="cmt"><img width="15px" height="15px"class="message" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">&nbsp;${vo.cmt}</div>
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -514,7 +514,15 @@ background-color: #e9fde9;
     		   title: 'success!',
     		   text: '활성화 되었습니다!',
     		   
+    		   
     		 })
+    		 setTimeout(function() {
+    			 location.reload();
+    			 
+  			}, 3000);
+ 		  
+
+    		 
        },
        error:function(){
            alert('에러가 발생했습니다.');
@@ -551,7 +559,15 @@ background-color: #e9fde9;
     		   title: 'success!',
     		   text: '비활성화 되었습니다!',
     		   
+    		   
     		 })
+    		 
+    		 setTimeout(function() {
+    			 location.reload();
+  			}, 3000);
+ 		  
+    		 
+    		 
        },
        error:function(){
            alert('에러가 발생했습니다.');
@@ -576,9 +592,11 @@ background-color: #e9fde9;
        
        $.ajax({
            url:"/app/admin/notice/noticeListAdmin/delete",
-           type:"get",
+           type:"post",
+           traditional:true,
            data:{
-                   "valueArr":valueArr
+        	   "valueArr" : valueArr
+                   
        },
        success:function(x){
     	   
@@ -591,11 +609,13 @@ background-color: #e9fde9;
     		 })
     		  
     		 
+    	setTimeout(function() {
+    		location.reload();
+    		
+  			}, 3000);
+ 		  	 
     		 
-    		 
-    		 
-    		 
-           location.reload();
+           
            
        },
        error:function(){

@@ -65,7 +65,7 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 	}
 
 	@Override
-	public int deleteOne(List<Integer> list) {
+	public int deleteOne(List<String> list) {
 		return adao.updateOne3(sst,list);
 	}
 
