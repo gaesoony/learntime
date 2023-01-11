@@ -61,8 +61,6 @@ public class MakegrassController {
 		
 		int result = service.write(vo);
 		
-		System.out.println("컨트롤러에서 작성 DB : " + vo);
-		
 		if(result >= 1) {
 			return "redirect:/makegrass/list";
 		}else {
@@ -81,6 +79,7 @@ public class MakegrassController {
 			map.put("mno", vo.getWriter());
 		}
 		
+		//상세조회
 		Map<String, Object> makeDetail = service.detail(vo.getNo());
 		
 		//공부인증 랭킹 리스트
