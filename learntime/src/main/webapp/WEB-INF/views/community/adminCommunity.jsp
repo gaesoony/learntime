@@ -59,10 +59,7 @@
                             $('#add-box').show();
                         });
                     </script>
-
-
                 </div>  
-                
 
             </div>
             <div id="main-content">
@@ -185,8 +182,6 @@
                         <div class="paging-btn">10</div>
                         <div class="paging-btn" id="next-btn">다음</div>
                     </div>
-                    
-
                 </div>
             </div>
         </div>

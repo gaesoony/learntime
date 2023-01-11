@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.learntime.app.common.page.PageVo;
+import com.learntime.app.common.page.Pagination;
 import com.learntime.app.community.service.BoardService;
 import com.learntime.app.community.vo.BoardFilterVo;
 import com.learntime.app.community.vo.BoardVo;
@@ -28,17 +30,56 @@ public class AdminCommunityController {
 	
 	
 	@GetMapping("/list")
-	public String adminCommunity(Model model, BoardFilterVo bfv) {
+	public String adminCommunity(Model model, BoardFilterVo bfv, String pno) {
+		
+		if(pno == null) {
+			pno = "1";
+		}
+		
+		//나중에 메소드로 분리  TODO
+		System.out.println(bfv);
+		if("1".equals(bfv.getSort())){
+			bfv.setSort("ENROLL_DATE");
+		}else if("2".equals(bfv.getSort())){
+			bfv.setSort("CMT_COUNT");
+		}else if("3".equals(bfv.getSort())){
+			bfv.setSort("HIT");
+		}else if("4".equals(bfv.getSort())){
+			bfv.setSort("LH_COUNT");
+		}
+		
+		if("0".equals(bfv.getCate())) {
+			bfv.setCate(null);
+		}
+		
+		//페이징
+		int listCount = bs.boardCnt(bfv);
+		int currentPage = Integer.parseInt(pno);
+		int pageLimit = 10;
+		int boardLimit = 20;
+	       
+        PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+        bfv.setListCount(listCount);
+        bfv.setCurrentPage(currentPage);
+        bfv.setPageLimit(pageLimit);
+        bfv.setBoardLimit(boardLimit);
+        bfv.setMaxPage(pv.getMaxPage());
+        bfv.setCurrentPage(pv.getCurrentPage());
+        bfv.setPageLimit(pv.getPageLimit());
+        bfv.setBoardLimit(pv.getBoardLimit());
+        bfv.setStartPage(pv.getStartPage());
+        bfv.setEndPage(pv.getEndPage());
 		
 		//카테고리 조회
 		List<CateVo> cateList =  bs.selectCate();
-		model.addAttribute("cateList", cateList);
-		
-		System.out.println(bfv);
 		
 		//게시글 조회
 		List<BoardVo> boardList = bs.select(bfv);
+		
+		model.addAttribute("cateList", cateList);
 		model.addAttribute("boardList", boardList);
+		model.addAttribute("bfv", bfv);
 		
 		return "/admin/community/adminCommunity";
 	}
