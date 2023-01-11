@@ -70,7 +70,7 @@
                         </div>
                         <div>
                             <span class="txt-sm">Total Post</span>
-                            <span class="statis-number">99</span>
+                            <span class="statis-number">${bfv.listCount}</span>
                         </div>
                         
                     </div>
@@ -80,7 +80,7 @@
                         </div>
                         <div>
                             <span class="txt-sm">Total Writer</span>
-                            <span class="statis-number">99</span>
+                            <span class="statis-number">101</span>
                         </div>
                         
                     </div>

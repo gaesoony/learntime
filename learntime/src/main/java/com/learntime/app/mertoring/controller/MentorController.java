@@ -276,6 +276,24 @@ public class MentorController {
 		
 	}
 	
+	//예약된 시간 체크
+		@ResponseBody
+		@GetMapping("/scheduleCheck")
+		public String checkSchedule(HttpSession session, @RequestParam("mentorNo") String no,
+				@RequestParam("date") String date) {
+			
+			Map<String, String> scheduleMap = new HashMap<String, String>();
+			scheduleMap.put("no", no);
+			scheduleMap.put("date", date);
+			
+			List<Map<String, String>> ScheduleList = ms.selectMentorTime(scheduleMap);
+			
+			Gson gson = new Gson();
+			String jsonString = gson.toJson(ScheduleList);
+			return jsonString;
+		}
+		
+	
 	//멘토링 신청
 	@PostMapping("/mentoring/apply")
 	public String mentoringApply(ApplicationVo application, HttpSession session) {

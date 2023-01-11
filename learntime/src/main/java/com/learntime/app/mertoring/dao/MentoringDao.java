@@ -67,4 +67,6 @@ public interface MentoringDao {
 	//멘토 수정
 	public int updateMentor(SqlSessionTemplate sst, MentorVo vo);
 
+	public List<Map<String, String>> selectTime(SqlSessionTemplate sst, Map<String, String> scheduleMap);
+
 }

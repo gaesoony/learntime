@@ -252,6 +252,10 @@
 		)
 	</insert>
 	
+	<select id="selectTime" resultType = "Map">
+		SELECT RESERVATION_DATE, RESERVATION_TIME FROM MENTORING_PAYMENT
+		WHERE MENTOR_NO = #{no} AND RESERVATION_DATE = #{date}
+	</select>
 	
 	
 	

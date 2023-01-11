@@ -160,13 +160,35 @@ window.onload = function() {
                     $('#time-select').append(timeHtml);
                 });
 
-            //날짜 신청 된거 표시하기 나중에..
-
             },
             error: function(request, status, error) {
                 console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
             }
-        });
+        });//ajax end
+
+        //날짜로 payment 테이블에서 멘토와 시간 조회해서 해당 날짜 disabled
+        $.ajax({
+            url: '/app/mentor/scheduleCheck',
+            type: 'GET',
+            data: {
+                'mentorNo' : no,
+                'date' : date
+            },
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            success: function(data) {
+                var jsonData = JSON.parse(data);
+                console.log(jsonData);
+                
+                $.each(jsonData, function(index, schedule){
+                    var mentoringTime = schedule.RESERVATION_TIME;
+                    $('#time-select option').each(function(){
+                        if($(this).val() == mentoringTime){
+                            $(this).attr('disabled', true);
+                        }
+                    });
+                });
+            }
+        })//ajax end
     });
 
     //시간선택

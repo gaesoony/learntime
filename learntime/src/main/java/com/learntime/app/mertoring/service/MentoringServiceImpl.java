@@ -138,6 +138,11 @@ public class MentoringServiceImpl implements MentoringService{
 	public int mentorModify(MentorVo vo) {
 		return dao.updateMentor(sst, vo);
 	}
+
+	@Override
+	public List<Map<String, String>> selectMentorTime(Map<String, String> scheduleMap) {
+		return dao.selectTime(sst, scheduleMap);
+	}
 	
 	
 }
