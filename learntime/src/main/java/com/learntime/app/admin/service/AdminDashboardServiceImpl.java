@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.learntime.app.admin.dao.AdminDashboardDao;
+import com.learntime.app.community.vo.BoardVo;
 import com.learntime.app.faq.vo.FaqVo;
 import com.learntime.app.notice.vo.NoticeVo;
 import com.learntime.app.question.vo.QuestionVo;
@@ -247,6 +248,11 @@ public class AdminDashboardServiceImpl implements AdminDashboardService{
 			groupPeriodSumList.get(i).put("cnt", cnt);
 		}
 		return groupPeriodSumList;
+	}
+
+	@Override
+	public List<BoardVo> selectBoardList() {
+		return dao.selectBoardList(sst);
 	}
 
 }

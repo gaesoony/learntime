@@ -193,7 +193,7 @@ public class AdminDashboardController {
 		model.addAttribute("questionList", questionList);
 		
 		//자유게시판 목록 조회
-		List<BoardVo> boardList = boardService.select(null);
+		List<BoardVo> boardList = adminDashboardService.selectBoardList();
 		model.addAttribute("boardList", boardList);
 		
 		//공지사항 목록 조회
@@ -261,12 +261,7 @@ public class AdminDashboardController {
 	public String managerLog(Model model, String keyword, String category, String status, String pno) {
 		
 		Map map = new HashMap();
-		
-		System.out.println(keyword);
-		System.out.println(category);
-		System.out.println(status);
-		System.out.println(pno);
-		
+	
 		map.put("keyword", keyword);
 		map.put("category", category);
 		map.put("status", status);
@@ -278,7 +273,6 @@ public class AdminDashboardController {
        
         PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
         map.put("pv", pv);
-		System.out.println(listCount);
 		
 		//관리자 목록 조회
 		List<Map<String, Object>> managerLogList = managerService.selectManagerLogList(map);
