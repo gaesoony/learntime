@@ -52,14 +52,14 @@ public class FaqController {
 		
 		List<FaqVo> list= fs.selectFaqList(map);
 		
+		m.addAttribute("pv",pv);
 		m.addAttribute("list",list);
 		m.addAttribute("cateNo",vo.getCateNo());
 		m.addAttribute("p",pv.getP());
 		m.addAttribute("category",vo.getCategory());
 		m.addAttribute("keyword",vo.getKeyword());
 		
-		System.out.println("컨트롤러에서 리스트 출력 ~~~");
-		System.out.println(list);
+		
 		
 		return "faq/faqList";
 		
