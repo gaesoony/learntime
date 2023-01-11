@@ -62,29 +62,37 @@ public class AdminFaqController {
 		return "admin/faq/faqListAd";
 	}
 	@PostMapping("faqListAd")
-	@ResponseBody
-	public String faqListAd(NoticeVo vo,String deleteList,String del, @RequestParam(value="valueArr[]") List<Integer> valueArr) {
-		System.out.println("호출!");
-		List<Integer> list = new ArrayList<Integer>();
-		for(int i = 0; i<valueArr.size(); i++) {
-			list.add(valueArr.get(i));
-			
-		}
+	public String faqListAd() {
+		return "admin/faq/faqListAd"; 
 		
-		int result = 0;
-		
-		
-		if("삭제".equals(deleteList)) {
-			result = afs.deleteOne(list);
-			System.out.println(result);
-		}else if ("삭제".equals(del)) {
-			result = afs.deleteOne(list);
-			System.out.println(result);
-		}
-		
-		
-		return "admin/faq/faqListAd";
 	}
+	//개별삭제
+	@GetMapping("faqListAd/delete")
+	@ResponseBody
+	public String delete(int check) {
+		
+		
+		int result = afs.deleteOne(check);
+		if(result == 1) {
+			return "admin/faq/faqListAd"; 
+		}else {
+			return "common/errorPage";
+		}
+	}
+	//여러개 삭제
+	@GetMapping("faqListAd/deleteList")
+	@ResponseBody
+	public String deleteList(@RequestParam List<String> valueArr) {
+		
+		System.out.println(valueArr);
+		int result = afs.deleteList(valueArr);
+		if(result == 1) {
+			return "admin/faq/faqListAd"; 
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
 	
 	//관리자페이지 faq 상세조회
 	@GetMapping("faqDetailListAdmin")

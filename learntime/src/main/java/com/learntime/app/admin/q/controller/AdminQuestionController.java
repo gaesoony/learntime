@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.learntime.app.admin.q.service.AdminQuestionService;
 import com.learntime.app.admin.vo.ManagerVo;
@@ -62,35 +63,40 @@ public class AdminQuestionController {
 		
 		return "admin/question/qListAd";
 	}
-	//게시물 선택삭제
-	@PostMapping("qListAd")
-	public String qListAd(HttpServletRequest req,QuestionVo vo,String deleteList,@RequestParam(value="valueArr[]") List<Integer> valueArr) {
-
-		
-
-		
-		List<Integer> list = new ArrayList<Integer>();
-		for(int i = 0; i<valueArr.size(); i++) {
-			list.add(valueArr.get(i));
-			
-		}
-		
 	
-		int result = 0;
-		if ("삭제".equals(deleteList)) {
-			System.out.println(list);
-			result = aqs.deleteOne(list);
-			
-		}
-		if(result == 1) {
-			return "redirect:admin/question/qListAd";
-			
-		}else {
-			return "common/errorPage";
-		}
-		
-		
+	@PostMapping("qListAd")
+	public String qListAd() {
+
+		return "admin/question/qListAd";
 	}
+	
+	//개별삭제
+		@GetMapping("qListAd/delete")
+		@ResponseBody
+		public String delete(int check) {
+			
+			
+			int result = aqs.deleteOne(check);
+			if(result == 1) {
+				return "admin/question/qListAd"; 
+			}else {
+				return "common/errorPage";
+			}
+		}
+		//여러개 삭제
+		@GetMapping("qListAd/deleteList")
+		@ResponseBody
+		public String deleteList(@RequestParam List<String> valueArr) {
+			
+			System.out.println(valueArr);
+			int result = aqs.deleteList(valueArr);
+			if(result == 1) {
+				return "admin/question/qListAd"; 
+			}else {
+				return "common/errorPage";
+			}
+		}
+		
 
 	//신규문의 상세조회(운영자)
 	@GetMapping("qDetailListAdmin")

@@ -18,6 +18,8 @@ public interface AdminFaqService {
 
 	public FaqVo selectOne(FaqVo vo);
 
-	public int deleteOne(List<Integer> list);
+	public int deleteList(List<String> valueArr);
+	
+	public int deleteOne(int check);
 
 }

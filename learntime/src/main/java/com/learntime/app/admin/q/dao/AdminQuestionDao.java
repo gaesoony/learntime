@@ -34,18 +34,20 @@ public class AdminQuestionDao {
 
 	
 
-	public int deleteOne(SqlSessionTemplate sst, List<Integer> list) {
-		System.out.println("dao호출!!");
-		int count = 0;
-		System.out.println(list.size());
-		for(int i = 0; i<list.size(); i++) {
-			count+= sst.update("adminQuestionMapper.deleteList",list.get(i));
-			
-		}
-		System.out.println(count);
-		return count;
+	public int deleteList(SqlSessionTemplate sst, List<String> list) {
+		System.out.println("호출!!!!");
+		int no = sst.update("adminQuestionMapper.deleteList",list);
+		System.out.println(no);
+		return no;
+		
 	}
-
+	public int deleteOne(SqlSessionTemplate sst, int check) {
+		System.out.println("호출!!!!");
+		int no = sst.update("adminQuestionMapper.deleteOne",check);
+		System.out.println(no);
+		return no;
+		
+	}
 	
 
 }

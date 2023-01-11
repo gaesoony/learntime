@@ -224,7 +224,7 @@
 	                </div>
 	            </div>
 	            <div class="deleteBtn">
-	                <input type="button" value="삭제" id="erase" class="del">
+	                <input type="submit" value="삭제" id="erase" class="del" onclick="deleteList();">
 	            </div>
 	            <div class="listed-q">
 	                <c:forEach var="list" items="${list}"  >
@@ -235,7 +235,7 @@
 	                            <a href="/app/admin/question/qDetailListAdmin?no=${list.no}"><div class="title-faq-ad" name="title">${list.title}</div></a>
 	                            <div class="nickname-faq-ad" name="writer">${list.writer}</div>
 	                            <div class="enrollDate-faq-ad" name="enrollDate">${list.enrollDate}</div>
-	                            <div class="deleteBtn-faq-ad"><input type="button" value="삭제" id="deleteAd" class="del"></div>
+	                            <div class="deleteBtn-faq-ad"><input type="submit" value="삭제" id="deleteAd" class="del" onclick="delQList()"></div>
 	                        </div>
 	                    </div>
 	                </c:forEach>
@@ -275,48 +275,119 @@
 <script type="text/javascript">
 	
 	/*체크박스 삭제  */
-	 
-	$('.del').click(function(){
-
-        let deleteList = $('.del').eq(0).val();
-        console.log($('.del').get(0));
-        let valueArr = new Array();
-        let list = $("#checkBtn:checked"); 
-        for(let i = 0; i <list.length; i++){
-        	console.log(list[i]);
-            if(list[i].checked){
-                valueArr.push(list[i].value);
-            }
+	function deleteList(){
+	
+	  
+    let valueArr = [];
+    let list = $("#checkBtn:checked"); 
+    for(let i = 0; i <list.length; i++){
+        if(list[i].checked){
+            valueArr.push(list[i].value);
         }
+    }
 
-        var chk = confirm("삭제 하시겠습니까?");
-        
-        $.ajax({
-            url:"/app/admin/question/qListAd",
-            type:"post",
-            data:{"deleteList":deleteList,
-                    "valueArr":valueArr
-        },
-        success:function(x){
-            alert('삭제되었습니다.');
-            location.reload();
-            
-        },
-        error:function(){
-            alert('에러가 발생했습니다.');
-        }
-       
-
-        });
-        
-        
-    });
+    var chk = confirm("삭제 하시겠습니까?");
     
-	
-        	
+    $.ajax({
+        url:"/app/admin/question/qListAd/deleteList",
+        type:"get",
+        traditional:true,
+        data:{
+     	   "valueArr" : valueArr
+                
+    },
+    success:function(x){
+ 	   
+ 	   
+    	 Swal.fire({
+ 		   icon: 'success',
+ 		   title: 'success!',
+ 		   text: '삭제 되었습니다!',
+ 		   
+ 		 })
+ 		  
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		    
+ 		 
+ 		 
+ 		 
+        location.reload();
+        
+    },
+    error:function(){
+        alert('에러가 발생했습니다.');
+    }
+   
+
+    });
 		
+		
+	}
+
+
+function delQList(){
 	
-	
+	  
+    
+    let check = $("#checkBtn:checked"); 
+    
+    var chk = confirm("삭제 하시겠습니까?");
+    
+    $.ajax({
+        url:"/app/admin/question/qListAd/delete",
+        type:"get",
+        traditional:true,
+        data:{
+     	   "check" : check
+                
+    },
+    success:function(x){
+ 	   
+ 	   
+    	 Swal.fire({
+ 		   icon: 'success',
+ 		   title: 'success!',
+ 		   text: '삭제 되었습니다!',
+ 		   
+ 		 })
+ 		  
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+        location.reload();
+        
+    },
+    error:function(){
+        alert('에러가 발생했습니다.');
+    }
+   
+
+    });
+		
+		
+	}
+
+
 	</script>
 
         

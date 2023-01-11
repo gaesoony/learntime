@@ -34,7 +34,7 @@
     JOIN COMMON_CATEGORY C ON F.CATE_NO= C.NO JOIN MEMBER M ON M.NO = F.WRITER WHERE
     F.NO = #{no}
   </select>
-  <update id="deleteOne">
+  <update id="deleteList">
 		UPDATE FAQ
 		SET DELETE_YN = 'Y'
 		WHERE NO IN (
@@ -42,6 +42,13 @@
     		#{no}
     	</foreach>
     	)
+	</update>
+	
+	<update id="deleteOne">
+		UPDATE FAQ
+		SET DELETE_YN = 'Y'
+		WHERE NO = #{no}
+    	
 	</update>
   
  
