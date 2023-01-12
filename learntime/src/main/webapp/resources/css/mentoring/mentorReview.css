@@ -301,7 +301,7 @@ input[type='checkbox'] + .stylish-checkbox {
     position: relative;
     top: -80px;
     text-align: center;
-    height: 700px;
+    height: 530px;
     width: 600px;
     margin: auto;
     background: white;
@@ -348,6 +348,22 @@ input[type='checkbox'] + .stylish-checkbox {
 
     font-size: 16px;
 }
+
+#modal-mentoring-content p{
+    line-height: 18px;
+    font-size: 14px;
+}
+
+#modal-mentoring-content h3{
+    margin: 20px 0 20px 10px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: left;
+}
+
+
+
+
 
 .close-icon{
     cursor: pointer;
