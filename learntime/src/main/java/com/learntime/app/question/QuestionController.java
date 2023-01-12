@@ -94,7 +94,7 @@ public class QuestionController {
 		int result = qs.questionWrite(vo);
 		log.debug("vo:"+vo);
 		if(result == 1) {
-			return "question/questionList";
+			return "redirect:/question/questionList?p=1&cateNo=0";
 		}else {
 			return "common/errorPage";
 		}
