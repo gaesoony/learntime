@@ -97,7 +97,7 @@
         <div id="certification-content">
             아직 한단계가 더 남았어요!<br>
             <span>가입하신 이메일을 인증</span>해주시면,<br>
-            인프런의 모든 서비스를 이용하실 수 있어요!
+            런타임의 모든 서비스를 이용하실 수 있어요!
         </div>
 
         <div id="certification-btn">

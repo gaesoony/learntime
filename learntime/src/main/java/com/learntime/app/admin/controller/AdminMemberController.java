@@ -74,7 +74,7 @@ public class AdminMemberController {
 			vo.setNo(no);
 			int result=memberService.adminMemberedit(vo);
 			
-			return "redirect:/admin/member/manage/detail?no="+no;
+			return "redirect:/admin/member/manage?pno=1";
 		}
 		
 //  	관리자 회원관리 정보수정 -탈퇴
