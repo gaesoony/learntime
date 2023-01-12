@@ -57,10 +57,10 @@
 	                        <c:forEach var="vo" items="${list}" varStatus="status">
 	                        	<div class="gathering-divs">
 	                        		<c:if test="${vo.status == 3}">
-		                        	 	<div class="notice-white"></a>
+		                        	 	<div class="notice-white">
 		                        	</c:if>
 		                        	<c:if test="${vo.status == 2 }">
-		                            	<div class="notice-green"></a>
+		                            	<div class="notice-green">
 		                        	</c:if>
 		                                <div class="admin-id-etc">
 		                                    <div class="admin-id" name="nick">${vo.writer}</div>
@@ -73,13 +73,12 @@
 		                                        <div class="views" name="hit"><img width="15px" height="15px" class="view" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">${vo.hit}</div>
 		                                        <div class="replies" name="cmt"><img width="15px" height="15px"class="message" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">${vo.cmt}</div>
 		                                    </div>
-		                                </div>
+		                                </div></div>
 		                            </div>
 	                        	</c:forEach>
 	                      </div>
                     </div>
                 </div>
-                
                      <div class="page-notice">
 					   	<div class="page-question">
 					  		<div class="page-faq">

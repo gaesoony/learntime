@@ -277,22 +277,6 @@
 	/*체크박스 삭제  */
 	function deleteList(){
 		
-		Swal.fire({
-		  	  title: '삭제하시겠습니까?',
-		  	  showDenyButton: true,
-		  	  confirmButtonText: '네',
-		  	  denyButtonText: '아니오',
-		  	}).then((result) => {
-		  	 /* Read more about isConfirmed, isDenied below */
-		  	if (result.isConfirmed) {
-		  		Swal.fire('삭제되었습니다.', '', 'success')
-		  	} else if (result.isDenied) {
-		  		Swal.fire('삭제되지 않았습니다', '', 'info')
-		  	}
-		  	}) 
-		  
-	
-	  
     let valueArr = [];
     let list = $("#checkBtn:checked"); 
     for(let i = 0; i <list.length; i++){
@@ -301,8 +285,6 @@
         }
     }
 
-    
-    
     $.ajax({
         url:"/app/admin/question/qListAd/deleteList",
         type:"get",
@@ -312,11 +294,18 @@
                 
     },
     success:function(x){
+    	
+    	Swal.fire({
+  		  icon: 'success',
+  		  title: 'success',
+  		  text: '삭제되었습니다!',
+  		  
+  		})
  	   
  		 setTimeout(function() {
  			location.reload();
  			 
-  			}, 10000);
+  			}, 4000);
  		  
  		
  		 
@@ -336,22 +325,6 @@
 
 function delQList(no){
 	
-	
-	Swal.fire({
-  	  title: '삭제하시겠습니까?',
-  	  showDenyButton: true,
-  	  confirmButtonText: '네',
-  	  denyButtonText: '아니오',
-  	}).then((result) => {
-  	 /* Read more about isConfirmed, isDenied below */
-  	if (result.isConfirmed) {
-  		Swal.fire('삭제되었습니다.', '', 'success')
-  	} else if (result.isDenied) {
-  		Swal.fire('삭제되지 않았습니다', '', 'info')
-  	}
-  	}) 
-  
-    
     $.ajax({
         url:"/app/admin/question/qListAd/delete",
         type:"get",
@@ -361,12 +334,19 @@ function delQList(no){
                 
     },
     success:function(x){
+    	
+    	Swal.fire({
+  		  icon: 'success',
+  		  title: 'success',
+  		  text: '삭제되었습니다!',
+  		  
+  		})
  	   
  	   
  		 setTimeout(function() {
  			location.reload();
  			 
-  			}, 10000);
+  			},4000);
  		  
         
     },
