@@ -524,7 +524,7 @@ background-color: #e9fde9;
     		 setTimeout(function() {
     			 location.reload();
     			 
-  			}, 4000);
+  			}, 2000);
  		  
 
     		 
@@ -575,7 +575,7 @@ background-color: #e9fde9;
     		 
     		 setTimeout(function() {
     			 location.reload();
-  			}, 4000);
+  			}, 2000);
  		  
        },
        error:function(){
@@ -625,7 +625,7 @@ background-color: #e9fde9;
     	setTimeout(function() {
     		location.reload();
     		
-  			}, 4000);
+  			}, 2000);
  		  	 
        },
        error:function(){

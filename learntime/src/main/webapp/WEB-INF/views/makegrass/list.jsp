@@ -170,7 +170,8 @@
         margin-top: 20px;
         margin-right: 50px;
         float: left;
-        font-size: 16px;
+        font-size: 14px;
+        margin-bottom: -10px;
     }
     .usernum{
         width: 2vw;
@@ -249,23 +250,24 @@
         margin-left: 5px;
         margin-top: 10px;
         font-size: 13px;
+        padding-bottom: 10px;
     }
     .hit{
         margin-left: 65px;
         display: flex;
         width: 60px;
         height: 30px;
-        margin-top: 15px;
+        margin-top: 7px;
         font-size: 13px;
     }
     .comment{
         width: 55px;
         height: 30px;
-        margin-top: 15px;
+        margin-top: 7px;
         font-size: 13px;
     }
     .contentDate{
-        margin-top: -10px;
+        margin-top: 7px;
         margin-left: 20px;
         color: #868686;
         font-size: 13px;
@@ -324,6 +326,9 @@
         margin-top: 20px;
         margin-left: 20px;
         color: #9D9D9D;
+    }
+    .etcList{
+        display: flex;
     }
 </style>
 </head>
@@ -794,11 +799,11 @@
                             <ul class="infoetc">
                                 <li class="userprofile2"><img src="/app/${loginMember.imgName}" class="profile2" alt="" onerror="this.src='/app/resources/img/profile_default.png'"></li>
                                 <li class="contentnick">${map.WRITER}</li>
+                            </ul>
+                            <ul class="etcList">
+                                <li class="contentDate">${map.ENROLL_DATE}</li>
                                 <li class="hit"><i class="fa-regular fa-eye"></i>&nbsp ${map.HIT}</li>
                                 <li class="comment"><i class="fa-regular fa-comment"></i>&nbsp ${map.REPLY_CNT}</li>
-                            </ul>
-                            <ul>
-                                <li class="contentDate">${map.ENROLL_DATE}</li>
                             </ul>
                         </div>
                     </div>
@@ -812,27 +817,21 @@
                 <ul class="rightsidetitle">
                     <li class="righttitle">FOLLOWING LIST</li>
                 </ul>
-
                 <!-- 팔로잉 리스트 유저 -->
                 <c:if test="${loginMember != null}">
                     <div>
-                        <c:forEach items="${followingList}" var="follow">
                             <ul class="rightsidecontent">
-                                <li class="rightuser"><img src="/app/${loginMember.imgName}" class="profile2" alt="" onerror="this.src='/app/resources/img/profile_default.png'"></li>
-                                <li class="rightnick">${follow.FOLLOWING_NO}</li>
+                                <c:forEach items="${followingList}" var="follow">
+                                    <li class="rightuser"><img src="/app/${loginMember.imgName}" class="profile2" alt="" onerror="this.src='/app/resources/img/profile_default.png'"></li>
+                                    <li class="rightnick">${follow.FOLLOWING_NO}</li>
+                                </c:forEach>
                             </ul>
-                        </c:forEach>
                     </div>
                 </c:if>
 
                 <c:if test="${loginMember == null && followingList == null}">
                     <div class="followingNull">팔로잉한 사람이 없습니다.</div>
                 </c:if>
-                <!-- <c:if test="${followingList == null}">
-                    <div class="followingNull">팔로잉한 사람이 없습니다.</div>
-                </c:if> -->
-                
-                    
             </div>
         </div>
 

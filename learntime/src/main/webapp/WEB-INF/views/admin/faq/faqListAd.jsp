@@ -498,7 +498,7 @@ function deleteList(){
  		setTimeout(function() {
  			location.reload();
  			 
-  			}, 10000);
+  			}, 7000);
  		  
         
     },
