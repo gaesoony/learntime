@@ -249,10 +249,10 @@ public class MemberController {
 		MemberVo findPwd=memberService.findPwd(vo);
 		if(findPwd==null) {
 			session.invalidate();
-			return "redirect:/member/resultPwd";
+			return "redirect:/main";
 		}
 		session.setAttribute("findPwd", findPwd);
-		return"/member/resultPwd";
+		return "redirect:/main";
 	}
 	
 //  비밀번호 찾기 결과(화면)
