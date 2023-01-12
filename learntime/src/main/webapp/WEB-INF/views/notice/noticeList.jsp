@@ -73,7 +73,10 @@
 		                                        <div class="views" name="hit"><img width="15px" height="15px" class="view" src="https://cdn-icons-png.flaticon.com/128/1472/1472411.png">${vo.hit}</div>
 		                                        <div class="replies" name="cmt"><img width="15px" height="15px"class="message" src="https://cdn-icons-png.flaticon.com/128/66/66933.png">${vo.cmt}</div>
 		                                    </div>
-		                                </div></div>
+		                                </div>
+		                               <c:if test="${vo.status == 3 or vo.status == 2}">
+		                        	 	  </div>
+		                        	</c:if>
 		                            </div>
 	                        	</c:forEach>
 	                      </div>
