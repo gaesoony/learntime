@@ -123,6 +123,21 @@
       
 }
 
+#modal-mentoring-content p{
+    line-height: 18px;
+    font-size: 14px;
+}
+
+#modal-mentoring-content h3{
+    margin: 20px 0 20px 10px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: left;
+    
+}
+
+
+
 .mentoring-job,
 .mentoring-career,
 .mentoring-nacara{
