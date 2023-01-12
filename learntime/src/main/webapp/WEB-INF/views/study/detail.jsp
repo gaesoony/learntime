@@ -259,7 +259,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   id="study-modal-open"
                   value="가입하기"/>
               </c:if>
-              <c:if test="${loginMember != null && (myStatus == 'A' || myStatus == 'B' || myStatus == 'C' || myStatus == 'E' || groupOne.CLOSING_YN == 'Y' || groupOne.memberList.size() == groupOne.NUMBER_PEOPLE)}">
+              <c:if test="${loginMember != null && (myStatus == 'A' || myStatus == 'B' || myStatus == 'C' || myStatus == 'E' || groupOne.CLOSING_YN == 'Y' || fn:length(groupOne.memberList) == groupOne.NUMBER_PEOPLE)}">
                 <input class="study-join-btn" type="button" value="가입하기" onclick="alertEnable('${myStatus}');"/>
               </c:if>
               <c:if test="${loginMember == null}">
