@@ -305,7 +305,7 @@
  		 setTimeout(function() {
  			location.reload();
  			 
-  			}, 4000);
+  			}, 7000);
  		  
  		
  		 
