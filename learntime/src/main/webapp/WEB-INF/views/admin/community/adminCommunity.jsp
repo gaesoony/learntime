@@ -125,7 +125,7 @@
                         </div>
                         <div>
                             <span class="txt-sm">Total Delete Post</span>
-                            <span class="statis-number">99</span>
+                            <span class="statis-number">12</span>
                         </div>
                         
                     </div>
@@ -135,7 +135,7 @@
                         </div>
                         <div>
                             <span class="txt-sm">Total Blind Post</span>
-                            <span class="statis-number">99</span>
+                            <span class="statis-number">1</span>
                         </div>
                         
                     </div>
