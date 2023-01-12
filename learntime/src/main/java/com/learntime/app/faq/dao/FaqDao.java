@@ -35,7 +35,7 @@ public class FaqDao {
 		System.out.println("=================");
 		System.out.println(map);
 		
-		return sst.selectList("faqMapper.faqList",map);
+		return sst.selectList("faqMapper.faqList",map,rb);
 	}
 
 	public FaqVo selectOne(SqlSessionTemplate sst, FaqVo vo) {
