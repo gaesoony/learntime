@@ -60,7 +60,7 @@
 		WHERE K.DELETE_YN = 'N'
 		<if test="!'전체'.equals(type)">AND C.NAME = #{type}</if>
 		<if test="keyword != null">AND (K.TITLE LIKE '%${keyword}%' OR K.CONTENT LIKE '%${keyword}%')</if>
-		<if test="'recent'.equals(order)">ORDER BY ENROLL_DATE DESC</if>
+		<if test="'recent'.equals(order)">ORDER BY K.NO DESC</if>
 		<if test="'hit'.equals(order)">ORDER BY K.HIT DESC</if>
 		<if test="'reply'.equals(order)">ORDER BY REPLY_CNT DESC</if>
 		<if test="'recommend'.equals(order)">ORDER BY LIKES DESC</if>
